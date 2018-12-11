@@ -1,0 +1,27 @@
+ilość.elementów.głowa;ilość.elementów.korpus;ilość.elementów.doł;atak;obrona
+
+5;6;8;11;15
+11;3;22;8;6
+1;1;1;1;1
+
+1. Wczytanie z pliku wejściowego o nazwie wejście.txt -> n robotów, n oznacza liczba linii
+
+2. Wyświetlenie informacji o każdym robocie:
+************
+ilość.elementów.głowa: x
+ilość.elementów.korpus: y
+ilość.elementów.doł: z
+
+atak/obrona
+************
+
+3. Starcie robotów 
+HP to ilość.elementów.głowa * 2 + ilość.elementów.korpus * 50 - ilość.elementów.doł * 0.5 
+Do pozostania jednego z robotów żywego. 
+Gdzie żywy oznacza Ilość.Hp > 0.
+
+Zrobić bitwy w 2 roboty. 
+Roboty zadają obrażenia na zmianę, raz jeden, raz drugi. 
+Oddają obrażenia równe Atak Robota Atakującego - Obrona Robota Broniącego * 75%.
+ZAŁOŻYĆ ŻE W PLIKU SĄ TYLKO 2 Roboty 
+
