@@ -8,5 +8,6 @@
         public int Defense;
         public int HP;
 		public double Cost;
+        public string Name;
     }
 }
