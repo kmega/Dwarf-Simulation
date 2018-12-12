@@ -1,1 +1,1 @@
-Shrek
+Karol Szelazek
