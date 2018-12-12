@@ -3,10 +3,10 @@
     class Robot
     {
         public int Head;
-        public int Body;
         public int LowerBody;
         public int Attack;
         public int Defense;
         public int HP;
+		public decimal Cost;
     }
 }
