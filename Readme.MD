@@ -1,1 +1,1 @@
-O dwóch takich co ukradliksiezyc
+O dwóch takich co ukradliksiezyc Krzysztof Gebski
