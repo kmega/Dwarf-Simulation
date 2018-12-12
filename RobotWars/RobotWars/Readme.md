@@ -1,2 +1,1 @@
-Lord of the Rings
-Micha³ Czyrnek
+Lor d of the Rings Micha³ Czyrnek
