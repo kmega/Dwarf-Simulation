@@ -1,4 +1,4 @@
-ilość.elementów.głowa;ilość.elementów.korpus;ilość.elementów.doł;atak;obrona
+﻿ilość.elementów.głowa;ilość.elementów.korpus;ilość.elementów.doł;atak;obrona
 
 5;6;8;11;15
 11;3;22;8;6
@@ -25,3 +25,4 @@ Roboty zadają obrażenia na zmianę, raz jeden, raz drugi.
 Oddają obrażenia równe Atak Robota Atakującego - Obrona Robota Broniącego * 75%.
 ZAŁOŻYĆ ŻE W PLIKU SĄ TYLKO 2 Roboty 
 
+4.Siema co tam u Was.
