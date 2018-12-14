@@ -4,9 +4,18 @@ namespace ChickenKichen
 {
     class MainClass
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
-            Console.WriteLine("Hello World!");
+           
+            // name.surname.alergy.order->User 
+                 
+            //
+
+
+            //
+            //
+            //
+            //
         }
     }
 }
