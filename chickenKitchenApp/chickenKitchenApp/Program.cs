@@ -61,15 +61,25 @@ namespace chickenKitchenApp
 
         public void CompareClientWithItsOrderAndAllergies(string customer_name, string dish_name)
         {
+            List<string> allergiesOf_TheCustomer = new List<string>();
+
             ClientsAndTheirAllergies servedCustomer = new ClientsAndTheirAllergies();
 
             List<string> customerAsKey = servedCustomer.bindedClientsAndAllergies.Keys.ToList();
 
             foreach (string k in customerAsKey)
             {
-                List<string> allergiesOf_TheCustomer = (k == customer_name) ? servedCustomer.bindedClientsAndAllergies[k] : null;
+                allergiesOf_TheCustomer = (k == customer_name) ? servedCustomer.bindedClientsAndAllergies[k] : null;
             }
 
+            if (allergiesOf_TheCustomer != null)
+            {
+                foreach (string a in allergiesOf_TheCustomer)
+                {
+
+                }
+            }
+            
 
         }
     }
