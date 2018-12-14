@@ -46,20 +46,33 @@ namespace chickenKitchenApp
         }
     }
 
-    class BindingClientsWithTheirAlergies
-    {
 
+    class AskingForDishAndNameOfCustomer
+    {
+        public void AskForDish()
+        {
+            Console.WriteLine("Hello! Welcome to our CHICKEN-KITCHEN restaurant. What is Your name?");
+            string nameOfCustomer = Console.ReadLine();
+            Console.WriteLine("It's so nice to meet You, {0}! What would You like to order?", nameOfCustomer);
+            string nameOfOrderedDish = Console.ReadLine();
+            CompareClientWithItsOrderAndAllergies(nameOfCustomer, nameOfOrderedDish);
+
+        }
+
+        public void CompareClientWithItsOrderAndAllergies(string customer_name, string dish_name)
+        {
+            ClientsAndTheirAllergies servedCustomer = new ClientsAndTheirAllergies();
+
+            List<string> customerAsKey = servedCustomer.bindedClientsAndAllergies.Keys.ToList();
+
+            foreach (string k in customerAsKey)
+            {
+                string allergiesOf_TheCustomer = (k == customer_name)? 
+            }
+
+        }
     }
 
-    class BindingAlergiesWithFood
-    {
-
-    }
-
-    class ServeClientsNeedsRefuseAccept
-    {
-
-    }
 
     class Program
     {
