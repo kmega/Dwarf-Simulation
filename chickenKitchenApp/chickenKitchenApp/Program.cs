@@ -14,7 +14,7 @@ namespace chickenKitchenApp
 
         public void ListOfAllDishesWithItsAlergicIngredients()
         {
-            List<string> fries = new List<string>;
+            List<string> fries = new List<string>();
 
             fries.Add("potatoes");
         }
@@ -67,8 +67,9 @@ namespace chickenKitchenApp
 
             foreach (string k in customerAsKey)
             {
-                string allergiesOf_TheCustomer = (k == customer_name)? 
+                List<string> allergiesOf_TheCustomer = (k == customer_name) ? servedCustomer.bindedClientsAndAllergies[k] : null;
             }
+
 
         }
     }
