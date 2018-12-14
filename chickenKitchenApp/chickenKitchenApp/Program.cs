@@ -6,22 +6,27 @@ using System.Threading.Tasks;
 
 namespace chickenKitchenApp
 {
-    class Food
+    class FoodAndItsAllergicIngredients
     {
-        List<string> listOfServedFood = new List<string>();
+        public Dictionary<string, List<string>> foodWithItsAllergicIngredients = new Dictionary<string, List<string>>();
 
-        public void AddFoodToListOfServedFood()
+        public List<string> fries { get; private set; }
+
+        public void ListOfAllDishesWithItsAlergicIngredients()
         {
-            listOfServedFood.Add("fries");
+            List<string> fries = new List<string>;
+
+            fries.Add("potatoes");
         }
        
     }
 
     class ClientsAndTheirAllergies
     {
-        Dictionary<string, List<string>> bindedClientsAndAllergies = new Dictionary<string, List<string>>();
+        public Dictionary<string, List<string>> bindedClientsAndAllergies = new Dictionary<string, List<string>>();
 
         public List<string> alergiesOf_AdamSmith { get; private set; }
+        public List<string> alergiesOf_ElonCarousel { get; private set; }
 
         public void ListOfAllergiesOfClients()
         {
@@ -35,8 +40,9 @@ namespace chickenKitchenApp
 
         public void AddAlergiesToSpecificClients()
         {
-            
             bindedClientsAndAllergies.Add("Adam Smith", alergiesOf_AdamSmith );
+            bindedClientsAndAllergies.Add("Elon Carousel", alergiesOf_ElonCarousel);
+
         }
     }
 
