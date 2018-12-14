@@ -43,6 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Alergic.cs" />
+    <Compile Include="CompareList.cs" />
+    <Compile Include="Food.cs" />
+    <Compile Include="Food_Indigriends.cs" />
+    <Compile Include="Ingridents.cs" />
+    <Compile Include="Klient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
