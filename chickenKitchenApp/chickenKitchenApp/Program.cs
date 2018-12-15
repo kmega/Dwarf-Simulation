@@ -18,6 +18,11 @@ namespace chickenKitchenApp
 
             fries.Add("potatoes");
         }
+
+        public void AddingIngredientsToSpecificDishes()
+        {
+            foodWithItsAllergicIngredients.Add("fries", fries);
+        }
        
     }
 
@@ -62,6 +67,9 @@ namespace chickenKitchenApp
         public void CompareClientWithItsOrderAndAllergies(string customer_name, string dish_name)
         {
             List<string> allergiesOf_TheCustomer = new List<string>();
+            List<string> allergensIn_Dish = new List<string>();
+
+            FoodAndItsAllergicIngredients orderedDish = new FoodAndItsAllergicIngredients();
 
             ClientsAndTheirAllergies servedCustomer = new ClientsAndTheirAllergies();
 
@@ -74,13 +82,26 @@ namespace chickenKitchenApp
 
             if (allergiesOf_TheCustomer != null)
             {
-                foreach (string a in allergiesOf_TheCustomer)
+                foreach (string a in orderedDish.foodWithItsAllergicIngredients[dish_name])
                 {
-
+                    allergensIn_Dish = (a == dish_name) ? orderedDish.foodWithItsAllergicIngredients[a] : null;
                 }
             }
-            
 
+           bool serveOrNot = CompareAllergiesOfClientsWithAllergensInDish(allergiesOf_TheCustomer, allergensIn_Dish);
+
+        }
+
+        public bool CompareAllergiesOfClientsWithAllergensInDish(List<string> allergies, List<string> allergens)
+        {
+            foreach (string allergy in allergies)
+            {
+                foreach(string allergen in allergens)
+                {
+                    if ( allergy == allergen ) { return true; }
+                    else { return false;  }
+                }
+            }
         }
     }
 
