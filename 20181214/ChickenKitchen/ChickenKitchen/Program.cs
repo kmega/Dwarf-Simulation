@@ -19,46 +19,7 @@ namespace ChickenKitchen
     }
     class Program
     {
-        public static Boolean CheckIngredients(Klient klient, Order dinner)
-        {
-            if ( dinner.ingredientsToOrder.Contains(klient.allergy))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        private static void PrepareMeal(Order dinner, Dictionary<Ingredients, int> store, Klient klient)
-        {
-
-            if (CheckIngredients(klient, dinner))
-            {
-                Console.WriteLine("This meal will kill you");
-            }
-
-            else
-            {
-                List<Ingredients> usedingredients = new List<Ingredients>();
-                foreach (var item in dinner.ingredientsToOrder)
-                {
-                    
-                    if (store.ContainsKey(item))
-                    {
-                        
-                        store[item] -= 1;
-                        usedingredients.Add(item);
-                       
-                    }
-
-                }
-                Console.WriteLine("We prepared {0} for {1} and it cost 1: {2}",
-                           dinner.orderName, klient.name, String.Join(", ", usedingredients));
-            }
-        }
-
+       
         static void Main(string[] args)
         {
             //1.User->klientName, order
@@ -67,7 +28,7 @@ namespace ChickenKitchen
 
             Klient klient = new Klient(
                 "Adam Smith",
-                Ingredients.none
+               new Ingredients[] { Ingredients.none }
                 );
 
             Order dinner = new Order(
@@ -82,7 +43,9 @@ namespace ChickenKitchen
                 {Ingredients.Vinegar, 10 }
             };
 
-            PrepareMeal(dinner, store, klient);
+            MasterChef pascal = new MasterChef();
+            pascal.PrepareMeal(dinner, store, klient);
+            
 
             Console.ReadKey();
         }

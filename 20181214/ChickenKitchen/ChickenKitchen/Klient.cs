@@ -9,10 +9,10 @@ namespace ChickenKitchen
     class Klient
     {
         public string name;
-        public Ingredients allergy;
+        public Ingredients[] allergy;
 
 
-        public Klient(string klientname, Ingredients allergy)
+        public Klient(string klientname, Ingredients[] allergy)
         {
             this.name = klientname;
             this.allergy = allergy;
