@@ -101,7 +101,7 @@ namespace chickenKitchenApp
             {
                 foreach(string allergen in allergens)
                 {
-                    if ( allergy == allergen ) { return true; }
+                    if ( allergy == allergen || allergies == null ) { return true; }
                     else { return false;  }
                 }
             }
@@ -128,7 +128,8 @@ namespace chickenKitchenApp
             customers.AddAlergiesToSpecificClients();
 
             //3. Asking customer for a dish && compare values && print result
-            
+            //FoodAndItsAllergicIngredients test = new FoodAndItsAllergicIngredients();
+            //test.foodWithItsAllergicIngredients.KeyCollection
             AskingForDishAndNameOfCustomer askingCustomer = new AskingForDishAndNameOfCustomer();
             askingCustomer.AskForDish();
             Console.ReadKey();
