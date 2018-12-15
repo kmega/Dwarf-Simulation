@@ -89,6 +89,9 @@ namespace chickenKitchenApp
             }
 
            bool serveOrNot = CompareAllergiesOfClientsWithAllergensInDish(allergiesOf_TheCustomer, allergensIn_Dish);
+           string answerToCustomer = (serveOrNot == true) ? "Here's Your dish!" : "You're allergic to, I can't serve You this meal";
+
+            Console.WriteLine(answerToCustomer);
 
         }
 
