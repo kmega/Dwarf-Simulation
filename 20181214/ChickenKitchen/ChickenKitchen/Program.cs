@@ -21,7 +21,7 @@ namespace ChickenKitchen
     {
         public static Boolean CheckIngredients(Klient klient, Order dinner)
         {
-            if (klient.allergy == dinner.ingredientsToOrder)
+            if ( dinner.ingredientsToOrder.Contains(klient.allergy))
             {
                 return true;
             }
@@ -33,11 +33,29 @@ namespace ChickenKitchen
 
         private static void PrepareMeal(Order dinner, Dictionary<Ingredients, int> store, Klient klient)
         {
-            if (store.ContainsKey(dinner.ingredientsToOrder))
+
+            if (CheckIngredients(klient, dinner))
             {
-                store[dinner.ingredientsToOrder] -= 1;
-                Console.WriteLine("We prepared {0} for {1} and it cost 1 {2}",
-                    dinner.orderName, klient.name, dinner.ingredientsToOrder);
+                Console.WriteLine("This meal will kill you");
+            }
+
+            else
+            {
+                List<Ingredients> usedingredients = new List<Ingredients>();
+                foreach (var item in dinner.ingredientsToOrder)
+                {
+                    
+                    if (store.ContainsKey(item))
+                    {
+                        
+                        store[item] -= 1;
+                        usedingredients.Add(item);
+                       
+                    }
+
+                }
+                Console.WriteLine("We prepared {0} for {1} and it cost 1: {2}",
+                           dinner.orderName, klient.name, String.Join(", ", usedingredients));
             }
         }
 
@@ -47,21 +65,24 @@ namespace ChickenKitchen
             //2.CheckIngredients: a)klientName in klientbase? b) klientAllerg in ingredients?
             //3.PrepareMeal (order.ingredients from magazine) ->user(name,order,cost)
 
-            Klient klient = new Klient("Adam Smith", Ingredients.none);
-            Order dinner = new Order("Fries", Ingredients.Potatoes);
+            Klient klient = new Klient(
+                "Adam Smith",
+                Ingredients.none
+                );
+
+            Order dinner = new Order(
+                "Ruby Salad",
+                new Ingredients[] {Ingredients.Tomatoes, Ingredients.Vinegar }
+                );
+
             Dictionary<Ingredients, int> store = new Dictionary<Ingredients, int>
             {
-                {Ingredients.Potatoes, 10 }
+                {Ingredients.Potatoes, 10 },
+                {Ingredients.Tomatoes, 10 },
+                {Ingredients.Vinegar, 10 }
             };
 
-            if (CheckIngredients(klient, dinner))
-            {
-                Console.WriteLine("This meal will kill you");
-            }
-            else
-            {
-                PrepareMeal(dinner, store, klient);
-            }
+            PrepareMeal(dinner, store, klient);
 
             Console.ReadKey();
         }

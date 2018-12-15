@@ -10,9 +10,9 @@ namespace ChickenKitchen
     {
 
         public string orderName;
-        public Ingredients ingredientsToOrder;
+        public Ingredients[] ingredientsToOrder;
 
-        public Order(string orderName, Ingredients ingredients)
+        public Order(string orderName, Ingredients[] ingredients)
         {
             this.orderName = orderName;
             this.ingredientsToOrder = ingredients;
