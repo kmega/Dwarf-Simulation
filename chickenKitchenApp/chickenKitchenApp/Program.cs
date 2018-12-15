@@ -115,9 +115,20 @@ namespace chickenKitchenApp
     {
         static void Main(string[] args)
         {
-            FoodAndItsAllergicIngredients test = new FoodAndItsAllergicIngredients();
-            List<string> keys = new List<string>(test.foodWithItsAllergicIngredients.Keys);
-            Console.WriteLine(keys);
+            //1. Creating list of dishes && dictionary with its ingredients
+
+            FoodAndItsAllergicIngredients food = new FoodAndItsAllergicIngredients();
+            food.ListOfAllDishesWithItsAlergicIngredients();
+            food.AddingIngredientsToSpecificDishes();
+
+            //2. Creating list of customers and their allergies && dictionary with their allergies
+
+            ClientsAndTheirAllergies customers = new ClientsAndTheirAllergies();
+            customers.ListOfAllergiesOfClients();
+            customers.AddAlergiesToSpecificClients();
+
+            //3. Asking customer for a dish && compare values && print result
+            
             AskingForDishAndNameOfCustomer askingCustomer = new AskingForDishAndNameOfCustomer();
             askingCustomer.AskForDish();
             Console.ReadKey();
