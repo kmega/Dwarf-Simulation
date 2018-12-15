@@ -105,6 +105,8 @@ namespace chickenKitchenApp
                     else { return false;  }
                 }
             }
+
+            return false;
         }
     }
 
@@ -113,6 +115,12 @@ namespace chickenKitchenApp
     {
         static void Main(string[] args)
         {
+            FoodAndItsAllergicIngredients test = new FoodAndItsAllergicIngredients();
+            List<string> keys = new List<string>(test.foodWithItsAllergicIngredients.Keys);
+            Console.WriteLine(keys);
+            AskingForDishAndNameOfCustomer askingCustomer = new AskingForDishAndNameOfCustomer();
+            askingCustomer.AskForDish();
+            Console.ReadKey();
         }
     }
 }
