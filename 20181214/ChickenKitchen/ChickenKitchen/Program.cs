@@ -19,7 +19,7 @@ namespace ChickenKitchen
     }
     class Program
     {
-       
+
         static void Main(string[] args)
         {
             //1.User->klientName, order
@@ -28,23 +28,32 @@ namespace ChickenKitchen
 
             Klient klient = new Klient(
                 "Adam Smith",
-               new Ingredients[] { Ingredients.none }
+               new Ingredients[] { Ingredients.Asparagus }
                 );
 
-            Order dinner = new Order(
-                "Ruby Salad",
-                new Ingredients[] {Ingredients.Tomatoes, Ingredients.Vinegar }
-                );
+            List<Order> menu = new List<Order>() {
+
+                new Order("Ruby Salad", new Ingredients[] {Ingredients.Tomatoes,Ingredients.Vinegar}),
+                new Order ("Fries", new Ingredients[] {Ingredients.Potatoes}),
+                new Order ("Youth Sauce", new Ingredients[]{Ingredients.Asparagus, Ingredients.Milk, Ingredients.Honey}),
+                
+            };
+            menu.Add(new Order("Princess Chicken", new Ingredients[] { Ingredients.Chicken }, "Youth Sauce", menu));
+        
 
             Dictionary<Ingredients, int> store = new Dictionary<Ingredients, int>
             {
                 {Ingredients.Potatoes, 10 },
                 {Ingredients.Tomatoes, 10 },
-                {Ingredients.Vinegar, 10 }
+                {Ingredients.Vinegar, 10 },
+                {Ingredients.Asparagus, 10 },
+                {Ingredients.Chicken, 10 },
+                {Ingredients.Honey,10 },
+                {Ingredients.Milk,10 }
             };
 
             MasterChef pascal = new MasterChef();
-            pascal.PrepareMeal(dinner, store, klient);
+            pascal.PrepareMeal(menu[3], store, klient);
             
 
             Console.ReadKey();

@@ -10,10 +10,13 @@ namespace ChickenKitchen
     {
         public Boolean CheckIngredients(Klient klient, Order dinner)
         {
-            if (dinner.ingredientsToOrder.Equals(klient.allergy))
+            if (dinner.ingredientsToOrder.Intersect(klient.allergy).Any())
+                
             {
                 return true;
             }
+            
+           
             else
             {
                 return false;
@@ -43,10 +46,9 @@ namespace ChickenKitchen
                     }
 
                 }
-                Console.WriteLine("We prepared {0} for {1} and it cost 1: {2}",
-                           dinner.orderName, klient.name, String.Join(", ", usedingredients));
+                Console.WriteLine("We prepared {0} for {1} and it cost (x1):\n {2}",
+                           dinner.orderName, klient.name, String.Join(",\n ", usedingredients));
             }
         }
-
     }
 }
