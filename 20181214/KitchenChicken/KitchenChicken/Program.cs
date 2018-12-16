@@ -22,8 +22,8 @@ namespace KitchenChicken
             //string allergy = GI.getInput("alergie:");
             //string order = GI.getInput("zamowienie:");
             string client = "Adam Smith";
-            string allergy = "Potatoes";
-            string order = "Fries";
+            string allergy = "Fries";
+            string order = "Fat Cat Chicken";
             
 
         //Sprawdzenie czy nie ma uczulenia i wydanie dania
@@ -33,14 +33,17 @@ namespace KitchenChicken
                 "Chicken","Tuna","Potatoes","Asparagus","Milk","Honey","Paprika","Garlic"
             };
 
-            Dictionary<string, List<string>> FoodDataBase = new Dictionary<string, List<string>>();
-            FoodDataBase.Add("Fries", new List<string> { "Potatoes" });
+            Dictionary<string, List<string>> FoodDataBase = new Dictionary<string, List<string>>
+            {
+                {"Emperor Chicken", new List<string>{"Fat Cat Chicken", "Spicy Sauce", "Tuna Cake"}},
+                {"Fat Cat Chicken", new List<string>{"Princess Chicken", "Youth Sauce","Fries","Diamond Salad"}},
+                { "Fries", new List<string> { "Potatoes" } }
+            };
 
-            if(allergy=="")
+            if (allergy=="")
             {
                 //wyswietlic dania na ktore nie ma allergi
                 Console.WriteLine("{0} moze zjesc {1}", client, order);
-                
             }
             //jesli ma uczulenie I danie ktore zamowil posiada skladnik
             //na ktory jest uczulony -> odmow wydania
@@ -48,7 +51,7 @@ namespace KitchenChicken
             {
                 //if (BaseIngriedients.Contains(allergy) && )
                 bool temp = FoodDataBase.ContainsKey(order);
-                bool temp2 = FoodDataBase[order].Contains(allergy);
+                bool temp2 = FoodDataBase[order].Contains(allergy) || FoodDataBase[order].Contains(order);
                 if(temp == true && temp2 == true)
                 {
                     Console.WriteLine("{0} posiada alergie na {1}", client, allergy);
