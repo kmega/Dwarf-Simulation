@@ -33,7 +33,7 @@ namespace ChickenKitchen
 
             else
             {
-                List<Ingredients> usedingredients = new List<Ingredients>();
+                Dictionary<Ingredients,int> usedingredients = new Dictionary<Ingredients,int>();
                 foreach (var item in dinner.ingredientsToOrder)
                 {
 
@@ -41,13 +41,21 @@ namespace ChickenKitchen
                     {
 
                         store[item] -= 1;
-                        usedingredients.Add(item);
+                        if (!(usedingredients.ContainsKey(item)))
+                        {
+                            usedingredients.Add(item, 1);
+                        }
 
+                        else
+                        {
+                            usedingredients[item] += 1;
+                        }
                     }
 
                 }
-                Console.WriteLine("We prepared {0} for {1} and it cost (x1):\n {2}",
-                           dinner.orderName, klient.name, String.Join(",\n ", usedingredients));
+                var output = usedingredients.Select(x => x.Key + " x" + x.Value+",");
+                Console.WriteLine("We prepared {0} for {1} and it cost:\n {2}",
+                           dinner.orderName, klient.name, String.Join("\n ", output));
             }
         }
     }

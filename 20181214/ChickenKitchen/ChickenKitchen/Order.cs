@@ -10,16 +10,16 @@ namespace ChickenKitchen
     {
 
         public string orderName;
-        public Ingredients[] ingredientsToOrder;
-        public string otherOrderRequiredToMade;
+        public List<Ingredients> ingredientsToOrder;
+        public string[] otherOrderRequiredToMade;
 
-        public Order(string orderName, Ingredients[] ingredients)
+        public Order(string orderName, List<Ingredients> ingredients)
         {
             this.orderName = orderName;
             this.ingredientsToOrder = ingredients;
         }
 
-        public Order(string orderName, Ingredients[] ingredients, string otherOrder, List<Order> menu)
+        public Order(string orderName, List<Ingredients> ingredients, string[] otherOrder, List<Order> menu)
         {
             this.orderName = orderName;
             this.otherOrderRequiredToMade = otherOrder;
@@ -29,20 +29,22 @@ namespace ChickenKitchen
 
         }
 
-        public Ingredients[] AddIngredients(Ingredients[] extendedingredient, List<Order> menu, string orderName)
+        public List<Ingredients> AddIngredients(List<Ingredients>extendedingredient, List<Order> menu, string[] orderName)
         {
 
-            
-            foreach (var item in menu)
+            foreach (var item in orderName)
             {
-                if (item.orderName==orderName)
+
+                foreach (var item2 in menu)
                 {
-                    Array.Resize(ref extendedingredient, extendedingredient.Length + item.ingredientsToOrder.Length);
-                       Array.Copy(item.ingredientsToOrder, extendedingredient, item.ingredientsToOrder.Length);
-                    
+                    if (item2.orderName == item)
+                    {
+                        extendedingredient.AddRange(item2.ingredientsToOrder);
+
+                    }
+
+
                 }
-                
-               
             }
             return extendedingredient;
         }

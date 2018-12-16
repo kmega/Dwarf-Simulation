@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ChickenKitchen
 {
 
@@ -17,6 +18,9 @@ namespace ChickenKitchen
         Rice, Chocolate, none
 
     }
+   
+
+    
     class Program
     {
 
@@ -28,32 +32,35 @@ namespace ChickenKitchen
 
             Klient klient = new Klient(
                 "Adam Smith",
-               new Ingredients[] { Ingredients.Asparagus }
+               new Ingredients[] { Ingredients.none }
                 );
 
             List<Order> menu = new List<Order>() {
 
-                new Order("Ruby Salad", new Ingredients[] {Ingredients.Tomatoes,Ingredients.Vinegar}),
-                new Order ("Fries", new Ingredients[] {Ingredients.Potatoes}),
-                new Order ("Youth Sauce", new Ingredients[]{Ingredients.Asparagus, Ingredients.Milk, Ingredients.Honey}),
+                new Order("Ruby Salad", new List<Ingredients> {Ingredients.Tomatoes,Ingredients.Vinegar}),
+                new Order ("Fries", new List<Ingredients> {Ingredients.Potatoes}),
+                new Order ("Youth Sauce", new List<Ingredients>{Ingredients.Asparagus, Ingredients.Milk, Ingredients.Honey}),
+                new Order ("Diamond Salad", new List<Ingredients>{Ingredients.Tomatoes, Ingredients.Pickles,Ingredients.Feta})
                 
             };
-            menu.Add(new Order("Princess Chicken", new Ingredients[] { Ingredients.Chicken }, "Youth Sauce", menu));
-        
+            menu.Add(new Order("Princess Chicken", new List<Ingredients> { Ingredients.Chicken }, 
+                new string[] { "Youth Sauce" } , menu));
 
-            Dictionary<Ingredients, int> store = new Dictionary<Ingredients, int>
+            menu.Add(new Order("Fat Cat Chicken", new List<Ingredients> { },
+                new string[] { "Princess Chicken", "Youth Sauce", "Fries", "Diamond Salad" }, menu));
+
+
+
+            Dictionary<Ingredients, int> store = new Dictionary<Ingredients, int>();
+            
+                foreach (Ingredients item in Enum.GetValues(typeof(Ingredients)))
             {
-                {Ingredients.Potatoes, 10 },
-                {Ingredients.Tomatoes, 10 },
-                {Ingredients.Vinegar, 10 },
-                {Ingredients.Asparagus, 10 },
-                {Ingredients.Chicken, 10 },
-                {Ingredients.Honey,10 },
-                {Ingredients.Milk,10 }
-            };
+                store.Add(item, 10);
+            }
+
 
             MasterChef pascal = new MasterChef();
-            pascal.PrepareMeal(menu[3], store, klient);
+            pascal.PrepareMeal(menu[5], store, klient);
             
 
             Console.ReadKey();
