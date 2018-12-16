@@ -1,66 +1,97 @@
 ﻿using System;
 using System.Collections.Generic;
-//slownik <klient, uczulenie>
-//Dictionary<Client, Allergy> Clients = new Dictionary<Client, Allergy>
-//{
-//    { new Client("Adam Smith"), new Allergy("") }
-//};
 
-//Dictionary<Dish, Ingriedents> Menu = new Dictionary<Dish, Ingriedents>
-//{
-//    { new Dish("Fries"), new Ingriedents("Potatoes")}
-//};
 namespace KitchenChicken
 {
     class MainClass
     {
         public static void Main(string[] args)
         {
-        //pobierz klienta z alergia i danie -> 
+            ListsAndDictionaries FoodDataBase = new ListsAndDictionaries();
+            DisplayStatus displayStatus = new DisplayStatus();
+            List<Client> ClientList = new List<Client>();
+            ClientList.Add(new Client("Adam Smith", "Vinegar, olives".Split(new Char[] { ',', ' ' }),
+                "Fries"));
+            //pobierz klienta z alergia i danie -> 
             //GetInput GI = new GetInput();
             //string client = GI.getInput("imie i nazwisko klienta:");
             //string allergy = GI.getInput("alergie:");
             //string order = GI.getInput("zamowienie:");
             string client = "Adam Smith";
-            string allergy = "Fries";
-            string order = "Fat Cat Chicken";
-            
+            string[] allergy = "Vinegar, olives".Split(new Char[] {',',' ' });
+            string order = "Fries";
 
-        //Sprawdzenie czy nie ma uczulenia i wydanie dania
+
+            foreach (var x in ClientList)
+            {
+
+            }
+            //Sprawdzenie czy nie ma uczulenia i wydanie dania
             //Lista z podstawowymi skladnikami
-            List<string> BaseIngriedients = new List<string>
-            {
-                "Chicken","Tuna","Potatoes","Asparagus","Milk","Honey","Paprika","Garlic"
-            };
-
-            Dictionary<string, List<string>> FoodDataBase = new Dictionary<string, List<string>>
-            {
-                {"Emperor Chicken", new List<string>{"Fat Cat Chicken", "Spicy Sauce", "Tuna Cake"}},
-                {"Fat Cat Chicken", new List<string>{"Princess Chicken", "Youth Sauce","Fries","Diamond Salad"}},
-                { "Fries", new List<string> { "Potatoes" } }
-            };
-
-            if (allergy=="")
+            if (allergy==null)
             {
                 //wyswietlic dania na ktore nie ma allergi
-                Console.WriteLine("{0} moze zjesc {1}", client, order);
+                displayStatus.DisplayOrder(client, order);
             }
             //jesli ma uczulenie I danie ktore zamowil posiada skladnik
             //na ktory jest uczulony -> odmow wydania
             else
             {
-                //if (BaseIngriedients.Contains(allergy) && )
-                bool temp = FoodDataBase.ContainsKey(order);
-                bool temp2 = FoodDataBase[order].Contains(allergy) || FoodDataBase[order].Contains(order);
-                if(temp == true && temp2 == true)
+                bool temp = CheckingAllergens(order, allergy);
+                bool ifDishExsistsinMenu = FoodDataBase.Dishes.ContainsKey(order);
+                bool ifDishContainAllergen = temp || FoodDataBase.Dishes[order].Contains(order);
+
+                if (ifDishExsistsinMenu && ifDishContainAllergen )
                 {
-                    Console.WriteLine("{0} posiada alergie na {1}", client, allergy);
+                    displayStatus.DenyOrder(client, allergy);
                     Console.WriteLine("Nie moze zjesc {0}", order);
                 }
-                
+                else
+                {
+                    displayStatus.DenyOrder(client, allergy);
+                    displayStatus.DisplayOrder(client, order);
+                }
             }
-
             Console.ReadKey();
+        }
+        public static bool CheckingAllergens(string order, string[] allergy)
+        {
+            bool temp = false;
+            ListsAndDictionaries FoodDataBase = new ListsAndDictionaries();
+
+            for (int i = 0; i < allergy.Length; i++)
+            {
+                if (FoodDataBase.Dishes[order].Contains(allergy[i]))
+                {
+                    temp = true;
+                }
+            }
+            return temp;
+        }
+    }
+    class Client
+    {
+        string name;
+        string[] allergy;
+        string order;
+        public Client(string name, string[] allergy, string order)
+        {
+            this.name = name;
+            this.allergy = allergy;
+            this.order = order;
+        }
+    }
+    class temp
+    {
+        public object istniejeKlient(string client)
+        {
+            ListsAndDictionaries FoodDataBase = new ListsAndDictionaries();
+
+            if (FoodDataBase.RepeatedClients.ContainsKey(client))
+            {
+                return FoodDataBase.RepeatedClients[client];
+            }
+            else return null;
         }
     }
 }
