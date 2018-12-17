@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Task
 {
@@ -8,10 +9,8 @@ namespace Task
         public static void Main(string[] args)
         {
             CompareBooks cb = new CompareBooks();
-            foreach (var item in cb.Compare())
-            {
-                Console.WriteLine("{0}, {1}", item.Key, item.Value);
-            }
+            cb.DisplayUnRead();
+            cb.ReadAndPutIntoReadBooks();
         }
     }
 
@@ -19,48 +18,75 @@ namespace Task
     {
         public List<Book> ReadBooks = new List<Book>
         {
-            {new Book("fantasy", "titel 1")},
+            {new Book("fantasy", "title 1")},
             {new Book( "horror", "title 2")},
-            {new Book("fantasy", "titel 4")}
+            {new Book("fantasy", "title 4")}
         };
 
         public List<Book> AllBooks = new List<Book>
-            {
-                {new Book("fantasy", "titel 1")},
-                {new Book( "horror", "title 2")},
-                {new Book("fantasy", "titel 4")},
-                {new Book("fantasy", "titel 3")},
-                {new Book( "horror", "title 5")},
-                {new Book("fantasy", "titel 6")}
-            };
-    }
-    class Book
-    {
-        public string tag;
-        public string tytul;
-        public Book(string tag, string tytul)
         {
-            this.tag = tag;
-            this.tytul = tytul;
-        }
+            {new Book("fantasy", "title 1")},
+            {new Book( "horror", "title 2")},
+            {new Book("fantasy", "title 4")},
+            {new Book("fantasy", "title 31")},
+            {new Book( "romans", "title 51")},
+            {new Book("fantasy", "title 61")}
+        };
     }
     class CompareBooks
     {
-        BooksFile bf = new BooksFile();
-
-        public List<Book> Compare()
+        public BooksFile bf = new BooksFile();
+        List<Book> TempList = new List<Book>();
+         
+        public void SetTag()
         {
-            List<Book> TempBooks = new List<Book>();
-
-            foreach (Book AllBook in bf.AllBooks)
+            foreach(var item in bf.AllBooks)
             {
-                foreach(Book ReadBook in bf.ReadBooks)
+                if(item.tag == "fantasy")
                 {
-                    if(ReadBook.tag && ReadBook.tytul)
+                    TempList.Add(item);
                 }
             }
-            return TempBooks;
         }
+        public void SetOnlyNotRead()
+        {
+            //IEnumerable<Book> czWspolna = (bf.AllBooks).Except(bf.ReadBooks);
+            //var czWspolna = bf.AllBooks.Where(b => !bf.ReadBooks.Contains(b.tytul));
+            foreach (var item in bf.AllBooks)
+            {
+                for (int i = 0; i < bf.ReadBooks.Count;i++)
+                {
+                    if (bf.ReadBooks[i].tytul==(item.tytul))
+                    {
+                        Console.WriteLine("Usunieto");
+                        TempList.Remove(item);
+                    }
+                }
+
+            }
+        }
+        public void DisplayUnRead()
+        {
+            SetTag();
+            SetOnlyNotRead();
+            foreach (var item in TempList)
+            {
+                 Console.WriteLine("tag: {0}, tytul: {1}", item.tag, item.tytul);
+            }
+        }
+        public void ReadAndPutIntoReadBooks()
+        {
+            Console.WriteLine("Wybierz pozycje do czytania");
+            int pickBook = int.Parse(Console.ReadLine());
+            bf.ReadBooks.Add(TempList[pickBook]);
+
+            Console.WriteLine("Ksiazki rpzeczytane");
+            foreach (var item in bf.ReadBooks)
+            {
+                Console.WriteLine("tag: {0}, tytul: {1}", item.tag, item.tytul);
+            }
+        }
+
     }
     
      
