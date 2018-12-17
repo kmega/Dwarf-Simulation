@@ -10,6 +10,7 @@ namespace KitchenChicken
         {
             ListsAndDictionaries FoodDataBase = new ListsAndDictionaries();
             DisplayStatus displayStatus = new DisplayStatus();
+            CheckAllergens checkAllergens = new CheckAllergens();
             List<Client> ClientList = new List<Client>
             {
                 new Client("Julie Mirage", "Soy".Split(','),
@@ -41,25 +42,44 @@ namespace KitchenChicken
                 }
                 else
                 {
-                    //test(x.order, x.allergy, x.name);
                     foreach (var allergen in x.allergy)
                     {
-                        if (FoodDataBase.Dishes[x.order].Contains(allergen))
+                        //bool temp = checkAllergens.tryStatemnet(allergen);
+                        if (FoodDataBase.Dishes[x.order].Contains(allergen))// && temp)//FoodDataBase.Dishes[allergen].Contains(allergen))
                         {
-                            displayStatus.DenyOrder(x.name, x.order);
-                            break;
+                            displayStatus.DenyOrder(x.name, x.order, x.allergy);
                         }
                         else
                         {
                             displayStatus.DisplayOrder(x.name, x.order);
-                            //git work plz
                         }
                     }
                 }
-
-
             }
             Console.ReadKey();
         }
+    }
+
+    class CheckAllergens
+    {
+        ListsAndDictionaries FoodDataBase = new ListsAndDictionaries();
+
+        public bool tryStatemnet(string allergen)
+        {
+            try
+            {
+                if (!FoodDataBase.Dishes[allergen].Contains(allergen))
+                {
+                    throw new KeyNotFoundException();
+                }
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+        }
+
+
     }
 }

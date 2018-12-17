@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace KitchenChicken
 {
@@ -11,11 +11,22 @@ namespace KitchenChicken
             Console.WriteLine("********");
         }
 
-        public void DenyOrder(string client, string order)
+        public void DenyOrder(string client, string order, string[] allergens)
         {
-            Console.WriteLine("{0} posiada alergie", client);
             Console.WriteLine("{0} NIE moze zjesc {1}", client, order);
+            DisplayAllergens(allergens);
             Console.WriteLine("********");
         }
+
+        private void DisplayAllergens(string[] allergens)
+        {
+            Console.WriteLine("posiada alergie na: ");
+            foreach (var item in allergens)
+            {
+                Console.Write("{0}, ", item);
+            }
+            Console.WriteLine();
+        }
+
     }
 }
