@@ -17,34 +17,54 @@ namespace Chicken_Kitchen
             new Client("Bernard", "Unfortunate", new List<Allergy>() { Allergy.POTATOES })
         };
 
-       public void ShowClientsList()
+       
+
+        public void ShowClientsList()
         {
             Console.WriteLine();
             for (int i = 0; i < clients.Count; i++)
             {
-                Console.WriteLine("Client number: {0}, First Name: {1}, Last Name: {2}", i+1, clients[i].FirstName, clients[i].LastName);
+                Console.WriteLine("Client number: {0}, First Name: {1}, Last Name: {2}", i + 1, clients[i].FirstName, clients[i].LastName);
             }
         }
 
-        public Dictionary<BaseIngredient, int> baseIngredientsStorage = new Dictionary<BaseIngredient, int>
+        public int ChooseClient()
         {
-            {BaseIngredient.ASPARAGUS, 10 },
-            {BaseIngredient.CHICKEN, 10 },
-            {BaseIngredient.CHOCOLATE, 10 },
-            {BaseIngredient.FETA, 10 },
-            {BaseIngredient.GARLIC, 10 },
-            {BaseIngredient.HONEY, 10 },
-            {BaseIngredient.LEMON, 10 },
-            {BaseIngredient.MILK, 10 },
-            {BaseIngredient.PAPRIKA, 10 },
-            {BaseIngredient.PICKLES, 10 },
-            {BaseIngredient.POTATOES, 10 },
-            {BaseIngredient.RICE, 10 },
-            {BaseIngredient.TOMATOES, 10 },
-            {BaseIngredient.TUNA, 10 },
-            {BaseIngredient.VINEGAR, 10 },
-            {BaseIngredient.WATER, 10 }
-        };
+            
+            Console.Write("\nInput client number: ");
+            int clientNumber;
+            bool result = int.TryParse(Console.ReadLine(), out clientNumber);
+            if(result)
+            {
+                return clientNumber;
+            }
+            else
+            {
+                Console.WriteLine("Wrong number");
+                ChooseClient();
+                return 0;
+            }
+        
+        }
+
+        public int ChooseFood()
+        {
+            Console.Write("\nInput food number: ");
+            int foodNumber;
+            bool result = int.TryParse(Console.ReadLine(), out foodNumber);
+            if (result)
+            {
+                return foodNumber;
+            }
+            else
+            {
+                Console.WriteLine("Wrong number");
+                return 0;
+            }
+
+        }
+
+
 
         public List<Food> foods = new List<Food> {
            new Food("Fries", new List<Ingredient>() {new Ingredient("Potatos", new List<BaseIngredient>() {BaseIngredient.TOMATOES })})
@@ -56,14 +76,12 @@ namespace Chicken_Kitchen
             Console.WriteLine();
             for (int i = 0; i < foods.Count; i++)
             {
-                Console.WriteLine("Number of food: {0}, Name: {1}", i + 1, foods[i].FoodName);
+                Console.WriteLine("Number of food: {0}, Name: {1}", i + 1, foods[i].foodName);
             }
         }
 
 
-
-
-        public void ServeDish(Client client, Food food)
+        public void AcceptOrder(int client, int food)
         {
 
         }

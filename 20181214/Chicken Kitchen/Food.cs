@@ -4,13 +4,13 @@ namespace Chicken_Kitchen
 {
     public class Food
     {
-        public string FoodName { get; set; }
-        public List<Ingredient> Ingredients { get; set; }
+        public string foodName;
+        public List<Ingredient> ingredients;
 
         public Food(string foodName, List<Ingredient> ingredients)
         {
-            FoodName = foodName;
-            Ingredients = ingredients;
+            this.foodName = foodName;
+            this.ingredients = ingredients;
         }
     }
 }

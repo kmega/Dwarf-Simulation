@@ -16,6 +16,8 @@ namespace Chicken_Kitchen
             restaurant.ShowClientsList();
             //show list of foods
             restaurant.ShowFoodList();
+            //accept order
+            restaurant.AcceptOrder(restaurant.ChooseClient(), restaurant.ChooseFood());
 
 
 
