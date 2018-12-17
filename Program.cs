@@ -19,28 +19,50 @@ namespace _20181217
         public string title { get; set; }
         public Genre genre { get; set; }
         public int numberOfPages { get; set; }
-        bool readed { get; set; }
+        public int lastTimeStoppedReadingOnPage { get; set; }
+        public bool readed { get; set; }
 
-        public Book(string title, Genre genre, int numberOfPages, bool readed = false)
+        public Book(string title, 
+                    Genre genre, 
+                    int numberOfPages, 
+                    int lastTimeStoppedReadingOnPage = 0, 
+                    bool readed = false)
         {
             this.title = title;
             this.genre = genre;
             this.numberOfPages = numberOfPages;
+            this.lastTimeStoppedReadingOnPage = lastTimeStoppedReadingOnPage;
             this.readed = readed;
         }
     }
     class Person
     {
+        public int pagePerHour = 80;
+
         public void readBook(Book book, int hours)
         {
-            Console.WriteLine("I'm reading a book about the title of: " + book.title + 
-            " for " + hours.ToString() + " hours.");
+            Console.WriteLine("I'm reading a book about the title of: " + 
+                              book.title + 
+                              " for " + hours.ToString() + 
+                              " hours.");
+            book.lastTimeStoppedReadingOnPage = pagePerHour * hours;
+            if (pagePerHour * hours >= book.numberOfPages)
+                book.lastTimeStoppedReadingOnPage = book.numberOfPages;
+
+            if (book.lastTimeStoppedReadingOnPage >= book.numberOfPages)
+                book.readed = true;
         }
 
-        public Book chooseBook(List<Book> books)
+        public Book takeChosenBook(List<Book> books)
         {
             int i = new Random().Next(books.Count());
-            return books.ElementAt(i);
+            Book tmpBook = books.ElementAt(i);
+            return tmpBook;
+        }
+
+        public void putBackChosenBook(List<Book> library, Book book)
+        {
+            library.Add(book);
         }
     }
     class Program
@@ -62,8 +84,9 @@ namespace _20181217
 
             List<Book> filteredBooks = myLibrary.bookList.FindAll(x => x.genre.Equals(Genre.fantasy));
 
-            me.readBook(me.chooseBook(filteredBooks), 3);
-
+            Book chosenBook = me.takeChosenBook(filteredBooks);
+            me.readBook(chosenBook, 3);
+            me.putBackChosenBook(myLibrary.bookList, chosenBook);            
         }
     }
 }
