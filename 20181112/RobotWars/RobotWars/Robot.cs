@@ -7,6 +7,7 @@
         public int Attack;
         public int Defense;
         public int HP;
-		public decimal Cost;
+		public double Cost;
+        public string Name;
     }
 }
