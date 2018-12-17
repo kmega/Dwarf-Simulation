@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Allergy_Ingredients.cs" />
+    <Compile Include="Check_the_order.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Ingredients_in_meal.cs" />

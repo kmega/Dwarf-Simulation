@@ -15,7 +15,7 @@ namespace Chicken_Kitchen
             Client client = new Client();
             client._name = "Adam";
             client._last_name = "Smith";
-            client.all_Name = Customer.Adam_Smith;
+            client.all_Name = Customer.Bernard_Unfortunate;
 
             //User -> Order
             Order order = new Order();
@@ -30,10 +30,12 @@ namespace Chicken_Kitchen
 
             //Name, Last_Name -> Allergy_Ingredients[]
             Allergy_Ingredients allergy = new Allergy_Ingredients();
-            List<Ingredient> allergy_list = allergy.list_of_allergy_ingredients(Customer.Julie_Mirage);
-            Console.ReadKey();
+            List<Ingredient> allergy_list = allergy.list_of_allergy_ingredients(client.all_Name);
 
-            //Ingredients[], Allergy_Ingredients -> Compare() -> Result(true, false)
+            //Ingredients_in_meal<>, Allergy_Ingredients<> -> Compare() -> Result(true, false)
+            Check_the_order check = new Check_the_order();
+            check.check_order(allergy_list, list_of_meal_ingredients);
+            Console.ReadKey();
         }
     }
 }

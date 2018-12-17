@@ -17,6 +17,8 @@ namespace Chicken_Kitchen
             _dictionary_ingredients_in_meal = new Dictionary<Food, List<Ingredient>>();
 
             _dictionary_ingredients_in_meal.Add(Food.Fries, new List<Ingredient>() { Ingredient.Potatoes });
+            _dictionary_ingredients_in_meal.Add(Food.Smashed_Potatoes, new List<Ingredient>() { Ingredient.Potatoes });
+            _dictionary_ingredients_in_meal.Add(Food.Tuna_Cake, new List<Ingredient>() { Ingredient.Tuna, Ingredient.Chocolate, Ingredient.Asparagus, Ingredient.Milk, Ingredient.Honey });
 
 
         }
@@ -40,7 +42,7 @@ namespace Chicken_Kitchen
             {
                 Console.WriteLine(item);
             }
-
+            Console.WriteLine();
             return _list_ingredients_in_order;
         }
 

@@ -24,18 +24,34 @@ namespace Chicken_Kitchen
         Vinegar,
         Rice,
         Chocolate,
-        Soy
+        Soy,
+        Olives
     }
 
     enum Customer
     {
         Adam_Smith,
-        Julie_Mirage
+        Julie_Mirage,
+        Elon_Carosel,
+        Barbara_Smith,
+        Christian_Donnovan,
+        Bernard_Unfortunate
     }
 
     enum Food
     {
-        Fries
+        Emparor_Chicken,
+        Fat_Cat_Chicken,
+        Princess_Chicken,
+        Youth_Sauce,
+        Spicy_Sauce,
+        Omega_Sauce,
+        Dimaond_Salad,
+        Ruby_Salad,
+        Fries,
+        Smashed_Potatoes,
+        Tuna_Cake,
+        Fish_In_Water
     }
 
     
