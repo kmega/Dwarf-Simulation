@@ -11,7 +11,7 @@ namespace RegexTask
     {
         public void save_file(string url, string data)
         {
-            File.WriteAllText(url, data);
+            File.AppendAllText(url, data);
         }
     }
 }

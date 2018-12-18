@@ -9,7 +9,7 @@ namespace RegexTask
 {
     class ReadFile
     {
-        public string Check_Fryderyk_Komciura(string URL)
+        public string Return_file(string URL)
         {
             string file = File.ReadAllText(URL);
             //Console.WriteLine(file);

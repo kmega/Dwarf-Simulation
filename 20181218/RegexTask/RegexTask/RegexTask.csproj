@@ -48,6 +48,8 @@
     <Compile Include="ReadFile.cs" />
     <Compile Include="Find_data.cs" />
     <Compile Include="Create_file.cs" />
+    <Compile Include="TextParser.cs" />
+    <Compile Include="Whole_creating_time.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
