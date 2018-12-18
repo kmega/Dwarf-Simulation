@@ -9,6 +9,34 @@ namespace regExApp
 {
     class Program
     {
+        public class TextParser
+        {
+            public string ExtractTimeToCreate(string text)
+            {
+                return SafelyExtractSingleElement(
+                    @"\((\d\d) min.*\)", text);
+            }
+
+            public string ExtractProfileName(string text)
+            {
+                return SafelyExtractSingleElement(
+                    @"title: ""(\w+ \w+)""", text);
+            }
+
+            private string SafelyExtractSingleElement(string pattern, string text)
+            {
+                MatchCollection matches = new Regex(pattern).Matches(text);
+
+                List<string> allResults = new List<string>();
+                foreach (Match match in matches)
+                {
+                    allResults.Add(match.Groups[1].Value);
+                }
+
+                if (allResults.Count > 0) return allResults.First();
+                else return string.Empty;
+            }
+        }
 
         static void Main(string[] args)
         {
@@ -16,23 +44,24 @@ namespace regExApp
             string path = "1807-fryderyk-komciur.md";
 
             string[] fryderyk = File.ReadAllLines(path);
+            string timeResult;
 
-            Console.WriteLine(fryderyk);
+            TextParser findText = new TextParser();
 
-           /* Regex readFile = new Regex(@"\((\d\d) min.*\");
+            string helper;
 
-            MatchCollection timeFromFile;
-
-            for (int i=0; i<fryderyk.Length;i++)
+            for (int i = 0; i<fryderyk.Length; i++)
             {
-                timeFromFile = readFile.Matches(fryderyk[i]);
-
-                if (timeFromFile != null) { Console.WriteLine(timeFromFile); }
+                helper = findText.ExtractTimeToCreate(fryderyk[i]);
+                if (helper != null)
+                {
+                    timeResult = findText.ExtractTimeToCreate(fryderyk[i]);
+                    Console.WriteLine(timeResult);
+                }
+                
             }
-            */
+            
             Console.ReadKey();
-
-
 
         }
     }
