@@ -11,7 +11,7 @@ namespace lab20181218
         static void Main(string[] args)
         {
             //Regex regex = new Regex(@"\s/Content/([a-zA-Z0-9\-]+?)\.aspx");
-            Regex regex = new Regex(@"\((\d\d) min.*\)\");
+            Regex regex = new Regex(@"\((\d\d) min.*\)");
             //\((\d\d) min.*\)
             using (StreamReader reader = new StreamReader(@"1807-fryderyk-komciur.md"))
             {
