@@ -11,9 +11,24 @@ namespace RegexTasks
     {
         static void Main(string[] args)
         {
-            //1. Plik Fryderyk Komciur -- odczyt -> string FryderykKomciur
+
+            //0. Stwórz ścieżki do plików
+            // Folder ze ścieżkami -- twórz ścieżki --> tablica ścieżek
+
+            string[] filePaths =
+                Directory.GetFiles(@"..\\..\\..\\..\\..\\20181218\\cybermagic\\karty-postaci");
+            Console.WriteLine(filePaths[0]);
+
+            //1. Plik  -- odczyt -> string calyplik
             FileSupporter file_to_read = new FileSupporter();
-            string FryderyKomciurFileStr = file_to_read.Read_File();
+            string FryderyKomciurFileStr = file_to_read.Read_File(@"..\..\..\..\..\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
+
+            List<string> files = new List<string>();
+
+            foreach (var item in filePaths)
+            {
+                files.Add(file_to_read.Read_File(item));
+            }
 
 
             //2. FryderykKomciurFileStr -- filtr(regex methods) --> string howLongWasBuild fryderyk
@@ -27,6 +42,8 @@ namespace RegexTasks
 
             FileSupporter file_to_save = new FileSupporter();
             file_to_save.SaveToFIle(result1);
+
+            
 
             Console.ReadKey();
         }

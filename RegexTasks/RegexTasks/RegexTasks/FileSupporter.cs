@@ -11,13 +11,13 @@ namespace RegexTasks
     {
         public string fullstringsfromfile;
 
-        public string Read_File()
+        public string Read_File(string path)
         {
             //string path = "..\\..\\..\\..\\..\\cybermagic\\karty-postaci\\1807-fryderyk-komciur.md";
 
-            // Read the stream to a string, and write the string to the console.
+            //Read the stream to a string, and write the string to the console.
 
-            fullstringsfromfile = File.ReadAllText(@"..\\..\\..\\..\\..\\20181218\\cybermagic\\karty-postaci\\1807-fryderyk-komciur.md");
+            //fullstringsfromfile = File.ReadAllText(path);
 
 
             return fullstringsfromfile;
@@ -25,6 +25,7 @@ namespace RegexTasks
 
         public void SaveToFIle(string TextToSave)
         {
+            Console.WriteLine(TextToSave);
             using (StreamWriter file = new StreamWriter(@"..\\..\\results\\Result1.txt"))
             {
                 file.WriteLine(TextToSave);
