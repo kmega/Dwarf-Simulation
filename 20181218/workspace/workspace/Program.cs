@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using System.IO;
 
 namespace workspace
 {
@@ -35,8 +36,18 @@ namespace workspace
 
         static string Exercise2()
         {
-            string[] text = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
-            Regex rx = new Regex(@"");
+            Console.Clear();
+            string text;
+            int buildTime = 0;
+            Regex rx = new Regex(@"\((\d\d) min.*\)");
+            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
+            {
+                text = File.ReadAllText(file);
+                if (rx.Match(text[i]).Success)
+                {
+                    
+                }
+            }
             return null;
         }
 
@@ -51,6 +62,9 @@ namespace workspace
             {
                 case 1:
                     Exercise1();
+                    break;
+                case 2:
+                    Exercise2();
                     break;
                 default:
                     Console.WriteLine("Wrong input.");
