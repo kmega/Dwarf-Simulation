@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RegexTasks
 {
-    class FileReader
+    class FileSupporter
     {
         public string fullstringsfromfile;
 
@@ -21,6 +21,14 @@ namespace RegexTasks
 
 
             return fullstringsfromfile;
+        }
+
+        public void SaveToFIle(string TextToSave)
+        {
+            using (StreamWriter file = new StreamWriter(@"..\\..\\results\\Result1.txt"))
+            {
+                file.WriteLine(TextToSave);
+            }
         }
     }
 }

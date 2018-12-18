@@ -12,8 +12,8 @@ namespace RegexTasks
         static void Main(string[] args)
         {
             //1. Plik Fryderyk Komciur -- odczyt -> string FryderykKomciur
-            FileReader file1 = new FileReader();
-            string FryderyKomciurFileStr = file1.Read_File();
+            FileSupporter file_to_read = new FileSupporter();
+            string FryderyKomciurFileStr = file_to_read.Read_File();
 
 
             //2. FryderykKomciurFileStr -- filtr(regex methods) --> string howLongWasBuild fryderyk
@@ -21,7 +21,12 @@ namespace RegexTasks
             TextParser TimeToCreate = new TextParser();
             string HowLongWasBuildFryderykKomciur = TimeToCreate.ExtractTimeToCreate(FryderyKomciurFileStr);
 
-            Console.WriteLine($"Fryderyk Komciur był budowany {HowLongWasBuildFryderykKomciur} minuty");
+            string result1 = "Fryderyk Komciur był budowany " + HowLongWasBuildFryderykKomciur + " minuty";
+
+            //3. HowLongWasBuildFryderykKomciur -- zapis do pliku --> Result1.txt
+
+            FileSupporter file_to_save = new FileSupporter();
+            file_to_save.SaveToFIle(result1);
 
             Console.ReadKey();
         }
