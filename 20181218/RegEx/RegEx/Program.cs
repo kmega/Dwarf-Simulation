@@ -23,7 +23,6 @@ namespace RegEx
             var join = string.Join("\n", fKomciur);
             timeKomciur = tp.ExtractTimeToCreate(join);
             nameKomciur = tp.ExtractProfileName(join);
-            
             File.WriteAllText(result1, nameKomciur + " byl budowany " + timeKomciur + " minuty");
                        
         }
