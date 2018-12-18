@@ -32,17 +32,31 @@ namespace ConsoleApp1
             string pathTask2 = @"E:\Informacje\result_task2.txt";
             StreamWriter resulutTask2 = new StreamWriter(pathTask2);
 
+            string pathTask3 = @"E:\Informacje\result_task3.txt";
+            StreamWriter resulutTask3 = new StreamWriter(pathTask3);
+
+            int counter = 0;
             int fullTime = 0;
+            string name = "";
             string folderPath = @"C:\Users\Lenovo\code\primary\20181218\cybermagic\karty-postaci";
             foreach (string file in Directory.EnumerateFiles(folderPath, "*.md"))
             {
                 string contents = File.ReadAllText(file);
                 time = textParser.ExtractTimeToCreate(contents);
                 if( time != "")
+                {
+                    counter++;
                     fullTime += int.Parse(time);
+                    name = textParser.ExtractProfileName(contents);
+                    resulutTask3.WriteLine("Bohaterowie którzy nie mają czasu tworzenia: " + name);
+                }                    
             }
+            int avg = fullTime / counter;
+            resulutTask3.WriteLine("Średni czas tworzenia postaci to: " + avg + " minut. A łączny czas to: " +
+                "");
             resulutTask2.WriteLine("Czas tworzenia pliku to: " + fullTime + " minut");
             resulutTask2.Close();
+            resulutTask3.Close();
         }
     }
 }
