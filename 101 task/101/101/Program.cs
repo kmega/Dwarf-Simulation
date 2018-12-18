@@ -10,7 +10,7 @@ namespace _101
     {
         class Books
         {
-            public List<string> ListOfBooks()
+            public List<string> ListOfNotReadBooks()
             {
                 List<string> books = new List<string>();
                 books.Add("Hobbit");
@@ -19,29 +19,35 @@ namespace _101
                 return books;
             }
 
-            public Dictionary<List<string>, List<string>> DictionaryOfBooks()
+            public Dictionary<string, List<string>> DictionaryOfBooks()
             {
                 List<string> booksFantasy = new List<string>();
                 List<string> booksHistorical = new List<string>();
-                Dictionary<List<string>, List<string>> allBooks = new Dictionary<List<string>, List<string>>();
+                Dictionary<string, List<string>> allBooks = new Dictionary<string, List<string>>();
 
                 booksFantasy.Add("Hobbit");
                 booksFantasy.Add("Lord of Rings");
 
                 booksHistorical.Add("Second World War");
 
+                allBooks.Add("fantasy", booksFantasy);
+                allBooks.Add("historical", booksHistorical);
+
                 return allBooks;
 
             }
 
-            public void Compare(string bookType, string bookName)
+            public string Compare(string bookType)
             {
-                Dictionary<List<string>, List<string>> toCompare = new Dictionary<List<string>, List<string>>();
+                Books bookList = new Books();
 
-                toCompare = DictionaryOfBooks().Keys.ToList();
-                string compareKeys = toCompare.Keys.ToList();
+                Dictionary <string, List<string>> toCompare = bookList.DictionaryOfBooks();
 
-                foreach(Type in )
+                string searchedBook = toCompare[bookType][0];
+                ReadBooksList(searchedBook);
+                toCompare.Remove(searchedBook);
+
+                return searchedBook;
             }
 
 
@@ -60,10 +66,6 @@ namespace _101
                 readBooks.Add(chosenBook);
             }
 
-            public void NotReadBooksList( string chosenBook)
-            {
-                List<string> notReadBooks = new List<string>();
-            }
             
         }
         static void Main(string[] args)
@@ -74,13 +76,13 @@ namespace _101
             Console.WriteLine("Which type of book?");
             string bookTypeChosenByUser = Console.ReadLine();
             //4. Czytanie książki
-            Console.WriteLine("reading the book for 3 hours");
-            //5. Odłożenie książki (książka przeczytana)
             Books newBook = new Books();
-
-            newBook.ReadBooksList(bookTypeChosenByUser);
-            Console.WriteLine("after 3 hours You've read the book");
-            Console.WriteLine("Book {0} was placed on right place", bookTypeChosenByUser);
+            string readBook = newBook.Compare(bookTypeChosenByUser);
+            Console.WriteLine("{0} is read now", readBook);
+            Console.WriteLine("Reading {0} for 3 hours", readBook);
+            //5. Odłożenie książki (książka przeczytana)
+            Console.WriteLine("After 3 hours You've read the book");
+            Console.WriteLine("{0} was placed on right place", readBook);
 
             Console.ReadKey();
 
