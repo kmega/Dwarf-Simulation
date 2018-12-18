@@ -53,7 +53,7 @@ namespace regExApp
             for (int i = 0; i<fryderyk.Length; i++)
             {
                 helper = findText.ExtractTimeToCreate(fryderyk[i]);
-                if (helper != null)
+                if (helper != "")
                 {
                     timeResult = findText.ExtractTimeToCreate(fryderyk[i]);
                     Console.WriteLine(timeResult);
