@@ -10,14 +10,12 @@ namespace VivaRegex
     {
         public string ExtractTimeToCreate(string text)
         {
-            return SafelyExtractSingleElement(
-                @"\((\d\d) min.*\)", text);
+            return SafelyExtractSingleElement(@"\((\d\d) min.*\)", text);
         }
 
         public string ExtractProfileName(string text)
         {
-            return SafelyExtractSingleElement(
-                @"title: ""(\w+ \w+)""", text);
+            return SafelyExtractSingleElement(@"title: ""(\w+ \w+)""", text);
         }
 
         private string SafelyExtractSingleElement(string pattern, string text)
