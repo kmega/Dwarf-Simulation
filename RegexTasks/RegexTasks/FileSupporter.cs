@@ -23,9 +23,9 @@ namespace RegexTasks
             return fullstringsfromfile;
         }
 
-        public void SaveToFIle(string TextToSave, string TaskResultNumber)
+        public void SaveToFIle(string TextToSave, string TaskResultNumber,bool append)
         {
-            using (StreamWriter file = new StreamWriter(@"..\\..\\results\\"+TaskResultNumber+".txt"))
+            using (StreamWriter file = new StreamWriter(@"..\\..\\results\\"+TaskResultNumber+".txt", append))
             {
                 file.WriteLine(TextToSave);
             }
