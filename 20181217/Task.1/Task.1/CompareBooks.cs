@@ -19,6 +19,17 @@ namespace Task
             //usuwanie z templist ksiazek, ktore zawieraja sie w ksiazkach przeczytanych
             FiltrOnlyUnreadFantasyBooks();
         }
+        private void FiltrFantasyBooks()
+        {
+            //Dodawanie do templist ksiazek typu fantasy
+            foreach (var item in bf.AllBooks)
+            {
+                if (item.tag == "fantasy")
+                {
+                    TempList.Add(item);
+                }
+            }
+        }
         private void FiltrOnlyUnreadFantasyBooks()
         {
             foreach (var item in bf.AllBooks)
@@ -30,17 +41,6 @@ namespace Task
                         //Console.WriteLine("Usunieto");
                         TempList.Remove(item);
                     }
-                }
-            }
-        }
-        private void FiltrFantasyBooks()
-        {
-            //Dodawanie do templist ksiazek typu fantasy
-            foreach (var item in bf.AllBooks)
-            {
-                if (item.tag == "fantasy")
-                {
-                    TempList.Add(item);
                 }
             }
         }
