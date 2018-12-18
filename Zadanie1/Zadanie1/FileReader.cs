@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace Zadanie1
 {
-    class FileReader
+    public class FileReader
     {
+        public static string ReadTextFile(string path)
+        {
+            return File.ReadAllText(path);
+        }
     }
 }
