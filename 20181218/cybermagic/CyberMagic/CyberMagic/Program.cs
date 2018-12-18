@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using VivaRegex;
 
 namespace CyberMagic
 {
@@ -21,13 +22,23 @@ namespace CyberMagic
             string path = @"C:\Users\esmic\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
             string time;
             string name;
+            StreamWriter sr = new StreamWriter("result.txt");
             
-            Regex rxTime = new Regex( @"\((\d\d) min.*\)");
+            
 
 
             string[] txt = File.ReadAllLines(path);
-            MatchCollection matches = rxTime.Matches(txt.ToString());
-           
+            TextParser tp = new TextParser();
+            var xxx = string.Join("\n", txt);
+            time = tp.ExtractTimeToCreate(xxx);
+            name = tp.ExtractProfileName(xxx);
+            Console.WriteLine("{0} był budowany {1} minuty", name, time );
+
+
+            sr.Write("{0} był budowany {1} minuty", name, time);
+            sr.Close();
+
+          
 
 
             
