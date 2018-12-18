@@ -25,7 +25,7 @@ namespace Task101
 
         public void Put_down(int Id_reading_book)
         {
-            _books[Id_reading_book][2] = "Read";
+            _books[Id_reading_book][2] = "Unread";
             Console.WriteLine("Odłożyłem na miejsce, zmieniłem status na " +_books[Id_reading_book][2]);
         }
     }
