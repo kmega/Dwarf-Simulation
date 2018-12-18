@@ -11,14 +11,18 @@ namespace RegexTasks
     {
         static void Main(string[] args)
         {
-            //1. plik karty-postaci\1807-fryderyk-komciur -- zapisz do pliku --> resultTask1.txt
+            //1. Plik Fryderyk Komciur -- odczyt -> string FryderykKomciur
             FileReader file1 = new FileReader();
-            String[] FryderyKomciurFile = file1.Read_File();
+            string FryderyKomciurFileStr = file1.Read_File();
 
-            foreach (var item in FryderyKomciurFile)
-            {
-                Console.WriteLine(item);
-            }
+
+            //2. FryderykKomciurFileStr -- filtr(regex methods) --> string howLongWasBuild fryderyk
+
+            TextParser TimeToCreate = new TextParser();
+            string HowLongWasBuildFryderykKomciur = TimeToCreate.ExtractTimeToCreate(FryderyKomciurFileStr);
+
+            Console.WriteLine($"Fryderyk Komciur był budowany {HowLongWasBuildFryderykKomciur} minuty");
+
             Console.ReadKey();
         }
     }
