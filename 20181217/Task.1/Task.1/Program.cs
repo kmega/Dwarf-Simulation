@@ -36,7 +36,7 @@ namespace Task
     class CompareBooks
     {
         public BooksFile bf = new BooksFile();
-        List<Book> TempList = new List<Book>();
+        public List<Book> TempList = new List<Book>();
          
         public void SetTag()
         {
@@ -52,17 +52,17 @@ namespace Task
         {
             //IEnumerable<Book> czWspolna = (bf.AllBooks).Except(bf.ReadBooks);
             //var czWspolna = bf.AllBooks.Where(b => !bf.ReadBooks.Contains(b.tytul));
+            //LINQ -> nie dziala
             foreach (var item in bf.AllBooks)
             {
                 for (int i = 0; i < bf.ReadBooks.Count;i++)
                 {
-                    if (bf.ReadBooks[i].tytul==(item.tytul))
+                    if (bf.ReadBooks[i].tytul==item.tytul)
                     {
                         Console.WriteLine("Usunieto");
                         TempList.Remove(item);
                     }
                 }
-
             }
         }
         public void DisplayUnRead()
@@ -80,7 +80,7 @@ namespace Task
             int pickBook = int.Parse(Console.ReadLine());
             bf.ReadBooks.Add(TempList[pickBook]);
 
-            Console.WriteLine("Ksiazki rpzeczytane");
+            Console.WriteLine("Ksiazki przeczytane");
             foreach (var item in bf.ReadBooks)
             {
                 Console.WriteLine("tag: {0}, tytul: {1}", item.tag, item.tytul);
