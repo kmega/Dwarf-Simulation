@@ -19,8 +19,10 @@ namespace Zadanie1
             string profileName = textParser.ExtractProfileName(readFile);
             string timeToBuild = textParser.ExtractTimeToCreate(readFile);
             TextFileCreator.CreateOrAppend("result1.txt",$"{profileName} był budowany {timeToBuild} min");
-            var totalBuildTime = Hero.TimeOfBuildingAllHeroes(folderPath);
-            TextFileCreator.CreateOrAppend("result2.txt", totalBuildTime.ToString());
+            TimeSpan totalTimeToBuildHeroes = TimeSpan.FromMinutes(Hero.TimeOfBuildingAllHeroes(folderPath));
+            TextFileCreator.CreateOrAppend("result2.txt", $"Wszystkie postacie do tej pory budowane były " +
+                $"{totalTimeToBuildHeroes.Hours} godzin i {totalTimeToBuildHeroes.Minutes} minut.");
+
           
             
 
