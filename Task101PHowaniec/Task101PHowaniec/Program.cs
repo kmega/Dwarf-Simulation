@@ -14,23 +14,30 @@ namespace Task101PHowaniec
 
         public class Ksiazka
         {
+            public Ksiazka() { }
             public Ksiazka(string name, rodzaj type, bool czyprzeczytana)
             {
                 this.nazwa = name;
                 this.rodzaj = type;
-                this.czyprzeczytana = czyprzeczytana;
+                this.przeczytana = czyprzeczytana;
             }
             public string nazwa { get; set; }
             public rodzaj rodzaj { get; set; }
-            public bool czyprzeczytana { get; set; }
+            public bool przeczytana { get; set; }
+
+            public bool CzytanieKsiazki()
+            {
+                Console.WriteLine("Czytana ksiazka {0}", nazwa);
+                przeczytana = true;
+                return przeczytana;
+            }
 
         }
 
         public class Biblioteka
         {
-            List<Ksiazka> KsiazkiFantasy = new List<Ksiazka>();
-            List<Ksiazka> KsiazkiFantasyNieprzeczytane = new List<Ksiazka>();
-            List<Ksiazka> KsiazkiFantasyPrzeczytane = new List<Ksiazka>();
+            public List<Ksiazka> KsiazkiFantasy = new List<Ksiazka>();
+            public List<Ksiazka> KsiazkiFantasyPrzeczytane = new List<Ksiazka>();
             public Biblioteka()
             {
                 KsiazkiFantasy.Add(new Ksiazka("Harry Potter 1", rodzaj.fantasy, false));
@@ -40,28 +47,28 @@ namespace Task101PHowaniec
                 KsiazkiFantasy.Add(new Ksiazka("Matrix", rodzaj.fantasy, false));
             }
 
-            internal Ksiazka FirstUnreadFantasyBook()
+            public Ksiazka FirstUnreadFantasyBook()
             {
-                
-                throw new NotImplementedException();
+                Ksiazka pierwszaNieprzeczytanaKsiazka = new Ksiazka();  
+                foreach(var book in KsiazkiFantasy)
+                {
+                    if(book.przeczytana == false)
+                    {
+                        pierwszaNieprzeczytanaKsiazka = book;
+                        break;
+                    }
+                }
+                return pierwszaNieprzeczytanaKsiazka;
             }
         }
 
-        public Ksiazka WybierzKsiazke(Ksiazka ksiazka)
+        public static void OdlozPrzeczytanaKsiazke(Ksiazka ksiazka, List<Ksiazka> KsiazkiPrzeczytane)
         {
-
-            return ksiazka;
-        }
-
-        public bool CzytanieKsiazki(Ksiazka ksiazka)
-        {
-            ksiazka.czyprzeczytana = true;
-            return ksiazka.czyprzeczytana;
-        }
-
-        public void OdlozPrzeczytanaKsiazke(Ksiazka ksiazka, List<Ksiazka> KsiazkiFantasyPrzeczytane)
-        {
-            
+            if(ksiazka.CzytanieKsiazki())
+            {
+                KsiazkiPrzeczytane.Add(ksiazka);
+                Console.WriteLine("Odkladanie przeczytaj ksiazki {0} na polke przeczytanych ksiazek {1}", ksiazka.nazwa, ksiazka.rodzaj);
+            } 
         }
 
         static void Main(string[] args)
@@ -70,13 +77,14 @@ namespace Task101PHowaniec
             // ksiazki fantasy -> filtr -> k.f. nieprzeczytane
             // kfnp -> wybierz ksiazke -> ksiazka
             // (ksiazka 3h) -> czytam -> ksiazki przeczytane
-            // (k.przeczytane, pula ksiazek fantasy) -> wsadz ksiazke -> 
+            // (k.przeczytane, pula ksiazek fantasy) -> wsadz ksiazke -> -o-
 
             Biblioteka Bibl = new Biblioteka();
 
             Ksiazka ks = Bibl.FirstUnreadFantasyBook();
+           // ks.CzytanieKsiazki();
+            OdlozPrzeczytanaKsiazke(ks, Bibl.KsiazkiFantasyPrzeczytane);
             
-
         }
     }
 }
