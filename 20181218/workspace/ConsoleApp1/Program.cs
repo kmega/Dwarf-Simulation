@@ -12,7 +12,6 @@ namespace ConsoleApp1
         {
             string text = @"c:\Users\Lenovo\.ssh\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
             Console.WriteLine(text[1]);
-
         }
     }
 }
