@@ -14,7 +14,7 @@ namespace ConsoleApp1
         {
 
 
-            //Regex regex = new Regex(@"(\d\d) min.*");
+            //Regex regex = new Regex(@"(\d\d) min.*"); aaaaaaaaaaaaaa
             string information = File.ReadAllText(@"C:\Users\Lenovo\code\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
             //string[] digits = Regex.Split(sentence, @"\D+");
             //zadanie 2
