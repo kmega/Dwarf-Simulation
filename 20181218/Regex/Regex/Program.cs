@@ -10,35 +10,28 @@ namespace UseRegex
         {
             //0. Import Regexow
             Regex Time = new Regex(@"\((\d\d) min.*\)");
-            Regex Name = new Regex(@"(\w+ \w+)");
+            Regex Name = new Regex(@"""(\w+ \w+)""");
 
             //1. Otworz plik -> uzyj sciezki
-            StreamReader OpenedFile = new StreamReader(@"/Users/piotr/Desktop/Git/primary/20181218/cybermagic/karty-postaci/1807-fryderyk-komciur.md");
-            //2. Na tekscie w pliku znajdz regexa dla czasu
-            string time;
-            string name;
+            var OpenedFile = File.ReadLines(@"/Users/piotr/Desktop/Git/primary/20181218/cybermagic/karty-postaci/1807-fryderyk-komciur.md");
 
-            while((time = OpenedFile.ReadLine())!=null)
+            //2. Na tekscie w pliku znajdz regexa dla czasu
+            //3. Na tekscie w pliku znajdz regexa dla imienia
+            Match match;
+            foreach (var item in OpenedFile)
             {
-                Match match = Time.Match(time);
+                match = Time.Match(item);
                 if(match.Success)
                 {
-                    Console.WriteLine("Czas: {0}", time);
+                    Console.WriteLine("Time: {0}", item.Substring(1, item.Length-2));
                 }
-
-                Match match2 = Name.Match(time);
-                if (match2.Success)
+                match = Name.Match(item);
+                if (match.Success)
                 {
-                    Console.WriteLine("Imie: {0}", match2.Groups[1].Value);
+                    string temp = item.Replace('"', '\0');
+                    Console.WriteLine("Name: {0}", temp.Substring(7));
                 }
             }
-
-            while ((name = OpenedFile.ReadLine()) != null)
-            {
-
-            }
-
-            //3. Na tekscie w pliku znajdz regexa dla imienia
             //4. Stworz nowy plik results.txt i zapis oczekiwany wynik
         }
     }
