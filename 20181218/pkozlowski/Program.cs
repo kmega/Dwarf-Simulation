@@ -29,7 +29,8 @@ namespace pkozlowski
                 match = timeRegex.Match(item);
                 if (match.Success)
                 {
-                    Console.WriteLine(item.ToString());
+                    //Console.WriteLine(item.ToString());
+                    File.WriteAllText("wynik.txt",item);
                 }
             }
         }
