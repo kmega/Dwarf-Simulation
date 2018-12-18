@@ -57,6 +57,7 @@ namespace regExApp
                 {
                     timeResult = findText.ExtractTimeToCreate(fryderyk[i]);
                     Console.WriteLine(timeResult);
+                    File.AppendAllText("result1.txt", timeResult);
                 }
                 
             }
