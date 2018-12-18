@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace VivaRegex
+namespace RegexTraining
 {
     public class TextParser
     {

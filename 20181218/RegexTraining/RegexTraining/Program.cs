@@ -11,32 +11,33 @@ namespace RegexTraining
     {
         public static void Task1(string inputPath,string outputPath)
         {
-            // REGEX DLA CZASU \((\d\d) min.*\)
-            // REGEX DLA IMIENIA title: "(\w+ \w+)"
-            const string quote = "\"";
-            Regex timeRegex = new Regex(@"\((\d\d) min.*\)");
-            Regex nameRegex = new Regex("title: " + quote + @"(\w+ \w+)"  + quote);
-            string name = "";
-            string time = "";
+            TextParser textParser = new TextParser();
+            string profilName = "";
+            string timeToCreate = "";
+            StringBuilder stringBuilder = new StringBuilder();
             using (StreamReader streamReader = new StreamReader(inputPath))
             {
                 string line = "";
-                while((line = streamReader.ReadLine()) != null)
+                while ((line = streamReader.ReadLine()) != null)
                 {
-                    if (timeRegex.IsMatch(line))
-                        time = line;
-                    if (nameRegex.IsMatch(line))
-                        name = line;
-                }  
+                    stringBuilder.AppendLine(line);
+                }
             }
-            Console.WriteLine(name + " " + time);
-            
+            profilName = textParser.ExtractProfileName(stringBuilder.ToString());
+            timeToCreate = textParser.ExtractTimeToCreate(stringBuilder.ToString());
+            using (StreamWriter streamWriter = new StreamWriter(outputPath))
+            {
+                streamWriter.WriteLine('"' + "{0} był budowany {1} minuty" + '"',profilName,timeToCreate);
+            }
+
+
+
 
 
         }
         static void Main(string[] args)
         {
-            Task1(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md", "");
+            Task1(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md", "outputTask1.txt");
             Console.ReadKey();
         }
     }
