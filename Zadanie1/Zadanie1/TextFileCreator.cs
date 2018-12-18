@@ -9,9 +9,11 @@ namespace Zadanie1
 {
     public class TextFileCreator
     {
-        public static void Create(string text)
+        public static void CreateOrAppend(string file, string value)
         {
-            File.AppendAllText("result.txt", text);
+            File.AppendAllText(file, value);
+            File.AppendAllText(file, "\n");
         }
+
     }
 }

@@ -15,10 +15,14 @@ namespace Zadanie1
         {
             TextParser textParser = new TextParser();
             var readFile = File.ReadAllText("C:/Users/Lenovo/primary/20181218/cybermagic/karty-postaci/1807-fryderyk-komciur.md");
+            string folderPath = @"cybermagic\karty-postaci";
             string profileName = textParser.ExtractProfileName(readFile);
             string timeToBuild = textParser.ExtractTimeToCreate(readFile);
-
-            TextFileCreator.Create($"{profileName} był budowany {timeToBuild} min");
+            TextFileCreator.CreateOrAppend("result1.txt",$"{profileName} był budowany {timeToBuild} min");
+            var totalBuildTime = Hero.TimeOfBuildingAllHeroes(folderPath);
+            TextFileCreator.CreateOrAppend("result2.txt", totalBuildTime.ToString());
+          
+            
 
             Console.ReadLine();
         }
