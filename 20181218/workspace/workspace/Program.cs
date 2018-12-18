@@ -12,27 +12,45 @@ namespace workspace
         static string Exercise1()
         {
             string[] text = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
-            Regex rx = new Regex(@"\((\d\d) min.*\)");
+            Regex rx = new Regex("title: \"(\w + \w +)\"");
             for (int i = 0; i < text.Length; i++)
             {
                 if (rx.Match(text[i]).Success)
                 {
                     Console.WriteLine(text[i]);
+                    rx = new Regex(@"\((\d\d) min.*\)");
+                }
+                if (rx.Match(text[i]).Success)
+                {
+                    text[i] = text[i].Replace("(", "").Replace(")", "").Replace("min", "");
+                    Console.WriteLine("Fryderyk Komciur był budowany " + text[i] + "minuty.");
+                    break;
                 }
             }
             return null;
         }
+
+        static string Exercise2()
+        {
+            string[] text = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
+            Regex rx = new Regex(@"");
+            return null;
+        }
+
         static void Main(string[] args)
         {
             int userPick = 0;
             string input = "";
+            Console.WriteLine("Choose exercise using 1-n.");
             input = Console.ReadLine();
             userPick = Convert.ToInt32(input);
-            Console.WriteLine("");
             switch (userPick)
             {
                 case 1:
                     Exercise1();
+                    break;
+                default:
+                    Console.WriteLine("Wrong input.");
                     break;
             }
             Console.ReadLine();
