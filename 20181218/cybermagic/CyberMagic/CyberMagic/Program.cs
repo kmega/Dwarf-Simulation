@@ -48,6 +48,7 @@ namespace CyberMagic
 
             //Zadanie 2
             int allTime=0;
+            int iterationFiles = 0;
 
             foreach (var item in Directory.EnumerateFiles(path2)) {
             
@@ -67,6 +68,7 @@ namespace CyberMagic
 
 
                 allTime += Int32.Parse(time);
+                iterationFiles++;
 
             }
             Console.WriteLine("Wszystkie postaci budowano {0} minut", allTime);
@@ -74,11 +76,34 @@ namespace CyberMagic
             sr2.WriteLine();
             sr2.Write("Wszystkie postaci budowano {0} minut", allTime);
             sr2.Close();
-          
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            //Zadanie3
+
+            foreach (var item in Directory.EnumerateFiles(path2))
+            {
+
+                txt = File.ReadAllLines(item);
+                tp = new TextParser();
+                xxx = string.Join("\n", txt);
+                time = tp.ExtractTimeToCreate(xxx);
+                name = tp.ExtractProfileName(xxx);
+
+                if (time == "" && !(name==""))
+                
+                Console.WriteLine("{0} nie ma podanego czasu budowania", name);
+                
+            
+
+            }
+            Console.WriteLine("Średni czas budowy wynosi {0} minut", allTime / iterationFiles);
 
 
-            
-            
+
+
 
             Console.ReadKey();
 
