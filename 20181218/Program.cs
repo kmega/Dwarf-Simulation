@@ -13,7 +13,7 @@ namespace lab20181218
             //Regex regex = new Regex(@"\s/Content/([a-zA-Z0-9\-]+?)\.aspx");
             Regex regex = new Regex(@"\((\d\d) min.*\)\");
             //\((\d\d) min.*\)
-            using (StreamReader reader = new StreamReader(@"happy-path-creation-training.md"))
+            using (StreamReader reader = new StreamReader(@"1807-fryderyk-komciur.md"))
             {
                 string line;
                 while ((line = reader.ReadLine()) != null)
