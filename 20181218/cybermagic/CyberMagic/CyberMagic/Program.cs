@@ -57,7 +57,7 @@ namespace CyberMagic
                 time = tp.ExtractTimeToCreate(xxx);
                
                 name = tp.ExtractProfileName(xxx);
-                if (time == "" || name=="")
+                if (time == "")
                 {
                     continue;
                 }
