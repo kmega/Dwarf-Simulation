@@ -20,27 +20,30 @@ namespace RegEx
             string pathWszyscy = @"C:\Code\primary\20181218\cybermagic\karty-postaci";
             string result1 = @"C:\Code\primary\20181218\RegEx\RegEx\result1.txt";
             string result2 = @"C:\Code\primary\20181218\RegEx\RegEx\result2.txt";
+            StreamWriter result2File = new StreamWriter(result2);
 
-            string[] fKomciur = File.ReadAllLines(pathFKomciur);
+            //task 1
+            string fKomciur = File.ReadAllText(pathFKomciur);
             TextParser tp = new TextParser();
-
-            var join = string.Join("\n", fKomciur);
-            timeKomciur = tp.ExtractTimeToCreate(join);
-            nameKomciur = tp.ExtractProfileName(join);
+            
+            timeKomciur = tp.ExtractTimeToCreate(fKomciur);
+            nameKomciur = tp.ExtractProfileName(fKomciur);
             File.WriteAllText(result1, nameKomciur + " byl budowany " + timeKomciur + " minuty");
 
             //task 2
-            foreach(var element in Directory.EnumerateFiles(pathWszyscy))
+            foreach(var element in Directory.EnumerateFiles(pathWszyscy, "*.md"))
             {
-                string[] wszyscy = File.ReadAllLines(element);
-                TextParser tp2 = new TextParser();
-                string join2 = string.Join("\n", wszyscy);
-                timeWszyscy = tp2.ExtractTimeToCreate(join2);
+                string wszyscy = File.ReadAllText(element);
+                TextParser tp2 = new TextParser();                
+                timeWszyscy = tp2.ExtractTimeToCreate(wszyscy);
 
-                allTime += Int32.Parse(timeWszyscy);
-
+                if(timeWszyscy != "")
+                {
+                    allTime += Int32.Parse(timeWszyscy);
+                }
             }
-            Console.WriteLine(allTime);
+            result2File.WriteLine("Czas tworzenia wszystkich bahaterów to: {0} minuty", allTime);
+            result2File.Close();
         }
     }
 }
