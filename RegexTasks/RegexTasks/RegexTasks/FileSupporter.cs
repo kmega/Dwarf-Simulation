@@ -17,16 +17,15 @@ namespace RegexTasks
 
             //Read the stream to a string, and write the string to the console.
 
-            //fullstringsfromfile = File.ReadAllText(path);
+            fullstringsfromfile = File.ReadAllText(path);
 
 
             return fullstringsfromfile;
         }
 
-        public void SaveToFIle(string TextToSave)
+        public void SaveToFIle(string TextToSave, string TaskResultNumber)
         {
-            Console.WriteLine(TextToSave);
-            using (StreamWriter file = new StreamWriter(@"..\\..\\results\\Result1.txt"))
+            using (StreamWriter file = new StreamWriter(@"..\\..\\results\\"+TaskResultNumber+".txt"))
             {
                 file.WriteLine(TextToSave);
             }
