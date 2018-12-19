@@ -14,39 +14,36 @@ namespace Zadanie1
         static void Main(string[] args)
         {
             //Task101();
-
-            //given directory
-            string directory = @"cybermagic\karty-postaci";
-            //GetFileNames(directory) -> Lista fileNames
-            List<string> fileNames = GetFileNames(directory);
-            //ReadAllFiles(fileNames) -> Lista files
-            List<string> fileContents = ReadAllFiles(fileNames);
-            //ExtractAllTimes(fileNames) -> Lista times
-            List<int> times = ExtractAllTimes(fileContents);
-            //SumTimes(times) -> minutes
-            int sumOfTimes = SumAllTimes(times);
-            //ChangeMinutesToHours() -> hours, minutes
-            //WriteResults(minutes);
-
-
-            
-            //TextFileCreator.CreateOrAppend("result1.txt",$"{profileName} był budowany {timeToBuild} min");
-            //TimeSpan totalTimeToBuildHeroes = TimeSpan.FromMinutes(Hero.TimeOfBuildingAllHeroes(folderPath));
-            //TextFileCreator.CreateOrAppend("result2.txt", $"Wszystkie postacie do tej pory budowane były " +
-            //    $"{totalTimeToBuildHeroes.Hours} godzin i {totalTimeToBuildHeroes.Minutes} minut.");
-         
+            //Task102();
+           
 
             Console.ReadLine();
         }
 
-        private static int SumAllTimes(List<int> times)
+        private static string BuildStringToSaveTask2(TimeSpan totalTimeToBuildHeroes)
         {
-            throw new NotImplementedException();
+            return $"Wszystkie postacie do tej pory budowane były " +
+                $"{totalTimeToBuildHeroes.Hours} godzin i {totalTimeToBuildHeroes.Minutes} minut.";
         }
 
-        private static List<int> ExtractAllTimes(List<string> fileContents)
+        private static int SumAllTimes(List<int> timesOfBuilding)
         {
-            throw new NotImplementedException();
+            int sum = 0;
+            foreach(var time in timesOfBuilding)
+            {
+                sum += time;
+            }
+            return sum;
+        }
+
+        private static List<int> ExtractAllTimes(List<string> filesContent)
+        {
+            List<int> timesToBuild = new List<int>();
+            foreach(var content in filesContent)
+            {
+                timesToBuild.Add(ExtractSingleTime(content));
+            }
+            return timesToBuild;
         }
 
         private static List<string> ReadAllFiles(List<string> fileNames)
@@ -74,14 +71,39 @@ namespace Zadanie1
             //ExtractTime(fk) -> time
             int time = ExtractSingleTime(file);
             //WriteResults(fullName, time)
-            WriteResults(fullName, time);
+            string toSave = BuildStringToSaveTask1(fullName, time);
+            WriteResults(toSave);
+        }
+        private static void Task102()
+        {
+            //given directory
+            string directory = @"cybermagic\karty-postaci";
+            //GetFileNames(directory) -> Lista fileNames
+            List<string> fileNames = GetFileNames(directory);
+            //ReadAllFiles(fileNames) -> Lista files
+            List<string> fileContents = ReadAllFiles(fileNames);
+            //ExtractAllTimes(fileNames) -> Lista times
+            List<int> times = ExtractAllTimes(fileContents);
+            //SumTimes(times) -> minutes
+            int sumOfTimes = SumAllTimes(times);
+            //ChangeMinutesToHours() -> hours, minutes
+            TimeSpan totalTimeToBuildHeroes = TimeSpan.FromMinutes(sumOfTimes);
+            //BuildStringToSave() -> toSave
+            string toSave = BuildStringToSaveTask2(totalTimeToBuildHeroes);
+            //WriteResults(minutes);
+            WriteResults(toSave);
         }
 
-        private static void WriteResults(string fullName, int time)
+        private static string BuildStringToSaveTask1(string fullName, int time)
+        {
+            return $"{fullName} był budowany {time.ToString()} minuty";
+        }
+
+        private static void WriteResults(string toSave)
         {
             var contents = new string[]
             {
-                $"{fullName} był budowany {time.ToString()} minuty"
+                toSave
             };
             File.WriteAllLines("result.txt", contents);
         }
