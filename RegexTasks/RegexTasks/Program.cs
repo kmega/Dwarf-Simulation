@@ -158,7 +158,7 @@ namespace RegexTasks
            
         }
 
-        private static void GiveListFilesWhoContainsMagdaPatiril(List<string> filesStrDirOfStory, List<string> ContainsMariaKomciurList, TextParser MagdaPatirilParser)
+        private static void GiveListFilesWhoContainsMagdaPatiril(List<string> filesStrDirOfStory, List<string> ContainsMagdaPatirilList, TextParser MagdaPatirilParser)
         {
             int i = 0;
             string ReadenFile;
@@ -168,8 +168,8 @@ namespace RegexTasks
 
                 if (ReadenFile == "Magda Patiril")
                 {
-                    ContainsMariaKomciurList.Add(ReadenFile);
-                    Console.WriteLine(ContainsMariaKomciurList[i]);
+                    ContainsMagdaPatirilList.Add(ReadenFile);
+                    Console.WriteLine(ContainsMagdaPatirilList[i]);
                     i++;
                 }
 
