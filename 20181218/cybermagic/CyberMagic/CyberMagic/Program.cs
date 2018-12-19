@@ -65,20 +65,22 @@ namespace CyberMagic
             return alltime;
         }
 
-        public static string charactersWithoutTime (List<string> files)
+        public static string[] charactersWithoutTime (List<string> files)
         {
-            string txt="Postaci bez czasu budowania\n";
+            string temp =  "Postaci bez czasu budowania\n";
+            int i = 0 ;
 
             foreach (var item in files)
             {
 
                 if (new TextParser().ExtractTimeToCreate(item) == "" && !(new TextParser().ExtractProfileName(item) == ""))
                 {
-                    txt += new TextParser().ExtractProfileName(item) + "\n";
-
+                    temp += new TextParser().ExtractProfileName(item) + "\n";
+                    i++;
                 }
                 
             }
+            string[] txt = { temp, i.ToString() };
             return txt;
         }
 
@@ -138,14 +140,17 @@ namespace CyberMagic
 
             //Task 3
 
-            toWrite = (charactersWithoutTime(alltext)+ "\nŚredni czas budowania wynosi: " + averageTime(alltext) +" minut" + 
-                "\nCzas budowania tych postaci wynosił prawdopodobnie " + averageTime(alltext)*alltime(alltext)[1] + " minut");
+           
+            toWrite = (charactersWithoutTime(alltext)[0]+ "\nŚredni czas budowania postaci wynosi: " + averageTime(alltext) +" minut" +
+                "\nUwzględniając powyższe, postacie do tej pory budowane były najpewniej " +
+                (averageTime(alltext) * Int32.Parse(charactersWithoutTime(alltext)[1]) + alltime(alltext)[0]) + " minut");
             Console.WriteLine(toWrite);
             writeFile(toWrite, "result3.txt");
 
             //Task 4
 
-
+            //1.Załadowanie opowieści -> lista z opowieściami
+            //2.Wyszukiwanie 
 
          
 
