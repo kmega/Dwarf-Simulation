@@ -24,7 +24,11 @@ namespace Zadanie1
             List<string> tales = ReadAllFiles(fileNames);
             //ExtractStoriesWithMagdaName()
             List<string> talesWithMagda = Extractor.ExtractAllStoriesWithMagda(tales);
+            //ExtractTaleNamesWithMagda
+            List<string> taleNames = Extractor.ExtractAllTaleNames(talesWithMagda);
+            //BuildStringToSaveTask4
 
+            //WriteResults()
             Console.ReadLine();
         }
 

@@ -25,6 +25,11 @@ namespace VivaRegex
             return SafelyExtractSingleElement(
                 @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
         }
+        public string ExtractTaleName(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"title: +""([\w\s]+)""", text);
+        }
 
         private string SafelyExtractSingleElement(string pattern, string text)
         {

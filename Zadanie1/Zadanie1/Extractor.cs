@@ -64,10 +64,25 @@ namespace Zadanie1
                 }
                 else
                 {
-                    talesWithMagda.Add(tale);
+                    talesWithMagda.Add(item);
                 }               
             }
             return talesWithMagda;
+        }
+        public static string ExtractSingleTaleName(string tale)
+        {
+            TextParser textParser = new TextParser();
+            string taleName = textParser.ExtractTaleName(tale);
+            return taleName;
+        }
+        public static List<string> ExtractAllTaleNames(List<string> tales)
+        {
+            List<string> taleNames = new List<string>();
+            foreach(var item in tales)
+            {
+                taleNames.Add(ExtractSingleTaleName(item));
+            }
+            return taleNames;
         }
     }
 }
