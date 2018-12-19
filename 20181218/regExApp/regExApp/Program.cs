@@ -78,23 +78,54 @@ namespace regExApp
             File.WriteAllLines(pathToSaveTask_3_1, charactersWithoutTime);
 
             //Get characters with given time
-            List<string> charactersWithTime = charactersWithGivenTime(timesOfCreatingCharacters, fileNames);
+            int charactersWithTime = charactersWithGivenTime(timesOfCreatingCharacters, fileNames);
 
             //Count average time from given characters
+            int amountOfCharsWithoutTime = amountOfCharactersWithoutTime(timesOfCreatingCharacters, fileNames);
+            int avgTimeForCharsWithoutTime = avgTime(Int32.Parse(sumOfTimes),amountOfCharsWithoutTime);
 
             //Assign avarage time to empty time Characters
+            int assignAvgTimeToEmptyCharTimes = avgTimeForCharsWithoutTime;
 
             //Count avarage time from all characters and write to txt file
-
+            string pathToSaveTask_3_2 = "result3-2.txt";
+            int avgTimeAllChars = avgTime(assignAvgTimeToEmptyCharTimes + Int32.Parse(sumOfTimes), charactersWithTime + amountOfCharsWithoutTime);
+            File.WriteAllText(pathToSaveTask_3_2, avgTimeAllChars.ToString());
 
 
 
         }
 
-        private static List<string> charactersWithGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
+        private static int avgTime(int sum, int amount)
+        {
+            int avg = sum / amount;
+            return avg;
+        }
+
+        private static int amountOfCharactersWithoutTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
+        {
+            int charsWithGivenTime;
+            int emptyCounter = 0;
+            int i = 0;
+            List<string> emptyCharactersNames = new List<string>();
+
+            foreach (string time in timesOfCreatingCharacters)
+            {
+                if (fileNames[i] == "1807-_template.md") { continue; }
+
+                bool intOrString = Int32.TryParse(time, out charsWithGivenTime);
+
+                if (intOrString == false){ emptyCounter++; }
+
+                i++;
+            }
+
+            return emptyCounter;
+        }
+
+        private static int charactersWithGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
         {
             int charsWithGivenTime = 0;
-            int emptyCounter = 0;
             int i = 0;
             List<string> emptyCharactersNames = new List<string>();
 
@@ -110,7 +141,7 @@ namespace regExApp
                 i++;
             }
 
-            return emptyCharactersNames;
+            return charsWithGivenTime;
         }
 
         private static List<string> charactersWithoutGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
@@ -134,6 +165,7 @@ namespace regExApp
 
                 i++;
             }
+
 
             return emptyCharactersNames;
         }
