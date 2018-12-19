@@ -17,17 +17,15 @@ namespace Zadanie1
             Task102();
             Task103();
 
-            Console.ReadLine();
-        }
+            string talesDirectory = @"cybermagic\opowiesci";
+            //GetAllFiles()
+            List<string> fileNames = GetFileNames(talesDirectory);
+            //ReadAllFiles()
+            List<string> tales = ReadAllFiles(fileNames);
+            //ExtractStoriesWithMagdaName()
+            List<string> talesWithMagda = Extractor.ExtractAllStoriesWithMagda(tales);
 
-        private static List<string> ExtractAllNames(List<string> heroesWithoutTime)
-        {
-            List<string> namesWithoutTime = new List<string>();
-            foreach (var content in heroesWithoutTime)
-            {
-                namesWithoutTime.Add(ExtractSingleName(content));
-            }
-            return namesWithoutTime;
+            Console.ReadLine();
         }
 
         private static int AssessWholeBuildingTime(int averageTime, int numberOfHeroesWithoutTime, int allGivenTime)
@@ -40,7 +38,7 @@ namespace Zadanie1
             List<string> heroesWithoutTime = new List<string>();
             foreach(var content in fileContents)
             {
-                int time = ExtractSingleTime(content);
+                int time = Extractor.ExtractSingleTime(content);
                 if (time == 0)
                 {
                     heroesWithoutTime.Add(content);
@@ -62,17 +60,7 @@ namespace Zadanie1
                 sum += time;
             }
             return sum;
-        }
-
-        private static List<int> ExtractAllTimes(List<string> filesContent)
-        {
-            List<int> timesToBuild = new List<int>();
-            foreach(var content in filesContent)
-            {
-                timesToBuild.Add(ExtractSingleTime(content));
-            }
-            return timesToBuild;
-        }
+        }      
 
         private static List<string> ReadAllFiles(List<string> fileNames)
         {
@@ -102,9 +90,9 @@ namespace Zadanie1
             var fileName = @"cybermagic\karty-postaci\1807-fryderyk-komciur.md";
             string file = ReadSingleFile(fileName);
             //ExtractName(fk) -> fullName
-            string fullName = ExtractSingleName(file);
+            string fullName = Extractor.ExtractSingleName(file);
             //ExtractTime(fk) -> time
-            int time = ExtractSingleTime(file);
+            int time = Extractor.ExtractSingleTime(file);
             //WriteResults(fullName, time)
             string[] toSave = StringBuilderToSave.BuildStringToSaveTask1(fullName, time);
             WriteResults(toSave);
@@ -118,7 +106,7 @@ namespace Zadanie1
             //ReadAllFiles(fileNames) -> Lista files
             List<string> fileContents = ReadAllFiles(fileNames);
             //ExtractAllTimes(fileNames) -> Lista times
-            List<int> times = ExtractAllTimes(fileContents);
+            List<int> times = Extractor.ExtractAllTimes(fileContents);
             //SumTimes(times) -> minutes
             int sumOfTimes = SumAllTimes(times);
             //ChangeMinutesToHours() -> hours, minutes
@@ -139,10 +127,10 @@ namespace Zadanie1
             //GetAllHeroesWithoutTime(files) -> zbiór HeroesWithoutTime
             List<string> heroesWithoutTime = GetHeroesWithoutTime(fileContents);
             //ExtractAllNamesWithoutGivenTime -> list<string> names
-            List<string> namesOfHeroesWithoutTime = ExtractAllNames(heroesWithoutTime);
+            List<string> namesOfHeroesWithoutTime = Extractor.ExtractAllNames(heroesWithoutTime);
             int numberOfHeroesWithTime = fileContents.Count - heroesWithoutTime.Count;
             //ExtractAllTimes
-            List<int> times = ExtractAllTimes(fileContents);
+            List<int> times = Extractor.ExtractAllTimes(fileContents);
             //SumAllGivenTimes
             int sumOfGivenTimes = SumAllTimes(times);
             //CountAverage(sumOfGivenTimes, numberOfHeroesWithTime) -> asses whole time;
@@ -159,27 +147,6 @@ namespace Zadanie1
         private static void WriteResults(string[] toSave)
         {
             File.AppendAllLines("result.txt", toSave);
-        }
-
-        private static int ExtractSingleTime(string file)
-        {
-            TextParser textParser = new TextParser();
-            var time = textParser.ExtractTimeToCreate(file);
-            if (time == "")
-            {
-                return 0;
-            }
-            else
-            {
-                return Int32.Parse(time);
-            }            
-        }
-
-        private static string ExtractSingleName(string file)
-        {
-            TextParser textParser = new TextParser();
-            string fullName = textParser.ExtractProfileName(file);
-            return fullName;
         }
 
         private static string ReadSingleFile(string path)
