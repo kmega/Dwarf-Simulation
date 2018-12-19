@@ -75,9 +75,11 @@ namespace regExApp
         private static int sumAllTimes(List<string> timesOfCreatingCharacters)
         {
             int sumOfTimes = 0;
+            int intTime;
             foreach(string time in timesOfCreatingCharacters)
             {
-                sumOfTimes += Int32.Parse(time);
+               Int32.TryParse(time, out intTime);
+               sumOfTimes += intTime;
             }
 
             return sumOfTimes;
@@ -88,7 +90,7 @@ namespace regExApp
             List<string> allTimes = new List<string>();
             foreach(string time in contentOFileNames)
             {
-                allTimes.Add(getTimeFromFileContent(time));
+                if (time != "") { allTimes.Add(getTimeFromFileContent(time)); };
             }
 
             return allTimes;
