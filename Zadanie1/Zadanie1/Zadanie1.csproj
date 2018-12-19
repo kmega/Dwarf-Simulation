@@ -46,7 +46,7 @@
     <Compile Include="Hero.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TextFileCreator.cs" />
+    <Compile Include="StringBuilderToSave.cs" />
     <Compile Include="TextParser.cs" />
   </ItemGroup>
   <ItemGroup>

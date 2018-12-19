@@ -13,36 +13,21 @@ namespace Zadanie1
     {
         static void Main(string[] args)
         {
-            //Task101();
-            //Task102();
+            Task101();
+            Task102();
+            Task103();
 
-            //GetFileNames() - fileNames
-            string directory = @"cybermagic\karty-postaci";
-            //GetFileNames(directory) -> Lista fileNames
-            List<string> fileNames = GetFileNames(directory);
-            //ReadAllFiles(fileNames) -> Lista files
-            List<string> fileContents = ReadAllFiles(fileNames);
-            //GetAllHeroesWithoutTime(files) -> zbiór HeroesWithoutTime
-            List<string> heroesWithoutTime = GetHeroesWithoutTime(fileContents);
-            //ExtractAllNamesWithoutGivenTime -> list<string> names
-            List<string> namesOfHeroesWithoutTime = ExtractAllNames(heroesWithoutTime);
-            int numberOfHeroesWithTime = fileContents.Count - heroesWithoutTime.Count;
-            //ExtractAllTimes
-            List<int> times = ExtractAllTimes(fileContents);
-            //SumAllGivenTimes
-            int sumOfGivenTimes = SumAllTimes(times);
-            //CountAverage(sumOfGivenTimes, numberOfHeroesWithTime) -> asses whole time;
-            int averageTimeOfBuildingHero = CountAverage(sumOfGivenTimes, numberOfHeroesWithTime);
-            //AssessWholeBuildingTime(averageTimeOfBuildingHero, ) -> wholeBuildingTime
-            int wholeBuildingTime = AssessWholeBuildingTime(averageTimeOfBuildingHero,
-                                                            heroesWithoutTime.Count,
-                                                            sumOfGivenTimes);
             Console.ReadLine();
         }
 
         private static List<string> ExtractAllNames(List<string> heroesWithoutTime)
         {
-            throw new NotImplementedException();
+            List<string> namesWithoutTime = new List<string>();
+            foreach (var content in heroesWithoutTime)
+            {
+                namesWithoutTime.Add(ExtractSingleName(content));
+            }
+            return namesWithoutTime;
         }
 
         private static int AssessWholeBuildingTime(int averageTime, int numberOfHeroesWithoutTime, int allGivenTime)
@@ -67,12 +52,6 @@ namespace Zadanie1
         private static int CountAverage(int sumOfGivenTimes, int numberOfHeroesWithTime)
         {
             return sumOfGivenTimes / numberOfHeroesWithTime;
-        }
-
-        private static string BuildStringToSaveTask2(TimeSpan totalTimeToBuildHeroes)
-        {
-            return $"Wszystkie postacie do tej pory budowane były " +
-                $"{totalTimeToBuildHeroes.Hours} godzin i {totalTimeToBuildHeroes.Minutes} minut.";
         }
 
         private static int SumAllTimes(List<int> timesOfBuilding)
@@ -127,7 +106,7 @@ namespace Zadanie1
             //ExtractTime(fk) -> time
             int time = ExtractSingleTime(file);
             //WriteResults(fullName, time)
-            string toSave = BuildStringToSaveTask1(fullName, time);
+            string[] toSave = StringBuilderToSave.BuildStringToSaveTask1(fullName, time);
             WriteResults(toSave);
         }
         private static void Task102()
@@ -145,23 +124,41 @@ namespace Zadanie1
             //ChangeMinutesToHours() -> hours, minutes
             TimeSpan totalTimeToBuildHeroes = TimeSpan.FromMinutes(sumOfTimes);
             //BuildStringToSave() -> toSave
-            string toSave = BuildStringToSaveTask2(totalTimeToBuildHeroes);
+            string[] toSave = StringBuilderToSave.BuildStringToSaveTask2(totalTimeToBuildHeroes);
             //WriteResults(minutes);
             WriteResults(toSave);
-        }
-
-        private static string BuildStringToSaveTask1(string fullName, int time)
+        }    
+        private static void Task103()
         {
-            return $"{fullName} był budowany {time.ToString()} minuty";
+            //GetFileNames() - fileNames
+            string directory = @"cybermagic\karty-postaci";
+            //GetFileNames(directory) -> Lista fileNames
+            List<string> fileNames = GetFileNames(directory);
+            //ReadAllFiles(fileNames) -> Lista files
+            List<string> fileContents = ReadAllFiles(fileNames);
+            //GetAllHeroesWithoutTime(files) -> zbiór HeroesWithoutTime
+            List<string> heroesWithoutTime = GetHeroesWithoutTime(fileContents);
+            //ExtractAllNamesWithoutGivenTime -> list<string> names
+            List<string> namesOfHeroesWithoutTime = ExtractAllNames(heroesWithoutTime);
+            int numberOfHeroesWithTime = fileContents.Count - heroesWithoutTime.Count;
+            //ExtractAllTimes
+            List<int> times = ExtractAllTimes(fileContents);
+            //SumAllGivenTimes
+            int sumOfGivenTimes = SumAllTimes(times);
+            //CountAverage(sumOfGivenTimes, numberOfHeroesWithTime) -> asses whole time;
+            int averageTimeOfBuildingHero = CountAverage(sumOfGivenTimes, numberOfHeroesWithTime);
+            //AssessWholeBuildingTime(averageTimeOfBuildingHero, ) -> wholeBuildingTime
+            int wholeBuildingTime = AssessWholeBuildingTime(averageTimeOfBuildingHero,
+                                                            heroesWithoutTime.Count,
+                                                            sumOfGivenTimes);
+            string[] toSave = StringBuilderToSave.BuildStringToSaveTask3(namesOfHeroesWithoutTime,
+                                                                        wholeBuildingTime,
+                                                                        averageTimeOfBuildingHero);
+            WriteResults(toSave);
         }
-
-        private static void WriteResults(string toSave)
+        private static void WriteResults(string[] toSave)
         {
-            var contents = new string[]
-            {
-                toSave
-            };
-            File.AppendAllLines("result.txt", contents);
+            File.AppendAllLines("result.txt", toSave);
         }
 
         private static int ExtractSingleTime(string file)
