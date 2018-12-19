@@ -16,19 +16,8 @@ namespace Zadanie1
             Task101();
             Task102();
             Task103();
+            Task104();
 
-            string talesDirectory = @"cybermagic\opowiesci";
-            //GetAllFiles()
-            List<string> fileNames = GetFileNames(talesDirectory);
-            //ReadAllFiles()
-            List<string> tales = ReadAllFiles(fileNames);
-            //ExtractStoriesWithMagdaName()
-            List<string> talesWithMagda = Extractor.ExtractAllStoriesWithMagda(tales);
-            //ExtractTaleNamesWithMagda
-            List<string> taleNames = Extractor.ExtractAllTaleNames(talesWithMagda);
-            //BuildStringToSaveTask4
-
-            //WriteResults()
             Console.ReadLine();
         }
 
@@ -98,7 +87,7 @@ namespace Zadanie1
             //ExtractTime(fk) -> time
             int time = Extractor.ExtractSingleTime(file);
             //WriteResults(fullName, time)
-            string[] toSave = StringBuilderToSave.BuildStringToSaveTask1(fullName, time);
+            string[] toSave = StringBuilderToSave.BuildStringToSaveTask(fullName, time);
             WriteResults(toSave);
         }
         private static void Task102()
@@ -116,7 +105,7 @@ namespace Zadanie1
             //ChangeMinutesToHours() -> hours, minutes
             TimeSpan totalTimeToBuildHeroes = TimeSpan.FromMinutes(sumOfTimes);
             //BuildStringToSave() -> toSave
-            string[] toSave = StringBuilderToSave.BuildStringToSaveTask2(totalTimeToBuildHeroes);
+            string[] toSave = StringBuilderToSave.BuildStringToSaveTask(totalTimeToBuildHeroes);
             //WriteResults(minutes);
             WriteResults(toSave);
         }    
@@ -143,9 +132,25 @@ namespace Zadanie1
             int wholeBuildingTime = AssessWholeBuildingTime(averageTimeOfBuildingHero,
                                                             heroesWithoutTime.Count,
                                                             sumOfGivenTimes);
-            string[] toSave = StringBuilderToSave.BuildStringToSaveTask3(namesOfHeroesWithoutTime,
+            string[] toSave = StringBuilderToSave.BuildStringToSaveTask(namesOfHeroesWithoutTime,
                                                                         wholeBuildingTime,
                                                                         averageTimeOfBuildingHero);
+            WriteResults(toSave);
+        }
+        private static void Task104()
+        {
+            string talesDirectory = @"cybermagic\opowiesci";
+            //GetAllFiles()
+            List<string> fileNames = GetFileNames(talesDirectory);
+            //ReadAllFiles()
+            List<string> tales = ReadAllFiles(fileNames);
+            //ExtractStoriesWithMagdaName()
+            List<string> talesWithMagda = Extractor.ExtractAllStoriesWithMagda(tales);
+            //ExtractTaleNamesWithMagda
+            List<string> taleNames = Extractor.ExtractAllTaleNames(talesWithMagda);
+            //BuildStringToSaveTask4
+            string[] toSave = StringBuilderToSave.BuildStringToSaveTask(taleNames);
+            //WriteResults()
             WriteResults(toSave);
         }
         private static void WriteResults(string[] toSave)
