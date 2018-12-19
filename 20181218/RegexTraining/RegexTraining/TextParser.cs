@@ -17,7 +17,7 @@ namespace RegexTraining
         public string ExtractProfileName(string text)
         {
             return SafelyExtractSingleElement(
-                @"title: ""(\w+ \w+)""", text);
+                @"title: ""(\w+ *){2,4}""", text);
         }
 
         private string SafelyExtractSingleElement(string pattern, string text)
