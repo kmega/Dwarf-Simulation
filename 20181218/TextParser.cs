@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace VivaRegex
+namespace RegexTask
 {
-    public class TextParser
+    public class RegexTask
     {
         public string ExtractTimeToCreate(string text)
         {

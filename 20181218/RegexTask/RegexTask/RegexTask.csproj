@@ -54,8 +54,8 @@
     <Compile Include="ReadFile.cs" />
     <Compile Include="Create_file.cs" />
     <Compile Include="Remove_sth_from_list_string.cs" />
-    <Compile Include="TextParser.cs" />
     <Compile Include="Return_txt.cs" />
+    <Compile Include="TextParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
