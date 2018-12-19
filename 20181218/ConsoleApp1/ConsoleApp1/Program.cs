@@ -122,7 +122,15 @@ namespace workspace
                 + wholeBuildTime % 60
                 + " minut.";
             System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
-            Console.WriteLine(text);
+            Console.WriteLine(text + "\n\nChoose exercise using 1-n. Exit using 0.");
+            return null;
+        }
+
+        static string FindStoriesWithMagdaPatiril()
+        {
+            string text = "";
+            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
+            Console.WriteLine(text + "\n\nChoose exercise using 1-n. Exit using 0.");
             return null;
         }
 
@@ -157,6 +165,9 @@ namespace workspace
                         break;
                     case 3:
                         WriteAvarageBuildTime();
+                        break;
+                    case 4:
+                        FindStoriesWithMagdaPatiril();
                         break;
                     default:
                         Console.WriteLine("\nWrong input.");
