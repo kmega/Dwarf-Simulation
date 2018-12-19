@@ -13,50 +13,85 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            string dictionaryPath = "C:/Users/Lenovo/code/primary/20181218/cybermagic/karty-postaci";
+            TaskOne(dictionaryPath);
+            TaskTwo(dictionaryPath);
+
+            string PathFileToSave = "E:/Informacje/result_task3.txt";
+
+            int fullTime = 0;
+            foreach (string file in Directory.EnumerateFiles(dictionaryPath, "*.md"))
+            {
+                string contents = File.ReadAllText(file);
+                TextParser textParser = new TextParser();
+                string time = textParser.ExtractTimeToCreate(contents);
+                if (time != "")
+                {
+                    fullTime += int.Parse(time);
+                }
+                else
+                {
+                    string name = textParser.ExtractProfileName(contents);
+                    if (name != "")
+                    {
+                        SaveFileName(PathFileToSave, name);
+                    }                    
+                }                    
+            }
             //Regex regex = new Regex(@"(\d\d) min.*"); aaaaaaaaaaaaaa
             //string[] digits = Regex.Split(sentence, @"\D+");
             //zadanie 2
             /*string[] digits = Regex.Split(information, @"\((\d\d) min.*\)");
+
             */
-            TextParser textParser = new TextParser();
-       
-            string information = File.ReadAllText(@"C:\Users\Lenovo\code\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
-            
-            string time = textParser.ExtractTimeToCreate(information);
-            
-            string path = @"E:\Informacje\result_task1.txt";
-            StreamWriter resulutTask1 = new StreamWriter(path);
-            resulutTask1.Write("Czas tworzenia pliku to: " + time);
-            resulutTask1.Close();
+        }
 
-            string pathTask2 = @"E:\Informacje\result_task2.txt";
-            StreamWriter resulutTask2 = new StreamWriter(pathTask2);
+        private static void TaskTwo(string dictionaryPath)
+        {
+            string PathFileToSave = "E:/Informacje/result_task2.txt";
 
-            string pathTask3 = @"E:\Informacje\result_task3.txt";
-            StreamWriter resulutTask3 = new StreamWriter(pathTask3);
-
-            int counter = 0;
-            int fullTime = 0;
-            string name = "";
-            string folderPath = @"C:\Users\Lenovo\code\primary\20181218\cybermagic\karty-postaci";
-            foreach (string file in Directory.EnumerateFiles(folderPath, "*.md"))
+            foreach (string file in Directory.EnumerateFiles(dictionaryPath, "*.md"))
             {
                 string contents = File.ReadAllText(file);
-                time = textParser.ExtractTimeToCreate(contents);
-                if( time != "")
-                {
-                    counter++;
-                    fullTime += int.Parse(time);
-                    name = textParser.ExtractProfileName(contents);
-                    resulutTask3.WriteLine("Bohaterowie którzy nie mają czasu tworzenia: " + name);
-                }                    
+                TextParser textParser = new TextParser();
+                string time = textParser.ExtractTimeToCreate(contents);
+                if (time != "")
+                    SaveFile(PathFileToSave, time);
             }
-            int avg = fullTime / counter;
-            resulutTask3.WriteLine("Średni czas tworzenia postaci to: " + avg + " minut. A łączny czas to: " +
-                "");
-            resulutTask2.WriteLine("Czas tworzenia pliku to: " + fullTime + " minut");
-            resulutTask2.Close();
-            resulutTask3.Close();
+        }
+
+        private static void TaskOne(string dictionaryPath)
+        {
+            string fileName = "/1807-fryderyk-komciur.md";
+            string PathFileToSave = "E:/Informacje/result_task1.txt";
+            string time = GetTime(dictionaryPath + fileName);
+            SaveFile(PathFileToSave, time);
+        }
+
+        public static string GetTime(string path)
+        {
+            TextParser textParser = new TextParser();
+            string information = File.ReadAllText(path);
+            Console.WriteLine("Static void method");
+            string time = textParser.ExtractTimeToCreate(information);
+            return time;
+        }
+        
+        public static void SaveFile(string whereSave, string toWrite)
+        {
+            StreamWriter SW;
+            SW = File.AppendText(whereSave);
+            SW.WriteLine("Czas tworzenia pliku to: " + toWrite);
+            SW.Close();
+
+        }
+
+        public static void SaveFileName(string whereSave, string toWrite)
+        {
+            StreamWriter SW;
+            SW = File.AppendText(whereSave);
+            SW.WriteLine("Nazwa postaci: " + toWrite);
+            SW.Close();
         }
     }
 }
