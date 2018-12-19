@@ -10,88 +10,90 @@ namespace regex
 {
     public class Program
     {
-        static void Main(string[] args)
+        public static void TASK103(string[] args)
         {
-            try
-            {   string path = @"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
-                string line; 
-                // odczytanie danej z pliku: plik = dana z min
-                // stworzenie pliku nowego = zapisanie w nim czasu
-                // wypisz na konsoli czas
-                if (!File.Exists(path))
+
+        }
+            public static void TASK2(string[] args)
+        {
+            //given directory 
+            //get filenames (directory) = list of files
+            
+            
+            TextParser textOperation = new TextParser();  
+            string filepath;
+            List<string> timesofallfiles = new List<string> { };
+
+            int[] timesofall = new int[] { };
+            string time = "";
+            
+        
+            string path = @"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci";
+                List<string> PathesOfFiles = Directory.GetFiles(path).ToList<string>(); // Lista ścieżek wszystkich
+           
+            for (int i = 0; i < PathesOfFiles.Count; i++)
+            {
+                filepath = PathesOfFiles[i];
+                using (FileStream fs = File.Open(filepath, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
-
-                    using (StreamReader sr = new StreamReader(path))
-                    {
-                        while ((line = sr.ReadToEnd()) != null)
-                        {
-                             string SafelyExtractSingleElement(string pattern, string text)
-                            {
-                                MatchCollection matches = new Regex(pattern).Matches(text);
-
-                                List<string> allResults = new List<string>();
-                                foreach (Match match in matches)
-                                {
-                                    allResults.Add(match.Groups[1].Value);
-                                }
-
-                                if (allResults.Count > 0) return allResults.First();
-                                else return string.Empty;
-                            }
-                            Regex rx = new Regex(@"\((\d\d) min.*\)");
-                            
-                            //pobiera zmienna text, zwraca rezultat metody(czas_)
-                            string ExtractTimeToCreate(string text)
-                            {
-                                text = line;
-                                string pattern = @"\((\d\d) min.*\)";
-                                return SafelyExtractSingleElement(
-                                    @"\((\d\d) min.*\)", text);
-                            }
-                            // do zmiennej text przypisuje tytul
-                            string ExtractProfileName(string text)
-                            {
-                                text = line;
-                                string pattern = @"title: ""(\w+ \w+)";
-                                return SafelyExtractSingleElement(
-                                    @"title: ""(\w+ \w+)""", text);
-                            }
-                            
-                            // matches to regex przez pattern, lista wynikow, dodanie do listy, zwroc
-                            //BRAK PATTERN!!!!
-                            // pobiera pattern i text = zwraca czas!
-                           
-                        }
-                    }
+                    time = textOperation.ExtractTimeToCreate(File.ReadAllText(filepath));
+                    timesofallfiles.Add(time); //lista czasów wszystkich
                 }
-                //if (!File.Exists(path))
-                //{
-
-                //    using (StreamReader sr = new StreamReader(path))
-                //    {
-                //        string line;                      
-                //        Regex rx = new Regex(@"\((\d\d) min.*\)");
-                //        while ((line = sr.ReadLine()) != null)
-                //        {
-                //            // Try to match each line against the Regex.
-                //            Match match = rx.Match(line);
-                //            if (match.Success)
-                //            {                              
-                //                Console.WriteLine(match.Value);
-
-                //            }
-                //        }
-                //    }
-                //}
             }
-            catch (Exception e)
+            timesofallfiles.RemoveAll(s => s == string.Empty); //usun puste pola
+
+            var intList = timesofallfiles.Select(s => Convert.ToInt32(s)).ToList();
+           
+            int sumoftimes = 0;
+            for (int i = 0; i < timesofallfiles.Count; i++)
             {
                 
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
+                 sumoftimes= sumoftimes+ intList[i];
             }
+            Console.WriteLine(sumoftimes + "minut");
+            int hours = sumoftimes / 60;
+            int minutes = sumoftimes % 60;
+
+            // ZAPISANIE DO PLIKU
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\task2.txt"))
+            {
+                sw.WriteLine("Wszystkie postacie do tej pory budowane były " + hours + " godzin" + minutes + " minut");
+
+
+            }
+            Console.WriteLine("Wszystkie postacie do tej pory budowane były " + hours + " godzin " + minutes + " minut");
+            Console.ReadKey();
+
+        }
+
+        public static void Komciuch(string[] args)
+        {
+            //get fryderyk komciuch = string          
+            string path = @"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
+            string text = "", title ="", time ="";
+            using (FileStream fs = File.Open(path, FileMode.Open,FileAccess.Read,FileShare.Read))
+            {
+                text = File.ReadAllText(path);
+            }
+
+            // extract time/titile
+            TextParser textOperation = new TextParser();        
+            title = textOperation.ExtractProfileName(text);
+            time = textOperation.ExtractTimeToCreate(text);
+
+            //print name + time
+
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\czas-fryderyk-komciur.txt"))
+            {
+                sw.WriteLine(title + " był budowany " + time + " minuty");
+
+                
+            }
+            Console.WriteLine(title + time);
             Console.ReadKey();
         }
-        
+
     }
+        
 }
+
