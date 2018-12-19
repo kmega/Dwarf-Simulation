@@ -35,19 +35,25 @@ namespace Tasks
 
 
             //lista postaci z filtrem czasu budowania => oblicz średni czas budowania postaci  =>średni czas budowania
-            double averangeTimeCharactersWithTime = AverangeCharacterBuildTime(ListOfCharactersStats);
+            string averangeTimeCharactersWithTime = AverangeCharacterBuildTime(ListOfCharactersStats).ToString();
 
             // średni czas budowania postaci, lista postaci bez czasu, całkowity czas budowania postaci => wynik
 
-           // WriteResult(aa,bbb,ccc);
-
+            // WriteResult(---,ListOfCharacterWithoutTimes, averangeTimeCharactersWithTime);
+            //WriteResult(); - do implementacji
 
             Console.ReadKey();
         }
 
-        private static void WriteResult(string BuildingTime, List<Character> charactersWithoutTime, string AverangeTimee)
+        private static void WriteResult()
         {
-            throw new NotImplementedException();
+
+            using (StreamWriter sw = File.AppendText(@"C:\Users\Lenovo\Desktop\primary\Tasks\result2.md"))
+            {
+                sw.WriteLine();
+            }
+
+
         }
 
         private static double AverangeCharacterBuildTime(List<Character> listOfCharacter)
