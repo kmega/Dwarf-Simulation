@@ -37,10 +37,6 @@ namespace pkozlowski
                 exportString.Add(string.Format("Wszystkie postacie do tej pory budowne były {0} godzin {1} minut.", 
                     timeSpan.Hours, timeSpan.Minutes));
 
-                exportString.Add(string.Format("Magda Patiril występowała w następujących Opowieściach:"));
-
-                
-
                 characterVault.resultToFile(resultFile, exportString);
         }
     }

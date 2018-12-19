@@ -11,9 +11,7 @@ namespace pkozlowski
         static void Main(string[] args)
         {
             Task3.run(resultFile);
-
-            //exportString.Add(string.Format("Magda Patiril występowała w następujących Opowieściach:"));
-
+            Task4.run(resultFile);
         }
     }
 }
