@@ -12,8 +12,6 @@ namespace RegexTask
         public string Return_file(string URL)
         {
             string file = File.ReadAllText(URL);
-            //Console.WriteLine(file);
-            //Console.ReadKey();
             return file;
         }
         

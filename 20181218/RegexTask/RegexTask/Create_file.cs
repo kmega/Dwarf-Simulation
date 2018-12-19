@@ -12,6 +12,11 @@ namespace RegexTask
         public void save_file(string url, List<string> data)
         {
             File.WriteAllLines(url, data);
+
+            foreach (var item in data)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 }
