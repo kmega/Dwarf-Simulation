@@ -15,12 +15,20 @@ namespace VivaRegex
 
         public string ExtractProfileName(string text)
         {
-            return SafelyExtractSingleElement(@"title: ""(\w+ \w+)""", text);
+            return SafelyExtractSingleElement(
+                @"title: ""((\w+ *){2,4})""", text);
+        }
+
+        public string ExtractStuffWithMagda(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
         }
 
         private string SafelyExtractSingleElement(string pattern, string text)
         {
-            MatchCollection matches = new Regex(pattern).Matches(text);
+            MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)
+                .Matches(text);
 
             List<string> allResults = new List<string>();
             foreach (Match match in matches)
@@ -32,4 +40,4 @@ namespace VivaRegex
             else return string.Empty;
         }
     }
-}
+} 
