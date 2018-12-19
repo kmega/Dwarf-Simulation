@@ -18,6 +18,8 @@ namespace Zadanie1
             Task103();
             Task104();
 
+            //
+
             Console.ReadLine();
         }
 
@@ -153,6 +155,7 @@ namespace Zadanie1
             //WriteResults()
             WriteResults(toSave);
         }
+
         private static void WriteResults(string[] toSave)
         {
             File.AppendAllLines("result.txt", toSave);
