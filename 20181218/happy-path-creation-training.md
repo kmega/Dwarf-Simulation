@@ -1,4 +1,4 @@
-# Zadania do modelowania
+﻿# Zadania do modelowania
 
 ## Linki pomocnicze do regexa
 
