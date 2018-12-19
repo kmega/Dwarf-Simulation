@@ -8,7 +8,7 @@ namespace Task3
     {
         public static void Main(string[] args)
         {
-            //1. Import wszystkich plikow txt w tej klasie jest tez blackBox -> string[] collection
+            //1. sciezka dostepu -> string[] collection
             FilesImporter filesImporter = new FilesImporter();
             string dirPath = "/Users/piotr/Desktop/Git/primary/20181218/cybermagic/karty-postaci";
             string[] Collection = filesImporter.ImportAllFiles(dirPath);
@@ -30,9 +30,7 @@ namespace Task3
 
             //6. OpenedContent, avgTime -> wyswietl zakladajac
             blackBoxSumator.DisplayAssume(avgTime, sumTime);
-            ////4. Zapisac wynik w pliku
-            //FileWriter fileWriter = new FileWriter();
-            //fileWriter.WrtieToFile(TotalTime);
+
         }
 
 
