@@ -39,8 +39,10 @@ namespace RegEx
 
             List<string> allPeopleText =  ReadingAllPeopleText(pathAllPeople);
             List<Int32> allPeopleTimes = GetTimesFromAll(allPeopleText);
-            string allTimesSum = "Wszystkie postacie do tej pory byly budowane " +
-                Convert.ToString(SumOfAllTimes(allPeopleTimes)) + " minuty";
+            int sumTimes = SumOfAllTimes(allPeopleTimes);
+            int hour = sumTimes / 60;
+            int minutes = sumTimes % 60;
+            string allTimesSum = $"Wszystkie postacie do tej pory byly budowane {Convert.ToString(hour)} godzin i  {Convert.ToString(minutes)} minut.";
             WriteResultToFile(result2, allTimesSum);
 
 
