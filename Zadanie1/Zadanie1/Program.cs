@@ -24,11 +24,30 @@ namespace Zadanie1
             List<string> fileContents = ReadAllFiles(fileNames);
             //GetAllHeroesWithoutTime(files) -> zbiór HeroesWithoutTime
             List<string> heroesWithoutTime = GetHeroesWithoutTime(fileContents);
-            //GetAllHeroesWithTime(files) -> zbiór HeroesWithTime();
-            int averageTimeOfBuildingHero = CountAverage(fileContents);
-            //CountAverage(allTimes from HeroesWithTime);
-            //AssessWholeBuildingTime()
+            //ExtractAllNamesWithoutGivenTime -> list<string> names
+            List<string> namesOfHeroesWithoutTime = ExtractAllNames(heroesWithoutTime);
+            int numberOfHeroesWithTime = fileContents.Count - heroesWithoutTime.Count;
+            //ExtractAllTimes
+            List<int> times = ExtractAllTimes(fileContents);
+            //SumAllGivenTimes
+            int sumOfGivenTimes = SumAllTimes(times);
+            //CountAverage(sumOfGivenTimes, numberOfHeroesWithTime) -> asses whole time;
+            int averageTimeOfBuildingHero = CountAverage(sumOfGivenTimes, numberOfHeroesWithTime);
+            //AssessWholeBuildingTime(averageTimeOfBuildingHero, ) -> wholeBuildingTime
+            int wholeBuildingTime = AssessWholeBuildingTime(averageTimeOfBuildingHero,
+                                                            heroesWithoutTime.Count,
+                                                            sumOfGivenTimes);
             Console.ReadLine();
+        }
+
+        private static List<string> ExtractAllNames(List<string> heroesWithoutTime)
+        {
+            throw new NotImplementedException();
+        }
+
+        private static int AssessWholeBuildingTime(int averageTime, int numberOfHeroesWithoutTime, int allGivenTime)
+        {
+            return allGivenTime + averageTime * numberOfHeroesWithoutTime;
         }
 
         private static List<string> GetHeroesWithoutTime(List<string> fileContents)
@@ -45,13 +64,9 @@ namespace Zadanie1
             return heroesWithoutTime;          
         }
 
-        private static int CountAverage(List<string> fileContents)
+        private static int CountAverage(int sumOfGivenTimes, int numberOfHeroesWithTime)
         {
-            List<int> times = ExtractAllTimes(fileContents);
-            int allTime = SumAllTimes(times);
-            var notZeroHeroes = times.Where(t => t != 0)
-                                    .ToList();
-            return allTime / notZeroHeroes.Count;
+            return sumOfGivenTimes / numberOfHeroesWithTime;
         }
 
         private static string BuildStringToSaveTask2(TimeSpan totalTimeToBuildHeroes)
@@ -85,7 +100,14 @@ namespace Zadanie1
             List<string> fileContents = new List<string>();
             foreach(var fileName in fileNames)
             {
-                fileContents.Add(ReadSingleFile(fileName));
+                if (fileName.Contains("template"))
+                {
+                    continue;
+                }
+                else
+                {
+                    fileContents.Add(ReadSingleFile(fileName));
+                }                
             }
             return fileContents;
         }
@@ -139,7 +161,7 @@ namespace Zadanie1
             {
                 toSave
             };
-            File.WriteAllLines("result.txt", contents);
+            File.AppendAllLines("result.txt", contents);
         }
 
         private static int ExtractSingleTime(string file)
