@@ -13,7 +13,7 @@ namespace Zadanie1
     {
         static void Main(string[] args)
         {
-            Task101();
+            //Task101();
 
             //given directory
             string directory = @"cybermagic\karty-postaci";
@@ -25,6 +25,7 @@ namespace Zadanie1
             List<int> times = ExtractAllTimes(fileContents);
             //SumTimes(times) -> minutes
             int sumOfTimes = SumAllTimes(times);
+            //ChangeMinutesToHours() -> hours, minutes
             //WriteResults(minutes);
 
 
@@ -50,18 +51,23 @@ namespace Zadanie1
 
         private static List<string> ReadAllFiles(List<string> fileNames)
         {
-            throw new NotImplementedException();
+            List<string> fileContents = new List<string>();
+            foreach(var fileName in fileNames)
+            {
+                fileContents.Add(ReadSingleFile(fileName));
+            }
+            return fileContents;
         }
 
         private static List<string> GetFileNames(string directory)
-        {
-            
+        {          
+            return Directory.GetFiles(directory).ToList(); ;
         }
 
         private static void Task101()
         {
             //ReadSingleFile(filename) -> fk
-            var fileName = "1807-fryderyk-komciur.md";
+            var fileName = @"cybermagic\karty-postaci\1807-fryderyk-komciur.md";
             string file = ReadSingleFile(fileName);
             //ExtractName(fk) -> fullName
             string fullName = ExtractSingleName(file);
@@ -101,11 +107,9 @@ namespace Zadanie1
             return fullName;
         }
 
-        private static string ReadSingleFile(string fileName)
+        private static string ReadSingleFile(string path)
         {
-            string path = @"cybermagic\karty-postaci\";
-            string target = path + fileName;
-            string text = File.ReadAllText(target);
+            string text = File.ReadAllText(path);
             return text;
         }
     }
