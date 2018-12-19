@@ -18,12 +18,38 @@ namespace ConsoleApp1
             TaskTwo(dictionaryPath);
             TakThree(dictionaryPath);
 
+            string dicionaryPathStory = "C:/Users/Lenovo/code/primary/20181218/cybermagic/opowiesci";
+            TaskFour(dicionaryPathStory);
+
             //Regex regex = new Regex(@"(\d\d) min.*"); aaaaaaaaaaaaaa
             //string[] digits = Regex.Split(sentence, @"\D+");
             //zadanie 2
             /*string[] digits = Regex.Split(information, @"\((\d\d) min.*\)");
 
             */
+        }
+
+        private static void TaskFour(string dicionaryPathStory)
+        {
+            string PathFileToSave = "E:/Informacje/result_task4.txt";
+            foreach (string file in Directory.EnumerateFiles(dicionaryPathStory, "*.md"))
+            {
+                string lecture = "";
+                string contents = File.ReadAllText(file);
+                TextParser textParser = new TextParser();
+                string Magda = textParser.ExtractStuffWithMagda(contents);
+                if (Magda != "")
+                {
+                    string[] words = file.Split('-');
+                    for (int i = 1; i < words.Length; i++)
+                    {
+                        lecture += words[i] + " ";
+                    }
+                    lecture = lecture.Remove(lecture.Length - 3);
+                    SaveFileName(PathFileToSave, lecture);
+                }
+
+            }
         }
 
         private static void TakThree(string dictionaryPath)
@@ -119,6 +145,13 @@ namespace ConsoleApp1
             minutes = toWrite % 60;
             SW.WriteLine("Pełny czas tworzenia postaci wynosi: " + toWrite + ". A średni czas to: " + AVG
                 + " Łączny czas na tworzenie postaci zajął " + hours+ " godzin i " + minutes+ " minut");
+            SW.Close();
+        }
+
+        public static void SaveNameFile(string whereSave, string toWrite)
+        {
+            StreamWriter SW = FastSave(whereSave);
+            SW.WriteLine("Magda wystąpiła tutaj " + toWrite);
             SW.Close();
         }
     }
