@@ -81,6 +81,11 @@ namespace workspace
             return null;
         }
 
+        static string WriteAvarageBuildTime()
+        {
+            return null;
+        }
+
         static void Main(string[] args)
         {
             int userPick = -1;
@@ -107,6 +112,9 @@ namespace workspace
                         break;
                     case 2:
                         WriteAllCharactersBuildTime();
+                        break;
+                    case 3:
+                        WriteAvarageBuildTime();
                         break;
                     default:
                         Console.WriteLine("\nWrong input.");
