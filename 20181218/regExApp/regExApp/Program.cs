@@ -69,7 +69,46 @@ namespace regExApp
             string sumOfTimes = sumAllTimes(timesOfCreatingCharacters).ToString();
             string pathToSaveTask_2 = "result2.txt";
             File.WriteAllText(pathToSaveTask_2, sumOfTimes);
-            
+
+            // TASK THREE**********
+
+            //Get characters without given time and write to result3-1.txt (IGNORE 1807-_template.md)
+            List<string> charactersWithoutTime = charactersWithoutGivenTime(timesOfCreatingCharacters, fileNames);
+
+            //Get characters with given time
+
+            //Count average time from given characters
+
+            //Assign avarage time to empty time Characters
+
+            //Count avarage time from all characters and write to txt file
+
+
+
+
+        }
+
+        private static List<string> charactersWithoutGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
+        {
+            int charsWithGivenTime;
+            int emptyCounter = 0;
+            int i = 0;
+            List<string> emptyCharactersNames = new List<string>();
+
+            foreach (string time in timesOfCreatingCharacters)
+            {
+                bool intOrString = Int32.TryParse(time, out charsWithGivenTime);
+
+                if (intOrString == false)
+                {
+                    emptyCounter++;
+                    emptyCharactersNames.Add(fileNames[i]);
+                }
+
+                i++;
+            }
+
+            return emptyCharactersNames;
         }
 
         private static int sumAllTimes(List<string> timesOfCreatingCharacters)
