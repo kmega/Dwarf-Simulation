@@ -16,34 +16,47 @@ namespace ConsoleApp1
             string dictionaryPath = "C:/Users/Lenovo/code/primary/20181218/cybermagic/karty-postaci";
             TaskOne(dictionaryPath);
             TaskTwo(dictionaryPath);
+            TakThree(dictionaryPath);
 
-            string PathFileToSave = "E:/Informacje/result_task3.txt";
-
-            int fullTime = 0;
-            foreach (string file in Directory.EnumerateFiles(dictionaryPath, "*.md"))
-            {
-                string contents = File.ReadAllText(file);
-                TextParser textParser = new TextParser();
-                string time = textParser.ExtractTimeToCreate(contents);
-                if (time != "")
-                {
-                    fullTime += int.Parse(time);
-                }
-                else
-                {
-                    string name = textParser.ExtractProfileName(contents);
-                    if (name != "")
-                    {
-                        SaveFileName(PathFileToSave, name);
-                    }                    
-                }                    
-            }
             //Regex regex = new Regex(@"(\d\d) min.*"); aaaaaaaaaaaaaa
             //string[] digits = Regex.Split(sentence, @"\D+");
             //zadanie 2
             /*string[] digits = Regex.Split(information, @"\((\d\d) min.*\)");
 
             */
+        }
+
+        private static void TakThree(string dictionaryPath)
+        {
+            string PathFileToSave = "E:/Informacje/result_task3.txt";
+
+            int fullTime = 0;
+            int counter = 0;
+            foreach (string file in Directory.EnumerateFiles(dictionaryPath, "*.md"))
+            {
+                string[] words = file.Split('-');
+                if (words[2] != "_template.md")
+                {
+                    string contents = File.ReadAllText(file);
+                    TextParser textParser = new TextParser();
+                    string time = textParser.ExtractTimeToCreate(contents);
+                    if (time != "")
+                    {
+                        fullTime += int.Parse(time);
+                        counter++;
+                    }
+                    else
+                    {
+                        string name = textParser.ExtractProfileName(contents);
+                        if (name != "")
+                        {
+                            SaveFileName(PathFileToSave, name);
+                        }
+                    }
+                }
+            }
+            int Avg = fullTime / counter;
+            SaveFullTime(PathFileToSave, fullTime, Avg);
         }
 
         private static void TaskTwo(string dictionaryPath)
@@ -79,18 +92,33 @@ namespace ConsoleApp1
         
         public static void SaveFile(string whereSave, string toWrite)
         {
-            StreamWriter SW;
-            SW = File.AppendText(whereSave);
+            StreamWriter SW = FastSave(whereSave);
             SW.WriteLine("Czas tworzenia pliku to: " + toWrite);
             SW.Close();
 
         }
 
+        private static StreamWriter FastSave(string whereSave)
+        {
+            return File.AppendText(whereSave);
+        }
+
         public static void SaveFileName(string whereSave, string toWrite)
         {
-            StreamWriter SW;
-            SW = File.AppendText(whereSave);
+            StreamWriter SW = FastSave(whereSave);
             SW.WriteLine("Nazwa postaci: " + toWrite);
+            SW.Close();
+        }
+
+        public static void SaveFullTime(string whereSave, int toWrite, int AVG)
+        {
+            StreamWriter SW = FastSave(whereSave);
+            int hours = 0;
+            int minutes = 0;
+            hours = toWrite / 60;
+            minutes = toWrite % 60;
+            SW.WriteLine("Pełny czas tworzenia postaci wynosi: " + toWrite + ". A średni czas to: " + AVG
+                + " Łączny czas na tworzenie postaci zajął " + hours+ " godzin i " + minutes+ " minut");
             SW.Close();
         }
     }
