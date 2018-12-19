@@ -12,18 +12,18 @@ namespace RegEx
     {
         static void Main(string[] args)
         {
+            string pathFKomciur = @"C:\Code\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
+            string pathAllPeople = @"C:\Code\primary\20181218\cybermagic\karty-postaci";
+            string result1 = @"C:\Code\primary\20181218\RegEx\RegEx\result1.txt";
+            string result2 = @"C:\Code\primary\20181218\RegEx\RegEx\result2.txt";
+
             // task1
             //string ReadSingleFile(filePath) -> textFromFile
             //string GetTime(text) -> time
             //string GetName(text) -> name
             //CombineResults(name + time) -> result
             //WriteResultToFile()
-           
-            string pathFKomciur = @"C:\Code\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
-            string pathAllPeople = @"C:\Code\primary\20181218\cybermagic\karty-postaci";
-            string result1 = @"C:\Code\primary\20181218\RegEx\RegEx\result1.txt";
-            string result2 = @"C:\Code\primary\20181218\RegEx\RegEx\result2.txt";
-
+            
             string textKomciur = ReadSingleFile(pathFKomciur);
             string nameKomciur = GetName(textKomciur);
             string timeKomciur = GetTime(textKomciur);
@@ -37,24 +37,24 @@ namespace RegEx
             //list<int> GetTimeFromAll(List<string> allPeopleText) -> lista wszystkich czasow
             List<Int32> allPeopleTimes = GetTimesFromAll(allPeopleText);
 
-            //
+            //int SumOfAllTimes(List<Int32> allPeopleTimes) -> int allTimesSum;
+            string allTimesSum = "Wszystkie postacie do tej pory byly budowane " +
+                Convert.ToString(SumOfAllTimes(allPeopleTimes)) + " minuty";
 
-            /*
-            StreamWriter result2File = new StreamWriter(result2);
-            foreach (var element in Directory.EnumerateFiles(pathWszyscy, "*.md"))
+            //WriteResultToFile(result2, allTimesSum)
+            WriteResultToFile(result2, allTimesSum);
+            
+        }
+
+        public static int SumOfAllTimes(List<Int32> allPeopleTimes)
+        {
+            int allTimesSum = 0;
+            foreach(int time in allPeopleTimes)
             {
-                string wszyscy = File.ReadAllText(element);
-                TextParser tp2 = new TextParser();
-                timeWszyscy = tp2.ExtractTimeToCreate(wszyscy);
-
-                if (timeWszyscy != "")
-                {
-                    allTime += Int32.Parse(timeWszyscy);
-                }
+                allTimesSum += time;
             }
-            result2File.WriteLine("Czas tworzenia wszystkich bahaterów to: {0} minuty", allTime);
-            result2File.Close();
-            */
+            return allTimesSum;
+            throw new NotImplementedException();
         }
 
         public static List<Int32> GetTimesFromAll(List<string> allPeopleText)
