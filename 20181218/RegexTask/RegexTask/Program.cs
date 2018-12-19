@@ -95,6 +95,12 @@ namespace RegexTask
             _results.Add(result);
 
 
+            //text from name files in catalog -> List<string> name_files from catalog
+            
+
+            //text
+
+
             //Create file -> Results.txt
             Create_file recorder = new Create_file();
             recorder.save_file(_name_create_file, _results);
