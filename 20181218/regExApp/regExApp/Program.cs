@@ -78,7 +78,7 @@ namespace regExApp
             File.WriteAllLines(pathToSaveTask_3_1, charactersWithoutTime);
 
             //Get characters with given time
-           // List<string> charactersWithTime = charactersWithGivenTime(timesOfCreatingCharacters, fileNames);
+            List<string> charactersWithTime = charactersWithGivenTime(timesOfCreatingCharacters, fileNames);
 
             //Count average time from given characters
 
@@ -93,7 +93,7 @@ namespace regExApp
 
         private static List<string> charactersWithGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
         {
-            int charsWithGivenTime;
+            int charsWithGivenTime = 0;
             int emptyCounter = 0;
             int i = 0;
             List<string> emptyCharactersNames = new List<string>();
@@ -102,10 +102,9 @@ namespace regExApp
             {
                 bool intOrString = Int32.TryParse(time, out charsWithGivenTime);
 
-                if (intOrString == false)
+                if (intOrString == true)
                 {
-                    emptyCounter++;
-                    emptyCharactersNames.Add(fileNames[i]);
+                    charsWithGivenTime++;
                 }
 
                 i++;
@@ -123,6 +122,8 @@ namespace regExApp
 
             foreach (string time in timesOfCreatingCharacters)
             {
+                if (fileNames[i] == "1807-_template.md") { continue; }
+
                 bool intOrString = Int32.TryParse(time, out charsWithGivenTime);
 
                 if (intOrString == false)
