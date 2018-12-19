@@ -40,30 +40,59 @@ namespace regExApp
 
         static void Main(string[] args)
         {
-            
-            string path = "1807-fryderyk-komciur.md";
+            //Read file from path
 
+            string path = "1807-fryderyk-komciur.md";
+            string file_Content = readFile(path);
+
+            //Get Time From File
+
+            string timeOfBuldingCharacter = getTimeFromFileContent(file_Content);
+
+            //Write time to result1.txt
+
+            string pathToSave = "result1.txt";
+            File.WriteAllText(pathToSave, timeOfBuldingCharacter);
+
+            //**********************************************************************************
+            /* 
             string[] fryderyk = File.ReadAllLines(path);
             string timeResult;
 
+            
             TextParser findText = new TextParser();
 
-            string helper;
+             string helper;
 
-            for (int i = 0; i<fryderyk.Length; i++)
-            {
-                helper = findText.ExtractTimeToCreate(fryderyk[i]);
-                if (helper != "")
-                {
-                    timeResult = findText.ExtractTimeToCreate(fryderyk[i]);
-                    Console.WriteLine(timeResult);
-                    File.AppendAllText("result1.txt", timeResult);
-                }
-                
-            }
-            
-            Console.ReadKey();
+             for (int i = 0; i<fryderyk.Length; i++)
+             {
+                 helper = findText.ExtractTimeToCreate(fryderyk[i]);
+                 if (helper != "")
+                 {
+                     timeResult = findText.ExtractTimeToCreate(fryderyk[i]);
+                     Console.WriteLine(timeResult);
+                     File.AppendAllText("result1.txt", timeResult);
+                 }
 
+             }
+
+             Console.ReadKey();
+             */
+            //**********************************************************************************
+        }
+
+        private static string getTimeFromFileContent(string fileContent)
+        {
+            TextParser reader = new TextParser();
+
+            string time = reader.ExtractTimeToCreate(fileContent);
+            return time;
+        }
+
+        private static string readFile(string path)
+        {
+            string fileContent = File.ReadAllText(path);
+            return fileContent;
         }
     }
 }
