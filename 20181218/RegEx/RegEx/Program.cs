@@ -47,9 +47,28 @@ namespace RegEx
             //task 3
             //AverageTime(int allPeopleTimes) -> int averageTime
             int averageTime = AverageTime(allPeopleTimes);
+
             //CharactersWithoOutTime() -> list<string> peopleWithOutTime
             List<string> allPeopleWithoutTime = CharactersWithoutTime(allPeopleText);
-            //
+
+            //string ProbableBuildTime(int averageTime, list<string> allPeopleWithoutTime) -> string probableBuildTime
+            string resultOfTask3 = ProbableBuildTime(averageTime, allPeopleWithoutTime, allPeopleTimes);
+            WriteResultToFile(result3, resultOfTask3);
+        }
+
+        public static string ProbableBuildTime(int averageTime, List<string> allPeopleWithoutTime, List<Int32> allPeopleTimes)
+        {
+            string result = "";
+            TextParser tp = new TextParser();
+            int sumOfPeopleWithTimes = SumOfAllTimes(allPeopleTimes);
+            int countPeopleWithoutTime = allPeopleWithoutTime.Count();
+            int probableTimeOfAllPeopleWithoutTime = averageTime * countPeopleWithoutTime;
+            int probableSum = sumOfPeopleWithTimes + probableTimeOfAllPeopleWithoutTime;
+
+            result = $"Uwzględniając powyższe, postacie do tej pory budowane były najpewniej {Convert.ToString(probableSum)} minut"; 
+
+            return result;
+            throw new NotImplementedException();
         }
 
         public static List<string> CharactersWithoutTime(List<string> allPeopleText)
