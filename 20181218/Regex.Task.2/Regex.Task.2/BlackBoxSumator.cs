@@ -27,7 +27,7 @@ namespace Task2
                     //{
                     //    //string TempTimeStringInFile = TimeStringInFile.Replace('(', '\0');
                     //    string TempTimeStringInFile = TimeStringInFile.Substring(1,2);
-                    //    TotalTime += Convert.ToInt32(TempTimeStringInFile);
+                    //    TotalTime += Convert.ToInt3(TempTimeStringInFile);
                     //    Console.WriteLine(TempTimeStringInFile);
                     //}
                 }

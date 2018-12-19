@@ -12,7 +12,7 @@ namespace UseRegex
             Regex Time = new Regex(@"\((\d\d) min.*\)");
             Regex Name = new Regex(@"""(\w+ \w+)""");
 
-            //1. Otworz plik -> uzyj sciezki
+            //1. Otworz plik -> uzyj sciezki //file.readAllText
             var OpenedFile = File.ReadLines(@"/Users/piotr/Desktop/Git/primary/20181218/cybermagic/karty-postaci/1807-fryderyk-komciur.md");
 
             //2. Na tekscie w pliku znajdz regexa dla czasu
