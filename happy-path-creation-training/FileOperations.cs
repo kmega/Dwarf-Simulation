@@ -10,68 +10,65 @@ namespace happy_path_creation_training
 {
     class FileOperations
     {
-
-
-        //public static string[] ReturnStringArrayFromFile(string filePath)
-        //{
-        //    return File.ReadAllLines(filePath);
-        //}
-
-        //public static string ReturnProfileNameAndBuildTime(string[] stringArrayFromFile)
-        //{
-        //    string pattern1 = "\\((\\d\\d) min.*\\)";
-        //    string pattern2 = "title: \"(\\w+ \\w+)\"";
-        //    string profileName = "";
-        //    string buildTime = "";
-
-        //    foreach (var line in stringArrayFromFile)
-        //    {
-        //        if (!String.IsNullOrEmpty(ExtractRegExFromString(pattern1, line)))
-        //        {
-        //            buildTime = ExtractRegExFromString(pattern1, line);
-        //        }
-        //        if (!String.IsNullOrEmpty(ExtractRegExFromString(pattern2, line)))
-        //        {
-        //            profileName = ExtractRegExFromString(pattern2, line);
-        //        }
-
-        //    }
-
-
-        //    return profileName + " był budowany " + buildTime + " minuty";
-        //}
-
-        //public static string ExtractRegExFromString(string pattern, string text)
-        //{
-        //    MatchCollection matches = new Regex(pattern).Matches(text);
-
-        //    List<string> allResults = new List<string>();
-        //    foreach (Match match in matches)
-        //    {
-        //        allResults.Add(match.Groups[1].Value);
-        //    }
-
-        //    if (allResults.Count > 0) return allResults.First();
-        //    else return string.Empty;
-        //}
         public static string ConvertFileToString(string path)
         {
             return File.ReadAllText(path);
         }
 
-        public static string ExtractParam(string fileString)
-        {
-            return TextParser.ExtractProfileName(fileString);
-        }
-
         public static string CreateStringToSave(params string[] extractedParams)
         {
             StringBuilder resultString = new StringBuilder();
-            foreach (string s in extractedParams)
-            {
-                resultString.Append(s);
-            }
+            resultString.Append(extractedParams[0] + " był budowany przez " + extractedParams[1] + " minuty");
             return resultString.ToString();
+        }
+
+        public static string[] ExtractBuildTimesFromFile(string[] stringFiles)
+        {
+            List<string> timeBuilds = new List<string>();
+            foreach (var item in stringFiles)
+            {
+                timeBuilds.Add(TextParser.ExtractTimeToCreate(item));
+            }
+
+            return timeBuilds.ToArray();
+        }
+
+       
+
+        public static string CreateStringToSave2(string[] buildTimes)
+        {
+            double buildTimeSum = 0;
+            foreach (var item in buildTimes)
+            {
+                if (!String.IsNullOrEmpty(item))
+                {
+                    buildTimeSum += double.Parse(item);
+                }
+            }
+            TimeSpan ts = TimeSpan.FromMinutes(buildTimeSum);
+            return "Wszystkie postacie do tej pory budowane były " + ts.Hours + " godzin " + ts.Minutes +" minut";
+        }
+
+        public static string[] ConvertAllFilesToString(string[] fileNames)
+        {
+            List<string> fileStrings = new List<string>();
+            foreach (var item in fileNames)
+            {
+                fileStrings.Add(FileOperations.ConvertFileToString(item));
+            }
+            return fileStrings.ToArray();
+
+        }
+
+        public static string[] ReadAllFileNamesFromDirectory(string path)
+        {
+            DirectoryInfo di = new DirectoryInfo(path);
+            List<string> listOfFileNames = new List<string>();
+            foreach (var fi in di.GetFiles())
+            {
+                listOfFileNames.Add(path + fi.Name);
+            }
+            return listOfFileNames.ToArray();
         }
 
         public static void SaveToFile(string path, string stringOutput)

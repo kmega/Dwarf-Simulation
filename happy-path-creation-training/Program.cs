@@ -12,6 +12,68 @@ namespace happy_path_creation_training
     {
         static void Main(string[] args)
         {
+            //Directory <ReadAllFilenames> string[]
+            string path = @"C:\Programming\C#Projects\Corealate\20181218\cybermagic\karty-postaci\";
+
+            string[] fileNames = FileOperations.ReadAllFileNamesFromDirectory(path);
+
+            string[] stringFiles = FileOperations.ConvertAllFilesToString(fileNames);
+
+            //string[] <ReadAllBuildTime> string[]
+            
+
+            //string[] <SumAllBuildTime> string
+            
+
+
+
+
+
+            //*które postacie NIE mają podanej ilości czasu budowania - zapisz ich identyfikatory(imię i nazwisko)
+            //*wylicz średni czas budowania postaci z tych które miały podany czas budowania
+            //* ZIGNORUJ PLIK TEMPLATE(1807 - _template.md) -on świadomie jest pusty
+            //* załóż, że te postacie(bez podanego czasu) były budowane tak samo szybko jak średni czas
+            //*napisz ile najpewniej zajął czas budowania postaci
+            //Zapisz do pliku(poniżej poprzedniego rekordu):
+
+
+
+
+
+
+
+        }
+
+        private static void ExtractAllBuildTime()
+        {
+            //Directory <ReadAllFilenames> string[]
+            string path = @"C:\Programming\C#Projects\Corealate\20181218\cybermagic\karty-postaci\";
+
+            string[] fileNames = FileOperations.ReadAllFileNamesFromDirectory(path);
+
+            string[] stringFiles = FileOperations.ConvertAllFilesToString(fileNames);
+
+            //string[] <ReadAllBuildTime> string[]
+            string[] buildTimes = FileOperations.ExtractBuildTimesFromFile(stringFiles);
+
+            //string[] <SumAllBuildTime> string
+            string stringOutput = FileOperations.CreateStringToSave2(buildTimes);
+
+            //string <SaveToFile> File
+            string outputPath = @"zad2.txt";
+            FileOperations.SaveToFile(outputPath, stringOutput);
+        }
+
+
+
+
+
+
+
+
+
+        private static void ExtractNameAndBuildTime()
+        {
             //File <ReadFile to string> string
             string path = @"1807-fryderyk-komciur.md";
             string fileString = FileOperations.ConvertFileToString(path);
@@ -23,42 +85,8 @@ namespace happy_path_creation_training
             // string <save to file> File
             string outputPath = @"fk-out.txt";
             FileOperations.SaveToFile(outputPath, stringOutput);
-            
-            
-            
-            
-            
-            /*
-             * File - read, create array form file - fileArray
-             * fileArray - search line by line for regex expression - string
-             * string - save to new File - File
-             */
-
-            //DataFile dataFile = new DataFile("1807-fryderyk-komciur.md");
-            //string[] a = dataFile.ReadDataFile();
-
-            //string profile = DataFile.SerachArrayForRegExString(a, "title: \"(\\w+ \\w+)\"");
-            //string time = DataFile.SerachArrayForRegExString(a, "\\((\\d\\d) min.*\\)");
-
-
-            
-
-            //Console.WriteLine(dataFile.FilePath);
-            Console.ReadKey();
-
-
-
-
-
-
-
-
-            //string[] result = FileOperations.ReturnStringArrayFromFile("1807-fryderyk-komciur.md");
-
-            //string result2 = FileOperations.ReturnProfileNameAndBuildTime(result);
-
         }
     }
 
-        
+
 }
