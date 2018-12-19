@@ -17,7 +17,7 @@ namespace VivaRegex
         public string ExtractProfileName(string text)
         {
             return SafelyExtractSingleElement(
-                @"title: ""(\w+ \w+)""", text);
+                @"title: ""((\w+ *){2,4})""", text);
         }
 
         public string ExtractStuffWithMagda(string text)
