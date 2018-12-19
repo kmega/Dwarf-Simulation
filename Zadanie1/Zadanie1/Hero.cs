@@ -19,5 +19,6 @@ namespace Zadanie1
             }
             return sumOfBuildTimes;
         }
+        
     }
 }

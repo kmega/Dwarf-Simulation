@@ -12,7 +12,6 @@ namespace Zadanie1
         public static void CreateOrAppend(string file, string value)
         {
             File.AppendAllText(file, value);
-            File.AppendAllText(file, "\n");
         }
 
     }
