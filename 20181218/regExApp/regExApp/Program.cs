@@ -73,7 +73,7 @@ namespace regExApp
                      Console.WriteLine(timeResult);
                      File.AppendAllText("result1.txt", timeResult);
                  }
-
+                   
              }
 
              Console.ReadKey();
