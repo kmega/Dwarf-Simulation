@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
-using System;
 
 namespace pkozlowski
 {
@@ -24,23 +23,12 @@ namespace pkozlowski
             }
         }
 
-        // public void exportBuildTimeToFile(string filepath)
-        // {
-        //     int builtTime = charactersBuildTime();
-        //     TimeSpan builTime = TimeSpan.FromMinutes(builtTime);
-        //     var resultText = string.Format("Wszystkie postacie do tej pory budowne były {0} godzin i {1} minut.\n", builTime.Hours, builTime.Minutes);
-        //     File.AppendAllText(filepath, resultText);
-        // }
-
-        public void resultToFile(List<Character> characterList, string filepath, string addText = "")
+        public void resultToFile(string filepath, List<string> content)
         {
-            File.AppendAllText(filepath, "Postacie, które nie mają podanego czasu to: \n");
-            characterList.ForEach(x => {
-                File.AppendAllText(filepath, x.Name + "\n");
-                }); 
+            File.WriteAllLines(filepath, content);
         }
 
-        public int charactersBuildTime(List<Character> characterList)
+        public int charactersAvgBuildTime(List<Character> characterList)
         {
             int builtTime = 
                 Characters.Sum(x => {
@@ -48,7 +36,7 @@ namespace pkozlowski
                     int.TryParse(x.BuildTime, out result);
                     return result;
                     });
-            return builtTime;
+            return builtTime / characterList.Count;
         }
     }
 }
