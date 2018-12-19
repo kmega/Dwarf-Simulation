@@ -16,6 +16,7 @@ namespace RegEx
             string pathAllPeople = @"C:\Code\primary\20181218\cybermagic\karty-postaci";
             string result1 = @"C:\Code\primary\20181218\RegEx\RegEx\result1.txt";
             string result2 = @"C:\Code\primary\20181218\RegEx\RegEx\result2.txt";
+            string result3 = @"C:\Code\primary\20181218\RegEx\RegEx\result3.txt";
 
             // task1
             //string ReadSingleFile(filePath) -> textFromFile
@@ -23,7 +24,7 @@ namespace RegEx
             //string GetName(text) -> name
             //CombineResults(name + time) -> result
             //WriteResultToFile()
-            
+
             string textKomciur = ReadSingleFile(pathFKomciur);
             string nameKomciur = GetName(textKomciur);
             string timeKomciur = GetTime(textKomciur);
@@ -32,27 +33,51 @@ namespace RegEx
 
             //task 2
             //List<string> ReadingAllPeopleTxt(string path) -> List<string> allPeopleText
-            List<string> allPeopleText =  ReadingAllPeopleText(pathAllPeople);
-
             //list<int> GetTimeFromAll(List<string> allPeopleText) -> lista wszystkich czasow
-            List<Int32> allPeopleTimes = GetTimesFromAll(allPeopleText);
-
             //int SumOfAllTimes(List<Int32> allPeopleTimes) -> int allTimesSum;
+            //WriteResultToFile(result2, allTimesSum)
+
+            List<string> allPeopleText =  ReadingAllPeopleText(pathAllPeople);
+            List<Int32> allPeopleTimes = GetTimesFromAll(allPeopleText);
             string allTimesSum = "Wszystkie postacie do tej pory byly budowane " +
                 Convert.ToString(SumOfAllTimes(allPeopleTimes)) + " minuty";
-
-            //WriteResultToFile(result2, allTimesSum)
             WriteResultToFile(result2, allTimesSum);
-            
+
+
+            //task 3
+            //AverageTime(int allPeopleTimes) -> int averageTime
+            int averageTime = AverageTime(allPeopleTimes);
+            //CharactersWithoOutTime() -> list<string> peopleWithOutTime
+            List<string> allPeopleWithoutTime = CharactersWithoutTime(allPeopleText);
+            //
+        }
+
+        public static List<string> CharactersWithoutTime(List<string> allPeopleText)
+        {
+            TextParser tp = new TextParser();
+            List<string> allPeopleWithoutTime = new List<string>();
+            foreach(string person in allPeopleText)
+            {
+                if(tp.ExtractTimeToCreate(person) == "" && tp.ExtractProfileName(person) != "")
+                {
+                    allPeopleWithoutTime.Add(tp.ExtractProfileName(person));
+                }
+            }
+
+            return allPeopleWithoutTime;
+            throw new NotImplementedException();
+        }
+
+        public static int AverageTime(List<Int32> allPeopleTimes)
+        {
+            int averageTime = allPeopleTimes.Sum() / allPeopleTimes.Count();
+            return averageTime;
+            throw new NotImplementedException();
         }
 
         public static int SumOfAllTimes(List<Int32> allPeopleTimes)
         {
-            int allTimesSum = 0;
-            foreach(int time in allPeopleTimes)
-            {
-                allTimesSum += time;
-            }
+            int allTimesSum = allPeopleTimes.Sum();
             return allTimesSum;
             throw new NotImplementedException();
         }
