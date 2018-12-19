@@ -9,7 +9,5 @@ namespace RegexTask
     class Person
     {
         public string name;
-        public string last_name;
-
     }
 }
