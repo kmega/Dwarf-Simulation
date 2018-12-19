@@ -73,9 +73,12 @@ namespace regExApp
             // TASK THREE**********
 
             //Get characters without given time and write to result3-1.txt (IGNORE 1807-_template.md)
-            List<string> charactersWithoutTime = charactersWithoutGivenTime(timesOfCreatingCharacters, fileNames);
+            string pathToSaveTask_3_1 = "result3-1.txt";
+            string[] charactersWithoutTime = charactersWithoutGivenTime(timesOfCreatingCharacters, fileNames).ToArray();
+            File.WriteAllLines(pathToSaveTask_3_1, charactersWithoutTime);
 
             //Get characters with given time
+           // List<string> charactersWithTime = charactersWithGivenTime(timesOfCreatingCharacters, fileNames);
 
             //Count average time from given characters
 
@@ -86,6 +89,29 @@ namespace regExApp
 
 
 
+        }
+
+        private static List<string> charactersWithGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
+        {
+            int charsWithGivenTime;
+            int emptyCounter = 0;
+            int i = 0;
+            List<string> emptyCharactersNames = new List<string>();
+
+            foreach (string time in timesOfCreatingCharacters)
+            {
+                bool intOrString = Int32.TryParse(time, out charsWithGivenTime);
+
+                if (intOrString == false)
+                {
+                    emptyCounter++;
+                    emptyCharactersNames.Add(fileNames[i]);
+                }
+
+                i++;
+            }
+
+            return emptyCharactersNames;
         }
 
         private static List<string> charactersWithoutGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
