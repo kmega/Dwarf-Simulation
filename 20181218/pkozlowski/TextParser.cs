@@ -18,9 +18,22 @@ namespace pkozlowski
                 @"title: ""(\w+ \w+)""", text);
         }
 
+        public string ExtractStuffWithMagda(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
+        }
+
+        public string ExtractStories(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"title: +""([\w\s]+)""", text);
+        }
+
         private string SafelyExtractSingleElement(string pattern, string text)
         {
-            MatchCollection matches = new Regex(pattern).Matches(text);
+            MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)
+                .Matches(text);
 
             List<string> allResults = new List<string>();
             foreach (Match match in matches)
@@ -31,5 +44,6 @@ namespace pkozlowski
             if (allResults.Count > 0) return allResults.First();
             else return string.Empty;
         }
+
     }
 }
