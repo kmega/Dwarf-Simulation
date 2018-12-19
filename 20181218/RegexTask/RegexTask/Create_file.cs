@@ -9,9 +9,9 @@ namespace RegexTask
 {
     class Create_file
     {
-        public void save_file(string url, string data)
+        public void save_file(string url, List<string> data)
         {
-            File.AppendAllText(url, data);
+            File.WriteAllLines(url, data);
         }
     }
 }

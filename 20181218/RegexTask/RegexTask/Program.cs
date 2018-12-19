@@ -9,36 +9,35 @@ namespace RegexTask
 {
     class Program
     {
-        public static string file;
-        public static string name_create_file = "Task1.txt";
-        public static string karty_postaci_url = "../../../../cybermagic/karty-postaci/";
-        public static string creating_time_for_all;
+        public static List<string> _data = new List<string>();
+        public static string _file_txt;
+        public static string _name_create_file = "Results.txt";
+        public static string _karty_postaci_url = "../../../../cybermagic/karty-postaci/";
         static void Main(string[] args)
         {
 
-            //Odczytanie pliku -> file
-            ReadFile file1 = new ReadFile();
-            file = file1.Return_file(karty_postaci_url+"1807-fryderyk-komciur.md");
+            //ReadFile(url) -> string(text from file)
+            ReadFile file = new ReadFile();
 
-            //Odpalenie regexa -> data from file
-            Find_data find_data = new Find_data();
+            _file_txt = file.Return_file(_karty_postaci_url+"1807-fryderyk-komciur.md");
 
-            string result = find_data.regex(file, @"(\w+ \w+)");
-
-            result +=" był budowany " + find_data.regex(file, @"\((\d\d) min.*\)");
-            Console.WriteLine(result);
-
-            Create_file save = new Create_file();
-            save.save_file(name_create_file, result);
-
-            //uzycie obcego parsera
+            //Text Parser(text from file) -> string(Time, Full name)
             TextParser Parser = new TextParser();
-            Console.WriteLine(Parser.ExtractTimeToCreate(file));
 
+            _data.Add(Parser.ExtractProfileName(_file_txt) + " był budowany " + Parser.ExtractTimeToCreate(_file_txt));
+            Console.WriteLine(_data[0]);
+           
+            //Whole creating time(url) -> string time
             Whole_creating_time whole_time = new Whole_creating_time();
-            creating_time_for_all = whole_time.creating_time(karty_postaci_url);
 
-            save.save_file(name_create_file, creating_time_for_all);
+            _data.Add(whole_time.creating_time(_karty_postaci_url));
+            Console.WriteLine(_data[1]);
+
+            //Create file -> Results.txt
+            Create_file recorder = new Create_file();
+
+            recorder.save_file(_name_create_file, _data);
+
 
             Console.ReadKey();
         }

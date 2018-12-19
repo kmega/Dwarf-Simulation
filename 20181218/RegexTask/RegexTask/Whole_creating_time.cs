@@ -12,18 +12,16 @@ namespace RegexTask
 
         public string creating_time(string url)
         {
-            TextParser Parser1 = new TextParser();
+            TextParser Parser = new TextParser();
             ReadFile file_data = new ReadFile();
-            TimeSpan creating_time_for_all;
+            TimeSpan creating_time_for_all = TimeSpan.FromTicks(0); ;
             string file;
 
-            creating_time_for_all = TimeSpan.FromTicks(0);
-            Console.WriteLine(creating_time_for_all);
 
             foreach (string s in Directory.GetFiles(url, "*.md").Select(Path.GetFileName))
             {
                 file = file_data.Return_file(url + s);
-                string min = Parser1.ExtractTimeToCreate(file);
+                string min = Parser.ExtractTimeToCreate(file);
                 if (min != "")
                 {
                     int minutes = Int32.Parse(min);
@@ -31,10 +29,9 @@ namespace RegexTask
                 }
             }
 
-            Console.WriteLine(creating_time_for_all);
-            Console.ReadKey();
 
-            return creating_time_for_all.ToString();
+            return "Wszystkie postacie do tej pory budowane były " + creating_time_for_all.Hours.ToString() + " godzin " + creating_time_for_all.Minutes.ToString() + " minuty";
+
 
         }
     }
