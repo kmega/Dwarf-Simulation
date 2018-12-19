@@ -20,9 +20,15 @@ namespace RegexTasks
                 @"title: ""(\w+ \w+)""", text);
         }
 
+        public string ExtractMagdaPatril(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi.*?(Magda Patiril.*?)#", text);
+        }
+
         private string SafelyExtractSingleElement(string pattern, string text)
         {
-            MatchCollection matches = new Regex(pattern).Matches(text);
+            MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline).Matches(text);
 
             List<string> allResults = new List<string>();
             foreach (Match match in matches)

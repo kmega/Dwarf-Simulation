@@ -13,61 +13,71 @@ namespace RegexTasks
 
         static void Main(string[] args)
         {
-            
+
 
             //0. Stwórz ścieżki do plików
             // Folder ze ścieżkami -- twórz ścieżki --> Lista ścieżek
 
             #region Array and List of Path Files
-            string[] filePathsArray =
-                Directory.GetFiles(@"..\..\..\..\..\20181218\cybermagic\karty-postaci"); // path in array
+            string[] filePathsArrayDirPersonsCard =
+                Directory.GetFiles(@"..\..\..\..\20181218\cybermagic\karty-postaci"); //files path from directory karty postaci in array 
 
-            List<string> filePathsList = filePathsArray.ToList(); // paths in list
+            string[] filePathsArrayDirStory =
+                Directory.GetFiles(@"..\..\..\..\20181218\cybermagic\opowiesci"); //files path from directory opowieści in array 
+
+            List<string> filePathsListDirPersonsCard = filePathsArrayDirPersonsCard.ToList(); //files path from directory karty postaci in list
+            List<string> filePathsListDirStory = filePathsArrayDirPersonsCard.ToList(); //files path from directory story in list
             #endregion
 
-            
 
-            //1. Plik  -- odczyt -> string caly plik
+
+            //1. Plik  -- odczyt -> caly plik w stringu
 
             FileSupporter file_to_read = new FileSupporter();
 
-            List<string> FilesStr = new List<string>();  // list of files in strings
+            List<string> FilesStrPersonsCards = new List<string>();  // list of files form text in directory karty postaci in form of strings
+            List<string> FilesStrDirOfStory = new List<string>();  // list of files form text in directory opowiesci in form of strings
 
             #region Task1
-            string pathFryderykKomciur = filePathsList.FirstOrDefault(collection => collection.Contains("fryderyk-komciur"));
+            string pathFryderykKomciur = filePathsListDirPersonsCard.FirstOrDefault(collection => collection.Contains("fryderyk-komciur"));
             string FileFryderykKomciurStr = file_to_read.Read_File(pathFryderykKomciur);
             #endregion
 
-            CreateListOfFilesContainsText(filePathsArray, file_to_read, FilesStr);
+            CreateListOfFilesContainsText(filePathsArrayDirPersonsCard, file_to_read, FilesStrPersonsCards); // lists contains texts of files from directory karty postaci TASK 3
+
+            CreateListOfFilesContainsText(filePathsArrayDirStory, file_to_read, FilesStrDirOfStory); // lists contains texts of files from directory opowieści TASk 4
+
 
 
             //2. Przesyłam odczytany plik do parsera i otrzymuje efekt w zależności od zadania
             // FryderykKomciurFileStr -- filtr(regex methods) --> string howLongWasBuild fryderyk
 
+            //Task 1 2 PARSER
             TextParser WhatsTimeToCreated = new TextParser();
+            //Task 3 PARSER
             TextParser WhatsName = new TextParser();
+            //Task 4 PARSER
+            TextParser MagdaPatirilParser = new TextParser();
 
-            int TimeToCreateAllFilesInMinutes = 0;
+            //GiveListFilesWhoContainsMagdaPatiril -- > Lista plików zawierających magdę patiril // TASK 4
+            List<string> FilesWhoContainsMagdaPatiril = new List<string>();
+            GiveListFilesWhoContainsMagdaPatiril(FilesStrDirOfStory, FilesWhoContainsMagdaPatiril, MagdaPatirilParser);
+
+            //GiveOnlyTitleFilesWithMagdaPatiril -- > List 
+            List<string> OnlyTitleFilesWithMagdaPatirilList = new List<string>();
+            GiveOnlyTitleFilesWithMagdaPatiril(OnlyTitleFilesWithMagdaPatirilList, FilesWhoContainsMagdaPatiril, MagdaPatirilParser);
 
             #region Task2
 
+            int TimeToCreateAllFilesInMinutes = 0;
+            // GiveTimeToCreateAllFilesInMinutes -- > Czas potrzebny do zbudowania wszystkich plików
 
-            foreach (var file in FilesStr)
-            {
-                string actuallyTimeNeedToCreated = WhatsTimeToCreated.ExtractTimeToCreate(file);
-               // Console.WriteLine(actuallyTimeNeedToCreated);
-                if (actuallyTimeNeedToCreated == "") continue;
-                else
-                {
-                    TimeToCreateAllFilesInMinutes += int.Parse(actuallyTimeNeedToCreated);
-                }
-            }
-           // Console.WriteLine(TimeToCreateAllFilesInMinutes);
-            TimeSpan span = TimeSpan.FromMinutes(TimeToCreateAllFilesInMinutes);
-            string Hours = span.ToString(@"hh");
-            string Minutes = span.ToString(@"mm");
+            TimeToCreateAllFilesInMinutes = GiveTImeToCreatedAllFilesInMinutes(FilesStrPersonsCards, WhatsTimeToCreated, TimeToCreateAllFilesInMinutes);
 
-            string result2 = $"Wszystkie postacie do tej pory budowane były {Hours} godzin {Minutes} minut";
+            // Console.WriteLine(TimeToCreateAllFilesInMinutes);
+            TimeSpan span;
+            string Hours, Minutes, result2;
+            MakeResultTask2(TimeToCreateAllFilesInMinutes, out Hours, out Minutes, out result2);
 
             //Console.WriteLine("Wszystkie);
             #endregion
@@ -101,12 +111,11 @@ namespace RegexTasks
             //4. Liczy ilość wystąpień plików nie zawierających czasu budowania
             // Lista ścieżek plików -- licz wystąpienia --> ilość wystąpień plików bez czasu budowania
 
-            int numbersOfFilesWithoutBuildTIme = GiveHowManyFilesHaveNotBuildTIme(filePathsList, WhatsTimeToCreated, WhatsName, file_to_read);
+            int numbersOfFilesWithoutBuildTIme = GiveHowManyFilesHaveNotBuildTIme(filePathsListDirPersonsCard, WhatsTimeToCreated, WhatsName, file_to_read);
             // Console.WriteLine(numbersOfFilesWithoutBuildTIme);
             //5. Liczy średni czas tworzenia plików
             // Liczba plików nie zawierających czasu -- liczy średni czas --> średni czas
-            int averangeTimeOfBuildInMinutes = GIveAverageTimeOfBuildFIles(numbersOfFilesWithoutBuildTIme, filePathsList, TimeToCreateAllFilesInMinutes);
-            //5 - END
+            int averangeTimeOfBuildInMinutes = GIveAverageTimeOfBuildFIles(numbersOfFilesWithoutBuildTIme, filePathsListDirPersonsCard, TimeToCreateAllFilesInMinutes);
 
             #region Task3 
             string result3Title = "Postacie, które nie mają podanego czasu to: ";
@@ -142,6 +151,55 @@ namespace RegexTasks
             #endregion
 
             Console.ReadKey();
+        }
+
+        private static void GiveOnlyTitleFilesWithMagdaPatiril(List<string> filesWhoContainsMagdaPatiril, List<string> filesWhoContainsMagdaPatiril1, TextParser magdaPatirilParser)
+        {
+           
+        }
+
+        private static void GiveListFilesWhoContainsMagdaPatiril(List<string> filesStrDirOfStory, List<string> ContainsMariaKomciurList, TextParser MagdaPatirilParser)
+        {
+            int i = 0;
+            string ReadenFile;
+            foreach (var file in filesStrDirOfStory)
+            {
+                ReadenFile = MagdaPatirilParser.ExtractMagdaPatril(file);
+
+                if (ReadenFile == "Magda Patiril")
+                {
+                    ContainsMariaKomciurList.Add(ReadenFile);
+                    Console.WriteLine(ContainsMariaKomciurList[i]);
+                    i++;
+                }
+
+                else continue;
+                
+            }
+        }
+
+        private static void MakeResultTask2(int TimeToCreateAllFilesInMinutes, out string Hours, out string Minutes, out string result2)
+        {
+            TimeSpan span = TimeSpan.FromMinutes(TimeToCreateAllFilesInMinutes);
+            Hours = span.ToString(@"hh");
+            Minutes = span.ToString(@"mm");
+            result2 = $"Wszystkie postacie do tej pory budowane były {Hours} godzin {Minutes} minut";
+        }
+
+        private static int GiveTImeToCreatedAllFilesInMinutes(List<string> FilesStrPersonsCards, TextParser WhatsTimeToCreated, int TimeToCreateAllFilesInMinutes)
+        {
+            foreach (var file in FilesStrPersonsCards)
+            {
+                string actuallyTimeNeedToCreated = WhatsTimeToCreated.ExtractTimeToCreate(file);
+                // Console.WriteLine(actuallyTimeNeedToCreated);
+                if (actuallyTimeNeedToCreated == "") continue;
+                else
+                {
+                    TimeToCreateAllFilesInMinutes += int.Parse(actuallyTimeNeedToCreated);
+                }
+            }
+
+            return TimeToCreateAllFilesInMinutes;
         }
 
         private static int GIveAverageTimeOfBuildFIles(int numbersOfFilesWithoutBuildTIme, List<string> filePathsList, int TimeToCreateAllFilesInMinutes)
