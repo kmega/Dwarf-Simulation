@@ -15,9 +15,43 @@ namespace Zadanie1
         {
             //Task101();
             //Task102();
-           
 
+            //GetFileNames() - fileNames
+            string directory = @"cybermagic\karty-postaci";
+            //GetFileNames(directory) -> Lista fileNames
+            List<string> fileNames = GetFileNames(directory);
+            //ReadAllFiles(fileNames) -> Lista files
+            List<string> fileContents = ReadAllFiles(fileNames);
+            //GetAllHeroesWithoutTime(files) -> zbiór HeroesWithoutTime
+            List<string> heroesWithoutTime = GetHeroesWithoutTime(fileContents);
+            //GetAllHeroesWithTime(files) -> zbiór HeroesWithTime();
+            int averageTimeOfBuildingHero = CountAverage(fileContents);
+            //CountAverage(allTimes from HeroesWithTime);
+            //AssessWholeBuildingTime()
             Console.ReadLine();
+        }
+
+        private static List<string> GetHeroesWithoutTime(List<string> fileContents)
+        {
+            List<string> heroesWithoutTime = new List<string>();
+            foreach(var content in fileContents)
+            {
+                int time = ExtractSingleTime(content);
+                if (time == 0)
+                {
+                    heroesWithoutTime.Add(content);
+                }
+            }
+            return heroesWithoutTime;          
+        }
+
+        private static int CountAverage(List<string> fileContents)
+        {
+            List<int> times = ExtractAllTimes(fileContents);
+            int allTime = SumAllTimes(times);
+            var notZeroHeroes = times.Where(t => t != 0)
+                                    .ToList();
+            return allTime / notZeroHeroes.Count;
         }
 
         private static string BuildStringToSaveTask2(TimeSpan totalTimeToBuildHeroes)
