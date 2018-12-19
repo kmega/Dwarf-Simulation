@@ -40,6 +40,8 @@ namespace regExApp
 
         static void Main(string[] args)
         {
+            // TASK ONE **********
+
             //Read file from path
 
             string path = "1807-fryderyk-komciur.md";
@@ -53,6 +55,16 @@ namespace regExApp
 
             string pathToSave = "result1.txt";
             File.WriteAllText(pathToSave, timeOfBuldingCharacter);
+
+            // TASK TWO**********
+
+            //Read file names from main path
+
+            string pathAllCharacters = @"cybermagic\karty-postaci";
+            string[] fileNames = Directory.GetFiles(pathAllCharacters);
+
+            Console.WriteLine(fileNames[1]);
+            Console.ReadKey();
 
             //**********************************************************************************
             /* 
