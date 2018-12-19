@@ -22,6 +22,7 @@ namespace workspace
                     break;
                 }
             }
+            name = name.Replace('"', ' ').Replace("title:  ", "");
             return name;
         }
 
@@ -43,8 +44,7 @@ namespace workspace
             }
             else
             {
-                time = time.Replace("(", "").Replace(")", "").Replace("min", "");
-                time = time.Split(' ')[0];
+                time = time.Split(' ')[0].Replace("(", "").Replace(")", "");
                 return time;
             }
         }
@@ -55,7 +55,7 @@ namespace workspace
             string[] linesOfText = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
             string text = "";
             text = PickName(linesOfText);
-            text = text.Replace('"', ' ').Replace("title:  ", "") + "byl budowany ";
+            text = text + "byl budowany ";
             text = text + PickTime(linesOfText);
             text = text + " minuty";
             System.IO.File.WriteAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", text);
@@ -83,6 +83,21 @@ namespace workspace
 
         static string WriteAvarageBuildTime()
         {
+            Console.Clear();
+            string[] linesOfText;
+            string time = "", text = "Postacie, ktore nie maja podanego czasu to:" + Environment.NewLine;
+            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
+            {
+                linesOfText = File.ReadAllLines(file);
+                time = PickTime(linesOfText);
+                if (Convert.ToInt32(time) == 0)
+                {
+                    text += PickName(linesOfText) + Environment.NewLine;
+                }
+            }
+            text += Environment.NewLine + "Średni czas budowania postaci to: XX minut.";
+            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
+            Console.WriteLine(text);
             return null;
         }
 
