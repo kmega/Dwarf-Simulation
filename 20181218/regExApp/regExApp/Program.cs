@@ -43,54 +43,66 @@ namespace regExApp
             // TASK ONE **********
 
             //Read file from path
-
             string path = "1807-fryderyk-komciur.md";
             string file_Content = readFile(path);
 
             //Get Time From File
-
             string timeOfBuldingCharacter = getTimeFromFileContent(file_Content);
 
             //Write time to result1.txt
-
-            string pathToSave = "result1.txt";
-            File.WriteAllText(pathToSave, timeOfBuldingCharacter);
+            string pathToSaveTask_1 = "result1.txt";
+            File.WriteAllText(pathToSaveTask_1, timeOfBuldingCharacter);
 
             // TASK TWO**********
 
             //Read file names from main path
-
             string pathAllCharacters = @"cybermagic\karty-postaci";
-            string[] fileNames = Directory.GetFiles(pathAllCharacters);
+            List<string> fileNames = Directory.GetFiles(pathAllCharacters).Select(Path.GetFileName).ToList();
 
-            Console.WriteLine(fileNames[1]);
-            Console.ReadKey();
+            //Open all files from fileNames and get its content
+            List<string> contentOFileNames = openMultiFiles(fileNames, pathAllCharacters);
 
-            //**********************************************************************************
-            /* 
-            string[] fryderyk = File.ReadAllLines(path);
-            string timeResult;
+            //Get time from each file
+            List<string> timesOfCreatingCharacters = getMultiTimes(contentOFileNames);
 
+            //Sum the time and write to file result2.txt
+            string sumOfTimes = sumAllTimes(timesOfCreatingCharacters).ToString();
+            string pathToSaveTask_2 = "result2.txt";
+            File.WriteAllText(pathToSaveTask_2, sumOfTimes);
             
-            TextParser findText = new TextParser();
+        }
 
-             string helper;
+        private static int sumAllTimes(List<string> timesOfCreatingCharacters)
+        {
+            int sumOfTimes = 0;
+            foreach(string time in timesOfCreatingCharacters)
+            {
+                sumOfTimes += Int32.Parse(time);
+            }
 
-             for (int i = 0; i<fryderyk.Length; i++)
-             {
-                 helper = findText.ExtractTimeToCreate(fryderyk[i]);
-                 if (helper != "")
-                 {
-                     timeResult = findText.ExtractTimeToCreate(fryderyk[i]);
-                     Console.WriteLine(timeResult);
-                     File.AppendAllText("result1.txt", timeResult);
-                 }
-                   
-             }
+            return sumOfTimes;
+        }
 
-             Console.ReadKey();
-             */
-            //**********************************************************************************
+        private static List<string> getMultiTimes(List<string> contentOFileNames)
+        {
+            List<string> allTimes = new List<string>();
+            foreach(string time in contentOFileNames)
+            {
+                allTimes.Add(getTimeFromFileContent(time));
+            }
+
+            return allTimes;
+        }
+
+        private static List<string> openMultiFiles(List<string> fileNames, string path)
+        {
+            List<string> contentOfAllFiles = new List<string>();
+            foreach(string file in fileNames)
+            {
+                contentOfAllFiles.Add(readFile(path + @"\" + file));
+            }
+
+            return contentOfAllFiles;
         }
 
         private static string getTimeFromFileContent(string fileContent)
