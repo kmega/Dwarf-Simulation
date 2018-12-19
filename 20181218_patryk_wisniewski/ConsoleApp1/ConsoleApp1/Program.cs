@@ -21,6 +21,19 @@ namespace ConsoleApp1
             string dicionaryPathStory = "C:/Users/Lenovo/code/primary/20181218/cybermagic/opowiesci";
             TaskFour(dicionaryPathStory);
 
+            string pathSelectCommand = "E:/Informacje/kalarepa.md";
+
+            string contents = File.ReadAllText(pathSelectCommand);
+            string pattern = @"\d+";
+
+            foreach (string result in Regex.Split(contents, pattern))
+            {
+                Console.WriteLine("'{0}'", result);
+            }
+
+            string[] digits = Regex.Split(contents, "d+");
+
+
             //Regex regex = new Regex(@"(\d\d) min.*"); aaaaaaaaaaaaaa
             //string[] digits = Regex.Split(sentence, @"\D+");
             //zadanie 2
@@ -45,7 +58,7 @@ namespace ConsoleApp1
                     {
                         lecture += words[i] + " ";
                     }
-                    lecture = lecture.Remove(lecture.Length - 3);
+                    lecture = lecture.Remove(lecture.Length - 4);
                     SaveFileName(PathFileToSave, lecture);
                 }
 
