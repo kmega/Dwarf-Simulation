@@ -49,6 +49,36 @@ namespace workspace
             }
         }
 
+        static string PickUnbuildNames()
+        {
+            string[] linesOfText;
+            string names = "";
+            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
+            {
+                linesOfText = File.ReadAllLines(file);
+                if (Convert.ToInt32(PickTime(linesOfText)) == 0)
+                {
+                    names += PickName(linesOfText) + Environment.NewLine;
+                }
+            }
+            return names;
+        }
+
+        static int PickBuildTime()
+        {
+            string[] linesOfText;
+            int buildTime = 0;
+            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
+            {
+                linesOfText = File.ReadAllLines(file);
+                buildTime += Convert.ToInt32(PickTime(linesOfText));
+            }
+            return buildTime;
+        }
+
+
+
+
         static string WriteFryderykKomciurBuildTime()
         {
             Console.Clear();
@@ -66,40 +96,37 @@ namespace workspace
         static string WriteAllCharactersBuildTime()
         {
             Console.Clear();
-            string[] linesOfText;
-            string time = "";
-            int buildTime = 0;
-            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
-            {
-                linesOfText = File.ReadAllLines(file);
-                time = PickTime(linesOfText);
-                buildTime += Convert.ToInt32(time);
-            }
-            time = "Wszystkie postacie do tej pory budowane były " + buildTime / 60 + " godzin " + buildTime % 60 + " minut";
-            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + time);
-            Console.WriteLine(time + "\n\nChoose exercise using 1-n. Exit using 0.");
+            int buildTime = PickBuildTime();
+            string text = "Wszystkie postacie do tej pory budowane były " + buildTime / 60 + " godzin " + buildTime % 60 + " minut";
+            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
+            Console.WriteLine(text + "\n\nChoose exercise using 1-n. Exit using 0.");
             return null;
         }
 
         static string WriteAvarageBuildTime()
         {
             Console.Clear();
-            string[] linesOfText;
-            string time = "", text = "Postacie, ktore nie maja podanego czasu to:" + Environment.NewLine;
-            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
-            {
-                linesOfText = File.ReadAllLines(file);
-                time = PickTime(linesOfText);
-                if (Convert.ToInt32(time) == 0)
-                {
-                    text += PickName(linesOfText) + Environment.NewLine;
-                }
-            }
-            text += Environment.NewLine + "Średni czas budowania postaci to: XX minut.";
+            int avarageBuildTime = PickBuildTime() / (PickUnbuildNames().Split(' ').Length / 2);
+            int wholeBuildTime = PickBuildTime() + (avarageBuildTime * PickUnbuildNames().Split(' ').Length / 2);
+            string text = "Postacie, ktore nie maja podanego czasu to:"
+                + Environment.NewLine
+                + PickUnbuildNames() 
+                + Environment.NewLine 
+                + "Średni czas budowania postaci to: " 
+                + avarageBuildTime
+                + " minut." 
+                + Environment.NewLine
+                + "Uwzględniając powyższe, postacie do tej pory budowane były najpewniej " 
+                + wholeBuildTime / 60
+                + " godzin " 
+                + wholeBuildTime % 60
+                + " minut.";
             System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
             Console.WriteLine(text);
             return null;
         }
+
+
 
         static void Main(string[] args)
         {
