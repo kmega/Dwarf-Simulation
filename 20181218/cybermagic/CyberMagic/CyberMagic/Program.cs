@@ -11,6 +11,86 @@ namespace CyberMagic
 {
     class Program
     {
+
+        public static string readFile(string path) {
+            
+                 string txt = File.ReadAllText(path);
+            
+            return txt;
+        }
+
+
+        public static List<string> readManyFiles(string path)
+        {
+            
+            List<string> files = Directory.GetFiles(path).ToList();
+            List<string> alltext = new List<string>();
+            
+
+            foreach (string temp in files)
+            {
+                alltext.Add (readFile(temp));
+            }
+            return alltext;
+
+        }
+
+        
+
+        public static void writeFile(string toWrite, string fileName)
+        {
+            StreamWriter sr = new StreamWriter(fileName);
+            sr.Write(toWrite);
+            sr.Close();
+        }
+
+        public static int[] alltime(List <string> files)
+        {
+            int[] alltime ={ 0, 0};
+
+            foreach (var item in files)
+            {
+                string time;
+                time = (new TextParser().ExtractTimeToCreate(item));
+                if (time == "")
+                {
+                    continue;
+                }
+                else
+                {
+                    alltime[0] += Int32.Parse(time);
+                    alltime[1]++;
+                }
+            }
+            return alltime;
+        }
+
+        public static string charactersWithoutTime (List<string> files)
+        {
+            string txt="Postaci bez czasu budowania\n";
+
+            foreach (var item in files)
+            {
+
+                if (new TextParser().ExtractTimeToCreate(item) == "" && !(new TextParser().ExtractProfileName(item) == ""))
+                {
+                    txt += new TextParser().ExtractProfileName(item) + "\n";
+
+                }
+                
+            }
+            return txt;
+        }
+
+        public static int averageTime (List<string> files)
+        {
+            int average = (alltime(files)[0] / alltime(files)[1]);
+            return average;
+        } 
+        
+
+
+
         static void Main(string[] args)
         {
             //given: poleceniaRegexaczas,polecenei Regexaimie, sciezka, 
@@ -23,83 +103,51 @@ namespace CyberMagic
             string path = @"C:\Users\esmic\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
             string time;
             string name;
-            StreamWriter sr = new StreamWriter("result.txt");
-            StreamWriter sr2 = new StreamWriter("result2.txt");
-
-            List<string> pliki = Directory.GetFiles(path2).ToList();
-            
-            
-
-            //Zadanie 1
-            string[] txt = File.ReadAllLines(path);
+            string toWrite;
             TextParser tp = new TextParser();
-            var xxx = string.Join("\n", txt);
-            time = tp.ExtractTimeToCreate(xxx);
-            name = tp.ExtractProfileName(xxx);
-            Console.WriteLine("{0} był budowany {1} minuty", name, time );
 
 
-            sr.Write("{0} był budowany {1} minuty", name, time);
-            sr.Close();
+            List<string> alltext = new List<string>(readManyFiles(path2));
 
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
-            //Zadanie 2
-            int allTime=0;
-            int iterationFiles = 0;
-
-            foreach (var item in Directory.EnumerateFiles(path2)) {
-            
-                txt = File.ReadAllLines(item);
-                tp = new TextParser();
-                xxx = string.Join("\n", txt);
-                time = tp.ExtractTimeToCreate(xxx);
-               
-                name = tp.ExtractProfileName(xxx);
-                if (time == "")
-                {
-                    continue;
-                }
-                Console.WriteLine("{0} był budowany {1} minuty", name, time);
-                sr2.WriteLine("{0} był budowany {1} minuty", name, time);
-                
+            //Task 1
 
 
-                allTime += Int32.Parse(time);
-                iterationFiles++;
+            time = tp.ExtractTimeToCreate(readFile(path));
+            name = tp.ExtractProfileName(readFile(path));
+            toWrite = (name + " był budowany " + time + " minut");
+            writeFile(toWrite, "result1.txt");
+            Console.WriteLine(toWrite);
 
-            }
-            Console.WriteLine("Wszystkie postaci budowano {0} minut", allTime);
-
-            sr2.WriteLine();
-            sr2.Write("Wszystkie postaci budowano {0} minut", allTime);
-            sr2.Close();
-
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
-            //Zadanie3
-
-            foreach (var item in Directory.EnumerateFiles(path2))
-            {
-
-                txt = File.ReadAllLines(item);
-                tp = new TextParser();
-                xxx = string.Join("\n", txt);
-                time = tp.ExtractTimeToCreate(xxx);
-                name = tp.ExtractProfileName(xxx);
-
-                if (time == "" && !(name==""))
-                
-                Console.WriteLine("{0} nie ma podanego czasu budowania", name);
-                
             
 
-            }
-            Console.WriteLine("Średni czas budowy wynosi {0} minut", allTime / iterationFiles);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            //Task 2
+
+            
+           
+            toWrite = "Czas budowania wszystkich postaci wynosi " + alltime(alltext) +  " minut";
+            Console.WriteLine(toWrite);
+            writeFile(toWrite, "result2.txt");
+
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            //Task 3
+
+            toWrite = (charactersWithoutTime(alltext)+ "\nŚredni czas budowania wynosi: " + averageTime(alltext) +" minut" + 
+                "\nCzas budowania tych postaci wynosił prawdopodobnie " + averageTime(alltext)*alltime(alltext)[1] + " minut");
+            Console.WriteLine(toWrite);
+            writeFile(toWrite, "result3.txt");
+
+            //Task 4
+
+
+
+         
 
 
 
@@ -111,5 +159,11 @@ namespace CyberMagic
 
 
         }
+
+
+       
+
+
     }
+
 }
