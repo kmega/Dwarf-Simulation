@@ -1,0 +1,39 @@
+Sklep odzieÅ¼owy.
+
+W sklepie odzieÅ¼owym znajdujÄ siÄ: 
+	- spodnie lub sukienki (jedno do wyboru)
+	- kurtki
+	- buty
+	
+KaÅ¼dy klient w sklepie ma moÅ¼liwoÅÄ przymierzyÄ dowolne ubrania, dodaÄ do koszyka ubrania, ktÃ³re na niego pasujÄ i speÅniajÄ jego oczekiwania (np. kolor) oraz zakupiÄ towar jeÅli coÅ jest w koszyku.
+
+
+Zadanie:
+PrzygotowaÄ model prostego sklepu, modele ubraÅ wg zaÅoÅ¼eÅ:
+	- spodnie:
+		- typ
+		- fason
+		- kolor
+		- rozmiar
+		- cena
+	- sukienki:
+		- fason
+		- kolor
+		- rozmiar
+		- cena
+	- kurtki
+		- kolor
+		- posiada kaptur lub nie
+		- wodoodporna lub nie
+		- skÃ³rzana lub nie 
+		- cena
+		- rozmiar
+	- buty:
+		- rodzaj
+		- rozmiar
+		- kolor
+		- ma wiÄzanie lub nie 
+		- sÄ zapinane lub nie 
+		- cena
+		
+Po dokananiu zakupÃ³w powinna zostaÄ wyÅwietlona sumaryczna cena zakupionych ubraÅ
