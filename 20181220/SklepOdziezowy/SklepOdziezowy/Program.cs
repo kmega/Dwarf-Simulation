@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SklepOdziezowy.Domena;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,11 @@ namespace SklepOdziezowy
     {
         static void Main(string[] args)
         {
+            Shop shop = new Shop();
+
+            shop.TryPants(Enums.EuropeanSize.S);
+            shop.BuyCargoFromBasket();
+            Console.ReadLine();
         }
     }
 }

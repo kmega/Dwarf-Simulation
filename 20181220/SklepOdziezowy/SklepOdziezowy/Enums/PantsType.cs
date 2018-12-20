@@ -1,9 +1,10 @@
 ﻿namespace SklepOdziezowy.Enums
 {
-    public enum PantsType
+    enum PantsType
     {
         Jeans,
         Fabric,
-        Corduroy
+        Corduroy,
+        Working
     }
 }

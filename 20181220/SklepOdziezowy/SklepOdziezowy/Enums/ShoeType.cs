@@ -1,6 +1,6 @@
 ﻿namespace SklepOdziezowy.Enums
 {
-    public enum ShoeType
+    enum ShoeType
     {
         Sneakers,
         Sandals,

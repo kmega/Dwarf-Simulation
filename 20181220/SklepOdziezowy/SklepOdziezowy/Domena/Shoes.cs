@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SklepOdziezowy.Domena
 {
-    public class Shoes
+    class Shoes : Cargo
     {
         public decimal Price { get; set; }
         public short Size { get; set; }

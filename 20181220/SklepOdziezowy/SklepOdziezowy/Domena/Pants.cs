@@ -7,12 +7,32 @@ using System.Threading.Tasks;
 
 namespace SklepOdziezowy.Domena
 {
-    public class Pants
+    class Pants : Cargo
     {
-        public decimal Price { get; set; }
-        public EuropeanSize Size { get; set; }
-        public Colour Colour { get; set; }
-        public PantsType PantsType { get; set; }
-        public PantsStyling PantsStyling { get; set; }
+        public Pants(decimal price, EuropeanSize size, Colour colour, 
+                     PantsType type, PantsStyling styling)
+        {
+            if(ValidateData(price))
+            {
+                Price = price;
+                Size = size;
+                Colour = colour;
+                Type = type;
+                Styling = styling;
+                Used = false;
+            }      
+        }
+
+        private bool Used;
+        public decimal Price { get; private set; }
+        public EuropeanSize Size { get; private set; }
+        public Colour Colour { get; private set; }
+        public PantsType Type { get; private set; }
+        public PantsStyling Styling { get; private set; }
+
+        private bool ValidateData(decimal price)
+        {
+            return price >= 0;
+        }
     }
 }

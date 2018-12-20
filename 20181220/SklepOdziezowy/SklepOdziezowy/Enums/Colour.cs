@@ -1,6 +1,6 @@
 ﻿namespace SklepOdziezowy.Enums
 {
-    public enum Colour
+    enum Colour
     {
         Black,
         White,

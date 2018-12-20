@@ -43,11 +43,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domena\Cargo.cs" />
+    <Compile Include="Domena\Jacket.cs" />
+    <Compile Include="Domena\Pants.cs" />
+    <Compile Include="Domena\Shoes.cs" />
+    <Compile Include="Domena\Shop.cs" />
+    <Compile Include="Enums\Colour.cs" />
+    <Compile Include="Enums\EuropeanSize.cs" />
+    <Compile Include="Enums\PantsStyling.cs" />
+    <Compile Include="Enums\PantsType.cs" />
+    <Compile Include="Enums\ShoeType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
