@@ -7,12 +7,28 @@ using System.Threading.Tasks;
 
 namespace Sklep_Odziezowy.domena
 {
-    class Spodnie
+    class Spodnie : Towar
     {
-        public TypSpodni TypSpodni { get; set; }
-        public Fason Fason { get; set; }
-        public Kolor Kolor { get; set; }
-        public short rozmiar { get; set; }
-        public decimal Cena { get; set; }
+        public Spodnie(decimal cena, Kolor kolor, TypSpodni typ, RozmiarSpodni rozmiar)
+        {
+            if (WalidujDane(cena))
+            {
+                Cena = cena;
+                Kolor = Kolor;
+                rozmiar = RozmiarSpodni;
+                typ = TypSpodni;
+            }
+
+        }
+        public TypSpodni TypSpodni { get;  private set; }
+        public Fason Fason { get; private set; }
+        public Kolor Kolor { get; private set; }
+        public RozmiarSpodni RozmiarSpodni { get; private set; }
+        public decimal Cena { get; private set; }
+
+        private bool WalidujDane(decimal cena)
+        {
+            return cena > 0;
+        }
     }
 }

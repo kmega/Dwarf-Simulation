@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Sklep_Odziezowy.Enums
 {
-    public enum Kolor
+    enum Kolor
     {
         Czarny,
         Biały,

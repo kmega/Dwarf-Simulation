@@ -6,9 +6,15 @@ using System.Threading.Tasks;
 
 namespace Sklep_Odziezowy.Enums
 {
-    enum Fason
+    public enum RozmiarSpodni
     {
-        rurki, 
-        normalne
+        XXS,
+        XS,
+        S,
+        M,
+        L,
+        XL,
+        XXL,
+        XXXL
     }
 }

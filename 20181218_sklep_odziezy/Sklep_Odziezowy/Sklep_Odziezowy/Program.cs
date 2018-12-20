@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sklep_Odziezowy.domena;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace Sklep_Odziezowy
     {
         static void Main(string[] args)
         {
+            Sklep sklep = new Sklep();
+
 
         }
     }

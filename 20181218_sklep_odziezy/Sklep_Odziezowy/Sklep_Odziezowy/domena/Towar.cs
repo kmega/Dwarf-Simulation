@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sklep_Odziezowy.Enums
+namespace Sklep_Odziezowy.domena
 {
-    enum Fason
+    abstract class Towar
     {
-        rurki, 
-        normalne
+
     }
 }

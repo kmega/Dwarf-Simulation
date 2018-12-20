@@ -10,6 +10,8 @@ namespace Sklep_Odziezowy.Enums
     {
         Jeansy, 
         Rurki,
-        Dresy
+        Dresy,
+        DoGarnituru,
+        Robocze
     }
 }
