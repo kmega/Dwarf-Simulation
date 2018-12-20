@@ -10,7 +10,7 @@ namespace SklepOdziezowy.Domena
     public class Pants
     {
         public decimal Price { get; set; }
-        public short Size { get; set; }
+        public EuropeanSize Size { get; set; }
         public Colour Colour { get; set; }
         public PantsType PantsType { get; set; }
         public PantsStyling PantsStyling { get; set; }

@@ -10,7 +10,7 @@ namespace SklepOdziezowy.Domena
     public class Jacket
     {
         public decimal Price { get; set; }
-        public short Size { get; set; }
+        public EuropeanSize Size { get; set; }
         public Colour Colour { get; set; }
         public bool HasHood { get; set; }
         public bool IsWaterproof { get; set; }
