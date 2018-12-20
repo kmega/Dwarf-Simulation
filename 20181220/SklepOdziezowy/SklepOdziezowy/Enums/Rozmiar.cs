@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace SklepOdziezowy.Enums
 {
-    public enum TypSpodni
+    enum Rozmiar
     {
-    Dżinsy,
-    Dresy,
-    Sztruksy,
-    Garniturowe,
-    Wojskowe,
-    Robocze
+        XXS,
+        XS,
+        S,
+        M,
+        L,
+        XL,
+        XXL,
+        XXXL,
+        
     }
 }

@@ -9,15 +9,17 @@ namespace SklepOdziezowy.Enums
      enum Kolor
     {
 
-        Black,
-        White,
-        Blue,
-        Grey,
-        Red,
-        Green,
-        Violet,
-        Octarine,
-        Orange,
+        Biały,
+        Czarny,
+        Niebieski,
+        Czerwony,
+        Zielony,
+        Pomarańczowy,
+        Oktaryna,
+        Szary,
+        Moro
+    
+      
 
 
     }

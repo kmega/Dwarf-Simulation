@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SklepOdziezowy.Domena;
+using SklepOdziezowy.Enums;
 
 namespace SklepOdziezowy
 {
@@ -11,7 +13,11 @@ namespace SklepOdziezowy
         static void Main(string[] args)
         {
 
-            //1.
+            Sklep sklep = new Sklep();
+            sklep.PrzymierzSpodnie(Rozmiar.M);
+            sklep.KupTowaryZKoszyka();
+
+
         }
     }
 }
