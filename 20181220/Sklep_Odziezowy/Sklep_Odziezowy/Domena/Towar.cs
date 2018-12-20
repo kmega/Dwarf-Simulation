@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace Sklep_Odziezowy.Domena
 {
-    class Towar
+    abstract class Towar
     {
+
     }
 }

@@ -31,6 +31,7 @@ namespace Sklep_Odziezowy.Domena
                     Typ_Spodni.
                     Do_Garnituru, 
                     Rozmiar_Spodni.L));
+
             Spodnie_W_Sklepie.AddRange(
                 new[] {
                      new Spodnie(
@@ -60,8 +61,8 @@ namespace Sklep_Odziezowy.Domena
         {
         }
 
-        public List<Buty> Buty_W_Sklepie { get; private set; }
-        public List<Spodnie> Spodnie_W_Sklepie { get; private set; }
+         List<Buty> Buty_W_Sklepie { get;  set; } //brak inicjalizacji
+         List<Spodnie> Spodnie_W_Sklepie { get;  set; }
 
         public void Przymierz_Spodnie(Rozmiar_Spodni rozmiar_klienta)
         {
@@ -78,7 +79,11 @@ namespace Sklep_Odziezowy.Domena
 
         public void KupTowaryZKoszyka()
         {
-            Console.WriteLine("Musisz zapłacić: " + doZaplaty);
+            if (Koszyk.Any())
+            {
+                Console.WriteLine("Musisz zapłacić: " + doZaplaty);
+            }
+
         }
     }
 }
