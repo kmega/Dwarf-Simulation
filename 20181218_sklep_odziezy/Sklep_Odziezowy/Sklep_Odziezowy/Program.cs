@@ -10,6 +10,7 @@ namespace Sklep_Odziezowy
     {
         static void Main(string[] args)
         {
+
         }
     }
 }
