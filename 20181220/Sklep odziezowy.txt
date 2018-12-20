@@ -32,7 +32,7 @@ PrzygotowaÄ model prostego sklepu, modele ubraÅ wg zaÅoÅ¼eÅ:
 		- rodzaj
 		- rozmiar
 		- kolor
-		- ma wiÄzanie lub nie 
+		- ma wiÄzanie lub nie 
 		- sÄ zapinane lub nie 
 		- cena
 		
