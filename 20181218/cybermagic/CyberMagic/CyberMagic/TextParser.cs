@@ -32,6 +32,13 @@ namespace VivaRegex
                 @"title: +""([\w\s]+)""", text);
         }
 
+        public string Extrakctcommand(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"\d+", text);
+        }
+
+
         private string SafelyExtractSingleElement(string pattern, string text)
         {
             MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)

@@ -108,6 +108,12 @@ namespace CyberMagic
             return txt;
             }
 
+        public static string UI(string readedline)
+        {
+            string txt = ;
+
+        }
+            
         
 
 
@@ -181,6 +187,11 @@ namespace CyberMagic
             Console.WriteLine(toWrite);
             writeFile(toWrite, "result4.txt");
 
+            //Task 5
+
+            string readedcommand = "";
+            readedcommand = Console.ReadLine();
+            string todo = readedcommand;
 
 
 
