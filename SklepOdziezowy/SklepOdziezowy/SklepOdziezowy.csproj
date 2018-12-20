@@ -42,9 +42,12 @@
   <ItemGroup>
     <Compile Include="Domena\Buty.cs" />
     <Compile Include="Domena\Kurtki.cs" />
+    <Compile Include="Domena\Sklep.cs" />
     <Compile Include="Domena\Spodnie.cs" />
+    <Compile Include="Domena\Towar.cs" />
     <Compile Include="Enums\FasonSpodni.cs" />
     <Compile Include="Enums\Kolor.cs" />
+    <Compile Include="Enums\RozmiarSpodni.cs" />
     <Compile Include="Enums\TypButow.cs" />
     <Compile Include="Enums\TypSpodni.cs" />
     <Compile Include="Program.cs" />

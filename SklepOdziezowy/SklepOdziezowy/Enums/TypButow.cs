@@ -15,6 +15,8 @@ namespace SklepOdziezowy.Enums
         Chodaki,
         Papucie,
         Sandaly,
-        Saszki
+        Saszki,
+        Narciarskie,
+        Rowerowe
     }
 }

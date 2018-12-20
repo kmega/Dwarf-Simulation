@@ -6,7 +6,7 @@ using SklepOdziezowy.Enums;
 
 namespace SklepOdziezowy.Domena
 {
-    class Buty
+    class Buty : Towar
     {
         public decimal Cena { get; set; }
         public short Rozmiar { get; set; }

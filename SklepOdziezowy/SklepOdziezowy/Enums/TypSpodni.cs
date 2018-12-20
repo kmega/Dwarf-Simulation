@@ -11,6 +11,10 @@ namespace SklepOdziezowy.Enums
         Dzinsy,
         Garniturowe,
         KrotkieSpodenki,
-        Dresy
+        Dresy,
+        Robocze,
+        Narciarskie,
+        Rowerowe,
+        Treningowe
     }
 }

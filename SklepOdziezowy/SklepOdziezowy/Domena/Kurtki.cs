@@ -6,7 +6,7 @@ using SklepOdziezowy.Enums;
 
 namespace SklepOdziezowy.Domena
 {
-    class Kurtki
+    class Kurtki : Towar
     {
         public Kolor Kolor { get; set; }
         public short Rozmiar { get; set; }

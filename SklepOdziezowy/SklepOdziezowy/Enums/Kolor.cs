@@ -13,6 +13,7 @@ namespace SklepOdziezowy.Enums
         Czerwony,
         Zielony,
         Szary,
-        Niebieski
+        Niebieski,
+        Granatowy
     }
 }
