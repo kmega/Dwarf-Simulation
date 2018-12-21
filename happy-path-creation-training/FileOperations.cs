@@ -22,6 +22,21 @@ namespace happy_path_creation_training
             return resultString.ToString();
         }
 
+        public static List<string> ExtractCharactersWithOutTimeBuild(string[] stringFiles)
+        {
+            List<string> stringFilesList = stringFiles.ToList();
+            List<string> charactersWithOutBuildTime = new List<string>();
+            foreach (var item in stringFilesList)
+            {
+                if (String.IsNullOrEmpty(item))
+                {
+                    charactersWithOutBuildTime.Add(TextParser.ExtractProfileName(item));
+                }
+                
+            }
+            return charactersWithOutBuildTime;
+        }
+
         public static string[] ExtractBuildTimesFromFile(string[] stringFiles)
         {
             List<string> timeBuilds = new List<string>();

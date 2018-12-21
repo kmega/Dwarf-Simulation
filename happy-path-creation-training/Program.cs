@@ -19,16 +19,11 @@ namespace happy_path_creation_training
 
             string[] stringFiles = FileOperations.ConvertAllFilesToString(fileNames);
 
-            //string[] <ReadAllBuildTime> string[]
+            List<string> charactersWithOutTimeBuild = FileOperations.ExtractCharactersWithOutTimeBuild(stringFiles);
+
+
+
             
-
-            //string[] <SumAllBuildTime> string
-            
-
-
-
-
-
             //*które postacie NIE mają podanej ilości czasu budowania - zapisz ich identyfikatory(imię i nazwisko)
             //*wylicz średni czas budowania postaci z tych które miały podany czas budowania
             //* ZIGNORUJ PLIK TEMPLATE(1807 - _template.md) -on świadomie jest pusty
