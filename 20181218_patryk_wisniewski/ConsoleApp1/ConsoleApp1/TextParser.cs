@@ -26,6 +26,12 @@ namespace VivaRegex
                 @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
         }
 
+        public string ExtractStuffWithKalina(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi.*?(Kalina Rotmistrz.*?)\*.*?#", text);
+        }
+
         private string SafelyExtractSingleElement(string pattern, string text)
         {
             MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)

@@ -23,7 +23,22 @@ namespace ConsoleApp1
 
             string pathSelectCommand = "E:/Informacje/kalarepa.md";
 
+            TaskFive(dictionaryPath, dicionaryPathStory, pathSelectCommand);
 
+
+            foreach (string file in Directory.EnumerateFiles(dictionaryPath, "*.md"))
+            {
+                string contents = File.ReadAllText(file);
+                TextParser textParser = new TextParser();
+                string Magda = textParser.ExtractStuffWithKalina(contents);
+                Console.WriteLine(Magda);
+            }
+            Console.ReadKey();
+
+        }
+
+        private static void TaskFive(string dictionaryPath, string dicionaryPathStory, string pathSelectCommand)
+        {
             string contents = File.ReadAllText(pathSelectCommand);
             string[] result2 = Regex.Split(contents, @"[^\d]+");
 
@@ -32,8 +47,6 @@ namespace ConsoleApp1
             {
                 DoTask(result2, dictionaryPath, dicionaryPathStory);
             }
-            Console.ReadKey();
-            
         }
 
         private static void DoTask(string[] result2, string dictionaryPath, string dicionaryPathStory)
