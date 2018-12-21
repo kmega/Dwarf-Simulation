@@ -14,6 +14,11 @@ namespace VivaRegex
                 @"\((\d\d) min.*\)", text);
         }
 
+        public string ExtractCommandNumbers (string text)
+        {
+            return SafelyExtractSingleElement(
+                @"\d+", text);
+        }
         public string ExtractProfileName(string text)
         {
             return SafelyExtractSingleElement(

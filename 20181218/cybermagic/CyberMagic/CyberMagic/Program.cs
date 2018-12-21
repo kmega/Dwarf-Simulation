@@ -11,106 +11,7 @@ namespace CyberMagic
 {
     class Program
     {
-
-        public static string readFile(string path) {
-
-            string txt = File.ReadAllText(path);
-
-            return txt;
-        }
-
-
-        public static List<string> readManyFiles(string path)
-        {
-
-            List<string> files = Directory.GetFiles(path).ToList();
-            List<string> alltext = new List<string>();
-
-
-            foreach (string temp in files)
-            {
-                alltext.Add(readFile(temp));
-            }
-            return alltext;
-
-        }
-
-
-
-        public static void writeFile(string toWrite, string fileName)
-        {
-            StreamWriter sr = new StreamWriter(fileName);
-            sr.Write(toWrite);
-            sr.Close();
-        }
-
-        public static int[] alltime(List<string> files)
-        {
-            int[] alltime = { 0, 0 };
-
-            foreach (var item in files)
-            {
-                string time;
-                time = (new TextParser().ExtractTimeToCreate(item));
-                if (time == "")
-                {
-                    continue;
-                }
-                else
-                {
-                    alltime[0] += Int32.Parse(time);
-                    alltime[1]++;
-                }
-            }
-            return alltime;
-        }
-
-        public static string[] charactersWithoutTime(List<string> files)
-        {
-            string temp = "Postaci bez czasu budowania\n";
-            int i = 0;
-
-            foreach (var item in files)
-            {
-
-                if (new TextParser().ExtractTimeToCreate(item) == "" && !(new TextParser().ExtractProfileName(item) == ""))
-                {
-                    temp += new TextParser().ExtractProfileName(item) + "\n";
-                    i++;
-                }
-
-            }
-            string[] txt = { temp, i.ToString() };
-            return txt;
-        }
-
-        public static int averageTime(List<string> files)
-        {
-            int average = (alltime(files)[0] / alltime(files)[1]);
-            return average;
-        }
-
-        public static string magdaDetector (List<string> stories)
-            {
-            string txt= "Magda Patiril występowała w następujących Opowieściach:\n\n";
-            foreach (var item in stories)
-            {
-
-                if (new TextParser().ExtractStuffWithMagda(item) == "")
-                {
-                    continue;
-                }
-                else
-                {
-                    txt += new TextParser().ExtrakctTitle(item) +"\n";
-                }
-            }
-            return txt;
-            }
-
         
-
-
 
         static void Main(string[] args)
         {
@@ -129,63 +30,91 @@ namespace CyberMagic
             TextParser tp = new TextParser();
 
 
-            List<string> allcharacterscards = new List<string>(readManyFiles(path2));
+            List<string> allcharacterscards = new List<string>(new ReadFile().readManyFiles(path2));
 
-            //Task 1
+            //Task 5
+
+            //1. plik z komendami -> Pobranie komend -> komendy
+            string komendy = "1, 2 ,3, 4";
+            string[] commands = Regex.Split(komendy, @"[^\d]+");
+
+            StreamWriter srtask = new StreamWriter("resulttask5.txt");
+
+            foreach (var item in commands)
+            {
+                
+                switch (item) {
+
+                    case "1":
+                        time = tp.ExtractTimeToCreate(new ReadFile().readFile(path));
+                        name = tp.ExtractProfileName(new ReadFile().readFile(path));
+                        toWrite = (name + " był budowany " + time + " minut +");
+                        new WriteFile().writeFile(toWrite, srtask);
+                        Console.WriteLine(toWrite);
 
 
-            time = tp.ExtractTimeToCreate(readFile(path));
-            name = tp.ExtractProfileName(readFile(path));
-            toWrite = (name + " był budowany " + time + " minut");
-            writeFile(toWrite, "result1.txt");
-            Console.WriteLine(toWrite);
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+
+                    case "2":
+                        toWrite = "Czas budowania wszystkich postaci wynosi " + new GetBuiltTime().alltime(allcharacterscards).Sum() + " minut";
+                        Console.WriteLine(toWrite);
+                        new WriteFile().writeFile(toWrite, srtask);
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+
+                    case "3":
+
+                        int avergetime = 0;
+                        int alltime = 0;
+                        avergetime = new GetBuiltTime().averageTime(new GetBuiltTime().alltime(allcharacterscards));
+                        alltime = new GetBuiltTime().alltime(allcharacterscards).Sum();
+                        toWrite = (String.Join("\n", new GetCharactersWithoutTime().charactersWithoutTime(allcharacterscards)) +
+                            "\nŚredni czas budowania postaci wynosi: " + avergetime + " minut" +
+                            "\nUwzględniając powyższe, postacie do tej pory budowane były najpewniej " +
+                           ((avergetime * (new GetCharactersWithoutTime().charactersWithoutTime(allcharacterscards).Count - 1))
+                        + alltime) + " minut");
+                        Console.WriteLine(toWrite);
+                        new WriteFile().writeFile(toWrite, srtask);
+                        break;
+
+                    case "4": 
+                        //Task 4
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        //1.Załadowanie opowieści -> lista z opowieściami
+                        //2.Wyszukiwanie tych które zawierają Magdę(lista z opowieściami)
+                        //3. Zapis do pliku
+
+                        List<string> allstories = new List<string>(new ReadFile().readManyFiles(path3));
+
+                        toWrite = new MagdaDetector().magdaDetector(allstories);
+                        Console.WriteLine(toWrite);
+                        new WriteFile().writeFile(toWrite, srtask);
+                        break;
+
+
+
+                }
+            }
+
 
             
 
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
-            //Task 2
-
-            
-           
-            toWrite = "Czas budowania wszystkich postaci wynosi " + alltime(allcharacterscards) +  " minut";
-            Console.WriteLine(toWrite);
-            writeFile(toWrite, "result2.txt");
-
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-
-            //Task 3
-
-           
-            toWrite = (charactersWithoutTime(allcharacterscards)[0]+ "\nŚredni czas budowania postaci wynosi: " + averageTime(allcharacterscards) +" minut" +
-                "\nUwzględniając powyższe, postacie do tej pory budowane były najpewniej " +
-                (averageTime(allcharacterscards) * Int32.Parse(charactersWithoutTime(allcharacterscards)[1]) + alltime(allcharacterscards)[0]) + " minut");
-            Console.WriteLine(toWrite);
-            writeFile(toWrite, "result3.txt");
-
-            //Task 4
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            //1.Załadowanie opowieści -> lista z opowieściami
-            //2.Wyszukiwanie tych które zawierają Magdę(lista z opowieściami)
-            //3. Zapis do pliku
-
-            List<string> allstories = new List<string>(readManyFiles(path3));
-
-            toWrite = magdaDetector(allstories);
-            Console.WriteLine(toWrite);
-            writeFile(toWrite, "result4.txt");
 
 
 
 
 
 
+            srtask.Close();
             Console.ReadKey();
 
 
@@ -193,10 +122,7 @@ namespace CyberMagic
 
         }
 
-
-       
-
-
+        
     }
 
 }
