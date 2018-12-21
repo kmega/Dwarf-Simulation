@@ -143,12 +143,20 @@ namespace RegexTraining
             }
             return stringBuilder.ToString();
         }
+        public static void Task5()
+        {
+            // GIVEN : FileName - > Commands to run
+            //
+        }
+
         static void Main(string[] args)
         {
             //Task1(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask1.txt");
             //Task2(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask2.txt");
             //Task3(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask3.txt");
-            Task4(@"C:\Users\Lenovo\Desktop\Corelate\primary\20181218\cybermagic\opowiesci\", @"C:\Users\Lenovo\Desktop\Corelate\primary\20181218\RegexTraining\RegexTraining\outputTask4.txt");
+            //Task4(@"C:\Users\Lenovo\Desktop\Corelate\primary\20181218\cybermagic\opowiesci\", @"C:\Users\Lenovo\Desktop\Corelate\primary\20181218\RegexTraining\RegexTraining\outputTask4.txt");
+
+
             Console.ReadKey();
             
         }

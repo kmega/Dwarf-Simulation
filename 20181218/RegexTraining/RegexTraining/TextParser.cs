@@ -29,6 +29,12 @@ namespace RegexTraining
             return SafelyExtractSingleElement(
                 @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
         }
+        public string ExtractCommand(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"\d+", text);
+        }
+
 
         private string SafelyExtractSingleElement(string pattern, string text)
         {
