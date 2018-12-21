@@ -14,9 +14,11 @@ namespace RegEx
         {
             string pathFKomciur = @"C:\Code\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
             string pathAllPeople = @"C:\Code\primary\20181218\cybermagic\karty-postaci";
+            string pathTask4 = @"C:\Code\primary\20181218\cybermagic\opowiesci";
             string result1 = @"C:\Code\primary\20181218\RegEx\RegEx\result1.txt";
             string result2 = @"C:\Code\primary\20181218\RegEx\RegEx\result2.txt";
             string result3 = @"C:\Code\primary\20181218\RegEx\RegEx\result3.txt";
+            string result4 = @"C:\Code\primary\20181218\RegEx\RegEx\result4.txt";
 
             // task1
             //string ReadSingleFile(filePath) -> textFromFile
@@ -39,38 +41,73 @@ namespace RegEx
 
             List<string> allPeopleText =  ReadingAllPeopleText(pathAllPeople);
             List<Int32> allPeopleTimes = GetTimesFromAll(allPeopleText);
-            int sumTimes = SumOfAllTimes(allPeopleTimes);
-            int hour = sumTimes / 60;
-            int minutes = sumTimes % 60;
-            string allTimesSum = $"Wszystkie postacie do tej pory byly budowane {Convert.ToString(hour)} godzin i  {Convert.ToString(minutes)} minut.";
-            WriteResultToFile(result2, allTimesSum);
+            WriteResultToFile(result2, AllTimeSumResult(allPeopleTimes));
 
 
             //task 3
             //AverageTime(int allPeopleTimes) -> int averageTime
-            int averageTime = AverageTime(allPeopleTimes);
-
             //CharactersWithoOutTime() -> list<string> peopleWithOutTime
-            List<string> allPeopleWithoutTime = CharactersWithoutTime(allPeopleText);
-
             //string ProbableBuildTime(int averageTime, list<string> allPeopleWithoutTime) -> string probableBuildTime
+            int averageTime = AverageTime(allPeopleTimes);
+            List<string> allPeopleWithoutTime = CharactersWithoutTime(allPeopleText);
             string resultOfTask3 = ProbableBuildTime(averageTime, allPeopleWithoutTime, allPeopleTimes);
             WriteResultToFile(result3, resultOfTask3);
+
+            //task 4 
+            //ReadingAllPeopleText() -> lista Wszystkich odpowiesci
+            //searchmagda -> lista opowiesci gdzie wystepuje magda
+            //ResultMagda() -> string result4
+            List<string> storiesText = ReadingAllPeopleText(pathTask4);
+            List<string> storiesMagdaPatiril = SearchMagdaPatiril(storiesText);
+            WriteResultToFile(result4, ResultMagda(storiesMagdaPatiril));
+
+
+
+            
+        }
+
+        private static string ResultMagda(List<string> storiesMagdaPatiril)
+        {
+            string result = "Magda Patiril występowała w następujących Opowieściach:";
+            foreach(string story in storiesMagdaPatiril)
+            {
+                result += Environment.NewLine + story;
+            }
+            return result;
+        }
+
+        private static List<string> SearchMagdaPatiril(List<string> storiesText)
+        {
+            List<string> storiesMagdaPatiril = new List<string>();
+            TextParser tp = new TextParser();
+            foreach(string person in storiesText)
+            {
+                if(tp.ExtractStuffWithMagda(person) != "")
+                {
+                    storiesMagdaPatiril.Add(tp.ExtractStoryName(person));
+                }
+            }
+
+            return storiesMagdaPatiril;
+        }
+
+        public static string AllTimeSumResult(List<int> allPeopleTimes)
+        {
+            int sumTimes = SumOfAllTimes(allPeopleTimes);
+            int hour = sumTimes / 60;
+            int minutes = sumTimes % 60;
+            string allTimesSum = $"Wszystkie postacie do tej pory byly budowane {hour} godzin i  {minutes} minut.";
+            return allTimesSum;
         }
 
         public static string ProbableBuildTime(int averageTime, List<string> allPeopleWithoutTime, List<Int32> allPeopleTimes)
         {
-            string result = "";
-            TextParser tp = new TextParser();
-            int sumOfPeopleWithTimes = SumOfAllTimes(allPeopleTimes);
-            int countPeopleWithoutTime = allPeopleWithoutTime.Count();
-            int probableTimeOfAllPeopleWithoutTime = averageTime * countPeopleWithoutTime;
-            int probableSum = sumOfPeopleWithTimes + probableTimeOfAllPeopleWithoutTime;
-
-            result = $"Uwzględniając powyższe, postacie do tej pory budowane były najpewniej {Convert.ToString(probableSum)} minut"; 
+            int probableTimeOfAllPeopleWithoutTime = averageTime * allPeopleWithoutTime.Count();
+            int probableSum = SumOfAllTimes(allPeopleTimes) + probableTimeOfAllPeopleWithoutTime;
+            string result = $"Uwzględniając powyższe, postacie do tej pory budowane były najpewniej " +
+                $"{probableSum} minut"; 
 
             return result;
-            throw new NotImplementedException();
         }
 
         public static List<string> CharactersWithoutTime(List<string> allPeopleText)
@@ -86,21 +123,18 @@ namespace RegEx
             }
 
             return allPeopleWithoutTime;
-            throw new NotImplementedException();
         }
 
         public static int AverageTime(List<Int32> allPeopleTimes)
         {
             int averageTime = allPeopleTimes.Sum() / allPeopleTimes.Count();
             return averageTime;
-            throw new NotImplementedException();
         }
 
         public static int SumOfAllTimes(List<Int32> allPeopleTimes)
         {
             int allTimesSum = allPeopleTimes.Sum();
             return allTimesSum;
-            throw new NotImplementedException();
         }
 
         public static List<Int32> GetTimesFromAll(List<string> allPeopleText)
@@ -115,7 +149,6 @@ namespace RegEx
                 }
             }
             return allTimeList;
-            throw new NotImplementedException();
         }
 
         public static List<string> ReadingAllPeopleText(string path)
@@ -126,7 +159,6 @@ namespace RegEx
                 allPeopleText.Add(ReadSingleFile(file));
             }
             return allPeopleText;
-            throw new NotImplementedException();
         }
 
         public static void WriteResultToFile(string fileResultPath, string result)
@@ -138,7 +170,6 @@ namespace RegEx
         {
             string result = $"{name} byl budowany {time} minuty";
             return result;
-            throw new NotImplementedException();
         }
 
         public static string GetName(string text)
@@ -146,7 +177,6 @@ namespace RegEx
             TextParser tp = new TextParser();
             string name = tp.ExtractProfileName(text);
             return name;
-            throw new NotImplementedException();
         }
 
         public static string GetTime(string text)
@@ -154,14 +184,12 @@ namespace RegEx
             TextParser tp = new TextParser();
             string time = tp.ExtractTimeToCreate(text);
             return time;
-            throw new NotImplementedException();
         }
 
         public static string ReadSingleFile(string filePath)
         {
             string textFromFile = File.ReadAllText(filePath);
             return textFromFile;
-            throw new NotImplementedException();
         }
     }
 }
