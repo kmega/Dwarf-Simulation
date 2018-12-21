@@ -143,10 +143,19 @@ namespace RegexTraining
             }
             return stringBuilder.ToString();
         }
-        public static void Task5()
+        public static void Task5(string inputPath,string outputPath)
         {
-            // GIVEN : FileName - > Commands to run
-            //
+            // GIVEN : FileName, OutputPath
+            // ReadFile(Filename) -> fileContent
+            // getProperCommands(fileContent) -> properCommands
+            // executeCommands(properCommands) -> getResultsFromCommands -> commandsResult
+            // WriteFile(commandsResult) -> END
+
+            string fileContent = ReadFile(inputPath);
+            TextParser textParser = new TextParser();
+            string x = textParser.ExtractCommand(fileContent); // "\d+" -> "(\d+") REGEX DO POPRAWY
+            
+
         }
 
         static void Main(string[] args)
