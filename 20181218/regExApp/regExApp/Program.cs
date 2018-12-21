@@ -11,6 +11,12 @@ namespace regExApp
     {
         public class TextParser
         {
+            public string AnalyseUserImput(string text)
+            {
+                return SafelyExtractSingleElement(
+                    @"\d+", text);
+            }
+
             public string ExtractTimeToCreate(string text)
             {
                 return SafelyExtractSingleElement(
@@ -51,14 +57,8 @@ namespace regExApp
             }
         }
 
-        class Task1
-        {
-
-        }
-
-
         static void Main(string[] args)
-        {
+        {/*
             // TASK ONE **********
 
             //Read file from path
@@ -119,7 +119,7 @@ namespace regExApp
             
             string pathToSaveTask_4 = "result4.txt";
             File.WriteAllLines(pathToSaveTask_4, magdaPatirilFiles);
-
+            */
         }
 
         private static List<string> FindMagdaPatiril(List<string> contentOFileNames)
