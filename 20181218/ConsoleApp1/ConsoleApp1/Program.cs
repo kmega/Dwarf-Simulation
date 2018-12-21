@@ -76,58 +76,32 @@ namespace workspace
             return buildTime;
         }
 
-
-
-
-        static void WriteFryderykKomciurBuildTime()
+        static string PickMagdaPatirilTales(string[] text)
         {
-            Console.Clear();
-            string[] linesOfText = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
-            string text = PickName(linesOfText) 
-                + "byl budowany " 
-                + PickTime(linesOfText) 
-                + " minuty";
-            System.IO.File.WriteAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", text);
+            string tale = "";
+            Regex rx = new Regex(@"# Zas.ugi.*?Magda Patiril.*?#");
+            for (int i = 0; i < text.Length; i++)
+            {
+                    if (rx.Match(text[i]).Success)
+                    {
+                        tale = PickTale(text);
+                    }
+            }
+            return tale;
         }
 
-        static void WriteAllCharactersBuildTime()
+        static string PickTale(string[] text)
         {
-            Console.Clear();
-            int buildTime = PickBuildTime();
-            string text = "Wszystkie postacie do tej pory budowane były " 
-                + buildTime / 60 
-                + " godzin " 
-                + buildTime % 60 
-                + " minut";
-            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
-        }
-
-        static void WriteAvarageBuildTime()
-        {
-            Console.Clear();
-            int unbuildNamesCount = PickUnbuildNames().Split(' ').Length / 2;
-            int avarageBuildTime = PickBuildTime() / unbuildNamesCount;
-            int wholeBuildTime = PickBuildTime() + avarageBuildTime * unbuildNamesCount;
-            string text = "Postacie, ktore nie maja podanego czasu to:"
-                + Environment.NewLine
-                + PickUnbuildNames() 
-                + Environment.NewLine 
-                + "Średni czas budowania postaci to: " 
-                + avarageBuildTime
-                + " minut." 
-                + Environment.NewLine
-                + "Uwzględniając powyższe, postacie do tej pory budowane były najpewniej " 
-                + wholeBuildTime / 60
-                + " godzin " 
-                + wholeBuildTime % 60
-                + " minut.";
-            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
-        }
-
-        static void FindStoriesWithMagdaPatiril()
-        {
-            string text = "";
-            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
+            string tale = "";
+            Regex rx = new Regex(@"title: +""([\w\s] +)""");
+            for (int i = 0; i < text.Length; i++)
+            {
+                    if (rx.Match(text[j]).Success)
+                    {
+                        tale = text[j];
+                    }
+            }
+            return tale;
         }
 
 
@@ -148,6 +122,68 @@ namespace workspace
                 Console.WriteLine("File is not empty. Press anything to quit.");
             }
             Console.ReadKey();
+        }
+
+
+
+        static void WriteFryderykKomciurBuildTime()
+        {
+            Console.Clear();
+            string[] linesOfText = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
+            string text = PickName(linesOfText)
+                + "byl budowany "
+                + PickTime(linesOfText)
+                + " minuty";
+            System.IO.File.WriteAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", text);
+        }
+
+        static void WriteAllCharactersBuildTime()
+        {
+            Console.Clear();
+            string text = "Wszystkie postacie do tej pory budowane były "
+                + PickBuildTime() / 60
+                + " godzin "
+                + PickBuildTime() % 60
+                + " minut";
+            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
+        }
+
+        static void WriteAvarageBuildTime()
+        {
+            Console.Clear();
+            int unbuildNamesCount = PickUnbuildNames().Split(' ').Length / 2;
+            int avarageBuildTime = PickBuildTime() / unbuildNamesCount;
+            int wholeBuildTime = PickBuildTime() + avarageBuildTime * unbuildNamesCount;
+            string text = "Postacie, ktore nie maja podanego czasu to:"
+                + Environment.NewLine
+                + PickUnbuildNames()
+                + Environment.NewLine
+                + "Średni czas budowania postaci to: "
+                + avarageBuildTime
+                + " minut."
+                + Environment.NewLine
+                + "Uwzględniając powyższe, postacie do tej pory budowane były najpewniej "
+                + wholeBuildTime / 60
+                + " godzin "
+                + wholeBuildTime % 60
+                + " minut.";
+            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
+        }
+
+        static void FindStoriesWithMagdaPatiril()
+        {
+            string[] linesOfText;
+            string tales = "";
+            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
+            {
+                linesOfText = File.ReadAllLines(file);
+                tales += PickMagdaPatirilTales(linesOfText) + Environment.NewLine;
+            }
+            string text = "Magda Patiril występowała w następujących Opowieściach:" 
+                + Environment.NewLine
+                + tales;
+            System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
+            Console.WriteLine(text);
         }
     }
 }
