@@ -46,29 +46,30 @@ namespace Zadanie1
             }
             return namesWithoutTime;
         }
-        public static string ExtractSingleStoryWithMagda(string file)
+        public static string ExtractSingleStoryWithHero(string file, string heroName)
         {
             TextParser textParser = new TextParser();
-            string taleWithMagda = textParser.ExtractStuffWithMagda(file);
-            return taleWithMagda;
+            string taleWithHero = textParser.ExtractTaleWithHero(file, heroName);
+            return taleWithHero;
         }
-        public static List<string> ExtractAllStoriesWithMagda(List<string> tales)
+        public static List<string> ExtractAllStoriesWithHero(List<string> tales, string heroName)
         {
-            List<string> talesWithMagda = new List<string>();
+            List<string> talesWithHero = new List<string>();
             foreach(var item in tales)
             {
-                var tale = ExtractSingleStoryWithMagda(item);
+                var tale = ExtractSingleStoryWithHero(item, heroName);
                 if(tale == "")
                 {
                     continue;
                 }
                 else
                 {
-                    talesWithMagda.Add(item);
+                    talesWithHero.Add(item);
                 }               
             }
-            return talesWithMagda;
+            return talesWithHero;
         }
+
         public static string ExtractSingleTaleName(string tale)
         {
             TextParser textParser = new TextParser();

@@ -21,8 +21,9 @@ namespace Zadanie1
             return text;
         }
 
-        public static List<string> ReadAllFiles(List<string> fileNames)
+        public static List<string> ReadAllFiles(string directory)
         {
+            List<string> fileNames = GetFileNames(directory);
             List<string> fileContents = new List<string>();
             foreach (var fileName in fileNames)
             {
@@ -42,6 +43,6 @@ namespace Zadanie1
         {
             return Directory.GetFiles(directory).ToList(); ;
         }
-
+        
     }
 }

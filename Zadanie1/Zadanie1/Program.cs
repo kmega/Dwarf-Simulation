@@ -5,46 +5,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-using VivaRegex;
-
 namespace Zadanie1
 {
     class Program
     {
         static void Main(string[] args)
         {
-            //Task105()
             //given: configFilePath
-            string configFilePath = "";
+            string configFilePath = "config.md";
             // ReadConfigFile(path) -> config
             string config = FileManager.ReadFile(configFilePath);
             // GetTaskToPerform(config) -> tasksToPerform zbiór zadań do wykonania
-            Queue<int> tasksToPerform = GetTasksToPerform(config);
+            Queue<int> tasksToPerform = ConfigManager.GetTasksToPerform(config);
             // PerformTasks(tasksToPerform)
-            PerformTasks(tasksToPerform);
-
-
-            Task101();
-            Task102();
-            Task103();
-            Task104();
-
-            //
-
+            //PerformTasks(tasksToPerform);
+            Task106();
             Console.ReadLine();
         }
 
         private static void PerformTasks(Queue<int> tasksToPerform)
         {
-            throw new NotImplementedException();
+            while (tasksToPerform.Count != 0)
+            {
+                int task = tasksToPerform.Dequeue();
+                Console.WriteLine($"Doing task: {task}");
+                switch (task)
+                {
+                    case 1:                      
+                        Task101();
+                        break;
+                    case 2:
+                        Task102();
+                        break;
+                    case 3:
+                        Task103();
+                        break;
+                    case 4:
+                        Task104();
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
-
-        private static Queue<int> GetTasksToPerform(string config)
-        {
-            throw new NotImplementedException();
-        }
-
-
 
         private static void Task101()
         {
@@ -63,10 +66,8 @@ namespace Zadanie1
         {
             //given directory
             string directory = @"cybermagic\karty-postaci";
-            //GetFileNames(directory) -> Lista fileNames
-            List<string> fileNames = FileManager.GetFileNames(directory);
             //ReadAllFiles(fileNames) -> Lista files
-            List<string> fileContents = FileManager.ReadAllFiles(fileNames);
+            List<string> fileContents = FileManager.ReadAllFiles(directory);
             //ExtractAllTimes(fileNames) -> Lista times
             List<int> times = Extractor.ExtractAllTimes(fileContents);
             //SumTimes(times) -> minutes
@@ -82,10 +83,8 @@ namespace Zadanie1
         {
             //GetFileNames() - fileNames
             string directory = @"cybermagic\karty-postaci";
-            //GetFileNames(directory) -> Lista fileNames
-            List<string> fileNames = FileManager.GetFileNames(directory);
             //ReadAllFiles(fileNames) -> Lista files
-            List<string> fileContents = FileManager.ReadAllFiles(fileNames);
+            List<string> fileContents = FileManager.ReadAllFiles(directory);
             //GetAllHeroesWithoutTime(files) -> zbiór HeroesWithoutTime
             List<string> heroesWithoutTime = Hero.GetHeroesWithoutTime(fileContents);
             //ExtractAllNamesWithoutGivenTime -> list<string> names
@@ -109,12 +108,10 @@ namespace Zadanie1
         private static void Task104()
         {
             string talesDirectory = @"cybermagic\opowiesci";
-            //GetAllFiles()
-            List<string> fileNames = FileManager.GetFileNames(talesDirectory);
             //ReadAllFiles()
-            List<string> tales = FileManager.ReadAllFiles(fileNames);
+            List<string> tales = FileManager.ReadAllFiles(talesDirectory);
             //ExtractStoriesWithMagdaName()
-            List<string> talesWithMagda = Extractor.ExtractAllStoriesWithMagda(tales);
+            List<string> talesWithMagda = Extractor.ExtractAllStoriesWithHero(tales,"Magda Patiril");
             //ExtractTaleNamesWithMagda
             List<string> taleNames = Extractor.ExtractAllTaleNames(talesWithMagda);
             //BuildStringToSaveTask4
@@ -122,7 +119,18 @@ namespace Zadanie1
             //WriteResults()
             FileManager.WriteResults(toSave);
         }
+        private static void Task106()
+        {
+            //given directory
+            string talesDirectory = @"cybermagic\opowiesci";
+            //ReadAllStories() -> tales
+            List<string> tales = FileManager.ReadAllFiles(talesDirectory);
+            //GetStoriesWithKalina() -> talesWithKalina
+            List<string> talesWithKalina = Extractor.ExtractAllStoriesWithHero(tales, "Kalina Rotmistrz");
+            Console.ReadLine();
+            //ExtractAllNamesInTalesWithKalina(talesWithKalina) -> namesConnectedWithKalina, numberOfEncounters
 
+        }
     }
 }
 

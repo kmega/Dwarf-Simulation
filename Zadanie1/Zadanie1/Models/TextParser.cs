@@ -20,18 +20,35 @@ namespace VivaRegex
                 @"title: ""(\w+ \w+)""", text);
         }
 
-        public string ExtractStuffWithMagda(string text)
+        public string ExtractTaleWithHero(string text, string heroName)
         {
             return SafelyExtractSingleElement(
-                @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
+                $@"# Zas.ugi.*?({heroName}.*?)\*.*?#", text);
         }
         public string ExtractTaleName(string text)
         {
             return SafelyExtractSingleElement(
                 @"title: +""([\w\s]+)""", text);
         }
+        public string ExtractMeritSection(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi\s+(.+?)#  ", text);
+        }
+        public List<string> ExtractNumbersOfTask(string text)
+        {
+            return SafelyExtractAllElements(
+                @"(\d+)", text);
+        }
 
         private string SafelyExtractSingleElement(string pattern, string text)
+        {
+            List<string> allResults = SafelyExtractAllElements(pattern, text);
+
+            if (allResults.Count > 0) return allResults.First();
+            else return string.Empty;
+        }
+        private List<string> SafelyExtractAllElements(string pattern, string text)
         {
             MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)
                 .Matches(text);
@@ -41,9 +58,7 @@ namespace VivaRegex
             {
                 allResults.Add(match.Groups[1].Value);
             }
-
-            if (allResults.Count > 0) return allResults.First();
-            else return string.Empty;
+            return allResults;
         }
     }
 } 
