@@ -25,11 +25,11 @@ namespace VivaRegex
             return SafelyExtractSingleElement(
                 @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
         }
-
-        public string ExtractStuffWithKalina(string text)
+    //Przerób to potem na zasługi innych postaci
+        public string ExtractStuffWithKalina(string text, string hero)
         {
             return SafelyExtractSingleElement(
-                @"# Zas.ugi.*?(Kalina Rotmistrz.*?)\*.*?#", text);
+                $@"# Zas.ugi.*?({hero}.*?)\*.*?#", text);
         }
 
         private string SafelyExtractSingleElement(string pattern, string text)
