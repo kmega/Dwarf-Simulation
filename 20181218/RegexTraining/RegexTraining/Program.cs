@@ -35,34 +35,18 @@ namespace RegexTraining
         }
         public static int getTimeToCreateFromFile(string inputPath)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            using (StreamReader streamReader = new StreamReader(inputPath))
-            {
-                string line = "";
-                while((line = streamReader.ReadLine()) != null)
-                {
-                    stringBuilder.AppendLine(line);
-                }         
-            }
+            string fileContent = ReadFile(inputPath);
             TextParser textParser = new TextParser();
-            string timeToCreateAsString = textParser.ExtractTimeToCreate(stringBuilder.ToString());
+            string timeToCreateAsString = textParser.ExtractTimeToCreate(fileContent);
             int result = timeToCreateAsString.Equals(string.Empty) ? 0 : Int32.Parse(timeToCreateAsString);
             return result;
         }
 
         public static string getProfileNameFromFile(string inputPath)
         {
-            StringBuilder stringBuilder = new StringBuilder();
-            using (StreamReader streamReader = new StreamReader(inputPath))
-            {
-                string line = "";
-                while ((line = streamReader.ReadLine()) != null)
-                {
-                    stringBuilder.AppendLine(line);
-                }
-            }
+            string fileContent = ReadFile(inputPath);
             TextParser textParser = new TextParser();
-            string profileName = textParser.ExtractProfileName(stringBuilder.ToString());
+            string profileName = textParser.ExtractProfileName(fileContent);
             return profileName;
         }
 
@@ -123,11 +107,48 @@ namespace RegexTraining
             resultString += "Uwzględniając powyższe, postacie do tej pory budowane były najpewniej " + hypotheticalTime/60 + " godzin " + hypotheticalTime % 60 +" minut.";
             WriteFile(resultString, outputPath);
         }
+        public static void Task4(string directoryPath,string outputPath)
+        {
+            // GIVEN: DIRECTORY PATH, Output path, Result Pattern, TextParser od Żółwia
+            // GETFILELIST(DIRECTORY) -> FILE LIST
+            // READFILES(FILELIST) -> ContentFromFiles
+            // SearchForMagda(ContentFromFiles) -> storyNames
+            // PREPARE RESULTSTRING ACCORDING TO RESULT PATERN(storyNames) -> RESULT STRING 
+            // WriteFile(RESULTSTRING) -> END
+            List<string> FileList = getFileList(directoryPath).ToList();
+            List<string> contentFromFiles = new List<string>();
+            foreach (string file in FileList)
+                contentFromFiles.Add(ReadFile(file));
+            TextParser textParser = new TextParser();
+            List<string> resultStories = new List<string>();
+            string profileName = "Magda Patiril";
+            foreach (string content in contentFromFiles)
+                if (textParser.ExtractStuffWithMagda(content) != string.Empty)
+                    resultStories.Add(textParser.ExtractStoryName(content));
+            string result = "Magda Patiril występowała w następujących Opowieściach: \n";
+            foreach (string story in resultStories)
+                result += story + "\n";
+            WriteFile(result, outputPath);
+        }
+        public static string ReadFile(string path)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                string line = "";
+                while ((line = streamReader.ReadLine()) != null)
+                {
+                    stringBuilder.AppendLine(line);
+                }
+            }
+            return stringBuilder.ToString();
+        }
         static void Main(string[] args)
         {
-            Task1(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask1.txt");
-            Task2(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask2.txt");
-            Task3(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask3.txt");
+            //Task1(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask1.txt");
+            //Task2(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask2.txt");
+            //Task3(@"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\cybermagic\karty-postaci\", @"C:\Users\Lenovo\Desktop\Zajecia\primary\20181218\RegexTraining\RegexTraining\outputTask3.txt");
+            Task4(@"C:\Users\Lenovo\Desktop\Corelate\primary\20181218\cybermagic\opowiesci\", @"C:\Users\Lenovo\Desktop\Corelate\primary\20181218\RegexTraining\RegexTraining\outputTask4.txt");
             Console.ReadKey();
             
         }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace VivaRegex
+namespace RegexTraining
 {
     public class TextParser
     {
@@ -19,7 +19,11 @@ namespace VivaRegex
             return SafelyExtractSingleElement(
                 @"title: ""((\w+ *){2,4})""", text);
         }
-
+        public string ExtractStoryName(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"title: +""([\w\s]+)""", text);
+        }
         public string ExtractStuffWithMagda(string text)
         {
             return SafelyExtractSingleElement(
