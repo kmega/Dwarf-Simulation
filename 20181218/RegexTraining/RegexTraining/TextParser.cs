@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace RegexTraining
+namespace VivaRegex
 {
     public class TextParser
     {
@@ -17,12 +17,19 @@ namespace RegexTraining
         public string ExtractProfileName(string text)
         {
             return SafelyExtractSingleElement(
-                @"title: ""(\w+ *){2,4}""", text);
+                @"title: ""((\w+ *){2,4})""", text);
+        }
+
+        public string ExtractStuffWithMagda(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
         }
 
         private string SafelyExtractSingleElement(string pattern, string text)
         {
-            MatchCollection matches = new Regex(pattern).Matches(text);
+            MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)
+                .Matches(text);
 
             List<string> allResults = new List<string>();
             foreach (Match match in matches)
