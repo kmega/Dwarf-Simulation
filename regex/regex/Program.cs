@@ -8,44 +8,147 @@ using System.Text.RegularExpressions;
 
 namespace regex
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            try
-            {
-                // odczytanie danej z pliku: plik = dana z min
-                // stworzenie pliku nowego = zapisanie w nim czasu
-                // wypisz na konsoli czas
-                string path = @"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
-                if (!File.Exists(path))
-                {
-              
-                    using (StreamReader sr = new StreamReader(path))
-                    {
-                        string line;                      
-                        Regex rx = new Regex(@"\((\d\d) min.*\)");
-                        while ((line = sr.ReadLine()) != null)
-                        {
-                            // Try to match each line against the Regex.
-                            Match match = rx.Match(line);
-                            if (match.Success)
-                            {                              
-                                Console.WriteLine(match.Value);
-                                
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
-            }
-            Console.ReadKey();
+            TextParser textOperation = new TextParser();
+            GetTheListOfPathThatFiles getthelistofpathes = new GetTheListOfPathThatFiles();     
+            // Pobranie danych z folderu = lista sciezek (USUNAC TEMPLATE)
+            List<string> PathesOfFiles = getthelistofpathes.ListOfPathThatFiles(@"C:\Users\lysia\OneDrive\Pulpit\cor2\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci");
+            //otwarcie plikow i lista czasow i lista tytulow
+
+            GetTheListofEveryoneTimeBuilding getthelistoftimes = new GetTheListofEveryoneTimeBuilding();
+        //GetTheListOfEveryoneWhoHaveATimeInFile();
+        //GetTheListOfEveryoneWhoHaveNOTATimeInFile();
         }
+
+  //foreach (string x in PathesOfFiles)
+            //{
+            //    Console.WriteLine(x);
+            //}
+            //Console.ReadKey();
+
         
+        //    // suma czasow i liczba osob, ktore go maja
+        //    TheSumOfTheTimesEveryoneTimeBuilding();
+        //    // sredni czas budowania dla osob bez czasu
+        //    TheAverageTimeOfBuildingForEveryoneWhoHaveNOTATimeInFile();
+        //    TheSumOfEveryTimeInFile();
+        //    // zapisz wyniki do pliku
+        //    SaveTheDataToFile();
+        //}
+
+        //public static void GetTheListofEveryoneTimeBuilding()
+        //{
+
+        //    string filepath;
+        //    for (int i = 0; i < PathesOfFiles.Count; i++)
+        //    {
+        //        filepath = PathesOfFiles[i];
+        //        using (FileStream fs = File.Open(filepath, FileMode.Open, FileAccess.Read, FileShare.Read))
+        //        {
+        //            time = textOperation.ExtractTimeToCreate(File.ReadAllText(filepath));
+        //            timesofallfiles.Add(time); //lista czasów wszystkich
+        //        }
+        //    }
+        //    timesofallfiles.RemoveAll(s => s == string.Empty); //usun puste pola
+
+        //    var intList = timesofallfiles.Select(s => Convert.ToInt32(s)).ToList();
+        //}
+
+
+
+
+
+
+
+        //public static void Main(string[] args)
+        //{
+        //    //given directory 
+        //    //get filenames (directory) = list of files
+
+
+        //    TextParser textOperation = new TextParser();  
+
+        //    List<string> timesofallfiles = new List<string> { };
+
+        //    int[] timesofall = new int[] { };
+        //    string time = "";
+
+
+        //    string path = @"C:\Users\lysia\OneDrive\Pulpit\cor2\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci";
+        //        List<string> PathesOfFiles = Directory.GetFiles(path).ToList<string>(); // Lista ścieżek wszystkich
+
+
+
+        //   string filepath;
+        //    for (int i = 0; i < PathesOfFiles.Count; i++)
+        //    {
+        //        filepath = PathesOfFiles[i];
+        //        using (FileStream fs = File.Open(filepath, FileMode.Open, FileAccess.Read, FileShare.Read))
+        //        {
+        //            time = textOperation.ExtractTimeToCreate(File.ReadAllText(filepath));
+        //            timesofallfiles.Add(time); //lista czasów wszystkich
+        //        }
+        //    }
+        //    timesofallfiles.RemoveAll(s => s == string.Empty); //usun puste pola
+
+        //    var intList = timesofallfiles.Select(s => Convert.ToInt32(s)).ToList();
+
+        //    int sumoftimes = 0;
+        //    for (int i = 0; i < timesofallfiles.Count; i++)
+        //    {
+
+        //         sumoftimes= sumoftimes+ intList[i];
+        //    }
+        //    Console.WriteLine(sumoftimes + "minut");
+        //    int hours = sumoftimes / 60;
+        //    int minutes = sumoftimes % 60;
+
+        //    // ZAPISANIE DO PLIKU
+        //    using (StreamWriter sw = new StreamWriter(@"C:\Users\lysia\OneDrive\Pulpit\cor2\Corealate_materiały\regexy\task2.txt"))
+        //    {
+        //        sw.WriteLine("Wszystkie postacie do tej pory budowane były " + hours + " godzin" + minutes + " minut");
+
+
+        //    }
+        //    Console.WriteLine("Wszystkie postacie do tej pory budowane były " + hours + " godzin " + minutes + " minut");
+        //    Console.ReadKey();
+
+        //}
+
+        //public static void Komciuch(string[] args)
+        //{
+        //    //get fryderyk komciuch = string          
+        //    string path = @"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
+        //    string text = "", title ="", time ="";
+        //    using (FileStream fs = File.Open(path, FileMode.Open,FileAccess.Read,FileShare.Read))
+        //    {
+        //        text = File.ReadAllText(path);
+        //    }
+
+        //    // extract time/titile
+        //    TextParser textOperation = new TextParser();        
+        //    title = textOperation.ExtractProfileName(text);
+        //    time = textOperation.ExtractTimeToCreate(text);
+
+        //    //print name + time
+
+        //    using (StreamWriter sw = new StreamWriter(@"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\czas-fryderyk-komciur.txt"))
+        //    {
+        //        sw.WriteLine(title + " był budowany " + time + " minuty");
+
+
+        //    }
+        //    Console.WriteLine(title + time);
+        //    Console.ReadKey();
+        //}
+
+
+
     }
+
+
 }
+
