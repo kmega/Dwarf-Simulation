@@ -9,6 +9,17 @@ namespace Zadanie1
 {
     public class Extractor
     {
+        public static List<string> ExtractAllMeritSections(List<string> talesWithHero)
+        {
+            List<string> resultMerits = new List<string>();
+            TextParser textParser = new TextParser();
+            foreach (var item in talesWithHero)
+            {
+                var merit = textParser.ExtractMeritSection(item);
+                resultMerits.Add(merit);
+            }
+            return resultMerits;
+        }
         public static int ExtractSingleTime(string file)
         {
             TextParser textParser = new TextParser();

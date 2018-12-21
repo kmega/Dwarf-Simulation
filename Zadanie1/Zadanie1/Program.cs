@@ -127,9 +127,9 @@ namespace Zadanie1
             List<string> tales = FileManager.ReadAllFiles(talesDirectory);
             //GetStoriesWithKalina() -> talesWithKalina
             List<string> talesWithKalina = Extractor.ExtractAllStoriesWithHero(tales, "Kalina Rotmistrz");
-            Console.ReadLine();
             //ExtractAllNamesInTalesWithKalina(talesWithKalina) -> namesConnectedWithKalina, numberOfEncounters
-
+            List<string> meritSections = Extractor.ExtractAllMeritSections(talesWithKalina);
+            Console.ReadLine();
         }
     }
 }
