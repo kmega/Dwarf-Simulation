@@ -43,6 +43,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="domena\Buty.cs" />
+    <Compile Include="domena\Kurtki.cs" />
+    <Compile Include="domena\Sklep.cs" />
+    <Compile Include="domena\Spodnie.cs" />
+    <Compile Include="domena\Towar.cs" />
+    <Compile Include="Enums\Fason.cs" />
+    <Compile Include="Enums\Kolor.cs" />
+    <Compile Include="Enums\RozmiarSpodni.cs" />
+    <Compile Include="Enums\TypSpodni.cs" />
+    <Compile Include="Enums\TypyButów.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
