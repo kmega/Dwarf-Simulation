@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SklepOdziezowy
+namespace SklepOdziezowy.Domena
 {
     class MainClass
     {
@@ -10,6 +10,9 @@ namespace SklepOdziezowy
             // zamkniety zbior wartosci -> enum -> dostep globalny, dlatego jest w osobnym pliku
             //duplikacja kodu -> WIELKI BLAD
             //namespace -> zasieg nazw
+            Sklep Sklep = new Sklep();
+            Sklep.PrzymierzSpodnie(RozmiarSpodni.M);
+            Sklep.KupTowaryWSklepie();
         }
     }
 }

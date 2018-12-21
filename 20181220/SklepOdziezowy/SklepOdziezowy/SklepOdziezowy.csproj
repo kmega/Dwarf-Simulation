@@ -38,8 +38,10 @@
     <Compile Include="Domena\Buty.cs" />
     <Compile Include="Enum\RodzajeButow.cs" />
     <Compile Include="Domena\Spodnie.cs" />
-    <Compile Include="Enum\RodzajeSpodni.cs" />
     <Compile Include="Enum\FasonSpodni.cs" />
+    <Compile Include="Enum\RozmiarSpodni.cs" />
+    <Compile Include="Domena\Sklep.cs" />
+    <Compile Include="Domena\Towar.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domena\" />
