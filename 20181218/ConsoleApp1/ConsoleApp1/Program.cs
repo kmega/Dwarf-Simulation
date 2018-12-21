@@ -26,6 +26,21 @@ namespace workspace
             return name;
         }
 
+        static string PickUnbuildNames()
+        {
+            string[] linesOfText;
+            string names = "";
+            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
+            {
+                linesOfText = File.ReadAllLines(file);
+                if (Convert.ToInt32(PickTime(linesOfText)) == 0)
+                {
+                    names += PickName(linesOfText) + Environment.NewLine;
+                }
+            }
+            return names;
+        }
+
         static string PickTime(string[] linesOfText)
         {
             string time = "";
@@ -49,21 +64,6 @@ namespace workspace
             }
         }
 
-        static string PickUnbuildNames()
-        {
-            string[] linesOfText;
-            string names = "";
-            foreach (string file in Directory.EnumerateFiles(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci", "*.md"))
-            {
-                linesOfText = File.ReadAllLines(file);
-                if (Convert.ToInt32(PickTime(linesOfText)) == 0)
-                {
-                    names += PickName(linesOfText) + Environment.NewLine;
-                }
-            }
-            return names;
-        }
-
         static int PickBuildTime()
         {
             string[] linesOfText;
@@ -79,35 +79,35 @@ namespace workspace
 
 
 
-        static string WriteFryderykKomciurBuildTime()
+        static void WriteFryderykKomciurBuildTime()
         {
             Console.Clear();
             string[] linesOfText = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
-            string text = "";
-            text = PickName(linesOfText);
-            text = text + "byl budowany ";
-            text = text + PickTime(linesOfText);
-            text = text + " minuty";
+            string text = PickName(linesOfText) 
+                + "byl budowany " 
+                + PickTime(linesOfText) 
+                + " minuty";
             System.IO.File.WriteAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", text);
-            Console.WriteLine(text + "\n\nChoose exercise using 1-n. Exit using 0.");
-            return null;
         }
 
-        static string WriteAllCharactersBuildTime()
+        static void WriteAllCharactersBuildTime()
         {
             Console.Clear();
             int buildTime = PickBuildTime();
-            string text = "Wszystkie postacie do tej pory budowane były " + buildTime / 60 + " godzin " + buildTime % 60 + " minut";
+            string text = "Wszystkie postacie do tej pory budowane były " 
+                + buildTime / 60 
+                + " godzin " 
+                + buildTime % 60 
+                + " minut";
             System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
-            Console.WriteLine(text + "\n\nChoose exercise using 1-n. Exit using 0.");
-            return null;
         }
 
-        static string WriteAvarageBuildTime()
+        static void WriteAvarageBuildTime()
         {
             Console.Clear();
-            int avarageBuildTime = PickBuildTime() / (PickUnbuildNames().Split(' ').Length / 2);
-            int wholeBuildTime = PickBuildTime() + (avarageBuildTime * PickUnbuildNames().Split(' ').Length / 2);
+            int unbuildNamesCount = PickUnbuildNames().Split(' ').Length / 2;
+            int avarageBuildTime = PickBuildTime() / unbuildNamesCount;
+            int wholeBuildTime = PickBuildTime() + avarageBuildTime * unbuildNamesCount;
             string text = "Postacie, ktore nie maja podanego czasu to:"
                 + Environment.NewLine
                 + PickUnbuildNames() 
@@ -122,59 +122,32 @@ namespace workspace
                 + wholeBuildTime % 60
                 + " minut.";
             System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
-            Console.WriteLine(text + "\n\nChoose exercise using 1-n. Exit using 0.");
-            return null;
         }
 
-        static string FindStoriesWithMagdaPatiril()
+        static void FindStoriesWithMagdaPatiril()
         {
             string text = "";
             System.IO.File.AppendAllText(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt", Environment.NewLine + text);
-            Console.WriteLine(text + "\n\nChoose exercise using 1-n. Exit using 0.");
-            return null;
         }
 
 
 
         static void Main(string[] args)
         {
-            int userPick = -1;
-            string input = "";
-            Console.WriteLine("Choose exercise using 1-n. Exit using 0.");
-            while (userPick != 0)
+            string[] filePath = System.IO.File.ReadAllLines(@"c:\Users\Lenovo\.ssh\primary\20181218\fryderykKomciur.txt");
+            if (filePath.Length == 0)
             {
-                input = Console.ReadLine();
-                try
-                {
-                    userPick = Convert.ToInt32(input);
-                }
-                catch
-                {
-                    Console.WriteLine("");
-                }
-                switch (userPick)
-                {
-                    case 0:
-                        Console.WriteLine("\nThanks.");
-                        break;
-                    case 1:
-                        WriteFryderykKomciurBuildTime();
-                        break;
-                    case 2:
-                        WriteAllCharactersBuildTime();
-                        break;
-                    case 3:
-                        WriteAvarageBuildTime();
-                        break;
-                    case 4:
-                        FindStoriesWithMagdaPatiril();
-                        break;
-                    default:
-                        Console.WriteLine("\nWrong input.");
-                        break;
-                }
+                WriteFryderykKomciurBuildTime();
+                WriteAllCharactersBuildTime();
+                WriteAvarageBuildTime();
+                FindStoriesWithMagdaPatiril();
+                Console.WriteLine("Written to fryderykKomciur.txt. Press anything to quit.");
             }
-            Console.ReadLine();
+            else
+            {
+                Console.WriteLine("File is not empty. Press anything to quit.");
+            }
+            Console.ReadKey();
         }
     }
 }
