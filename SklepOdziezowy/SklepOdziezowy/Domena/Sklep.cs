@@ -9,8 +9,8 @@ namespace SklepOdziezowy.Domena
     // domyslny typ dla klas to internal (czyli dostepny tylko w tym projekcie)
     class Sklep
     {
-        private List<Towar> Koszyk = new List<Towar>();
-        private decimal DoZaplaty = 0;
+        public List<Towar> Koszyk = new List<Towar>();
+        public decimal DoZaplaty = 0;
 
         public Sklep()
         {
@@ -42,29 +42,28 @@ namespace SklepOdziezowy.Domena
 
         // prywatny setter i publiczny getter, czyli tylko nasza klasa moze modyfikowac liste ale dostep jest publiczny
         public List<Buty> ButyWSklepie = new List<Buty>();
+
         public List<Spodnie> SpodnieWSklepie = new List<Spodnie>();
-        List<Kurtki> KurtkiWSklepie { get; set; }
+        public List<Spodnie> PobierzListeSpodni()
+        {
+            return SpodnieWSklepie;
+        }
+
+        public List<Kurtki> KurtkiWSklepie = new List<Kurtki>();
         //lista to typ generyczny czyli typ do przechowywania roznego rodzajow danych
 
-        public void PrzymierzSpodnie(RozmiarSpodni rozmiarKlienta)
+       public void WyswietlKoszyk()
         {
-            foreach(Spodnie spodnie in SpodnieWSklepie)
+            Console.WriteLine("W koszyku masz nastepujace towary:");
+
+            foreach (Spodnie produkt in Koszyk)
             {
-                if(spodnie.Rozmiar == rozmiarKlienta)
-                {
-                    Koszyk.Add(spodnie);
-                    DoZaplaty += spodnie.Cena;
-                }
+                Console.WriteLine($"{produkt.Nazwa} {produkt.Typ} o kolorze {produkt.Kolor}, " +
+                    $"fasonu {produkt.Fason}, o rozmiarze {produkt.Rozmiar} - cena {produkt.Cena} PLN");
             }
         }
 
-        public void KupTowaryZKoszyka()
-        {
-            if (Koszyk.Any())
-            {
-                Console.WriteLine($"Musisz zaplacic: {DoZaplaty} PLN");
-            }
-        }
+
     }
 }
  

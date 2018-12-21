@@ -8,6 +8,7 @@ namespace SklepOdziezowy.Domena
 {
     class Kurtki : Towar
     {
+        public NazwaTowaru Nazwa = NazwaTowaru.Kurtka;
         public Kolor Kolor { get; set; }
         public short Rozmiar { get; set; }
         public decimal Cena { get; set; }

@@ -8,6 +8,7 @@ namespace SklepOdziezowy.Domena
 {
     class Buty : Towar
     {
+        public NazwaTowaru Nazwa = NazwaTowaru.Buty;
         public decimal Cena { get; set; }
         public short Rozmiar { get; set; }
         public bool MaWiazanie { get; set; }

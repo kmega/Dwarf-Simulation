@@ -11,10 +11,28 @@ namespace SklepOdziezowy
     {
         static void Main(string[] args)
         {
-            Sklep sklep = new Sklep();
-            sklep.PrzymierzSpodnie(RozmiarSpodni.XL);
+            NowyKlient("Pawel", Kolor.Czarny, RozmiarSpodni.XL);
+            NowyKlient("Urszula", Kolor.Niebieski, RozmiarSpodni.L);
+            NowyKlient("Mariola", Kolor.Szary, RozmiarSpodni.S);
+            NowyKlient("Mietek", Kolor.Czarny, RozmiarSpodni.L);
 
             Console.ReadLine();
         }
+
+        public static void NowyKlient(string imie, Kolor kolor, RozmiarSpodni rozmiar)
+        {
+            Klient klient = new Klient
+            {
+                Imie = imie,
+                KolorSpodni = kolor,
+                RozmiarSpodni = rozmiar
+            };
+
+            klient.PrzymierzSpodnie();
+            klient.KupTowaryZKoszyka();
+        }
     }
 }
+
+//klasa klient
+//marcin.balda@gmail.com

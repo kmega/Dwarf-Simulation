@@ -20,6 +20,8 @@ namespace SklepOdziezowy.Domena
             }
         }
         //getter -> uzyskanie wartosci pola, setter -> nadanie wartosci pola
+
+        public NazwaTowaru Nazwa = NazwaTowaru.Spodnie;
         public TypSpodni Typ { get; private set; }
         public FasonSpodni Fason { get; private set; }
         public Kolor Kolor { get; private set; }
