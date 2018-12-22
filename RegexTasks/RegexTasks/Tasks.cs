@@ -9,7 +9,6 @@ namespace RegexTasks
 {
     class Tasks
     {
-        //
         public List<string> personsWithoutBuildTime = new List<string>();
 
         public void TaskOne()
@@ -200,6 +199,145 @@ namespace RegexTasks
 
         }
 
+        public void TaskSix()
+        {
+            List<string> AllFilesPathsWithKalinaRotmistrz = new List<string>();
+            //1.Stwórz listę plików gdzie występuje Kalina Rotmistrz -> AllFilesPathsWithKalinaRotmistrz
+            MakeListFilesOfPathsWithKalinaRotmistrz(AllFilesPathsWithKalinaRotmistrz);
+
+            Dictionary<string, int> WhoWasActingAndHowManyTimes = new Dictionary<string, int>();
+            //2.Stwórz słownik osób z którymi występowała Kalina Rotmistrz, każda osoba posiada ilość wystąpień -> WhoWasActingAndHowManyTimes
+            MakeDictPersonsWhoWasActingWithKalina(AllFilesPathsWithKalinaRotmistrz, WhoWasActingAndHowManyTimes);
+            
+            //3.Zapisz do pliku rezulat 6 kto występował z Kaliną Rotmistrz i ile razy
+            SaveResultatTaskSixToFile(WhoWasActingAndHowManyTimes);
+
+        }
+
+        private void SaveResultatTaskSixToFile(Dictionary<string, int> whoWasActingAndHowManyTimes)
+        {
+            FileSupporter file_to_save = new FileSupporter();
+
+            string titleResult = "Kalina Rotmistrz spotkała następujące postacie: ";
+            file_to_save.SaveToFIle(titleResult, "Result6", false);
+            file_to_save.SaveToFIle("", "Result6", true);
+
+            foreach (var person in whoWasActingAndHowManyTimes)
+            {
+                string person_to_save = person.Key + ": " + person.Value;
+                file_to_save.SaveToFIle(person_to_save, "Result6", true);
+            }
+        }
+
+        private void MakeDictPersonsWhoWasActingWithKalina(List<string> allFilesPathsWithKalinaRotmistrz, Dictionary<string, int> whoWasActingAndHowManyTimes)
+        {
+            //2.Sprawdź z jakimi postaciami występowała Kalina Rotmistrz i ile razy
+            CheckWithWhomKalinaRotmistrzWasActingAndHowManyTimes
+                (allFilesPathsWithKalinaRotmistrz, whoWasActingAndHowManyTimes);
+        }
+
+        private void CheckWithWhomKalinaRotmistrzWasActingAndHowManyTimes(List<string> allFilesPathsWithKalinaRotmistrz, Dictionary<string, int> whoWasActingAndHowManyTimes)
+        {
+            List<string> PersonsWhoActWithKalina = new List<string>();
+            string contain_file;
+            foreach (var file in allFilesPathsWithKalinaRotmistrz)
+            {
+                //Daj zawartość pierwszego pliku w którym jest Kalina --> string contains
+                contain_file = GiveFileContain(file);
+                //Dodaj osoby występujące z Kaliną Rotmistrz do Listy osób występujących z Kaliną
+                AddPersonsFromOneFileActingWithKalinaToList(PersonsWhoActWithKalina, contain_file);
+                
+            }
+            //Usuwa wystąpienia kaliny rotmistrz z listy
+            RebuildListDeletingKalina(PersonsWhoActWithKalina);
+
+            
+            
+            //Dodaj osobę do słownika (Nazwa osoby oraz ilość wystąpień)
+            AddPersonsFromOneFileActingWithKalinaToDict(whoWasActingAndHowManyTimes, PersonsWhoActWithKalina);
+        }
+       
+
+        private void RebuildListDeletingKalina(List<string> personsWhoActWithKalina)
+        {
+            //Usuwaj Kalinę Rotmistrz, dopóki występuje w liście
+            while(personsWhoActWithKalina.Contains("Kalina Rotmistrz"))
+            {
+                personsWhoActWithKalina.Remove("Kalina Rotmistrz");
+            }
+            
+        }
+
+        private void AddPersonsFromOneFileActingWithKalinaToDict(Dictionary<string,int> whoWasActingAndHowManyTimes, List<string> PersonsWhoActWithKalina)
+        {
+            //Pogrupuj listę po osobach
+            GroupListByPersonAndAddToDict(PersonsWhoActWithKalina, whoWasActingAndHowManyTimes);               
+        }
+
+        private void GroupListByPersonAndAddToDict(List<string> personsWhoActWithKalina, Dictionary<string, int> whoWasActingAndHowManyTimes)
+        {
+            var group = personsWhoActWithKalina.GroupBy(x => x);
+            foreach (var person in group)
+            {
+                whoWasActingAndHowManyTimes.Add(person.Key, person.Count());
+            }
+        }
+
+
+        private void AddPersonsFromOneFileActingWithKalinaToList(List<string> personsWhoActWithKalina, string file_contain)
+        {
+            TextParser KalinaParser = new TextParser();
+            //Daj string z sekcji zasługi
+            string stuffFromZaslugi;
+            stuffFromZaslugi = KalinaParser.ExtractStuffFromZaslugi(file_contain);
+            //Daj liste osób z sekcji zasługi
+            KalinaParser.ExtractPersonsActingWithKalina(stuffFromZaslugi, personsWhoActWithKalina);           
+        }
+
+        private void MakeListFilesOfPathsWithKalinaRotmistrz(List<string> AllFilesPathsWithKalinaRotmistrz)
+        {
+            string[] allPathsFilesFromOpowiesciArray =
+                           Directory.GetFiles(@"..\..\..\..\20181218\cybermagic\opowiesci");
+            List<string> allPathsFilesFromOpowiesciList = allPathsFilesFromOpowiesciArray.ToList();
+
+            //Szukaj pliku gdzie jest kalina rotmistrz dopóki istnieją pliki
+            foreach (var file in allPathsFilesFromOpowiesciList)
+            {
+                //Dodaj plik gdzie jest kalina rotmistrz do listy plików gdzie jest kalina rotmistrz
+                AddPathOfFileToList(file, AllFilesPathsWithKalinaRotmistrz);
+                                
+            }
+            
+        }
+
+        private void AddPathOfFileToList(string file, List<string> allFilesPathsWithKalinaRotmistrz)
+        {
+            //Znajdź plik gdzie jest kalina rotmistrz
+            SearchFileWithKalinaRotmistrz(file, allFilesPathsWithKalinaRotmistrz);           
+        }
+
+        private void SearchFileWithKalinaRotmistrz(string file, List<string> allFilesPathsWithKalinaRotmistrz)
+        {
+            //Otworz plik -> treść otwartego pliku
+            string file_contain = GiveFileContain(file);
+            //Sprawdź czy występuje Kalina Rotmistrz --> true,false
+            //Jeśli true dodaj znaleziony plik do listy allFilesPathsWithKalinaRotmistrz
+            if (CheckDoesKalinaExist(file_contain)) allFilesPathsWithKalinaRotmistrz.Add(file);
+        }
+
+        private bool CheckDoesKalinaExist(string file_contain)
+        {
+            TextParser Kalina = new TextParser();
+            if (Kalina.CheckingExistOfKalina(file_contain).Any()) return true;
+
+            else return false;
+        }
+
+        private string GiveFileContain(string file)
+        {
+            FileSupporter file_to_read = new FileSupporter();
+            return file_to_read.Read_File(file);
+        }
 
         private static void GiveOnlyTitleFilesWithMagdaPatiril(List<string> OnlyTitleFilesWithMagdaPatirilList, List<string> filesWhoContainsMagdaPatiril, FileSupporter file, TextParser magdaPatirilParser)
         {

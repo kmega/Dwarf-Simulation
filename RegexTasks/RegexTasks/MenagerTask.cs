@@ -44,6 +44,11 @@ namespace RegexTasks
                             task.TaskFour();
                             break;
                         }
+                    case 6:
+                        {
+                            task.TaskSix();
+                            break;
+                        }
                     default:
                         {
                             Console.WriteLine("Nieznane zadanie");

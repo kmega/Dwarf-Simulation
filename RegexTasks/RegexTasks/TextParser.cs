@@ -31,6 +31,26 @@ namespace RegexTasks
             return SafelyExtractSingleElement(
                 @"title: +""([\w\s]+)""", text);
         }
+        public string CheckingExistOfKalina(string text)
+        {
+            return (SafelyExtractSingleElement(
+                @"(Kalina Rotmistrz.)", text));
+        }
+        public void ExtractPersonsActingWithKalina(string text, List<string> personsWhoActWithKalina)
+        {
+            MatchCollection matches = new Regex(@"^\* (\w+ \w+):", RegexOptions.Multiline | RegexOptions.Singleline)
+                .Matches(text);
+
+            foreach (Match match in matches)
+            {
+                personsWhoActWithKalina.Add(match.Groups[1].Value);
+            }
+        }
+        public string ExtractStuffFromZaslugi(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi\s+(.+?)#", text);
+        }
         public void ExtractTasksFromConfig(string text, List<int> choosenTasks)
         {
 
