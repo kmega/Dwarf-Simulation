@@ -31,6 +31,18 @@ namespace RegexTasks
             return SafelyExtractSingleElement(
                 @"title: +""([\w\s]+)""", text);
         }
+        public void ExtractTasksFromConfig(string text, List<int> choosenTasks)
+        {
+
+            MatchCollection matches = new Regex(@"(\d+)", RegexOptions.Multiline | RegexOptions.Singleline)
+               .Matches(text);
+
+            foreach (Match match in matches)
+            {
+                choosenTasks.Add(int.Parse(match.Groups[1].Value));
+            }
+
+        }
 
         private string SafelyExtractSingleElement(string pattern, string text)
         {
@@ -46,5 +58,6 @@ namespace RegexTasks
             if (allResults.Count > 0) return allResults.First();
             else return string.Empty;
         }
+
     }
 } 
