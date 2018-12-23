@@ -142,7 +142,7 @@ Chcę mieć możliwość konfigurowania KTÓRE polecenia będą się odpalały a
 
 | Klucz                                 | Wartość                   |
 |---------------------------------------|---------------------------|
-| Regex ekstraktujący liczby            | \d+                       |
+| Regex ekstraktujący liczby            | \d+ -> "(\d+)" -> groups[1].Value                      |
 
 ### Oczekiwany efekt
 
