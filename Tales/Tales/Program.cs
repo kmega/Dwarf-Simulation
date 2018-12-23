@@ -26,11 +26,17 @@ namespace Tales
                 .ForEach(x=> Persons
                     .Add(personCreator.CreatePersonFromFile(x)));
 
-            personCreator.SavePersonToFile(Persons.Where(x => x.Name == "").FirstOrDefault());
+
+            //TASK 1 save fryderyk komciur to file
+            personCreator.SavePersonToFile(Persons.Where(x => x.Name == "Fryderyk Komciur").FirstOrDefault());
+            //TASK 2 save sum creation time of all persons and save to file
+            string text = $"Wszystkie postacie budowane były przez: " +
+                          $"{Persons.Sum(x => x.CreationTime)/60} godzin i " +
+                          $"{Persons.Sum(x => x.CreationTime) % 60} minuty";
+            File.WriteAllText(Environment.CurrentDirectory + "/allPersonsTimeBuild.txt"
+                , text);
 
 
-
-            Console.WriteLine("Hello World!");
 
             Console.ReadLine();
         }

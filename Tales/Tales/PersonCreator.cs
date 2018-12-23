@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Tales.Persons;
 
 namespace Tales
@@ -25,7 +26,11 @@ namespace Tales
 
         public void SavePersonToFile(Person person)
         {
-            throw new System.NotImplementedException();
-        }
+
+            string text = $"{person.Name} był budowany przez {person.CreationTime}";
+            File.WriteAllText(Environment.CurrentDirectory+"/"+person.Name+".txt"
+                ,text);
+
+       }
     }
 }
