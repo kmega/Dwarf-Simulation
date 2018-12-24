@@ -6,8 +6,9 @@ namespace Task2
     {
         public string[] ImportAllFiles()
         {
-            return Directory.GetFiles("/Users/piotr/Desktop/Git/primary/20181218/" +
-                                      "cybermagic/karty-postaci");
+            //macos return Directory.GetFiles("/Users/piotr/Desktop/Git/primary/20181218/" + "cybermagic/karty-postaci");
+            return Directory.GetFiles(@"C:\Users\Piotr\Desktop\GitLab\primary\20181218\cybermagic\karty-postaci");
+
         }
 
     }

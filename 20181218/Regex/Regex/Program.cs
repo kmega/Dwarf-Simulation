@@ -13,7 +13,9 @@ namespace UseRegex
             Regex Name = new Regex(@"""(\w+ \w+)""");
 
             //1. Otworz plik -> uzyj sciezki //file.readAllText
-            var OpenedFile = File.ReadLines(@"/Users/piotr/Desktop/Git/primary/20181218/cybermagic/karty-postaci/1807-fryderyk-komciur.md");
+            // MACOS var OpenedFile = File.ReadLines(@"/Users/piotr/Desktop/Git/primary/20181218/cybermagic/karty-postaci/1807-fryderyk-komciur.md");
+            var OpenedFile = File.ReadLines(@"C:\Users\Piotr\Desktop\GitLab\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md");
+
 
             //2. Na tekscie w pliku znajdz regexa dla czasu
             //3. Na tekscie w pliku znajdz regexa dla imienia
@@ -33,6 +35,7 @@ namespace UseRegex
                 }
             }
             //4. Stworz nowy plik results.txt i zapis oczekiwany wynik
+            Console.ReadKey();
         }
     }
 }

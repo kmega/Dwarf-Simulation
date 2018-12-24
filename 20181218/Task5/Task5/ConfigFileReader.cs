@@ -6,10 +6,9 @@ namespace Task5
 {
     class ConfigFileReader
     {
-        public List<string> ConfigReader(string path)
+        public string ConfigReader(string path)
         {
-            string commands = File.ReadAllText(path);
-            return commands.Split(',').ToList();
+            return File.ReadAllText(path);
         }
     }
 }
