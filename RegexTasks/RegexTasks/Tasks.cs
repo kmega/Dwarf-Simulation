@@ -220,11 +220,11 @@ namespace RegexTasks
             //Stwórz słownik postaci mających profil (nazwa postaci i ścieżka pliku)
             MakeDictPersonsWhoHaveProfile(PersonsWhoHaveProfilDict);
 
-            //Dictionary<string, string> PersonsWhoWasActing = new Dictionary<string, string>();
-            ////Stwórz słownik postaci występujących w opowieściach (nazwa postaci i ścieżka pliku)
-            //MakeDictPersonsWhoWasActInStory();
+            Dictionary<string, List<string>> PersonsWhoWasActing = new Dictionary<string, List<string>>();
+            //Stwórz słownik postaci występujących w opowieściach (nazwa postaci i lista ścieżek plików)
+            MakeDictPersonsWhoWasActInStory(PersonsWhoWasActing);
 
-            //Dictionary<string, string> PersonsWhoWasOnlyActingDict = new Dictionary<string, string>();
+            Dictionary<string, string> PersonsWhoWasOnlyActingDict = new Dictionary<string, string>();
             ////Stwórz słownik postaci występujących tylko w opowieściach (nazwa postaci i ścieżka pliku)
             //MakeDictPersonsWhoWasOnlyActing();
 
@@ -237,19 +237,106 @@ namespace RegexTasks
             //MakeDictPersonsWhoHaveProfileAndWasActing();
         }
 
-        private void MakeDictPersonsWhoHaveProfile(Dictionary<string, string> personsWhoHaveProfilDict)
+        private void MakeDictPersonsWhoWasActInStory(Dictionary<string, List<string>> personsWhoWasActing)
         {
-            //Daj nazwę postaci z pierwszego pliku
-            string PersonName, PathStr;
-            (PersonName, PathStr ) = GivePersonNameAndPath();
-            //Dodaj osobę do słownika
+            string[] allPathsFilesFromOpowiesciArray =
+                           Directory.GetFiles(@"..\..\..\..\20181218\cybermagic\opowiesci");
+            List<string> allPathsFilesFromOpowiesciList = allPathsFilesFromOpowiesciArray.ToList();
+
+            List<string> actingPersonsList = new List<string>();
+            //Stwórz listę postaci z plików którzy występują (osoba, lista plików)
+            MakeListOfActingPersons(allPathsFilesFromOpowiesciList, actingPersonsList, personsWhoWasActing);
+            
+        }
+
+        private void AddActingPersonsToDict(Dictionary<string, string> NotGrouppedPersonsPaths, Dictionary<string, List<string>> personsWhoWasActing)
+        {
+            foreach (var element in NotGrouppedPersonsPaths)
+            {
+                
+                if(personsWhoWasActing.ContainsKey(element.Key))
+                {
+                    personsWhoWasActing[element.Key].Add(element.Value);
+                }
+
+                else personsWhoWasActing.Add(element.Key, new List<string> { element.Value });
+            }
+        }
+
+        private void  MakeListOfActingPersons(List<string> allPathsFilesFromOpowiesciList, List<string> actingPersonsList, Dictionary<string, List<string>> personsWhoWasActing)
+        {
+            Dictionary<string, string> NotGrouppedPersonsPaths = new Dictionary<string, string>();
+
+            foreach (var file_path in allPathsFilesFromOpowiesciList)
+            {
+                //Daj zawartosc pliku
+                string file_contain = GiveFileContain(file_path);
+                //Dodaj osoby z pliku do listy
+                AddActingPersonsToList(file_contain, actingPersonsList);
+
+                //Stwórz nie pogrupowany słownik osób wraz ze ścieżkami                
+                MakeNotGrouppedDictPersonsPaths(file_path, actingPersonsList, NotGrouppedPersonsPaths);
+
+                //Dodaj osoby do słownika 
+                AddActingPersonsToDict(NotGrouppedPersonsPaths, personsWhoWasActing);
+
+                actingPersonsList.Clear();
+                NotGrouppedPersonsPaths.Clear();
+            }            
 
         }
 
-        private (string PersonName, string PathStr) GivePersonNameAndPath()
+        private void MakeNotGrouppedDictPersonsPaths(string file_path, List<string> actingPersonsList, Dictionary<string, string> NotGrouppedPersonsPaths)
         {
+            foreach (var person in actingPersonsList)
+            {
+                //bool alredyExist = actingPersonsList.Contains(person);
 
-            return (personName, pathStr);
+                //if (alredyExist) continue;
+                    
+                NotGrouppedPersonsPaths.Add(person, file_path);
+            }
+        }
+
+        private void AddActingPersonsToList(string file_contain, List<string> actingPersonsList)
+        {
+            TextParser file = new TextParser();
+            //Daj tekst z sekcji zaslugi
+            string stuffFromMerit = file.ExtractStuffFromZaslugi(file_contain);
+            //Dodaj osoby z sekcji zasługi do listy
+            file.ExtractActingPersons(stuffFromMerit, actingPersonsList);
+        }
+
+        private void MakeDictPersonsWhoHaveProfile(Dictionary<string, string> personsWhoHaveProfilDict)
+        {
+            string[] allPathsFilesFromKartyPostaciArray =
+                           Directory.GetFiles(@"..\..\..\..\20181218\cybermagic\karty-postaci");
+            List<string> allPathsFilesFromKartyPostaciList = allPathsFilesFromKartyPostaciArray.ToList();
+
+            foreach (var filePath in allPathsFilesFromKartyPostaciList)
+            {
+                //Daj nazwę postaci z pliku           
+                (string PersonName, bool doExist) = GivePersonNameAndPath(filePath);
+                //Dodaj osobę do słownika jeśli istnieje
+                if (doExist)
+                {
+                    personsWhoHaveProfilDict.Add(PersonName, filePath);
+                }
+                else continue;               
+            }
+
+        }
+
+        private (string, bool) GivePersonNameAndPath(string filePath)
+        {
+            //Daj zawartość pliku z folderu karty postaci
+            string file_contain = GiveFileContain(filePath);
+            //Daj osobę z pliku
+            TextParser person = new TextParser();
+            string personName = person.ExtractProfileName(file_contain);
+
+            if (personName != "") return (personName, true);
+            else return ("", false);
         }
 
         private void SaveResultatTaskSixToFile(Dictionary<string, int> whoWasActingAndHowManyTimes)

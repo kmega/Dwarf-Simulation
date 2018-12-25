@@ -13,8 +13,10 @@ namespace RegexTasks
 
         static void Main(string[] args)
         {
-            MenagerTask tasks = new MenagerTask();
-            tasks.DoTasks(@"C:\Program Files\Git\primary\RegexTasks\RegexTasks\config\config.txt");
+            // MenagerTask tasks = new MenagerTask();
+            //tasks.DoTasks(@"C:\Program Files\Git\primary\RegexTasks\RegexTasks\config\config.txt");
+            Tasks task = new Tasks();
+            task.TaskSeven();
         }
     }
 }

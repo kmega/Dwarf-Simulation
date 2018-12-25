@@ -46,6 +46,16 @@ namespace RegexTasks
                 personsWhoActWithKalina.Add(match.Groups[1].Value);
             }
         }
+        public void ExtractActingPersons(string text, List<string> personsWhoActing)
+        {
+            MatchCollection matches = new Regex(@"^\* (\w+ \w+):", RegexOptions.Multiline | RegexOptions.Singleline)
+                .Matches(text);
+
+            foreach (Match match in matches)
+            {
+                personsWhoActing.Add(match.Groups[1].Value);
+            }
+        }
         public string ExtractStuffFromZaslugi(string text)
         {
             return SafelyExtractSingleElement(
