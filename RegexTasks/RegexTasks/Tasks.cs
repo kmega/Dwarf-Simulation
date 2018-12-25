@@ -214,6 +214,44 @@ namespace RegexTasks
 
         }
 
+        public void TaskSeven()
+        {
+            Dictionary<string, string> PersonsWhoHaveProfilDict = new Dictionary<string, string>();
+            //Stwórz słownik postaci mających profil (nazwa postaci i ścieżka pliku)
+            MakeDictPersonsWhoHaveProfile(PersonsWhoHaveProfilDict);
+
+            //Dictionary<string, string> PersonsWhoWasActing = new Dictionary<string, string>();
+            ////Stwórz słownik postaci występujących w opowieściach (nazwa postaci i ścieżka pliku)
+            //MakeDictPersonsWhoWasActInStory();
+
+            //Dictionary<string, string> PersonsWhoWasOnlyActingDict = new Dictionary<string, string>();
+            ////Stwórz słownik postaci występujących tylko w opowieściach (nazwa postaci i ścieżka pliku)
+            //MakeDictPersonsWhoWasOnlyActing();
+
+            //Dictionary<string, string> PersonsWhoHaveOnlyProfilDict = new Dictionary<string, string>();
+            ////Stwórz słownik postaci mających tylko profil (nazwa postaci i ścieżka pliku)
+            //MakeDictPersonsWhoHaveOnlyProfile();
+
+            //Dictionary<string, List<string> PersonsWhoHaveProfilAndWasActingDict = new Dictionary<string, string>();
+            ////Stwórz słownik postaci mających profil i występujących w opowieściach (nazwa postaci i lista opowieści)
+            //MakeDictPersonsWhoHaveProfileAndWasActing();
+        }
+
+        private void MakeDictPersonsWhoHaveProfile(Dictionary<string, string> personsWhoHaveProfilDict)
+        {
+            //Daj nazwę postaci z pierwszego pliku
+            string PersonName, PathStr;
+            (PersonName, PathStr ) = GivePersonNameAndPath();
+            //Dodaj osobę do słownika
+
+        }
+
+        private (string PersonName, string PathStr) GivePersonNameAndPath()
+        {
+
+            return (personName, pathStr);
+        }
+
         private void SaveResultatTaskSixToFile(Dictionary<string, int> whoWasActingAndHowManyTimes)
         {
             FileSupporter file_to_save = new FileSupporter();
@@ -322,13 +360,13 @@ namespace RegexTasks
             string file_contain = GiveFileContain(file);
             //Sprawdź czy występuje Kalina Rotmistrz --> true,false
             //Jeśli true dodaj znaleziony plik do listy allFilesPathsWithKalinaRotmistrz
-            if (CheckDoesKalinaExist(file_contain)) allFilesPathsWithKalinaRotmistrz.Add(file);
+            if (CheckDoesPersonExist(file_contain)) allFilesPathsWithKalinaRotmistrz.Add(file);
         }
 
-        private bool CheckDoesKalinaExist(string file_contain)
+        private bool CheckDoesPersonExist(string file_contain)
         {
-            TextParser Kalina = new TextParser();
-            if (Kalina.CheckingExistOfKalina(file_contain).Any()) return true;
+            TextParser Person = new TextParser();
+            if (Person.CheckingExistOfKalina(file_contain).Any()) return true;
 
             else return false;
         }
