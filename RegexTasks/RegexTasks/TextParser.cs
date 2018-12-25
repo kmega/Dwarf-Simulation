@@ -56,6 +56,22 @@ namespace RegexTasks
                 personsWhoActing.Add(match.Groups[1].Value);
             }
         }
+        public string ExcecuteOnlyFileNameFromStory(string text)
+        {
+            Regex regex = new Regex(@"([0-9]{6}-.*)");
+
+            Match match = regex.Match(text);
+            if (match.Success) return match.Value;
+            else return string.Empty;
+        }
+        public string ExcecuteOnlyFileNameFromProfile(string text)
+        {
+            Regex regex = new Regex(@"(([0-9]{4}-.*)|(B.*-.*))");
+
+            Match match = regex.Match(text);
+            if (match.Success) return match.Value;
+            else return string.Empty;
+        }
         public string ExtractStuffFromZaslugi(string text)
         {
             return SafelyExtractSingleElement(

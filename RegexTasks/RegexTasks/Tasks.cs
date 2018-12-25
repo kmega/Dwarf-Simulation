@@ -224,17 +224,112 @@ namespace RegexTasks
             //Stwórz słownik postaci występujących w opowieściach (nazwa postaci i lista ścieżek plików)
             MakeDictPersonsWhoWasActInStory(PersonsWhoWasActing);
 
-            Dictionary<string, string> PersonsWhoWasOnlyActingDict = new Dictionary<string, string>();
-            ////Stwórz słownik postaci występujących tylko w opowieściach (nazwa postaci i ścieżka pliku)
-            //MakeDictPersonsWhoWasOnlyActing();
+            List<string> PersonsWhoHaveProfilAndWasActingList = new List<string>();
+            //Stwórz listę postaci mających profil i występujących w opowieściach
+            MakeDictPersonsWhoHaveProfileAndWasActing(PersonsWhoHaveProfilDict, PersonsWhoWasActing, PersonsWhoHaveProfilAndWasActingList);
 
-            //Dictionary<string, string> PersonsWhoHaveOnlyProfilDict = new Dictionary<string, string>();
-            ////Stwórz słownik postaci mających tylko profil (nazwa postaci i ścieżka pliku)
-            //MakeDictPersonsWhoHaveOnlyProfile();
+            Dictionary<string, string> PersonsWhoHaveOnlyProfilDict = new Dictionary<string, string>();
+            //Stwórz słownik postaci mających tylko profil (nazwa postaci i ścieżka pliku)
+            MakeDictPersonsWhoHaveOnlyProfile(PersonsWhoHaveProfilDict, PersonsWhoWasActing, PersonsWhoHaveOnlyProfilDict);
 
-            //Dictionary<string, List<string> PersonsWhoHaveProfilAndWasActingDict = new Dictionary<string, string>();
-            ////Stwórz słownik postaci mających profil i występujących w opowieściach (nazwa postaci i lista opowieści)
-            //MakeDictPersonsWhoHaveProfileAndWasActing();
+            Dictionary<string, List<string>> PersonsWhoWasOnlyActingDict = new Dictionary<string, List<string>>();
+            //Stwórz słownik postaci występujących tylko w opowieściach (nazwa postaci i ścieżka pliku)
+            MakeDictPersonsWhoWasOnlyActing(PersonsWhoHaveProfilDict, PersonsWhoWasActing, PersonsWhoWasOnlyActingDict);
+
+            /*Zapisz do pliku Result7.txt **Postacie mające Profil i Opowieść**,
+            **Postacie mające tylko Profil**
+            **Postacie występujące tylko w Opowieściach***/
+            SaveResultatTaskSevenToFile(PersonsWhoHaveProfilAndWasActingList, PersonsWhoHaveOnlyProfilDict, PersonsWhoWasOnlyActingDict);
+
+        }
+
+        private void SaveResultatTaskSevenToFile(List<string> personsWhoHaveProfilAndWasActingList, Dictionary<string, string> personsWhoHaveOnlyProfilDict, Dictionary<string, List<string>> personsWhoWasOnlyActingDict)
+        {
+            FileSupporter file_to_save = new FileSupporter();
+
+            string firstTitle = "**Postacie mające Profil i Opowieść**:" + Environment.NewLine + Environment.NewLine;
+            string text1 = "";
+            foreach (var person in personsWhoHaveProfilAndWasActingList)
+            {
+                text1 += person + Environment.NewLine;
+            }
+
+            text1 += Environment.NewLine;
+
+            string secondTitle = "**Postacie mające tylko Profil**:" + Environment.NewLine + Environment.NewLine;
+            string text2 = "";
+            foreach (var person in personsWhoHaveOnlyProfilDict)
+            {
+                text2 += person.Key + ", " + person.Value + Environment.NewLine;
+            }
+
+            text2 += Environment.NewLine;
+
+            string threeTitle = "**Postacie występujące tylko w Opowieściach**:" + Environment.NewLine + Environment.NewLine;
+            string text3 = "";
+            foreach (var person in personsWhoWasOnlyActingDict)
+            {
+                if(person.Value.Count == 1)
+                {
+                    text3 += person.Key + ", " + person.Value[0] + Environment.NewLine;
+                    continue;
+                }
+                
+                else if(person.Value.Count > 1)
+                {
+                    text3 += person.Key + ", " + person.Value[0];
+
+                    for (int i = 1; i < person.Value.Count; i++)
+                    {
+                        text3 += ", " + person.Value[i];
+                    }
+                    text3 += Environment.NewLine;
+                }
+                
+            }
+
+            text3 += Environment.NewLine;
+
+            string fullResult = firstTitle + text1 + secondTitle + text2 + threeTitle + text3;
+
+            file_to_save.SaveToFIle(fullResult, "Result7", false);
+        }
+
+        private void MakeDictPersonsWhoWasOnlyActing(Dictionary<string, string> personsWhoHaveProfilDict, Dictionary<string, List<string>> personsWhoWasActing, Dictionary<string, List<string>> personsWhoWasOnlyActingDict)
+        {
+            /*Sprawdź czy osoba ze słownika osób występujących istnieje w słowniku osób posiadających profil
+                         * jeśli nie występuje to dodaj do słownika */
+            foreach (var person in personsWhoWasActing)
+            {
+                if (personsWhoHaveProfilDict.ContainsKey(person.Key)) continue;
+                else personsWhoWasOnlyActingDict.Add(person.Key, person.Value);
+            }
+        }
+
+        private void MakeDictPersonsWhoHaveOnlyProfile(Dictionary<string, string> personsWhoHaveProfilDict, Dictionary<string, List<string>> personsWhoWasActing, Dictionary<string, string> personsWhoHaveOnlyProfilDict)
+        {
+            /*Sprawdź czy osoba ze słownika profili istnieje w słowniku osób wystepujących
+             * jeśli nie występuje to dodaj do słownika */
+            foreach (var person in personsWhoHaveProfilDict)
+            {
+                if (personsWhoWasActing.ContainsKey(person.Key)) continue;
+                else personsWhoHaveOnlyProfilDict.Add(person.Key, person.Value);
+            } 
+        }
+
+        private void MakeDictPersonsWhoHaveProfileAndWasActing(Dictionary<string, string> personsWhoHaveProfilDict, Dictionary<string, List<string>> personsWhoWasActing, List<string> personsWhoHaveProfilAndWasActingList)
+        {
+            /*Sprawdź czy osoba mająca profil jest w słowniku osób wystepujących w opowieści jeśli tak to
+            dodaj tę osobę do listy osób*/
+            foreach (var person in personsWhoHaveProfilDict)
+            {
+                if (personsWhoWasActing.ContainsKey(person.Key))
+                {
+                    personsWhoHaveProfilAndWasActingList.Add(person.Key);
+                }
+                else continue;
+            }
+
         }
 
         private void MakeDictPersonsWhoWasActInStory(Dictionary<string, List<string>> personsWhoWasActing)
@@ -251,15 +346,17 @@ namespace RegexTasks
 
         private void AddActingPersonsToDict(Dictionary<string, string> NotGrouppedPersonsPaths, Dictionary<string, List<string>> personsWhoWasActing)
         {
+            TextParser path = new TextParser();
             foreach (var element in NotGrouppedPersonsPaths)
             {
                 
                 if(personsWhoWasActing.ContainsKey(element.Key))
                 {
-                    personsWhoWasActing[element.Key].Add(element.Value);
+                    personsWhoWasActing[element.Key].Add(path.ExcecuteOnlyFileNameFromStory(element.Value));
                 }
 
-                else personsWhoWasActing.Add(element.Key, new List<string> { element.Value });
+                else personsWhoWasActing.Add
+                        (element.Key, new List<string> { path.ExcecuteOnlyFileNameFromStory(element.Value) });
             }
         }
 
@@ -309,6 +406,8 @@ namespace RegexTasks
 
         private void MakeDictPersonsWhoHaveProfile(Dictionary<string, string> personsWhoHaveProfilDict)
         {
+            TextParser path = new TextParser();
+
             string[] allPathsFilesFromKartyPostaciArray =
                            Directory.GetFiles(@"..\..\..\..\20181218\cybermagic\karty-postaci");
             List<string> allPathsFilesFromKartyPostaciList = allPathsFilesFromKartyPostaciArray.ToList();
@@ -320,7 +419,7 @@ namespace RegexTasks
                 //Dodaj osobę do słownika jeśli istnieje
                 if (doExist)
                 {
-                    personsWhoHaveProfilDict.Add(PersonName, filePath);
+                    personsWhoHaveProfilDict.Add(PersonName, path.ExcecuteOnlyFileNameFromProfile(filePath));
                 }
                 else continue;               
             }

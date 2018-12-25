@@ -1,0 +1,84 @@
+**Postacie mające Profil i Opowieść**:
+
+Borys Perikas
+Feliks Weiner
+Jakub Wirus
+Kalina Rotmistrz
+Lawenda Weiner
+Majka Perikas
+Miedwied Zajcew
+Mieszko Weiner
+Olga Myszeczka
+Pięknotka Diakon
+Stach Sosnowiecki
+Atena Sowińska
+Adela Kirys
+Erwin Galilien
+Kirył Najłalmin
+Lilia Ursus
+Bronisława Strzelczyk
+
+**Postacie mające tylko Profil**:
+
+Alfred Weiner, 1807-alfred-weiner.md
+Alojzy Maus, 1807-alojzy-maus.md
+Antoni Rataj, 1807-antoni-rataj.md
+Artur Perikas, 1807-artur-perikas.md
+Eliza Satarail, 1807-eliza-satarail.md
+Fryderyk Komciur, 1807-fryderyk-komciur.md
+Julian Krukowiecki, 1807-julian-krukowiecki.md
+Karolina Niecień, 1807-karolina-niecien.md
+Kasjopea Maus, 1807-kasjopea-maus.md
+Nadia Weiner, 1807-nadia-weiner.md
+Natalia Zajcew, 1807-natalia-zajcew.md
+Nataniel Weiner, 1807-nataniel-weiner.md
+Wiktor Satarail, 1807-wiktor-satarail.md
+Kamil Policzant, 1809-kamil-policzant.md
+Adam Szarjan, 1810-adam-szarjan.md
+Moktar Gradon, 1811-moktar-gradon.md
+Pietro Dwarczan, 1811-pietro-dwarczan.md
+Waleria Cyklon, 1811-waleria-cyklon.md
+
+**Postacie występujące tylko w Opowieściach**:
+
+Małgorzata Nowacka, 180623-krzyk-w-wyplywowie.md
+Stanisław Mirczak, 180623-krzyk-w-wyplywowie.md
+Kajetan Bosman, 180623-krzyk-w-wyplywowie.md
+Aiden Wielkołacz, 180623-krzyk-w-wyplywowie.md
+Wojciech Zajcew, 180701-dwa-rejsy-w-potrzebie.md
+Gerard Weiner, 180701-dwa-rejsy-w-potrzebie.md
+Krystian Moborok, 180701-dwa-rejsy-w-potrzebie.md
+Kacper Wontarczyk, 180701-dwa-rejsy-w-potrzebie.md
+Fabian Komczatkow, 180701-dwa-rejsy-w-potrzebie.md
+Sabrina Powsimrożek, 180701-dwa-rejsy-w-potrzebie.md
+Tymon Barbaturran, 180701-dwa-rejsy-w-potrzebie.md
+Liwia Barbaturran, 180701-dwa-rejsy-w-potrzebie.md
+Marcjanna Maszotka, 180701-dwa-rejsy-w-potrzebie.md
+Emilia Kariamon, 180701-dwa-rejsy-w-potrzebie.md
+Martauron Attylla, 180701-dwa-rejsy-w-potrzebie.md
+Joachim Kozioro, 180708-niewidzialne-potwory-z-rzeki.md, 180718-msciwa-ryba-z-eteru.md
+Magda Patiril, 180708-niewidzialne-potwory-z-rzeki.md, 180718-msciwa-ryba-z-eteru.md
+Antoni Zajcew, 180708-niewidzialne-potwory-z-rzeki.md, 180730-prasyrena-z-zemsty.md, 180808-kultystka-z-milosci.md
+Alicja Kłębek, 180724-skorpiony-spod-ziemi.md
+Roman Kłębek, 180724-skorpiony-spod-ziemi.md, 180814-trufle-z-kosmosu.md
+Anita Perczoluk, 180730-prasyrena-z-zemsty.md
+Kasandra Kirnał, 180730-prasyrena-z-zemsty.md, 180808-kultystka-z-milosci.md
+Maksymilian Supolont, 180730-prasyrena-z-zemsty.md, 180808-kultystka-z-milosci.md
+Małgorzata Kirnał, 180730-prasyrena-z-zemsty.md, 180808-kultystka-z-milosci.md
+Patryk Paterecki, 180808-kultystka-z-milosci.md
+Kacper Pyszałnik, 180808-kultystka-z-milosci.md
+Arkadiusz Mocarny, 180814-trufle-z-kosmosu.md
+Lucjusz Blakenbauer, 180817-protomag-z-trzesawisk.md
+Felicja Melitniek, 180817-protomag-z-trzesawisk.md, 180929-dwa-tygodnie-szkoly.md
+Alan Bartozol, 180817-protomag-z-trzesawisk.md
+Tadeusz Kruszawiecki, 180821-programista-mimo-woli.md, 180906-nikt-nie-spi-w-swoim-lozku.md
+Staś Kruszawiecki, 180821-programista-mimo-woli.md, 180912-inkarnata-nienawisci.md
+Brygida Maczkowik, 180906-nikt-nie-spi-w-swoim-lozku.md, 180912-inkarnata-nienawisci.md
+Grażyna Sirwąg, 180906-nikt-nie-spi-w-swoim-lozku.md
+Szczepan Mensic, 180906-nikt-nie-spi-w-swoim-lozku.md
+Roland Grzymość, 180929-dwa-tygodnie-szkoly.md
+Napoleon Bankierz, 180929-dwa-tygodnie-szkoly.md
+Ignacy Myrczek, 180929-dwa-tygodnie-szkoly.md
+Arnulf Poważny, 180929-dwa-tygodnie-szkoly.md
+
+
