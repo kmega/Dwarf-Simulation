@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Tales.cybermagic.Tales
 {
-    class Tale
+    public class Tale
     {
+        public string Title { get; set; }
     }
 }

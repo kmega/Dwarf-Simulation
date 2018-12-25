@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 
 namespace Tales
 {
-    class TextParser
+    public class TextParser
     {
         public string ExtractTimeToCreate(string text)
         {
@@ -24,6 +24,12 @@ namespace Tales
         {
             return SafelyExtractSingleElement(
                 @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
+        }
+
+        public string ExtractTaleTitle(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"title: ""([\w\s] +)""", text);
         }
 
         private string SafelyExtractSingleElement(string pattern, string text)

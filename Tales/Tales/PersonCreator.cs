@@ -4,7 +4,7 @@ using Tales.Persons;
 
 namespace Tales
 {
-    class PersonCreator
+    public class PersonCreator
     {
 
         public TextParser TextParser { get; set; }
@@ -28,7 +28,7 @@ namespace Tales
         {
 
             string text = $"{person.Name} był budowany przez {person.CreationTime}";
-            File.WriteAllText(Environment.CurrentDirectory+"/"+person.Name+".txt"
+             File.WriteAllText(Environment.CurrentDirectory+"/"+person.Name+".txt"
                 ,text);
 
        }

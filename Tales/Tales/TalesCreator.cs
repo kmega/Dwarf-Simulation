@@ -2,11 +2,12 @@
 
 namespace Tales
 {
-    internal class TalesCreator
+    public class TalesCreator
     {
+        public TextParser TextParser { get; private set; }
         public TalesCreator(TextParser textParser)
         {
-
+            TextParser = textParser;
         }
 
         public Tale CreateTaleFromFile(string s)
