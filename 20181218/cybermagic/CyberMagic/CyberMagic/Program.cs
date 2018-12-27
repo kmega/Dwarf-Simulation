@@ -35,8 +35,8 @@ namespace CyberMagic
             //Task 5
 
             //1. plik z komendami -> Pobranie komend -> komendy
-            string komendy = "1, 2 ,3, 4";
-            string[] commands = Regex.Split(komendy, @"[^\d]+");
+            string commandfile = new ReadFile().readFile("kalarepa.txt");
+            string[] commands = Regex.Split(commandfile, @"[^\d]+");
 
             StreamWriter srtask = new StreamWriter("resulttask5.txt");
 
@@ -48,7 +48,7 @@ namespace CyberMagic
                     case "1":
                         time = tp.ExtractTimeToCreate(new ReadFile().readFile(path));
                         name = tp.ExtractProfileName(new ReadFile().readFile(path));
-                        toWrite = (name + " był budowany " + time + " minut +");
+                        toWrite = (name + " był budowany " + time + " minut\n\n");
                         new WriteFile().writeFile(toWrite, srtask);
                         Console.WriteLine(toWrite);
 
@@ -60,7 +60,7 @@ namespace CyberMagic
                         break;
 
                     case "2":
-                        toWrite = "Czas budowania wszystkich postaci wynosi " + new GetBuiltTime().alltime(allcharacterscards).Sum() + " minut";
+                        toWrite = "Czas budowania wszystkich postaci wynosi " + new GetBuiltTime().alltime(allcharacterscards).Sum() + " minutt\n\n";
                         Console.WriteLine(toWrite);
                         new WriteFile().writeFile(toWrite, srtask);
 
@@ -79,16 +79,18 @@ namespace CyberMagic
                             "\nŚredni czas budowania postaci wynosi: " + avergetime + " minut" +
                             "\nUwzględniając powyższe, postacie do tej pory budowane były najpewniej " +
                            ((avergetime * (new GetCharactersWithoutTime().charactersWithoutTime(allcharacterscards).Count - 1))
-                        + alltime) + " minut");
+                        + alltime) + " minut\n\n");
                         Console.WriteLine(toWrite);
                         new WriteFile().writeFile(toWrite, srtask);
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
                         break;
 
                     case "4": 
-                        //Task 4
-                        Console.WriteLine();
-                        Console.WriteLine();
-                        Console.WriteLine();
+                       
+                    
                         //1.Załadowanie opowieści -> lista z opowieściami
                         //2.Wyszukiwanie tych które zawierają Magdę(lista z opowieściami)
                         //3. Zapis do pliku
@@ -98,7 +100,14 @@ namespace CyberMagic
                         toWrite = new MagdaDetector().magdaDetector(allstories);
                         Console.WriteLine(toWrite);
                         new WriteFile().writeFile(toWrite, srtask);
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
                         break;
+
+                    default:
+                        continue;
 
 
 
