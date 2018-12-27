@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterEncounterCounter.cs" />
     <Compile Include="GetBuiltTime.cs" />
     <Compile Include="GetCharactersWithoutTime.cs" />
     <Compile Include="MagdaDetector.cs" />
@@ -50,7 +51,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadFile.cs" />
     <Compile Include="TextParser.cs" />
-    <Compile Include="WriteFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

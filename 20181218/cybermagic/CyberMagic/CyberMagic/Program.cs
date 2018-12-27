@@ -31,6 +31,7 @@ namespace CyberMagic
 
 
             List<string> allcharacterscards = new List<string>(new ReadFile().readManyFiles(path2));
+            List<string> allstories = new List<string>(new ReadFile().readManyFiles(path3));
 
             //Task 5
 
@@ -38,18 +39,19 @@ namespace CyberMagic
             string commandfile = new ReadFile().readFile("kalarepa.txt");
             string[] commands = Regex.Split(commandfile, @"[^\d]+");
 
-            StreamWriter srtask = new StreamWriter("resulttask5.txt");
+            StreamWriter srtask = new StreamWriter("resulttasks.txt");
 
             foreach (var item in commands)
             {
-                
-                switch (item) {
+
+                switch (item)
+                {
 
                     case "1":
                         time = tp.ExtractTimeToCreate(new ReadFile().readFile(path));
                         name = tp.ExtractProfileName(new ReadFile().readFile(path));
                         toWrite = (name + " był budowany " + time + " minut\n\n");
-                        new WriteFile().writeFile(toWrite, srtask);
+                        srtask.WriteLine(toWrite);
                         Console.WriteLine(toWrite);
 
 
@@ -62,7 +64,7 @@ namespace CyberMagic
                     case "2":
                         toWrite = "Czas budowania wszystkich postaci wynosi " + new GetBuiltTime().alltime(allcharacterscards).Sum() + " minutt\n\n";
                         Console.WriteLine(toWrite);
-                        new WriteFile().writeFile(toWrite, srtask);
+                        srtask.WriteLine(toWrite);
 
                         Console.WriteLine();
                         Console.WriteLine();
@@ -81,30 +83,39 @@ namespace CyberMagic
                            ((avergetime * (new GetCharactersWithoutTime().charactersWithoutTime(allcharacterscards).Count - 1))
                         + alltime) + " minut\n\n");
                         Console.WriteLine(toWrite);
-                        new WriteFile().writeFile(toWrite, srtask);
+                        srtask.WriteLine(toWrite);
 
                         Console.WriteLine();
                         Console.WriteLine();
                         Console.WriteLine();
                         break;
 
-                    case "4": 
-                       
-                    
+                    case "4":
+
+
                         //1.Załadowanie opowieści -> lista z opowieściami
                         //2.Wyszukiwanie tych które zawierają Magdę(lista z opowieściami)
                         //3. Zapis do pliku
 
-                        List<string> allstories = new List<string>(new ReadFile().readManyFiles(path3));
+
 
                         toWrite = new MagdaDetector().magdaDetector(allstories);
                         Console.WriteLine(toWrite);
-                        new WriteFile().writeFile(toWrite, srtask);
+                        srtask.WriteLine(toWrite);
 
                         Console.WriteLine();
                         Console.WriteLine();
                         Console.WriteLine();
                         break;
+
+
+                    case "6":
+
+                        toWrite = new CharacterEncounterCounter().KalinaMeetList(allstories);
+                        Console.WriteLine(toWrite);
+                        srtask.WriteLine(toWrite);
+                        break;
+
 
                     default:
                         continue;

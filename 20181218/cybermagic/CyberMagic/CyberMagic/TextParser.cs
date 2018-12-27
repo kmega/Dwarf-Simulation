@@ -14,7 +14,7 @@ namespace VivaRegex
                 @"\((\d\d) min.*\)", text);
         }
 
-        public string ExtractCommandNumbers (string text)
+        public string ExtractCommandNumbers(string text)
         {
             return SafelyExtractSingleElement(
                 @"\d+", text);
@@ -29,6 +29,17 @@ namespace VivaRegex
         {
             return SafelyExtractSingleElement(
                 @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
+        }
+
+        public string ExtractMerit(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"# Zas.ugi\s+(.+?)# ", text);
+        }
+        public string ExtractCharacterFromMerit(string text)
+        {
+            return SafelyExtractManyElement(
+                @"^\* (\w+ \w+):", text);
         }
 
         public string ExtrakctTitle(string text)
@@ -51,5 +62,21 @@ namespace VivaRegex
             if (allResults.Count > 0) return allResults.First();
             else return string.Empty;
         }
+
+        private string SafelyExtractManyElement(string pattern, string text)
+        {
+            MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)
+                .Matches(text);
+
+            List<string> allResults = new List<string>();
+            foreach (Match match in matches)
+            {
+                allResults.Add(match.Groups[1].Value);
+            }
+
+            if (allResults.Count > 0) return String.Join(",", allResults);
+            else return string.Empty;
+        }
     }
-} 
+}
+

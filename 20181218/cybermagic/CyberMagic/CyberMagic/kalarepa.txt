@@ -1,1 +1,1 @@
-kalarepa, 3,absss 1,2, 4
+kalarepa, 3,absss 1,2, 4, 6
