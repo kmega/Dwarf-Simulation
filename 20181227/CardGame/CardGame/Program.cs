@@ -22,11 +22,14 @@ namespace CardGame
             Console.WriteLine("Witaj w grze w karty. Podaj siłę ręki: \n1 - Słaba \n2 - Średnia \n3 - Silna");
             string choice = Console.ReadLine();
             new HandStrenght().GetHandStrenght(bet,choice);
-            Console.WriteLine(" Podaj poziom trudności zakładu: \n1 - Łatwy \n 2 - Średni \n 3 - Trudny");
+            Console.WriteLine(" Podaj poziom trudności zakładu: \n1 - Łatwy \n2 - Średni \n3 - Trudny");
             choice = Console.ReadLine();
+            Console.WriteLine();
             new DifficultLevel().GetDifficultLevel(bet,choice);
             List<Cards> pool = new Croupier().CreatePool(bet);
+            Console.WriteLine();
             string result = new Result().GetResult(pool);
+            Console.WriteLine();
             Console.WriteLine(result);
 
             

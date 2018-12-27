@@ -8,6 +8,7 @@ namespace CardGame
         public string GetResult(List<Cards> cards)
 
         {
+            Console.WriteLine("Wylosujemy dwie karty z twojej puli.\n\n");
             Random rnd = new Random();
             int result = 0;
 
@@ -16,7 +17,8 @@ namespace CardGame
                 int r = rnd.Next(cards.Count);
 
                 result += cards[r-1].value;
-                cards.RemoveAt(r);
+                Console.WriteLine("Wylosowano: {0}", cards[r-1].type);
+                cards.RemoveAt(r-1);
 
             }
             if (result > 0)

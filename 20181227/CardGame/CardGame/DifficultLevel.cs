@@ -32,6 +32,12 @@ namespace CardGame
                     break;
 
                 }
+
+            Console.WriteLine("Twoja ręka to:");
+            foreach (var item in bet)
+            {
+                Console.WriteLine(item.Key + " x " + item.Value);
+            }
             }
     }
 }
