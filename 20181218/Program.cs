@@ -1,7 +1,9 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
 using VivaRegex;
+using System.Text;
+using System.Timers;
 
 namespace regexy
 {
@@ -23,7 +25,6 @@ namespace regexy
             stringToFileResult_1 = string.Format("{0}, był budowany {1} minuty", contentOneFileName, contentOneFileTime);
             File.WriteAllText(resultfile_1, stringToFileResult_1);
             
-
             // ZAD 2
             string resultfile_2 = "result-2.txt";
             string stringToFileResult_2;
@@ -31,53 +32,70 @@ namespace regexy
             string sumOfAllMinutes = createSumOfTime(listOfFieles).ToString();
             int minutesInt = int.Parse(sumOfAllMinutes);
             decimal minutesDecimal = decimal.Parse(sumOfAllMinutes);
-            
-            
+                   
             stringToFileResult_2 = string.Format("Wszystkie postacie do tej pory budowane były {0} godzin {1} minuty",
                                                     minutesInt/60, minutesDecimal%60);
             File.WriteAllText(resultfile_2, stringToFileResult_2);
 
-
             // ZAD 3
-            List<string> extractTime = new List<string>();
-            foreach (string line in listOfFieles)
+            string resultfile_3 = "result-3.txt";
+            string stringToFileResult_3_1;
+            string stringToFileResult_3_2;
+            List<string> charactersWithoutTime = new List<string>(getContentAllFiles(sourceDirectory));
+            List<string> countWithoutEmptyLines = new List<string>(extractCharactersWithoutTime(charactersWithoutTime));
+            
+            string numberOfminutes = extractCharactersWithoutTime(charactersWithoutTime).Count.ToString();
+            
+            int countPersonWithoutTime = 0;
+            foreach(string i in countWithoutEmptyLines)
             {
-                string a = File.ReadAllText(line);
-                string b = textParser.ExtractTimeToCreate(a);
-                if (b != string.Empty) 
+                if (i != string.Empty)
                 {
-                    extractTime.Add(b);
+                    countPersonWithoutTime ++;
                 }
             }
-            string resultfile_3 = "result-3.txt";
-            string stringToFileResult_3;
-            string numberOfminutes = extractTime.Count.ToString();
+                        
             int numbOfminutes = int.Parse(numberOfminutes);
             int avgTime = minutesInt/numbOfminutes;
-            
-            stringToFileResult_3 = string.Format("średni czas budowania postaci wynosi {0} minut",
-                                                 avgTime.ToString());
-            File.WriteAllText(resultfile_3, stringToFileResult_3);
 
-            
+            //save to file characters without given time
+            System.IO.File.AppendAllLines(resultfile_3, extractCharactersWithoutTime(charactersWithoutTime));
+            stringToFileResult_3_1 = string.Format("średni czas budowania postaci z podanym czasem wynosi: {0} minut",
+                                                 avgTime.ToString());
+            File.AppendAllText(resultfile_3, stringToFileResult_3_1 + Environment.NewLine);
+
+            //average time of building character without given time
+            int avgTimeWithoutGivenTime = countPersonWithoutTime * avgTime;
+            var timeSpan = TimeSpan.FromMinutes(avgTimeWithoutGivenTime);
+            int hh = timeSpan.Hours;
+            int mm = timeSpan.Minutes;
+
+            stringToFileResult_3_2 = string.Format("Postacie bez podanego czasu najpewniej były budowane {0} godzin i {1} minut",
+                                 hh, mm);
+            File.AppendAllText(resultfile_3, stringToFileResult_3_2 + Environment.NewLine);
+        
         }
 
         // -------- METHODS ---------------------
 
-        // extract time form all files
-    /*    public static List<string> extractTimeFromAllFiles(List<string> getContentAllFiles)
+        // extract characters without time
+        public static List<string> extractCharactersWithoutTime(List<string> getContentAllFiles)
         {
             TextParser textParser = new TextParser();
-            List<string> extractTime = new List<string>();
+            List<string> extCharactersWithoutTime = new List<string>();
             foreach(string i in getContentAllFiles)
             {
                 string a = File.ReadAllText(i);
                 string b = textParser.ExtractTimeToCreate(a);
-                extractTime.Add(b);
+                string c = textParser.ExtractProfileName(a);
+                if (b == string.Empty)
+                {
+                    extCharactersWithoutTime.Add(c);
+                }
             }
-            return extractTime;
+            return extCharactersWithoutTime;
         }
-    */
+
         // create sum of time
         public static int createSumOfTime(List<string> listOfFieles)
         {
@@ -98,11 +116,12 @@ namespace regexy
         // get files from directory
         public static List<string> getContentAllFiles(string sourceDirectory)
         {
-            List<string> listOfFieles = new List<string>(Directory.GetFiles(sourceDirectory, "*.md"));
+            List<string> listOfFieles = new List<string>(Directory.GetFiles (sourceDirectory, "*.md"));
             List<string> contentOfAllFiles = new List<string>();
             foreach(string i in listOfFieles)
             {
                 string a = File.ReadAllText(i);
+                
                 contentOfAllFiles.Add(i);
             }
             return contentOfAllFiles;
@@ -118,5 +137,3 @@ namespace regexy
          
     }
 }
-
-
