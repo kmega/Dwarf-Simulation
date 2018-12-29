@@ -91,7 +91,7 @@ namespace regExApp.Domena
         public void UserDecisionReader()
         {
             TextParser reader = new TextParser();
-            string userDecision = "1,2,3kot4";
+            string userDecision = Console.ReadLine();
             var userDigit = reader.AnalyseUserImput(userDecision);
             int i = 5;
 

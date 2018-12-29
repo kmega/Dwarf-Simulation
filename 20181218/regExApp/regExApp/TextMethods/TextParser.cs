@@ -11,7 +11,7 @@ namespace regExApp.TextMethods
         public string AnalyseUserImput(string text)
         {
             return SafelyExtractSingleElement(
-                @"\d", text);
+                @"\d+", text);
         }
 
         public string ExtractTimeToCreate(string text)
