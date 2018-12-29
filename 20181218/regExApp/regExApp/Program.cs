@@ -3,60 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-using System.Text.RegularExpressions;
+using regExApp.Domena;
 
 namespace regExApp
 {
     class Program
     {
-        public class TextParser
-        {
-            public string AnalyseUserImput(string text)
-            {
-                return SafelyExtractSingleElement(
-                    @"\d+", text);
-            }
-
-            public string ExtractTimeToCreate(string text)
-            {
-                return SafelyExtractSingleElement(
-                    @"\((\d\d) min.*\)", text);
-            }
-
-            public string ExtractProfileCharacterName(string text)
-            {
-                return SafelyExtractSingleElement(
-                    @"title: +""([\w\s]+)""", text);
-            }
-
-            public string ExtractProfileStoryName(string text)
-            {
-                return SafelyExtractSingleElement(
-                    @"title: ""((\w+ *){2,4})""", text);
-            }
-
-            public string ExtractStuffWithMagda(string text)
-            {
-                return SafelyExtractSingleElement(
-                    @"# Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
-            }
-
-            private string SafelyExtractSingleElement(string pattern, string text)
-            {
-                MatchCollection matches = new Regex(pattern, RegexOptions.Multiline | RegexOptions.Singleline)
-                    .Matches(text);
-
-                List<string> allResults = new List<string>();
-                foreach (Match match in matches)
-                {
-                    allResults.Add(match.Groups[1].Value);
-                }
-
-                if (allResults.Count > 0) return allResults.First();
-                else return string.Empty;
-            }
-        }
+        
 
         static void Main(string[] args)
         {/*
@@ -121,149 +74,16 @@ namespace regExApp
             string pathToSaveTask_4 = "result4.txt";
             File.WriteAllLines(pathToSaveTask_4, magdaPatirilFiles);
             */
+
+            Tasks task = new Tasks();
+            task.UserDecisionReader();
+            task.Task_1();
+            task.Task_2();
+            task.Task_3();
+            task.Task_4();
+
         }
 
-        private static List<string> FindMagdaPatiril(List<string> contentOFileNames)
-        {
-            List<string> storiesWithMagda = new List<string>();
-            int i = 0;
-
-            TextParser reader = new TextParser();
-            foreach (string file in contentOFileNames)
-            {
-                if (reader.ExtractStuffWithMagda(file) != "")
-                {
-                    storiesWithMagda.Add(reader.ExtractProfileCharacterName(contentOFileNames[i]));
-                }
-
-                i++;
-            }
-
-            return storiesWithMagda;
-        }
-
-        private static int AvgTime(int sum, int amount)
-        {
-            int avg = sum / amount;
-            return avg;
-        }
-
-        private static int AmountOfCharactersWithoutTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
-        {
-            int charsWithGivenTime;
-            int emptyCounter = 0;
-            int i = 0;
-            List<string> emptyCharactersNames = new List<string>();
-
-            foreach (string time in timesOfCreatingCharacters)
-            {
-                if (fileNames[i] == "1807-_template.md") { continue; }
-
-                bool intOrString = Int32.TryParse(time, out charsWithGivenTime);
-
-                if (intOrString == false){ emptyCounter++; }
-
-                i++;
-            }
-
-            return emptyCounter;
-        }
-
-        private static int CharactersWithGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames)
-        {
-            int chars = 0;
-            int charsWithGivenTime = 0;
-            List<string> emptyCharactersNames = new List<string>();
-
-            foreach (string time in timesOfCreatingCharacters)
-            {
-                bool intOrString = Int32.TryParse(time, out chars);
-
-                if (intOrString == true)
-                {
-                    charsWithGivenTime++;
-                }
- 
-            }
-
-            return charsWithGivenTime;
-        }
-
-        private static List<string> CharactersWithoutGivenTime(List<string> timesOfCreatingCharacters, List<string> fileNames, List<string> contentOfFileNames)
-        {
-            int charsWithGivenTime;
-            int emptyCounter = 0;
-            int i = 0;
-            List<string> emptyCharactersNames = new List<string>();
-
-            TextParser reader = new TextParser();
-
-            foreach (string time in timesOfCreatingCharacters)
-            {
-                if (fileNames[i] == "1807-_template.md") { continue; }
-
-                bool intOrString = Int32.TryParse(time, out charsWithGivenTime);
-
-                if (intOrString == false)
-                {
-                    emptyCounter++;
-                    emptyCharactersNames.Add(reader.ExtractProfileCharacterName(contentOfFileNames[i]));
-                }
-
-                i++;
-            }
-
-
-            return emptyCharactersNames;
-        }
-
-        private static int SumAllTimes(List<string> timesOfCreatingCharacters)
-        {
-            int sumOfTimes = 0;
-            int intTime;
-            foreach(string time in timesOfCreatingCharacters)
-            {
-               Int32.TryParse(time, out intTime);
-               sumOfTimes += intTime;
-            }
-
-            return sumOfTimes;
-        }
-
-        private static List<string> GetMultiTimes(List<string> contentOFileNames)
-        {
-            List<string> allTimes = new List<string>();
-            foreach(string time in contentOFileNames)
-            {
-                if (time != "") { allTimes.Add(GetTimeFromFileContent(time)); };
-            }
-
-            return allTimes;
-        }
-
-        private static List<string> OpenMultiFiles(List<string> fileNames, string path)
-        {
-            List<string> contentOfAllFiles = new List<string>();
-            foreach(string file in fileNames)
-            {
-                contentOfAllFiles.Add(ReadFile(path + @"\" + file));
-            }
-
-            return contentOfAllFiles;
-        }
-
-        private static string GetTimeFromFileContent(string fileContent)
-        {
-            TextParser reader = new TextParser();
-
-            string time = reader.ExtractTimeToCreate(fileContent);
-            return time;
-        }
-
-        private static string ReadFile(string path)
-        {
-            string fileContent = File.ReadAllText(path);
-            return fileContent;
-        }
+        
     }
 }

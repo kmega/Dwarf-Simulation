@@ -91,10 +91,11 @@ namespace regExApp.Domena
         public void UserDecisionReader()
         {
             TextParser reader = new TextParser();
-            string userDecision = Console.ReadLine();
-            int userDigit = Int32.Parse(reader.AnalyseUserImput(userDecision));
+            string userDecision = "1,2,3kot4";
+            var userDigit = reader.AnalyseUserImput(userDecision);
+            int i = 5;
 
-            switch (userDigit)
+           /* switch (userDigit)
             {
                 case 1:
                     Task1();
@@ -108,7 +109,7 @@ namespace regExApp.Domena
                 case 4:
                     Task4();
                     break;
-            }
+            }*/
       
         }
 

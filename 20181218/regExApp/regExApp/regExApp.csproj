@@ -46,6 +46,7 @@
     <Compile Include="Domena\Tasks.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextMethods\TextParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="1807-fryderyk-komciur.md">
