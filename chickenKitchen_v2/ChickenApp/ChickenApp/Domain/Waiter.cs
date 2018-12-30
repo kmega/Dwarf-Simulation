@@ -28,36 +28,59 @@ namespace ChickenApp.Domain
             Dictionary<string, List<string>> allergiesOfCustomers = customer.CustomersAndAllergies();
             bool isAlergic = false;
 
-            string ingredientDish = GetIndgredientOutOfDish(orderedDish);
+            List<string> ingredientDish = GetIndgredientOutOfDish(orderedDish);
 
-            if (ingredientDish == "") Console.WriteLine("ERROR!");
+            if (ingredientDish == null) Console.WriteLine("ERROR!");
 
-            foreach ( string dishAlergens in allergensInFood[ingredientDish])
+            for (int i=0; i< ingredientDish.Count; i++)
             {
-                foreach (string customersAllergie in allergiesOfCustomers[name])
+                foreach (string dishAlergens in allergensInFood[ingredientDish[i]])
                 {
-                    if (dishAlergens == customersAllergie) { isAlergic = true; }
+                    foreach (string customersAllergie in allergiesOfCustomers[name])
+                    {
+                        if (dishAlergens == customersAllergie) { isAlergic = true; }
+                    }
                 }
             }
 
             return isAlergic;
         }
 
-        private string GetIndgredientOutOfDish(string orderedDish)
+
+        private List<string> GetIndgredientOutOfDish(string orderedDish)
+        {
+            List<string> foodFromIngredients = new List<string>();
+
+            foodFromIngredients = GetFoodOutOfDish(orderedDish);
+            int i = 0;
+            do
+            {
+                foreach ( string food in GetFoodOutOfDish(foodFromIngredients[i]))
+                {
+                    foodFromIngredients.Add(food);
+                }
+
+                i++;
+
+            } while (GetFoodOutOfDish(foodFromIngredients[i-1]) != null);
+
+            return foodFromIngredients;
+            
+        }
+
+        private List<string> GetFoodOutOfDish(string orderedDish)
         {
             Menu dishes = new Menu();
             Dictionary<string, List<string>> allergensInFood = dishes.FoodAndAllergens();
+            List<string> foodInsteadOfIngredients = new List<string>();
 
-            string dishIngredient = "";
-
-            foreach(string dish in allergensInFood[orderedDish])
+            foreach (string dish in allergensInFood[orderedDish])
             {
-                
-                if (allergensInFood.ContainsKey(dish)) { GetIndgredientOutOfDish(dish); }
-                else { dishIngredient = dish; }
+                if (allergensInFood.ContainsKey(dish)) { foodInsteadOfIngredients.Add(dish); }
+
             }
 
-            return dishIngredient;
+            return foodInsteadOfIngredients;
         }
     }
 }
