@@ -52,18 +52,15 @@ namespace ChickenApp.Domain
             List<string> foodFromIngredients = new List<string>();
 
             foodFromIngredients = GetFoodOutOfDish(orderedDish);
-            int i = 0;
-            do
+
+            for (int i = 0; i<foodFromIngredients.Count;i++)
             {
-                foreach ( string food in GetFoodOutOfDish(foodFromIngredients[i]))
+                foreach (string food in GetFoodOutOfDish(foodFromIngredients[i]))
                 {
                     foodFromIngredients.Add(food);
                 }
-
-                i++;
-
-            } while (GetFoodOutOfDish(foodFromIngredients[i-1]) != null);
-
+            }
+                
             return foodFromIngredients;
             
         }
