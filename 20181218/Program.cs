@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 using VivaRegex;
@@ -13,6 +13,7 @@ namespace regexy
         {
             string sourceFile = "1807-fryderyk-komciur.md";
             string sourceDirectory = "cybermagic/karty-postaci/";
+            string sourceDirectoryOpowiesci = "cybermagic/opowiesci/";
 
             TextParser textParser = new TextParser();
 
@@ -73,11 +74,29 @@ namespace regexy
             stringToFileResult_3_2 = string.Format("Postacie bez podanego czasu najpewniej były budowane {0} godzin i {1} minut",
                                  hh, mm);
             File.AppendAllText(resultfile_3, stringToFileResult_3_2 + Environment.NewLine);
-        
+
+            // ZAD 4
+            string resultfile_4 = "result-4.txt";
+            List<string> listOfFilesOpowiesci = new List<string>(getContentFilesFromOpowiesci(sourceDirectoryOpowiesci));
+                       
+            string stories = "";
+            foreach(var y in listOfFilesOpowiesci)
+            {
+                if(File.ReadAllText(y).Contains("Magda Patiril"))
+                {
+                   stories += textParser.ExtractStoryWithMagda(File.ReadAllText(y)) +"\n";
+                }
+            }
+            string textTofile = string.Format("Magda Patiril występowała w nastepujących powieściach");
+            stringToFileResult_3_2 = string.Format("{0} ", stories);
+            File.WriteAllText(resultfile_4, textTofile + "\n");
+            File.AppendAllText(resultfile_4, stringToFileResult_3_2);
+            
         }
 
         // -------- METHODS ---------------------
 
+        
         // extract characters without time
         public static List<string> extractCharactersWithoutTime(List<string> getContentAllFiles)
         {
@@ -120,11 +139,23 @@ namespace regexy
             List<string> contentOfAllFiles = new List<string>();
             foreach(string i in listOfFieles)
             {
-                string a = File.ReadAllText(i);
-                
+                //string a = File.ReadAllText(i);
                 contentOfAllFiles.Add(i);
             }
             return contentOfAllFiles;
+        }
+
+        // get content files form Opowiesci
+        public static List<string> getContentFilesFromOpowiesci(string sourceDirectoryOpowiesci)
+        {
+            List<string> listFilesFromOpowiesci = new List<string>(Directory.GetFiles(sourceDirectoryOpowiesci, "*.md"));
+            List<string> contentFilesFromOpowiesci = new List<string>();
+            foreach(string i in listFilesFromOpowiesci)
+            {
+               // string a = File.ReadAllText(i);
+                contentFilesFromOpowiesci.Add(i);
+            }
+            return contentFilesFromOpowiesci;
         }
         
         // get content from one file
@@ -137,3 +168,4 @@ namespace regexy
          
     }
 }
+

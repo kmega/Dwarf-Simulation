@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +20,19 @@ namespace VivaRegex
                 @"title: ""(\w+ \w+)""", text);
         }
 
+        public string ExtractMagdaPatiril(string text)
+        {
+            return SafelyExtractSingleElement(
+                //@"# Zas.ugi.*?Magda Patiril.*?#", text);
+                @"#Zas.ugi.*?(Magda Patiril.*?)\*.*?#", text);
+            
+        }
+        public string ExtractStoryWithMagda(string text)
+        {
+            return SafelyExtractSingleElement(
+                @"title: +""([\w\s]+)""", text);
+        }
+
         private string SafelyExtractSingleElement(string pattern, string text)
         {
             MatchCollection matches = new Regex(pattern).Matches(text);
@@ -35,3 +48,4 @@ namespace VivaRegex
         }
     }
 }
+
