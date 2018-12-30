@@ -13,15 +13,42 @@ namespace CardsWar.GameEngine
             one = 1, two, three, four, five, six, seven, eight, nine, ten, jack, queen, king, ace
         }
 
-        private List<AllCards> deck = new List<AllCards>
-        {AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
-        AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace,
-        AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
-        AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace,
-        AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
-        AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace,
-        AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
-        AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace};
+        private List<AllCards> deck;
+
+        public Deck()
+        {
+            deck = new List<AllCards>
+            {
+             AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
+             AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace,
+             AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
+             AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace,
+             AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
+             AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace,
+             AllCards.one, AllCards.two, AllCards.three, AllCards.four, AllCards.five, AllCards.six, AllCards.seven,
+             AllCards.eight, AllCards.nine, AllCards.ten, AllCards.jack, AllCards.queen, AllCards.king, AllCards.ace
+            };
+
+        }
+
+        public (List<AllCards> firstHand, List<AllCards> secondHand) GenerateTwoHands(List<Deck.AllCards> shuffledCards)
+        {
+            List<AllCards> firstHand = new List<AllCards>();
+            List<AllCards> secondHand = new List<AllCards>();
+            for (int i = 0; i < shuffledCards.Count; i++)
+            {
+                if(i%2 == 0)  //If the index is even, add card to firstHand
+                {
+                    firstHand.Add(shuffledCards[i]);
+                }
+                else // If the index is odd, add card to secondHand
+                {
+                    secondHand.Add(shuffledCards[i]);
+                }
+            }
+
+            return (firstHand, secondHand);
+        }
 
         public List<AllCards> Shuffle()
         {
