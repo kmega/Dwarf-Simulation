@@ -16,6 +16,7 @@ namespace CardsWar.GameEngine
         public PlayersName Name { get; private set; }
         public List<Deck.AllCards> Hand { get; set; }
         public int Points { get; set; }
+        public List<Deck.AllCards> TempPool { get; set; }
 
         public Player()
         {
@@ -25,6 +26,12 @@ namespace CardsWar.GameEngine
         public Player(PlayersName name)
         {
             Name = name;
+            TempPool = new List<Deck.AllCards>();
+        }
+
+        public void DumpTempToHand()
+        {
+            Hand = TempPool.ToList();           
         }
     }
 }

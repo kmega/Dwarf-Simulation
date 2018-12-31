@@ -55,7 +55,7 @@ namespace CardsWar.GameEngine
             Random rnd = new Random();
 
             for (int i = 0; i < deck.Count; i++)
-            {               
+            {
                 var temp = deck[i];
                 int randomIndex = rnd.Next(0, deck.Count);
                 deck[i] = deck[randomIndex];
@@ -63,6 +63,19 @@ namespace CardsWar.GameEngine
             }
 
             return deck;
+        }
+        public static void Shuffle(List<AllCards> deckToShuffle)
+        {
+            Random rnd = new Random();
+
+            for (int i = 0; i < deckToShuffle.Count; i++)
+            {               
+                var temp = deckToShuffle[i];
+                int randomIndex = rnd.Next(0, deckToShuffle.Count);
+                deckToShuffle[i] = deckToShuffle[randomIndex];
+                deckToShuffle[randomIndex] = temp;
+            }
+
         }
     }
 }

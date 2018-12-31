@@ -49,6 +49,7 @@
     <Compile Include="GameEngine\Deck.cs" />
     <Compile Include="GameEngine\Game.cs" />
     <Compile Include="GameEngine\Player.cs" />
+    <Compile Include="GameEngine\Range.cs" />
     <Compile Include="GameEngine\War.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

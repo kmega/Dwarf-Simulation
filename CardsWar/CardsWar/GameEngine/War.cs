@@ -7,93 +7,173 @@ namespace CardsWar.GameEngine
     {
         public static Player Fight(Player firstPlayer, Player secondPlayer)
         {
-            List<Deck.AllCards> poolToBattle = new List<Deck.AllCards>();
+            List<Deck.AllCards> TempPool = new List<Deck.AllCards>();
+            Range range = new Range(28);
 
             while (firstPlayer.Hand.Count != 0 || secondPlayer.Hand.Count != 0)
             {
-                for (int i = 0; i < 28; i++)
+                //1. Shuffle hand one and hand two
+                Deck.Shuffle(firstPlayer.Hand);
+                Deck.Shuffle(secondPlayer.Hand);
+                firstPlayer.TempPool.Clear();
+                secondPlayer.TempPool.Clear();
+
+                if (firstPlayer.Hand.Count > secondPlayer.Hand.Count) range.max = secondPlayer.Hand.Count;
+                else if (secondPlayer.Hand.Count > firstPlayer.Hand.Count) range.max = firstPlayer.Hand.Count;
+                else range.max = 28;
+
+                //Doing battle until any hand contains any value
+                for (int i = 0; i < range.max;)
                 {
-                    //1. Do basic first battle, Compare firstPlayer card and secondPlayer card and return true if any player win or false if draw
-                    (bool result, List<Deck.AllCards> poolToBattleBasic, int indexCard) = BasicBattle(firstPlayer, secondPlayer, poolToBattle, i, false);
-
-                    //2 Do advanced battle if result false, until result is false
-                    if(result == false)
-                    {
-                        AdvancedBattle(result, firstPlayer, secondPlayer, poolToBattleBasic, indexCard);
-                    }
+                    //2. Do battle, Compare firstPlayer cards and secondPlayer cards 
+                    range.max -= BasicBattle(firstPlayer, secondPlayer, TempPool, i);
+                    TempPool.Clear();
                 }
-                
+
+                //3. Assign temps pools to first player hand and second player hand and clear temps
+                firstPlayer.DumpTempToHand();
+                secondPlayer.DumpTempToHand();               
             }
-            
 
-            return null;           
-        }
-
-        private static void AdvancedBattle(bool result, Player firstPlayer, Player secondPlayer, List<Deck.AllCards> poolToBattleBasic, int indexCard)
-        {
-            bool advancedLoop = true;
-            do
+            if (firstPlayer.Hand.Count == 0) return secondPlayer;
+            else if (secondPlayer.Hand.Count == 0) return firstPlayer;
+            else
             {
-
-                indexCard++;
-                (bool resultAdv, List<Deck.AllCards> poolToBattleAdv, int indexCardAdv) = BasicBattle(firstPlayer, secondPlayer, poolToBattleBasic, indexCard, advancedLoop);
-                result = resultAdv;
-
-
-            } while (result == false);
+                throw new Exception("Battle end not complete!");
+            }
         }
 
-        private static (bool result, List<Deck.AllCards> poolToBattleBasic, int indexCard) BasicBattle(Player firstPlayer, Player secondPlayer, List<Deck.AllCards> poolToBattleBasic, int indexCard, bool advancedLoop)
+        private static int BasicBattle(Player firstPlayer, Player secondPlayer, List<Deck.AllCards> TempPool, int indexCard)
         {
-
-                                          
+           
+            //If the first player win, add win cards to his temple pool, and remove war cards from hands                       
             if (firstPlayer.Hand[indexCard] > secondPlayer.Hand[indexCard])
             {
-                if (advancedLoop)
-                {
-                    poolToBattleBasic.Add(firstPlayer.Hand[indexCard]);
-                    poolToBattleBasic.Add(secondPlayer.Hand[indexCard]);
-                }
-                
-
-                else
-                {
-                    poolToBattleBasic.Clear();
-                    poolToBattleBasic.Add(secondPlayer.Hand[indexCard]);
-                }
-                
-                secondPlayer.Hand.RemoveAt(indexCard);                 
-                firstPlayer.Hand.InsertRange(0, poolToBattleBasic); //Add cards to first position in list
+                //Add point to first player
                 firstPlayer.Points++;
-                return (true, null, indexCard);
+
+                //Add war cards to temp pool
+                TempPool.Add(firstPlayer.Hand[indexCard]);
+                TempPool.Add(secondPlayer.Hand[indexCard]);
+
+                //Add temp pool to temp pool first player
+                firstPlayer.TempPool.AddRange(TempPool);
+
+                //Remowe war cards from both hands
+                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
+                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
+
+                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
+                return TempPool.Count/2;
             }
             else if(secondPlayer.Hand[indexCard] > firstPlayer.Hand[indexCard])
             {
-                if (advancedLoop)
-                {
-                    poolToBattleBasic.Add(firstPlayer.Hand[indexCard]);
-                    poolToBattleBasic.Add(secondPlayer.Hand[indexCard]);
-                }
+                //Add point to first player
+                secondPlayer.Points++;
+
+                //Add war cards to temp pool
+                TempPool.Add(firstPlayer.Hand[indexCard]);
+                TempPool.Add(secondPlayer.Hand[indexCard]);
+
+                //Add temp pool to temp pool second player
+                secondPlayer.TempPool.AddRange(TempPool);
+
+                //Remove war cards from both hands
+                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
+                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
+
+                //Safe modify pools
+                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
+                return TempPool.Count/2;
+            }
+            else if(firstPlayer.Hand[indexCard] == secondPlayer.Hand[indexCard] )
+            {
+                
+                //Add war cards to temp pool
+                TempPool.Add(firstPlayer.Hand[indexCard]);
+                TempPool.Add(secondPlayer.Hand[indexCard]);
+
+
+                //Remove war cards from both hands
+                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
+                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
+
+                //Safe modify pools if hand is empty
+                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
                 
 
-                else
-                {
-                    poolToBattleBasic.Clear();
-                    poolToBattleBasic.Add(firstPlayer.Hand[indexCard]);
-                }
+                //Add hidden cards to temp pool
+                indexCard++;
+                //Safe modify pools if it is last card
+                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
+                TempPool.Add(firstPlayer.Hand[indexCard]);
+                TempPool.Add(secondPlayer.Hand[indexCard]);
 
-                firstPlayer.Hand.RemoveAt(indexCard);
-                secondPlayer.Hand.InsertRange(0, poolToBattleBasic); //Add cards to first position in list
-                secondPlayer.Points++;
-                return (true, null, indexCard);
+                //Remove hidden cards from both hands
+                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
+                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
+
+                
+
+                //Do Battle again
+                indexCard++;
+                BasicBattle(firstPlayer, secondPlayer,TempPool, 0);
+
+                return TempPool.Count/2;
             }
             else
-            {             
-                poolToBattleBasic.Add(firstPlayer.Hand[indexCard]);
-                poolToBattleBasic.Add(secondPlayer.Hand[indexCard]);
-                indexCard++;
+            {
+                throw new Exception();
+            }
+        }
 
-                return (false, poolToBattleBasic, indexCard); // It mean that is draw and game need advanced battle
+        private static int SafeModifyPools(Player firstPlayer, Player secondPlayer, int indexCard)
+        {
+            //If both players have last card 
+            if (firstPlayer.Hand.Count == 0 && secondPlayer.Hand.Count == 0)
+            {
+                firstPlayer.DumpTempToHand();
+                secondPlayer.DumpTempToHand();
+
+                Deck.Shuffle(firstPlayer.Hand);
+                Deck.Shuffle(secondPlayer.Hand);
+
+                firstPlayer.DumpTempToHand();
+                secondPlayer.DumpTempToHand();
+
+                return -1;
+            }
+            //If is last card first player
+            else if (firstPlayer.Hand.Count == 0)
+            {
+                firstPlayer.DumpTempToHand();
+                secondPlayer.Hand.AddRange(secondPlayer.TempPool);
+                secondPlayer.TempPool.Clear();
+
+                Deck.Shuffle(firstPlayer.Hand);
+                Deck.Shuffle(secondPlayer.Hand);
+
+                firstPlayer.DumpTempToHand();
+                secondPlayer.DumpTempToHand();
+                return -1;
+            }
+            //if is last card second player
+            else if (firstPlayer.Hand.Count == 0)
+            {
+                secondPlayer.DumpTempToHand();
+                firstPlayer.Hand.AddRange(firstPlayer.TempPool);
+                firstPlayer.TempPool.Clear();
+
+                Deck.Shuffle(firstPlayer.Hand);
+                Deck.Shuffle(secondPlayer.Hand);
+
+                firstPlayer.DumpTempToHand();
+                secondPlayer.DumpTempToHand();
+                return -1;
+            }
+            else
+            {
+                return indexCard;
             }
         }
     }
