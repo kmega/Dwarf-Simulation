@@ -1,9 +1,10 @@
-using System;
+﻿using System;
 using System.IO;
 using System.Collections.Generic;
-using VivaRegex;
 using System.Text;
 using System.Timers;
+using VivaRegex;
+using Methods;
 
 namespace regexy
 {
@@ -11,41 +12,73 @@ namespace regexy
     {
         static void Main(string[] args)
         {
-            string sourceFile = "1807-fryderyk-komciur.md";
-            string sourceDirectory = "cybermagic/karty-postaci/";
-            string sourceDirectoryOpowiesci = "cybermagic/opowiesci/";
+            Console.WriteLine("Choose Task: 1, 2, 3, 4");
+            int choose = int.Parse(Console.ReadLine());
+            switch (choose)
+            {
+                case 1:
+                {
+                    Task1();
+                    break;
+                }
+                case 2:
+                {
+                    Task2();
+                    break;
+                }
+                case 3:
+                {
+                    Task3();
+                    break;
+                }
+                case 4:
+                {
+                    Task4();
+                    break;
+                }
+            }
+            
+        }
+            
 
-            TextParser textParser = new TextParser();
-
-             // ZAD 1   
+             // ZAD 1 
+        public static void Task1()
+        {
+            string sourceFile = "1807-fryderyk-komciur.md";  
             string resultfile_1 = "result-1.txt";
             string stringToFileResult_1;
-            string contentOneFile = getContentOneFile(sourceFile);
-            string contentOneFileName = textParser.ExtractProfileName(contentOneFile);
-            string contentOneFileTime = textParser.ExtractTimeToCreate(contentOneFile);
+            string contentOneFile = MethodsToTasks.getContentOneFile(sourceFile);
+            string contentOneFileName = new TextParser().ExtractProfileName(contentOneFile);
+            string contentOneFileTime = new TextParser().ExtractTimeToCreate(contentOneFile);
             stringToFileResult_1 = string.Format("{0}, był budowany {1} minuty", contentOneFileName, contentOneFileTime);
             File.WriteAllText(resultfile_1, stringToFileResult_1);
-            
+        }    
             // ZAD 2
+        public static void Task2()
+        {
+            string sourceDirectory = "cybermagic/karty-postaci/";
             string resultfile_2 = "result-2.txt";
             string stringToFileResult_2;
-            List<string> listOfFieles = new List<string>(getContentAllFiles(sourceDirectory));
-            string sumOfAllMinutes = createSumOfTime(listOfFieles).ToString();
+            List<string> listOfFieles = new List<string>(MethodsToTasks.getContentAllFiles(sourceDirectory));
+            string sumOfAllMinutes = MethodsToTasks.createSumOfTime(listOfFieles).ToString();
             int minutesInt = int.Parse(sumOfAllMinutes);
             decimal minutesDecimal = decimal.Parse(sumOfAllMinutes);
                    
             stringToFileResult_2 = string.Format("Wszystkie postacie do tej pory budowane były {0} godzin {1} minuty",
                                                     minutesInt/60, minutesDecimal%60);
             File.WriteAllText(resultfile_2, stringToFileResult_2);
-
+        }
             // ZAD 3
+        public static void Task3()
+        {
+            string sourceDirectory = "cybermagic/karty-postaci/";
             string resultfile_3 = "result-3.txt";
             string stringToFileResult_3_1;
             string stringToFileResult_3_2;
-            List<string> charactersWithoutTime = new List<string>(getContentAllFiles(sourceDirectory));
-            List<string> countWithoutEmptyLines = new List<string>(extractCharactersWithoutTime(charactersWithoutTime));
+            List<string> charactersWithoutTime = new List<string>(MethodsToTasks.getContentAllFiles(sourceDirectory));
+            List<string> countWithoutEmptyLines = new List<string>(MethodsToTasks.extractCharactersWithoutTime(charactersWithoutTime));
             
-            string numberOfminutes = extractCharactersWithoutTime(charactersWithoutTime).Count.ToString();
+            string numberOfminutes = MethodsToTasks.extractCharactersWithoutTime(charactersWithoutTime).Count.ToString();
             
             int countPersonWithoutTime = 0;
             foreach(string i in countWithoutEmptyLines)
@@ -55,12 +88,16 @@ namespace regexy
                     countPersonWithoutTime ++;
                 }
             }
-                        
+            //--------- dubel - do optymalizacji
+            List<string> listOfFieles = new List<string>(MethodsToTasks.getContentAllFiles(sourceDirectory));
+            string sumOfAllMinutes = MethodsToTasks.createSumOfTime(listOfFieles).ToString();
+            int minutesInt = int.Parse(sumOfAllMinutes);
+
             int numbOfminutes = int.Parse(numberOfminutes);
             int avgTime = minutesInt/numbOfminutes;
 
             //save to file characters without given time
-            System.IO.File.AppendAllLines(resultfile_3, extractCharactersWithoutTime(charactersWithoutTime));
+            System.IO.File.AppendAllLines(resultfile_3, MethodsToTasks.extractCharactersWithoutTime(charactersWithoutTime));
             stringToFileResult_3_1 = string.Format("średni czas budowania postaci z podanym czasem wynosi: {0} minut",
                                                  avgTime.ToString());
             File.AppendAllText(resultfile_3, stringToFileResult_3_1 + Environment.NewLine);
@@ -74,10 +111,15 @@ namespace regexy
             stringToFileResult_3_2 = string.Format("Postacie bez podanego czasu najpewniej były budowane {0} godzin i {1} minut",
                                  hh, mm);
             File.AppendAllText(resultfile_3, stringToFileResult_3_2 + Environment.NewLine);
-
+        }
             // ZAD 4
+        public static void Task4()
+        {
+            string stringToFileResult;
+            TextParser textParser = new TextParser();
+            string sourceDirectoryOpowiesci = "cybermagic/opowiesci/";
             string resultfile_4 = "result-4.txt";
-            List<string> listOfFilesOpowiesci = new List<string>(getContentFilesFromOpowiesci(sourceDirectoryOpowiesci));
+            List<string> listOfFilesOpowiesci = new List<string>(MethodsToTasks.getContentFilesFromOpowiesci(sourceDirectoryOpowiesci));
                        
             string stories = "";
             foreach(var y in listOfFilesOpowiesci)
@@ -88,84 +130,11 @@ namespace regexy
                 }
             }
             string textTofile = string.Format("Magda Patiril występowała w nastepujących powieściach");
-            stringToFileResult_3_2 = string.Format("{0} ", stories);
+            stringToFileResult = string.Format("{0} ", stories);
             File.WriteAllText(resultfile_4, textTofile + "\n");
-            File.AppendAllText(resultfile_4, stringToFileResult_3_2);
+            File.AppendAllText(resultfile_4, stringToFileResult);
+        }
             
-        }
-
-        // -------- METHODS ---------------------
-
         
-        // extract characters without time
-        public static List<string> extractCharactersWithoutTime(List<string> getContentAllFiles)
-        {
-            TextParser textParser = new TextParser();
-            List<string> extCharactersWithoutTime = new List<string>();
-            foreach(string i in getContentAllFiles)
-            {
-                string a = File.ReadAllText(i);
-                string b = textParser.ExtractTimeToCreate(a);
-                string c = textParser.ExtractProfileName(a);
-                if (b == string.Empty)
-                {
-                    extCharactersWithoutTime.Add(c);
-                }
-            }
-            return extCharactersWithoutTime;
-        }
-
-        // create sum of time
-        public static int createSumOfTime(List<string> listOfFieles)
-        {
-            TextParser textParser = new TextParser();
-            int a;
-            int sumOfAllMinutes = 0;
-            
-            foreach (string i in listOfFieles)
-            {
-                string b = File.ReadAllText(i);
-                string c = textParser.ExtractTimeToCreate(b);
-                Int32.TryParse(c, out a);
-                sumOfAllMinutes += a;
-            }
-            return sumOfAllMinutes;
-        } 
-
-        // get files from directory
-        public static List<string> getContentAllFiles(string sourceDirectory)
-        {
-            List<string> listOfFieles = new List<string>(Directory.GetFiles (sourceDirectory, "*.md"));
-            List<string> contentOfAllFiles = new List<string>();
-            foreach(string i in listOfFieles)
-            {
-                //string a = File.ReadAllText(i);
-                contentOfAllFiles.Add(i);
-            }
-            return contentOfAllFiles;
-        }
-
-        // get content files form Opowiesci
-        public static List<string> getContentFilesFromOpowiesci(string sourceDirectoryOpowiesci)
-        {
-            List<string> listFilesFromOpowiesci = new List<string>(Directory.GetFiles(sourceDirectoryOpowiesci, "*.md"));
-            List<string> contentFilesFromOpowiesci = new List<string>();
-            foreach(string i in listFilesFromOpowiesci)
-            {
-               // string a = File.ReadAllText(i);
-                contentFilesFromOpowiesci.Add(i);
-            }
-            return contentFilesFromOpowiesci;
-        }
-        
-        // get content from one file
-        public static string getContentOneFile(string sourceFile)
-        {
-            string contentOfOneFile = File.ReadAllText(sourceFile);
-            return contentOfOneFile;
-        }
-
-         
     }
 }
-
