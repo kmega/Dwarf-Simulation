@@ -114,9 +114,42 @@ namespace CyberMagic
                         toWrite = new CharacterEncounterCounter().KalinaMeetList(allstories);
                         Console.WriteLine(toWrite);
                         srtask.WriteLine(toWrite);
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
                         break;
 
 
+                    case "7":
+
+
+
+                        //1.Get characters from characters cards -> List of characters from cards (List A)
+                        //2. Get chars from stories -> List of characters from stories (List B)
+                        //3.  List A, List B -> Compare -> List of chars which in both (list C)
+                        //4. List of chars form cards (list A) -> Filtr with List C -> Get directiores and add them -> Modified list A
+                        //5. List of chars form stories (list A) -> Filtr with List C -> Get directiores and add them -> Modified list B
+                        //6. List A,b,c ->Write 
+
+
+                        GetCharactersLists charlists = new GetCharactersLists(allcharacterscards, allstories);
+                        GetDirectiories directories = new GetDirectiories(path2, path3);
+                        directories.ModifyCardcharList(charlists.CharactersFromCards);
+                        directories.ModifyStoriescharList(charlists.CharactersFromStories);
+
+                        toWrite = "Postacie wystepujace w opowieściach i mające karty: \n\n" +
+                            String.Join("\n", charlists.CharactersFromBoth) + "\n\nPostacie mające tylko karty: \n\n" + String.Join("\n", charlists.CharactersFromCards)
+                            + "\n\nPostacie występujące tylko w opowieściach: \n\n" + String.Join("\n", charlists.CharactersFromStories);
+                        Console.WriteLine(toWrite);
+                        srtask.WriteLine(toWrite);
+
+
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+                    
                     default:
                         continue;
 

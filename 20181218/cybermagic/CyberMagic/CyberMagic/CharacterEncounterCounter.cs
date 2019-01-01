@@ -18,8 +18,7 @@ namespace CyberMagic
 
             foreach (var item in stories)
             {
-                string temp = "";
-                temp += new TextParser().ExtractMerit(item);
+                string temp = new TextParser().ExtractMerit(item);
                 temp = new TextParser().ExtractCharacterFromMerit(temp);
                 string[] parts = temp.Split(',');
                 for (int i = 0; i < parts.Length; i++) {

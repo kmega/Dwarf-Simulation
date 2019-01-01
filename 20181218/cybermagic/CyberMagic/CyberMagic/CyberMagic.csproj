@@ -45,7 +45,9 @@
   <ItemGroup>
     <Compile Include="CharacterEncounterCounter.cs" />
     <Compile Include="GetBuiltTime.cs" />
+    <Compile Include="GetCharactersLists.cs" />
     <Compile Include="GetCharactersWithoutTime.cs" />
+    <Compile Include="GetDirectiories.cs" />
     <Compile Include="MagdaDetector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
