@@ -5,176 +5,124 @@ namespace CardsWar.GameEngine
 {    
     public class War
     {
+        enum FightResults
+        {
+            FirstPlayerWin = 1,
+            SecondPlayerWin,
+            Draw
+        }
+
         public static Player Fight(Player firstPlayer, Player secondPlayer)
         {
-            List<Deck.AllCards> TempPool = new List<Deck.AllCards>();
-            Range range = new Range(28);
+            Deck.Shuffle(firstPlayer.Hand);
+            Deck.Shuffle(secondPlayer.Hand);
+            int timeToShuffle = 28;
 
             while (firstPlayer.Hand.Count != 0 || secondPlayer.Hand.Count != 0)
             {
-                //1. Shuffle hand one and hand two
-                Deck.Shuffle(firstPlayer.Hand);
-                Deck.Shuffle(secondPlayer.Hand);
-                firstPlayer.TempPool.Clear();
-                secondPlayer.TempPool.Clear();
+                timeToShuffle--;
 
-                if (firstPlayer.Hand.Count > secondPlayer.Hand.Count) range.max = secondPlayer.Hand.Count;
-                else if (secondPlayer.Hand.Count > firstPlayer.Hand.Count) range.max = firstPlayer.Hand.Count;
-                else range.max = 28;
+                //push card from first player hand to his fightPool  handCard -> fight Pool
+                Player.TransferCard(firstPlayer.Hand, firstPlayer.FightPool);
+                //Write step: First player.name card: cardName
+                Game.WriteStep(firstPlayer.Name, GiveLastElement(firstPlayer.FightPool));
 
-                //Doing battle until any hand contains any value
-                for (int i = 0; i < range.max;)
+                //push card from second player hand to his fightPool
+                Player.TransferCard(secondPlayer.Hand, secondPlayer.FightPool);
+                //Write step: Second player.name card: cardName
+                Game.WriteStep(secondPlayer.Name, GiveLastElement(secondPlayer.FightPool));
+
+                //Compare last card from fightPools and return (win first player or win second player or draw)
+                FightResults fightResult = CompareCards(GiveLastElement(firstPlayer.FightPool), GiveLastElement(secondPlayer.FightPool));
+                //switch by return result fight -> 1.first player win, 2.second player win, 3.draw
+                //
+                switch (fightResult)
                 {
-                    //2. Do battle, Compare firstPlayer cards and secondPlayer cards 
-                    range.max -= BasicBattle(firstPlayer, secondPlayer, TempPool, i);
-                    TempPool.Clear();
+                    case FightResults.FirstPlayerWin:
+                        {
+                            //Write step: First player.name won the battle and gained: poolFight
+                            Game.WriteStep(firstPlayer.Name, firstPlayer.FightPool, secondPlayer.FightPool);
+
+                            //Add cards from fight pools to first player hand in bottom
+                            Player.TransferFightPoolsToHand(firstPlayer.Hand, firstPlayer.FightPool, secondPlayer.FightPool);
+
+                            //Write step: First player.name hand count: Second player.name hand count: 
+                            Game.WriteStep(firstPlayer, secondPlayer);
+                            break;
+                        }
+                    
+                    case FightResults.SecondPlayerWin:
+                        {
+                            //Write step: Second player.name won the battle and gained: poolFight
+                            Game.WriteStep(secondPlayer.Name, firstPlayer.FightPool, secondPlayer.FightPool);
+
+                            //Add cards from fight pools to second player hand in bottom
+                            Player.TransferFightPoolsToHand(secondPlayer.Hand, firstPlayer.FightPool, secondPlayer.FightPool);
+
+                            //Write step: First player.name hand count: Second player.name hand count: 
+                            Game.WriteStep(firstPlayer, secondPlayer);
+                            break;
+                        }
+                    //Add cards from hand to fight pool like a hidden cards and do battle again
+                    case FightResults.Draw:
+                        {
+                            //Write step: Draw!! 
+                            Game.WriteStep();
+
+                            //push card from first player hand to his fightPool  handCard -> fight Pool
+                            Player.TransferCard(firstPlayer.Hand, firstPlayer.FightPool);
+                            //Write step: First player.name push hidden card
+                            Game.WriteStep(firstPlayer.Name);
+
+                            //push card from second player hand to his fightPool
+                            Player.TransferCard(secondPlayer.Hand, secondPlayer.FightPool);
+                            //Write step: Second player.name push hidden card
+                            Game.WriteStep(secondPlayer.Name);
+
+                            // continue;
+                            break;
+                        }
                 }
 
-                //3. Assign temps pools to first player hand and second player hand and clear temps
-                firstPlayer.DumpTempToHand();
-                secondPlayer.DumpTempToHand();               
+                if (timeToShuffle < 0 && (firstPlayer.Hand.Count != 0 && secondPlayer.Hand.Count != 0))
+                {
+                    Game.WriteShuffle();
+                    Deck.Shuffle(firstPlayer.Hand);
+                    Deck.Shuffle(secondPlayer.Hand);
+
+                    if (firstPlayer.Hand.Count > secondPlayer.Hand.Count) timeToShuffle = secondPlayer.Hand.Count;
+                    else if (secondPlayer.Hand.Count > firstPlayer.Hand.Count) timeToShuffle = firstPlayer.Hand.Count;
+                    else timeToShuffle = 28;
+
+                }
+                //Console.ReadKey();
+                if (firstPlayer.Hand.Count == 0) return secondPlayer;  //second player win if first player hand is empty
+                else if (secondPlayer.Hand.Count == 0) return firstPlayer; // first player win if second player hand is empty
+                else
+                {
+                    continue;
+                }
             }
 
-            if (firstPlayer.Hand.Count == 0) return secondPlayer;
-            else if (secondPlayer.Hand.Count == 0) return firstPlayer;
+            if (firstPlayer.Hand.Count == 0) return secondPlayer;  //second player win if first player hand is empty
+            else if (secondPlayer.Hand.Count == 0) return firstPlayer; // first player win if second player hand is empty
             else
             {
                 throw new Exception("Battle end not complete!");
             }
+
         }
 
-        private static int BasicBattle(Player firstPlayer, Player secondPlayer, List<Deck.AllCards> TempPool, int indexCard)
+        private static Deck.AllCards GiveLastElement(List<Deck.AllCards> fightPool)
         {
-           
-            //If the first player win, add win cards to his temple pool, and remove war cards from hands                       
-            if (firstPlayer.Hand[indexCard] > secondPlayer.Hand[indexCard])
-            {
-                //Add point to first player
-                firstPlayer.Points++;
-
-                //Add war cards to temp pool
-                TempPool.Add(firstPlayer.Hand[indexCard]);
-                TempPool.Add(secondPlayer.Hand[indexCard]);
-
-                //Add temp pool to temp pool first player
-                firstPlayer.TempPool.AddRange(TempPool);
-
-                //Remowe war cards from both hands
-                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
-                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
-
-                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
-                return TempPool.Count/2;
-            }
-            else if(secondPlayer.Hand[indexCard] > firstPlayer.Hand[indexCard])
-            {
-                //Add point to first player
-                secondPlayer.Points++;
-
-                //Add war cards to temp pool
-                TempPool.Add(firstPlayer.Hand[indexCard]);
-                TempPool.Add(secondPlayer.Hand[indexCard]);
-
-                //Add temp pool to temp pool second player
-                secondPlayer.TempPool.AddRange(TempPool);
-
-                //Remove war cards from both hands
-                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
-                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
-
-                //Safe modify pools
-                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
-                return TempPool.Count/2;
-            }
-            else if(firstPlayer.Hand[indexCard] == secondPlayer.Hand[indexCard] )
-            {
-                
-                //Add war cards to temp pool
-                TempPool.Add(firstPlayer.Hand[indexCard]);
-                TempPool.Add(secondPlayer.Hand[indexCard]);
-
-
-                //Remove war cards from both hands
-                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
-                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
-
-                //Safe modify pools if hand is empty
-                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
-                
-
-                //Add hidden cards to temp pool
-                indexCard++;
-                //Safe modify pools if it is last card
-                indexCard = SafeModifyPools(firstPlayer, secondPlayer, indexCard);
-                TempPool.Add(firstPlayer.Hand[indexCard]);
-                TempPool.Add(secondPlayer.Hand[indexCard]);
-
-                //Remove hidden cards from both hands
-                firstPlayer.Hand.Remove(firstPlayer.Hand[indexCard]);
-                secondPlayer.Hand.Remove(secondPlayer.Hand[indexCard]);
-
-                
-
-                //Do Battle again
-                indexCard++;
-                BasicBattle(firstPlayer, secondPlayer,TempPool, 0);
-
-                return TempPool.Count/2;
-            }
-            else
-            {
-                throw new Exception();
-            }
+            return fightPool[fightPool.Count - 1];
         }
 
-        private static int SafeModifyPools(Player firstPlayer, Player secondPlayer, int indexCard)
+        private static FightResults CompareCards(Deck.AllCards card1, Deck.AllCards card2)
         {
-            //If both players have last card 
-            if (firstPlayer.Hand.Count == 0 && secondPlayer.Hand.Count == 0)
-            {
-                firstPlayer.DumpTempToHand();
-                secondPlayer.DumpTempToHand();
-
-                Deck.Shuffle(firstPlayer.Hand);
-                Deck.Shuffle(secondPlayer.Hand);
-
-                firstPlayer.DumpTempToHand();
-                secondPlayer.DumpTempToHand();
-
-                return -1;
-            }
-            //If is last card first player
-            else if (firstPlayer.Hand.Count == 0)
-            {
-                firstPlayer.DumpTempToHand();
-                secondPlayer.Hand.AddRange(secondPlayer.TempPool);
-                secondPlayer.TempPool.Clear();
-
-                Deck.Shuffle(firstPlayer.Hand);
-                Deck.Shuffle(secondPlayer.Hand);
-
-                firstPlayer.DumpTempToHand();
-                secondPlayer.DumpTempToHand();
-                return -1;
-            }
-            //if is last card second player
-            else if (firstPlayer.Hand.Count == 0)
-            {
-                secondPlayer.DumpTempToHand();
-                firstPlayer.Hand.AddRange(firstPlayer.TempPool);
-                firstPlayer.TempPool.Clear();
-
-                Deck.Shuffle(firstPlayer.Hand);
-                Deck.Shuffle(secondPlayer.Hand);
-
-                firstPlayer.DumpTempToHand();
-                secondPlayer.DumpTempToHand();
-                return -1;
-            }
-            else
-            {
-                return indexCard;
-            }
+            if (card1 > card2) return FightResults.FirstPlayerWin;
+            else if (card2 > card1) return FightResults.SecondPlayerWin;
+            else return FightResults.Draw;
         }
     }
 }

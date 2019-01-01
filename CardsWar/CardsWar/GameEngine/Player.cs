@@ -15,8 +15,9 @@ namespace CardsWar.GameEngine
 
         public PlayersName Name { get; private set; }
         public List<Deck.AllCards> Hand { get; set; }
-        public int Points { get; set; }
-        public List<Deck.AllCards> TempPool { get; set; }
+        //public int Points { get; set; }
+        public List<Deck.AllCards> FightPool { get; set; }
+
 
         public Player()
         {
@@ -26,12 +27,37 @@ namespace CardsWar.GameEngine
         public Player(PlayersName name)
         {
             Name = name;
-            TempPool = new List<Deck.AllCards>();
+            FightPool = new List<Deck.AllCards>();
         }
 
-        public void DumpTempToHand()
+        /// <summary>
+        /// Transfer top card from hand to the top position in fight pool
+        /// </summary>
+        /// <param name="hand">Pool hand</param>
+        /// <param name="fightPool"></param>
+        public static void TransferCard(List<Deck.AllCards> hand, List<Deck.AllCards> fightPool)
         {
-            Hand = TempPool.ToList();           
+            fightPool.Add(hand[hand.Count - 1]);
+            hand.RemoveAt(hand.Count - 1);
+        }
+
+        /// <summary>
+        /// Transfer all cards from fight pools to the bottom of hand
+        /// </summary>
+        /// <param name="hand">Pool hand</param>
+        /// <param name="fightPool1"></param>
+        /// <param name="fightPool2"></param>
+        public static void TransferFightPoolsToHand(List<Deck.AllCards> hand, List<Deck.AllCards> fightPool1, List<Deck.AllCards> fightPool2)
+        {
+            hand.InsertRange(0, fightPool1);
+            hand.InsertRange(0, fightPool2);
+            ClearFightPools(fightPool1, fightPool2);
+        }
+
+        private static void ClearFightPools(List<Deck.AllCards> fightPool1, List<Deck.AllCards> fightPool2)
+        {
+            fightPool1.Clear();
+            fightPool2.Clear();
         }
     }
 }
