@@ -9,6 +9,11 @@ namespace StringCalculator
     {
         public int Add(string numbers)
         {
+            if (numbers.Equals(""))
+            {
+                return 0;
+            }
+            
             List<int> _numbers = new List<int>();
             MatchCollection matches = Regex.Matches(numbers, @"\d+", RegexOptions.Multiline);
 
