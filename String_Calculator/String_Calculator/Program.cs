@@ -12,15 +12,14 @@ namespace String_Calculator
         public int Add(string value)
         {
             int sum = 0;
-            if (value!="")
-            {
+
                 string[] values_almost = value.Split(',', '\n');
                 string[] values = values_almost.Except(new[] { string.Empty, "" }).ToArray();
                 foreach (var item in values)
                 {
                     sum += Int32.Parse(item);
                 }
-            }
+
             return sum;
         }
     }

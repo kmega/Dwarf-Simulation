@@ -104,5 +104,14 @@ namespace UnitTest
             int result = Calculate(value);
             Assert.AreEqual(expectedResult, result);
         }
+        [TestMethod]
+        public void ShouldReturn0WhenStringIsHasOnlyManyCommas()
+        {
+            string value = ",,,,,,";
+            int expectedResult = 0;
+
+            int result = Calculate(value);
+            Assert.AreEqual(expectedResult, result);
+        }
     }
 }
