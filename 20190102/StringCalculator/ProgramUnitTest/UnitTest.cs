@@ -48,5 +48,12 @@ namespace ProgramUnitTest
             int result = calculator.Add("10\n20\n30\n40");
             Assert.AreEqual(100, result);
         }
+        [TestMethod]
+        public void Return6When1NewLineAnd2And3()
+        {
+            StringCalculator.Calculator calculator = new StringCalculator.Calculator();
+            int result = calculator.Add("1\n2,3");
+            Assert.AreEqual(6, result);
+        }
     }
 }

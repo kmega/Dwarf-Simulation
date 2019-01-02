@@ -7,7 +7,7 @@ namespace StringCalculator
         static void Main(string[] args)
         {
             Calculator calculator = new Calculator();
-            Console.WriteLine(calculator.Add(""));
+            Console.WriteLine(calculator.Add("1\n2,3"));
             Console.ReadKey();
         }
     }
