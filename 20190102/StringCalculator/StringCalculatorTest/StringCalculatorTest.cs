@@ -22,16 +22,28 @@ namespace StringCalculatorTest
         public void ShouldReturnException()
         {
             string input = "-2,4hsa7";
-            //Arrange
-            var stringCalculator = new Calculator();
-            //Act
-            var result = stringCalculator.Add(input);
+            TestCalculatorAdding(input, 0);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "Negative numbers are not allowed: -2 -4 ")]
+        public void ShouldReturnExceptionWithMultipleNegatives()
+        {
+            string input = "-2,-4hsa7";
+            TestCalculatorAdding(input, 0);
         }
         [TestMethod]
         public void ShouldReturn0WhenNumberIs0()
         {
             string input = "0";
             int expected = 0;
+            TestCalculatorAdding(input, expected);
+        }
+        [TestMethod]
+        public void ShouldOmitNumberGreaterThan1000()
+        {
+            string input = "23,7,8asdpo1009";
+            int expected = 38;
             TestCalculatorAdding(input, expected);
         }
         [TestMethod]

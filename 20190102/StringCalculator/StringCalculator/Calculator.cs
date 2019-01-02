@@ -23,6 +23,10 @@ namespace StringCalculator
             {
                 foreach (int num in parsedNumbers)
                 {
+                    if(num > 1000)
+                    {
+                        continue;
+                    }
                     sum += num;
                 }
             }           
@@ -41,7 +45,7 @@ namespace StringCalculator
         private List<int> IntegerExtractor(string number)
         {
             var textParser = new TextParser();
-            var extractNumbers = textParser.ExtractNumbers(number);
+            List<string> extractNumbers = textParser.ExtractNumbers(number);
             List<int> parsedNumbers = new List<int>();
             foreach (var num in extractNumbers)
             {

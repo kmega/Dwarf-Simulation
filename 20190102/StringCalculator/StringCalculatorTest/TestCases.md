@@ -7,3 +7,6 @@
 5. wyslanie 5 liczb -> zwrot sumy trzech pierwszych
 6. Wysłanie "0" -> zwrot zera
 7. Wysłanie liczb w kilku liniach
+8. Wysłanie liczby ujemnej -> złapanie wyjątku
+9. Wysłanie liczb -> ominięcie tych powyżej 1000
+10. Wysłanie wielu liczb ujemnych -> zwrot wyjątku z nimi
