@@ -3,15 +3,15 @@
 namespace ProgramUnitTest
 {
     [TestClass]
-    public class StringCalculator
+    public class UnitTest
     {
         [TestMethod]
-        public void Return0When0()
+        public void TestStringCalculator()
         {
             var calculator = new StringCalculator();
-            string value = "0";
-            int result = calculator.Add(value);
-            Assert.AreEqual(0, result);
+            string number = "0";
+            int result = calculator.Add(number);
+            Assert.AreEqual(number, result);
         }
     }
 }

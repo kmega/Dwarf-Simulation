@@ -2,18 +2,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("UnitTestProject1")]
+[assembly: AssemblyTitle("ProgramUnitTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("UnitTestProject1")]
+[assembly: AssemblyProduct("ProgramUnitTest")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("0fcfc816-8d94-4f10-8edb-81577bea3d5b")]
+[assembly: Guid("d3949b7e-a8fe-41a3-ada2-7af433f961ee")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
