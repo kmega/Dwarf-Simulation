@@ -29,7 +29,8 @@ namespace CardsWar.UI
                     {
                         case '1':
                             {
-                                Console.Clear();                                
+                                Console.Clear();
+                                File.WriteAllText("gameSteps.txt", stepsGame);
                                 Process.Start("gameSteps.txt");
                                 break;
                             }
