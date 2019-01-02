@@ -6,12 +6,12 @@ namespace ProgramUnitTest
     public class UnitTest
     {
         [TestMethod]
-        public void TestStringCalculator()
+        public void Return0When0()
         {
-            var calculator = new StringCalculator();
+            StringCalculator.Calculator calculator = new StringCalculator.Calculator();
             string number = "0";
             int result = calculator.Add(number);
-            Assert.AreEqual(number, result);
+            Assert.AreEqual(0, result);
         }
     }
 }
