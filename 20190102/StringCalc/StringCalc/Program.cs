@@ -8,21 +8,26 @@ namespace StringCalc
 {
    public class StringCalculator
     {
-        public static int Sum(string number)
+        public static int Add(string number)
         {
-            int num1;
-            int num2;
-            string[] splittedNumber = number.Split(',');
-
-            Int32.TryParse(splittedNumber[0], out num1);
-            Int32.TryParse(splittedNumber[1], out num2);
-
-            int sum = num1 + num2;
-
-            if (number == "")
-            { return 0; }
+            int sum = 0;
+            
+            if (number == "") { sum = 0; }
             else
-            { return sum; }
+            {
+                
+                string[] splittedNumber = number.Split(new Char[] { ',', '.', '\n', '/' });
+                List<int> numbersToAdd = new List<int>();
+
+                foreach (string n in splittedNumber)
+                {
+                    numbersToAdd.Add(Int32.Parse(n));
+                }
+
+                numbersToAdd.ForEach(x => sum += x);
+
+            }
+            return sum;
         }
     }
 
@@ -32,6 +37,7 @@ namespace StringCalc
     {
         static void Main(string[] args)
         {
+            StringCalculator.Add("2/8/3");
         }
     }
 }
