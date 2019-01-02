@@ -7,8 +7,7 @@ namespace StringCalculatorTest
     [TestClass]
     public class StringCalculatorTest
     {
-        [TestMethod]
-        public void ShouldReturn0WhenNumberIs0()
+        private void TestCalculatorAdding(string input, int expected)
         {
             //Arrange
             var stringCalculator = new Calculator();
@@ -18,54 +17,60 @@ namespace StringCalculatorTest
             Assert.AreEqual(0, result);
         }
         [TestMethod]
+        public void ShouldReturn0WhenNumberIs0()
+        {
+            string input = "0";
+            int expected = 0;
+            TestCalculatorAdding(input, expected);
+        }
+        [TestMethod]
         public void ShouldReturn3WhenNumberIs3()
         {
-            //Arrange
-            var stringCalculator = new Calculator();
-            //Act
-            var result = stringCalculator.Add("3");
-            //Assert
-            Assert.AreEqual(3, result);
+            string input = "3";
+            int expected = 3;
+            TestCalculatorAdding(input, expected);
         }
         [TestMethod]
         public void ShouldReturnSumOf2Numbers()
         {
-            //Arrange
-            var stringCalculator = new Calculator();
-            //Act
-            var result = stringCalculator.Add("3lkasdhas,8");
-            //Assert
-            Assert.AreEqual(11, result);
+            string input = "3lkasdhas,8";
+            int expected = 11;
+            TestCalculatorAdding(input, expected);
         }
         [TestMethod]
         public void ShouldReturnSumOf3Numbers()
         {
-            //Arrange
-            var stringCalculator = new Calculator();
-            //Act
-            var result = stringCalculator.Add("3lkasdhas,8,9");
-            //Assert
-            Assert.AreEqual(20, result);
+            string input = "3lkasdhas,8,9";
+            int expected = 20;
+            TestCalculatorAdding(input, expected);
         }
         [TestMethod]
         public void ShouldReturnSumOf3BigNumbers()
         {
-            //Arrange
-            var stringCalculator = new Calculator();
-            //Act
-            var result = stringCalculator.Add("3lkasdhas,8,98");
-            //Assert
-            Assert.AreEqual(109, result);
+            string input = "3lkasdhas,8,98";
+            int expected = 109;
+            TestCalculatorAdding(input, expected);
         }
         [TestMethod]
-        public void ShouldReturnSumOf3NumbersWhenGiven4Num()
+        public void ShouldReturnSumOf5Numbers()
         {
-            //Arrange
-            var stringCalculator = new Calculator();
-            //Act
-            var result = stringCalculator.Add("3lkasdhas,8,98,11");
-            //Assert
-            Assert.AreEqual(109, result);
+            string input = "3lkasdhas,8,98,11,15";
+            int expected = 135;
+            TestCalculatorAdding(input, expected);
+        }
+        [TestMethod]
+        public void ShouldReturn0WhenEmptyStringIsSent()
+        {
+            string input = "";
+            int expected = 0;
+            TestCalculatorAdding(input, expected);
+        }
+        [TestMethod]
+        public void ShouldReturnSumWhenMultipleLinesAreSent()
+        {
+            string input = "3,kass8\n6";
+            int expected = 17;
+            TestCalculatorAdding(input, expected);
         }
     }
 }
