@@ -104,6 +104,7 @@ namespace UnitTest
             int result = Calculate(value);
             Assert.AreEqual(expectedResult, result);
         }
+
         [TestMethod]
         public void ShouldReturn0WhenStringHasOnlyManyCommas()
         {
@@ -112,6 +113,15 @@ namespace UnitTest
 
             int result = Calculate(value);
             Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FormatException),
+    "Blad, znaki alfanumeryczne")]
+        public void ShouldThrowExceptionWhenStringHasAlphanumericCharacters()
+        {
+           string value = ",,,,,,a";
+           Calculate(value);
         }
     }
 }
