@@ -1,25 +1,25 @@
 ﻿using System;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StringCalculator
 {
     public class StringCalculator
     {
-        public bool IsStringCalculator(int candidate)
+        public int Add(string numbers)
         {
-            if (candidate == 1)
-            {
-                return false;
-            }
-            throw new NotImplementedException("Please create a test first");
-        }
+            List<int> _numbers = new List<int>();
+            MatchCollection matches = Regex.Matches(numbers, @"\d+", RegexOptions.Multiline);
 
-        public int GetSum(int number)
-        {
-            if (number == 0)
+            foreach (var match in matches)
             {
-                return 0;
+                _numbers.Add(Convert.ToInt32(match.ToString()));
             }
-            throw new NotImplementedException("Please create a test first");
+
+            int result = _numbers.Sum();
+
+            return result;
         }
     }
 }

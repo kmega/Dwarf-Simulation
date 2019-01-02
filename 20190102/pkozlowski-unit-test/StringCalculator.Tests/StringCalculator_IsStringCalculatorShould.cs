@@ -7,20 +7,20 @@ namespace StringCalculator.Test
     public class StringCalculator_IsStringCalculatorShould
     {
         [TestClass]
-        public class StringCalculator_IsReturn0WhenNumberIs0_Test
+        public class StringCalculator_IsSum3WhenNumbersAre12_Test
         {
             private readonly StringCalculator _stringCalculator;
 
-            public StringCalculator_IsReturn0WhenNumberIs0_Test()
+            public StringCalculator_IsSum3WhenNumbersAre12_Test()
             {
                 _stringCalculator = new StringCalculator();
             }
 
             [TestMethod]
-            public void ShouldReturn0WhenNumberIs0()
+            public void ShouldReturn3WhenNumbersAre12()
             {
-                var result = -_stringCalculator.GetSum(0);
-                var expectedResult = 0;
+                var result = _stringCalculator.Add("1,2");
+                var expectedResult = 3;
 
                 Assert.AreEqual(expectedResult, result);
             }
