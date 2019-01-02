@@ -65,6 +65,44 @@ namespace UnitTest
             Assert.AreEqual(expectedResult, result);
         }
 
+        [TestMethod]
+        public void ShouldReturn6WhenStringHasDelimitersInTheMiddle()
+        {
+            string value = "1\n2,3";
+            int expectedResult = 6;
 
+            int result = Calculate(value);
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void ShouldReturn1WhenStringHasDelimitersAtTheEnd()
+        {
+            string value = "1\n";
+            int expectedResult = 1;
+
+            int result = Calculate(value);
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void ShouldReturn3For1And2WhenStringHasMultipleDelimiters()
+        {
+            string value = "1\n\n\n\n\n\n\n2";
+            int expectedResult = 3;
+
+            int result = Calculate(value);
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void ShouldReturn89WhenStringIs84comma5()
+        {
+            string value = "84,5";
+            int expectedResult = 89;
+
+            int result = Calculate(value);
+            Assert.AreEqual(expectedResult, result);
+        }
     }
 }

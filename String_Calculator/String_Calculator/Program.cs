@@ -14,7 +14,8 @@ namespace String_Calculator
             int sum = 0;
             if (value!="")
             {
-                string[] values = value.Split(',');
+                string[] values_almost = value.Split(',', '\n');
+                string[] values = values_almost.Except(new[] { string.Empty, "" }).ToArray();
                 foreach (var item in values)
                 {
                     sum += Int32.Parse(item);
@@ -27,10 +28,9 @@ namespace String_Calculator
     {
         static void Main(string[] args)
         {
-            var calculator = new Calculator();
-
-            int result = calculator.Add("0,1,2");
-            Console.ReadKey();
+            var calculatro = new Calculator();
+            Console.WriteLine(calculatro.Add("1\n"));
+            Console.ReadKey();  
         }
     }
 }
