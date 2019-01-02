@@ -13,23 +13,38 @@ namespace regex
         public static void Main(string[] args)
         {
             TextParser textOperation = new TextParser();
-            GetTheListOfPathThatFiles getthelistofpathes = new GetTheListOfPathThatFiles();     
-            // Pobranie danych z folderu = lista sciezek (USUNAC TEMPLATE)
+            GetTheListOfPathThatFiles getthelistofpathes = new GetTheListOfPathThatFiles();    
+            
             List<string> PathesOfFiles = getthelistofpathes.ListOfPathThatFiles(@"C:\Users\lysia\OneDrive\Pulpit\cor2\Corealate_materiały\regexy\primary-develop\20181218\cybermagic\karty-postaci");
-            //otwarcie plikow i lista czasow i lista tytulow
+           
+            List<string> TimesforEveryoneIntList = new List<string> { }; List<int> IntListPersonsWhoHaveNoTimeInFile = new List<int> { };
+            GetTheListofEveryoneTimeBuilding getthelistoftimes = new GetTheListofEveryoneTimeBuilding(PathesOfFiles, TimesforEveryoneIntList, IntListPersonsWhoHaveNoTimeInFile); 
+            
+            List<string> PersonsforWhomWeDontKnowTime = new List<string> { };
+            GetTheListOfEveryoneWhoHaveNOTATimeInFile listofpersons = new GetTheListOfEveryoneWhoHaveNOTATimeInFile(PathesOfFiles, IntListPersonsWhoHaveNoTimeInFile, PersonsforWhomWeDontKnowTime);
+            int SumOfTimes = TimesforEveryoneIntList.Select(s => Convert.ToInt32(s)).ToList().Sum();
+            int AverageOfTimeBuilding = SumOfTimes / (PathesOfFiles.Count - IntListPersonsWhoHaveNoTimeInFile.Count);
+            int TheSumOfTimeOfBuildingEveryoneEvenPersonsWhoHaveNotTimeinFileButWeHaveAverage = (SumOfTimes + (AverageOfTimeBuilding * IntListPersonsWhoHaveNoTimeInFile.Count));
+            //ZAPIS DO PLIKU 103
+            using(StreamWriter sw = new StreamWriter(@"C:\Users\lysia\cUserslysia.ssh\primary\20181218\results.txt"))
+            {
+                sw.WriteLine("Task103");
+                sw.WriteLine("Lista osób bez podanego czasu budowania:");
+                foreach (string person in PersonsforWhomWeDontKnowTime)
+                {
+                    sw.WriteLine(person);
+                }
+                sw.WriteLine("Czas budowania postaci wyniósł: " + TheSumOfTimeOfBuildingEveryoneEvenPersonsWhoHaveNotTimeinFileButWeHaveAverage + " minut, czyli " +TheSumOfTimeOfBuildingEveryoneEvenPersonsWhoHaveNotTimeinFileButWeHaveAverage/60 + "h " + TheSumOfTimeOfBuildingEveryoneEvenPersonsWhoHaveNotTimeinFileButWeHaveAverage % 60 + "minut" );
+            }
+            Console.ReadKey();
+          //TASK104
 
-            GetTheListofEveryoneTimeBuilding getthelistoftimes = new GetTheListofEveryoneTimeBuilding();
-        //GetTheListOfEveryoneWhoHaveATimeInFile();
-        //GetTheListOfEveryoneWhoHaveNOTATimeInFile();
+
         }
 
-  //foreach (string x in PathesOfFiles)
-            //{
-            //    Console.WriteLine(x);
-            //}
-            //Console.ReadKey();
 
-        
+
+
         //    // suma czasow i liczba osob, ktore go maja
         //    TheSumOfTheTimesEveryoneTimeBuilding();
         //    // sredni czas budowania dla osob bez czasu
@@ -135,12 +150,12 @@ namespace regex
 
         //    //print name + time
 
-        //    using (StreamWriter sw = new StreamWriter(@"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\czas-fryderyk-komciur.txt"))
-        //    {
-        //        sw.WriteLine(title + " był budowany " + time + " minuty");
+            //using (StreamWriter sw = new StreamWriter(@"C:\Users\lysia\OneDrive\Pulpit\Corealate_materiały\regexy\primary-develop\20181218\czas-fryderyk-komciur.txt"))
+            //{
+            //    sw.WriteLine(title + " był budowany " + time + " minuty");
 
 
-        //    }
+            //}
         //    Console.WriteLine(title + time);
         //    Console.ReadKey();
         //}

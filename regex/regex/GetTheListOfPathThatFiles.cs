@@ -13,6 +13,15 @@ namespace regex
         public List<string> ListOfPathThatFiles(string path)
         {
             List<string> name = Directory.GetFiles(path).ToList<string>(); // Lista ścieżek wszystkich  
+            
+            //Usunięcie elementu "template"
+            for (int i = 0; i < name.Count; i++)
+            {
+                if (name[i].Contains("template"))
+                {
+                name.RemoveAt(i);
+                }
+            }
             return name;
         }
     }

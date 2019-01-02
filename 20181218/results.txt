@@ -1,0 +1,20 @@
+Task103
+Lista osób bez podanego czasu budowania:
+Alfred Weiner
+Artur Perikas
+Kalina Rotmistrz
+Majka Perikas
+Miedwied Zajcew
+Mieszko Weiner
+Olga Myszeczka
+Pięknotka Diakon
+Atena Sowińska
+Adam Szarjan
+Adela Kirys
+Erwin Galilien
+Kirył Najłalmin
+Moktar Gradon
+Pietro Dwarczan
+Waleria Cyklon
+Bronisława Strzelczyk
+Czas budowania postaci wyniósł: 1001 minut, czyli 16h 41minut

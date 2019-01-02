@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GetTheListofEveryoneTimeBuilding.cs" />
+    <Compile Include="GetTheListOfEveryoneWhoHaveATimeInFile.cs" />
     <Compile Include="GetTheListOfPathThatFiles.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
