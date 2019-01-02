@@ -7,20 +7,6 @@ namespace SecondStringCalculator
 {
     public class Sumator
     {
-        private List<int> GetNumbersFromString(string numberString)
-        {
-            List<int> numbers = new List<int>();
-
-            MatchCollection matches = Regex.Matches(numberString, @"\d+", RegexOptions.Multiline);
-
-            foreach (object match in matches)
-            {
-                numbers.Add(Convert.ToInt16(match.ToString()));
-            }
-
-            return numbers;
-        }
-
         public int GetSum(string numberString)
         {
             if(numberString == "")
@@ -48,5 +34,28 @@ namespace SecondStringCalculator
             }
             return GetNumbersFromString(numberString).Sum() + GetNumbersFromString(secondString).Sum();
         }
+
+        private List<int> GetNumbersFromString(string numberString)
+        {
+            List<int> numbers = new List<int>();
+
+            MatchCollection matches = Regex.Matches(numberString, @"\d+", RegexOptions.Multiline);
+
+            foreach (object match in matches)
+            {
+                if(!isGreaterThan1000(match))
+                {
+                    numbers.Add(Convert.ToInt16(match.ToString()));
+                }
+            }
+
+            return numbers;
+        }
+
+        //private bool isGreaterThan1000(object match)
+        //{
+        //    if(Convert.ToInt16(match.ToString())
+        //    throw new NotImplementedException();
+        //}
     }
 }

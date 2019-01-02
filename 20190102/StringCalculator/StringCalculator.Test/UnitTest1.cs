@@ -41,8 +41,8 @@ namespace Calculator.Test
         {
             //given - wsszytskie rzeczy, ktore potrzebuje by moc przeprowadzic test w fazie given
             var sumator = new Sumator();
-            string value = "1\n2,3";
-            int expectedResult = 6;
+            string value = "5";
+            int expectedResult = 5;
 
             //when - wywowalnei akcji ktora testujemy w tym wypadku testujemy metode GetSum
             int result = sumator.GetSum(value);
