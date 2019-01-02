@@ -9,4 +9,4 @@
 7. Wysłanie liczb w kilku liniach
 8. Wysłanie liczby ujemnej -> złapanie wyjątku
 9. Wysłanie liczb -> ominięcie tych powyżej 1000
-10. Wysłanie wielu liczb ujemnych -> zwrot wyjątku z nimi
+10. Wysłanie wielu liczb ujemnych -> złapanie wyjątku z nimi

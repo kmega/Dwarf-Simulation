@@ -40,7 +40,7 @@ namespace StringCalculatorTest
             TestCalculatorAdding(input, expected);
         }
         [TestMethod]
-        public void ShouldOmitNumberGreaterThan1000()
+        public void ShouldOmitNumbersGreaterThan1000()
         {
             string input = "23,7,8asdpo1009";
             int expected = 38;
@@ -65,13 +65,6 @@ namespace StringCalculatorTest
         {
             string input = "3lkasdhas,8,9";
             int expected = 20;
-            TestCalculatorAdding(input, expected);
-        }
-        [TestMethod]
-        public void ShouldReturnSumOf3BigNumbers()
-        {
-            string input = "3lkasdhas,8,98";
-            int expected = 109;
             TestCalculatorAdding(input, expected);
         }
         [TestMethod]
