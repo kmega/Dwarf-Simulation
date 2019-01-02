@@ -43,7 +43,7 @@ namespace SecondStringCalculator
 
             foreach (object match in matches)
             {
-                if(!isGreaterThan1000(match))
+                if(!IsGreaterThan1000(match))
                 {
                     numbers.Add(Convert.ToInt16(match.ToString()));
                 }
@@ -52,10 +52,13 @@ namespace SecondStringCalculator
             return numbers;
         }
 
-        //private bool isGreaterThan1000(object match)
-        //{
-        //    if(Convert.ToInt16(match.ToString())
-        //    throw new NotImplementedException();
-        //}
+        private bool IsGreaterThan1000(object match)
+        {
+            if(Convert.ToInt16(match.ToString())>1000)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }

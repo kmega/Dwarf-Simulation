@@ -52,6 +52,21 @@ namespace Calculator.Test
         }
 
         [TestMethod]
+        public void ShouldReturn5WhenNumberIs5wdi1023()
+        {
+            //given - wsszytskie rzeczy, ktore potrzebuje by moc przeprowadzic test w fazie given
+            var sumator = new Sumator();
+            string value = "wdi1023dsa5";
+            int expectedResult = 5;
+
+            //when - wywowalnei akcji ktora testujemy w tym wypadku testujemy metode GetSum
+            int result = sumator.GetSum(value);
+
+            //then - Aseracje sprawdzenie poprawnosci dzialania kodu. To sa testy
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
         public void ShouldReturn0WhenNumbersAreBothNull()
         {
             //given - wsszytskie rzeczy, ktore potrzebuje by moc przeprowadzic test w fazie given
