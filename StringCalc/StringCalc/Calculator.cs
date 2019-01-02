@@ -11,7 +11,7 @@ namespace StringCalc
         public int add(string values)
         {
 
-            var numbers = values.Split(new[] { ",", "\n", "//;\n", ";"}, StringSplitOptions.None);
+            var numbers = values.Split(new[] { ",", "\n", "/", ";", "*", "%"}, StringSplitOptions.RemoveEmptyEntries);
             
             int result = 0;
             foreach (var col in numbers)
@@ -20,6 +20,8 @@ namespace StringCalc
 
                 if (num < 0)
                     throw new ArgumentException("negatives not allowed");
+                if (num > 1000)
+                    num = 0;
 
                 result += num;
             }

@@ -12,7 +12,7 @@ namespace StringCalc
         {
             Calculator calc = new Calculator();
 
-            calc.add("//;\n1;2");
+            calc.add("//[*][%]\n1*2%3");
             Console.WriteLine("Hello World!");
             Console.ReadKey();
 

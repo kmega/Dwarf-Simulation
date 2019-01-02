@@ -47,7 +47,31 @@ namespace StringCalcTests
         {
             TestAddMethodInputResultCheck("//;\n1;2", 3);
         }
-
+        [TestMethod]
+        public void CalcWhenInputNumbersWithDelimiterResutl6()
+        {
+            TestAddMethodInputResultCheck("//[*][%]\n1*2%3", 6);
+        }
+        [TestMethod]
+        public void CalcWhenInputNumbersWithDelimiterResutl5()
+        {
+            TestAddMethodInputResultCheck("//[****][%%%]\n*2%3", 5);
+        }
+        [TestMethod]
+        public void CalcWhenInputNumbersWithDelimiterResutl4()
+        {
+            TestAddMethodInputResultCheck("//[****][%%%]\n******2%%%2", 4);
+        }
+        [TestMethod]
+        public void CalcWhenInputNumbersWithDelimiterResutl2()
+        {
+            TestAddMethodInputResultCheck("////////1/////1*****", 2);
+        }
+        [TestMethod]
+        public void CalcWhenInput1001And1Result1()
+        {
+            TestAddMethodInputResultCheck("1001,1", 1);
+        }
         [TestMethod]
         [ExpectedException(typeof(ArgumentException),
             "negatives not allowed")]
