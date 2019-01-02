@@ -27,8 +27,8 @@ namespace String_Calculator
     {
         static void Main(string[] args)
         {
-            var calculatro = new Calculator();
-            Console.WriteLine(calculatro.Add("1\n"));
+            var calculator = new Calculator();
+            Console.WriteLine(calculator.Add("1\n"));
             Console.ReadKey();  
         }
     }
