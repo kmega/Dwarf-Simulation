@@ -27,9 +27,6 @@ namespace String_Calculator
     {
         static void Main(string[] args)
         {
-            var calculator = new Calculator();
-            Console.WriteLine(calculator.Add("1\n"));
-            Console.ReadKey();  
         }
     }
 }

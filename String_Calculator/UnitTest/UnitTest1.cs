@@ -123,5 +123,26 @@ namespace UnitTest
            string value = ",,,,,,a";
            Calculate(value);
         }
+
+        [TestMethod]
+        public void ShouldReturnMinus1WhenStringHasMinus()
+        {
+            string value = "-1";
+            int expectedResult = -1;
+
+            int result = Calculate(value);
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [TestMethod]
+        public void ShouldReturn0WhenStringHasMinusAndPlusValues()
+        {
+            string value = "-1,1";
+            int expectedResult = 0;
+
+            int result = Calculate(value);
+            Assert.AreEqual(expectedResult, result);
+        }
+
     }
 }
