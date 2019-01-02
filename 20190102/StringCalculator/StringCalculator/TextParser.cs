@@ -9,7 +9,7 @@ namespace VivaRegex
         public List<string> ExtractNumbers(string text)
         {
             return SafelyExtractAllElements(
-                @"(\d+)", text);
+                @"(-?\d*\.{0,1}\d+)", text);        // positive numbers "\d+"
         }
         private string SafelyExtractSingleElement(string pattern, string text)
         {

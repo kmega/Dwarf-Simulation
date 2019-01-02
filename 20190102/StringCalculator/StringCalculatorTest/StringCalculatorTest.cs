@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StringCalculator;
+using System;
 
 namespace StringCalculatorTest
 {
@@ -14,6 +15,17 @@ namespace StringCalculatorTest
             var result = stringCalculator.Add(input);
             //Assert
             Assert.AreEqual(expected, result);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(Exception),
+            "Negative numbers are not allowed: -2 ")]
+        public void ShouldReturnException()
+        {
+            string input = "-2,4hsa7";
+            //Arrange
+            var stringCalculator = new Calculator();
+            //Act
+            var result = stringCalculator.Add(input);
         }
         [TestMethod]
         public void ShouldReturn0WhenNumberIs0()
