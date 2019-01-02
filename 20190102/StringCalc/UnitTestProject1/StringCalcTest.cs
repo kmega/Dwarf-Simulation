@@ -55,11 +55,11 @@ namespace UnitTestProject1
         public void Return4DifferentDelimeters()
         {
             //given
-            string stringNumber = "2\n2";
+            string stringNumber = "5,3";
 
             int result = StringCalc.StringCalculator.Add(stringNumber);
 
-            Assert.AreEqual(4, result);
+            Assert.AreEqual(8, result);
         }
 
         [TestMethod]
@@ -67,6 +67,41 @@ namespace UnitTestProject1
         {
             //given
             string stringNumber = "3.3";
+
+            int result = StringCalc.StringCalculator.Add(stringNumber);
+
+            Assert.AreEqual(6, result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void ReturnErrorMultiNegatives()
+        {
+            //given
+            string stringNumber = "6,-1,-2,3";
+
+            int result = StringCalc.StringCalculator.Add(stringNumber);
+
+            //Assert.AreEqual(new Exception("negatives not allowed", result);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(System.Exception))]
+        public void ReturnErrorOneNegatives()
+        {
+            //given
+            string stringNumber = "6,-1,3";
+
+            int result = StringCalc.StringCalculator.Add(stringNumber);
+
+            //Assert.AreEqual(new Exception("negatives not allowed", result);
+        }
+
+        [TestMethod]
+        public void Return6IfGreaterThan1000()
+        {
+            //given
+            string stringNumber = "6,1001";
 
             int result = StringCalc.StringCalculator.Add(stringNumber);
 

@@ -11,23 +11,55 @@ namespace StringCalc
         public static int Add(string number)
         {
             int sum = 0;
-            
+            List<int> numbersToAdd = new List<int>();
+            List<int> negativeNumbers = new List<int>();
+
+
+
             if (number == "") { sum = 0; }
             else
             {
+                //string firstLine = number.Substring(0, number.IndexOf(Environment.NewLine));
+                //string[] splitter = number.Split(new string[] { firstLine }, StringSplitOptions.None);
+                string[] splittedNumber = number.Split(new Char[] { ',', '.', '\n', '/',';' });
                 
-                string[] splittedNumber = number.Split(new Char[] { ',', '.', '\n', '/' });
-                List<int> numbersToAdd = new List<int>();
 
-                foreach (string n in splittedNumber)
+                foreach (string num in splittedNumber)
                 {
-                    numbersToAdd.Add(Int32.Parse(n));
+                    int n = Int32.Parse(num);
+
+                    if (n > 1000) { continue; }
+
+                    if (n < 0)
+                     negativeNumbers.Add(n); 
+                    else
+                    numbersToAdd.Add(n);
+
                 }
 
-                numbersToAdd.ForEach(x => sum += x);
+                if (negativeNumbers.Count == 1)
+                {
+                    numbersToAdd.ForEach(x => sum += x);
+                    throw new Exception(String.Format("negatives not allowed: {0}", negativeNumbers[0]));
+                }
 
+                else if (negativeNumbers.Count > 1)
+                {
+                    string negativeNumbersAsString = NegativeException(negativeNumbers);
+                    throw new Exception(String.Format("stop here if you are a beginner. Continue if you can finish the steps so far in less than 30 minutes. {0}",negativeNumbersAsString));
+
+
+                }
+                else
+                    numbersToAdd.ForEach(x => sum += x);
             }
             return sum;
+        }
+
+        private static string NegativeException(List<int> negativeNumbers)
+        {
+            string negativesAsString = negativeNumbers.ToString();
+            return negativesAsString;
         }
     }
 
@@ -37,7 +69,7 @@ namespace StringCalc
     {
         static void Main(string[] args)
         {
-            StringCalculator.Add("2/8/3");
+            StringCalculator.Add("5,-1");
         }
     }
 }
