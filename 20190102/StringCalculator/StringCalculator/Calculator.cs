@@ -8,10 +8,10 @@ namespace StringCalculator
 {
     public class Calculator
     {
-        public int Add(string number)
+        public int Add(string number, string delimeter)
         {
             int sum = 0;
-            List<int> parsedNumbers = IntegerExtractor(number);
+            List<int> parsedNumbers = IntegerExtractor(number, delimeter);
             var negativeNumbers = parsedNumbers.Where(x => x < 0)
                                             .ToList();
             if(negativeNumbers.Any())
@@ -42,9 +42,13 @@ namespace StringCalculator
             }
             return stringBuilder.ToString();
         }
-        private List<int> IntegerExtractor(string number)
+        private List<int> IntegerExtractor(string number, string delimeter)
         {
             var textParser = new TextParser();
+            ////Extract part of string using delimeter -> number, delimeter;
+            //string[] separator = new string[] { delimeter };
+            //string[] partedText = number.Split(separator);
+            ////
             List<string> extractNumbers = textParser.ExtractNumbers(number);
             List<int> parsedNumbers = new List<int>();
             foreach (var num in extractNumbers)
