@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="TextCases.md" />
+    <None Include="TestCases.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StringCalculator\StringCalculator.csproj">

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StringCalculator;
 
 namespace StringCalculatorTest
@@ -12,9 +11,9 @@ namespace StringCalculatorTest
             //Arrange
             var stringCalculator = new Calculator();
             //Act
-            var result = stringCalculator.Add("0");
+            var result = stringCalculator.Add(input);
             //Assert
-            Assert.AreEqual(0, result);
+            Assert.AreEqual(expected, result);
         }
         [TestMethod]
         public void ShouldReturn0WhenNumberIs0()
