@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace StringCalculator
 {
-    public class StringCalculator
+    public class Calculator
     {
         public int Add(string number)
         {
-            return 0;
+            int num = Int32.Parse(number);
+            return num;
         }
     }
 }
