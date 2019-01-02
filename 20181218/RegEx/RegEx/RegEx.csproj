@@ -42,7 +42,11 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReadFile.cs" />
+    <Compile Include="Task1.cs" />
+    <Compile Include="Task2.cs" />
     <Compile Include="TextParser.cs" />
+    <Compile Include="WriteFile.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

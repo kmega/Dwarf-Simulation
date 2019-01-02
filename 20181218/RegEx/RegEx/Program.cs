@@ -15,10 +15,10 @@ namespace RegEx
             string pathFKomciur = @"C:\Code\primary\20181218\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
             string pathAllPeople = @"C:\Code\primary\20181218\cybermagic\karty-postaci";
             string pathTask4 = @"C:\Code\primary\20181218\cybermagic\opowiesci";
-            string result1 = @"C:\Code\primary\20181218\RegEx\RegEx\result1.txt";
-            string result2 = @"C:\Code\primary\20181218\RegEx\RegEx\result2.txt";
-            string result3 = @"C:\Code\primary\20181218\RegEx\RegEx\result3.txt";
-            string result4 = @"C:\Code\primary\20181218\RegEx\RegEx\result4.txt";
+            string result1file = @"C:\Code\primary\20181218\RegEx\RegEx\result1.txt";
+            string result2file = @"C:\Code\primary\20181218\RegEx\RegEx\result2.txt";
+            string result3file = @"C:\Code\primary\20181218\RegEx\RegEx\result3.txt";
+            string result4file = @"C:\Code\primary\20181218\RegEx\RegEx\result4.txt";
 
             // task1
             //string ReadSingleFile(filePath) -> textFromFile
@@ -27,43 +27,41 @@ namespace RegEx
             //CombineResults(name + time) -> result
             //WriteResultToFile()
 
-            string textKomciur = ReadSingleFile(pathFKomciur);
-            string nameKomciur = GetName(textKomciur);
-            string timeKomciur = GetTime(textKomciur);
-            string resultKomciur = CombineResults(nameKomciur, timeKomciur);
-            WriteResultToFile(result1, resultKomciur);
+            ReadFile rf = new ReadFile();
+            WriteFile wf = new WriteFile();
+
+            Task1 task = new Task1(pathFKomciur);
+
+            wf.WriteResultToFile(result1file, task.komciurResult);
 
             //task 2
             //List<string> ReadingAllPeopleTxt(string path) -> List<string> allPeopleText
             //list<int> GetTimeFromAll(List<string> allPeopleText) -> lista wszystkich czasow
             //int SumOfAllTimes(List<Int32> allPeopleTimes) -> int allTimesSum;
             //WriteResultToFile(result2, allTimesSum)
-
-            List<string> allPeopleText =  ReadingAllPeopleText(pathAllPeople);
+            /*
+            List<string> allPeopleText =  rf.ReadingAllFIlesInDirectory(pathAllPeople);
             List<Int32> allPeopleTimes = GetTimesFromAll(allPeopleText);
-            WriteResultToFile(result2, AllTimeSumResult(allPeopleTimes));
-
-
+            wf.WriteResultToFile(result2file, AllTimeSumResult(allPeopleTimes));
+           
             //task 3
             //AverageTime(int allPeopleTimes) -> int averageTime
             //CharactersWithoOutTime() -> list<string> peopleWithOutTime
             //string ProbableBuildTime(int averageTime, list<string> allPeopleWithoutTime) -> string probableBuildTime
+
             int averageTime = AverageTime(allPeopleTimes);
             List<string> allPeopleWithoutTime = CharactersWithoutTime(allPeopleText);
             string resultOfTask3 = ProbableBuildTime(averageTime, allPeopleWithoutTime, allPeopleTimes);
-            WriteResultToFile(result3, resultOfTask3);
+            wf.WriteResultToFile(result3file, resultOfTask3);
 
             //task 4 
             //ReadingAllPeopleText() -> lista Wszystkich odpowiesci
             //searchmagda -> lista opowiesci gdzie wystepuje magda
             //ResultMagda() -> string result4
-            List<string> storiesText = ReadingAllPeopleText(pathTask4);
+            List<string> storiesText = rf.ReadingAllFIlesInDirectory(pathTask4);
             List<string> storiesMagdaPatiril = SearchMagdaPatiril(storiesText);
-            WriteResultToFile(result4, ResultMagda(storiesMagdaPatiril));
-
-
-
-            
+            wf.WriteResultToFile(result4file, ResultMagda(storiesMagdaPatiril));
+            */
         }
 
         private static string ResultMagda(List<string> storiesMagdaPatiril)
@@ -136,7 +134,7 @@ namespace RegEx
             int allTimesSum = allPeopleTimes.Sum();
             return allTimesSum;
         }
-
+        /*
         public static List<Int32> GetTimesFromAll(List<string> allPeopleText)
         {
             List<Int32> allTimeList = new List<int>();
@@ -150,46 +148,6 @@ namespace RegEx
             }
             return allTimeList;
         }
-
-        public static List<string> ReadingAllPeopleText(string path)
-        {
-            List<string> allPeopleText = new List<string>();
-            foreach(var file in Directory.EnumerateFiles(path, "*.md"))
-            {
-                allPeopleText.Add(ReadSingleFile(file));
-            }
-            return allPeopleText;
-        }
-
-        public static void WriteResultToFile(string fileResultPath, string result)
-        {
-            File.WriteAllText(fileResultPath, result);
-        }
-
-        public static string CombineResults(string name, string time)
-        {
-            string result = $"{name} byl budowany {time} minuty";
-            return result;
-        }
-
-        public static string GetName(string text)
-        {
-            TextParser tp = new TextParser();
-            string name = tp.ExtractProfileName(text);
-            return name;
-        }
-
-        public static string GetTime(string text)
-        {
-            TextParser tp = new TextParser();
-            string time = tp.ExtractTimeToCreate(text);
-            return time;
-        }
-
-        public static string ReadSingleFile(string filePath)
-        {
-            string textFromFile = File.ReadAllText(filePath);
-            return textFromFile;
-        }
+        */
     }
 }
