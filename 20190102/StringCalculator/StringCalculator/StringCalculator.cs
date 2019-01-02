@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace StringCalculator
+﻿namespace StringCalculator
 {
     class StringCalculator
     {
-        internal int Sum(int v1, int v2)
+        internal string Add(string numbers)
         {
-            return v1 + v2;
+            return numbers;
         }
     }
 }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace StringCalculator
 {
@@ -11,7 +7,7 @@ namespace StringCalculator
         static void Main(string[] args)
         {
             StringCalculator calculator = new StringCalculator();
-            int result = calculator.Sum(2, 2);
+            string result = calculator.Add("0");
             Console.WriteLine(result);
             Console.ReadKey();
         }
