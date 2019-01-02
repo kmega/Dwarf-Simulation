@@ -1,23 +1,29 @@
-using Xunit;
+using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StringCalculator;
 
 namespace StringCalculator.Test
 {
     public class StringCalculator_IsStringCalculatorShould
     {
-        private readonly StringCalculator _stringCalculator;
-
-        public StringCalculator_IsStringCalculatorShould()
+        [TestClass]
+        public class StringCalculator_IsReturn0WhenNumberIs0_Test
         {
-            _stringCalculator = new StringCalculator();
-        }
+            private readonly StringCalculator _stringCalculator;
 
-        [Fact]
-        public void ReturnFalseGivenValueOf1()
-        {
-            var result = _stringCalculator.IsStringCalculator(1);
+            public StringCalculator_IsReturn0WhenNumberIs0_Test()
+            {
+                _stringCalculator = new StringCalculator();
+            }
 
-            Assert.False(result, "1 should not be string calculator");
+            [TestMethod]
+            public void ShouldReturn0WhenNumberIs0()
+            {
+                var result = -_stringCalculator.GetSum(0);
+                var expectedResult = 0;
+
+                Assert.AreEqual(expectedResult, result);
+            }
         }
     }
 }

@@ -12,5 +12,14 @@ namespace StringCalculator
             }
             throw new NotImplementedException("Please create a test first");
         }
+
+        public int GetSum(int number)
+        {
+            if (number == 0)
+            {
+                return 0;
+            }
+            throw new NotImplementedException("Please create a test first");
+        }
     }
 }
