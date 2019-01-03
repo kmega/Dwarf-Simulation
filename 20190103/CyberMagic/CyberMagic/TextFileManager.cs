@@ -13,7 +13,6 @@ namespace CyberMagic
         {
             string text = File.ReadAllText(fileName);
             return text;
-
         }
         public static void WriteResults(string[] toSave)
         {
