@@ -18,8 +18,26 @@ namespace CyberMagic
 
         public static int ExtractSingleTime(string file)
         {
-            var textParser = new TextParser();
-            return Int32.Parse(textParser.ExtractTimeToCreate(file));
+            TextParser textParser = new TextParser();
+            var time = textParser.ExtractTimeToCreate(file);
+            if (time == "")
+            {
+                return 0;
+            }
+            else
+            {
+                return Int32.Parse(time);
+            }
         }
+        public static List<int> ExtractAllTimes(List<string> filesContent)
+        {
+            List<int> timesToBuild = new List<int>();
+            foreach (var content in filesContent)
+            {
+                timesToBuild.Add(ExtractSingleTime(content));
+            }
+            return timesToBuild;
+        }
+
     }
 }
