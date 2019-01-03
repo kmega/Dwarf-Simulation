@@ -35,7 +35,7 @@ namespace StringCalcTests
         [TestMethod]
         public void CalcWhenInputWithenterReturn6()
         {
-            TestAddMethodInputResultCheck("1/n2,3", 6);
+            TestAddMethodInputResultCheck("1\n2,3", 6);
         }
 
         [TestMethod]
@@ -53,17 +53,12 @@ namespace StringCalcTests
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult12()
         {
-<<<<<<< HEAD
             TestAddMethodInputResultCheck("//[-]\n8-1-1", 10);
-=======
-            TestAddMethodInputResultCheck("[-]/n8-1-1", 10);
->>>>>>> 20190103/MPochrzest
         }
 
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult20()
         {
-<<<<<<< HEAD
             TestAddMethodInputResultCheck("//[*]\n8*1*1*10", 20);
         }
 
@@ -74,13 +69,13 @@ namespace StringCalcTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
-    "negatives not allowed")]
+        [ExpectedException(typeof(Exception),
+    "Negative numbers are not allowed: -1 -2")]
         public void CalcWhenNegatieNumber()
         {
             var calc = new StringCalculator();
             calc.Add("-1,-2");
-            TestAddMethodInputResultCheck("-2,-3", -1);
+            TestAddMethodInputResultCheck("-2,-3", 0);
         }
 
         [TestMethod]
@@ -99,9 +94,6 @@ namespace StringCalcTests
         public void CalcWhenTwoDelimitersOrMoreResult6()
         {
             TestAddMethodInputResultCheck("//[*][%]\n1*2%3", 6);
-=======
-            TestAddMethodInputResultCheck("[*]/n8*1*1*10", 20);
->>>>>>> 20190103/MPochrzest
         }
     }
 }
