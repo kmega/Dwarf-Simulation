@@ -19,7 +19,8 @@ namespace StringCalc
             if (number == "") { sum = 0; }
             else
             {
-                //string firstLine = number.Substring(0, number.IndexOf(Environment.NewLine));
+                //string firstLineFull = number.Substring(0, number.IndexOf(Environment.NewLine));
+                //string firstLine = firstLineFull.Split(new string[] { "//" }, StringSplitOptions.None); 
                 //string[] splitter = number.Split(new string[] { firstLine }, StringSplitOptions.None);
                 string[] splittedNumber = number.Split(new Char[] { ',', '.', '\n', '/',';' });
                 
