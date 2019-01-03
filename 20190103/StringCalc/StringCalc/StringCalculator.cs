@@ -39,12 +39,18 @@ namespace StringCalc
         private List<string> SeperateStringsToNumbers(string[] separatedLines)
         {
             List<string> separatedNumbersInLine = new List<string>(); ////[*][%]\n1*2%3
+            
             string delimeter;
             if (separatedLines[0].StartsWith("//"))
             {
-                delimeter = separatedLines[0];
-                delimeter = delimeter.Replace("//[", "").Replace("]", "");
-                separatedNumbersInLine = separatedLines[1].Split(new string[] { delimeter }, StringSplitOptions.None).ToList();
+                string[] delimeters = separatedLines[0].Split(new string[] { "][" }, StringSplitOptions.None);
+                for(int i =0; i< delimeters.Length;i++)
+                {
+                    delimeters[i] = delimeters[i].Replace("//[", "").Replace("]", ""); ;
+                }
+               // delimeter = separatedLines[0];
+               // delimeter = delimeter.Replace("//[", "").Replace("]", "");
+                separatedNumbersInLine = separatedLines[1].Split(delimeters, StringSplitOptions.None).ToList();
             }
             else
             {
