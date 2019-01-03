@@ -51,9 +51,19 @@
   <ItemGroup>
     <Compile Include="Task1Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Task2Tests.cs" />
+    <Compile Include="Task3Test.cs" />
+    <Compile Include="Task4test.cs" />
+    <Compile Include="Task5test.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CyberMagic\CyberMagic.csproj">
+      <Project>{c0f921f3-a6bc-4373-b4ac-033657f928fa}</Project>
+      <Name>CyberMagic</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
