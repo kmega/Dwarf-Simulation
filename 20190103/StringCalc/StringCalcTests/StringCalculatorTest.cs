@@ -95,5 +95,16 @@ namespace StringCalcTests
         {
             TestAddMethodInputResultCheck("//[*][%]\n1*2%3", 6);
         }
+
+        [TestMethod]
+        public void CalcWhenTwoMultipleDelimitersOrMoreResult7()
+        {
+            TestAddMethodInputResultCheck("//[**][%%]\n1**3%%3", 7);
+        }
+        [TestMethod]
+        public void CalcWhenOneMultipleDelimitersOrMoreResult8()
+        {
+            TestAddMethodInputResultCheck("//[**]\n3**3**3", 9);
+        }
     }
 }
