@@ -11,7 +11,7 @@ namespace StringCaltulator
         public int Add(string input)
         {
             int result = 0;
-            //string[] parts = input.Split(new char[] {' ', '/', ',', '.' });
+            //string[] parts = input.Split(new char[] {' ', '/', ';', ',', '.', ':', '\n' });
             string[] parts = Regex.Split(input, @"[^\d-]"); //regex dzieli po liczbach 
             foreach( var part in parts)
             {
