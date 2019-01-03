@@ -13,7 +13,7 @@ namespace StringCalcTests
             int expected = result;
             Assert.AreEqual(expected, calculator.Add(input));
         }
-
+      
         [TestMethod]
         public void CalcWhenInput0thenreturn0()
         {
@@ -35,13 +35,30 @@ namespace StringCalcTests
         [TestMethod]
         public void CalcWhenInputWithenterReturn6()
         {
-            TestAddMethodInputResultCheck("1\n2,3", 6);
+            TestAddMethodInputResultCheck("1/n2,3", 6);
         }
 
         [TestMethod]
         public void CalcWhenInputMorethanTwonumberReturn10()
         {
             TestAddMethodInputResultCheck("1,2,2,5", 10);
+        }
+
+        [TestMethod]
+        public void CalcWhenInputMorethan0()
+        {
+            TestAddMethodInputResultCheck("1,2,2,5", 10);
+        }
+
+        [TestMethod]
+        public void CalcWhenInputWithDelimeterResult12()
+        {
+            TestAddMethodInputResultCheck("[-]\n8-1-1", 10);
+        }
+        [TestMethod]
+        public void CalcWhenInputWithDelimeterResult20()
+        {
+            TestAddMethodInputResultCheck("[*]\n8*1*1*10", 20);
         }
     }
 }
