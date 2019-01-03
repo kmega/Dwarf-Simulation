@@ -10,7 +10,26 @@ namespace CyberMagic
     {
         static void Main(string[] args)
         {
-            Task1(@"cybermagic\karty-postaci\1807-fryderyk-komciur.md");
+            //Task1(@"karty-postaci\1807-fryderyk-komciur.md");
+            
+            //Task 2           
+            Task2(@"karty-postaci");
+           
+            //Sum
+            //WriteResults
+            Console.ReadLine();
+        }
+
+        private static void Task2(string filesDirectory)
+        {
+            //Read all files(directory) -> [] files
+            List<string> filesContents = TextFileManager.ReadAllFiles(filesDirectory);
+            //GetAllTimes(files) -> [] times
+            var allTimes = InformationExtractor.ExtractAllTimes(filesContents);
+            //sum times
+            var sumOfTimes = allTimes.Sum();
+            //WriteToFile
+           // TextFileManager.WriteResults(new string[])
         }
 
         private static void Task1(string fileFullPath)
@@ -23,7 +42,7 @@ namespace CyberMagic
             //Wyfiltruj czas
             int time = InformationExtractor.ExtractSingleTime(file);
             // Wyswietl wyniki
-            TextFileManager.WriteResults(new string[] { $"{name} był budowany {time} minuty." });
+            TextFileManager.WriteResults(new string[] { $"{ name} był budowany {time} minuty." });
         }
 
     }
