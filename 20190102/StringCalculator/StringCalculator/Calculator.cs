@@ -45,10 +45,10 @@ namespace StringCalculator
         private List<int> IntegerExtractor(string number, string delimeter)
         {
             var textParser = new TextParser();
-            ////Extract part of string using delimeter -> number, delimeter;
-            //string[] separator = new string[] { delimeter };
-            //string[] partedText = number.Split(separator);
-            ////
+            //Extract part of string using delimeter -> number, delimeter;
+            string[] separator = new string[] { delimeter };
+            string[] partedText = number.Split(separator, StringSplitOptions.None);
+            //
             List<string> extractNumbers = textParser.ExtractNumbers(number);
             List<int> parsedNumbers = new List<int>();
             foreach (var num in extractNumbers)
