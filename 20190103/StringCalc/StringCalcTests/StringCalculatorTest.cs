@@ -53,12 +53,17 @@ namespace StringCalcTests
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult12()
         {
+<<<<<<< HEAD
             TestAddMethodInputResultCheck("//[-]\n8-1-1", 10);
+=======
+            TestAddMethodInputResultCheck("[-]/n8-1-1", 10);
+>>>>>>> 20190103/MPochrzest
         }
 
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult20()
         {
+<<<<<<< HEAD
             TestAddMethodInputResultCheck("//[*]\n8*1*1*10", 20);
         }
 
@@ -94,6 +99,9 @@ namespace StringCalcTests
         public void CalcWhenTwoDelimitersOrMoreResult6()
         {
             TestAddMethodInputResultCheck("//[*][%]\n1*2%3", 6);
+=======
+            TestAddMethodInputResultCheck("[*]/n8*1*1*10", 20);
+>>>>>>> 20190103/MPochrzest
         }
     }
 }
