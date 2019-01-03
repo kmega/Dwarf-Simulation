@@ -53,12 +53,12 @@ namespace StringCalcTests
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult12()
         {
-            TestAddMethodInputResultCheck("[-]\n8-1-1", 10);
+            TestAddMethodInputResultCheck("[-]/n8-1-1", 10);
         }
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult20()
         {
-            TestAddMethodInputResultCheck("[*]\n8*1*1*10", 20);
+            TestAddMethodInputResultCheck("[*]/n8*1*1*10", 20);
         }
     }
 }
