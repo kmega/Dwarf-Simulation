@@ -9,7 +9,7 @@ namespace CyberMagic
 {
     public static class TextFileManager
     {
-        internal static string ReadFile(string fileName)
+        public static string ReadFile(string fileName)
         {
             string text = File.ReadAllText(fileName);
             return text;
