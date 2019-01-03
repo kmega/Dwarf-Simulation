@@ -3,16 +3,20 @@ using System.Collections.Generic;
 
 namespace ChickenApp.Domain
 {
-    class Waiter
+    public class Waiter
     {
-        public void CallWaiter()
+        public bool asnwerUnitTest;
+
+        public void CallWaiter(string name, string dish)
         {
-            Console.WriteLine("Hello, what is Your name?");
+            /* Console.WriteLine("Hello, what is Your name?");
             string name = Console.ReadLine();
             Console.WriteLine("What would You like to order, {0}", name);
-            string dish = Console.ReadLine();
+            string dish = Console.ReadLine(); commented for unitTests, needs to delete names and dish from methodafter tests */
 
             bool isAllergicTo = isCusomerAlergicToOrderedDish(name, dish);
+
+            this.asnwerUnitTest = isAllergicTo;
 
             string answer = (isAllergicTo == false) ? "Here's Your meal" : "You're allergic to it";
 

@@ -9,8 +9,12 @@ namespace ChickenKitchenAppUnitTest
         [TestMethod]
         public void JulieMirageBuysFishInWaterAndSheGetsIt()
         {
+            
+            Waiter waiter = new Waiter();
 
             waiter.CallWaiter();
+
+            
         }
     }
 }

@@ -16,7 +16,8 @@ namespace ChickenApp
             //3. Call waiter and order a meal
             Waiter waiter = new Waiter();
 
-            waiter.CallWaiter();
+            //waiter.CallWaiter(); commented for unitTests
+            
 
             Console.ReadKey();
         }
