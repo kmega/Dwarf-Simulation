@@ -11,11 +11,8 @@ namespace StringCalc
         public int Add(string numbers)
         {
             int result = 0;
-            string[] separatedLines;
-            string delimeter;
-
+            string[] separatedLines = numbers.Split(new string[] { "\n" }, StringSplitOptions.None);
             List<int> separatedNumbers = new List<int>();
-            separatedLines = numbers.Split(new string[] { "\n" }, StringSplitOptions.None);
             List<string> separatedNumbersInLine = SeperateStringsToNumbers(separatedLines);
             foreach (var number in separatedNumbersInLine)
             {
@@ -39,8 +36,6 @@ namespace StringCalc
         private List<string> SeperateStringsToNumbers(string[] separatedLines)
         {
             List<string> separatedNumbersInLine = new List<string>(); ////[*][%]\n1*2%3
-            
-            string delimeter;
             if (separatedLines[0].StartsWith("//"))
             {
                 string[] delimeters = separatedLines[0].Split(new string[] { "][" }, StringSplitOptions.None);
@@ -48,8 +43,6 @@ namespace StringCalc
                 {
                     delimeters[i] = delimeters[i].Replace("//[", "").Replace("]", ""); ;
                 }
-               // delimeter = separatedLines[0];
-               // delimeter = delimeter.Replace("//[", "").Replace("]", "");
                 separatedNumbersInLine = separatedLines[1].Split(delimeters, StringSplitOptions.None).ToList();
             }
             else
