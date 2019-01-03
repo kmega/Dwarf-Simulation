@@ -11,13 +11,19 @@ namespace StringCalc
         public int Add(string numbers)
         {
             int result = 0;
+            List<int> separatedNumbers = new List<int>();
             var separator = new string[] { "," };
             var separatedLines = numbers.Split(new string[] { "/n" }, StringSplitOptions.None);
-            var seperatedNumbers = numbers.Split(separator, StringSplitOptions.None);
-            foreach(var number in seperatedNumbers)
+            
+            foreach(var line in separatedLines)
             {
-                result += Int32.Parse(number);
+                var separatedNumbersInLine = line.Split(separator, StringSplitOptions.None);
+                foreach(var number in separatedNumbersInLine)
+                {
+                    separatedNumbers.Add(Int32.Parse(number));
+                }
             }
+            result = separatedNumbers.Sum();          
             return result;
         }
     }
