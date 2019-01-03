@@ -1,0 +1,17 @@
+Hej, jak Wam obiecałem tak dodaję dwa linki wideo. Unlisted na YT, byście mogli 
+zobaczyć dekompozycję w czasie rzeczywistym.
+
+część 1:
+https://www.youtube.com/watch?v=VGGdGwAB3vc
+
+część 2:
+https://www.youtube.com/watch?v=9HOEA03aCi8
+
+Nie jest to przeznaczone jako standalone i jakość jest kiepska, ale może Wam
+przypomnieć jak to robiłem na zajęciach.
+
+
+1. Ustalenie celu: komentarze jako przyszłe metody --> co pobieram, co produkuję
+2. Bilans zasobów
+3. Przekształcić pseudokod w kod
+4. Zoom-in.
