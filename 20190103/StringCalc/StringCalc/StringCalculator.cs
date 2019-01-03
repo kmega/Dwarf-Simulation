@@ -10,6 +10,9 @@ namespace StringCalc
     {
         public int Add(string numbers)
         {
+            var separator = new string[] { "," };
+            var seperatedNumbers = numbers.Split(separator, StringSplitOptions.None);
+           // foreach(var number in )
             return 0;
         }
     }
