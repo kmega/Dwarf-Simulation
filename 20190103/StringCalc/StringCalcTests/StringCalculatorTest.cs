@@ -53,12 +53,55 @@ namespace StringCalcTests
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult12()
         {
+<<<<<<< HEAD
+            TestAddMethodInputResultCheck("//[-]\n8-1-1", 10);
+=======
             TestAddMethodInputResultCheck("[-]/n8-1-1", 10);
+>>>>>>> 20190103/MPochrzest
         }
+
         [TestMethod]
         public void CalcWhenInputWithDelimeterResult20()
         {
+<<<<<<< HEAD
+            TestAddMethodInputResultCheck("//[*]\n8*1*1*10", 20);
+        }
+
+        [TestMethod]
+        public void CalcWhenInputWithDelimeterResult3()
+        {
+            TestAddMethodInputResultCheck("//[;]\n1;2", 3);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+    "negatives not allowed")]
+        public void CalcWhenNegatieNumber()
+        {
+            var calc = new StringCalculator();
+            calc.Add("-1,-2");
+            TestAddMethodInputResultCheck("-2,-3", -1);
+        }
+
+        [TestMethod]
+        public void CalcWhenInputIsBiggerthan1000Result2()
+        {
+            TestAddMethodInputResultCheck("2,1001", 2);
+        }
+
+        [TestMethod]
+        public void CalcWhenDelimitersCanBeOfAnyLenghtResult6()
+        {
+            TestAddMethodInputResultCheck("//[***]\n1***2***3", 6);
+        }
+
+        [TestMethod]
+        public void CalcWhenTwoDelimitersOrMoreResult6()
+        {
+            TestAddMethodInputResultCheck("//[*][%]\n1*2%3", 6);
+=======
             TestAddMethodInputResultCheck("[*]/n8*1*1*10", 20);
+>>>>>>> 20190103/MPochrzest
         }
     }
 }
