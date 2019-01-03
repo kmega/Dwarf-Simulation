@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringCalculator.Test", "St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecondStringCalculator", "SecondStringCalculator\SecondStringCalculator.csproj", "{03EC554D-C80C-4415-9750-36C144A9B252}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "temp", "temp\temp.csproj", "{52BE36D5-9E45-434F-9FEF-F9BE35A4C514}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -19,5 +21,9 @@ Global
 		{03EC554D-C80C-4415-9750-36C144A9B252}.Debug|x86.Build.0 = Debug|Any CPU
 		{03EC554D-C80C-4415-9750-36C144A9B252}.Release|x86.ActiveCfg = Release|Any CPU
 		{03EC554D-C80C-4415-9750-36C144A9B252}.Release|x86.Build.0 = Release|Any CPU
+		{52BE36D5-9E45-434F-9FEF-F9BE35A4C514}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{52BE36D5-9E45-434F-9FEF-F9BE35A4C514}.Debug|x86.Build.0 = Debug|Any CPU
+		{52BE36D5-9E45-434F-9FEF-F9BE35A4C514}.Release|x86.ActiveCfg = Release|Any CPU
+		{52BE36D5-9E45-434F-9FEF-F9BE35A4C514}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
