@@ -8,29 +8,18 @@ namespace String_Calculator
 {
     public class Calculator
     {
-
-
         public int Add(string value)
         {
             int sum = 0;
-            string delimiter = "";
+            string[] delimiter;
             string[] values_almost;
 
             if (value != "")
             {
                 delimiter = CheckForDelimeters(value);
 
-                values_almost = value.Split(new string[] {
-     ",",
-     "\n",
-     "/",
-     "[",
-     "]",
-     delimiter
-    }, StringSplitOptions.None);
-                string[] values = values_almost.Except(new[] {
-     string.Empty, ""
-    }).ToArray();
+                values_almost = value.Split(delimiter, StringSplitOptions.None);
+                string[] values = values_almost.Except(new[] { string.Empty, ""}).ToArray();
 
                 sum = CheckForNegativesAndHigherThan1000(values);
 
@@ -73,10 +62,11 @@ namespace String_Calculator
             return sum;
         }
 
-        private string CheckForDelimeters(string value)
+        private string[] CheckForDelimeters(string value)
         {
-            string delimiter = "";
-
+            List<string> delimiter = new List<string>();
+            delimiter.Add("");
+            int counter = 0;
             if (value[0] == '/' && value[1] == '/')
             {
                 if (value[2] == '[')
@@ -85,18 +75,30 @@ namespace String_Calculator
                     {
                         if (value[i] == ']')
                         {
-                            break;
+                            if (value[i + 1] == '[')
+                            {
+                                i = i + 2;
+                                counter++;
+                                delimiter.Add("");
+                            }
+                            else { break; }
                         }
-                        delimiter += value[i];
+                        delimiter[counter] += value[i];
                     }
                 }
                 else
                 {
-                    delimiter = value[2].ToString();
+                    delimiter.Add("");
+                    delimiter[counter] = value[2].ToString();
                 }
 
             }
-            return delimiter;
+            delimiter.Add(",");
+            delimiter.Add("\n");
+            delimiter.Add("/");
+            delimiter.Add("[");
+            delimiter.Add("]");
+            return delimiter.ToArray(); 
         }
     }
 

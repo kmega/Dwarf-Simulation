@@ -121,5 +121,23 @@ namespace UnitTestProject1
 
             Assert.AreEqual(6, result);
         }
+        [TestMethod]
+        public void ReturnValue6WhenStringHasMultipleDelimiters()
+        {
+            string value = "//[*][%]\n1*2%3";
+
+            int result = TestInput(value);
+
+            Assert.AreEqual(6, result);
+        }
+        [TestMethod]
+        public void ReturnValue6WhenStringHasMultipleLongDelimiters()
+        {
+            string value = "//[***][%%%]\n1***2%%%3";
+
+            int result = TestInput(value);
+
+            Assert.AreEqual(6, result);
+        }
     }
 }
