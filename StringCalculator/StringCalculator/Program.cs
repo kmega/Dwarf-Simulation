@@ -12,7 +12,8 @@ namespace StringCalculator
         static void Main(string[] args)
         {
             Calculator calc = new Calculator();
-            var result = calc.Calculate("0");
+            var result = calc.Add("//[*][%]\n1*2%3");
+            Console.ReadKey();
            // Console.WriteLine(result);
            // Console.ReadKey();
 

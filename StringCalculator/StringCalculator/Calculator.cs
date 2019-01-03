@@ -8,45 +8,57 @@ namespace StringCalculator
 {
     public class Calculator
     {
-        public int Calculate(string value)
+        public int Add(string numbers)
         {
-            if (value == "") return 0;
+            int sum = 0;
 
-            var result1 = int.TryParse(value, out int value_int);
+            int index = numbers.IndexOf("\n");
+            int maxIndex = numbers.Length - index;
 
-            if(result1)
+            string delimiter = "";
+            delimiter = numbers.Remove(index, maxIndex);
+
+            numbers = numbers.Replace(delimiter, "");
+            string deli = delimiter.Split(new string[] { "//[", delimiter, "]" }, StringSplitOptions.None)[1];
+
+                string[] numbersArray =
+                numbers.Split(new string[] { "\n", ",", deli }, StringSplitOptions.None);
+
+                string[] numbersArray =
+                numbers.Split(new string[] { "\n", ","}, StringSplitOptions.None);
+
+            
+
+            string exceptions = "";
+
+            if (numbers == "") return 0;
+            else if(numbersArray != null)
             {
-                return value_int;
-            }
-            else
-            {
-                throw new Exception();
-            }
-          
-        }
+                foreach (var number in numbersArray)
+                {
 
-        public int Calculate(string value1, string value2)
-        {
-            if (value1 == "" && value2 == "") return 0;
-
-            var result1 = int.TryParse(value1, out int value1_int);
-            var result2 = int.TryParse(value2, out int value2_int);
-
-            if((result1 == false || result2 == false))
-            {
-                if (value1 == "" && value2 != "") return int.Parse(value2);
-                else if (value1 != "" && value2 == "") return int.Parse(value1);
+                    if (number != "" && (int.TryParse(number, out int value)) == false)
+                    {
+                        exceptions += number + Environment.NewLine;
+                    }
+                    else
+                    {
+                        if (number != "" && int.Parse(number) <= 1000)
+                        {                           
+                            sum += int.Parse(number);
+                        }
+                            
+                    }
+                    
+                }
+                if (exceptions != "") throw new Exception($"negatives not allowed: {exceptions}");
+                return sum;
             }
-
-            if (result1 && result2)
-            {               
-                return value1_int + value2_int;
+            else if (int.TryParse(numbers, out int numbers_parse))
+              {
+                return numbers_parse;
             }
-            else
-            {
-                throw new Exception();
-            }
-
+            return 0;
         }
     }
    

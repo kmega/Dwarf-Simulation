@@ -16,132 +16,52 @@ namespace StringCalculator.Test
 
             //when
 
-            int result = calculator.Calculate(value);
+            int result = calculator.Add(value);
 
             //then
             Assert.AreEqual(expectedResult, result);
         }
         [TestMethod]
-        public void ShouldReturnValueWhenParseIsTrue()
+        public void ShouldReturnSumWhenNumbersAreSplitByComa()
         {
             //Given
             var calculator = new Calculator();
-            string value = "6";
-            int expectedResult = int.Parse(value);
+            string value = "1,4,5";
+            int expectedResult = 10;
 
             //when
 
-            int result = calculator.Calculate(value);
+            int result = calculator.Add(value);
 
             //then
             Assert.AreEqual(expectedResult, result);
         }
         [TestMethod]
-        [ExpectedException(typeof(Exception))]
-        public void ShouldThrowExceptionIfValueParseIsFalse()
+        public void ShouldReturnSumWhenNumbersAreSplitByNewLine()
         {
             //Given
             var calculator = new Calculator();
-            string value = "sdgds";
+            string value = "1\n2,3";
+            int expectedResult = 6;
 
             //when
 
-            int result = calculator.Calculate(value);
-
-        }
-
-        [TestMethod]
-        public void ShouldReturn0WhenFirstNumberAndSecondNumberIsEmpty()
-        {
-            //Given
-            var calculator = new Calculator();
-            string value1 = "";
-            string value2 = "";
-            int expectedResult = 0;
-
-            //when
-
-            int result = calculator.Calculate(value1, value2);
+            int result = calculator.Add(value);
 
             //then
             Assert.AreEqual(expectedResult, result);
         }
         [TestMethod]
-        public void ShouldReturnSecondNumberWhenFirstNumberIsEmpty()
+        public void ShouldReturnSumWhenNumbersAreSplitByDelimiter()
         {
             //Given
             var calculator = new Calculator();
-            string value1 = "";
-            string value2 = "4";
-            int expectedResult = int.Parse(value2);
+            string value = "//;;;;\n2,3";
+            int expectedResult = 5;
 
             //when
 
-            int result = calculator.Calculate(value1, value2);
-
-            //then
-            Assert.AreEqual(expectedResult, result);
-        }
-        [TestMethod]
-        public void ShouldReturnFirstNumberWhenSecondNumberIsEmpty()
-        {
-            //Given
-            var calculator = new Calculator();
-            string value1 = "5";
-            string value2 = "";
-            int expectedResult = int.Parse(value1);
-
-            //when
-
-            int result = calculator.Calculate(value1, value2);
-
-            //then
-            Assert.AreEqual(expectedResult, result);
-        }
-        [TestMethod]
-        public void ShouldReturnFirstNumbersWhenOnlySecondNumberIsEmpty()
-        {
-            //Given
-            var calculator = new Calculator();
-            string value1 = "4";
-            string value2 = "";
-            int expectedResult = int.Parse(value1 + value2);
-
-            //when
-
-            int result = int.Parse(value1);
-
-            //then
-            Assert.AreEqual(expectedResult, result);
-        }
-        [TestMethod]
-        public void ShouldReturnSecondNumbersWhenOnlyFirstNumberIsEmpty()
-        {
-            //Given
-            var calculator = new Calculator();
-            string value1 = "";
-            string value2 = "47";
-            int expectedResult = int.Parse(value1 + value2);
-
-            //when
-
-            int result = int.Parse(value2);
-
-            //then
-            Assert.AreEqual(expectedResult, result);
-        }
-        [TestMethod]
-        public void ShouldReturnSumNumbers()
-        {
-            //Given
-            var calculator = new Calculator();
-            string value1 = "6";
-            string value2 = "8";
-            int expectedResult = int.Parse(value1) + int.Parse(value2);
-
-            //when
-
-            int result = calculator.Calculate(value1, value2);
+            int result = calculator.Add(value);
 
             //then
             Assert.AreEqual(expectedResult, result);
@@ -149,16 +69,31 @@ namespace StringCalculator.Test
 
         [TestMethod]
         [ExpectedException(typeof(Exception))]
-        public void ShouldThrowExceptionIfFirstOrSecondNumbersParseIsFalseAndNotEmpty()
+        public void ShouldThrowExceptionWhenNumberAreNegative()
         {
             //Given
             var calculator = new Calculator();
-            string value1 = "dhd";
-            string value2 = "457";
+            string value = "sdgdfhdfg";
 
             //when
-            int result = calculator.Calculate(value1, value2);
 
+            int result = calculator.Add(value);
+        }
+
+        [TestMethod]
+        public void ShouldReturnSumIgnoringNumberBiggerThan1000()
+        {
+            //Given
+            var calculator = new Calculator();
+            string value = "//[;;;;]\n,1002,\n,2";
+            int expectedResult = 2;
+
+            //when
+
+            int result = calculator.Add(value);
+
+            //then
+            Assert.AreEqual(expectedResult, result);
         }
 
     } 
