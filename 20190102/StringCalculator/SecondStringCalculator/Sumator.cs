@@ -7,54 +7,109 @@ namespace SecondStringCalculator
 {
     public class Sumator
     {
-        public int GetSum(string numberString)
+        public int GetSum(string numberString, string delimiter)
         {
-            if(numberString == "")
+            if(numberString == null)
             {
                 return 0;
             }
-            var numbers = GetNumbersFromString(numberString);
+            var numbers = GetNumbersFromString(numberString, delimiter);
 
             return numbers.Sum();
         }
 
-        public int GetSum(string numberString, string secondString)
+        public int GetSum(string numberString, string secondString, string delimiter)
         {
-            if(numberString == "" && secondString == "")
+            if (numberString == "" && secondString == "")
             {
                 return 0;
             }
             if (numberString != "" && secondString == "")
             {
-                return GetNumbersFromString(numberString).Sum();
+                return GetNumbersFromString(numberString, delimiter).Sum();
             }
             if (numberString == "" && secondString != "")
             {
-                return GetNumbersFromString(secondString).Sum();
+                return GetNumbersFromString(secondString, delimiter).Sum();
             }
-            return GetNumbersFromString(numberString).Sum() + GetNumbersFromString(secondString).Sum();
+            return GetNumbersFromString(numberString, delimiter).Sum() + GetNumbersFromString(secondString, delimiter).Sum();
         }
 
-        private List<int> GetNumbersFromString(string numberString)
+        public int GetSum(string numberString, List<string> delimiter)
+        {
+            if (numberString == null)
+            {
+                return 0;
+            }
+            return GetNumbersFromString(numberString, delimiter).Sum();
+        }
+
+        private List<int> GetNumbersFromString(string numberString, string delimiter)
         {
             List<int> numbers = new List<int>();
+            //string[] splitedNumberString = numberString.Split(delimiter);
+            string[] splitedNumberString = numberString.Split(delimiter);
 
-            MatchCollection matches = Regex.Matches(numberString, @"\d+", RegexOptions.Multiline);
-
-            foreach (object match in matches)
+            foreach (string split in splitedNumberString)
             {
-                if(!IsGreaterThan1000(match))
+                MatchCollection matches = Regex.Matches(split, @"-?\d+", RegexOptions.Multiline);
+
+                foreach (object match in matches)
                 {
-                    numbers.Add(Convert.ToInt16(match.ToString()));
+                    if (!IsGreaterThan1000(match) && IsPositive(match))
+                    {
+                        numbers.Add(Convert.ToInt16(match.ToString()));
+                    }
+                    else new Exception(String.Format("Negatives are not allowed: " + IsPositive(match)));
+                }
+            }
+            
+            return numbers;
+        }
+
+        private List<int> GetNumbersFromString(string numberString, List<string> delimiter)
+        {
+            List<int> numbers = new List<int>();
+            //string[] splitedNumberString = numberString.Split(delimiter);
+
+            List<string> splitedNumberString = MulitDelimiterSpliter(numberString, delimiter); //numberString.Split(delimiter);
+
+            foreach (string split in splitedNumberString)
+            {
+                MatchCollection matches = Regex.Matches(split, @"-?\d+", RegexOptions.Multiline);
+
+                foreach (object match in matches)
+                {
+                    if (!IsGreaterThan1000(match) && IsPositive(match))
+                    {
+                        numbers.Add(Convert.ToInt16(match.ToString()));
+                    }
+                    else new Exception(String.Format("Negatives are not allowed: " + IsPositive(match)));
                 }
             }
 
             return numbers;
         }
 
+        private List<string> MulitDelimiterSpliter(string numberString, List<string> delimiter)
+        {
+            //for chars
+            //return numberString.Split(delimiter.ToArray()).ToList();
+            return numberString.Split(delimiter.Aggregate(string.Concat)).ToList();
+        }
+
         private bool IsGreaterThan1000(object match)
         {
             if(Convert.ToInt16(match.ToString())>1000)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsPositive(object match)
+        {
+            if (Convert.ToInt16(match.ToString()) >= 0)
             {
                 return true;
             }
