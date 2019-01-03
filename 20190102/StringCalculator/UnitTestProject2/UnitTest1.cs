@@ -59,8 +59,7 @@ namespace UnitTestProject2
         {
 
             int result = calc.Sum("3\n-4,+okkkk kkk3");
-            
-
+         
         }
 
 
