@@ -35,7 +35,7 @@ namespace StringCalcTests
         [TestMethod]
         public void CalcWhenInputWithenterReturn6()
         {
-            TestAddMethodInputResultCheck("1/n2,3", 6);
+            TestAddMethodInputResultCheck("1\n2,3", 6);
         }
 
         [TestMethod]
@@ -69,13 +69,13 @@ namespace StringCalcTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException),
-    "negatives not allowed")]
+        [ExpectedException(typeof(Exception),
+    "Negative numbers are not allowed: -1 -2")]
         public void CalcWhenNegatieNumber()
         {
             var calc = new StringCalculator();
             calc.Add("-1,-2");
-            TestAddMethodInputResultCheck("-2,-3", -1);
+            TestAddMethodInputResultCheck("-2,-3", 0);
         }
 
         [TestMethod]
