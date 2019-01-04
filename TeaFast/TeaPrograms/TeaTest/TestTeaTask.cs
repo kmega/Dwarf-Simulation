@@ -7,27 +7,13 @@ using TeaPrograms;
 namespace TeaTest
 {
     [TestClass]
-    public class UnitTest1
+    public class TestTeaTask
     {
         [TestMethod]
         public void TestSortTeaInformation()
         {
-            List<ListTeaClass> informatioAboutTea = new List<ListTeaClass>();
-            informatioAboutTea.Add(new ListTeaClass
-            {
-                teaName = "Gunpowder Czarny",
-                typeTea = "czarna",
-                boilingpoint = "90",
-                boilingTime = "3"
-            });
-
-            informatioAboutTea.Add(new ListTeaClass
-            {
-                teaName = "Gunpowder Zielony",
-                typeTea = "zielona",
-                boilingpoint = "70",
-                boilingTime = "3"
-            });
+            DataTestInformation testingData = new DataTestInformation();
+            var informatioAboutTea = testingData.InformationTest();
 
             var newList = informatioAboutTea.OrderBy(x => x.typeTea).ToList();
             Assert.AreEqual(newList[0].typeTea, "czarna");
@@ -75,7 +61,7 @@ namespace TeaTest
 
             MakeATeaTask make = new MakeATeaTask();
 
-            string quality = make.QualityTea(informatioAboutTea, 91, 310);
+            string quality = make.QualityTea(informatioAboutTea, 80, 300);
             Assert.AreEqual(quality, "Weak");
         }
 
@@ -87,7 +73,7 @@ namespace TeaTest
 
             MakeATeaTask make = new MakeATeaTask();
 
-            string quality = make.QualityTea(informatioAboutTea, 91, 310);
+            string quality = make.QualityTea(informatioAboutTea, 80, 350);
             Assert.AreEqual(quality, "Yucky");
         }
     }
