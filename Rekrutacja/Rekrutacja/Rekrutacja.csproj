@@ -49,6 +49,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Reverse Records.cs" />
+    <Compile Include="Tools\Sort.cs" />
     <Compile Include="Tools\TeaCreator.cs" />
     <Compile Include="Task1.cs" />
     <Compile Include="Task2.cs" />

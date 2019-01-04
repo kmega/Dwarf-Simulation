@@ -21,6 +21,7 @@ namespace Rekrutacja
             teas = creator.Creator(filetext);
 
             teas.ForEach(Console.WriteLine);
+            
 
         }
 
