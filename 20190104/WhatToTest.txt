@@ -1,0 +1,7 @@
+Check if null if number is empty
+
+Check if returns sum without delimiters
+
+Check if support many delimiters
+
+Check if throws exception when negative number occure
