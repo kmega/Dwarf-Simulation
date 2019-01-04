@@ -1,5 +1,5 @@
 1. String is not NULL
-2. String is empty
+2. String when empty then equals 0
 3. String has 1 number
 4. String has 2 numbers
-5.
+5. String has "1\n2,3"
