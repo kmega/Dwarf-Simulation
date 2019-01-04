@@ -411,3 +411,8 @@ ASALocalRun/
 20190102/pkozlowski/.vscode/tasks.json
 20181218/tmp/Program.cs
 20190102/pkozlowski-unit-test/.vscode/launch.json
+190104/UnitTests/StringCalculatorTests/StringCalculatorTests.csproj
+190104/UnitTests/UnitTests.sln.sln
+190104/UnitTests/.vscode/launch.json
+190104/UnitTests/.vscode/tasks.json
+190104/UnitTests/StringCalculator/StringCalculator.csproj

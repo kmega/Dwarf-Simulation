@@ -13,14 +13,18 @@ namespace StringCalculator
             {
                 return 0;
             }
-            
+
+            List<string> _strings = new List<string>();
             List<int> _numbers = new List<int>();
             MatchCollection matches = Regex.Matches(numbers, @"\d+", RegexOptions.Multiline);
 
-            foreach (var match in matches)
-            {
-                _numbers.Add(Convert.ToInt32(match.ToString()));
-            }
+            _strings.ForEach(x => 
+                {
+                    foreach (var match in matches)
+                    {
+                        _numbers.Add(Convert.ToInt32(match.ToString()));
+                    }
+                });
 
             int result = _numbers.Sum();
 
