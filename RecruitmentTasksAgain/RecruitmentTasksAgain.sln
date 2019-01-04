@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2041
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecruitmentTasksAgain", "RecruitmentTasksAgain\RecruitmentTasksAgain.csproj", "{A9F88705-15BD-4C2B-955C-51369B333B50}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecruitmentTasksTests", "RecruitmentTasksTests\RecruitmentTasksTests.csproj", "{EA97ED7E-085A-4475-B985-8B677F76452C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9F88705-15BD-4C2B-955C-51369B333B50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9F88705-15BD-4C2B-955C-51369B333B50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9F88705-15BD-4C2B-955C-51369B333B50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9F88705-15BD-4C2B-955C-51369B333B50}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA97ED7E-085A-4475-B985-8B677F76452C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA97ED7E-085A-4475-B985-8B677F76452C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA97ED7E-085A-4475-B985-8B677F76452C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA97ED7E-085A-4475-B985-8B677F76452C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DF90176C-0CF7-4246-9619-9098B58122D0}
+	EndGlobalSection
+EndGlobal
