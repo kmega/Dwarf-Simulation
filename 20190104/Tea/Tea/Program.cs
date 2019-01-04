@@ -35,7 +35,7 @@ namespace Tea
                 }
             }
 
-            //listoftea.OrderBy(x => x.type).ToList();
+            listoftea=listoftea.OrderBy(x => x.type).ToList();
             Console.WriteLine(String.Join("\n", listoftea));
 
            

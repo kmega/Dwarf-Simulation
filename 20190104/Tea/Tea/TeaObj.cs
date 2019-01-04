@@ -21,7 +21,10 @@ namespace Tea
            this. time = Time;
         }
 
-        
+        public override string ToString()
+        {
+            return name + ", " + type + ", " + temperature + ", " + time;
+        }
 
     }
 }

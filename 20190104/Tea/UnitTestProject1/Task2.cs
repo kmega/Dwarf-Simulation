@@ -42,10 +42,10 @@ namespace UnitTestProject1
             tb.AddTea(input2)
             };
 
-            list.OrderBy(x => x.type).ToList();
+          list=  list.OrderBy(x => x.type).ToList();
 
-            Assert.AreEqual(input2, list[0]);
-            Assert.AreEqual(input, list[1]);
+            Assert.AreEqual(input2, list[0].ToString());
+            Assert.AreEqual(input, list[1].ToString());
             
             
 
