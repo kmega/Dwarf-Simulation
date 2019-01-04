@@ -11,6 +11,14 @@ namespace TeaApp
         static void Main(string[] args)
         {
             Task1();
+            Task2();
+            //Task3
+            //given: List<Tea> goodTeas, name, time, temp
+            //AssessTea -> string result
+        }
+
+        private static void Task2()
+        {
             //Task2
             //ReadFile(filePath) -> string[] textLines
             string filePath = "/c/c/c/";
@@ -18,7 +26,6 @@ namespace TeaApp
             //BuildTeas(textLines) -> List<Tea>
             List<Tea> teas = TeaFactory.BuildFromFile(textLines);
             //WriteResultsToFile()
-
         }
 
         private static void Task1()

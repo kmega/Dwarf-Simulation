@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace TeaApp
 {
@@ -26,5 +27,20 @@ namespace TeaApp
                 Int32.Parse(teaReciepe[2]),
                 Int32.Parse(teaReciepe[3]));
         }
+        public static string CheckTeaQuality(List<Tea> goodTeas, string name, int temp, int time)
+        {
+            Tea preparedTea = goodTeas.Where(x => x.Name.Equals(name)).First();
+            if(temp > preparedTea.Temperature*1.1 || time > preparedTea.TimeOfCooking*60*1.1)
+            {
+                return "yucky";
+            }
+            else if(temp < preparedTea.Temperature*0.9 || time < preparedTea.TimeOfCooking*60*0.9)
+            {
+                return "weak";
+            }
+            return "perfect";
+
+        }
+
     }
 }

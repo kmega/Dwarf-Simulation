@@ -13,10 +13,9 @@ namespace TeaTests
         [TestMethod]
         public void ShouldBuildSingleTea()
         {
-            List<string> lines = TeaData.Records();
-
+            List<string> lines = TeaData.RawTeas();
             //Act
-            var result = TeaFactory.BuildSingleTea(FileManager.SeperateLine(lines[4]));
+            var result = TeaFactory.BuildSingleTea(FileManager.SeperateLine(lines[2]));
             var expected = new Tea("Lapacho", "napar", 96, 10);
             //assert
             Assert.AreEqual(result.Name, expected.Name);
@@ -24,16 +23,15 @@ namespace TeaTests
         [TestMethod]
         public void ShouldSortTeasByType()
         {
-            List<string> lines = TeaData.Records();
-            lines.RemoveRange(0, 2);
+            List<string> lines = TeaData.RawTeas();
+            List<string> expected = TeaData.OrderedTeaTypes();
             //Act
-            var result = TeaFactory.BuildFromFile(lines).OrderBy(t => t.Type).ToList();
-
-            var expectedTypeAt4Position = "owocowa";
-            var expectedTypeAt5Position = "zielona";
+            var result = TeaFactory.BuildFromFile(lines).OrderBy(t => t.Type).ToList();   
             //assert
-            Assert.AreEqual(expectedTypeAt4Position, result[4].Type);
-            Assert.AreEqual(expectedTypeAt5Position, result[5].Type);
+            for(int i = 0; i<result.Count; i++)
+            {
+                Assert.AreEqual(result[i].Type, expected[i]);
+            }       
         }
     }
 }
