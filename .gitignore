@@ -416,3 +416,8 @@ ASALocalRun/
 190104/UnitTests/.vscode/launch.json
 190104/UnitTests/.vscode/tasks.json
 190104/UnitTests/StringCalculator/StringCalculator.csproj
+190104/TeaWithTests/BrewTea/BrewTea.csproj
+190104/TeaWithTests/BrewTea.sln.sln
+190104/TeaWithTests/BrewTeaTests/BrewTeaTests.csproj
+190104/TeaWithTests/.vscode/launch.json
+190104/TeaWithTests/.vscode/tasks.json
