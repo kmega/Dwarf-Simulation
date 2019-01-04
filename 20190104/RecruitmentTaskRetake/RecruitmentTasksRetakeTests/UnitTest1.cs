@@ -31,12 +31,11 @@ namespace RecruitmentTasksRetakeTests
             List<string> origin = new FileOps().GetFile();
 
 
-            (List<string[]> alphaSortedOrigin, List<string[]> nonSortedOrigin) = new FileOps().
-                                                                                    GetArrayFromList(origin);
+            List<string[]> alphaSortedOrigin = new FileOps().GetSortedList(origin);
             bool expected = true;
 
             bool result = new FileOps().IsSorted(alphaSortedOrigin);
-
+            //zobaczyc czy 2 pierwsze linjki na sztywno sa true sorted
         }
     }
 }
