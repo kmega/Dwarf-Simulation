@@ -42,16 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileOps.cs" />
+    <Compile Include="PrepareTea.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadingFile.cs" />
-    <Compile Include="TeaObj.cs" />
+    <Compile Include="Tasks\Task1.cs" />
+    <Compile Include="Tasks\Task2.cs" />
+    <Compile Include="Tasks\Task4.cs" />
+    <Compile Include="Tasks\Task5.cs" />
     <Compile Include="TeaBuilder.cs" />
+    <Compile Include="TeaObj.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="input-file..txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="tea-data.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

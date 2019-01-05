@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tea", "Tea\Tea.csproj", "{99135E50-FF8B-45D7-A4AD-56A5493D2813}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{6C75FDB1-8083-4FE9-9137-595A88444947}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TeaTest", "TeaTest\TeaTest.csproj", "{843AB859-C7B0-4AA7-BE4A-DF295B863B2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{99135E50-FF8B-45D7-A4AD-56A5493D2813}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99135E50-FF8B-45D7-A4AD-56A5493D2813}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99135E50-FF8B-45D7-A4AD-56A5493D2813}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6C75FDB1-8083-4FE9-9137-595A88444947}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6C75FDB1-8083-4FE9-9137-595A88444947}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6C75FDB1-8083-4FE9-9137-595A88444947}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6C75FDB1-8083-4FE9-9137-595A88444947}.Release|Any CPU.Build.0 = Release|Any CPU
+		{843AB859-C7B0-4AA7-BE4A-DF295B863B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{843AB859-C7B0-4AA7-BE4A-DF295B863B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{843AB859-C7B0-4AA7-BE4A-DF295B863B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{843AB859-C7B0-4AA7-BE4A-DF295B863B2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

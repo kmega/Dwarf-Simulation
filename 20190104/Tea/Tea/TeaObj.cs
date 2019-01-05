@@ -9,21 +9,22 @@ namespace Tea
    public class TeaObj
     {
         public string name;
-       public  string type;
-       public  int temperature;
-       public  int time;
+       public string type;
+        public double  temp;
+        public double time;
 
-        public TeaObj (string Name, string Type, int Temperature, int Time)
+        public TeaObj(string Name, string Type, double Temp, double Time)
         {
-            this.name = Name;
-            this.type = Type;
-            this.temperature = Temperature;
-           this. time = Time;
+            name = Name;
+            type = Type;
+            temp = Temp;
+            time = Time;
         }
 
         public override string ToString()
         {
-            return name + ", " + type + ", " + temperature + ", " + time;
+            string delimeter = ", ";
+            return name + delimeter + type + delimeter  + temp + delimeter + time;
         }
 
     }

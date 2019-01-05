@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tea.Tasks;
 
 namespace Tea
 {
@@ -11,47 +12,72 @@ namespace Tea
     {
         static void Main(string[] args)
         {
-            //1.ReadFile-> TeaListBasic
-
-            ReadingFile rfteas = new ReadingFile("tea-data.txt");
-            TeaBuilder tb = new TeaBuilder();
-            List<TeaObj> listoftea = new List<TeaObj>();
+            string path = "tea-data.txt";
             
-            foreach (var item in rfteas.teas)
-            {
-                if (item == "")
-                {
-                    continue;
-                }
-                else if (item.StartsWith("#"))
-                {
-                    continue;
+            List<string> readedTeaFile =new FileOps().ReadTeaFile(path);
+            
+            List<TeaObj> listOfTea = new TeaBuilder().CreateListofTeas(readedTeaFile);
+            int task4isdone=0;
 
-                }
-                else
+
+            for (; ; )
+            {
+                Console.WriteLine("Which command do you wish to run?");
+
+
+            string input = Console.ReadLine();
+
+           
+                switch (input)
                 {
-                   listoftea.Add( tb.AddTea(item));
+
+                    case "1":
+                        Task1 task1 = new Task1();
+                        task1.DoTask1(listOfTea, readedTeaFile);
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+
+                    case "2":
+                        Task2 task2 = new Task2();
+                        task2.DoTask2(listOfTea, readedTeaFile);
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+
+                        case "4":
+                        Task4 task4 = new Task4();
+                        task4.DoTask4(listOfTea, task4isdone);
+                        task4isdone = 1;
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+
+                    case "5": 
+                        Task5 task5 = new Task5();
+                        task5.DoTask5(listOfTea);
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        Console.WriteLine();
+                        break;
+
+
+
+                    default:
+                        break;
+
 
                 }
             }
-
-            listoftea=listoftea.OrderBy(x => x.type).ToList();
-            Console.WriteLine(String.Join("\n", listoftea));
-
+          
            
-            
-
-            //2.TeaListBasic-> CreateTeaObjects -> List of TeaObjects
-            //3.List of Tea objects -> Reveres
-            //4. Display (list of thea obecjts)
-
-
-
-
-
-            Console.ReadKey();
 
         
         }
+
+       
     }
 }
