@@ -15,5 +15,15 @@ namespace StringCalculatorKataTests
 
             Assert.That(0, Is.EqualTo(result));
         }
+
+        [Test]
+        public void Add_SingleNumber_ReturnsThatNumber()
+        {
+            StringCalculator sc = new StringCalculator();
+
+            int result = sc.Add("1");
+
+            Assert.AreEqual(1, result);
+        }
     }
 }

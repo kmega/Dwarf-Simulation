@@ -8,9 +8,13 @@ namespace StringCalculatorKata
 {
     public class StringCalculator
     {
-        public int Add(string number)
+        public int Add(string numbers)
         {
-            throw new NotImplementedException();
+            if (numbers.Length == 0)
+            {
+                return 0;
+            }
+            return int.Parse(numbers);
         }
     }
 }
