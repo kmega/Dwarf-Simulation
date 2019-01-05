@@ -73,7 +73,12 @@ namespace StringCalculatorKata
         {
             if (negativeNumbers.Count > 0)
             {
-                string negativeNumbersStr = negativeNumbers.ToString();
+                string negativeNumbersStr = "";
+                foreach (var number in negativeNumbers)
+                {
+                    negativeNumbersStr += number + Environment.NewLine;
+                }
+                
                 throw new Exception("Negative numbers: " + negativeNumbersStr);
             }
             else
