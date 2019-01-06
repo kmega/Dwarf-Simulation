@@ -44,10 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MasterChef.cs" />
-    <Compile Include="Klient.cs" />
+    <Compile Include="Client.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RestaurantDataBase\Ingredients.cs" />
+    <Compile Include="RestaurantDataBase\Menu.cs" />
+    <Compile Include="RestaurantDataBase\RegularClients.cs" />
+    <Compile Include="RestaurantDataBase\Storage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

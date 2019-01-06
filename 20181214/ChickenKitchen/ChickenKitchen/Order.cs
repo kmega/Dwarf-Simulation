@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChickenKitchen.RestaurantDataBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChickenKitchen
 {
-    class Order
+   public  class Order
     {
 
         public string orderName;
