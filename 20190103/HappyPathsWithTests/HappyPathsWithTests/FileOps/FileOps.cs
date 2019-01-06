@@ -14,6 +14,13 @@ namespace HappyPathsWithTests
             streamWriter.Close();
         }
 
+        public void SaveToFile(string resultPath, int hours, int minutes, string preForm)
+        {
+            StreamWriter streamWriter = new StreamWriter(resultPath);
+            streamWriter.WriteLine(preForm, hours, minutes);
+            streamWriter.Close();
+        }
+
         public string ReadSingleFile(string path)
         {
             return File.ReadAllText(path);

@@ -7,16 +7,11 @@ namespace HappyPaths.Tests
     public class UnitTestsForTask1
     {
         [TestMethod]
-        public void TestTask1()
+        public void TestProperTimeForKomciurInTask1()
         {
             //given
-<<<<<<< HEAD
             string path = @"C:\Users\Piotr\Desktop\GitLab\primary\20190103\HappyPathsWithTests\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
-=======
-            var Task = new Task1();
-            string path = @"..\cybermagic\karty-postaci\1807-fryderyk-komciur.md";
-            string path = @"/Users/piotr/Desktop/Git/primary/20190103/HappyPathsWithTests/cybermagic/karty-postaci/1807-fryderyk-komciur.md"; //mac
->>>>>>> de7c10059fcf880b4bc9adacb47518ea68f1f376
+            //string path = @"/Users/piotr/Desktop/Git/primary/20190103/HappyPathsWithTests/cybermagic/karty-postaci/1807-fryderyk-komciur.md"; //mac
             int expectedTime = 23;
             string expectedName = "Fryderyk Komciur";
 
@@ -26,16 +21,15 @@ namespace HappyPaths.Tests
 
             //then
             Assert.AreEqual(expectedTime, resultTime);
-            //Assert.AreEqual(expectedName, resultName);
+            Assert.AreEqual(expectedName, resultName);
         }
     }
 
-<<<<<<< HEAD
     [TestClass]
     public class UnitTestsForTask2
     {
         [TestMethod]
-        public void TestTask2()
+        public void TestProperSummaryTimeForTask2()
         {
             //given
             string path = @"C:\Users\Piotr\Desktop\GitLab\primary\20190103\HappyPathsWithTests\cybermagic\karty-postaci";
@@ -47,24 +41,25 @@ namespace HappyPaths.Tests
             //then
             Assert.AreEqual(expectedTime, resultTime);
         }
-=======
-        //[TestMethod]
-        //public void TestTask2()
-        //{
-        //    //given
-        //    var Task = new Task2();
-        //    string path = @"C:..\cybermagic\karty-postaci";
-        //    int expectedTime = 542;
 
-        //    //when
-        //    int resultTime = Task.GetTime(path);
-        //    string resultName = Task.GetName(path);
+        [TestMethod]
+        public void TestProperSaveToFile()
+        {
+            //given
+            string path = @"C:\Users\Piotr\Desktop\GitLab\primary\20190103\HappyPathsWithTests\Results\Result2.txt";
+            string properValue = "Wszystkie postacie do tej pory budowane by³y 9 godzin 2 minut";
+            bool expectedResult = true;
 
-        //    //then
-        //    Assert.AreEqual(expectedTime, resultTime);
-        //    Assert.AreEqual(expectedName, resultName);
-        //}
->>>>>>> de7c10059fcf880b4bc9adacb47518ea68f1f376
+            //when
+            string openedSavedFile = new FileOps().ReadSingleFile(path).Replace("\r\n", "");
+
+            bool resultIdentity = false;
+            if (openedSavedFile.Equals(properValue))
+                resultIdentity = true;
+
+            //then
+            Assert.AreEqual(expectedResult, resultIdentity);
+        }
     }
 
 }
