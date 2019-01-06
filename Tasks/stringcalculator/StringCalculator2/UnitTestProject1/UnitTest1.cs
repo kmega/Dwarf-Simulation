@@ -113,10 +113,8 @@ namespace UnitTestProject1
         {
             string value = "1s,-2sdfg,3fd,-4\n5000";
             int result = stringcalculator.IgnoreMoreThan1000(value);
-            int expected = 5010;
+            int expected = 10;
             Assert.AreEqual( expected, result);
-
-
         }
     }
 

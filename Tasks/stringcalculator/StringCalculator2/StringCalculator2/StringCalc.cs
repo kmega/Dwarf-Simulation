@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StringCalculator2
 {
@@ -73,12 +75,23 @@ namespace StringCalculator2
         }
         public int AddUnknowAmountOfElementsWithNegative(string value)
         {
-            var getNumbers = (from t in value
-                              where char.IsDigit(t)
-                              select t).ToArray();
+            char[] separator = new char[] { ',', '\n' };
+            string[] numbers = value.Split(separator);
+
+            List<int> intnumbers = new List<int> { };
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                var getNumbers = (from t in numbers[i]
+                                  where char.IsDigit(t)
+                                  select t).ToArray();
+                string cString = new string(getNumbers);
+                intnumbers.Add(int.Parse(cString));
+            }
+
             int result = 0;
-            int[] Aint = getNumbers.Select(a => a - '0').ToArray();
-            foreach (int x in Aint)
+
+            foreach (int x in intnumbers)
             {
                 result = result + x;
             }
@@ -88,22 +101,26 @@ namespace StringCalculator2
         {
             char[] separator = new char[] { ',', '\n' };
             string[] numbers = value.Split(separator);
-            int[] intnumbers = new int[] { };
+          
+            List<int> intnumbers = new List<int> { };
 
             for (int i = 0; i < numbers.Length; i++)
             {
                 var getNumbers = (from t in numbers[i]
-                    where char.IsDigit(t)
-                    select t).ToArray();
-                numbers[i] = getNumbers.ToString();
-                intnumbers = numbers[i].Select(a => a - '0').ToArray();
+                                  where char.IsDigit(t)
+                                  select t).ToArray();
+                string cString = new string(getNumbers);
+                intnumbers.Add(int.Parse(cString));
             }
-           
+
             int result = 0;
             
             foreach (int x in intnumbers)
             {
-                result = result + x;
+                if (x <= 1000)
+                {
+                    result = result + x;
+                }
             }
             return result;
         }
