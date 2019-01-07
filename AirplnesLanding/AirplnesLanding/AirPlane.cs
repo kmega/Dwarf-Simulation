@@ -4,6 +4,11 @@ namespace HappyPlanes
 {
     public class AirPlane
     {
+        public enum Names
+        {
+            
+        }
+
         public string Name { get; set; }
         public int Fuel { get; set; }
         public LandBelts LandBelt { get; set; }

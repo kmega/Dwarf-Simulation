@@ -6,7 +6,7 @@ namespace HappyPlanes.Tests
     public class LandingTests
     {
         [TestMethod]
-        public void ShouldReturnLandinSuccesTrueWhenAnyBeltAreFree()
+        public void ShouldReturnLandinSuccesTrueWhenFreeSpacesExist()
         {
             //Given
             LandBelts Belt = new LandBelts("Pas1");
