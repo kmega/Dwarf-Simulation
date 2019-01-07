@@ -47,6 +47,7 @@ namespace SortTable
             return result;
         }
 
+
         public List<string> SortListOfNumbers(List<string> list)
         {
             List<string> result = FilterNumbers(list);
