@@ -23,27 +23,38 @@ namespace AirportSimulator
             for (int i = 0; i < 10; i++)
             {
 
-                ct.landingzones.Add(new Runway() { number = i });
+                ct.landingzones.Add(new Runway() { number = i+1 });
             };
 
             for (int i = 0; i < 50; i++)
             {
                 listofplain.Add(new Plain(i+1));
             }
+            int iterator = 0;
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 1000; i++)
             {
-               bool answer=  listofplain[0].AskForFreeRunaway(ct);
-                if (answer)
+                if (!(listofplain.Count == 0))
                 {
-                    listofplain.RemoveAt(0);
+                    bool answer = listofplain[0].AskForFreeRunaway(ct);
+                    if (answer)
+                    {
+                        listofplain.RemoveAt(0);
+                        iterator++;
+                    }
+                    foreach (var item in listofplain)
+                    {
+                        item.LoseFuel();
+                    };
+                    ct.RunwayCleaner();
+
                 }
-                foreach (var item in listofplain)
+                else
                 {
-                    item.LoseFuel();
-                };
-            
+                    break;
+                }
             };
+            Console.WriteLine("Samoloty wyl¹dowa³y po " + iterator + " turach");
 
 
 
