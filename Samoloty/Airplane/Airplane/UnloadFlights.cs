@@ -52,7 +52,7 @@ namespace Airplane
                     }
                 }
 
-                //decreaseFuel
+                //decreaseFuel missing one condition here !! landed=True
                 for (int j = 0; j < howMucPlanes.Count; j++)
                 {
                     howMucPlanes[j].HowMuchFuel -= 1;
