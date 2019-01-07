@@ -25,8 +25,7 @@ namespace HappyPathsWithTests
 
         public int GetSummaryTime(string path)
         {
-            List<string> pathToFilesInFolder = new FileOps().ReadAllPathsToFilesInFolder(path);
-            List<string> AllOpenedFilesFromFolder = new FileOps().ReadAllContent(pathToFilesInFolder);
+            List<string> AllOpenedFilesFromFolder = new FileOps().ReadAllContent(new FileOps().ReadAllPathsToFilesInFolder(path));
 
             int summaryTime = 0;
 
