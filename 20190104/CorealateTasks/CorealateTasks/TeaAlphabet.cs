@@ -6,9 +6,9 @@ namespace CorealateTasks
 {
     enum TeaAlphabet
     {
-        czarna,
-        napar,
-        owocowa,
-        zielona
+        c,
+        n,
+        o,
+        z
     }
 }

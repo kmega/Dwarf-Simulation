@@ -6,30 +6,37 @@ namespace CorealateTasks
 {
     public class Task2
     {
-        public void SortTeas()
+        public void RunTask2()
         {
-            string path = "tea-data.txt";
-            string[] teaData = FileOpenerAndSaver.GetContentFromFile(path);
+            Sorter task2 = new Sorter();
+            string pathToOpen = "tea-data.txt";
+            string pathToSave = "result2.txt";
+            string[] teaDataFull = FileOpenerAndSaver.GetContentFromFile(pathToOpen);
+            string[] teaData = new string[teaDataFull.Length - 2];
 
-            string[] sorted = SorterHelp(teaData);
-        }
-
-        public string[] SorterHelp(string[] teaData)
-        {
-            List<string> sortedTeas = new List<string>();
- 
-            for (int i = 2; i < teaData.Length; i++)
+            for (int i = 0; i < teaData.Length; i++)
             {
-                foreach(string s in teaData)
+                teaData[i] = teaDataFull[i + 2];
+            }
+            string[] result = task2.SortTeasByType(teaData);
+
+            string[] resultOfTask1 = new string[teaDataFull.Length];
+
+            for (int i = 0; i < teaDataFull.Length; i++)
+            {
+                if (i==0 || i==1)
                 {
-                    string[] splittedLine = s.Split(new string[] { "," }, StringSplitOptions.None);
-
-                    Array.Sort(splittedLine);
-
+                    resultOfTask1[i] = teaDataFull[i];
+                    continue;
+                }
+                else
+                {
+                    resultOfTask1[i] = result[i-2];
                 }
             }
 
-            return null;
+            FileOpenerAndSaver.SaveToPath(resultOfTask1, pathToSave);
+
         }
     }
 }

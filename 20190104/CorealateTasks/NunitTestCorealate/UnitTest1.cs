@@ -42,5 +42,21 @@ namespace Tests
             Assert.AreEqual("1,2,3", result[0]);
 
         }
+
+        [Test]
+        public void SorterSortTeas_SortTeasByTypeWhereTypeIsSecondString_SortedArrayOfTeasByType()
+        {
+            //given
+            CorealateTasks.Sorter teaSorter = new CorealateTasks.Sorter();
+            string[] teasToSort = { "Gunpowder, zielona", "Inna, ajaksowokokosowa", "zzz, deli" };
+
+            //Expected
+            string[] result = teaSorter.SortTeasByType(teasToSort);
+
+            Assert.AreEqual("Inna, ajaksowokokosowa", result[0]);
+            Assert.AreEqual("zzz, deli", result[1]);
+
+
+        }
     }
 }
