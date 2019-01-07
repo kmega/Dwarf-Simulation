@@ -6,7 +6,13 @@ namespace StringCalc_v2
     {
         static void Main(string[] args)
         {
-            
+            StringCalculator calc = new StringCalculator();
+
+            string number = "//[***]\n2***5";
+
+            //result
+
+            int result = calc.Add(number);
         }
     }
 }

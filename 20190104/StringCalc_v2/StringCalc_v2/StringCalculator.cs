@@ -40,7 +40,8 @@ namespace StringCalc_v2
 
             foreach (var s in splitted)
             {
-                int n = Int32.Parse(s);
+                int n = 0;
+                Int32.TryParse(s, out n);
                 sum += n;
                 if (n < 0)
                 {
@@ -60,7 +61,8 @@ namespace StringCalc_v2
 
             foreach (var s in splitted)
             {
-                int n = Int32.Parse(s);
+                int n = 0;
+                Int32.TryParse(s, out n);
                 sum += n;
                 if (n < 0)
                 {
@@ -76,14 +78,15 @@ namespace StringCalc_v2
         public int ChosenDelimiterSupport(string number)
         {
             int sum = 0;
-            string[] firstLine = number.Split(new string[] { "//" }, StringSplitOptions.None);
-            string splitter = firstLine[1].Replace("[", ",").Replace("]", ",");
+            string[] firstLine = number.Split(new string[] { "//","\n" }, StringSplitOptions.None);
+            string splitter = firstLine[1].Replace("[", "").Replace("]", "");
 
             for (int i = 2; i < firstLine.Length; i++)
             {
-                foreach (string s in firstLine[i].Split(new string[] { splitter }, StringSplitOptions.None))
+                foreach (string s in firstLine[i].Split(new string[] { splitter, "," }, StringSplitOptions.None))
                 {
-                    int n = Int32.Parse(s);
+                    int n = 0;
+                    Int32.TryParse(s, out n);
                     sum += n;
                     if(n<0)
                     {
@@ -110,9 +113,7 @@ namespace StringCalc_v2
                 throw new Exception(String.Format("negatives not allowed: {0}", negatives));
             }
             else
-            {
-                string n = "";
-            }
+            { }
         }
         
     }
