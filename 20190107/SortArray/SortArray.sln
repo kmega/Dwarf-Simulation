@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SortArray", "SortArray\SortArray.csproj", "{886ED5EF-3740-4D1A-A64D-D9D1501E1651}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NUnitTestProject1", "NUnitTestProject1\NUnitTestProject1.csproj", "{11689EAF-ED5C-45C9-BC20-D01C3FB1F2AE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{886ED5EF-3740-4D1A-A64D-D9D1501E1651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{886ED5EF-3740-4D1A-A64D-D9D1501E1651}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{886ED5EF-3740-4D1A-A64D-D9D1501E1651}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{886ED5EF-3740-4D1A-A64D-D9D1501E1651}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11689EAF-ED5C-45C9-BC20-D01C3FB1F2AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11689EAF-ED5C-45C9-BC20-D01C3FB1F2AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11689EAF-ED5C-45C9-BC20-D01C3FB1F2AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11689EAF-ED5C-45C9-BC20-D01C3FB1F2AE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1D26AACD-5A38-4387-A048-E00BAA297575}
+	EndGlobalSection
+EndGlobal
