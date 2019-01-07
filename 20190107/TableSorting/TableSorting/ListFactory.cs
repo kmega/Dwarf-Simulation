@@ -15,5 +15,6 @@ namespace TableSorting
         }
         public List<string> Letters{ get; set; }
         public List<int> Numbers{ get; set; }
+
     }
 }

@@ -25,8 +25,17 @@ namespace TableSortingTests
             {
                 Assert.AreEqual(expected[i], actual[i]);
             }
-
-
+        }
+        [TestMethod]
+        public void ShouldReturnSortedWithWeirdCharsInMiddle()
+        {
+            List<string> given = new List<string>()
+            { "a", "1","#", "4", "c", "9", "d","%","&", "14", "a", "2"};
+            List<string> expected = new List<string>()
+            {
+                "a","c","1","2","4","#","%","&","9","14","d"
+            };
+            var actual = TableManager.Sort(given);
         }
     }
 }

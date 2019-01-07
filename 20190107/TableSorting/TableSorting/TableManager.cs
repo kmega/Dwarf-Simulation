@@ -33,11 +33,15 @@ namespace TableSorting
             return result;
         }
 
-        private static EvenStringFactory SeperateEvenFromAllLetters(List<string> letters)
+        private static EvenStringFactory SeperateEvenFromAllLetters(List<string> characters)
         {
             var seperatedLetters = new EvenStringFactory();
-            foreach(var letter in letters)
+            foreach(var letter in characters)
             {
+                if(letter[0] <65 || (letter[0] >90 && letter[0]<97) || letter[0]>122)
+                {
+                    seperatedLetters.WeirdChars.Add(letter);
+                }
                 if (letter[0] % 2 == 1)
                 {
                     seperatedLetters.NotEvenLetters.Add(letter);

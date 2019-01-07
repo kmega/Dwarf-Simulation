@@ -12,8 +12,10 @@ namespace TableSorting
         {
             EvenLetters = new List<string>();
             NotEvenLetters = new List<string>();
+            WeirdChars = new List<string>();
         }
         public List<string>EvenLetters { get; set; }
         public List<string> NotEvenLetters{ get; set; }
+        public List<string> WeirdChars { get; set; }
     }
 }
