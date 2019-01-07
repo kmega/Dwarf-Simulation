@@ -1,11 +1,10 @@
-﻿namespace ConsoleApp4
+﻿namespace Planes
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int turns = 1000;
-            int planes = 50;
+            int turns = 1000, planes = 50, fuel = 200;
             bool[] landingPlaces = {
                 false,
                 false,
@@ -20,7 +19,7 @@
             };
             
             Airport airport = new Airport();
-            airport.Simulation(turns, planes, landingPlaces);
+            airport.Simulation(turns, planes, fuel, landingPlaces);
         }
     }
 }
