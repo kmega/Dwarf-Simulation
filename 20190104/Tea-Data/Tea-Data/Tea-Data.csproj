@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{93529183-7E34-4DFE-B814-6F953D889C98}</ProjectGuid>
+    <ProjectGuid>{8ED7FD28-40C0-4AFD-BE77-C45CD8B86110}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Exercises</RootNamespace>
-    <AssemblyName>Exercises</AssemblyName>
+    <RootNamespace>Tea_Data</RootNamespace>
+    <AssemblyName>Tea-Data</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,9 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ExecuteTask.cs" />
+    <Compile Include="Input-Output\FileIO.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StartTasks.cs" />
+    <Compile Include="Input-Output\UserInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
