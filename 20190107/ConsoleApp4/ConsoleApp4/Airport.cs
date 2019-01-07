@@ -1,20 +1,44 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System;
+using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("UnitTestProject1")]
 
 namespace Planes
 {
     internal class Airport
     {
-        private bool landingInProgress = false;
+        private int landingInProgress = -1;
 
         internal void Simulation(int turns, int planes, int fuel, bool[] landingPlaces)
         {
+            int[] timer = {
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5
+   };
             for (int i = 0; i < turns; i++)
             {
-                landingPlaces = FindClearLandingPlace(landingPlaces);
-                if (landingInProgress == true)
+                if (fuel == 0)
                 {
-
+                    throw new Exception("Planes crashed. No fuel left :V");
+                }
+                landingPlaces = FindClearLandingPlace(landingPlaces);
+                if (landingInProgress > -1)
+                {
+                    for (int j = 0; j < timer.Length; j++)
+                    {
+                        timer[landingInProgress]--;
+                        if (timer[landingInProgress] == 0)
+                        {
+                            timer[landingInProgress] = 5;
+                        }
+                    }
                 }
                 fuel--;
             }
@@ -31,7 +55,7 @@ namespace Planes
                 }
                 landingPlaces[i] = false;
             }
-            landingInProgress = true;
+            landingInProgress++;
             return landingPlaces;
         }
     }

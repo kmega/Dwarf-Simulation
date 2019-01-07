@@ -1,7 +1,7 @@
 ﻿using Planes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace HappyPlanesTests
+namespace UnitTestProject
 {
     [TestClass]
     public class UnitTest
@@ -9,7 +9,11 @@ namespace HappyPlanesTests
         [TestMethod]
         public void ShouldReturnFalseWhenEverythingIsTrue()
         {
-            bool[] landingPlaces = { true, true, true };
+            bool[] landingPlaces = {
+    true,
+    true,
+    true
+   };
 
             Airport airport = new Airport();
             landingPlaces = airport.FindClearLandingPlace(landingPlaces);
@@ -23,7 +27,11 @@ namespace HappyPlanesTests
         [TestMethod]
         public void ShouldReturnTrueWhenAtLeastOneIsFalse()
         {
-            bool[] landingPlaces = { true, false, true };
+            bool[] landingPlaces = {
+    true,
+    false,
+    true
+   };
 
             Airport airport = new Airport();
             landingPlaces = airport.FindClearLandingPlace(landingPlaces);
