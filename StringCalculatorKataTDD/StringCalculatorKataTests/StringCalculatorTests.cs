@@ -7,6 +7,7 @@ namespace StringCalculatorKataTests
     [TestFixture]
     public class StringCalculatorTests
     {
+
         public StringCalculator sc = new StringCalculator();
 
         [TestCase(0, "")]
