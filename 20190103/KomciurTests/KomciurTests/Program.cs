@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace KomciurTests
 {
@@ -10,6 +11,10 @@ namespace KomciurTests
     {
         static void Main(string[] args)
         {
+            TasksToDo.Tasks task = new TasksToDo.Tasks();
+
+            task.Task_1();
+
         }
     }
 }
