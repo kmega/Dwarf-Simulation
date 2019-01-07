@@ -14,18 +14,20 @@ namespace HappyPlanes
         public LandBelts LandBelt { get; set; }
         public bool LandingSucces { get; set; }
         public bool PermissionToLanding { get; set; }
+        public bool OnTheAir { get; set; }
 
 
         public AirPlane(string name)
         {
+            OnTheAir = true;
             PermissionToLanding = false;
             Name = name;
             Fuel = 200;
         }
 
-        public void PermissionLandingAsk()
+        public void PermissionLandingAsk(string name)
         {
-            Console.WriteLine("Czy mogę podejść do lądowania?");
+            Console.WriteLine($"Tutaj {name} Czy mogę podejść do lądowania?");
         }
     }
 }

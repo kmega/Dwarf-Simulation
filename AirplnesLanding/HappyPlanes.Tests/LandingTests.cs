@@ -6,7 +6,7 @@ namespace HappyPlanes.Tests
     public class LandingTests
     {
         [TestMethod]
-        public void ShouldReturnLandinSuccesTrueWhenFreeSpacesExist()
+        public void ShouldReturnLandingSuccesTrueWhenFreeSpacesExist()
         {
             //Given
             LandBelts Belt = new LandBelts("Pas1");
@@ -15,10 +15,31 @@ namespace HappyPlanes.Tests
 
             //When
             FlightTower Tower = new FlightTower();
-            Plane.PermissionToLanding = Tower.GivePermissionToLanding(Belt);
+            Tower.FreeLandBelts.Add(Belt);
+            Plane.PermissionToLanding = Tower.GivePermissionToLanding();
 
             //Then
             Assert.AreEqual(expected, Plane.PermissionToLanding);
+
+        }
+
+        [TestMethod]
+        public void ShouldReturnFreeLandWhenIs5Tour()
+        {
+            //Given
+            LandBelts Belt = new LandBelts("Pas1");
+            FlightTower Tower = new FlightTower();
+            Tower.OccupiedLandBelts.Add(Belt);
+
+            bool expected = true;
+            //When
+
+
+            Tower.SetFreeOneBelt();
+            bool result = Tower.FreeLandBelts.Count > 0;
+
+            //Then
+            Assert.AreEqual(expected, result);
 
         }
     }

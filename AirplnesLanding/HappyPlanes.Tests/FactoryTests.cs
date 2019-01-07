@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace HappyPlanes.Tests
 {
     [TestClass]
-    class FactoryTests
+    public class FactoryTests
     {
         [TestMethod]
         public void ShouldReturnCountExistingPlanesEqualPlanesToCreate()
