@@ -20,7 +20,15 @@ namespace SortStringTab
             {
                 if (Char.IsLetter(item, 0))
                 {
-                   if((Encoding.ASCII.GetBytes(item.ToCharArray())[0] % 2 == 1))
+                    int value = Encoding.ASCII.GetBytes(item.ToCharArray())[0];
+                    if (value>122)
+                        {
+                        other.Add(item);
+
+                    }
+
+
+                 else  if((value % 2 == 1))
                     {
                         oddletter.Add(item);
 
