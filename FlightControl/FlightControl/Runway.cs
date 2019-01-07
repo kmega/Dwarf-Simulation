@@ -9,11 +9,16 @@ namespace FlightControl
     class Runway
     {
         public bool IsOccupied { get; set; }
-        public static bool CheckIsOccupied { get; internal set; }
 
         public Runway(bool areOccupied)
         {
             IsOccupied = areOccupied;
+        }
+
+        public static bool CheckIsOccupied(List<Runway> runways)
+        {
+            var result = runways.Any(s => s.IsOccupied == true);
+            return result;
         }
     }
 }
