@@ -1,5 +1,6 @@
 using NUnit.Framework;
 
+
 namespace Tests
 {
     public class Tests
@@ -51,5 +52,25 @@ namespace Tests
             Assert.AreEqual(7, result);
 
         }
+
+        [Test]
+        public void Test()
+        {
+            //Arrange
+            var calc = new StringCalc_v2.StringCalculator();
+            string number = "-1,-4,-5";
+
+            //Act
+            try
+            {
+                calc.Add(number);
+            }
+            catch (System.Exception)
+            {     
+                return;
+            }
+            Assert.Fail("Expected System Exception was not thrown");
+        }
+
     }
 }
