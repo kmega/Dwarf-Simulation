@@ -1,0 +1,18 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sort
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Sort getSort = new Sort();
+            var list = getSort.GetSorList();
+            Console.ReadKey();
+        }
+    }
+}
