@@ -9,10 +9,12 @@ namespace FlightControl
     class Plane
     {
         public int AmountOfFuel { get; set; }
+        public bool InFlight { get; set; }
 
-        public Plane(int amountOfFuel)
+        public Plane(int amountOfFuel, bool inFlight)
         {
             amountOfFuel = AmountOfFuel;
+            inFlight = InFlight;
         }
     }
 }
