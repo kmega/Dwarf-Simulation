@@ -10,8 +10,7 @@ namespace AirportSimulator
     {
         static void Main(string[] args)
         {
-            List<Plain> listofplain = new List<Plain>();
-            SimulationReport content = new AirportSimulation().Simulate(listofplain, 5);
+            SimulationReport content = new AirportSimulation().Simulate(5);
             Console.WriteLine($"Ca³kowita liczba iteracji: {content.TotalIterations}, a {content.CrashedPlanes} samoloty/ów spad³o!");
             Console.ReadKey();
         }

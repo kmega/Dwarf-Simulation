@@ -5,8 +5,9 @@ namespace AirportSimulator
 {
     public class AirportSimulation
     {
-        public SimulationReport Simulate(List<Plain> listofplain, int howManyPlanesToSimulate)
+        public SimulationReport Simulate(int howManyPlanesToSimulate)
         {
+            List<Plain> listofplain = new List<Plain>();
             List<int> initialFuelPossibilites = new List<int>()
             {
                 1, 3, 5, 7, 10

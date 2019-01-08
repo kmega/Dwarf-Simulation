@@ -78,7 +78,7 @@ namespace AirportTest
         public void PlaneCrashCompilationGetResult1()
         {
             List<Plain> listofplain = new List<Plain>();
-            SimulationReport actualReport = new AirportSimulation().Simulate(listofplain, 5);
+            SimulationReport actualReport = new AirportSimulation().Simulate(5);
             Assert.AreEqual(1, actualReport.CrashedPlanes);
             Assert.AreEqual(8, actualReport.TotalIterations);
         }
