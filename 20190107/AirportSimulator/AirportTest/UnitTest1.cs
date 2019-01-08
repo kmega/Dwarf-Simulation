@@ -16,8 +16,6 @@ namespace AirportTest
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
 
             int result = ct.SearchFreeRunaway();
-
-
             Assert.AreEqual(1, result);
         }
 
@@ -27,7 +25,7 @@ namespace AirportTest
             Plain plain = new Plain(1,200);
             ControlTower ct = new ControlTower();
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
-            plain.AskForFreeRunaway(ct);
+            plain.AskForFreeRunaway(ct,0);
 
             Assert.AreEqual(0, ct.SearchFreeRunaway());           
         }
@@ -39,8 +37,8 @@ namespace AirportTest
             Plain plain2 = new Plain(1,200);
             ControlTower ct = new ControlTower();
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
-            plain1.AskForFreeRunaway(ct);
-            bool answer = plain2.AskForFreeRunaway(ct);
+            plain1.AskForFreeRunaway(ct, 0);
+            bool answer = plain2.AskForFreeRunaway(ct, 0);
 
             Assert.IsFalse(answer);
         }
@@ -55,8 +53,8 @@ namespace AirportTest
             ct.landingzones.Add(new Runway() { number = 2, IsEnable = true });
           
 
-            plain1.AskForFreeRunaway(ct);
-            bool answer = plain2.AskForFreeRunaway(ct);
+            plain1.AskForFreeRunaway(ct, 0);
+            bool answer = plain2.AskForFreeRunaway(ct,0);
 
             Assert.IsTrue(answer);
             Assert.AreEqual(0, ct.SearchFreeRunaway());
@@ -69,7 +67,7 @@ namespace AirportTest
             bool answer = false;
             foreach(var plane in planes)
             {
-                answer = plane.AskForFreeRunaway(ct);
+                answer = plane.AskForFreeRunaway(ct,0);
                 ct.RunwayCleaner();
             }
 
@@ -82,6 +80,7 @@ namespace AirportTest
             List<Plain> listofplain = new List<Plain>();
             SimulationReport actualReport = new AirportSimulation().Simulate(listofplain, 5);
             Assert.AreEqual(1, actualReport.CrashedPlanes);
+            Assert.AreEqual(8, actualReport.TotalIterations);
         }
     }
 }
