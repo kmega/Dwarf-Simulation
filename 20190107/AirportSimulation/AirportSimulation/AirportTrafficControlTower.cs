@@ -95,10 +95,9 @@ namespace AirportSimulation
                         bool hasLanded = TryLand(currentPlane);
                         if (hasLanded)
                         {
-                            if (RefuelPlane(currentPlane))
-                            {
-                                airplanes.Remove(currentPlane);
-                            }
+                            //if (RefuelPlane(currentPlane))
+                            airplanes.Remove(currentPlane);
+                            //}
                         }
                         MovePlanesOnTracks();
                     }

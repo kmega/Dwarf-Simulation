@@ -97,9 +97,9 @@ namespace AirportSimulationTests
             var turnCounter = airport.SimulateLandingOfPlanesWithTurnsCounter(airplanes, 1000);
 
             int refuelTime = 5;
+
             int currentFuel = airplanes.First().FuelAtStart - airplanes.First().AmountOfFuel;
 
-            var temp = 0;
             //then
             Assert.AreEqual(currentFuel, refuelTime);
         }
