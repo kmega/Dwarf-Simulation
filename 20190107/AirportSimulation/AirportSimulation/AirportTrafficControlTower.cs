@@ -43,10 +43,11 @@ namespace AirportSimulation
             }
         }
 
-        public int SimulateLandingOfPlanesWithTurnsCounter(List<Airplane> airplanes, int turns)
+        public (int, short) SimulateLandingOfPlanesWithTurnsCounter(List<Airplane> airplanes, int turns)
         {
             int i = 0;
-            while(i < turns)
+            short temp = 0;
+            while (i < turns)
             {
                 if (i > 3)
                 {
@@ -59,16 +60,21 @@ namespace AirportSimulation
                             if (hasLanded)
                             {
                                 airplanes.Remove(currentPlane);
-                                return i;
+                                var fuelAtStart = currentPlane.FuelAtStart;
+                                var amountOfFuel = currentPlane.AmountOfFuel;
+                                //
+                                BurnFuel(airplanes);
+                                temp = MovePlanesOnTracks(fuelAtStart, amountOfFuel);
+                                return (i, temp);
                             }
-                            MovePlanesOnTracks();
+                            //MovePlanesOnTracks();
                         }
                     }
                 }
                 BurnFuel(airplanes);
                 i++;
             }
-            return i;
+            return (i, temp);
         }
 
         public bool RefuelPlane(Airplane airplane)
@@ -92,12 +98,15 @@ namespace AirportSimulation
                     if (airplanes.Any())
                     {
                         var currentPlane = airplanes.First();
+
                         bool hasLanded = TryLand(currentPlane);
                         if (hasLanded)
                         {
-                            //if (RefuelPlane(currentPlane))
-                            airplanes.Remove(currentPlane);
-                            //}
+                            if (RefuelPlane(currentPlane))
+                            {
+                                airplanes.Remove(currentPlane);
+
+                            }
                         }
                         MovePlanesOnTracks();
                     }
@@ -105,6 +114,29 @@ namespace AirportSimulation
                 BurnFuel(airplanes);
                 i++;
             }
+        }
+
+        private short MovePlanesOnTracks(int fuelAtStart, int amountOfFuel)
+        {
+            int indexToDelete = 0;
+            bool anythingToDelete = false;
+            for (int i = 0; i < OccupiedRunways.Count; i++)
+            {
+                OccupiedRunways[i].TimeOfOccupation -= 1;
+                if (OccupiedRunways[i].TimeOfOccupation <= 0)
+                {
+                    anythingToDelete = true;
+                    indexToDelete = i;
+                }
+            }
+            if (anythingToDelete)
+            {
+                OccupiedRunways[indexToDelete].TimeOfOccupation = (short)(fuelAtStart - amountOfFuel); //Bedzie zajmowany tyle ile sie laduje
+                EmptyRunways.Enqueue(OccupiedRunways[indexToDelete]);
+                OccupiedRunways.Remove(OccupiedRunways[indexToDelete]);
+                anythingToDelete = false;
+            }
+            return (short)(fuelAtStart - amountOfFuel);
         }
 
         private void MovePlanesOnTracks()
@@ -122,7 +154,7 @@ namespace AirportSimulation
             }
             if(anythingToDelete)
             {
-                OccupiedRunways[indexToDelete].TimeOfOccupation = 5;
+                OccupiedRunways[indexToDelete].TimeOfOccupation = 5; //Bedzie zajmowany tyle ile sie laduje
                 EmptyRunways.Enqueue(OccupiedRunways[indexToDelete]);
                 OccupiedRunways.Remove(OccupiedRunways[indexToDelete]);
                 anythingToDelete = false;
