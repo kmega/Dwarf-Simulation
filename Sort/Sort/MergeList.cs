@@ -29,6 +29,8 @@ namespace Sort
             var specialCharacteres = getSort.GetListSpecialCharacters(information.InformationTest());
             var finalList = evenCharacters.ToList();
             finalList = evenCharacters.ToList();
+            //
+            //finalList.AddRange(notEvenCharacters);
             //zapytac się jak to zrobić w lepszy sposob niz forami 
             return finalList;
         }
