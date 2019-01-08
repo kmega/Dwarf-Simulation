@@ -8,17 +8,26 @@ namespace FlightControl
 {
     class Runway
     {
-        public bool IsOccupied { get; set; }
+        public bool IsFree { get; set; }
 
-        public Runway(bool areOccupied)
+        public Runway(bool isFree)
         {
-            IsOccupied = areOccupied;
+            IsFree = isFree;
         }
 
-        public static bool CheckIsOccupied(List<Runway> runways)
+        public static bool CheckRunwayAreFree(List<Runway> runways)
         {
-            var result = runways.Any(s => s.IsOccupied == true);
-            return result;
+            return runways.Any(s => s.IsFree == true);
+        }
+
+        public static void LockRunway(List<Runway> runways)
+        {
+            runways.Where(s => s.IsFree == true).First().IsFree = false;
+        }
+
+        public static void ReleaseRunway(List<Runway> runways)
+        {
+            runways.Where(s => s.IsFree == false).First().IsFree = true;
         }
     }
 }

@@ -11,11 +11,27 @@ namespace FlightControl
 
         public void TrafficControl(List<Plane> planes, List<Runway> runways)
         {
-            
+
             for (int i = 0; i < 1000; i++)
             {
-                if (Runway.CheckIsOccupied(runways))
+                while (Runway.CheckRunwayAreFree(runways))
                 {
+                    var planeInFlight = Plane.FindFirstInFlight(planes);
+                    Plane.StopAtAirport(planeInFlight);
+                    Runway.LockRunway(runways);
+                }
+
+
+                var planesOnGround = Plane.FindPlanesOnGround(planes);
+
+                foreach (var plane in planesOnGround)
+                {
+                    if (plane.OnGroundTime == 5)
+                    {
+                        Plane.StartFromAirport(plane);
+                        Runway.ReleaseRunway(runways);
+                    }
+                    plane.OnGroundTime += 1;
 
                 }
             }
