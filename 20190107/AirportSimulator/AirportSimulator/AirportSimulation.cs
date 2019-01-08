@@ -12,13 +12,8 @@ namespace AirportSimulator
         {
             List<int> initialFuelPossibilites = new List<int>()
             {
-                1,
-                3,
-                5,
-                7,
-                10
+                1, 3, 5, 7, 10
             };
-
             int killedPlanes = 0;
             int iterations = 0;
             ControlTower ct = new ControlTower();
@@ -45,11 +40,12 @@ namespace AirportSimulator
                     if (answer)
                     {
                         listofplain.Remove(planeToLand);
-                    }
-                    ct.RunwayCleaner();
+                    }                 
                 }
+                ct.RunwayCleaner();
                 killedPlanes += Plain.LoseFuel(listofplain);
             };
+            iterations += ct.landingzones.Max(x => x.BlockedTimer);
             string content = "Symulacja skończyła się po: " + iterations+" turach, a samolotów " +
                 "zginęło: " + killedPlanes;
             return content;
