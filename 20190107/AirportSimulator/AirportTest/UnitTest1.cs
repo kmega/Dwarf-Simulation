@@ -70,7 +70,6 @@ namespace AirportTest
                 answer = plane.AskForFreeRunaway(ct,0);
                 ct.RunwayCleaner();
             }
-
             Assert.IsTrue(answer);
             Assert.AreEqual(1, ct.SearchFreeRunaway());
         }
