@@ -28,10 +28,7 @@ namespace AirportTest
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
             plain.AskForFreeRunaway(ct);
 
-            Assert.AreEqual(0, ct.SearchFreeRunaway());
-            
-            
-            
+            Assert.AreEqual(0, ct.SearchFreeRunaway());           
         }
 
         [TestMethod]
@@ -45,9 +42,6 @@ namespace AirportTest
             bool answer = plain2.AskForFreeRunaway(ct);
 
             Assert.IsFalse(answer);
-
-
-
         }
         [TestMethod]
         public void SecondPlainLandOnSecondRunaway()
@@ -65,9 +59,6 @@ namespace AirportTest
 
             Assert.IsTrue(answer);
             Assert.AreEqual(0, ct.SearchFreeRunaway());
-
-
-
         }
 
 
