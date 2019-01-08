@@ -14,134 +14,58 @@ namespace SortArray
 
         public string[] SortArray(string[] arrayToSort)
         {
-            SortedNumbers(arrayToSort);
+            PreSorter(arrayToSort);
             SortedLetters(this.Letters.ToArray());
 
-            string[] oddLetters = OddLett.ToArray();
-            string[] evenLetters = EvenLett.ToArray();
-            string[] numbers = Num.ToArray();
-
-            int succCounter_Num = 0;
-            int succCounter_oddLett = 0;
-            int succCounter_evenLett = 0;
-
-            do
-            {
-
-                for (int i = 0; i < numbers.Length; i++)
-                {
-
-                    int n_1 = 0;
-                    Int32.TryParse(numbers[i], out n_1);
-
-                    for (int j = 0; j < numbers.Length; j++)
-                    {
-                        int n_2 = 0;
-                        Int32.TryParse(numbers[j], out n_2);
-                        if (i == j)
-                            continue;
-
-                        string higherInArr = CompareBoth(n_1, n_2, i, j);
-                        if (higherInArr == "first")
-                        {
-                            string tmp = numbers[i];
-                            numbers[i] = numbers[j];
-                            numbers[j] = tmp;
-                            succCounter_Num++;
-
-                        }
-                    }
-                }
-            } while (succCounter_Num < numbers.Length);
-
-            do
-            {
-                for (int i = 0; i < oddLetters.Length; i++)
-                {
-                    char[] lettersToSort_1 = oddLetters[i].ToCharArray();
-
-                    for (int j = 0; j < oddLetters.Length; j++)
-                    {
-                        char[] lettersToSort_2 = oddLetters[i].ToCharArray();
-
-                        if (i == j)
-                            continue;
-
-                        string higherInArr = CompareBoth(lettersToSort_1[0], lettersToSort_2[0], i, j);
-                        if (higherInArr == "first")
-                        {
-                            string tmp = oddLetters[i];
-                            oddLetters[i] = oddLetters[j];
-                            oddLetters[j] = tmp;
-                            succCounter_oddLett++;
-
-                        }
-                    }
-                }
-            } while (succCounter_oddLett < oddLetters.Length);
-
-            do
-            {
-                for (int i = 0; i < evenLetters.Length; i++)
-                {
-                    char[] lettersToSort_1 = evenLetters[i].ToCharArray();
-                    double letterNumericVal_1 = char.GetNumericValue(lettersToSort_1[0]);
-
-                    for (int j = 0; j < evenLetters.Length; j++)
-                    {
-                        char[] lettersToSort_2 = evenLetters[i].ToCharArray();
-                        double letterNumericVal_2 = char.GetNumericValue(lettersToSort_2[0]);
-
-                        if (i == j)
-                            continue;
-                        string higherInArr = CompareBoth(lettersToSort_1[0], lettersToSort_2[0], i, j);
-
-                        if (higherInArr == "first")
-                        {
-                            string tmp = evenLetters[i];
-                            evenLetters[i] = evenLetters[j];
-                            evenLetters[j] = tmp;
-                            succCounter_evenLett++;
-
-                        }
-                    }
-                }
-            } while (succCounter_evenLett < evenLetters.Length);
-            
+            string[] oddLetters = SortOddLetters(OddLett.ToArray());
+            string[] evenLetters = SortEvenLetters(EvenLett.ToArray());
+            string[] numbers = SortNumbers(Num.ToArray());
 
             string[] merge = oddLetters.Concat(numbers).ToArray();
-            string[] mergedAll = merge.Concat(merge).ToArray();
+            string[] mergedAll = merge.Concat(evenLetters).ToArray();
 
             return mergedAll;
 
         }
 
-        private string CompareBoth(int n_1, int n_2, int i, int j)
+        public string[] SortNumbers(string[] numbers)
         {
-            string higher = "first";
-            if (i<j)
+            List<int> sortedNums = new List<int>();
+            List<string> finalSort = new List<string>();
+            foreach(string s in numbers)
             {
-                if (n_1 > n_2)
-                {
-                    higher = "second";
-                }
-                else higher = "first";
+                int n = 0;
+                Int32.TryParse(s, out n);
+                sortedNums.Add(n);
             }
 
-            if (i > j)
+            int[] sorted = sortedNums.ToArray();
+            Array.Sort(sorted);
+
+            foreach(int n in sorted)
             {
-                if (n_1 > n_2)
-                {
-                    higher = "first";
-                }
-                else higher = "second";
+                finalSort.Add(n.ToString());
             }
 
-            return higher;
-
+            return finalSort.ToArray();
         }
 
-        private void SortedNumbers(string[] arrayToSort)
+        public string[] SortEvenLetters(string[] evenLetters)
+        {
+             Array.Sort(evenLetters);
+
+            return evenLetters;
+        }
+
+        public string[] SortOddLetters(string[] oddLetters)
+        {
+            Array.Sort(oddLetters);
+
+            return oddLetters;
+        }
+
+
+        private void PreSorter(string[] arrayToSort)
         {
             int n = 0;
  

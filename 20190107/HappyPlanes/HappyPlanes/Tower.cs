@@ -7,13 +7,13 @@ namespace HappyPlanes
 {
     public class ControlTower
     {
-        public void ReceiveAskFromPlane(Planes plane, Runway runways)
+        public void ReceiveAskFromPlane(PlanesMain planesSimulation,PlanesMain.Planes plane, RunwayMain runwaySimulation)
         {
             ControlTower ask = new ControlTower();
-            ask.AskRunway(plane, runways);
+            ask.AskRunway(planesSimulation,plane, runwaySimulation);
         }
 
-        public void AskRunway(Planes plane, Runway runways)
+        public void AskRunway(PlanesMain planesSimulation,PlanesMain.Planes plane, RunwayMain runways)
         {
             Dictionary<int, bool> runwayIdState = runways.AllRunwaysIdAndState; 
   
@@ -21,15 +21,16 @@ namespace HappyPlanes
             {
                 if(runwayIdState[i] == true)
                 {
-                    AnswerPlane(runwayIdState.Keys.ElementAt(runwayIdState.Count()-1), plane, runways);
+                    AnswerPlane(runwayIdState.Keys.ElementAt(runwayIdState.Count()-1), planesSimulation, plane, runways);
                 }
             }
         }
 
-        public void AnswerPlane(int idOfRunwayToLand, Planes plane, Runway runways)
+        public void AnswerPlane(int idOfRunwayToLand, PlanesMain planesSimulation, PlanesMain.Planes plane, RunwayMain runwaysSimulation)
         {
+            planesSimulation.AllPlanesIdsAndRunway[plane.GetPlaneId()] = idOfRunwayToLand;
             plane.SetPlaneState();
-            runways.AllRunwaysIdAndState[idOfRunwayToLand] = false;
+            runwaysSimulation.AllRunwaysIdAndState[idOfRunwayToLand] = false;
         }
     }
 }

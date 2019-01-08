@@ -6,7 +6,7 @@ namespace Planes
 {
     internal class Airport
     {
-        private int landingInProgress = -1;
+        private int landingInProgress = 0;
 
         internal void Simulation(int turns, int planes, int fuel, bool[] landingPlaces)
         {
@@ -33,11 +33,16 @@ namespace Planes
                 {
                     for (int j = 0; j < timer.Length; j++)
                     {
-                        timer[landingInProgress]--;
+                        if(landingInProgress > timer.Length-1)
+                        {
+                            break;
+                        }
+
                         if (timer[landingInProgress] == 0)
                         {
                             timer[landingInProgress] = 5;
                         }
+                        timer[landingInProgress]--;
                     }
                 }
                 fuel--;
