@@ -34,19 +34,29 @@ namespace AirTraffic
 
         public List<LaneCreator> lane = GenerateLanes(2);
 
-        public List<PlaneCreator> Planes = GeneratePlanes(5);
+        public List<PlaneCreator> Planes = GeneratePlanes(50);
         
 
-        private static List<PlaneCreator> GeneratePlanes(int amount)
+        public static List<PlaneCreator> GeneratePlanes(int amount)
         {
-            List<PlaneCreator> returnPlanes = new List<PlaneCreator>();
+            List<PlaneCreator> createdPlanes = new List<PlaneCreator>();
 
             for (int i = 0; i < amount; i++)
             {
-                returnPlanes.Add(new PlaneCreator(RandomString(3), 200));
+                if(i < 10)
+                    createdPlanes.Add(new PlaneCreator(RandomString(3), 1));
+                if(i >=10 && i < 20)
+                    createdPlanes.Add(new PlaneCreator(RandomString(3), 3));
+                if (i >= 20 && i < 30)
+                    createdPlanes.Add(new PlaneCreator(RandomString(3), 5));
+                if (i >= 30 && i < 40)
+                    createdPlanes.Add(new PlaneCreator(RandomString(3), 7));
+                if (i >= 40 && i < 50)
+                    createdPlanes.Add(new PlaneCreator(RandomString(3), 10));
+
             }
 
-            return returnPlanes;
+            return createdPlanes;
         }
 
         private static List<LaneCreator> GenerateLanes(int amount)

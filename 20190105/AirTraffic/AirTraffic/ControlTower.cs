@@ -1,28 +1,57 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace AirTraffic
 {
     class ControlTower : TrafficSystem
     {
-        public void GetLaneForLanding(PlaneCreator plane, List<PlaneCreator> Planes)
+        public void Landing(PlaneCreator plane, List<PlaneCreator> Planes)
         {
-            SetLandingLaneForPlane(plane, Planes);
-            DecreaseLaneOccupancyPerRound();
+                     
+
+            var OcupiedLane = GiveFreeLane(lane);           
+            if (OcupiedLane != null)
+            {
+                OcupiedLane.laneTakenStatus = true;
+                OcupiedLane.takenForRounds = CalculateHowLongTimeStripWillBusy(plane);
+                Planes.Remove(plane);
+            }
+
+            // SetLandingLaneForPlane(plane, Planes);
+
+            //DecreaseLaneOccupancyPerRound();
         }
 
-        private void DecreaseLaneOccupancyPerRound()
+        private LaneCreator GiveFreeLane(List<LaneCreator> lanes)
         {
-            foreach (LaneCreator singleLane in lane)
+            foreach (var item in lanes)
             {
-                if(singleLane.takenForRounds > 0)
-                {
-                    singleLane.takenForRounds--;
-                    if (singleLane.takenForRounds == 0)
-                        singleLane.laneTakenStatus = false;
-                }
+                if (item.laneTakenStatus == false)
+                    return item;
             }
+            return null;
+            
         }
+
+        private int CalculateHowLongTimeStripWillBusy(PlaneCreator plane)
+        {
+            int laneOcupiedTime = plane.MaxFuel - plane.ActualFuel;            
+            return laneOcupiedTime;
+        }
+
+        //private void DecreaseLaneOccupancyPerRound()
+        //{
+        //    foreach (LaneCreator singleLane in lane)
+        //    {
+        //        if(singleLane.takenForRounds > 0)
+        //        {
+        //            singleLane.takenForRounds--;
+        //            if (singleLane.takenForRounds == 0)
+        //                singleLane.laneTakenStatus = false;
+        //        }
+        //    }
+        //}
 
         private void SetLaneOccupancyStatus(LaneCreator singleLandingLane)
         {
@@ -59,7 +88,7 @@ namespace AirTraffic
             foreach (PlaneCreator plane in planes)
             {
                 if(plane.number != null)
-                    plane.fuel--;
+                    plane.ActualFuel--;
             }
         }
 
