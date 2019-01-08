@@ -7,15 +7,13 @@ namespace HappyPlanes
 {
     public class FlySymulator
     {
+        List<AirPlane> Planes;
+        List<LandBelts> Belts;
 
         public void Run()
         {
-            //Buduj Listę samolotów -> List<Airplane>
-            Factory Factory = new Factory();
-            List<AirPlane> Planes = Factory.MakeAirplanes(50);
-
-            //Buduj Listę pasów -> List<LandBelt>
-            List<LandBelts> Belts = Factory.MakeLandBelts(10);
+            //Tworzy samoloty i pasy
+            DataCreation(out Planes, out Belts);
 
             //Załaduj Wolne utworzone Pasy Do informacji wieży o pasach 
             // Belts -> Tower.FreeBelts
@@ -24,58 +22,78 @@ namespace HappyPlanes
                 FreeLandBelts = Belts
             };
 
+            //Tworzy listę samolotów w powietrzu
             var AirPlanesOnTheAir = Planes.FindAll(x => x.OnTheAir == true).ToList();
+            //Tworzy listę samolotów na ziemi
             var AirPlanesOnTheLand = Planes.FindAll(x => x.OnTheAir == false).ToList();
 
+            //Wykonuje 1000 tur
+            Perform1000Tours(Tower, AirPlanesOnTheAir, AirPlanesOnTheLand);
+        }
+
+        private void Perform1000Tours(FlightTower Tower, List<AirPlane> AirPlanesOnTheAir, List<AirPlane> AirPlanesOnTheLand)
+        {
             for (int i = 0; i < 1000; i++)
             {
                 Console.Write(i + "- " + "Ilość wolnych pasów: " + Tower.FreeLandBelts.Count + "\n");
 
-                //Samolot pyta wieżę czy może podejść do lądowania
-                AirPlanesOnTheAir[0].PermissionLandingAsk(AirPlanesOnTheAir[0].Name);
-                //Wieża odpowiada czy ma miejsce
-                AirPlanesOnTheAir[0].PermissionToLanding = Tower.GivePermissionToLanding();
+                //Samolot pyta o wolne miejsce a wieża odpowiada
+                CommunicatiorTowerAirplane(Tower, AirPlanesOnTheAir);
 
                 //Jeśli ma miejsce to przydziela pas do lądowania
-                if (AirPlanesOnTheAir[0].PermissionToLanding == true)
-                {
-                    //Przdziela samolotowi pas do lądowania
-                    AirPlanesOnTheAir[0].LandBelt = Tower.GiveFreeLandBelt();
-
-                    AirPlanesOnTheAir[0].LandingSucces = true;
-                    AirPlanesOnTheAir[0].OnTheAir = false;
-
-                    AirPlanesOnTheLand.Add(AirPlanesOnTheAir[0]);
-                    AirPlanesOnTheAir.Remove(AirPlanesOnTheAir[0]);
-                }
-                else
-                {
-                    Tower.MessageToPilotThatCantLandin();
-                }
+                Tower.ManagementOfLandingAssignment(AirPlanesOnTheAir, AirPlanesOnTheLand);
 
                 //Jeśli piąta tura to wypuść jeden samolot w powietrze
-                if ((i % 5 == 0) && i > 0)
-                {
-                    //Usuń samolot z ziemi
-                    AirPlanesOnTheLand[0].OnTheAir = true;
-                    AirPlanesOnTheLand[0].PermissionToLanding = false;
-
-                    AirPlanesOnTheAir.Add(AirPlanesOnTheLand[0]);
-                    AirPlanesOnTheLand.Remove(AirPlanesOnTheLand[0]);
-
-                    //Wyczyść pas startowy
-                    Tower.SetFreeOneBelt();
-                }
+                IfTourIsFiveThenSetFreeStrip(Tower, AirPlanesOnTheAir, AirPlanesOnTheLand, i);
 
                 //Usuń jedno paliwo z każdego samolotu w powietrzu
-                foreach (var Plane in AirPlanesOnTheAir)
-                {
-                    Plane.Fuel--;
-                }
+                SubstractFuel(AirPlanesOnTheAir);
 
                 CheckDoesAnyFuelIsNegative(Planes);
 
             }
+        }
+
+        private static void DataCreation(out List<AirPlane> Planes, out List<LandBelts> Belts)
+        {
+            //Buduj Listę samolotów -> List<Airplane>
+            Factory Factory = new Factory();
+            Planes = Factory.MakeAirplanes(50);
+
+            //Buduj Listę pasów -> List<LandBelt>
+            Belts = Factory.MakeLandBelts(10);
+        }
+
+        private static void SubstractFuel(List<AirPlane> AirPlanesOnTheAir)
+        {
+            foreach (var Plane in AirPlanesOnTheAir)
+            {
+                Plane.Fuel--;
+            }
+        }
+
+        private static void IfTourIsFiveThenSetFreeStrip(FlightTower Tower, List<AirPlane> AirPlanesOnTheAir, List<AirPlane> AirPlanesOnTheLand, int i)
+        {
+            if ((i % 5 == 0) && i > 0)
+            {
+                //Usuń samolot z ziemi
+                AirPlanesOnTheLand[0].OnTheAir = true;
+                AirPlanesOnTheLand[0].PermissionToLanding = false;
+
+                AirPlanesOnTheAir.Add(AirPlanesOnTheLand[0]);
+                AirPlanesOnTheLand.Remove(AirPlanesOnTheLand[0]);
+
+                //Wyczyść pas startowy
+                Tower.SetFreeOneBelt();
+            }
+        }
+
+        private static void CommunicatiorTowerAirplane(FlightTower Tower, List<AirPlane> AirPlanesOnTheAir)
+        {
+            //Samolot pyta wieżę czy może podejść do lądowania
+            AirPlanesOnTheAir[0].PermissionLandingAsk(AirPlanesOnTheAir[0].Name);
+            //Wieża odpowiada czy ma miejsce
+            AirPlanesOnTheAir[0].PermissionToLanding = Tower.GivePermissionToLanding();
         }
 
         public void CheckDoesAnyFuelIsNegative(List<AirPlane> Planes)

@@ -14,6 +14,25 @@ namespace HappyPlanes
             PermissionToLanding = false;
         }
 
+        public void ManagementOfLandingAssignment(List<AirPlane> AirPlanesOnTheAir, List<AirPlane> AirPlanesOnTheLand)
+        {
+            if (AirPlanesOnTheAir[0].PermissionToLanding == true)
+            {
+                //Przdziela samolotowi pas do lądowania
+                AirPlanesOnTheAir[0].LandBelt = GiveFreeLandBelt();
+
+                AirPlanesOnTheAir[0].LandingSucces = true;
+                AirPlanesOnTheAir[0].OnTheAir = false;
+
+                AirPlanesOnTheLand.Add(AirPlanesOnTheAir[0]);
+                AirPlanesOnTheAir.Remove(AirPlanesOnTheAir[0]);
+            }
+            else
+            {
+                MessageToPilotThatCantLandin();
+            }
+        }
+
         public LandBelts GiveFreeLandBelt()
         {
             OccupiedLandBelts.Add(FreeLandBelts[0]);
