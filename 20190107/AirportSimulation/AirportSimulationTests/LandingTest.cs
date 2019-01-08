@@ -13,7 +13,7 @@ namespace AirportSimulationTests
         public void ShouldCreate50PlanesWithRandomFuelValue()
         {
             //given: 1 plane, 1 runway
-            bool expected = true;
+            //bool expected = true;
 
             List<Airplane> airplanes = new List<Airplane>();
             for (int i = 1; i <= 10; i++)
@@ -53,19 +53,18 @@ namespace AirportSimulationTests
         public void ShouldLand1PlaneAfter3rdTurn()
         {
             //given: 1 plane, 1 runway
-            bool expected = true;
-
             List<Airplane> airplanes = new List<Airplane>
             {
-                new Airplane() { Id = 1, AmountOfFuel = 200 }
+                new Airplane() { Id = 1, AmountOfFuel = 3 }
             };
 
 
             var airport = FakeDataFactory.GenerateAirport();
             //when
-            bool actual = airport.TryLand(airplanes.First());
+            var turnCounter = airport.SimulateLandingOfPlanesWithTurnsCounter(airplanes, 1000);
+
             //then
-            Assert.AreEqual(expected, actual);
+            Assert.IsTrue(turnCounter >= 3, "Plane has landed after 3 turn.");
         }
 
         [TestMethod]
