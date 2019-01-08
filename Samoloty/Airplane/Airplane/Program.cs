@@ -22,9 +22,12 @@ namespace Airplane
             //-> ilosc paliwa i spalanie 
             //zjazd z pasa 5 tur
             // --> samolot zjezdza z jednego pasa przez 5 tur
-            UnloadFlights flights = new UnloadFlights();
-            string content = flights.FlightControlTryUnloadFlightsIn1000Tour();
+
+            Task tk = new Task();
+            tk.DoTask();
+            
+            
             Console.ReadKey();
-         }
+        }
     }
 }

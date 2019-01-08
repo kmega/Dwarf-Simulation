@@ -44,12 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirPlaneTrack.cs" />
+    <Compile Include="ControlTower.cs" />
     <Compile Include="ListPlanes.cs" />
     <Compile Include="ListTourInAirplane.cs" />
     <Compile Include="Plane.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UnloadFlights.cs" />
+    <Compile Include="Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
