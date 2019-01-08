@@ -61,51 +61,27 @@ namespace AirportTest
             Assert.IsTrue(answer);
             Assert.AreEqual(0, ct.SearchFreeRunaway());
         }
-
-
-
         [TestMethod]
         public void SixthPlainwillland()
         {
-            Plain plain1 = new Plain(1,200);
-            Plain plain2 = new Plain(2, 200);
-            Plain plain3 = new Plain(3, 200);
-            Plain plain4 = new Plain(4, 200);
-            Plain plain5 = new Plain(5, 200);
-            Plain plain6 = new Plain(6, 200);
-            ControlTower ct = new ControlTower();
-            ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
-            ct.landingzones.Add(new Runway() { number = 2, IsEnable = true });
-            ct.landingzones.Add(new Runway() { number = 3, IsEnable = true });
-            ct.landingzones.Add(new Runway() { number = 4, IsEnable = true });
-            ct.landingzones.Add(new Runway() { number = 5, IsEnable = true });
-        
-            plain1.AskForFreeRunaway(ct);
-            ct.RunwayCleaner();
-            plain2.AskForFreeRunaway(ct);
-            ct.RunwayCleaner();
-            plain3.AskForFreeRunaway(ct);
-            ct.RunwayCleaner();
-            plain4.AskForFreeRunaway(ct);
-            ct.RunwayCleaner();
-            plain5.AskForFreeRunaway(ct);
-            ct.RunwayCleaner();
-            bool answer = plain6.AskForFreeRunaway(ct);
-            ct.RunwayCleaner();
+           List<Plain> planes = FakeDataFactory.BuildFakePlanes();
+           ControlTower ct = FakeDataFactory.BuildFakeControlTowerWith5Runways();
+            bool answer = false;
+            foreach(var plane in planes)
+            {
+                answer = plane.AskForFreeRunaway(ct);
+                ct.RunwayCleaner();
+            }
 
             Assert.IsTrue(answer);
             Assert.AreEqual(1, ct.SearchFreeRunaway());
         }
-
-
         [TestMethod]
         public void PlaneCrashCompilationGetResult1()
         {
             List<Plain> listofplain = new List<Plain>();
-            string killedPlanes = new AirportSimulation().Simulate(listofplain, 5);
-            string[] tablica = killedPlanes.Split(' ');
-            Assert.AreEqual(1, int.Parse(tablica[9]));
+            SimulationReport actualReport = new AirportSimulation().Simulate(listofplain, 5);
+            Assert.AreEqual(1, actualReport.CrashedPlanes);
         }
-
     }
 }

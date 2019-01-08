@@ -17,25 +17,25 @@ namespace AirportSimulator
         }
       
 
-        public bool AskForFreeRunaway (ControlTower ct)
+        public bool AskForFreeRunaway (ControlTower ct, int iteration)
         {
             bool answer = false;
             int answerrunawaynumber = ct.SearchFreeRunaway();
 
             if (!(answerrunawaynumber==0))
             {
-                Landing(ct, answerrunawaynumber);
+                Landing(ct, answerrunawaynumber, iteration);
                 answer = true;
             }
             return answer;
         }
 
-        public void Landing (ControlTower ct,int number)
+        public void Landing (ControlTower ct,int number, int iteration)
         {
             var selectedLandingZone = ct.landingzones.Find(x => x.number == number);
             selectedLandingZone.IsEnable = false;
             selectedLandingZone.BlockedTimer = TankSize - fueltank;
-            Console.WriteLine("Samolot numer: " + plainnumber + " wylądowa na pasie " + number);
+            Console.WriteLine("Samolot numer: " + plainnumber + " wylądowa na pasie " + number + " w turze: " + iteration);
             Console.WriteLine("Miał " + fueltank + " paliwa");
         }
 

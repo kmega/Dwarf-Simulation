@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AirportSimulator
 {
     public class AirportSimulation
     {
-        public string Simulate(List<Plain> listofplain, int howManyPlanesToSimulate)
+        public SimulationReport Simulate(List<Plain> listofplain, int howManyPlanesToSimulate)
         {
             List<int> initialFuelPossibilites = new List<int>()
             {
@@ -24,8 +21,7 @@ namespace AirportSimulator
             };
 
             for (int i = 0; i < 1000; i++)
-            {
-                
+            {  
                 if (i < howManyPlanesToSimulate)
                 {
                     listofplain.Add(new Plain(i + 1, initialFuelPossibilites[i % 5]));
@@ -36,7 +32,7 @@ namespace AirportSimulator
                 {
                     //McPochrzest
                     var planeToLand = listofplain.OrderBy(x => x.fueltank).First();
-                    bool answer = planeToLand.AskForFreeRunaway(ct);
+                    bool answer = planeToLand.AskForFreeRunaway(ct, iterations);
                     if (answer)
                     {
                         listofplain.Remove(planeToLand);
@@ -45,10 +41,15 @@ namespace AirportSimulator
                 ct.RunwayCleaner();
                 killedPlanes += Plain.LoseFuel(listofplain);
             };
-            iterations += ct.landingzones.Max(x => x.BlockedTimer);
-            string content = "Symulacja skończyła się po: " + iterations+" turach, a samolotów " +
-                "zginęło: " + killedPlanes;
-            return content;
+            if(ct.landingzones.Where(x=>x.IsEnable==false).Any())
+            {
+                iterations += ct.landingzones.Where(x => x.IsEnable == false).Max(x => x.BlockedTimer);
+            }
+            return new SimulationReport()
+            {
+                CrashedPlanes = killedPlanes,
+                TotalIterations = iterations
+            };
         }
     }
 }
