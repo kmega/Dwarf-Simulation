@@ -14,7 +14,7 @@ namespace SortTest
             int counter = 0;
             List<string> list = new List<string>();
             list.Add("a");
-            Sort getSort = new Sort();
+           
             var list1 = getSort.GetListNotEvenCharacter(list);
             Assert.AreEqual(1, list.Count);
         }
