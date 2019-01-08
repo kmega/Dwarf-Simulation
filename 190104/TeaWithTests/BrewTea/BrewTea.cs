@@ -33,10 +33,11 @@ Zielone Marzenie, zielona, 70, 3,
                 StringSplitOptions.RemoveEmptyEntries));
         }
 
-        public List<string> Run()
+        public string Run()
         {
             teas.Reverse();
-            return teas;
+            string tmpString = teas.ToString();
+            return tmpString;
         }
     }
 

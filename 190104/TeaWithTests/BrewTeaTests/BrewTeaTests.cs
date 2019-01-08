@@ -18,7 +18,7 @@ namespace BrewTeaTests
         public void TestIsReadedContentHasReverseOrder()
         {
             _taskOne = new TaskOneContent();
-            Assert.AreEqual(_task01.Run(), _taskOne.ResultList);
+            CollectionAssert.AreEqual(_task01.Run().ToCharArray(), _taskOne.ResultString.ToCharArray(), "Not equal");
         }
     }
 }
