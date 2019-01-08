@@ -43,23 +43,51 @@ namespace AirportSimulation
             }
         }
 
+        public int SimulateLandingOfPlanesWithTurnsCounter(List<Airplane> airplanes, int turns)
+        {
+            int i = 0;
+            while(i < turns)
+            {
+                if (i > 3)
+                {
+                    if (airplanes.Any())
+                    {
+                        var currentPlane = airplanes.First();
+                        bool hasLanded = TryLand(currentPlane);
+                        if (hasLanded)
+                        {
+                            airplanes.Remove(currentPlane);
+                            return i;
+                        }
+                        MovePlanesOnTracks();
+                    }
+                }
+                BurnFuel(airplanes);
+                i++;
+            }
+            return i;
+        }
+
         public void SimulateLandingOfPlanes(List<Airplane> airplanes)
         {
-            int i = 1000;
-            while(i>0)
+            int i = 0;
+            while (i < 1000)
             {
-                if(airplanes.Any())
+                if (i > 3)
                 {
-                    var currentPlane = airplanes.First();
-                    bool hasLanded = TryLand(currentPlane);
-                    if (hasLanded)
+                    if (airplanes.Any())
                     {
-                        airplanes.Remove(currentPlane);
+                        var currentPlane = airplanes.First();
+                        bool hasLanded = TryLand(currentPlane);
+                        if (hasLanded)
+                        {
+                            airplanes.Remove(currentPlane);
+                        }
+                        MovePlanesOnTracks();
                     }
-                    BurnFuel(airplanes);
-                    MovePlanesOnTracks();                   
                 }
-                i--;
+                BurnFuel(airplanes);
+                i++;
             }
         }
 
@@ -89,8 +117,8 @@ namespace AirportSimulation
         {
             foreach(var plane in airplanes)
             {
-                plane.AmountOfFuel -= 1;
-                if(plane.AmountOfFuel<=0)
+                plane.AmountOfFuel--;
+                if(plane.AmountOfFuel<0)
                 {
                     throw new ArgumentException($"Ohh no! {airplanes.Count} has crashed!");
                 }
