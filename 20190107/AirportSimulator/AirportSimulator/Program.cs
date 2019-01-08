@@ -28,7 +28,7 @@ namespace AirportSimulator
 
             for (int i = 0; i < 50; i++)
             {
-                listofplain.Add(new Plain(i+1));
+                listofplain.Add(new Plain(i+1,200));
             }
             int iterator = 0;
 
@@ -36,16 +36,16 @@ namespace AirportSimulator
             {
                 if (!(listofplain.Count == 0))
                 {
-                    bool answer = listofplain[0].AskForFreeRunaway(ct);
+                    //McPochrzest
+                    var planeToLand = listofplain.OrderBy(x=>x.fueltank).First();
+                    bool answer = planeToLand.AskForFreeRunaway(ct);
                     if (answer)
                     {
                         listofplain.RemoveAt(0);
                         iterator++;
                     }
-                    foreach (var item in listofplain)
-                    {
-                        item.LoseFuel();
-                    };
+                    int killedPlanes = Plain.LoseFuel(listofplain);
+                    
                     ct.RunwayCleaner();
 
                 }

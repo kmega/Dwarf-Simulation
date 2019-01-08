@@ -34,7 +34,7 @@ namespace AirportSimulator
                 if (item.IsEnable == false)
                 {
                     item.BlockedTimer -= 1;
-                    if (item.BlockedTimer == 0)
+                    if (item.BlockedTimer <= 0)
                     {
                         item.BlockedTimer = 5;
                         item.IsEnable = true;

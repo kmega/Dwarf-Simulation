@@ -9,12 +9,14 @@ namespace AirportSimulator
    public class Plain
     {
         public int plainnumber;
-       public int fueltank = 200;
+       public int fueltank;
+        public int TankSize { get; private set; }
 
-        public Plain(int number)
+        public Plain(int number, int fuel)
         {
             plainnumber = number;
-           
+            fueltank = fuel;
+            TankSize = fuel;
         }
       
 
@@ -33,14 +35,26 @@ namespace AirportSimulator
 
         public void Landing (ControlTower ct,int number)
         {
-            ct.landingzones.Find(x => x.number == number).IsEnable=false;
+            var selectedLandingZone = ct.landingzones.Find(x => x.number == number);
+            selectedLandingZone.IsEnable = false;
+            selectedLandingZone.BlockedTimer = TankSize - fueltank;
             Console.WriteLine("Samolot numer: " + plainnumber + " wylądowa na pasie " + number);
             Console.WriteLine("Miał " + fueltank + " paliwa");
         }
 
-        public void LoseFuel()
+        public static int LoseFuel(List<Plain> airplanes)
         {
-            fueltank -= 1;
+            int killedPlanes = 0;
+            foreach(var plane in airplanes)
+            {
+                plane.fueltank -= 1;
+                if(plane.fueltank <= 0)
+                {
+                    killedPlanes += 1;
+                    airplanes.Remove(plane);
+                }
+            }
+            return killedPlanes;
         }
     }
 }

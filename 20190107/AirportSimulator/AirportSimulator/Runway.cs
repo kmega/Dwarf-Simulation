@@ -13,6 +13,7 @@ namespace AirportSimulator
        public bool IsEnable = true;
        public int BlockedTimer = 5;
 
+
         //public Runway(int numbergiven)
         //{
 

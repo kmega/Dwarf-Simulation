@@ -10,7 +10,7 @@ namespace AirportTest
         [TestMethod]
         public void IsplainGetAnswerFromControlToweraboutlandingzone()
         {
-            Plain plain = new Plain(1);
+            Plain plain = new Plain(1,200);
             ControlTower ct = new ControlTower();
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
 
@@ -23,7 +23,7 @@ namespace AirportTest
         [TestMethod]
         public void IsOnePlainLandwithOneRunaway()
         {
-            Plain plain = new Plain(1);
+            Plain plain = new Plain(1,200);
             ControlTower ct = new ControlTower();
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
             plain.AskForFreeRunaway(ct);
@@ -34,8 +34,8 @@ namespace AirportTest
         [TestMethod]
         public void SecondPlainDontLand()
         {
-            Plain plain1 = new Plain(1);
-            Plain plain2 = new Plain(1);
+            Plain plain1 = new Plain(1,200);
+            Plain plain2 = new Plain(1,200);
             ControlTower ct = new ControlTower();
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
             plain1.AskForFreeRunaway(ct);
@@ -46,8 +46,8 @@ namespace AirportTest
         [TestMethod]
         public void SecondPlainLandOnSecondRunaway()
         {
-            Plain plain1 = new Plain(1);
-            Plain plain2 = new Plain(2);
+            Plain plain1 = new Plain(1,200);
+            Plain plain2 = new Plain(2,200);
         
             ControlTower ct = new ControlTower();
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
@@ -66,12 +66,12 @@ namespace AirportTest
         [TestMethod]
         public void SixthPlainwillland()
         {
-            Plain plain1 = new Plain(1);
-            Plain plain2 = new Plain(2);
-            Plain plain3 = new Plain(3);
-            Plain plain4 = new Plain(4);
-            Plain plain5 = new Plain(5);
-            Plain plain6 = new Plain(6);
+            Plain plain1 = new Plain(1,200);
+            Plain plain2 = new Plain(2, 200);
+            Plain plain3 = new Plain(3, 200);
+            Plain plain4 = new Plain(4, 200);
+            Plain plain5 = new Plain(5, 200);
+            Plain plain6 = new Plain(6, 200);
             ControlTower ct = new ControlTower();
             ct.landingzones.Add(new Runway() { number = 1, IsEnable = true });
             ct.landingzones.Add(new Runway() { number = 2, IsEnable = true });
@@ -93,7 +93,7 @@ namespace AirportTest
             ct.RunwayCleaner();
 
             Assert.IsTrue(answer);
-            Assert.AreEqual(2, ct.SearchFreeRunaway());
+            Assert.AreEqual(1, ct.SearchFreeRunaway());
 
 
 
