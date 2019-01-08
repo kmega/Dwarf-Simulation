@@ -45,15 +45,17 @@ namespace AirportSimulator
         public static int LoseFuel(List<Plain> airplanes)
         {
             int killedPlanes = 0;
-            foreach(var plane in airplanes)
+
+            for(int i =airplanes.Count - 1; i>=0; i--)
             {
-                plane.fueltank -= 1;
-                if(plane.fueltank <= 0)
+                airplanes[i].fueltank -= 1;
+                if (airplanes[i].fueltank <= 0)
                 {
                     killedPlanes += 1;
-                    airplanes.Remove(plane);
+                    airplanes.RemoveAt(i);
                 }
             }
+            
             return killedPlanes;
         }
     }

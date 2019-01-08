@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirportSimulation.cs" />
     <Compile Include="ControlTower.cs" />
     <Compile Include="Plain.cs" />
     <Compile Include="Program.cs" />

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using AirportSimulator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -94,9 +95,16 @@ namespace AirportTest
 
             Assert.IsTrue(answer);
             Assert.AreEqual(1, ct.SearchFreeRunaway());
+        }
 
 
-
+        [TestMethod]
+        public void PlaneCrashCompilationGetResult1()
+        {
+            List<Plain> listofplain = new List<Plain>();
+            string killedPlanes = new AirportSimulation().Simulate(listofplain, 5);
+            string[] tablica = killedPlanes.Split(' ');
+            Assert.AreEqual(1, int.Parse(tablica[9]));
         }
 
     }
