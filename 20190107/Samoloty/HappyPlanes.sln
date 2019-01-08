@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyPlanes", "Samoloty\HappyPlanes.csproj", "{62D4B53E-949C-4745-8E56-5D4A98778B7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HappyPlaneTests", "HappyPlaneTests\HappyPlaneTests.csproj", "{A44D3900-5F7F-4C3D-BDD4-22FF97721C82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62D4B53E-949C-4745-8E56-5D4A98778B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D4B53E-949C-4745-8E56-5D4A98778B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D4B53E-949C-4745-8E56-5D4A98778B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D4B53E-949C-4745-8E56-5D4A98778B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A44D3900-5F7F-4C3D-BDD4-22FF97721C82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A44D3900-5F7F-4C3D-BDD4-22FF97721C82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A44D3900-5F7F-4C3D-BDD4-22FF97721C82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A44D3900-5F7F-4C3D-BDD4-22FF97721C82}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF99BDD6-F6BC-447C-BE2E-30500383695C}
+	EndGlobalSection
+EndGlobal
