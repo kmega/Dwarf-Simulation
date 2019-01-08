@@ -10,6 +10,7 @@ namespace AirportSimulation
     {
         public int Id { get; set; }
         public int AmountOfFuel { get; set; }
+        public int FuelAtStart { get; set;  }
         public int[] CoordinatesToLand { get; set; }
     }
 }
