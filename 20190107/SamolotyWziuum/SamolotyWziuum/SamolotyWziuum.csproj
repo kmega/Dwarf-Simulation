@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirPort.cs" />
     <Compile Include="ControlTower.cs" />
     <Compile Include="RunWay.cs" />
     <Compile Include="Program.cs" />

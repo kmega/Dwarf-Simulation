@@ -8,7 +8,7 @@ namespace SamolotyWziuum
 {
     public class Plane
     {
-        
+        public bool planeInAir = true;
         public int planeNumber { get; set; }
         public Plane(int number)
         {
@@ -20,15 +20,16 @@ namespace SamolotyWziuum
             if (ct.CheckForFreeLandingRunWay() != 0)
             {
                 Landing(ct, ct.CheckForFreeLandingRunWay());
+                this.planeInAir = false;
             } else
             {
-                Console.WriteLine("All runways are taken");
+                this.planeInAir = true;
             }
         }
 
         public void Landing(ControlTower ct, int runwayNumber)
         {
-            ct.allRunWays[runwayNumber].available = false;
+            ct.allRunWays[runwayNumber-1].available = false;
         }
     }
 }
