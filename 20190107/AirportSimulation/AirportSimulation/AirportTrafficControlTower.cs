@@ -15,11 +15,11 @@ namespace AirportSimulation
         }
         private List<Runway> OccupiedRunways { get; set; }
         private Queue<Runway> EmptyRunways { get; set; }
-        
+
         public bool TryLand(Airplane plane)
         {
             Runway emptyRunway = CheckForEmptyRunways();
-            if(emptyRunway != null)
+            if (emptyRunway != null)
             {
                 plane.CoordinatesToLand = SendCoordinates(emptyRunway.Coordinates);
                 OccupiedRunways.Add(emptyRunway);
@@ -53,19 +53,33 @@ namespace AirportSimulation
                     if (airplanes.Any())
                     {
                         var currentPlane = airplanes.First();
-                        bool hasLanded = TryLand(currentPlane);
-                        if (hasLanded)
+                        if (currentPlane.AmountOfFuel <= 2)
                         {
-                            airplanes.Remove(currentPlane);
-                            return i;
+                            bool hasLanded = TryLand(currentPlane);
+                            if (hasLanded)
+                            {
+                                airplanes.Remove(currentPlane);
+                                return i;
+                            }
+                            MovePlanesOnTracks();
                         }
-                        MovePlanesOnTracks();
                     }
                 }
                 BurnFuel(airplanes);
                 i++;
             }
             return i;
+        }
+
+        public bool RefuelPlane(Airplane airplane)
+        {
+            if(!(airplane.AmountOfFuel == airplane.FuelAtStart))
+            {
+                airplane.AmountOfFuel++;
+                return false;
+            }
+
+            return true;
         }
 
         public void SimulateLandingOfPlanes(List<Airplane> airplanes)
@@ -81,7 +95,10 @@ namespace AirportSimulation
                         bool hasLanded = TryLand(currentPlane);
                         if (hasLanded)
                         {
-                            airplanes.Remove(currentPlane);
+                            if (RefuelPlane(currentPlane))
+                            {
+                                airplanes.Remove(currentPlane);
+                            }
                         }
                         MovePlanesOnTracks();
                     }
@@ -120,7 +137,7 @@ namespace AirportSimulation
                 plane.AmountOfFuel--;
                 if(plane.AmountOfFuel<0)
                 {
-                    throw new ArgumentException($"Ohh no! {airplanes.Count} has crashed!");
+                    throw new ArgumentException($"Ohh no! {plane.Id} has crashed!");
                 }
             }
         }
