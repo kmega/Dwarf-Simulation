@@ -12,7 +12,7 @@ namespace TestAirPort
         {
             ControlTower ct = new ControlTower();
             ListPlanes listofplanes = new ListPlanes();
-            listofplanes.AddPlane(4);
+            listofplanes.AddPlane(0);
 
             ct.PlaneLand(listofplanes.planelist);
 
@@ -39,42 +39,27 @@ namespace TestAirPort
         {
             ControlTower ct = new ControlTower();
             ListPlanes listofplanes = new ListPlanes();
-            listofplanes.AddPlane(4);
-            listofplanes.AddPlane(3);
             listofplanes.AddPlane(2);
+            listofplanes.AddPlane(1);
+            listofplanes.AddPlane(0);
            
-            listofplanes.CheckLowestFuel(listofplanes);
+            listofplanes.CheckLowestFuel();
 
             ct.PlaneLand(listofplanes.planelist);
 
             Assert.IsTrue(listofplanes.planelist[0].landed);
-            Assert.AreEqual(5, listofplanes.planelist[0].FuelLeft);
+            Assert.AreEqual(1, listofplanes.planelist[0].FuelLeft);
 
         }
 
-        [TestMethod]
-        public void IsWorkFor5Planes()
-        {
-            ControlTower ct = new ControlTower();
-            ListPlanes listofplanes = new ListPlanes();
-
-            for (int i = 0; i < 5; i++)
-            {
-                listofplanes.AddPlane(1);
-                ct.PlaneLand(listofplanes.planelist);
-                listofplanes.DecreaseFuel();
-                listofplanes.CheckFuel();
-                listofplanes.CheckLowestFuel();
-                ct.TrackOccupied();
-                
-            }
+        
 
 
 
 
           
 
-        }
+        
 
 
 
