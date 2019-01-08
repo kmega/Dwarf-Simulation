@@ -34,7 +34,7 @@ namespace AirTraffic
 
         public List<LaneCreator> lane = GenerateLanes(2);
 
-        public List<PlaneCreator> Planes = GeneratePlanes(3);
+        public List<PlaneCreator> Planes = GeneratePlanes(5);
         
 
         private static List<PlaneCreator> GeneratePlanes(int amount)

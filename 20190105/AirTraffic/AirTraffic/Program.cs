@@ -10,7 +10,7 @@ namespace AirTraffic
             ControlTower tower = new ControlTower();
             TrafficSystem trafficSystem = new TrafficSystem();
 
-            RoundOperations(tower, trafficSystem, 4);
+            RoundOperations(tower, trafficSystem, 1000);
                 
             
             Console.ReadKey();

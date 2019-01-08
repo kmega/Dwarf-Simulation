@@ -32,7 +32,6 @@ namespace AirTraffic
 
         private void SetLandingLaneForPlane(PlaneCreator plane, List<PlaneCreator> Planes)
         {
-            LaneCreator returnLane = null;
 
             foreach (LaneCreator singleLandingLane in lane)
             {
