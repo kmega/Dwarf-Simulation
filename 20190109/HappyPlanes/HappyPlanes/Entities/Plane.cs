@@ -22,7 +22,7 @@ namespace HappyPlanes.Entities
         }
 
         public string Name { get; private set; }
-        public PlaneLocation Location { get; private set; }
+        public PlaneLocation Location { get;  set; }
         public int MaxFuel { get; private set; }
         public PlaneDamage Damage { get; private set; }
         public int Fuel { get; set; }
@@ -33,12 +33,32 @@ namespace HappyPlanes.Entities
 
         public LandingStatus TryLandOn(Runway runway)
         {
-            throw new NotImplementedException();
+            if (runway != null && runway.Status == RunwayStatus.Empty)
+            {
+                runway.AcceptPlane(this);
+                runway.Status = RunwayStatus.Full;
+                Location = PlaneLocation.OnRunway;
+                return LandingStatus.Success;
+            }
+           return LandingStatus.Failure;
         }
 
         public void OnTurnTick()
         {
-            throw new NotImplementedException();
+
+            if (Location == PlaneLocation.InAir)
+            {
+                Fuel--;
+            }
+            else if (Location == PlaneLocation.OnRunway)
+            {
+                turnsOnRunway++;
+                if (turnsOnRunway % 10 == 0)
+                    Damage = PlaneDamage.None;
+                Fuel += 3;
+                if (Fuel > MaxFuel)
+                    Fuel = MaxFuel;
+            }
         }
 
         #endregion IMPLEMENT ME

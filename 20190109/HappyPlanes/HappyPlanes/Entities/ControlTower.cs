@@ -22,7 +22,16 @@ namespace HappyPlanes.Entities
 
         public Runway GetAvailableRunway()
         {
-            throw new NotImplementedException();
+            Runway airstrip = null;
+            foreach(Runway runway in runways)
+            {
+                if(runway.Status == RunwayStatus.Empty)
+                {
+                    airstrip = runway;
+                    break;
+                }
+            }
+            return airstrip;
         }
 
         #endregion IMPLEMENT THIS CODE
