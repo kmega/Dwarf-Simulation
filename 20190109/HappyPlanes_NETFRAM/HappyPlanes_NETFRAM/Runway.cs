@@ -30,8 +30,9 @@ namespace HappyPlanes.Entities
         {
             if(status == RunwayStatus.Empty && plane.Location == PlaneLocation.InAir)
             {
-                landedPlane = plane;
+                plane.Location = PlaneLocation.OnRunway;
                 status = RunwayStatus.Full;
+                landedPlane = plane;             
             }
             
         }
