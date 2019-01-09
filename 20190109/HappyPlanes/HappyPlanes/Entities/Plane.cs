@@ -33,7 +33,17 @@ namespace HappyPlanes.Entities
 
         public LandingStatus TryLandOn(Runway runway)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            switch(runway.Status)
+            {
+                case RunwayStatus.Full:
+                    return LandingStatus.Failure;
+                case RunwayStatus.Empty:
+                    runway.Status = RunwayStatus.Full;
+                    return LandingStatus.Success;
+                default:
+                    return LandingStatus.Unknown;
+            }
         }
 
         public void OnTurnTick()

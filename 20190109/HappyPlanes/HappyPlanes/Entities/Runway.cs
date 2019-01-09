@@ -29,7 +29,10 @@ namespace HappyPlanes.Entities
         public void AcceptPlane(Plane plane)
         {
             //throw new NotImplementedException();
-            this.status = RunwayStatus.Full;
+            if (plane.Location == PlaneLocation.InAir)
+            {
+                plane.TryLandOn(this);
+            }
         }
 
         public Plane LaunchPlane()
