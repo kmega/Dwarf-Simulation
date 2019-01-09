@@ -33,12 +33,50 @@ namespace HappyPlanes.Entities
 
         public LandingStatus TryLandOn(Runway runway)
         {
-            throw new NotImplementedException();
+           if (runway==null || runway.Status == RunwayStatus.Full)
+            {
+                return LandingStatus.Failure;
+            }
+           else
+            {
+                runway.AcceptPlane(this);
+                Location = PlaneLocation.OnRunway;
+                return LandingStatus.Success;
+                
+
+            }
         }
 
         public void OnTurnTick()
         {
-            throw new NotImplementedException();
+            turnsOnRunway++;
+
+            if (Location==PlaneLocation.InAir||Location==PlaneLocation.Unknown)
+            {
+                Fuel--;
+            }
+            else
+            {
+                if (!(Fuel == MaxFuel))
+                {
+                    Fuel += 3;
+                }
+                if (Fuel > MaxFuel)
+                {
+                    Fuel = MaxFuel;
+                    
+                }
+               
+                
+            }
+            if (Damage == PlaneDamage.Damaged)
+            {
+                if (turnsOnRunway >= 10)
+                {
+                    Damage = PlaneDamage.None;
+                }
+            }
+
         }
 
         #endregion IMPLEMENT ME
