@@ -42,11 +42,7 @@ namespace HappyPlanes.Entities
 
         public Plane LaunchPlane()
         {
-
-            if (landedPlane.Damage == PlaneDamage.Damaged)
-            {
-               
-            }
+            
 
             if (landedPlane.Fuel > (int) landedPlane.MaxFuel / 2 
                 && landedPlane.Damage != PlaneDamage.Damaged 

@@ -21,6 +21,11 @@ namespace HappyPlanes.Entities
             passingTime.RegisterPlane(this);
         }
 
+        public int GetCurrentPlaneTurn()
+        {
+            return turnsOnRunway;
+        }
+
         public string Name { get; private set; }
         public PlaneLocation Location { get; private set; }
         public int MaxFuel { get; private set; }
@@ -57,6 +62,7 @@ namespace HappyPlanes.Entities
         {
             turnsOnRunway += 1;
 
+
             if (this.Damage == PlaneDamage.Damaged && turnsOnRunway>=10)
             {
                 this.Damage = PlaneDamage.None;
@@ -69,6 +75,13 @@ namespace HappyPlanes.Entities
                 if (Fuel < MaxFuel)
                     this.Fuel += 3;
             }
+
+            if (turnsOnRunway >= 25)
+            {
+                this.Location = PlaneLocation.OnHangar;
+                Hangar.AddPlaneToHangar(this);
+            }
+
         }
 
         #endregion IMPLEMENT ME
