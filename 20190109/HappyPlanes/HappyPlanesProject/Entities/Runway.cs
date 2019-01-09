@@ -30,11 +30,14 @@ namespace HappyPlanes.Entities
         {
             if (plane.Location == PlaneLocation.InAir)
             {
+                plane.TryLandOn(this);
                 status = RunwayStatus.Full;
                 landedPlane = plane;
             }
 
         }
+
+
 
         public Plane LaunchPlane()
         {
@@ -51,7 +54,15 @@ namespace HappyPlanes.Entities
             return null;
         }
 
+        public void MakeRunwayFree()
+        {
+            status = RunwayStatus.Empty;
+        }
+
         #endregion IMPLEMENT THIS CODE
+
+
+
     }
 
 }

@@ -47,15 +47,25 @@ namespace HappyPlanes.Entities
             }
             else
             {
+                
                 Location = PlaneLocation.OnRunway;
                 runway.Status = RunwayStatus.Full;
             }
             return LandingStatus.Success;
         }
 
+      
+
         public void OnTurnTick()
         {
             turnsOnRunway++;
+
+            if (turnsOnRunway == 25)
+            {
+                Location = PlaneLocation.Hangar;
+                
+                
+            }
 
             if (Location == PlaneLocation.InAir)
                 Fuel = Fuel -1 ;
