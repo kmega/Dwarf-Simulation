@@ -16,7 +16,7 @@ namespace HappyPlanes.Entities
 
     public enum PlaneLocation
     {
-        Unknown = 0, InAir, OnRunway
+        Unknown = 0, InAir, OnRunway, Hangar
     }
 
     public enum PlaneDamage

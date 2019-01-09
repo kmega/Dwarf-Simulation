@@ -31,6 +31,7 @@ namespace HappyPlanes.Entities
             if (!(plane.Location == PlaneLocation.OnRunway||plane.Location==PlaneLocation.Unknown))
             {
                 landedPlane = plane;
+                plane.Location = PlaneLocation.OnRunway;
                 Status = RunwayStatus.Full;
                 
             }
@@ -39,7 +40,7 @@ namespace HappyPlanes.Entities
 
         public Plane LaunchPlane()
         {
-            if (landedPlane.Fuel > landedPlane.MaxFuel / 2 && landedPlane.Damage != PlaneDamage.Damaged)
+            if (landedPlane.Fuel == landedPlane.MaxFuel && landedPlane.Damage != PlaneDamage.Damaged)
             {
                 status = RunwayStatus.Empty;
                 return landedPlane;
@@ -49,6 +50,16 @@ namespace HappyPlanes.Entities
                 return null;
             }
 
+        }
+
+        public void TrySendToHangar()
+        {
+            if (!(landedPlane==null)&&landedPlane.turnsOnRunway >= 25)
+            {
+                landedPlane.Location = PlaneLocation.Hangar;
+                Status = RunwayStatus.Empty;
+                landedPlane = null;
+            }
         }
 
         #endregion IMPLEMENT THIS CODE

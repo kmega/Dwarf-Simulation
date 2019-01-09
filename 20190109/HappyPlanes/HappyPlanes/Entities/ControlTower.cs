@@ -9,7 +9,7 @@ namespace HappyPlanes.Entities
     {
         #region DO NOT TOUCH THIS CODE
 
-        private Runway[] runways;
+        public Runway[] runways;
 
         public ControlTower(Runway[] runways)
         {
@@ -35,6 +35,15 @@ namespace HappyPlanes.Entities
            
                 return null;
             
+        }
+
+        public void CheckRunwayStatus()
+        {
+            foreach(var item in runways)
+            {
+
+            }
+
         }
 
         #endregion IMPLEMENT THIS CODE

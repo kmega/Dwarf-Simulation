@@ -8,7 +8,7 @@ namespace HappyPlanes.Entities
     {
         #region DO NOT CHANGE THIS CODE
 
-        int turnsOnRunway = 0;
+        public int turnsOnRunway = 0;
 
         public Plane(string name, PlaneLocation location, int fuel, 
             PassingTime passingTime, int maxFuel, PlaneDamage damage)
@@ -22,7 +22,7 @@ namespace HappyPlanes.Entities
         }
 
         public string Name { get; private set; }
-        public PlaneLocation Location { get; private set; }
+        public PlaneLocation Location { get;  set; }
         public int MaxFuel { get; private set; }
         public PlaneDamage Damage { get; private set; }
         public int Fuel { get; set; }
@@ -40,16 +40,17 @@ namespace HappyPlanes.Entities
            else
             {
                 runway.AcceptPlane(this);
-                Location = PlaneLocation.OnRunway;
+                
                 return LandingStatus.Success;
                 
 
             }
         }
 
+      
+
         public void OnTurnTick()
         {
-            turnsOnRunway++;
 
             if (Location==PlaneLocation.InAir||Location==PlaneLocation.Unknown)
             {
@@ -57,6 +58,8 @@ namespace HappyPlanes.Entities
             }
             else
             {
+
+                turnsOnRunway++;
                 if (!(Fuel == MaxFuel))
                 {
                     Fuel += 3;
@@ -66,16 +69,19 @@ namespace HappyPlanes.Entities
                     Fuel = MaxFuel;
                     
                 }
-               
-                
-            }
-            if (Damage == PlaneDamage.Damaged)
-            {
-                if (turnsOnRunway >= 10)
+                if (Damage == PlaneDamage.Damaged)
                 {
-                    Damage = PlaneDamage.None;
+                    if (turnsOnRunway >= 10)
+                    {
+                        Damage = PlaneDamage.None;
+                    }
                 }
+               
+
+
+
             }
+            
 
         }
 
