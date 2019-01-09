@@ -25,7 +25,16 @@ namespace HappyPlanes.Entities
             var avilableRunways = runways.Where(x => x.Status == RunwayStatus.Empty);
             return avilableRunways.FirstOrDefault();
         }
-
+       /* public void CheckPlanesInHangar (PassingTime passingTime)
+        {
+            foreach (var plane in passingTime.planes)
+            {
+                if (plane.turnsOnRunway > 28 && plane.Location == PlaneLocation.InHangar)
+                {
+                    GetAvailableRunway().AcceptPlane(plane);
+                }
+            }
+        }*/
         #endregion IMPLEMENT THIS CODE
     }
 }

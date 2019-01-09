@@ -7,7 +7,8 @@ namespace HappyPlanes.Entities
 {
     public class PassingTime
     {
-        List<Plane> planes;
+
+        public List<Plane> planes;
 
         public PassingTime()
         {

@@ -215,7 +215,7 @@ namespace Tests
         }
 
         [Test]
-        public void T13_PlaneCanStartIfItHasMoreThanHalfMaxFuel()
+        public void T13_PlaneCanStartIfItHasMaxFuel()
         {
             // Given
             int initialFuel = 100;
@@ -311,60 +311,6 @@ namespace Tests
             Assert.IsTrue(plane.Damage == PlaneDamage.None);
         }
 
-        //Po 25 turach zjezdza do hangaru, a pas sie oproznia
-        [Test]
-        public void T17_After25TurnsPlaneDriveToHangarRunawatGetFree()
-        {
 
-            int initialFuel = 100;
-            int maxFuel = 100;
-
-            PassingTime time = new PassingTime();
-            Plane plane = PlaneFactory.Create(location: PlaneLocation.InAir, damage: PlaneDamage.Damaged,
-                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
-            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
-
-            runway.AcceptPlane(plane);
-
-            for (int i = 0; i < 26; i++) // 30 turns have passed
-            {
-                time.AddTurn();
-            }
-
-            Assert.IsTrue(plane.Location == PlaneLocation.InHangar);
-        }
-        //Hangar dwa samoloty i trafiaj¹ na pas startowy
-        //opoznienie 3 tur 
-        
-        [Test]
-        public void T18_TwoPlanesInHangarAfter3TurnGoToRunway()
-        {
-
-            int initialFuel = 100;
-            int maxFuel = 100;
-
-            PassingTime time = new PassingTime();
-            Plane plane = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.Damaged,
-                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
-            Plane plane2 = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.Damaged,
-                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
-            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
-            Runway runway2 = new Runway("runway 02", RunwayStatus.Empty);
-
-            runway.AcceptPlane(plane);
-
-            for (int i = 0; i < 30; i++) // 5 turns have passed
-            {
-                time.AddTurn();
-            }
-
-            Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
-            Assert.IsTrue(runway.Status == RunwayStatus.Full);
-            Assert.IsTrue(runway2.Status == RunwayStatus.Full);
-            Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
-        }
-
-        //Wieza kontrolna nowe polecenie Scrumble() wszystkie samoloty w hangarze maj¹ 
-        //trafiæ na pasy i po koloei (pojedynczo) startowaæ. Wieza kontrolna jest masterem
     }
 }

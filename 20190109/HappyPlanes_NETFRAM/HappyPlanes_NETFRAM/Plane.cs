@@ -11,7 +11,8 @@ namespace HappyPlanes.Entities
         int turnsOnRunway = 0;
 
         public Plane(string name, PlaneLocation location, int fuel, 
-            PassingTime passingTime, int maxFuel, PlaneDamage damage)
+            PassingTime passingTime, int maxFuel, PlaneDamage damage
+            )
         {
             this.Name = name;
             Location = location;
@@ -47,13 +48,21 @@ namespace HappyPlanes.Entities
 
         public void OnTurnTick()
         {
+            turnsOnRunway += 1;
             if (this.Damage == PlaneDamage.Damaged)
             {
-                turnsOnRunway += 1;
                 if(turnsOnRunway >= 10)
                 {
                     Damage = PlaneDamage.None;
                 }
+            }
+            if (this.Location == PlaneLocation.InHangar)
+            {
+                this.Location = PlaneLocation.OnRunway;
+            }
+            if (turnsOnRunway > 25)
+            {
+                this.Location = PlaneLocation.InHangar;
             }
             if (Location == PlaneLocation.OnRunway)
             {
