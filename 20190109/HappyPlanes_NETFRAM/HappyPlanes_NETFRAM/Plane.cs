@@ -9,6 +9,8 @@ namespace HappyPlanes.Entities
         #region DO NOT CHANGE THIS CODE
 
         int turnsOnRunway = 0;
+        int turnsToLeaveHangar = 3;
+        public bool IsHangarLeavingEngaged = false;
 
         public Plane(string name, PlaneLocation location, int fuel, 
             PassingTime passingTime, int maxFuel, PlaneDamage damage)
@@ -26,6 +28,17 @@ namespace HappyPlanes.Entities
         public int MaxFuel { get; private set; }
         public PlaneDamage Damage { get; private set; }
         public int Fuel { get; set; }
+
+        internal void OnLeaveTick(Runway runway)
+        {
+            turnsToLeaveHangar -= 1;
+            if(turnsToLeaveHangar == 0)
+            {
+                Location = PlaneLocation.OnRunway;
+                runway.Status = RunwayStatus.Full;
+                runway.landedPlane = this;
+            }
+        }
 
         #endregion DO NOT CHANGE THIS CODE
 
@@ -53,7 +66,7 @@ namespace HappyPlanes.Entities
                 CheckIfPlanesHeales();
                 CheckIfPlanesGoesToHangar(runway);
             }
-            else
+            if(Location == PlaneLocation.InAir)
             {
                 Fuel -= 1;
             }          
@@ -79,9 +92,16 @@ namespace HappyPlanes.Entities
             if (turnsOnRunway >= 25)
             {
                 Location = PlaneLocation.InHangar;
+                turnsToLeaveHangar = 3;
                 runway.Status = RunwayStatus.Empty;
             }
         }
+
+        public void LeaveHangar()
+        {
+            IsHangarLeavingEngaged = true;
+        }
+
         #endregion IMPLEMENT ME
 
     }

@@ -28,6 +28,10 @@ namespace HappyPlanes.Entities
             foreach(var plane in planes)
             {
                 plane.OnTurnTick(runways.Where(x => x.landedPlane == plane).FirstOrDefault());
+                if(plane.Location == PlaneLocation.InHangar && plane.IsHangarLeavingEngaged)
+                {
+                    plane.OnLeaveTick(runways.Where(x=>x.Status == RunwayStatus.Empty).FirstOrDefault());
+                }
             }
         }
         

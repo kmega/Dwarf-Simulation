@@ -318,7 +318,7 @@ namespace Tests
             int maxFuel = 100;
 
             PassingTime time = new PassingTime();
-            Plane plane = PlaneFactory.Create(location: PlaneLocation.InAir, damage: PlaneDamage.Damaged,
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.InAir, damage: PlaneDamage.None,
                 fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
             Runway runway = new Runway("runway 01", RunwayStatus.Empty);
             time.RegisterRunway(runway);
@@ -338,6 +338,65 @@ namespace Tests
             Assert.IsTrue(runway.Status == RunwayStatus.Empty);
         }
 
+        [Test]
+        public void T18_OnePlaneEmptiesHangarAndAppearsOnRunwayAfter3Turns()
+        {
+            //Given:
+            int initialFuel = 100;
+            int maxFuel = 100;
+
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+            time.RegisterRunway(runway);
+
+            plane.LeaveHangar();
+
+            Assert.IsTrue(runway.Status == RunwayStatus.Empty);
+            //when
+            for(int i =0; i<3; i++)
+            {
+                time.AddTurn();
+            }
+            //then
+            Assert.IsTrue(runway.Status == RunwayStatus.Full);
+            Assert.IsTrue(runway.landedPlane.Name == plane.Name);            
+        }
+        [Test]
+        public void T19_TwoPlanesAreInHangarAndAppearAfter3TurnsOnRunways()
+        {
+            //Given:
+            int initialFuel = 100;
+            int maxFuel = 100;
+
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Plane plane2 = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+            Runway runway2 = new Runway("runway 02", RunwayStatus.Empty);
+
+            time.RegisterRunway(runway);
+            time.RegisterRunway(runway2);
+
+            plane.LeaveHangar();
+            plane2.LeaveHangar(); 
+
+            Assert.IsTrue(runway.Status == RunwayStatus.Empty);
+            Assert.IsTrue(runway2.Status == RunwayStatus.Empty);
+            //when
+            for (int i = 0; i < 3; i++)
+            {
+                time.AddTurn();
+            }
+            //then
+            Assert.IsTrue(runway.Status == RunwayStatus.Full);
+            Assert.IsTrue(runway.landedPlane.Name == plane.Name);
+            Assert.IsTrue(runway2.Status == RunwayStatus.Full);
+            Assert.IsTrue(runway2.landedPlane.Name == plane2.Name);
+        }
 
     }
 }
