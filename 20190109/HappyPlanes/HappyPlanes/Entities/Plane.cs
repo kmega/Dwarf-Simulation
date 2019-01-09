@@ -9,6 +9,7 @@ namespace HappyPlanes.Entities
         #region DO NOT CHANGE THIS CODE
 
         public int turnsOnRunwayOrHangar = 0;
+        public int waitinQuene = 0;
 
         public Plane(string name, PlaneLocation location, int fuel, 
             PassingTime passingTime, int maxFuel, PlaneDamage damage)

@@ -11,6 +11,7 @@ namespace HappyPlanes.Entities
         private string name;
         private RunwayStatus status;
         public Plane landedPlane;
+        public List<Plane> planesQuene;
 
         public Runway(string name, RunwayStatus status = RunwayStatus.Empty)
         {

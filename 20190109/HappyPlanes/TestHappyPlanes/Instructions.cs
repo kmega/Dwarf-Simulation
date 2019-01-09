@@ -364,6 +364,22 @@ namespace Tests
             
         }
 
+        [Test]
+        public void T19_AllPlaneGoFromHangarAndStart()
+        {
+            int initialFuel = 100;
+            int maxFuel = 100;
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(name: "Omega Flight", location: PlaneLocation.Hangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Plane plane2 = PlaneFactory.Create(name: "Alfa Flight", location: PlaneLocation.Hangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Plane plane3 = PlaneFactory.Create(name: "Ypsilon Flight", location: PlaneLocation.Hangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+
+
+        }
+
 
 
     }

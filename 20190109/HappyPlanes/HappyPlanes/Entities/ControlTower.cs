@@ -57,8 +57,23 @@ namespace HappyPlanes.Entities
             {
                 if (item.turnsOnRunwayOrHangar >= 28 &&item.Location==PlaneLocation.Hangar )
                 {
+
                     GetAvailableRunway().AcceptPlane(item);
                 }
+            }
+        }
+
+        public void Scrumble(PassingTime time)
+        {
+
+            Runway runway = GetAvailableRunway();
+            foreach (var item in time.planes)
+            {
+                item.Location = PlaneLocation.QueneOnRunway;
+
+                runway.planesQuene.Add(item);
+
+
             }
         }
 
