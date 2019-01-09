@@ -17,14 +17,13 @@ namespace Airplane
 
         public void PlaneLand (List<Plane> listofplanes)
         {
-            foreach (var item in listofplanes)
+            foreach (var plane in listofplanes)
             {
-                if (item.FuelLeft < 3 && item.isCrashed==false && !(item.landed==true))
+                if (plane.FuelLeft < 3 && plane.isCrashed==false && !(plane.landed==true))
                 {
-                    bool island = IsTrackFree(item.StartFuel - item.FuelLeft);
-                    if (island)
+                    if (IsTrackFree(plane.StartFuel - plane.FuelLeft))
                     {
-                       item.landed = true;
+                       plane.landed = true;
                     }
                 }
             }
@@ -35,13 +34,11 @@ namespace Airplane
             bool result = false;
             for (int j = 0; j < listoftracks.Count; j++)
             {
-                
                 if (listoftracks[j].howLongIsBusy == 0)
                 {
                     listoftracks[j].howLongIsBusy = fuel;
                     j = listoftracks.Count - 1; //This is ending for loop
                     result = true;
-
                 }
             }
             return result;
@@ -57,6 +54,5 @@ namespace Airplane
                 }
             }
         }
-
     }
 }

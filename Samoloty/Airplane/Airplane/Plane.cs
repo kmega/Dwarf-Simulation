@@ -18,11 +18,5 @@ namespace Airplane
             StartFuel = fuel;
             FuelLeft = fuel;
         }
-            
-
     }
-
-
-
-
 }
