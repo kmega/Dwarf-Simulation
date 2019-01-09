@@ -11,6 +11,7 @@ namespace HappyPlanes.Entities
         private string name;
         private RunwayStatus status;
         private Plane landedPlane;
+        public static List<Plane> Hangar { get; set; } = new List<Plane>();
 
         public Runway(string name, RunwayStatus status = RunwayStatus.Empty)
         {
@@ -35,6 +36,11 @@ namespace HappyPlanes.Entities
                 landedPlane = plane;
             }
             
+        }
+
+        public static void GoToHangar(Plane plane)
+        {
+            Hangar.Add(plane);
         }
 
         public Plane LaunchPlane()

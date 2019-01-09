@@ -59,9 +59,18 @@ namespace HappyPlanes.Entities
         public void OnTurnTick()
         {
             turnsOnRunway++;
+
+
             if(turnsOnRunway == 10 && Damage == PlaneDamage.Damaged)
             {
                 Damage = PlaneDamage.None;
+            }
+
+            if(turnsOnRunway >= 25)
+            {                
+                Location = PlaneLocation.Hangar;
+                Runway.GoToHangar(this);
+                
             }
 
             if (Location == PlaneLocation.InAir)
