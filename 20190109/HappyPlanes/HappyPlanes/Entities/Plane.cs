@@ -70,9 +70,15 @@ namespace HappyPlanes.Entities
                 turnsOnRunway++;
             }
 
-            if(turnsOnRunway >=10)
+            if(turnsOnRunway >= 10)
             {
                 Damage = PlaneDamage.None;
+            }
+
+            if (turnsOnRunway == 25)
+            {
+                Location = PlaneLocation.Hangar;
+
             }
 
             if (Fuel > MaxFuel)

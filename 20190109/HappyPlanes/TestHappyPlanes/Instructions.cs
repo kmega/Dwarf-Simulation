@@ -311,6 +311,28 @@ namespace Tests
             Assert.IsTrue(plane.Damage == PlaneDamage.None);
         }
 
+        [Test]
+        public void T17_PlaneDrivesToHangarAfterBeing25TurnsOnRunway()
+        {
+            // Given
+            int initialFuel = 100;
+            int maxFuel = 100;
+
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.InAir, damage: PlaneDamage.Damaged,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+
+            runway.AcceptPlane(plane);
+
+            for (int i = 0; i < 25; i++) // 9 turns have passed
+            {
+                time.AddTurn();
+            }
+
+            Assert.IsTrue(plane.Location == PlaneLocation.Hangar);
+        }
+
 
     }
 }
