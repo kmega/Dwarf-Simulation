@@ -342,6 +342,28 @@ namespace Tests
         [Test]
         public void T18_2PlanesFromHangarGoTo2Runways()
         {
+            //Given
+            int initialFuel = 50;
+            int maxFuel = 100;
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.Damaged,
+                  fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Plane plane2 = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.Damaged,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+            Runway runway2 = new Runway("runway 02", RunwayStatus.Empty);
+
+            time.AddTurn();
+            time.AddTurn();
+            Assert.IsTrue(plane.Location == PlaneLocation.InHangar);  //after 2 turns in hangar should be still in hangar
+            Assert.IsTrue(plane2.Location == PlaneLocation.InHangar); //after 2 turns in hangar should be still in hangar
+
+            //When
+            time.AddTurn(); //after 3 turn should be on runway
+
+            //Then
+            Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
+            Assert.IsTrue(plane2.Location == PlaneLocation.OnRunway);
 
         }
 

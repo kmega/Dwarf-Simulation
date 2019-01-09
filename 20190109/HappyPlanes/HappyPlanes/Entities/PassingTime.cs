@@ -22,7 +22,7 @@ namespace HappyPlanes.Entities
         public void AddTurn()
         {
             CurrentTurn = CurrentTurn + 1;
-            foreach(var plane in planes) { plane.OnTurnTick(); }
+            foreach(var plane in planes) { plane.OnTurnTick(planes, CurrentTurn); }
         }
         
         

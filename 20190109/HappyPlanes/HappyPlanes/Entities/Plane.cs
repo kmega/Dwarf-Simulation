@@ -45,7 +45,7 @@ namespace HappyPlanes.Entities
             }
         }
 
-        public void OnTurnTick()
+        public void OnTurnTick(List<Plane> planelist, int turn)
         {
             if (Location == PlaneLocation.InAir || Location == PlaneLocation.Unknown)
             {
@@ -67,6 +67,16 @@ namespace HappyPlanes.Entities
                 if (turnsOnRunway > 9)
                 {
                     Damage = PlaneDamage.None;
+                }
+            }
+            if(turn % 3 == 0)
+            {
+                foreach(var plane in planelist)
+                {
+                    if(Location == PlaneLocation.InHangar)
+                    {
+                        Location = PlaneLocation.OnRunway;
+                    }
                 }
             }
         }
