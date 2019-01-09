@@ -58,14 +58,17 @@ namespace HappyPlanes.Entities
         public void OnTurnTick()
         {
             //throw new NotImplementedException();
-            switch (this.Location)
+            if (Fuel != MaxFuel)
             {
-                case PlaneLocation.InAir:
-                    Fuel--;
-                    break;
-                case PlaneLocation.OnRunway:
-                    Fuel += 3;
-                    break;
+                switch (this.Location)
+                {
+                    case PlaneLocation.InAir:
+                        Fuel--;
+                        break;
+                    case PlaneLocation.OnRunway:
+                        Fuel += 3;
+                        break;
+                }
             }
 
         }
