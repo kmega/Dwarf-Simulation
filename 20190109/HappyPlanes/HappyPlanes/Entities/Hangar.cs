@@ -15,6 +15,7 @@ namespace HappyPlanes.Entities
         static public void AddPlaneToHangar(Plane plane)
         {
             Planes.Add(plane);
+            
         }
     }
 }

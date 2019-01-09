@@ -335,7 +335,40 @@ namespace Tests
             // Then
             Assert.IsTrue(Hangar.Planes.Contains(plane));
         }
+        [Test]
+        public void T18_GoToRunwayAfter3TurnsOnHangar()
+        {
+            // Given
+            int initialFuel = 100;
+            int maxFuel = 100;
 
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.OnRunway, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Plane plane2 = PlaneFactory.Create(location: PlaneLocation.OnRunway, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+
+            Hangar.AddPlaneToHangar(plane);
+            Hangar.AddPlaneToHangar(plane2);
+
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+
+            ControlTower tower = new ControlTower(new Runway[] { runway });
+
+            runway.AcceptPlane(plane);
+
+            for (int i = 0; i < 3; i++) // 9 turns have passed
+            {
+                time.AddTurn();
+            }
+
+            // When
+            time.AddTurn();
+            // Then
+            Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
+            Assert.IsTrue(plane2.Location == PlaneLocation.OnRunway);
+
+        }
 
     }
 }

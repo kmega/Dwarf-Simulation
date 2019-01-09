@@ -78,10 +78,21 @@ namespace HappyPlanes.Entities
 
             if (turnsOnRunway >= 25)
             {
-                this.Location = PlaneLocation.OnHangar;
-                Hangar.AddPlaneToHangar(this);
+                GoToHangar();
             }
 
+            if (turnsOnRunway >= 3 && Location == PlaneLocation.OnHangar)
+            {
+                Location = PlaneLocation.OnRunway;
+            }
+
+        }
+
+        private void GoToHangar()
+        {
+            this.Location = PlaneLocation.OnHangar;
+            this.turnsOnRunway = 0;
+            Hangar.AddPlaneToHangar(this);
         }
 
         #endregion IMPLEMENT ME
