@@ -323,16 +323,17 @@ namespace Tests
             Runway runway = new Runway("runway 01", RunwayStatus.Empty);
             time.RegisterRunway(runway);
             runway.AcceptPlane(plane);
+         
             for (int i = 0; i < 24; i++) // 24 turns have passed
             {
                 time.AddTurn();
             }
-
+            
             Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
             Assert.IsTrue(runway.Status == RunwayStatus.Full);
-
+            //when
             time.AddTurn();
-
+            //then
             Assert.IsTrue(plane.Location == PlaneLocation.InHangar);
             Assert.IsTrue(runway.Status == RunwayStatus.Empty);
         }

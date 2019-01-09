@@ -56,8 +56,7 @@ namespace HappyPlanes.Entities
             else
             {
                 Fuel -= 1;
-            }
-            
+            }          
         }
         private void Refuel()
         {
