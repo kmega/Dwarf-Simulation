@@ -22,7 +22,7 @@ namespace HappyPlanes.Entities
         }
 
         public string Name { get; private set; }
-        public PlaneLocation Location { get;  set; }
+        public PlaneLocation Location { get; set; }
         public int MaxFuel { get; private set; }
         public PlaneDamage Damage { get; private set; }
         public int Fuel { get; set; }
@@ -53,8 +53,13 @@ namespace HappyPlanes.Entities
             else if (Location == PlaneLocation.OnRunway)
             {
                 turnsOnRunway++;
-                if (turnsOnRunway % 10 == 0)
+                if (turnsOnRunway == 10)
                     Damage = PlaneDamage.None;
+                if (turnsOnRunway == 25)
+                {
+                    Location = PlaneLocation.Hangar;
+                    turnsOnRunway = 0;
+                }
                 Fuel += 3;
                 if (Fuel > MaxFuel)
                     Fuel = MaxFuel;
