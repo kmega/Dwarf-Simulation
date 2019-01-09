@@ -24,7 +24,12 @@ namespace HappyPlanes.Entities
         {
             //throw new NotImplementedException();
             List<Runway> runwayList = runways.ToList();
-            return runwayList.First(x => x.Status == RunwayStatus.Empty);
+            if (runwayList.Count(x => x.Status == RunwayStatus.Empty) > 0) 
+            {
+                return runwayList.First(x => x.Status == RunwayStatus.Empty);
+            }
+
+            else { return null; }
         }
 
         #endregion IMPLEMENT THIS CODE
