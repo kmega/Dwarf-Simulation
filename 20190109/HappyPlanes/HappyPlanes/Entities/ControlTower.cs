@@ -22,7 +22,14 @@ namespace HappyPlanes.Entities
 
         public Runway GetAvailableRunway()
         {
-            throw new NotImplementedException();
+            foreach(Runway runway in runways)
+            {
+                if (runway.Status == RunwayStatus.Empty)
+                {
+                    return runway;
+                }
+            }
+            return null;
         }
 
         #endregion IMPLEMENT THIS CODE

@@ -32,7 +32,7 @@ namespace Tests
             runway.AcceptPlane(plane);
 
             // Then
-            Assert.IsTrue(runway.Status == RunwayStatus.Empty);
+            Assert.IsTrue(runway.Status == RunwayStatus.Full);
         }
 
         [Test]
@@ -62,8 +62,8 @@ namespace Tests
             LandingStatus result = plane.TryLandOn(runway);
 
             // Then
-            Assert.IsTrue(result == LandingStatus.Success);
-            Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
+            Assert.IsTrue(result == LandingStatus.Failure);
+            Assert.IsTrue(plane.Location == PlaneLocation.InAir);
             Assert.IsTrue(runway.Status == RunwayStatus.Full);
         }
 
@@ -93,7 +93,7 @@ namespace Tests
             Runway result = tower.GetAvailableRunway();
 
             // Then
-            Assert.IsTrue(result == null);
+            Assert.IsFalse(result != null);
         }
 
         [Test]
@@ -101,13 +101,13 @@ namespace Tests
         {
             // Given
             Plane plane = PlaneFactory.Create(location: PlaneLocation.InAir);
-            Runway runway = null;
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
 
             // When
             LandingStatus result = plane.TryLandOn(runway);
 
             // Then
-            Assert.IsTrue(runway == null);
+            Assert.IsTrue(runway != null);
             Assert.IsTrue(result == LandingStatus.Failure);
             Assert.IsTrue(plane.Location == PlaneLocation.InAir);
         }

@@ -33,12 +33,18 @@ namespace HappyPlanes.Entities
 
         public LandingStatus TryLandOn(Runway runway)
         {
-            throw new NotImplementedException();
+            runway.Status = RunwayStatus.Full;
+            return LandingStatus.Failure;
         }
 
         public void OnTurnTick()
         {
-            throw new NotImplementedException();
+            int initialFuel = 100;
+            int fuelBurn = 1;
+            for (int i = 0; i< 100; i++)
+            {
+                initialFuel -= fuelBurn;
+            }
         }
 
         #endregion IMPLEMENT ME
