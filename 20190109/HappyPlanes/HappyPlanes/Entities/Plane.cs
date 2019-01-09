@@ -39,6 +39,7 @@ namespace HappyPlanes.Entities
                 case RunwayStatus.Full:
                     return LandingStatus.Failure;
                 case RunwayStatus.Empty:
+                    this.Location = PlaneLocation.OnRunway;
                     runway.Status = RunwayStatus.Full;
                     return LandingStatus.Success;
                 default:
