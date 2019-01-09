@@ -13,8 +13,7 @@ namespace Airplane
 
         public void AddPlane(int iterator)
         {
-            
-            planelist.Add(new Plane ( fuelarray[iterator] ));
+            planelist.Add(new Plane (fuelarray[iterator]));
         }
 
         public void DecreaseFuel()
@@ -32,11 +31,9 @@ namespace Airplane
 
             for (int j = 0; j < planelist.Count; j++)
             {
-
                 if (planelist[j].FuelLeft == 0)
                 {
                     planelist[j].isCrashed = true;
-
                 }
             }
         }
@@ -44,12 +41,6 @@ namespace Airplane
         public void CheckLowestFuel()
         {
             planelist = planelist.OrderBy(x => x.FuelLeft).ToList();
-
         }
-
-
-
-
-
     }
 }

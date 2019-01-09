@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Airplane
 {
-   public class Task
+    public class Task
     {
         ControlTower ct = new ControlTower();
         ListPlanes listofplanes = new ListPlanes();
@@ -17,46 +17,31 @@ namespace Airplane
             int iterator = 0;
             do
             {
-                        if (listofplanes.planelist.Count < 50)
-                        {
-                            listofplanes.AddPlane(iterator);
-                        }
-                        if (turn > 3)
-                        {
-                            ct.PlaneLand(listofplanes.planelist);
-                        }
-                        listofplanes.DecreaseFuel();
-                        listofplanes.CheckFuel();
-                        listofplanes.CheckLowestFuel();
-                        ct.TrackOccupied();
-                        turn++;
+                if (listofplanes.planelist.Count < 50)
+                {
+                    listofplanes.AddPlane(iterator);
+                }
+                if (turn > 3)
+                {
+                    ct.PlaneLand(listofplanes.planelist);
+                }
+                listofplanes.DecreaseFuel();
+                listofplanes.CheckFuel();
+                listofplanes.CheckLowestFuel();
+                ct.TrackOccupied();
+                turn++;
                 iterator++;
-                if (iterator==5)
+                if (iterator == 5)
                 {
                     iterator = 0;
                 }
+            } while ((listofplanes.planelist.Exists(x => x.isCrashed == false
+                && x.landed == false)) || listofplanes.planelist.Count < 50);
 
-                    
-                
-            } while ((listofplanes.planelist.Exists(x => x.isCrashed == false && x.landed == false))
-            || listofplanes.planelist.Count<50);
+            int countCrashedPlanes = listofplanes.planelist.FindAll(x => x.isCrashed == true).Count();
+            int countLandedPlanes = listofplanes.planelist.FindAll(x => x.landed == true).Count();
 
-            int landed = 0;
-            int crashed = 0;
-
-            foreach (var elem in listofplanes.planelist)
-
-            {
-                if (elem.isCrashed)
-                {
-                    crashed++;
-                }
-                if (elem.landed)
-                {
-                    landed++;
-                }
-            }
-            Console.WriteLine($"Wylądowało: {landed} \nRozbiło się: {crashed}\n" +
+            Console.WriteLine($"Wylądowało: {countLandedPlanes} \nRozbiło się: {countCrashedPlanes}\n" +
                 $"Zajęło to {turn} tur");
         }
     }
