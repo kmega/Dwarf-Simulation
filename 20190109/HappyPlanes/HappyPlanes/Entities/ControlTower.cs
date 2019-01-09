@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿
+using System;
 
 namespace HappyPlanes.Entities
 {
@@ -22,7 +20,22 @@ namespace HappyPlanes.Entities
 
         public Runway GetAvailableRunway()
         {
-            throw new NotImplementedException();
+            // Runway Status - jak się odwołać
+
+            //metoda ma zwrócić :
+            //Assert.IsTrue(result != null);
+            //Assert.IsTrue(result.Name == runway.Name);
+            //this.runways = "runway 01";
+            for (int i = 0; i < runways.Length; i++)
+            {
+               
+                if (this.runways[i].Status == RunwayStatus.Empty)
+                {                    
+                    return runways[i];
+                }
+            }
+
+            return null;
         }
 
         #endregion IMPLEMENT THIS CODE

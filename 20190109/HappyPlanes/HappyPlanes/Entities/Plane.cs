@@ -33,12 +33,60 @@ namespace HappyPlanes.Entities
 
         public LandingStatus TryLandOn(Runway runway)
         {
-            throw new NotImplementedException();
+            // korzystajac z runway status 
+            //return LandingStatus.Failure,  Assert.IsTrue(result == LandingStatus.Failure);
+            //Assert.IsTrue(plane.Location == PlaneLocation.InAir);
+            //Assert.IsTrue(runway.Status == RunwayStatus.Full);
+
+            if (runway == null)
+            {
+                this.Location = PlaneLocation.InAir;
+                return LandingStatus.Failure;
+            }
+
+            if (runway.Status == RunwayStatus.Full)
+            {
+                this.Location = PlaneLocation.InAir;
+                runway.Status = RunwayStatus.Full;
+
+                return LandingStatus.Failure;
+            }
+            else if (runway.Status == RunwayStatus.Empty)
+            {
+                this.Location = PlaneLocation.OnRunway;
+                runway.Status = RunwayStatus.Full;
+                return LandingStatus.Success;
+            }
+            else
+            {
+                 throw new NotImplementedException();
+            }
+            //Assert.IsTrue(result == LandingStatus.Success);
+            //Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
+            //Assert.IsTrue(runway.Status == RunwayStatus.Full);
+            //jeżeli planelocation in air i runway status = null
+            //Assert.IsTrue(runway == null);
+            //Assert.IsTrue(result == );
+            //Assert.IsTrue(plane.Location == );
+
         }
 
         public void OnTurnTick()
         {
-            throw new NotImplementedException();
+            if (Location == PlaneLocation.InAir)
+            {
+                MaxFuel = 100;
+                this.Fuel = MaxFuel - 1;
+            }
+            // without else if below, 11 and 12 works
+            else if (Location == PlaneLocation.OnRunway)
+            {
+                MaxFuel = 100;
+                this.Fuel = MaxFuel + 3;
+            }
+
+            //if (runway.Status == RunwayStatus.Empty)
+            //throw new NotImplementedException();
         }
 
         #endregion IMPLEMENT ME
