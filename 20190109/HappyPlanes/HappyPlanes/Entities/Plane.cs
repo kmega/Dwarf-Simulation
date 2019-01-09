@@ -70,7 +70,6 @@ namespace HappyPlanes.Entities
                         break;
                 }
             }
-
         }
 
         #endregion IMPLEMENT ME

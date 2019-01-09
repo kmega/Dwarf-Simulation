@@ -32,13 +32,20 @@ namespace HappyPlanes.Entities
             if (plane.Location == PlaneLocation.InAir)
             {
                 plane.TryLandOn(this);
+                landedPlane = plane;
+
             }
         }
 
         public Plane LaunchPlane()
         {
-            throw new NotImplementedException();
+            if (landedPlane.Fuel == landedPlane.MaxFuel)
+            {
+                status = RunwayStatus.Empty;
+                return landedPlane;
+            }
 
+            throw new NotImplementedException();
         }
 
         #endregion IMPLEMENT THIS CODE
