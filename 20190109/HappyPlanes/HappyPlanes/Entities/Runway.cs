@@ -10,7 +10,7 @@ namespace HappyPlanes.Entities
 
         private string name;
         private RunwayStatus status;
-        private Plane landedPlane;
+        public Plane landedPlane;
 
         public Runway(string name, RunwayStatus status = RunwayStatus.Empty)
         {
@@ -52,14 +52,17 @@ namespace HappyPlanes.Entities
 
         }
 
-        public void TrySendToHangar()
+        public bool TrySendToHangar()
         {
-            if (!(landedPlane==null)&&landedPlane.turnsOnRunway >= 25)
+            bool result=false;
+            if (!(landedPlane==null)&&landedPlane.turnsOnRunwayOrHangar >= 25)
             {
                 landedPlane.Location = PlaneLocation.Hangar;
                 Status = RunwayStatus.Empty;
-                landedPlane = null;
+                result = true;
+                
             }
+            return result;
         }
 
         #endregion IMPLEMENT THIS CODE

@@ -335,14 +335,35 @@ namespace Tests
             // Then
             Assert.IsTrue(plane.Location==PlaneLocation.Hangar);
 
-
-
-
-
-
-
-
         }
+
+        [Test]
+        public void T18_PlaneGoFromHangarToRunway()
+        {
+            //Given
+
+            int initialFuel = 25;
+            int maxFuel = 100;
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(name: "Omega Flight",location: PlaneLocation.InAir, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+            ControlTower tower = new ControlTower(new Runway[] { runway });
+            runway.AcceptPlane(plane);
+
+            for (int i = 0; i < 28; i++) // 25 turns have passed
+            {
+                time.AddTurn();
+                runway.TrySendToHangar();
+            }
+
+            tower.SendPlaneFromHangar(time);
+
+            Assert.AreEqual(plane.Name, runway.landedPlane.Name);
+            
+        }
+
 
 
     }

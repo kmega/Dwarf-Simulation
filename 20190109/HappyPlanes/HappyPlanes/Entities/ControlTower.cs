@@ -10,7 +10,7 @@ namespace HappyPlanes.Entities
         #region DO NOT TOUCH THIS CODE
 
         public Runway[] runways;
-
+       
         public ControlTower(Runway[] runways)
         {
             this.runways = runways;
@@ -30,21 +30,41 @@ namespace HappyPlanes.Entities
                     
                     return item;
                 }
-                
             }
            
                 return null;
-            
         }
 
         public void CheckRunwayStatus()
         {
             foreach(var item in runways)
             {
-
+              bool result =  item.TrySendToHangar();
+                if (result)
+                {
+                  
+                  
+                    item.landedPlane = null;
+                    
+                }
             }
 
         }
+
+        public void SendPlaneFromHangar(PassingTime time)
+        {
+            foreach (var item in time.planes)
+            {
+                if (item.turnsOnRunwayOrHangar >= 28 &&item.Location==PlaneLocation.Hangar )
+                {
+                    GetAvailableRunway().AcceptPlane(item);
+                }
+            }
+        }
+
+
+
+
 
         #endregion IMPLEMENT THIS CODE
     }
