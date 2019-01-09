@@ -15,7 +15,7 @@ namespace HappyPlanes
             ask.AskRunway(plane, runways);
         }
 
-        public void AskRunway(Planes plane, List<Runway> runways)
+        public void AskRunway(Planes plane, List<<Planes> planes List<Runway> runways)
         {
             bool tryLand = false;
             for (int i = 0; i < runways.Count; i++)
@@ -23,14 +23,15 @@ namespace HappyPlanes
                 if(runways[i].GetRunwayStateFree() == true)
                 {
                     tryLand = true;
-                    AnswerPlane(tryLand, plane, runways[i]);
+                    AnswerPlane(tryLand, plane, planes, runways[i]);
                 }
             }
         }
 
-        public void AnswerPlane(bool tryLand, Planes plane, Runway runway)
+        public void AnswerPlane(bool tryLand, Planes plane, List<Planes> planes, Runway runway)
         {
-            
+
+            UpDate(List < Planes > planes);
 
             if(tryLand == true)
             {
@@ -38,8 +39,16 @@ namespace HappyPlanes
                 runway.SetRunwayStateBusy();
                 planeOnRunway.Add(plane.GetPlaneId(), runway.GetRunwayId());    
             } 
-
             
+        }
+
+        private void UpDate(List<Planes> plane)
+        {
+            foreach (Planes airPlane in plane)
+            {
+                if (airPlane.GetPlaneInAir() == true)
+                    planeOnRunway.Remove(airPlane.GetPlaneId());
+            }
         }
 
         public Dictionary<int,int> planesOnRunways()
