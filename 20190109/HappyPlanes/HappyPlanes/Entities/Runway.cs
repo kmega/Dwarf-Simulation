@@ -33,6 +33,8 @@ namespace HappyPlanes.Entities
             if(tempPlane.Location == PlaneLocation.InAir 
                 && Status == RunwayStatus.Empty)
             {
+                landedPlane = plane;
+                landedPlane.TryLandOn(this);
                 Status = RunwayStatus.Full;
             }
             //throw new NotImplementedException();
@@ -40,8 +42,16 @@ namespace HappyPlanes.Entities
 
         public Plane LaunchPlane()
         {
-            throw new NotImplementedException();
-
+            if(landedPlane.Fuel == landedPlane.MaxFuel && landedPlane.Damage != PlaneDamage.Damaged)
+            {
+                status = RunwayStatus.Empty;
+                return landedPlane;
+            }
+            else if(landedPlane.Damage == PlaneDamage.Damaged)
+            {
+                return null;
+            }
+            return null;
         }
 
         #endregion IMPLEMENT THIS CODE

@@ -24,8 +24,5 @@ namespace HappyPlanes.Entities
             CurrentTurn = CurrentTurn + 1;
             foreach(var plane in planes) { plane.OnTurnTick(); }
         }
-        
-        
-
     }
 }

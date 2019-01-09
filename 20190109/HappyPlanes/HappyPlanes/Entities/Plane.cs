@@ -52,13 +52,23 @@ namespace HappyPlanes.Entities
 
         public void OnTurnTick()
         {
-            if(Location == PlaneLocation.OnRunway)
+            turnsOnRunway++;
+
+            if(turnsOnRunway == 10 && Damage == PlaneDamage.Damaged)
             {
+                Damage = PlaneDamage.None;
+            }
+
+            if (Location == PlaneLocation.InAir)
+            {
+                Fuel--;
+            }
+
+            if (Location == PlaneLocation.OnRunway)
+            {
+                if (Fuel == MaxFuel) return;
                 Fuel += 3;
             }
-            else Fuel--;
-
-            //throw new NotImplementedException();
         }
 
         #endregion IMPLEMENT ME
