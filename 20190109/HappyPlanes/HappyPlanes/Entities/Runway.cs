@@ -32,6 +32,7 @@ namespace HappyPlanes.Entities
             {
                 landedPlane = plane;
                 status = RunwayStatus.Full;
+                landedPlane.Location = PlaneLocation.OnRunway;
             } 
         }
 
@@ -45,6 +46,15 @@ namespace HappyPlanes.Entities
                 return landedPlane;
             }
             return null;
+        }
+
+        public void TrySendPlaneToHangar()
+        {
+            if(landedPlane.turnsOnRunway > 25)
+            {
+                status = RunwayStatus.Empty;
+                landedPlane.Location = PlaneLocation.InHangar;
+            }
         }
 
         #endregion IMPLEMENT THIS CODE
