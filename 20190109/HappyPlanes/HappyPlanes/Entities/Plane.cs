@@ -59,7 +59,7 @@ namespace HappyPlanes.Entities
             else return LandingStatus.Unknown;
         }
 
-        public void OnTurnTick()
+        public void OnTurnTick(List<Plane> planes, int currentTurn)
         {
             if (Location == PlaneLocation.InAir)
                 Fuel--;
@@ -69,6 +69,18 @@ namespace HappyPlanes.Entities
                 Fuel += 3;
                 turnsOnRunway++;
             }
+
+            if ( currentTurn % 3 == 0)
+            {
+                foreach (Plane plane in planes)
+                {
+                    if (plane.Location == PlaneLocation.Hangar)
+                    {
+                        plane.Location = PlaneLocation.OnRunway;
+                    }
+                }
+            }
+            
 
             if(turnsOnRunway >= 10)
             {
@@ -80,6 +92,7 @@ namespace HappyPlanes.Entities
                 Location = PlaneLocation.Hangar;
 
             }
+
 
             if (Fuel > MaxFuel)
                 Fuel = MaxFuel;
