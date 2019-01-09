@@ -6,65 +6,50 @@ using System.Threading.Tasks;
 
 namespace Airplane
 {
-    class ListPlanes
+    public class ListPlanes
     {
-        public List<Plane> InformationPlanes()
-        {
-            List<Plane> plane = new List<Plane>();
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 20, landed = false });
+        public List<Plane> planelist = new List<Plane>();
+        private int[] fuelarray = new int[] { 1, 3, 5, 7, 9 };
 
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            plane.Add(new Plane { HowMuchFuel = 200, landed = false });
-            return plane;
+        public void AddPlane(int iterator)
+        {
+            
+            planelist.Add(new Plane ( fuelarray[iterator] ));
         }
+
+        public void DecreaseFuel()
+        {
+            for (int j = 0; j < planelist.Count; j++)
+            {
+                if (planelist[j].landed == false)
+                {
+                    planelist[j].FuelLeft -= 1;
+                }
+            }
+        }
+
+        public void CheckFuel(){
+
+            for (int j = 0; j < planelist.Count; j++)
+            {
+
+                if (planelist[j].FuelLeft == 0)
+                {
+                    planelist[j].isCrashed = true;
+
+                }
+            }
+        }
+
+        public void CheckLowestFuel()
+        {
+            planelist = planelist.OrderBy(x => x.FuelLeft).ToList();
+
+        }
+
+
+
+
+
     }
 }

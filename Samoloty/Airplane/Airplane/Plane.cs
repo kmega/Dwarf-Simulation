@@ -6,9 +6,23 @@ using System.Threading.Tasks;
 
 namespace Airplane
 {
-    class Plane
+    public class Plane
     {
-        public int HowMuchFuel { get; set; }
-        public bool landed { get; set; }
+        public int StartFuel { get; set; }
+        public int FuelLeft { get; set; }
+        public bool landed = false;
+        public bool isCrashed = false;
+
+        public Plane(int fuel)
+        {
+            StartFuel = fuel;
+            FuelLeft = fuel;
+        }
+            
+
     }
+
+
+
+
 }
