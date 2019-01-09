@@ -70,6 +70,12 @@ namespace HappyPlanes.Entities
                         break;
                 }
             }
+
+            if (this.Location == PlaneLocation.OnRunway)
+            {
+                turnsOnRunway++;
+                if (turnsOnRunway == 10) { this.Damage = PlaneDamage.None; }
+            }
         }
 
         #endregion IMPLEMENT ME
