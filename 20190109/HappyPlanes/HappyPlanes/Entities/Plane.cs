@@ -60,6 +60,10 @@ namespace HappyPlanes.Entities
         {
             turnsOnRunway++;
 
+            if(turnsOnRunway%3 == 0)
+            {
+
+            }
 
             if(turnsOnRunway == 10 && Damage == PlaneDamage.Damaged)
             {

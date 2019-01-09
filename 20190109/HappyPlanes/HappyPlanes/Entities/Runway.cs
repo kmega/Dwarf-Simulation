@@ -37,6 +37,10 @@ namespace HappyPlanes.Entities
             }
             
         }
+        public static void GoToRunway(Plane plane)
+        {
+
+        }
 
         public static void GoToHangar(Plane plane)
         {

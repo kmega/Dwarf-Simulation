@@ -335,6 +335,34 @@ namespace Tests
             Assert.IsTrue(plane.Location == PlaneLocation.Hangar);
             Assert.IsTrue(Runway.Hangar.Count > 1);
         }
+        [Test]
+        public void T18_IfTurnsMod3IsZero2APlaneShouldGoToRunways()
+        {
+            // Given
+            PassingTime time = new PassingTime();
+            Plane plane1 = PlaneFactory.Create(location: PlaneLocation.Hangar, damage: PlaneDamage.None,
+                fuel: 100, maxFuel: 100, passingTime: time);
+            Plane plane2 = PlaneFactory.Create(location: PlaneLocation.Hangar, damage: PlaneDamage.None,
+                fuel: 100, maxFuel: 100, passingTime: time);
+
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+
+            Runway.Hangar.Add(plane1);
+            Runway.Hangar.Add(plane2);
+
+            for (int i = 0; i < 100; i++) // 100 turns have passed
+            {
+                time.AddTurn();
+            }
+
+            // When
+            time.AddTurn();
+
+            // Then
+            Assert.IsTrue(runway.Status == RunwayStatus.Empty);
+            Assert.IsTrue(plane.Location == PlaneLocation.Hangar);
+            Assert.IsTrue(Runway.Hangar.Count > 1);
+        }
 
 
     }
