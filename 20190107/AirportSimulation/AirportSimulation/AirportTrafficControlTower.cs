@@ -46,13 +46,14 @@ namespace AirportSimulation
         public (int, short) SimulateLandingOfPlanesWithTurnsCounter(List<Airplane> airplanes, int turns)
         {
             int i = 0;
-            short temp = 0;
+            short fuelToFillUp = 0;
             while (i < turns)
             {
                 if (i > 3)
                 {
                     if (airplanes.Any())
                     {
+                        airplanes = airplanes.OrderBy(x => x.AmountOfFuel).ToList();
                         var currentPlane = airplanes.First();
                         if (currentPlane.AmountOfFuel <= 2)
                         {
@@ -64,17 +65,17 @@ namespace AirportSimulation
                                 var amountOfFuel = currentPlane.AmountOfFuel;
                                 //
                                 BurnFuel(airplanes);
-                                temp = MovePlanesOnTracks(fuelAtStart, amountOfFuel);
-                                return (i, temp);
+                                fuelToFillUp = MovePlanesOnTracks(fuelAtStart, amountOfFuel);
+                                return (i, fuelToFillUp); //sth here
                             }
                             //MovePlanesOnTracks();
                         }
                     }
                 }
-                BurnFuel(airplanes);
+                BurnFuel(airplanes); //sth here
                 i++;
             }
-            return (i, temp);
+            return (i, fuelToFillUp);
         }
 
         public bool RefuelPlane(Airplane airplane)

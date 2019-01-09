@@ -55,17 +55,15 @@ namespace AirportSimulationTests
             //given: 1 plane, 1 runway
             List<Airplane> airplanes = new List<Airplane>
             {
-                new Airplane() { Id = 1, AmountOfFuel = 5 },
-                new Airplane() { Id = 2, AmountOfFuel = 7 }
+                new Airplane() { Id = 1, FuelAtStart = 5, AmountOfFuel = 5 },
             };
-
 
             var airport = FakeDataFactory.GenerateAirport();
             //when
             var turnCounter = airport.SimulateLandingOfPlanesWithTurnsCounter(airplanes, 1000);
 
             //then
-            Assert.IsTrue(turnCounter > 3, "Plane has landed after 3 turn.");
+            Assert.IsTrue(turnCounter.Item1 > 3, "Plane has landed after 3 turn.");
         }
 
         [TestMethod]
@@ -74,7 +72,7 @@ namespace AirportSimulationTests
             //given: 1 plane, 1 runway
             List<Airplane> airplanes = new List<Airplane>
             {
-                new Airplane() { Id = 1, AmountOfFuel = 7 }
+                new Airplane() { Id = 1, FuelAtStart = 7, AmountOfFuel = 7 }
             };
             //List<Airplane> airplanes = new List<Airplane>();
             //for (int i = 1; i <= 10; i++)
@@ -91,17 +89,47 @@ namespace AirportSimulationTests
             //        new Airplane() { Id = 40 + i, FuelAtStart = 10, AmountOfFuel = 10 });
             //}
 
+            var airport = FakeDataFactory.GenerateAirport();
+            //when
+            var turnCounter = airport.SimulateLandingOfPlanesWithTurnsCounter(airplanes, 1000);
+
+            int expectedRefuelTime = 5;
+            int resultRefuelTime = turnCounter.Item1;
+
+            //var temp = 0;
+            //then
+            Assert.AreEqual(resultRefuelTime, expectedRefuelTime);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException),
+            "Ohh no! planes are crashing!")]
+        public void Gets50PlanesAndWorks()
+        {
+            //given: 
+            List<Airplane> airplanes = new List<Airplane>();
+            for (int i = 1; i <= 10; i++)
+            {
+                //airplanes.Add(
+                //    new Airplane() { Id = i, FuelAtStart = 1, AmountOfFuel = 1 });
+                //airplanes.Add(
+                //    new Airplane() { Id = 10 + i, FuelAtStart = 3, AmountOfFuel = 3 });
+                //airplanes.Add(
+                //    new Airplane() { Id = 20 + i, FuelAtStart = 5, AmountOfFuel = 5 });
+                airplanes.Add(
+                    new Airplane() { Id = 30 + i, FuelAtStart = 7, AmountOfFuel = 7 });
+                airplanes.Add(
+                    new Airplane() { Id = 40 + i, FuelAtStart = 10, AmountOfFuel = 10 });
+            }
 
             var airport = FakeDataFactory.GenerateAirport();
             //when
             var turnCounter = airport.SimulateLandingOfPlanesWithTurnsCounter(airplanes, 1000);
 
-            int refuelTime = 5;
-            int currentFuel = airplanes.First().FuelAtStart - airplanes.First().AmountOfFuel;
+            //int expectedRefuelTime = 5;
+            int resultRefuelTime = turnCounter.Item1;
 
-            //var temp = 0;
-            //then
-            Assert.AreEqual(currentFuel, refuelTime);
+            
         }
 
         [TestMethod]
@@ -126,7 +154,6 @@ namespace AirportSimulationTests
             {
                 new Airplane() { Id = 1, AmountOfFuel = 200 }
             };
-
 
             var airport = FakeDataFactory.GenerateAirport();
             //when

@@ -23,16 +23,16 @@ namespace AirportSimulationTests
                 Coordinates = new int[] { 21, 4, 6 },
                 TimeOfOccupation = 5
             };
-            var runway3 = new Runway()
-            {
-                Id = 3,
-                Coordinates = new int[] { 751, 4, 6 },
-                TimeOfOccupation = 5
-            };
+            //var runway3 = new Runway()
+            //{
+            //    Id = 3,
+            //    Coordinates = new int[] { 751, 4, 6 },
+            //    TimeOfOccupation = 5
+            //};
             var queue = new Queue<Runway>();
             queue.Enqueue(runway);
             queue.Enqueue(runway2);
-            queue.Enqueue(runway3);
+            //queue.Enqueue(runway3);
             var airport = new AirportTrafficControlTower(queue);
                 
             return airport;
