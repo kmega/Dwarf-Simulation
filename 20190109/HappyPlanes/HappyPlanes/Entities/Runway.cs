@@ -28,14 +28,30 @@ namespace HappyPlanes.Entities
 
         public void AcceptPlane(Plane plane)
         {
-            throw new NotImplementedException();
-            
+            if (plane.Location == PlaneLocation.InAir && status == RunwayStatus.Empty)
+            {
+                status = RunwayStatus.Full;
+                landedPlane = plane;
+                plane.Location = PlaneLocation.OnRunway;
+            }
+            if (plane.Location == PlaneLocation.OnRunway && status == RunwayStatus.Empty)
+            {
+                status = RunwayStatus.Empty;
+            }
         }
 
         public Plane LaunchPlane()
         {
-            throw new NotImplementedException();
+            if (landedPlane.Fuel > landedPlane.MaxFuel /2 && landedPlane.Damage == PlaneDamage.None)
+            {
+                status = RunwayStatus.Empty;
+                return landedPlane;
+            }
+            if (landedPlane.Damage == PlaneDamage.Damaged)
+            {
 
+            }
+            return null;
         }
 
         #endregion IMPLEMENT THIS CODE
