@@ -7,8 +7,10 @@ namespace HappyPlanes.Entities
 {
     public class PassingTime
     {
-        List<Plane> planes;
-        List<Runway> runways;
+        public List<Plane> planes;
+        public List<Runway> runways;
+        public bool IsScrumbleEngaged = false;
+        public Runway scrumbleRunway;
 
         public PassingTime()
         {
@@ -25,15 +27,24 @@ namespace HappyPlanes.Entities
         public void AddTurn()
         {
             CurrentTurn = CurrentTurn + 1;
+           // scrumbleRunway = runways.Where(x => x.Status == RunwayStatus.Empty).FirstOrDefault();
             foreach(var plane in planes)
             {
                 plane.OnTurnTick(runways.Where(x => x.landedPlane == plane).FirstOrDefault());
                 if(plane.Location == PlaneLocation.InHangar && plane.IsHangarLeavingEngaged)
                 {
-                    plane.OnLeaveTick(runways.Where(x=>x.Status == RunwayStatus.Empty).FirstOrDefault());
+                    if(IsScrumbleEngaged)
+                    {
+                        plane.OnLeaveTick(scrumbleRunway);
+                    }
+                    else
+                    {
+                        plane.OnLeaveTick(runways.Where(x => x.Status == RunwayStatus.Empty).FirstOrDefault());
+                    }
                 }
             }
         }
+
         
         
 

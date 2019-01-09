@@ -27,6 +27,16 @@ namespace HappyPlanes.Entities
         public PlaneLocation Location { get;  set; }
         public int MaxFuel { get; private set; }
         public PlaneDamage Damage { get; private set; }
+
+        public void TakeOff(Runway runway)
+        {
+            if(runway.scrumblePlanes.Count == 0)
+            {
+                runway.Status = RunwayStatus.Empty;
+            }
+            Location = PlaneLocation.InAir;
+        }
+
         public int Fuel { get; set; }
 
         internal void OnLeaveTick(Runway runway)
@@ -36,6 +46,7 @@ namespace HappyPlanes.Entities
             {
                 Location = PlaneLocation.OnRunway;
                 runway.Status = RunwayStatus.Full;
+                runway.scrumblePlanes.Enqueue(this);
                 runway.landedPlane = this;
             }
         }

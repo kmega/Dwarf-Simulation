@@ -11,12 +11,14 @@ namespace HappyPlanes.Entities
         private string name;
         private RunwayStatus status;
         public Plane landedPlane;
+        public Queue<Plane> scrumblePlanes;
 
         public Runway(string name, RunwayStatus status = RunwayStatus.Empty)
         {
             this.name = name;
             this.status = status;
             this.landedPlane = null;
+            scrumblePlanes = new Queue<Plane>();
 
         }
 

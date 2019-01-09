@@ -11,6 +11,7 @@ namespace HappyPlanes.Entities
 
         private Runway[] runways;
 
+
         public ControlTower(Runway[] runways)
         {
             this.runways = runways;
@@ -24,6 +25,31 @@ namespace HappyPlanes.Entities
         {
             var avilableRunways = runways.Where(x => x.Status == RunwayStatus.Empty);
             return avilableRunways.FirstOrDefault();
+        }
+
+        public void Scrumble(PassingTime time)
+        {
+            time.IsScrumbleEngaged = true;
+            ArrangeEmptyingHangars(time);
+            
+            while(time.scrumbleRunway.scrumblePlanes.Any())
+            {
+                var plane = time.scrumbleRunway.scrumblePlanes.Dequeue();
+                plane.TakeOff(time.scrumbleRunway);
+                time.AddTurn();
+            }
+
+        }
+        private void ArrangeEmptyingHangars(PassingTime time)
+        {
+            foreach(var plane in time.planes)
+            {
+                plane.LeaveHangar();
+            }
+            for(int i =0; i<3; i++)
+            {
+                time.AddTurn();
+            }
         }
 
         #endregion IMPLEMENT THIS CODE

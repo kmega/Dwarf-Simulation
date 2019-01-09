@@ -398,5 +398,28 @@ namespace Tests
             Assert.IsTrue(runway2.landedPlane.Name == plane2.Name);
         }
 
+        [Test]
+        public void T21_ShouldEmptyHangarAndTakeOver1Plane()
+        {
+            //Given: 
+            int initialFuel = 100;
+            int maxFuel = 100;
+            PassingTime time = new PassingTime();
+            Runway r1 = new Runway("r1", RunwayStatus.Empty);
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.None,
+               fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Plane plane2 = PlaneFactory.Create(location: PlaneLocation.InHangar, damage: PlaneDamage.None,
+              fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            ControlTower tower = new ControlTower(new Runway[] {r1});
+            time.RegisterRunway(r1);
+            tower.Scrumble(time);
+            //when
+
+            //then
+            Assert.IsTrue(time.scrumbleRunway.Status == RunwayStatus.Empty);
+            Assert.IsTrue(plane.Location == PlaneLocation.InAir);
+            Assert.IsTrue(plane2.Location == PlaneLocation.InAir);
+        }
+
     }
 }
