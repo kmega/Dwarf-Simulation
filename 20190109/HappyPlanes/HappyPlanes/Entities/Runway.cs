@@ -39,8 +39,10 @@ namespace HappyPlanes.Entities
 
         public Plane LaunchPlane()
         {
+            //throw new NotImplementedException();
             if (landedPlane.Fuel >= landedPlane.MaxFuel / 2 &&
-                landedPlane.Fuel <= landedPlane.MaxFuel)
+                landedPlane.Fuel <= landedPlane.MaxFuel &&
+                landedPlane.Damage == PlaneDamage.None)
             {
                 status = RunwayStatus.Empty;
                 return landedPlane;
@@ -50,8 +52,6 @@ namespace HappyPlanes.Entities
             {
                 return null;
             }
-
-            //throw new NotImplementedException();
         }
 
         #endregion IMPLEMENT THIS CODE
