@@ -28,8 +28,8 @@ namespace HappyPlanes.Entities
 
         public void AcceptPlane(Plane plane)
         {
-            throw new NotImplementedException();
-            
+            //throw new NotImplementedException();
+            this.status = RunwayStatus.Full;
         }
 
         public Plane LaunchPlane()
