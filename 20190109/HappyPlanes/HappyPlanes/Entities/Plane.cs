@@ -33,10 +33,6 @@ namespace HappyPlanes.Entities
 
         public LandingStatus TryLandOn(Runway runway)
         {
-            // korzystajac z runway status 
-            //return LandingStatus.Failure,  Assert.IsTrue(result == LandingStatus.Failure);
-            //Assert.IsTrue(plane.Location == PlaneLocation.InAir);
-            //Assert.IsTrue(runway.Status == RunwayStatus.Full);
 
             if (runway == null)
             {
@@ -61,29 +57,35 @@ namespace HappyPlanes.Entities
             {
                  throw new NotImplementedException();
             }
-            //Assert.IsTrue(result == LandingStatus.Success);
-            //Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
-            //Assert.IsTrue(runway.Status == RunwayStatus.Full);
-            //jeżeli planelocation in air i runway status = null
-            //Assert.IsTrue(runway == null);
-            //Assert.IsTrue(result == );
-            //Assert.IsTrue(plane.Location == );
-
         }
 
         public void OnTurnTick()
         {
-            if (Location == PlaneLocation.InAir)
+        
+           
+            if (Location == PlaneLocation.InAir) //jak samolot jest w powietrzu -1 paliwa
             {
-                MaxFuel = 100;
-                this.Fuel = MaxFuel - 1;
+                this.Fuel = this.Fuel - 1;
             }
-            // without else if below, 11 and 12 works
-            else if (Location == PlaneLocation.OnRunway)
+            if ( this.Fuel == MaxFuel & Location == PlaneLocation.OnRunway)
             {
-                MaxFuel = 100;
-                this.Fuel = MaxFuel + 3;
+                this.Fuel = this.Fuel;                
             }
+            else if (this.Fuel < MaxFuel & Location == PlaneLocation.OnRunway) // samolot na pasie +3 paliwa
+            {
+                
+                this.Fuel = this.Fuel + 3;
+            }
+            
+            //else if(Name == "runway 01")
+            //{
+            //    //addturn to jeden fuelBURN!!!!!
+            //    MaxFuel = 100;
+            //    this.Fuel = 100- 4*1 + 1*3
+            //    int fuelBurn = 1;
+            //    int fuelGain = 3;
+            //    plane.Fuel == initialFuel - 4 * fuelBurn + 1 * fuelGain)
+            //}
 
             //if (runway.Status == RunwayStatus.Empty)
             //throw new NotImplementedException();

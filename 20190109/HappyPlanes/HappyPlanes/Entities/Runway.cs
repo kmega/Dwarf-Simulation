@@ -35,13 +35,19 @@ namespace HappyPlanes.Entities
             //jeżeli PlaneLocation.OnRunway); -> RunwayStatus.Empty
             else
                 this.Status = RunwayStatus.Empty;
+            landedPlane = plane;
  
         }
-
-        public Plane LaunchPlane()
+        
+        public Plane LaunchPlane() //rusza samolot, pas sie zwalnia, paliwo pelne, 
         {
-            throw new NotImplementedException();
+            //nazwa samolotu ktory ruszyl  edit imie na imie samolotu, a nie z runwaysa
 
+               
+                Status = RunwayStatus.Empty;
+                return landedPlane;
+           
+            throw new NotImplementedException();
         }
 
         #endregion IMPLEMENT THIS CODE
