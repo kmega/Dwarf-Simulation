@@ -28,9 +28,14 @@ namespace HappyPlanes.Entities
 
         public void AcceptPlane(Plane plane)
         {
+            Plane tempPlane = plane;
 
-
-            throw new NotImplementedException();
+            if(tempPlane.Location == PlaneLocation.InAir 
+                && Status == RunwayStatus.Empty)
+            {
+                Status = RunwayStatus.Full;
+            }
+            //throw new NotImplementedException();
         }
 
         public Plane LaunchPlane()
