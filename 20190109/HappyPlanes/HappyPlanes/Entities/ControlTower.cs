@@ -22,7 +22,33 @@ namespace HappyPlanes.Entities
 
         public Runway GetAvailableRunway()
         {
-            throw new NotImplementedException();
+
+            foreach (Runway lane in runways)
+            {
+                if (lane.Status == RunwayStatus.Empty)
+                {
+                    //it tricked me at 8th test
+                    //lane.Status = RunwayStatus.Full;
+                    return lane;
+                }
+            }
+
+            //var temp = runways.Where(x => x.Status == RunwayStatus.Empty);
+
+            //if(temp.Count() == runways.Count())
+            //{
+
+            //}
+
+            return null;
+
+            //var tempRunaway = runways.First();
+
+            //if(tempRunaway.Status == RunwayStatus.Empty)
+            //{
+            //    return tempRunaway;
+            //}
+            //return null;
         }
 
         #endregion IMPLEMENT THIS CODE
