@@ -39,13 +39,19 @@ namespace HappyPlanes.Entities
 
         public Plane LaunchPlane()
         {
-            if (landedPlane.Fuel == landedPlane.MaxFuel)
+            if (landedPlane.Fuel >= landedPlane.MaxFuel / 2 &&
+                landedPlane.Fuel <= landedPlane.MaxFuel)
             {
                 status = RunwayStatus.Empty;
                 return landedPlane;
             }
 
-            throw new NotImplementedException();
+            else
+            {
+                return null;
+            }
+
+            //throw new NotImplementedException();
         }
 
         #endregion IMPLEMENT THIS CODE
