@@ -10,13 +10,14 @@ namespace HappyPlanes.Entities
 
         private string name;
         private RunwayStatus status;
-        private Plane landedPlane;
+        public Plane landedPlane;
 
         public Runway(string name, RunwayStatus status = RunwayStatus.Empty)
         {
             this.name = name;
             this.status = status;
             this.landedPlane = null;
+
         }
 
         public RunwayStatus Status { get => status; set => status = value; }

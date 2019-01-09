@@ -45,28 +45,44 @@ namespace HappyPlanes.Entities
             }
         }
 
-        public void OnTurnTick()
+        public void OnTurnTick(Runway runway)
         {
             if (Location == PlaneLocation.OnRunway)
             {
-                this.Fuel += 3;
-                if (Fuel > MaxFuel)
-                {
-                    Fuel = MaxFuel;
-                }
-                turnsOnRunway += 1;
-                if (turnsOnRunway >= 10 && Damage == PlaneDamage.Damaged)
-                {
-                    Damage = PlaneDamage.None;
-                }
+                Refuel();
+                CheckIfPlanesHeales();
+                CheckIfPlanesGoesToHangar(runway);
             }
             else
             {
-                this.Fuel -= 1;
+                Fuel -= 1;
             }
             
         }
-
+        private void Refuel()
+        {
+            Fuel += 3;
+            if (Fuel > MaxFuel)
+            {
+                Fuel = MaxFuel;
+            }
+        }
+        private void CheckIfPlanesHeales()
+        {
+            turnsOnRunway += 1;
+            if (turnsOnRunway >= 10 && Damage == PlaneDamage.Damaged)
+            {
+                Damage = PlaneDamage.None;
+            }
+        }
+        public void CheckIfPlanesGoesToHangar(Runway runway)
+        {
+            if (turnsOnRunway >= 25)
+            {
+                Location = PlaneLocation.InHangar;
+                runway.Status = RunwayStatus.Empty;
+            }
+        }
         #endregion IMPLEMENT ME
 
     }
