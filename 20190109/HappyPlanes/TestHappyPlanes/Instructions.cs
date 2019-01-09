@@ -349,7 +349,6 @@ namespace Tests
                 fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
             Runway runway2 = new Runway("runway 02", RunwayStatus.Empty);
 
-            //runway.AcceptPlane(plane);
 
             for (int i = 0; i < 2; i++) // 2 turns has passed
             {
@@ -357,12 +356,47 @@ namespace Tests
             }
 
             Assert.IsTrue(plane.Location == PlaneLocation.Hangar);
+            Assert.IsTrue(plane2.Location == PlaneLocation.Hangar);
 
             //when
             time.AddTurn(); //3rd turn passed
 
             //then
             Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
+            Assert.IsTrue(plane2.Location == PlaneLocation.OnRunway);
+        }
+
+        [Test]
+        public void T19_ControlTowerCanUseScrumble_InstantEmptyHangarAndLaunchPlanes()
+        {
+            // Given
+            int initialFuel = 100;
+            int maxFuel = 100;
+
+            PassingTime time = new PassingTime();
+            Plane plane = PlaneFactory.Create(location: PlaneLocation.Hangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Runway runway = new Runway("runway 01", RunwayStatus.Empty);
+
+            Plane plane2 = PlaneFactory.Create(location: PlaneLocation.Hangar, damage: PlaneDamage.None,
+                fuel: initialFuel, maxFuel: maxFuel, passingTime: time);
+            Runway runway2 = new Runway("runway 02", RunwayStatus.Empty);
+
+            ControlTower tower = new ControlTower(new Runway[] { runway, runway2 });
+
+            Assert.IsTrue(plane.Location == PlaneLocation.Hangar);
+            Assert.IsTrue(plane2.Location == PlaneLocation.Hangar);
+
+            tower.Scrumble(time,tower);
+
+            Assert.IsTrue(plane.Location == PlaneLocation.OnRunway);
+            Assert.IsTrue(plane2.Location == PlaneLocation.OnRunway);
+
+            //when
+            time.AddTurn();
+            Assert.IsTrue(plane.Location == PlaneLocation.InAir);
+            Assert.IsTrue(plane2.Location == PlaneLocation.InAir);
+
         }
 
 

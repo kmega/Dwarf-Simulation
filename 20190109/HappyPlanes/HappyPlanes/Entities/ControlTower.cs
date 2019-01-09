@@ -31,6 +31,31 @@ namespace HappyPlanes.Entities
             return null;
         }
 
+        public void Scrumble(PassingTime time, ControlTower tower)
+        {
+            
+            var planesInHunger = new List<Plane>();
+            int thisTurn = planesInHunger.Count();
+
+            List<Plane> planes = new List<Plane>();
+
+            foreach (Plane plane in planes)
+            {
+                if (plane.Location == PlaneLocation.Hangar)
+                {
+                    plane.Location = PlaneLocation.OnRunway;
+                    planesInHunger.Add(plane);
+                }
+            }
+            if (planesInHunger.Count>0)
+            {
+                time.AddTurn();
+                Scrumble(time, tower);
+            }
+            planesInHunger[0].Location = PlaneLocation.InAir;
+
+        }
+
         #endregion IMPLEMENT THIS CODE
     }
 }
