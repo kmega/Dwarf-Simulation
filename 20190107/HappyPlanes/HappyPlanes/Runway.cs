@@ -4,44 +4,42 @@ using System.Text;
 
 namespace HappyPlanes
 {
-    public class RunwayMain
+
+
+    public class Runway
     {
-        
-        private List<int> AllRunwaysId = new List<int>();
-        public Dictionary<int, bool> AllRunwaysIdAndState = new Dictionary<int, bool>();
+        private int Id;
+        private bool StateFree;
 
-        public class Runway
+
+        public Runway(int id)
         {
-            private int Id;
-            private bool StateFree;
-
-            RunwayMain main = new RunwayMain();
-            public Runway(int id)
-            {
-                if (main.AllRunwaysId.Count == 0)
-                {
-                    this.Id = id;
-                    this.StateFree = true;
-                    main.AllRunwaysIdAndState.Add(id, true);
-                }
-                else
-                {
-                    foreach (int runwayId in main.AllRunwaysId)
-                {
-                    if (runwayId == id)
-                        throw new Exception("This runway ID already exists");
-                    else
-                        {
-                            this.Id = id;
-                            this.StateFree = true;
-                            main.AllRunwaysIdAndState.Add(id, true);
-                        }
-
-                    }
-                }
-                
-            }
+            this.Id = id;
+            this.StateFree = true;
         }
-        
+
+        public int GetRunwayId()
+        {
+            return this.Id;
+        }
+
+        public bool GetRunwayStateFree()
+        {
+            return this.StateFree;
+        }
+
+        public void SetRunwayStateFree()
+        {
+            this.StateFree = true;
+        }
+
+        public void SetRunwayStateBusy()
+        {
+            this.StateFree = false;
+        }
+
     }
 }
+
+
+

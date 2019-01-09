@@ -7,30 +7,56 @@ namespace HappyPlanes
 {
     public class ControlTower
     {
-        public void ReceiveAskFromPlane(PlanesMain planesSimulation,PlanesMain.Planes plane, RunwayMain runwaySimulation)
+        private Dictionary<int, int> planeOnRunway = new Dictionary<int, int>();
+
+        public void ReceiveAskFromPlane(Planes plane, List<Runway> runways)
         {
             ControlTower ask = new ControlTower();
-            ask.AskRunway(planesSimulation,plane, runwaySimulation);
+            ask.AskRunway(plane, runways);
         }
 
-        public void AskRunway(PlanesMain planesSimulation,PlanesMain.Planes plane, RunwayMain runways)
+        public void AskRunway(Planes plane, List<Runway> runways)
         {
-            Dictionary<int, bool> runwayIdState = runways.AllRunwaysIdAndState; 
-  
-            for (int i = 0; i < runwayIdState.Count; i++)
+            bool tryLand = false;
+            for (int i = 0; i < runways.Count; i++)
             {
-                if(runwayIdState[i] == true)
+                if(runways[i].GetRunwayStateFree() == true)
                 {
-                    AnswerPlane(runwayIdState.Keys.ElementAt(runwayIdState.Count()-1), planesSimulation, plane, runways);
+                    tryLand = true;
+                    AnswerPlane(tryLand, plane, runways[i]);
                 }
             }
         }
 
-        public void AnswerPlane(int idOfRunwayToLand, PlanesMain planesSimulation, PlanesMain.Planes plane, RunwayMain runwaysSimulation)
+        public void AnswerPlane(bool tryLand, Planes plane, Runway runway)
         {
-            planesSimulation.AllPlanesIdsAndRunway[plane.GetPlaneId()] = idOfRunwayToLand;
-            plane.SetPlaneState();
-            runwaysSimulation.AllRunwaysIdAndState[idOfRunwayToLand] = false;
+            
+
+            if(tryLand == true)
+            {
+                plane.SetPlaneOnRunway();
+                runway.SetRunwayStateBusy();
+                planeOnRunway.Add(plane.GetPlaneId(), runway.GetRunwayId());    
+            } 
+
+            
+        }
+
+        public Dictionary<int,int> planesOnRunways()
+        {
+            return planeOnRunway;
+        }
+
+        public void ReleaseRunway(int planeId,List<Runway> runways)
+        {
+            int runwayToRelease = planeOnRunway[planeId];
+            foreach(Runway runway in runways)
+            {
+                if(runway.GetRunwayId() == runwayToRelease)
+                {
+                    runway.SetRunwayStateFree();
+                }
+            }
         }
     }
 }
