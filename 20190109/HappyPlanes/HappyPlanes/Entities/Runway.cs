@@ -29,10 +29,16 @@ namespace HappyPlanes.Entities
 
         public void AcceptPlane(Plane plane)
         {
-            if(plane.Location == PlaneLocation.InAir && status == RunwayStatus.Empty)
+            if(plane.turnsOnRunway >= 25)
+            {
+                status = RunwayStatus.Empty;
+            }
+
+            else if(plane.Location == PlaneLocation.InAir && status == RunwayStatus.Empty)
             {
                 plane.TryLandOn(this);
                 status = RunwayStatus.Full;
+                
                 landedPlane = plane;
             }
             

@@ -8,7 +8,7 @@ namespace HappyPlanes.Entities
     {
         #region DO NOT CHANGE THIS CODE
 
-        int turnsOnRunway = 0;
+        public int turnsOnRunway = 0;
 
         public Plane(string name, PlaneLocation location, int fuel, 
             PassingTime passingTime, int maxFuel, PlaneDamage damage)
@@ -45,7 +45,6 @@ namespace HappyPlanes.Entities
             }
             else if(runway.Status == RunwayStatus.Empty)
             {
-
                 runway.Status = RunwayStatus.Full;
                 Location = PlaneLocation.OnRunway;
                 
@@ -59,6 +58,8 @@ namespace HappyPlanes.Entities
         public void OnTurnTick()
         {
             turnsOnRunway++;
+
+
 
             if(turnsOnRunway%3 == 0)
             {
