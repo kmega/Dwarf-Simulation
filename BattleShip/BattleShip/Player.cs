@@ -40,25 +40,23 @@ namespace BattleShip
 
         public void ShowBoard(Player player)
         {
-            for (int i = 0; i < 11; i++)
+            Console.Write("\t" );
+            for (int i = 1; i < 11; i++)
             {
-                if (i == 0)
-                {
-                    Console.WriteLine("  ");
-                }
-                else
-                {
-                    Console.Write(i + " ");
-                }
+                Console.Write(i + " ");
             }
             Console.WriteLine();
             Console.WriteLine();
-            for (int i = 0; i < player.Player_Board.Fields.GetLength(0); i++)
+            for (int i = 0,k = 1; i < player.Player_Board.Fields.GetLength(0); i++)
             {
-                Console.Write(i + " ");
+               
+                    Console.Write(k++ + "\t");
+                
+                    
+                 
                 for (int j = 0; j < player.Player_Board.Fields.GetLength(1); j++)
                 {
-
+                    
                     Console.Write(player.Player_Board.Fields[i, j] + " ");
                 }
                 Console.WriteLine();
