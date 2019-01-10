@@ -16,4 +16,7 @@
     <ProjectReference Include="..\barcos\barcos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="UnitTest1.cs~" />
+  </ItemGroup>
 </Project>

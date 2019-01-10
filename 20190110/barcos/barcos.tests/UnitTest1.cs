@@ -8,9 +8,13 @@ namespace Tests
     public class Tests
     {
         [Test]
-        public void Test1()
+        public void BoardHas100Fields()
         {
-            Assert.Pass();
+            //Given
+            Board testedBoard = new Board();
+            int boardLength = testedBoard.Fields.Length;
+
+            Assert.AreEqual(boardLength, 100);
         }
     }
 }
