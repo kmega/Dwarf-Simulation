@@ -1,10 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BattleShips
 {
-    class Game
+    public class Game
     {
+        public static bool IsFieldEmpty(object field)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
