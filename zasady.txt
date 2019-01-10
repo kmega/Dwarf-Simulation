@@ -1,0 +1,10 @@
+1. Wyświetlić podstawowe zasady gry, a także rozmiar planszy, dostępne statki (ich rozmiar i typ)
+2. Gracz wprowadza statki: każde wprowadzenie odświeża planszę gracza, pokazujac gdzie stoja juz statki
+3. Wprowadzanie statku to podanie: pozycji poczatkowej, typu i kierunku ("lewo", "prawo", itd.)
+4. Gra jest jednoosobowa, druga plansza wypełnia się automatycznie
+5. Początek rozgrywki: wyświetlamy planszę aktywnego gracza z stanem jego floty, i drugą planszę z historią jego strzałów
+6. Pozycja ataku wprowadzana jako "B5"
+7. Jeżeli gracz wprowadzi pole, do którego już strzelał to ma dostać komunikat. 
+8. Jeżeli trafił i zatopił statek wroga to otaczające pola wyświetlają blokadę strzału
+9. Flota gracza ma być odświeżana o strzały przeciwnika
+10. Po rozgrywce wyświetlamy zwycięzcę
