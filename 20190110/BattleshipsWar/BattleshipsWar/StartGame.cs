@@ -22,7 +22,7 @@ namespace BattleshipsWar
             {
                 Console.WriteLine("Choose starting coordinates:");
                 userInput = Console.ReadLine();
-                board = PlaceShipsOnBoard(board, ships);
+                board = PlaceShipsOnBoard(board, ships, userInput);
             }
         }
 
@@ -41,7 +41,7 @@ namespace BattleshipsWar
             return Board;
         }
 
-        private object[,] PlaceShipsOnBoard(object[,] board, List<int> ships)
+        private object[,] PlaceShipsOnBoard(object[,] board, List<int> ships, string userInput)
         {
             bool allPlaces = false;
             while (allPlaces == false)
