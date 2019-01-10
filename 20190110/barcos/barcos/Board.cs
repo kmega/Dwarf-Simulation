@@ -9,6 +9,12 @@ namespace barcos
 
         public Board()
         {
+            int fieldCounter = 0;
+            while (fieldCounter < Fields.Length)
+            {
+                Fields[fieldCounter] = FieldsStatus.empty;
+                fieldCounter++;
+            }
         }
     }
 }
