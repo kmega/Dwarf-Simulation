@@ -4,33 +4,33 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BattleshipWarTest
 {
-    [TestClass]
-    public class WarTest
-    {
-        [TestMethod]
-        public void IsCooridnatesInTable()
-        {
+    //[TestClass]
+    //public class WarTest
+    //{
+    //    [TestMethod]
+    //    public void IsCooridnatesInTable()
+    //    {
             
             
 
 
-            War war = new War();
-           bool result=  war.CheckCoordinates(input, warmap);
+    //        War war = new War();
+    //       //bool result=  war.CheckCoordinates(input, warmap);
 
-            Assert.IsTrue(result);
-        }
+    //        Assert.IsTrue(result);
+    //    }
 
-        [TestMethod] 
-        public void IsShipWasHit()
-        {
-
-
+    //    [TestMethod] 
+    //    public void IsShipWasHit()
+    //    {
 
 
 
-        }
+
+
+    //    }
 
 
 
-    }
+//    }
 }
