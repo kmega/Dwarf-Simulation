@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace BattleShips
 {
@@ -27,19 +28,36 @@ namespace BattleShips
             //BuildShipPositions(startingpoint, direction, length);
             List<string> positions = BuildShipPositions(startingPoint, direct, length);
             //BuildNewShip;
-           // Ship ship = BuildNewShip()
-            return null;
+            
+            return new Ship(type, positions, players.FirstOrDefault());
         }
 
-        private List<string> BuildShipPositions(string startingPoint, Direction direct, int length)
+        public List<string> BuildShipPositions(string startingPoint, Direction direct, int length)
         {
             List<string> positions = new List<string>();
             positions.Add(startingPoint);
-            var splitted = startingPoint.Split("");
+            var temporaryString = startingPoint.Insert(1, ",");
+            var splitted = temporaryString.Split(",");
             for(int i = 0; i<length - 1; i++)
             {
-                
-                
+                if(direct == Direction.Down)
+                {
+                    int verticalPosition = Int32.Parse(splitted[1]) + (i+1);
+                    positions.Add(splitted[0] + verticalPosition.ToString());
+                }
+                if(direct == Direction.Up)
+                {
+                    int verticalPosition = Int32.Parse(splitted[1]) - (i+1);
+                    positions.Add(splitted[0] + verticalPosition.ToString());
+                }
+                //if(direct == Direction.Left)
+                //{
+                //    splitted[1] 
+                //}
+                //if(direct == Direction.Right)
+                //{
+
+                //}                
             }
             return positions;
         }
