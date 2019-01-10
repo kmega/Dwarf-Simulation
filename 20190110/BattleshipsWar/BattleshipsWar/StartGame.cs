@@ -8,21 +8,26 @@ namespace BattleshipsWar
 {
     class StartGame
     {
+        private bool AllPlaced = false;
+
+        private List<int> Ships = new List<int>
+        {
+            2, 2, 3, 3, 4, 4, 6
+        };
+
         internal void PlaceShips()
         {
             object[,] board = MakeBoard();
 
-            List<int> ships = new List<int>
+            
+            string placement = "", direction;
+            while (AllPlaced == false)
             {
-                2, 2, 3, 3, 4, 4, 6
-            };
-
-            string userInput = "";
-            while (true)
-            {
-                Console.WriteLine("Choose starting coordinates:");
-                userInput = Console.ReadLine();
-                board = PlaceShipsOnBoard(board, ships, userInput);
+                Console.WriteLine("Choose where you want to place a ship:");
+                placement = Console.ReadLine();
+                Console.WriteLine("Choose ship direction:");
+                direction = Console.ReadLine();
+                board = PlaceShipOnBoard(board, placement, direction);
             }
         }
 
@@ -41,16 +46,11 @@ namespace BattleshipsWar
             return Board;
         }
 
-        private object[,] PlaceShipsOnBoard(object[,] board, List<int> ships, string userInput)
+        private object[,] PlaceShipOnBoard(object[,] board, string placement, string direction)
         {
-            bool allPlaces = false;
-            while (allPlaces == false)
+            if (Ships.Count == 0)
             {
-                
-                if (ships.Count == 0)
-                {
-                    allPlaces = true;
-                }
+                AllPlaced = true;
             }
             return board;
         }
