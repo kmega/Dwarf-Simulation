@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    class Ship
+    public class Ship
     {
+<<<<<<< HEAD
         int ID;
         int Lenght;
 
@@ -16,5 +17,16 @@ namespace BattleShip
             ID = Id;
             Lenght=
         }
+=======
+        public int Id { get; set; }
+        public int Lenght { get; set; }
+
+        public Ship(int id, int lenght)
+        {
+            this.Id = id;
+            this.Lenght = lenght;
+        }
+
+>>>>>>> nanana
     }
 }

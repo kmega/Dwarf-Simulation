@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    enum Field
+    public enum Field
     {
-        Empty, Hit, Full
+        O, H, F
     }
 }
