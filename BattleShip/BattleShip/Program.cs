@@ -14,9 +14,9 @@ namespace BattleShip
             PreperePlayer prepere = new PreperePlayer();
             prepere.ShowShips(player1);
 
-
-            
-            
+           
+            prepere.ShowBoard(player1);
+           
 
             Console.ReadKey();
 

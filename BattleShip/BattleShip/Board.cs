@@ -8,7 +8,7 @@ namespace BattleShip
 {
    public class Board
     {
-        Field[,] Fields;
+        public Field[,] Fields;
 
         public Board()
         {
@@ -19,7 +19,7 @@ namespace BattleShip
 
                 for (int j = 0; j < Fields.GetLength(1); j++)
                 {
-                    Fields[i, j] = Field.Empty;
+                    Fields[i, j] = Field.O;
                 }
             }
                
