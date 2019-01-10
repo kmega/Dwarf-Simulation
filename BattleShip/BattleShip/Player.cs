@@ -12,5 +12,14 @@ namespace BattleShip
         int ID;
         Board Opponent_Board;
         List<Ship> ships;
+
+        public Player(int Id)
+        {
+            ID = Id;
+            ships = new List<Ship>()
+            {
+                new Ship(){ }
+            }
+        }
     }
 }

@@ -8,7 +8,13 @@ namespace BattleShip
 {
     class Ship
     {
-        int Id;
+        int ID;
         int Lenght;
+
+        public Ship(int Id, int lenght)
+        {
+            ID = Id;
+            Lenght=
+        }
     }
 }
