@@ -3,6 +3,10 @@ namespace barcos.Enums
 {
     public enum ShipMasts
     {
-        two, three, four, five
+       destroyed = 0
+       ,two = 2
+       ,three = 3
+       ,four = 4
+       ,five = 5
     }
 }
