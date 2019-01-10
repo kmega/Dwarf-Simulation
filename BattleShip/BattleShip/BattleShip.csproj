@@ -46,7 +46,6 @@
     <Compile Include="Board.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="PreperePlayer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ship.cs" />
