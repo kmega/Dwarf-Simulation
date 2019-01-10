@@ -49,12 +49,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="StartGameTests.cs" />
-=======
     <Compile Include="WarTest.cs" />
     <Compile Include="InputParserTest.cs" />
->>>>>>> f99b249ffe1198a675916a5c7320c857061a43e3
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

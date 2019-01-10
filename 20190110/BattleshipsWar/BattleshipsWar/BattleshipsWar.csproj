@@ -42,13 +42,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Compile Include="StartGame.cs" />
     <Compile Include="CellProperty.cs" />
-=======
     <Compile Include="Cell.cs" />
     <Compile Include="InputParser.cs" />
->>>>>>> f99b249ffe1198a675916a5c7320c857061a43e3
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="War.cs" />
