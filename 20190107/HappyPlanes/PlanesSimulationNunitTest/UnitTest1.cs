@@ -11,18 +11,19 @@ namespace Tests
         public void OnePlaneOneFreeRunWay_TryLand_True()
         {
             //given
-            PlanesMain.Planes plane_1 = new PlanesMain.Planes(1);
+            Planes plane_1 = new Planes(1,5);
             ControlTower tower = new ControlTower();
-            RunwayMain.Runway runway_1 = new RunwayMain.Runway(1);
+            Runway runway_1 = new Runway(1);
             Simulation simulate = new Simulation();
-            PlanesMain plane = new PlanesMain();
-            RunwayMain runway = new RunwayMain();
+            Planes plane = new Planes(2,4);
+            Runway runway = new Runway(2);
 
-            
+
+
             //List<Planes> listOfPlanes = new List<Planes>();
             //List<Runway> listOfRunways = new List<Runway>();
             //act
-            simulate.Start(plane, runway, plane_1,runway_1);
+            simulate.Start(3,1);
 
             //expected
             int result = plane_1.GetPlaneState();

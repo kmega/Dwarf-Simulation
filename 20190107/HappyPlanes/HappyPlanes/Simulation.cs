@@ -24,9 +24,10 @@ namespace HappyPlanes
 
                 foreach(Planes plane in planes)
                 {
-                    if(plane.GetPlaneFuel() <= 3 && plane.GetPlaneInAir() == true)
+                    if(plane.GetPlaneFuel() <= 3 && plane.GetPlaneInAir() == true && plane.GetWishToLand() == false)
                     {
                         wishToLand.Add(plane);
+                        plane.SetWishToLand();
                     }
                 }
 
@@ -36,8 +37,12 @@ namespace HappyPlanes
                 {
                     foreach(Planes plane in wishToLand)
                     {
-                        if(plane.GetPlaneFuel() == 0)
-                        tower.ReceiveAskFromPlane(plane, runways);
+                        if (plane.GetPlaneFuel() == 0)
+                            if (tower.ReceiveAskFromPlane(plane, runways) == true)
+                            {
+                                plane.RemoveWishToLand();
+                                break;
+                            }
                     }
                 }
 
@@ -90,7 +95,8 @@ namespace HappyPlanes
 
             for (int i = 0; i < numberOfPlanes; i++)
             {
-                planesList.Add(new Planes(i, i+2));
+                Random rnd = new Random();
+                planesList.Add(new Planes(i, rnd.Next(1,15)));
             }
 
             return planesList;

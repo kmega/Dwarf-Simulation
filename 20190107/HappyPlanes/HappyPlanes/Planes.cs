@@ -12,6 +12,7 @@ namespace HappyPlanes
         private int PlaneFuel;
         private bool PlaneInAir;
         private int PlaneFuelMax;
+        private bool WishToLand { get; set; }
 
         public Planes(int id,int fuel)
         {
@@ -53,6 +54,11 @@ namespace HappyPlanes
             return this.PlaneId;
         }
 
+        public bool GetWishToLand()
+        {
+            return WishToLand;
+        }
+
         public void SetPlaneOnRunway()
         {
             this.PlaneInAir = false;
@@ -61,6 +67,16 @@ namespace HappyPlanes
         public void SetPlaneInAir()
         {
             this.PlaneInAir = true;
+        }
+
+        public void SetWishToLand()
+        {
+            this.WishToLand = true;
+        }
+
+        public void RemoveWishToLand()
+        {
+            this.WishToLand = false;
         }
 
 

@@ -9,13 +9,14 @@ namespace HappyPlanes
     {
         private Dictionary<int, int> planeOnRunway = new Dictionary<int, int>();
 
-        public void ReceiveAskFromPlane(Planes plane, List<Runway> runways)
+        public bool ReceiveAskFromPlane(Planes plane, List<Runway> runways)
         {
             ControlTower ask = new ControlTower();
-            ask.AskRunway(plane, runways);
+
+            return ask.AskRunway(plane, runways);
         }
 
-        public void AskRunway(Planes plane, List<<Planes> planes List<Runway> runways)
+        public bool AskRunway(Planes plane,  List<Runway> runways)
         {
             bool tryLand = false;
             for (int i = 0; i < runways.Count; i++)
@@ -23,15 +24,17 @@ namespace HappyPlanes
                 if(runways[i].GetRunwayStateFree() == true)
                 {
                     tryLand = true;
-                    AnswerPlane(tryLand, plane, planes, runways[i]);
+                    AnswerPlane(tryLand, plane, runways[i]);
                 }
             }
+
+            return tryLand;
         }
 
-        public void AnswerPlane(bool tryLand, Planes plane, List<Planes> planes, Runway runway)
+        public void AnswerPlane(bool tryLand, Planes plane,  Runway runway)
         {
-
-            UpDate(List < Planes > planes);
+            List<Planes> planes = new List<Planes>();
+            UpDate(planes);
 
             if(tryLand == true)
             {

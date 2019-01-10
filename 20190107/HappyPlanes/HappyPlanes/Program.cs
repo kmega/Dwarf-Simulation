@@ -8,7 +8,7 @@ namespace HappyPlanes
         {
             Simulation simulate = new Simulation();
 
-            simulate.Start(50, 2);
+            simulate.Start(50, 5);
 
             Console.ReadKey();
 
