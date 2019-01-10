@@ -50,7 +50,7 @@ namespace BattleShip
             for (int i = 0,k = 1; i < player.Player_Board.Fields.GetLength(0); i++)
             {
                
-                    Console.Write(k++ + "\t");
+                    Console.Write(k++ + "\t" );
                 
                     
                  
