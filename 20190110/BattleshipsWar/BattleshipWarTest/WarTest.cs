@@ -10,8 +10,8 @@ namespace BattleshipWarTest
         [TestMethod]
         public void IsCooridnatesInTable()
         {
-            string input = "A1";
-            int[,] warmap = new int[2, 2];
+            
+            
 
 
             War war = new War();
@@ -19,5 +19,18 @@ namespace BattleshipWarTest
 
             Assert.IsTrue(result);
         }
+
+        [TestMethod] 
+        public void IsShipWasHit()
+        {
+
+
+
+
+
+        }
+
+
+
     }
 }
