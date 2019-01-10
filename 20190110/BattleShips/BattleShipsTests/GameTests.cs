@@ -1,5 +1,6 @@
 ﻿using BattleShips;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace BattleShipsTests
 {
@@ -9,10 +10,12 @@ namespace BattleShipsTests
         public void ShouldReturnFalseWhenFieldHasNoShip()
         {
             //given
-            string field = "";
+            List<string> strings = new List<string>() { "A1", "A2" };
+            Player player = new Player();
+            Ship ship = new Ship(BattleShips.Enums.ShipType.PatrolBoat, strings, player);
 
             //when
-            bool result = Game.IsFieldEmpty(field);
+            bool result = Game.IsFieldEmpty(ship);
 
             //then
             Assert.IsFalse(result);
@@ -22,15 +25,15 @@ namespace BattleShipsTests
         public void ShouldReturnTrueWhenFieldHasShip()
         {
             //given
-            string field = "";
+            List<string> strings = new List<string>() { "A1", "A2" };
+            Player player = new Player();
+            Ship ship = new Ship(BattleShips.Enums.ShipType.PatrolBoat, strings, player);
 
             //when
-            bool result = Game.IsFieldEmpty(field);
+            bool result = Game.IsFieldEmpty(ship);
 
             //then
             Assert.IsTrue(result);
         }
-
-       
     }
 }
