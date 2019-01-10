@@ -9,29 +9,29 @@ namespace BattleshipsWar
     public class War
     {
 
-        //public bool CheckCoordinates (string input, CellProperty[,] warmap)
-        //{
-        //    int[] tempcoordinates = new int[2];
-        //    bool answer = false;
-        //   InputParser ip = new InputParser();
-        //   tempcoordinates = ip.ChangeCordsToArrayIndex(input);
+        public bool CheckCoordinatesCorrectness(int[] tempcoordinates, CellProperty[,] warmap)
+        {
+           
+            bool answer = false;
+         
+            if (tempcoordinates[0] <= warmap.GetLength(0))
+            {
 
-        //    if (tempcoordinates[0] <= warmap.GetLength(0)
-        //    {
+                if (tempcoordinates[1] <= warmap.GetLength(1))
+                {
+                    answer = true;
+                }
+            }
 
-        //        if (tempcoordinates[1] <= warmap.GetLength(1))
-        //        {
-        //            answer = true;
-        //        }
-        //    }
+            return answer;
+        }
 
-        //    return answer;
-        //}
-
-        //public bool CheckIsHit (int[,] warmap)
-        //{
-
-        //}
+        public CellProperty CheckCellStatus(CellProperty[,] warmap, int[] tempcoordinates)
+        {
+            CellProperty answer = warmap[tempcoordinates[0], tempcoordinates[1]];
+          
+            return answer;
+        }
 
 
     }
