@@ -1,14 +1,12 @@
 using NUnit.Framework;
+using System;
+using barcos;
+using barcos.Enums;
 
 namespace Tests
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void Test1()
         {
