@@ -28,7 +28,6 @@ namespace BattleShips
             //BuildShipPositions(startingpoint, direction, length);
             List<string> positions = BuildShipPositions(startingPoint, direct, length);
             //BuildNewShip;
-            
             return new Ship(type, positions, players.FirstOrDefault());
         }
 
