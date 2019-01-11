@@ -10,14 +10,9 @@ namespace BattleShips
     {
         public ShipFactory()
         {
-            players = new List<Player>()
-            {
-                new Player(),
-                new Player()
-            };
+
         }
-        List<Player> players;
-        public Ship PlaceSingleShip(string shipType, string startingPoint, string direction)
+        public Ship PlaceSingleShip(string shipType, string startingPoint, string direction, Player player)
         {
             //GetShipType(shipType) -> enum Shiptype
             ShipType type = GetShipType(shipType); 
@@ -28,7 +23,7 @@ namespace BattleShips
             //BuildShipPositions(startingpoint, direction, length);
             List<string> positions = BuildShipPositions(startingPoint, direct, length);
             //BuildNewShip;
-            return new Ship(type, positions, players.FirstOrDefault());
+            return new Ship(type, positions, player);
         }
 
         public List<string> BuildShipPositions(string startingPoint, Direction direct, int length)
