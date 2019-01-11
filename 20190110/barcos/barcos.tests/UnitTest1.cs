@@ -17,25 +17,23 @@ namespace Tests
             Assert.AreEqual(boardLength, 100);
         }
 
-        [Test]
-        public void BoardHas100EmptyFields1()
-        {
-            //Given
-            //Board testedBoard = new Board();
-            //int boardLength = testedBoard.Fields.Length;
-            //int boardFieldCounter = 0;
+        //[Test]
+        //public void BoardHas100EmptyFields1()
+        //{
+        //    //Given
+        //    Board testedBoard = new Board();
+        //    int boardLength = testedBoard.Fields.Length;
+        //    int boardFieldCounter = 0;
 
+        //    Assert.IsTrue(testedBoard.Fields[56] == FieldsStatus.empty);
 
-
-            //Assert.IsTrue(testedBoard.Fields[56] == FieldsStatus.empty);
-
-            //while (boardFieldCounter < boardLength)
-            //{
-            //    Assert.AreEqual(
-            //        testedBoard.Fields[boardFieldCounter], 
-            //        FieldsStatus.empty);
-            //    boardFieldCounter++;
-            //}
-        }
+        //    while (boardFieldCounter < boardLength)
+        //    {
+        //        Assert.AreEqual(
+        //            testedBoard.Fields[boardFieldCounter], 
+        //            FieldsStatus.empty);
+        //        boardFieldCounter++;
+        //    }
+        //}
     }
 }
