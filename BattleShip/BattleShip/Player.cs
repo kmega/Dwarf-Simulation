@@ -8,10 +8,10 @@ namespace BattleShip
 {
     public class Player
     {
-       public Board Player_Board { get; set; }
-       public int Id { get; set; }
-       public Board Opponent_Board { get; set; }
-       public List<Ship> ships { get; set; }
+        public Board Player_Board { get; set; }
+        public int Id { get; set; }
+        public Board Opponent_Board { get; set; }
+        public List<Ship> ships { get; set; }
 
         public Player(int Id)
         {
@@ -39,23 +39,19 @@ namespace BattleShip
         }
         public void ShowBoard(Player player)
         {
-            Console.Write("\t" );
-            for (int i = 1; i < 11; i++)
-            {
-                Console.Write(i + " ");
-            }
+                      
+            Console.Write("    A B C D E F G H I J ");
+
             Console.WriteLine();
             Console.WriteLine();
-            for (int i = 0,k = 1; i < player.Player_Board.Fields.GetLength(0); i++)
+            for (int i = 0, k = 1; i < player.Player_Board.Fields.GetLength(0); i++)
             {
-               
-                    Console.Write(k++ + "\t" );
-                
-                    
-                 
+              
+                Console.Write(String.Format("{0,-4}", k++)); ;
+
                 for (int j = 0; j < player.Player_Board.Fields.GetLength(1); j++)
                 {
-                    
+
                     Console.Write(player.Player_Board.Fields[i, j] + " ");
                 }
                 Console.WriteLine();

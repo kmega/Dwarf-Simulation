@@ -5,7 +5,7 @@ using BattleShip;
 namespace Test
 {
     [TestClass]
-    public class DawidTests
+    public class GameOverTests
     {
         [TestMethod]
         public void ShouldReturnFalseWhenBoardHaveShips()
@@ -14,15 +14,15 @@ namespace Test
             Board board = new Board();
 
             //When
-            board.Fields[0, 1] = Field.F;
-            board.Fields[0, 2] = Field.F;
-            board.Fields[0, 3] = Field.F;
+            board.Fields[0, 1] = Field.S;
+            board.Fields[0, 2] = Field.S;
+            board.Fields[0, 3] = Field.S;
 
-            board.Fields[4, 5] = Field.F;
-            board.Fields[4, 6] = Field.F;
-            board.Fields[4, 7] = Field.F;
+            board.Fields[4, 5] = Field.S;
+            board.Fields[4, 6] = Field.S;
+            board.Fields[4, 7] = Field.S;
 
-            bool result = GameOver.ShipsAreDestroyed(board);
+            bool result = GameOver.ShipsAreDestroyed(board,6);
 
             //Then
             Assert.AreEqual(false, result);
@@ -36,15 +36,15 @@ namespace Test
             Board board = new Board();
 
             //When
-            board.Fields[4, 5] = Field.F;
-            board.Fields[4, 6] = Field.F;
-            board.Fields[4, 7] = Field.F;
+            board.Fields[4, 5] = Field.S;
+            board.Fields[4, 6] = Field.S;
+            board.Fields[4, 7] = Field.S;
 
             board.Fields[4, 5] = Field.H;
             board.Fields[4, 6] = Field.H;
             board.Fields[4, 7] = Field.H;
 
-            bool result = GameOver.ShipsAreDestroyed(board);
+            bool result = GameOver.ShipsAreDestroyed(board,3);
 
             //Then
             Assert.AreEqual(true, result);
