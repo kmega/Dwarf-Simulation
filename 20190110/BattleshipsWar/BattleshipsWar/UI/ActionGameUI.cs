@@ -8,5 +8,7 @@ namespace BattleshipsWar.UI
 {
     public class ActionGameUI
     {
+        StartGame Game = new StartGame();
+        
     }
 }

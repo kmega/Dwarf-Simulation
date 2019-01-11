@@ -60,6 +60,7 @@ namespace BattleshipsWar
                     return 8;
                 case 'j':
                     return 9;
+
             }
             throw new NotImplementedException();
         }
