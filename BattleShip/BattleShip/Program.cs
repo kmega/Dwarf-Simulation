@@ -33,8 +33,8 @@ namespace BattleShip
                 game.TryHitShip(player1, player2, coordinatePlayer1, coordinatePlayer2);
 
                 result = GameOver.ShipsAreDestroyed(player1.Opponent_Board,1);
-                
 
+                player1.ShowBoard(player1.Opponent_Board);
                 
 
                 if (result == true)

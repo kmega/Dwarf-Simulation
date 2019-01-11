@@ -37,22 +37,22 @@ namespace BattleShip
                 Console.WriteLine("Ship id " + ship.Id.ToString() + " Lenght Ship " + ship.Lenght);
             }
         }
-        public void ShowBoard(Player player)
+        public void ShowBoard(Board board)
         {
                       
             Console.Write("    A B C D E F G H I J ");
 
             Console.WriteLine();
             Console.WriteLine();
-            for (int i = 0, k = 1; i < player.Player_Board.Fields.GetLength(0); i++)
+            for (int i = 0, k = 1; i < board.Fields.GetLength(0); i++)
             {
               
                 Console.Write(String.Format("{0,-4}", k++)); ;
 
-                for (int j = 0; j < player.Player_Board.Fields.GetLength(1); j++)
+                for (int j = 0; j < board.Fields.GetLength(1); j++)
                 {
 
-                    Console.Write(player.Player_Board.Fields[i, j] + " ");
+                    Console.Write(board.Fields[i, j] + " ");
                 }
                 Console.WriteLine();
             }
