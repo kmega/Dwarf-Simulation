@@ -10,23 +10,44 @@ namespace BattleShip
     {
         public void PutShip(Player player, string Coordinates, bool horizontal, int id_ship)
         {
+
             int[] coordinate = CoordinatesParser(Coordinates);
             coordinate[0]--; 
             coordinate[1]--;
             id_ship--;
 
+            if (CheckIfShipIsOutOfBord(player, coordinate, horizontal, id_ship))
+            {
+                for (int i = 0; i < player.ships[id_ship].Lenght; i++)
+                {
+                    if (horizontal)
+                    {
+                        player.Player_Board.Fields[coordinate[0] + i, coordinate[1]] = Field.S;
+                    }
+                    else
+                    {
+                        player.Player_Board.Fields[coordinate[0], coordinate[1] + i] = Field.S;
+                    }
+                }
+            }
+
+        }
+
+        public bool CheckIfShipIsOutOfBord(Player player, int[] coordinate, bool horizontal, int id_ship)
+        {
             for (int i = 0; i < player.ships[id_ship].Lenght; i++)
             {
                 if (horizontal)
                 {
-                    player.Player_Board.Fields[coordinate[0]+i, coordinate[1]] = Field.S;
+                      return (coordinate[0] + player.ships[id_ship].Lenght < 10);
                 }
-                else {
-                    player.Player_Board.Fields[coordinate[0], coordinate[1]+i] = Field.S;
+                else
+                {
+                    return (coordinate[0] + player.ships[id_ship].Lenght < 10);
                 }
             }
+            return false;
         }
-
        public int[] CoordinatesParser(string Coordinates)
         {
             Coordinates = Coordinates.ToLower();
