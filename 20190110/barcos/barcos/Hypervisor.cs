@@ -39,10 +39,10 @@ namespace barcos
             int i = 0;
             foreach(Player player in Players)
             {
-                Console.WriteLine("What is Your name, Player{0}?", i);
-                player.Name = Console.ReadLine();
+                //Console.WriteLine("What is Your name, Player{0}?", i);
+                player.Name = (i==0)?  "Pioter":"Janusz";
 
-                Console.WriteLine("Hello in BattleShip game, {0}!", player.Name);
+                //Console.WriteLine("Hello in BattleShip game, {0}!", player.Name);
 
                 i++;
             }
