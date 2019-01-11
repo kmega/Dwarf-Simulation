@@ -1,11 +1,11 @@
 ﻿using BattleShips;
-using NUnit.Framework;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 
 namespace BattleShipsTests
 {
-    public class GameTests
+    class FakeData
     {
         
     }
