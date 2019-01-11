@@ -11,4 +11,7 @@
   <ItemGroup>
     <Folder Include="Enums\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="Board.cs~" />
+  </ItemGroup>
 </Project>

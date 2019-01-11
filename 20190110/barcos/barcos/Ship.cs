@@ -1,27 +1,36 @@
 ﻿using System;
+using System.Xml.Linq;
 using barcos.Enums;
 
 namespace barcos
-{
-    public class Ship
+{ 
+    public class Ship : IShip
     {
-        public ShipMasts Masts;
-        public int Coordinates;
-        public ShipOrientation Orientation;
-        public int State;
+        public ShipMasts Masts { get; private set; }
+        public bool Destroyed { get; private set; }
+        public ShipOrientation Orientation { get; }
+        public int CoordinatesX { get; }
+        public int CoordinatesY { get; }
 
-        public Ship()
+        public Ship(ShipOrientation shipOrientation, ShipMasts masts, int X, int Y)
         {
+            Masts = masts;
+            Orientation = shipOrientation;
+            CoordinatesX = X;
+            CoordinatesY = Y;
         }
 
-        public void SetState()
+        public int GetCurrentState()
         {
-
+            return (int)Masts;
         }
 
         public void HasHit()
         {
-            State--;
+            Masts--;
+            
+            if (Masts == ShipMasts.destroyed)
+                Destroyed = true;
         }
     }
 }
