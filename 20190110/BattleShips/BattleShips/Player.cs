@@ -1,23 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace BattleShips
 {
     public class Player
     {
-        public Player()
-        {
-            AvailableShips = new List<Ship>();
-        }
-        public List<Ship> AvailableShips { get; private set; }
-        public void RegisterShip(Ship ship)
-        {
-            AvailableShips.Add(ship);
-        }
-        public void DestroyShip(Ship ship)
-        {
-            AvailableShips.Remove(ship);
-        }
+        public List<string> FieldUsedByPlayer { get; set; }
+        public List<string> FieldWithDestroyedShips { get; set; }
+        public List<string> FieldWithShips { get; set; }
+        public bool IsActive { get; set; }
     }
 }
