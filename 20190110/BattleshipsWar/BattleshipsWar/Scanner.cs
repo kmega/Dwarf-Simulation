@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleshipsWar
 {
-    public class Scaner
+    public class Scanner
     {
 
         public bool CheckCoordinatesCorrectness(int[] tempcoordinates, CellProperty[,] warmap)
