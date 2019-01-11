@@ -5,7 +5,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace BattleshipWarTest
 {
     [TestClass]
-    public class ScanerTest
+    public class ScannerTest
     {
         [TestMethod]
         public void IsCooridnatesInTable()
@@ -13,8 +13,8 @@ namespace BattleshipWarTest
             int[] coordinates = new int[] { 1, 1, };
             CellProperty[,] warmap = new CellProperty[2, 2];
             
-            Scaner scaner = new Scaner();
-            bool result = scaner.CheckCoordinatesCorrectness(coordinates, warmap);
+            Scanner scanner = new Scanner();
+            bool result = scanner.CheckCoordinatesCorrectness(coordinates, warmap);
 
             Assert.IsTrue(result);
         }
@@ -25,8 +25,8 @@ namespace BattleshipWarTest
             int[] coordinates = new int[] { 1, 3, };
             CellProperty[,] warmap = new CellProperty[2, 2];
 
-            Scaner scaner = new Scaner();
-            bool result = scaner.CheckCoordinatesCorrectness(coordinates, warmap);
+            Scanner scanner = new Scanner();
+            bool result = scanner.CheckCoordinatesCorrectness(coordinates, warmap);
 
             Assert.IsFalse(result);
         }
@@ -38,8 +38,8 @@ namespace BattleshipWarTest
             int[] coordinates = new int[] { 0, 0, };
             CellProperty[,] warmap =new CellProperty[1,1] { { CellProperty.Empty } };
 
-            Scaner scaner = new Scaner();
-            CellProperty result = scaner.CheckCellStatus(warmap, coordinates);
+            Scanner scanner = new Scanner();
+            CellProperty result = scanner.CheckCellStatus(warmap, coordinates);
 
             Assert.AreEqual(CellProperty.Empty, result);
 
@@ -51,8 +51,8 @@ namespace BattleshipWarTest
             int[] coordinates = new int[] { 0, 0, };
             CellProperty[,] warmap = new CellProperty[1, 1] { { CellProperty.Occupied } };
 
-            Scaner scaner = new Scaner();
-            CellProperty result = scaner.CheckCellStatus(warmap, coordinates);
+            Scanner scanner = new Scanner();
+            CellProperty result = scanner.CheckCellStatus(warmap, coordinates);
 
             Assert.AreEqual(CellProperty.Occupied, result);
 
