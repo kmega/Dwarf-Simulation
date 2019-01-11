@@ -1,4 +1,17 @@
+<<<<<<< HEAD
 <Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Program.cs~" />
+  </ItemGroup>
+</Project>
+=======
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -12,3 +25,4 @@
     <Folder Include="Enums\" />
   </ItemGroup>
 </Project>
+>>>>>>> 178937ba99ef84c06264a21e81dd026adc7c196b
