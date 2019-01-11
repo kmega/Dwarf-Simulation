@@ -10,14 +10,15 @@ namespace Tests
         public void Hypervisor_CreateHypervisor_ReturnNamesOfBothPlayers()
         {
             //given
-            Player player_1 = new Player();
-            Player player_2 = new Player();
+            Hypervisor hypervisor = new Hypervisor();
+            Player player_1 = new Player(hypervisor: hypervisor);
+            Player player_2 = new Player(hypervisor: hypervisor);
             string playerName_1 = "Pioter";
             string playerName_2 = "Janusz";
             List<Player> players = new List<Player>() { player_1, player_2 };
 
             //act
-            Hypervisor hypervisor = new Hypervisor(players);
+            hypervisor.InitiatePlayers();
 
 
             //expected

@@ -8,11 +8,12 @@ namespace barcos
     {
         public int TurnCounter; // ??????
         public GameState GameState;
+        public List<Player> Players;
 
         public Hypervisor()
         {
             //phase 1
-            InitiatePlayers();
+            Players = new List<Player>();
  
         }
 
@@ -33,16 +34,24 @@ namespace barcos
         }
 
 
-        private void InitiatePlayers()
+        public void InitiatePlayers()
         {
-
-            for (int i = 0; i < players.Count; i++)
+            int i = 0;
+            foreach(Player player in Players)
             {
                 Console.WriteLine("What is Your name, Player{0}?", i);
-                players[i].Name = Console.ReadLine();
+                player.Name = Console.ReadLine();
 
-                Console.WriteLine("Hello in BattleShip game, {0}!", players[i].Name);
+                Console.WriteLine("Hello in BattleShip game, {0}!", player.Name);
+
+                i++;
             }
+            
+        }
+
+        public void RegisterPlayer(Player player)
+        {
+            Players.Add(player);
         }
     }
 }

@@ -8,8 +8,9 @@ namespace barcos
         public Board[] Board;
         public string Name;
 
-        public Player()
+        public Player(Hypervisor hypervisor)
         {
+            hypervisor.RegisterPlayer(this);
         }
 
         public void SetShipsOnBoard(Board board, Ship ship)
