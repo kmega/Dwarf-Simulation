@@ -48,5 +48,22 @@ namespace Tests
 
             }
         }
+
+        [Test]
+        public void Hypervisior_UpDateBoard_ReturnOneFieldFromBoardFields()
+        {
+            //Given
+            Hypervisor hypervisor = new Hypervisor();
+            Player player_1 = new Player(hypervisor: hypervisor);
+
+            //act
+            hypervisor.UpDateBoard(player_1);
+
+            //expected
+            FieldsStatus result = player_1.Board.Fields[1];
+
+            Assert.AreEqual(FieldsStatus.empty, result);
+
+        }
     }
 }

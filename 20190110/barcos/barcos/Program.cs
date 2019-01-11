@@ -21,6 +21,11 @@ namespace barcos
             Console.WriteLine("Hello in BattleShip game, {0}!", player_2);
 
             hypervisor.InitiatePlayers(player_1, player_2);
+            string l = playerOne.Board.Fields[1].ToString();
+
+            hypervisor.UpDateBoard(playerOne);
+
+            Console.ReadKey();
         }
     }
 }

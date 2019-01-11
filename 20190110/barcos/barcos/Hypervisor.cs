@@ -41,16 +41,16 @@ namespace barcos
             {
                 player.Name = players[i];
 
-                foreach (var ship in player.Ships)
-                {
-                    Console.WriteLine("Set ship coordinate X: ");
-                    int x = Convert.ToInt32(Console.ReadLine());
+                //foreach (var ship in player.Ships)
+                //{
+                //    Console.WriteLine("Set ship{0} coordinate X: ", ship.Masts);
+                //    int x = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("Set ship coordinate Y: ");
-                    int y = Convert.ToInt32(Console.ReadLine());
+                //    Console.WriteLine("Set ship coordinate Y: ");
+                //    int y = Convert.ToInt32(Console.ReadLine());
 
-                    player.SetShipsOnBoard(ship, x, y, ShipOrientation.horizontally);
-                }
+                //    player.SetShipsOnBoard(ship, x, y, ShipOrientation.horizontally);
+                //}
 
                 i++;
             }
@@ -60,5 +60,18 @@ namespace barcos
         {
             Players.Add(player);
         }
+
+        public void UpDateBoard(Player player)
+        {
+            int i = 1;
+            foreach(FieldsStatus boardField in player.Board.Fields)
+            {
+                char markToDisplay = (char)boardField;
+                if (i % 10 == 0 ) { Console.WriteLine(markToDisplay + "   |   "); }
+                else { Console.Write(markToDisplay + "   |   "); }
+                i++;
+            }
+        }
+
     }
 }

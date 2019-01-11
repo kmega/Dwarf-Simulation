@@ -16,7 +16,7 @@ namespace barcos
             new Ship(ShipMasts.five)
         };
 
-        public Board Board;
+        public Board Board = new Board();
         public string Name;
 
         public Player(Hypervisor hypervisor)
