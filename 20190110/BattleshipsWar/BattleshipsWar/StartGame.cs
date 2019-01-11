@@ -54,6 +54,8 @@ namespace BattleshipsWar
         private object[,] PlaceShipOnBoard(object[,] board, string placement, string direction)
         {
             InputParser check = new InputParser();
+            
+
             if (Ships.Count == 0)
             {
                 PlayerOnePlacedAllShips = true;
