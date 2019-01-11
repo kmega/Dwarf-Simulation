@@ -11,7 +11,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateTwoMastsShip(ShipOrientation.horizontally, 1, 2);
+            IShip newShip = shipFactory.CreateTwoMastsShip(ShipOrientation.horizontally, 1);
             Assert.IsTrue(newShip.GetCurrentState() == 2);
         }
         [Test]
@@ -19,7 +19,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateThreeMastsShip(ShipOrientation.horizontally, 1, 2);
+            IShip newShip = shipFactory.CreateThreeMastsShip(ShipOrientation.horizontally, 1);
             Assert.IsTrue(newShip.GetCurrentState() == 3);
         }
         [Test]
@@ -27,7 +27,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFourMastsShip(ShipOrientation.horizontally, 1, 2);
+            IShip newShip = shipFactory.CreateFourMastsShip(ShipOrientation.horizontally, 1);
             Assert.IsTrue(newShip.GetCurrentState() == 4);
         }
         [Test]
@@ -35,7 +35,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1, 2);
+            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1);
             Assert.IsTrue(newShip.GetCurrentState() == 5);
         }
 
@@ -44,7 +44,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1, 2);
+            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1);
             
             newShip.HasHit();
             
@@ -55,7 +55,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1, 2);
+            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1);
 
             for (int i = 0; i < 5; i++)
             {
