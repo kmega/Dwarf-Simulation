@@ -53,6 +53,7 @@
     <Compile Include="ScannerTest.cs" />
     <Compile Include="InputParserTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WarTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
