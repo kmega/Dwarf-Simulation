@@ -1,4 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Socallship;
+using System.Linq;
 
 namespace TestsSocallship
 {
@@ -6,8 +8,14 @@ namespace TestsSocallship
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CreatesOnePlayerWithBoardGame()
         {
+            //given
+            string name = "XYZ";
+            //when
+            PlayerCreator player1 = new PlayerCreator(name);
+            //then
+            Assert.AreEqual(name, player1.GetName());
         }
     }
 }
