@@ -56,9 +56,32 @@ namespace Test
         }
 
         [TestMethod]
-        public void T06TestWait()
+        public void T06TestHowBigIsBoardGetResultLenght10AndWidth10()
         {
-            
+            Board board = new Board();
+            int lenghtBoard = board.Fields.GetLength(0);
+            int width = board.Fields.GetLength(0);
+
+            Assert.AreEqual(lenghtBoard, 10);
+            Assert.AreEqual(width, 10);
+        }
+
+        [TestMethod]
+        public void T07TestDidBoardHave0WhenWeCreateHim()
+        {
+            int counter = 0;
+            Board board = new Board();
+            for (int i = 0; i < board.Fields.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.Fields.GetLength(1); j++)
+                {
+                    if (board.Fields[i,j] == 0)
+                    {
+                        counter++;
+                    }
+                }
+            }
+            Assert.AreEqual(counter, 100);
         }
     }
 }
