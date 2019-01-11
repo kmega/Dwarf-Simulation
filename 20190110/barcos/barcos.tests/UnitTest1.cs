@@ -50,7 +50,7 @@ namespace Tests
         }
 
         [Test]
-        public void Hypervisior_UpDateBoard_ReturnOneFieldFromBoardFields()
+        public void Hypervisior_UpDateBoard_ReturnOneEmptyFieldFromBoardFields()
         {
             //Given
             Hypervisor hypervisor = new Hypervisor();
@@ -63,6 +63,43 @@ namespace Tests
             FieldsStatus result = player_1.Board.Fields[1];
 
             Assert.AreEqual(FieldsStatus.empty, result);
+
+        }
+
+        [Test]
+        public void Hypervisior_UpDateBoard_ReturnOneHitFieldFromBoardFields()
+        {
+            //Given
+            Hypervisor hypervisor = new Hypervisor();
+            Player player_1 = new Player(hypervisor: hypervisor);
+
+            //act
+            player_1.Board.Fields[0] = FieldsStatus.hit;
+            hypervisor.UpDateBoard(player_1);
+
+            //expected
+            FieldsStatus result = player_1.Board.Fields[0];
+
+            Assert.AreEqual(FieldsStatus.hit, result);
+
+        }
+
+        [Test]
+        public void Hypervisior_UpDateBoard_ReturnOneShipFieldFromBoardFields()
+        {
+            //Given
+            Hypervisor hypervisor = new Hypervisor();
+            Player player_1 = new Player(hypervisor: hypervisor);
+
+            //act
+            player_1.Board.Fields[0] = FieldsStatus.ship;
+            hypervisor.UpDateBoard(player_1);
+
+            //expected
+            FieldsStatus result = player_1.Board.Fields[0];
+
+            Assert.AreEqual(FieldsStatus.ship, result);
+
 
         }
     }
