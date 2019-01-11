@@ -31,11 +31,11 @@ namespace BattleShip
             lenghtBoard = player2TryHitShip[0] % 97;
             heightBoard = (player2TryHitShip[1] - 48) - 1;
             player2.Player_Board.Fields[0, 0] = Field.S;
-            if (player1.Opponent_Board.Fields[lenghtBoard, heightBoard] == Field.O)
+            if (player1.Player_Board.Fields[lenghtBoard, heightBoard] == Field.O)
             {
                 player2.Opponent_Board.Fields[lenghtBoard, heightBoard] = Field.F;
             }
-            else if (player1.Opponent_Board.Fields[lenghtBoard, heightBoard] == Field.S)
+            else if (player1.Player_Board.Fields[lenghtBoard, heightBoard] == Field.S)
             {
                 player2.Opponent_Board.Fields[lenghtBoard, heightBoard] = Field.H;
             }
