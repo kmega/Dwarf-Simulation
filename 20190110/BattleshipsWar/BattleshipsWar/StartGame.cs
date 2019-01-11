@@ -1,11 +1,12 @@
-﻿using System;
+﻿using BattleshipsWar.UI;
+using System;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("BattleshipWarTest")]
 
 namespace BattleshipsWar
 {
-    class StartGame
+    public class StartGame
     {
         public CellProperty[,] PlayerOneBoard = new CellProperty[10,10];
         public CellProperty[,] PlayerTwoBoard = new CellProperty[10, 10];
@@ -28,6 +29,24 @@ namespace BattleshipsWar
                 if (CounterOfShipsPlaced <= 7)
                 {
                     PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
+
+                    ActionGameUI.DrawBoard(this);
+                        
+                    //for (int i = 0; i < 9; i++)
+                    //{
+                    //    for (int j = 0; j < 9; j++)
+                    //    {
+                    //        if (PlayerOneBoard[i, j] == CellProperty.Empty)
+                    //        {
+                    //            Console.Write("[O]");
+                    //        }
+                    //        if (PlayerOneBoard[i, j] == CellProperty.Occupied)
+                    //        {
+                    //            Console.Write("[X]");
+                    //        }
+                    //    }
+                    //    Console.WriteLine();
+                    //}
                 }
                 else
                 {
