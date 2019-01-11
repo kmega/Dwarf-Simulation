@@ -16,8 +16,7 @@ namespace Socallship
     {
         public BoardCellType[,] CreateBoard()
         {
-            BoardCellType[,] PlayerBoard = new BoardCellType[10, 10];
-            return PlayerBoard;
+            return new BoardCellType[10, 10];
         }
     }
 }
