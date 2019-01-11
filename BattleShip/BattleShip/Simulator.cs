@@ -8,11 +8,7 @@ namespace BattleShip
 {
     public class Simulator
     {
-        public static void DisplayBoardAndShipsForPlayer(Player player)
-        {
-            player.ShowShips(player);
-            player.ShowBoard(player);
-        }
+     
 
         PutShipOnTheBoard PutShipOnTheBoard = new PutShipOnTheBoard();
 
