@@ -9,6 +9,8 @@ namespace barcos
             //phase 1
 
             Hypervisor hypervisor = new Hypervisor();
+            Player playerOne = new Player(hypervisor);
+            Player playerTwo = new Player(hypervisor);
 
             Console.WriteLine("What is Your name, Player_1?");
             string player_1 = Console.ReadLine();
