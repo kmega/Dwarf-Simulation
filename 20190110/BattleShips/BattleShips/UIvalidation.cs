@@ -10,10 +10,29 @@ namespace BattleShip
         {
             //TypeOfShipValidation();
         }
-        public string TypeOfShipValidation(string x)
+        public string TypeOfShipValidation()
         {
-            // A,B,D,S,P
-            string[] chooseLetter = new string[5] {"A", "B"};
+            
+            string x = "";
+            
+            List <string> chooseLetter = new List<string>( new [] {"A", "B", "D", "S", "P", "a", "b,", "d", "s", "p"});
+            string choose = "";
+            string j = "";
+            do
+            {
+            foreach (string i in chooseLetter)
+            {
+                choose = Console.ReadLine();
+                if (choose.Contains(i))
+                {
+                    x = choose;
+                }
+                else
+                {
+                    x = j;
+                }
+            }
+            }while (choose == j);
             return x;
 
         } 
