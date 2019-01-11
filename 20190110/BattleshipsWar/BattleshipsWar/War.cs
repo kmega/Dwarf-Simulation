@@ -9,7 +9,7 @@ namespace BattleshipsWar
     public class War
     {
 
-        public void Shoot(int[] tempcoordinates, CellProperty[,] warmap)
+        public bool Shoot(int[] tempcoordinates, CellProperty[,] warmap, List<Ship> listofships)
         {
             Scanner sc = new Scanner();
             string result;
@@ -38,7 +38,7 @@ namespace BattleshipsWar
 
                     case CellProperty.Occupied:
 
-                        CellIsOccupied(warmap, tempcoordinates);
+                        CellIsOccupied(warmap, tempcoordinates,listofships);
                         break;
 
 
@@ -59,6 +59,7 @@ namespace BattleshipsWar
                 result = "Złe koordynaty, spróbuj jeszcze raz";
                 Console.WriteLine(result); 
             }
+            return isCoorinatesCorrect;
         }
 
 
@@ -70,12 +71,14 @@ namespace BattleshipsWar
             Console.WriteLine(result);
         }
 
-        private void CellIsOccupied(CellProperty[,] warmap, int[] tempcoordinates)
+        private void CellIsOccupied(CellProperty[,] warmap, int[] tempcoordinates, List<Ship> listofships)
         {
             string result;
             warmap[tempcoordinates[0], tempcoordinates[1]] = CellProperty.Hit;
             result = "Trafiłeś";
             Console.WriteLine(result); ;
+            CheckIsShipDestroyed(warmap, tempcoordinates, listofships);
+            
         }
 
         private void CellISsEmpty()
@@ -89,6 +92,35 @@ namespace BattleshipsWar
             string result = "Złe koordynaty, spróbuj jeszcze raz";
             Console.WriteLine(result);
 
+        }
+
+        private void CheckIsShipDestroyed (CellProperty[,] warmap, int[] tempcoordinates, List<Ship> listofships)
+        {
+            foreach (var item in listofships)
+            {
+                if (item.Coords.Contains(tempcoordinates))
+                {
+
+                    List<CellProperty> shipStatus = new List<CellProperty>();
+                    Scanner sc = new Scanner();
+                    foreach (var item2 in item.Coords)
+                    {
+                        shipStatus.Add(sc.CheckCellStatus(warmap, item2));
+                    }
+
+                    if (!shipStatus.Contains(CellProperty.Occupied))
+                    {
+                        Console.WriteLine("Znisczyłeś statek {0} elementowy", shipStatus.Count);
+                        foreach (var item2 in item.Coords)
+                        {
+                            warmap[item2[0], item2[1]] = CellProperty.Blocked;
+
+                        }
+                    }
+
+                }
+
+            }
         }
     }
 }
