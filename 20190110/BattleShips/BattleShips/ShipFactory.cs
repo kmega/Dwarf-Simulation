@@ -8,20 +8,21 @@ namespace BattleShips
 {
     public class ShipFactory
     {
+        private List<string> UnavailablePositions;
         public ShipFactory()
         {
-
+            UnavailablePositions = new List<string>();
         }
         public void PlaceSingleShip(string shipType, string startingPoint, string direction, Player player)
         {
             ShipType type = GetShipType(shipType);
             int length = GetShipLength(type);
             Direction direct = GetDirection(direction);
-            List<string> positions = BuildShipPositions(startingPoint, direct, length);
+            List<string> positions = BuildShipPositions(startingPoint, direct, length, player);
             player.FieldWithShips.AddRange(positions);    
         }
 
-        public List<string> BuildShipPositions(string startingPoint, Direction direct, int length)
+        public List<string> BuildShipPositions(string startingPoint, Direction direct, int length, Player player)
         {
             List<string> positions = new List<string>();
             positions.Add(startingPoint);
