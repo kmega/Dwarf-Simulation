@@ -1,57 +1,40 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("BattleshipWarTest")]
 
 namespace BattleshipsWar
 {
     class StartGame
     {
-        public CellProperty[,] PlayerOneBoard = MakeBoard();
-        private bool PlayerOnePlacedAllShips = false;
+        public CellProperty[,] PlayerOneBoard;
+        public CellProperty[,] PlayerTwoBoard;
 
-        public CellProperty[,] PlayerTwoBoard = MakeBoard();
-        private bool PlayerTwoPlacedAllShips = false;
-
-        private List<KindOfShip> Ships = new List<KindOfShip>
-        {
-            
-        };
+        private bool AllShipsPlaced = false;
+        private int CounterOfShipsPlaced = 0;
 
         private int[] Coords = { -1, -1 };
 
-        internal void PlaceShips()
+        internal (CellProperty[,], CellProperty[,]) PlaceShips()
         {
             string placement = "", direction;
-            while (PlayerOnePlacedAllShips == false && PlayerTwoPlacedAllShips == false)
+            while (AllShipsPlaced == false)
             {
                 Console.WriteLine("Choose where you want to place a ship:");
                 placement = Console.ReadLine();
                 Console.WriteLine("Choose ship direction (Up, right, Down, Left):");
                 direction = Console.ReadLine();
                 Console.Clear();
-                if (PlayerOnePlacedAllShips == false)
+                if (CounterOfShipsPlaced <= 7)
                 {
                     PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
                 }
-                PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction);
-            }
-        }
-
-        private static CellProperty[,] MakeBoard()
-        {
-            CellProperty[,] Board = new CellProperty[10, 10];
-
-            for (int i = 0; i < Board.GetLength(i); i++)
-            {
-                for (int j = 0; j < Board.GetLength(j); j++)
+                else
                 {
-                    Board[i, j] = CellProperty.Empty;
+                    PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction);
                 }
             }
-
-            return Board;
+            return (PlayerOneBoard, PlayerTwoBoard);
         }
 
         private CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction)
@@ -88,12 +71,33 @@ namespace BattleshipsWar
                     return board;
             }
 
-            Ship build = new Ship(KindOfShip.Six, Coords, userChoice);
+            KindOfShip lengthOfShip = KindOfShip.Six;
 
-            if (Ships.Count == 0)
+            Ship ship = new Ship(lengthOfShip, Coords, userChoice);
+            int[] coordsToChange;
+
+            for (int i = 0; i < ship.Coords.Count; i++)
             {
-                PlayerOnePlacedAllShips = true;
+                coordsToChange = ship.Coords[i];
+                for (int j = 0; j < 10; j++)
+                {
+                    for (int k = 0; k < 10; k++)
+                    {
+                        if (coordsToChange[0] == j && coordsToChange[1] == k)
+                        {
+                            board[j, k] = CellProperty.Occupied;
+                        }
+                    }
+                }
             }
+
+            CounterOfShipsPlaced++;
+
+            if (CounterOfShipsPlaced == 14)
+            {
+                AllShipsPlaced = true;
+            }
+
             return board;
         }
     }
