@@ -51,6 +51,7 @@ namespace BattleshipsWar
                         for (int i = 1; i < 6; i++)
                         {
                             Coords.Add(new[] { startCoords[0] - i, startCoords[1] });
+<<<<<<< HEAD
                         }
                         break;
                     }
@@ -75,6 +76,8 @@ namespace BattleshipsWar
                         for (int i = 1; i < 6; i++)
                         {
                             Coords.Add(new[] { startCoords[0], startCoords[1]+i});
+=======
+>>>>>>> 21ee58b4cf5a34a05ad62d7823615b1173551a44
                         }
                         break;
                     }
