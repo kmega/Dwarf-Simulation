@@ -65,9 +65,9 @@ namespace BattleShips
             //choosenshipbyplayergotovalidation = Console.ReadLine();
             ChoosingShipByPlayerAfterValidation = validation.TypeOfShipValidation();
             Console.WriteLine("Wybierz punkt startowy:");
-            ChoosingStartPointAfterValidation = validation.StartPointValidation();
+            //ChoosingStartPointAfterValidation = validation.StartPointValidation();
             Console.WriteLine("Wybierz kierunek: (L - Left, R- Right, U - Up, D -Down");
-            ChoosingDirectionByPlayerAfterValidation = validation.DirectionValidation();
+            //ChoosingDirectionByPlayerAfterValidation = validation.DirectionValidation();
             shipfactory.PlaceSingleShip(ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, ChoosingDirectionByPlayerAfterValidation, player);
             
             //playername podeslac

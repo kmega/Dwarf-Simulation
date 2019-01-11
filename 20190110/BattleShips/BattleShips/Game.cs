@@ -9,17 +9,12 @@ namespace BattleShips
         public void StartGame(List<Player> players)
         {
             SetActivePlayerOne(players);
-
-
+            string field = "A1";
 
             while (players.Count > 1)
             {
-                //field from UI
-                //NextTurn(players, field);
+                NextTurn(players, field);
             }
-
-
-            
         }
 
         private void NextTurn(List<Player> players, string field)
@@ -27,17 +22,15 @@ namespace BattleShips
             if (CheckIfPlayersHasShips(players))
             {
                 MakeShoot(field, players);
-
-            } else {
+            }
+            else
+            {
                 Player activePlayer = ActivePlayer(players);
                 Console.WriteLine($"The winner is {activePlayer.PlayerName}");
             }
-
-
-
         }
 
-        private bool CheckIfPlayersHasShips(List<Player> players)
+        public bool CheckIfPlayersHasShips(List<Player> players)
         {
             return players.Any(p => p.FieldWithShips.Count > 0);
         }

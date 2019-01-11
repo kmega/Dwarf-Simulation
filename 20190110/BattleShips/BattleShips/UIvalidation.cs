@@ -20,9 +20,10 @@ namespace BattleShip
             string j = "";
             do
             {
+            choose = Console.ReadLine();
             foreach (string i in chooseLetter)
             {
-                choose = Console.ReadLine();
+                
                 if (choose.Contains(i))
                 {
                     x = choose;
@@ -30,18 +31,31 @@ namespace BattleShip
                 else
                 {
                     x = j;
+                    Console.WriteLine("Wprowadzono błędną wartość!!!");
                 }
             }
-            }while (choose == j);
+            }while (x != j);
             return x;
 
         } 
-        public string StartPointValidation(string x)
+        public string StartPointValidation()
         {
+            string x = "";
+            string choose = "";
+            string j = "";
+            List <string> coOrdinatesLetter = new List<string>( new [] {"A", "B", "C", "D", "E", "F", "G,",
+                                                                         "H", "I", "J"});
+            List <string> coOrdinatesNumber = new List<string>( new[] {"1", "2", "3", "4", "5", "6",
+                                                                         "7", "8", "9", "10"});
+            choose = Console.ReadLine();
+            
             return x;
+            
+            
         }
-        public string DirectionValidation(string x)
+        public string DirectionValidation()
         {
+            string x = "";
             return x;
         }
 
