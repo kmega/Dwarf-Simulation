@@ -1,4 +1,4 @@
-﻿using BattleShip;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -17,8 +17,9 @@ namespace BattleShips
         {
             
             GameRules();
-            Console.WriteLine();        
+            Console.WriteLine();       
             ChooseTypeOfShip();
+            
             Console.WriteLine();
             BoardGenerate();
 
@@ -40,9 +41,7 @@ namespace BattleShips
                 "Zatopienie statku ma miejsce wówczas, gdy gracz odgadnie położenie całego statku.\n" +
                 "O chybieniu interfejs informuje użytkownika słowem „Pudło”, o trafieniu „Trafiony” lub „(Trafiony)Zatopiony”.\n" +
                 "Wygrywa ten, kto pierwszy zatopi wszystkie statki przeciwnika.");
-
         }
-
 
         //jak wprowadzac statek
 
@@ -62,14 +61,17 @@ namespace BattleShips
             {
                 Console.WriteLine(x);
             }
+            Console.WriteLine();
+            BoardGenerate();
             //choosenshipbyplayergotovalidation = Console.ReadLine();
             ChoosingShipByPlayerAfterValidation = validation.TypeOfShipValidation();
-            Console.WriteLine("Wybierz punkt startowy:");
-            //ChoosingStartPointAfterValidation = validation.StartPointValidation();
+            Console.WriteLine("Wybierz punkt startowy:");            
+            ChoosingStartPointAfterValidation = validation.StartPointValidation();
+            BoardGenerate();
             Console.WriteLine("Wybierz kierunek: (L - Left, R- Right, U - Up, D -Down");
-            //ChoosingDirectionByPlayerAfterValidation = validation.DirectionValidation();
+            ChoosingDirectionByPlayerAfterValidation = validation.DirectionValidation();
             shipfactory.PlaceSingleShip(ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, ChoosingDirectionByPlayerAfterValidation, player);
-            
+            Console.ReadKey();
             //playername podeslac
             //PlaceSingleShip(string shipType, string startingPoint, string direction, Player player)
           // wyslac do shipfactory = wyslac do playera.
@@ -78,6 +80,7 @@ namespace BattleShips
         // pusta plansza
         public void BoardGenerate()
         {
+           
             List<string> ZeroRow = new List<string> { "  ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
             List<string> FirstRow = new List<string> { "1 ", };
             List<string> SecondRow = new List<string> { "2 ", };
@@ -90,7 +93,8 @@ namespace BattleShips
             List<string> NineRow = new List<string> { "9 ", };
             List<string> TenRow = new List<string> { "10", };
             List<List<string>> ListOfBoardElements = new List<List<string>> { ZeroRow, FirstRow, SecondRow, ThirdRow, FourthRow, FifthRow, SixthRow, SeventhRow, EightRow, NineRow, TenRow };
-
+ 
+            { }
             for (int i = 0; i < ListOfBoardElements.Count; i++)
             {
 
@@ -102,6 +106,12 @@ namespace BattleShips
                     }
                 }
             }
+            //if (ChoosingStartPointAfterValidation != null)
+            //{
+            //    ChoosingStartPointAfterValidation.Contains
+
+            //}
+
 
             for (int i = 0; i < ListOfBoardElements.Count; i++)
             {
@@ -119,7 +129,6 @@ namespace BattleShips
 
             }
             Console.WriteLine("--------------------------------------------");
-
         }
 
       
