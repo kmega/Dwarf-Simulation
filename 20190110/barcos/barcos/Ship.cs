@@ -3,7 +3,7 @@ using System.Xml.Linq;
 using barcos.Enums;
 
 namespace barcos
-{
+{ 
     public class Ship : IShip
     {
         public ShipMasts Masts { get; private set; }
