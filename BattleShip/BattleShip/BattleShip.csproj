@@ -46,7 +46,11 @@
     <Compile Include="Board.cs" />
     <Compile Include="Enum.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="Game.cs" />
+=======
+    <Compile Include="GameOver.cs" />
+>>>>>>> Dawid
 =======
     <Compile Include="GameOver.cs" />
 >>>>>>> Dawid

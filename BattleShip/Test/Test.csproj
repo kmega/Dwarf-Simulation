@@ -50,7 +50,11 @@
   </ItemGroup>
   <ItemGroup>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="TestGame.cs" />
+=======
+    <Compile Include="DawidTests.cs" />
+>>>>>>> Dawid
 =======
     <Compile Include="DawidTests.cs" />
 >>>>>>> Dawid
