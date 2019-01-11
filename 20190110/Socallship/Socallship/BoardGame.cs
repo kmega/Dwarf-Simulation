@@ -27,6 +27,7 @@ namespace Socallship
             for (int i = 0; i < Board.GetLength(0); i++)
             {
                 Console.Write(i + " | ");
+
             }
             Console.WriteLine();
             for (int i = 0; i < Board.GetLength(0); i++)
