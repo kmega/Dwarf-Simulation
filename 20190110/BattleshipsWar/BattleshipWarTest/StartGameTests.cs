@@ -1,4 +1,5 @@
 ﻿using System;
+using BattleshipsWar;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BattleshipWarTest
@@ -7,8 +8,9 @@ namespace BattleshipWarTest
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ShouldReturnEmptyBoard()
         {
+
         }
     }
 }
