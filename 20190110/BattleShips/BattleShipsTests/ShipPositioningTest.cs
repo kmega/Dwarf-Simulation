@@ -17,12 +17,16 @@ namespace Tests
             string type = "c";
             string startPosition = "B5";
             string direction = "d";
-
-            Ship actual = new ShipFactory().PlaceSingleShip(type, startPosition, direction);
-
-            Assert.IsTrue(actual.OccupiedPositions[0] == startPosition);
-            Assert.IsTrue(actual.OccupiedPositions.Contains("B9"));
-            Assert.IsTrue(actual.Type == BattleShips.Enums.ShipType.Carrier);
+            Player player = new Player()
+            {
+                PlayerName = "Marcin"
+            };
+            //when
+            ShipFactory actual = new ShipFactory();
+            actual.PlaceSingleShip(type, startPosition, direction, player);
+            //then
+            Assert.IsTrue(player.PlayerName == "Marcin");
+            Assert.IsTrue(player.FieldWithShips.Contains("B9"));
         }
         [Test]
         public void ShouldPlaceVerticallyBattleShipWithDirectionUp()
@@ -31,12 +35,16 @@ namespace Tests
             string type = "B";
             string startPosition = "G9";
             string direction = "u";
-
-            Ship actual = new ShipFactory().PlaceSingleShip(type, startPosition, direction);
-
-            Assert.IsTrue(actual.OccupiedPositions[0] == startPosition);
-            Assert.IsTrue(actual.OccupiedPositions.Contains("G6"));
-            Assert.IsTrue(actual.Type == BattleShips.Enums.ShipType.BattleShip);
+            Player player = new Player()
+            {
+                PlayerName = "Marcin"
+            };
+            //when
+            ShipFactory actual = new ShipFactory();
+            actual.PlaceSingleShip(type, startPosition, direction, player);
+            //then
+            Assert.IsTrue(player.PlayerName == "Marcin");
+            Assert.IsTrue(player.FieldWithShips.Contains("G6"));
         }
 
     }

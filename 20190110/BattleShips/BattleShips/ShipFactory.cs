@@ -12,18 +12,13 @@ namespace BattleShips
         {
 
         }
-        public Ship PlaceSingleShip(string shipType, string startingPoint, string direction, Player player)
+        public void PlaceSingleShip(string shipType, string startingPoint, string direction, Player player)
         {
-            //GetShipType(shipType) -> enum Shiptype
-            ShipType type = GetShipType(shipType); 
-            //GetShipLength(shipType) -> int length;
+            ShipType type = GetShipType(shipType);
             int length = GetShipLength(type);
-            //GetDirection(direction) -> enum direction;
             Direction direct = GetDirection(direction);
-            //BuildShipPositions(startingpoint, direction, length);
             List<string> positions = BuildShipPositions(startingPoint, direct, length);
-            //BuildNewShip;
-            return new Ship(type, positions, player);
+            player.FieldWithShips.AddRange(positions);    
         }
 
         public List<string> BuildShipPositions(string startingPoint, Direction direct, int length)
@@ -43,6 +38,10 @@ namespace BattleShips
                 {
                     int verticalPosition = Int32.Parse(splitted[1]) - (i+1);
                     positions.Add(splitted[0] + verticalPosition.ToString());
+                }
+                if(direct == Direction.Right)
+                {
+                    var horizontalPosition = splitted[0] + (char) 1;
                 }
                 //if(direct == Direction.Left)
                 //{
