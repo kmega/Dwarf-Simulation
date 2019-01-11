@@ -6,17 +6,18 @@ namespace Socallship
 {
     public class Player
     {
+        string Name;
         public BoardGame Board = new BoardGame();
         public Ship ship = new Ship(3);
+        public Player(string Name)
+        {
+            this.Name = Name;
+        }
         public void TryToHit(BoardGame EnemyBoard)
         {
-            Console.WriteLine("Podaj koordynaty: ");
-            int[] coordinates = Array.ConvertAll(Console.ReadLine().Split(","),
-                delegate (string s) { return int.Parse(s); });
            
-            EnemyBoard.ShowBoard();
         }
-        public bool CheckLose()
+        public bool CheckIfLose()
         {
             for(int i=0;i<Board.Board.GetLength(0);i++)
             {
