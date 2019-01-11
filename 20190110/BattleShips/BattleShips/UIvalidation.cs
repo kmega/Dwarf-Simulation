@@ -38,12 +38,24 @@ namespace BattleShip
             return x;
 
         } 
-        public string StartPointValidation(string x)
+        public string StartPointValidation()
         {
+            string x = "";
+            string choose = "";
+            string j = "";
+            List <string> coOrdinatesLetter = new List<string>( new [] {"A", "B", "C", "D", "E", "F", "G,",
+                                                                         "H", "I", "J"});
+            List <string> coOrdinatesNumber = new List<string>( new[] {"1", "2", "3", "4", "5", "6",
+                                                                         "7", "8", "9", "10"});
+            choose = Console.ReadLine();
+            
             return x;
+            
+            
         }
-        public string DirectionValidation(string x)
+        public string DirectionValidation()
         {
+            string x = "";
             return x;
         }
 
