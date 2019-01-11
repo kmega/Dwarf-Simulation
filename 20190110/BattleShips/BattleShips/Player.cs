@@ -5,6 +5,7 @@ namespace BattleShips
     public class Player
     {
         public List<Ship> AvailableShips { get; private set; }
+        public bool IsActive { get; set; }
 
         public Player()
         {
