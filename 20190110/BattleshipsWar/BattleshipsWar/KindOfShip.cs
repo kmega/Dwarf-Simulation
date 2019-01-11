@@ -8,9 +8,9 @@ namespace BattleshipsWar
 {
     public enum KindOfShip
     {
-        Two,
-        Three,
-        Four,
-        Six
+        Two = 2,
+        Three = 3,
+        Four = 4,
+        Six = 6
     }
 }

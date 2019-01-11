@@ -11,8 +11,7 @@ namespace BattleshipsWar
     {
         static void Main(string[] args)
         {
-            ActionGameUI UI = new ActionGameUI();
-            UI.DisplayUI();
+            ActionGameUI.DisplayUI();
         }
     }
 }

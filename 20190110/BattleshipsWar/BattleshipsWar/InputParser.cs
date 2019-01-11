@@ -60,6 +60,11 @@ namespace BattleshipsWar
                     return 8;
                 case 'j':
                     return 9;
+                default:
+                    {
+                        throw new NotImplementedException();
+                    }
+
 
             }
             throw new NotImplementedException();
