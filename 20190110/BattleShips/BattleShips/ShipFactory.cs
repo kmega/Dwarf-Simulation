@@ -32,27 +32,47 @@ namespace BattleShips
                 if(direct == Direction.Down)
                 {
                     int verticalPosition = Int32.Parse(splitted[1]) + (i+1);
+                    CheckVerticalPosition(verticalPosition);
                     positions.Add(splitted[0] + verticalPosition.ToString());
                 }
                 if(direct == Direction.Up)
                 {
                     int verticalPosition = Int32.Parse(splitted[1]) - (i+1);
+                    CheckVerticalPosition(verticalPosition);
                     positions.Add(splitted[0] + verticalPosition.ToString());
                 }
                 if(direct == Direction.Right)
                 {
-                    var horizontalPosition = splitted[0] + (char) 1;
+                    char letter = splitted[0].ToCharArray().First();
+                    var horizontalPosition = letter + (i + 1);
+                    CheckHorizontalPosition(horizontalPosition);
+                    positions.Add(Convert.ToChar(horizontalPosition) + splitted[1]);
                 }
-                //if(direct == Direction.Left)
-                //{
-                //    splitted[1] 
-                //}
-                //if(direct == Direction.Right)
-                //{
-
-                //}                
+                if(direct == Direction.Left)
+                {
+                    char letter = splitted[0].ToCharArray().First();
+                    var horizontalPosition = letter - (i + 1);
+                    CheckHorizontalPosition(horizontalPosition);
+                    positions.Add(Convert.ToChar(horizontalPosition) + splitted[1]);
+                }             
             }
             return positions;
+        }
+
+        public void CheckHorizontalPosition(int horizontalPosition)
+        {
+            if(horizontalPosition <65 || horizontalPosition > 74)
+            {
+                throw new ArgumentException("Ship placed inproperly, try again: ");
+            }
+        }
+
+        public void CheckVerticalPosition(int verticalPosition)
+        {
+            if(verticalPosition > 10 || verticalPosition < 1)
+            {
+                throw new ArgumentException("Ship placed inproperly, try again: ");
+            }
         }
 
         private ShipType GetShipType(string shipType)
