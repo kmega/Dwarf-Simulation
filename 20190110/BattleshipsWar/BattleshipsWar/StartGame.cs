@@ -7,8 +7,8 @@ namespace BattleshipsWar
 {
     class StartGame
     {
-        public CellProperty[,] PlayerOneBoard = MakeBoard();
-        public CellProperty[,] PlayerTwoBoard = MakeBoard();
+        public CellProperty[,] PlayerOneBoard;
+        public CellProperty[,] PlayerTwoBoard;
 
         private bool AllShipsPlaced = false;
         private int CounterOfShipsPlaced = 0;
@@ -35,21 +35,6 @@ namespace BattleshipsWar
                 }
             }
             return (PlayerOneBoard, PlayerTwoBoard);
-        }
-
-        internal static CellProperty[,] MakeBoard()
-        {
-            CellProperty[,] Board = new CellProperty[10, 10];
-
-            for (int i = 0; i < Board.GetLength(i); i++)
-            {
-                for (int j = 0; j < Board.GetLength(j); j++)
-                {
-                    Board[i, j] = CellProperty.Empty;
-                }
-            }
-
-            return Board;
         }
 
         private CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction)
@@ -94,7 +79,7 @@ namespace BattleshipsWar
             for (int i = 0; i < ship.Coords.Count; i++)
             {
                 coordsToChange = ship.Coords[i];
-                for (int j = 0; j < board.GetLength(j); j++)
+                for (int j = 0; j < 10; j++)
                 {
                     for (int k = 0; k < board.GetLength(k); k++)
                     {
