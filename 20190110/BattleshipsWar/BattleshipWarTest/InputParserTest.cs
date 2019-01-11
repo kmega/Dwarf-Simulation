@@ -52,25 +52,25 @@ namespace BattleshipWarTest
             Assert.AreEqual(expected[0], result[0]);
             Assert.AreEqual(expected[1], result[1]);
         }
-        [ExpectedException(typeof(NotImplementedException))]
-        [TestMethod]
-        public void ShouldThrowExceptionWhenStringIsLongerThan3()
-        {
-            //Given 
-            string coords = "JB10";           
-            //When
-            InputParser parser = new InputParser();
-            int[] result = parser.ChangeCordsToIndexes(coords);
-        }
-        [ExpectedException(typeof(NotImplementedException))]
-        [TestMethod]
-        public void ShouldThrowExceptionWhenStringIsEmpty()
-        {
-            //Given 
-            string coords = "";
-            //When
-            InputParser parser = new InputParser();
-            int[] result = parser.ChangeCordsToIndexes(coords);
-        }
+        //[ExpectedException(typeof(NotImplementedException))]
+        //[TestMethod]
+        //public void ShouldThrowExceptionWhenStringIsLongerThan3()
+        //{
+        //    //Given 
+        //    string coords = "JB10";           
+        //    //When
+        //    InputParser parser = new InputParser();
+        //    int[] result = parser.ChangeCordsToIndexes(coords);
+        //}
+        //[ExpectedException(typeof(NotImplementedException))]
+        //[TestMethod]
+        //public void ShouldThrowExceptionWhenStringIsEmpty()
+        //{
+        //    //Given 
+        //    string coords = "";
+        //    //When
+        //    InputParser parser = new InputParser();
+        //    int[] result = parser.ChangeCordsToIndexes(coords);
+        //}
     }
 }
