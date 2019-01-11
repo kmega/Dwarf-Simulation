@@ -98,7 +98,7 @@ namespace BattleshipsWar
         {
             foreach (var item in listofships)
             {
-                if (item.Coords.Contains(tempcoordinates))
+                if (item.Coords.Any(p => p.SequenceEqual(tempcoordinates))) 
                 {
 
                     List<CellProperty> shipStatus = new List<CellProperty>();

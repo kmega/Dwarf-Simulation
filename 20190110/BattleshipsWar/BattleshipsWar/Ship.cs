@@ -165,6 +165,7 @@ namespace BattleshipsWar
 
         private void BuildShipKindTwo(Direction direction, int[] startCoords)
         {
+            Coords.Add(new[] { startCoords[0], startCoords[1] });
             switch (direction)
             {
                 case Direction.Up:
