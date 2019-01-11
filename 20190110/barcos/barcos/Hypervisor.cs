@@ -72,10 +72,11 @@ namespace barcos
 
         public void UpDateBoard(Player player)
         {
+            char markToDisplay;
             int i = 1;
             foreach(FieldsStatus boardField in player.Board.Fields)
             {
-                char markToDisplay = (char)boardField;
+                 markToDisplay = (char)boardField;
                 if (i % 10 == 0 ) { Console.WriteLine(markToDisplay + "   |   "); }
                 else { Console.Write(markToDisplay + "   |   "); }
                 i++;
