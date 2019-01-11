@@ -5,8 +5,6 @@ namespace BattleShips
 {
     public class Game
     {
-
-
         public static bool IsFieldHit(Player player)
         {
             throw new NotImplementedException();

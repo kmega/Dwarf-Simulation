@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BattleShips.Enums
+﻿namespace BattleShips.Enums
 {
     public enum Direction
     {
-        Left,Right,Up,Down
+        Left, Right, Up, Down
     }
 }

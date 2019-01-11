@@ -15,7 +15,6 @@ namespace BattleShips
         {
             Type = type;
             OccupiedPositions = positions;
-            player.RegisterShip(this);
         }
     }
 }
