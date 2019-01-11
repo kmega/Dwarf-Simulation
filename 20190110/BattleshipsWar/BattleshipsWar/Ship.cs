@@ -8,36 +8,68 @@ namespace BattleshipsWar
 {
     public class Ship
     {
-        public List<int> Coords { get; set; }
+        public List<int[]> Coords { get; private set; }
 
-        public Ship(KindOfShip kindOfShip, int startCoords, Directions direction)
+        public Ship(KindOfShip kindOfShip, int[] startCoords, Direction direction)
         {
             switch (kindOfShip)
             {
                 case KindOfShip.Two:
                     {
-                        BuildShip(direction);
+                        BuildShipKindTwo(direction, startCoords);
                         break;
                     }
                     
                 case KindOfShip.Three:
                     {
-                        BuildShip(direction);
+                        BuildShipKindThree(direction, startCoords);
                         break;
                     }
                 case KindOfShip.Four:
                     {
-                        BuildShip(direction);
+                        BuildShipKindFour(direction, startCoords);
                         break;
                     }
                 case KindOfShip.Six:
                     {
-                        BuildShip(direction);
+                        BuildShipKindSix(direction, startCoords);
                         break;
                     }
                 default:
                     break;
             }
+        }
+
+        private void BuildShipKindSix(Direction direction, int[] startCoords)
+        {
+            Coords.Add(new[]{startCoords[0], startCoords[1]});
+
+            switch(direction)
+            {
+                case Direction.Up:
+                    {
+                        for (int i = 0; i <= 6; i++)
+                        {
+                            Coords
+                        }
+                        break;
+                    }
+            }
+        }
+
+        private void BuildShipKindFour(Direction direction, int[] startCoords)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuildShipKindThree(Direction direction, int[] startCoords)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void BuildShipKindTwo(Direction direction, int[] startCoords)
+        {
+            throw new NotImplementedException();
         }
     }
 }
