@@ -12,6 +12,11 @@ namespace barcos
         public int CoordinatesX { get; }
         public int CoordinatesY { get; }
 
+        public Ship(ShipMasts masts)
+        {
+            Masts = masts;
+        }
+
         public Ship(ShipOrientation shipOrientation, ShipMasts masts, int X, int Y)
         {
             Masts = masts;
