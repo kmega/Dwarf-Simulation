@@ -15,7 +15,7 @@ namespace BattleShips
             while (players.Count > 1)
             {
                 //field from UI
-                NextTurn(players, field);
+                //NextTurn(players, field);
             }
 
 
