@@ -19,6 +19,8 @@ namespace BattleshipsWar
             2, 2, 3, 3, 4, 4, 6
         };
 
+        private int[] Coords = { -1, -1 };
+
         internal void PlaceShips()
         {
             string placement = "", direction;
@@ -26,8 +28,9 @@ namespace BattleshipsWar
             {
                 Console.WriteLine("Choose where you want to place a ship:");
                 placement = Console.ReadLine();
-                Console.WriteLine("Choose ship direction:");
+                Console.WriteLine("Choose ship direction (Up, right, Down, Left):");
                 direction = Console.ReadLine();
+                Console.Clear();
                 if (PlayerOnePlacedAllShips == false)
                 {
                     PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
@@ -54,7 +57,17 @@ namespace BattleshipsWar
         private object[,] PlaceShipOnBoard(object[,] board, string placement, string direction)
         {
             InputParser check = new InputParser();
-            
+            Coords = check.ChangeCordsToIndexes(placement);
+
+            if (Coords[0] == -1 && Coords[0] == -2)
+            {
+                if ()
+                {
+
+                }
+                Console.WriteLine("Wrong coordinates!\n\n");
+                return board;
+            }
 
             if (Ships.Count == 0)
             {
