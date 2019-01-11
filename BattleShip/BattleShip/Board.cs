@@ -21,9 +21,7 @@ namespace BattleShip
                 {
                     Fields[i, j] = Field.O;
                 }
-            }
-               
-            
+            } 
         }
     }
 }
