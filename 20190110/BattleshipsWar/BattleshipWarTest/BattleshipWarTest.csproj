@@ -49,6 +49,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ShipTests.cs" />
     <Compile Include="StartGameTests.cs" />
     <Compile Include="ScannerTest.cs" />
     <Compile Include="InputParserTest.cs" />
