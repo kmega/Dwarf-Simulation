@@ -5,6 +5,16 @@ namespace BattleShips
 {
     public class Player
     {
+<<<<<<< HEAD
+=======
+        public Player()
+        {
+            FieldUsedByPlayer = new List<string>();
+            FieldWithDestroyedShips = new List<string>();
+            FieldWithShips = new List<string>();
+        }
+        public string PlayerName { get; set; }
+>>>>>>> 20190110/GPS-MPochrzest
         public List<string> FieldUsedByPlayer { get; set; }
 
         public List<string> FieldWithDestroyedShips { get; set; }

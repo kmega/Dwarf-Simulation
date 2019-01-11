@@ -19,7 +19,11 @@ namespace BattleShips
             int length = GetShipLength(type);
             Direction direct = GetDirection(direction);
             List<string> positions = BuildShipPositions(startingPoint, direct, length, player);
+<<<<<<< HEAD
             player.FieldWithShips.AddRange(positions);    
+=======
+            player.FieldWithShips.AddRange(positions);
+>>>>>>> 20190110/GPS-MPochrzest
         }
 
         public List<string> BuildShipPositions(string startingPoint, Direction direct, int length, Player player)
@@ -28,6 +32,7 @@ namespace BattleShips
             positions.Add(startingPoint);
             var temporaryString = startingPoint.Insert(1, ",");
             var splitted = temporaryString.Split(",");
+<<<<<<< HEAD
             for(int i = 0; i<length - 1; i++)
             {
                 if(direct == Direction.Down)
@@ -43,23 +48,104 @@ namespace BattleShips
                     positions.Add(splitted[0] + verticalPosition.ToString());
                 }
                 if(direct == Direction.Right)
+=======
+            for (int i = 0; i < length - 1; i++)
+            {
+                if (direct == Direction.Down)
+                {
+                    int verticalPosition = Int32.Parse(splitted[1]) + (i + 1);
+                    CheckVerticalPosition(verticalPosition);
+                    positions.Add(splitted[0] + verticalPosition.ToString());
+                }
+                if (direct == Direction.Up)
+                {
+                    int verticalPosition = Int32.Parse(splitted[1]) - (i + 1);
+                    CheckVerticalPosition(verticalPosition);
+                    positions.Add(splitted[0] + verticalPosition.ToString());
+                }
+                if (direct == Direction.Right)
+>>>>>>> 20190110/GPS-MPochrzest
                 {
                     char letter = splitted[0].ToCharArray().First();
                     var horizontalPosition = letter + (i + 1);
                     CheckHorizontalPosition(horizontalPosition);
                     positions.Add(Convert.ToChar(horizontalPosition) + splitted[1]);
                 }
+<<<<<<< HEAD
                 if(direct == Direction.Left)
+=======
+                if (direct == Direction.Left)
+>>>>>>> 20190110/GPS-MPochrzest
                 {
                     char letter = splitted[0].ToCharArray().First();
                     var horizontalPosition = letter - (i + 1);
                     CheckHorizontalPosition(horizontalPosition);
                     positions.Add(Convert.ToChar(horizontalPosition) + splitted[1]);
+<<<<<<< HEAD
                 }             
+=======
+                }
+                CheckCollisionPositions(positions, player);
+                BuildUnavailablePositions(positions, direct);
+>>>>>>> 20190110/GPS-MPochrzest
             }
             return positions;
         }
 
+<<<<<<< HEAD
+=======
+        private void CheckCollisionPositions(List<string> positions, Player player)
+        {
+            foreach (var position in positions)
+            {
+                var result = player.FieldWithShips.Where(x => x == position).FirstOrDefault();
+                if (result != null)
+                {
+                    throw new ArgumentException("Ship placed inproperly, try again: ");
+                }
+            }
+        }
+        public void BuildUnavailablePositions(List<string> positions, Direction direction)
+        {
+            foreach (var position in positions)
+            {
+                var temporaryString = position.Insert(1, ",");
+                var splitted = temporaryString.Split(",");
+                if (direction == Direction.Left || direction == Direction.Right)
+                {
+                    UnavailablePositions.Add(splitted[0] + (Int32.Parse(splitted[1]) + 1));
+                    UnavailablePositions.Add(splitted[0] + (Int32.Parse(splitted[1]) - 1));
+                }
+            }
+            if (direction == Direction.Left || direction == Direction.Right)
+            {
+                var leftPos = positions.First();
+                var rightPos = positions.Last();
+                var temporaryStringLeft = leftPos.Insert(1, ",");
+                var splittedLeft = temporaryStringLeft.Split(",");
+                char letter = splittedLeft[0].ToCharArray().First();
+                var horizontalPosition = letter -1;
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (Int32.Parse(splittedLeft[1]) +1).ToString());
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (Int32.Parse(splittedLeft[1]) -1).ToString());
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (splittedLeft[1]));
+
+                var temporaryStringRight = rightPos.Insert(1, ",");
+                var splittedRight = temporaryStringRight.Split(",");
+                char letter2 = splittedRight[0].ToCharArray().First();
+                var horizontalPosition2 = letter2 + 1;
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition2) + (Int32.Parse(splittedLeft[1]) + 1).ToString());
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition2) + (Int32.Parse(splittedLeft[1]) - 1).ToString());
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition2) + (splittedLeft[1]));
+            
+}
+            if (direction == Direction.Up || direction == Direction.Down)
+            {
+
+            }
+
+        }
+
+>>>>>>> 20190110/GPS-MPochrzest
         public void CheckHorizontalPosition(int horizontalPosition)
         {
             if(horizontalPosition <65 || horizontalPosition > 74)

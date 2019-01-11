@@ -14,6 +14,7 @@
 
 8. Jeżeli trafił i zatopił statek wroga to otaczające pola wyświetlają blokadę strzału
 
+	8.1. Jeżeli trafił to ma kolejny ruch tak długo aż nie chybi
 9. Flota gracza ma być odświeżana o strzały przeciwnika
 
 10. Po rozgrywce wyświetlamy zwycięzcę
