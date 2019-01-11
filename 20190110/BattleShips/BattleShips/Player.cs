@@ -4,6 +4,7 @@ namespace BattleShips
 {
     public class Player
     {
+        public string PlayerName { get; set; }
         public List<string> FieldUsedByPlayer { get; set; }
         public List<string> FieldWithDestroyedShips { get; set; }
         public List<string> FieldWithShips { get; set; }
