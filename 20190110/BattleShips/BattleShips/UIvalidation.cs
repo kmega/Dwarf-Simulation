@@ -20,9 +20,10 @@ namespace BattleShip
             string j = "";
             do
             {
+            choose = Console.ReadLine();
             foreach (string i in chooseLetter)
             {
-                choose = Console.ReadLine();
+                
                 if (choose.Contains(i))
                 {
                     x = choose;
@@ -30,9 +31,10 @@ namespace BattleShip
                 else
                 {
                     x = j;
+                    Console.WriteLine("Wprowadzono błędną wartość!!!");
                 }
             }
-            }while (choose == j);
+            }while (x != j);
             return x;
 
         } 
