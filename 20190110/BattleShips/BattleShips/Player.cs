@@ -6,10 +6,21 @@ namespace BattleShips
     public class Player
     {
         public List<string> FieldUsedByPlayer { get; set; }
+
         public List<string> FieldWithDestroyedShips { get; set; }
+
         public List<string> FieldWithShips { get; set; }
+
         public bool IsActive { get; set; }
+
         public string PlayerName { get; set; }
+
+        public Player()
+        {
+            FieldUsedByPlayer = new List<string>();
+            FieldWithDestroyedShips = new List<string>();
+            FieldWithShips = new List<string>();
+        }
 
         public override bool Equals(object obj)
         {
@@ -27,4 +38,4 @@ namespace BattleShips
             return HashCode.Combine(FieldUsedByPlayer, FieldWithDestroyedShips, FieldWithShips, IsActive, PlayerName);
         }
     }
-} 
+}

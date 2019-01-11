@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleShip;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,13 +8,20 @@ namespace BattleShips
     public class UI
     {
         public int boardsize = 10;
+        
+        UIvalidation validation = new UIvalidation();
+        ShipFactory shipfactory = new ShipFactory();
+        Player player = new Player();
+        string ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, ChoosingDirectionByPlayerAfterValidation, NameOfPlayer;
         public UI()
         {
+            
             GameRules();
-            Console.WriteLine();
+            Console.WriteLine();        
             ChooseTypeOfShip();
             Console.WriteLine();
             BoardGenerate();
+
             Console.ReadKey();
         }
 
@@ -40,12 +48,31 @@ namespace BattleShips
 
         public void ChooseTypeOfShip()
         {
-            Console.WriteLine("Wybierz rodzaj statku, który chcesz zamieścić na planszy: (Wpisz odpowiednią literę\n" +
-                "A- CARRIER (pięciomasztowiec o wielkości 5 pól)\n" +
-                "B- BATTLESHIP (czteromasztowiec o wielkości 5 pól) \n" +
-                "D- DESTROYER (trzymasztowiec o wielkości 3 pól)\n" +
-                "S- SUBMARINE (trzymasztowiec o wielkości 3 pól)\n" +
-                "P- PATROL BOAT (dwumasztowiec o wielkości 2 pól)");
+            Console.WriteLine("Podaj swoje imię:");
+            NameOfPlayer = Console.ReadLine();
+            player.PlayerName = NameOfPlayer;
+            
+            List<string> TypeOfShips = new List<string> { "A- CARRIER (pięciomasztowiec o wielkości 5 pól)\n",
+                "B- BATTLESHIP (czteromasztowiec o wielkości 4 pól) \n",
+                "D- DESTROYER (trzymasztowiec o wielkości 3 pól)\n",
+                "S- SUBMARINE (trzymasztowiec o wielkości 3 pól)\n",
+                "P- PATROL BOAT (dwumasztowiec o wielkości 2 pól)" };
+            Console.WriteLine("Wybierz rodzaj statku, który chcesz zamieścić na planszy: (Wpisz odpowiednią literę\n");
+            foreach (string x in TypeOfShips)
+            {
+                Console.WriteLine(x);
+            }
+            //choosenshipbyplayergotovalidation = Console.ReadLine();
+            ChoosingShipByPlayerAfterValidation = validation.TypeOfShipValidation();
+            Console.WriteLine("Wybierz punkt startowy:");
+            ChoosingStartPointAfterValidation = validation.StartPointValidation();
+            Console.WriteLine("Wybierz kierunek: (L - Left, R- Right, U - Up, D -Down");
+            ChoosingDirectionByPlayerAfterValidation = validation.DirectionValidation();
+            shipfactory.PlaceSingleShip(ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, ChoosingDirectionByPlayerAfterValidation, player);
+            
+            //playername podeslac
+            //PlaceSingleShip(string shipType, string startingPoint, string direction, Player player)
+          // wyslac do shipfactory = wyslac do playera.
         }
 
         // pusta plansza
@@ -95,7 +122,7 @@ namespace BattleShips
 
         }
 
-        //DODAC LICZBY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      
         //}
         // wybierz statek / prawo lewo pole
         //czy wybrales dobre pole - wybierz jeszcze raz
