@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("BattleshipWarTest")]
@@ -16,7 +15,7 @@ namespace BattleshipsWar
 
         private int[] Coords = { -1, -1 };
 
-        internal void PlaceShips()
+        internal (CellProperty[,], CellProperty[,]) PlaceShips()
         {
             string placement = "", direction;
             while (AllShipsPlaced == false)
@@ -35,6 +34,7 @@ namespace BattleshipsWar
                     PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction);
                 }
             }
+            return (PlayerOneBoard, PlayerTwoBoard);
         }
 
         internal static CellProperty[,] MakeBoard()
