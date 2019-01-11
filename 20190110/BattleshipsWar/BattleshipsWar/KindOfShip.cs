@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace BattleshipsWar
 {
-    public class Cell
+    enum KindOfShip
     {
-
+        Two,
+        Three,
+        Four,
+        Six
     }
 }
