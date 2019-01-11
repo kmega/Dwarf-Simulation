@@ -1,5 +1,7 @@
+using System.Xml.Linq;
 using barcos;
 using barcos.Enums;
+using Moq;
 using NUnit.Framework;
 
 namespace Tests
@@ -11,7 +13,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateTwoMastsShip(ShipOrientation.horizontally, 1);
+            IShip newShip = shipFactory.CreateTwoMastsShip(ShipOrientation.horizontally, 1,2);
             Assert.IsTrue(newShip.GetCurrentState() == 2);
         }
         [Test]
@@ -19,7 +21,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateThreeMastsShip(ShipOrientation.horizontally, 1);
+            IShip newShip = shipFactory.CreateThreeMastsShip(ShipOrientation.horizontally, 1,2);
             Assert.IsTrue(newShip.GetCurrentState() == 3);
         }
         [Test]
@@ -27,7 +29,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFourMastsShip(ShipOrientation.horizontally, 1);
+            IShip newShip = shipFactory.CreateFourMastsShip(ShipOrientation.horizontally, 1,2);
             Assert.IsTrue(newShip.GetCurrentState() == 4);
         }
         [Test]
@@ -35,7 +37,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1);
+            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1,2);
             Assert.IsTrue(newShip.GetCurrentState() == 5);
         }
 
@@ -44,7 +46,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1);
+            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1,2);
             
             newShip.HasHit();
             
@@ -55,7 +57,7 @@ namespace Tests
         {
             ShipFactory shipFactory = new ShipFactory();
             
-            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1);
+            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.horizontally, 1,2);
 
             for (int i = 0; i < 5; i++)
             {
@@ -64,5 +66,41 @@ namespace Tests
             
             Assert.IsTrue(newShip.Destroyed);
         }
+        [Test]
+        public void FightTest()
+        {
+            FieldsStatus[,] Fields = new FieldsStatus[9,9];
+
+            ShipFactory shipFactory = new ShipFactory();
+            
+            IShip newShip = shipFactory.CreateFiveMastsShip(ShipOrientation.vertically, 1,2);
+
+            if (newShip.Orientation == ShipOrientation.vertically)
+            {
+                for (int i = newShip.CoordinatesX; i < (int)newShip.Masts; i++)
+                {
+                    Fields[i,newShip.CoordinatesY] = FieldsStatus.ship;
+                }
+            }
+
+            Assert.IsTrue(Shoot(2, 2, Fields, newShip));
+            
+                       
+        }
+
+        public bool Shoot(int x, int y, FieldsStatus[,] fieldsStatuses, IShip ship)
+        {
+            if (fieldsStatuses[x, y] == FieldsStatus.ship)
+            {
+                fieldsStatuses[x, y] = FieldsStatus.hit;
+                ship.HasHit();
+
+                return true;
+            }
+
+            return false;
+        }
+        
+        
     }
 }

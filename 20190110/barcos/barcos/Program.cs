@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using barcos.Enums;
 
 namespace barcos
 {
@@ -17,8 +19,8 @@ namespace barcos
             Console.WriteLine("What is Your name, Player_2?");
             string player_2 = Console.ReadLine();
             Console.WriteLine("Hello in BattleShip game, {0}!", player_2);
-
-            hypervisor.InitiatePlayers(player_1, player_2);
+            
+            
         }
     }
 }

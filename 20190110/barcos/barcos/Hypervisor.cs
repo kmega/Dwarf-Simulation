@@ -41,15 +41,14 @@ namespace barcos
             {
                 player.Name = players[i];
 
-                foreach (var ship in player.Ships)
+                for (int j = 0; j < 4; j++)
                 {
-                    Console.WriteLine("Set ship coordinate X: ");
+                    Console.WriteLine("Set ship orientation: ");
                     int x = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("Set ship coordinate Y: ");
+                    Console.WriteLine("Set ship coordinate X");
                     int y = Convert.ToInt32(Console.ReadLine());
 
-                    player.SetShipsOnBoard(ship, x, y, ShipOrientation.horizontally);
                 }
 
                 i++;

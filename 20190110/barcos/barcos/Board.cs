@@ -3,8 +3,9 @@ using barcos.Enums;
 
 namespace barcos
 {
-    public class Board
+    public class Board : IBoard
     {
+        
         public FieldsStatus[] Fields = new FieldsStatus[100];
 
         public Board()
@@ -16,5 +17,6 @@ namespace barcos
                 fieldCounter++;
             }
         }
+
     }
 }
