@@ -44,7 +44,7 @@ namespace BattleShip
 
 
 
-            } while ( result);
+            } while ( result==false);
 
             Console.ReadKey();
 
