@@ -6,6 +6,8 @@ namespace barcos
     {
         static void Main(string[] args)
         {
+            //phase 1
+
             Hypervisor hypervisor = new Hypervisor();
 
             Console.WriteLine("What is Your name, Player_1?");
