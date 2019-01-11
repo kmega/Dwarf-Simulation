@@ -6,8 +6,17 @@ namespace barcos
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
-            //Board board = new Board();
+            Hypervisor hypervisor = new Hypervisor();
+
+            Console.WriteLine("What is Your name, Player_1?");
+            string player_1 = Console.ReadLine();
+            Console.WriteLine("Hello in BattleShip game, {0}!", player_1);
+
+            Console.WriteLine("What is Your name, Player_2?");
+            string player_2 = Console.ReadLine();
+            Console.WriteLine("Hello in BattleShip game, {0}!", player_2);
+
+            hypervisor.InitiatePlayers(player_1, player_2);
         }
     }
 }
