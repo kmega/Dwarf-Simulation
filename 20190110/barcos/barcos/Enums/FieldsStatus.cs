@@ -3,6 +3,8 @@ namespace barcos.Enums
 {
     public enum FieldsStatus
     {
-        empty, ship, hit
+        empty = 'o',
+        ship = '࿑',
+        hit = 'x'
     }
 }

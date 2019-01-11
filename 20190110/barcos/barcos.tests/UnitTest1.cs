@@ -36,16 +36,7 @@ namespace Tests
             int boardLength = testedBoard.Fields.Length;
             int boardFieldCounter = 0;
 
-<<<<<<< HEAD
-            Assert.IsTrue(testedBoard.Fields[56] == FieldsStatus.empty);
 
-            while (boardFieldCounter < boardLength)
-            {
-                Assert.AreEqual(
-                    testedBoard.Fields[boardFieldCounter],
-                    FieldsStatus.empty);
-                boardFieldCounter++;
-=======
             while (boardFieldCounter < boardLength)
             {
                 Assert.AreEqual(
@@ -54,7 +45,7 @@ namespace Tests
                     "Board at index " + boardFieldCounter + 
                     " has content = " + testedBoard.Fields[boardFieldCounter]);
                 boardFieldCounter++;
->>>>>>> 20190110/barcos
+
             }
         }
     }
