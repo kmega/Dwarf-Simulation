@@ -7,8 +7,21 @@ using System.Threading.Tasks;
 namespace BattleshipsWar.UI
 {
     public class ActionGameUI
-    {
-        StartGame Game = new StartGame();
-        
+    {               
+        public void DisplayUI()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Console.Write("[O]");
+                }
+                Console.WriteLine();
+            }
+            Console.ReadKey();
+
+            //StartGame Game = new StartGame();
+           // Game.PlaceShips();
+        }
     }
 }
