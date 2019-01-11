@@ -7,8 +7,8 @@ namespace BattleshipsWar
 {
     class StartGame
     {
-        public CellProperty[,] PlayerOneBoard;
-        public CellProperty[,] PlayerTwoBoard;
+        public CellProperty[,] PlayerOneBoard = new CellProperty[10,10];
+        public CellProperty[,] PlayerTwoBoard = new CellProperty[10, 10];
 
         private bool AllShipsPlaced = false;
         private int CounterOfShipsPlaced = 0;
