@@ -48,9 +48,9 @@ namespace BattleshipsWar
             {
                 case Direction.Up:
                     {
-                        for (int i = 0; i <= 6; i++)
+                        for (int i = 1; i < 6; i++)
                         {
-                            Coords
+                            Coords.Add(new[] { startCoords[0]-i, startCoords[1] })
                         }
                         break;
                     }
