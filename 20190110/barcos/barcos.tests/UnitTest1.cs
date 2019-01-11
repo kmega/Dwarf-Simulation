@@ -18,7 +18,7 @@ namespace Tests
             List<Player> players = new List<Player>() { player_1, player_2 };
 
             //act
-            hypervisor.InitiatePlayers();
+            hypervisor.InitiatePlayers(playerName_1, playerName_2);
 
 
             //expected

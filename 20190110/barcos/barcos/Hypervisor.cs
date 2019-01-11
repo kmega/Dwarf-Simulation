@@ -12,9 +12,7 @@ namespace barcos
 
         public Hypervisor()
         {
-            //phase 1
             Players = new List<Player>();
- 
         }
 
 
@@ -34,16 +32,14 @@ namespace barcos
         }
 
 
-        public void InitiatePlayers()
+        public void InitiatePlayers(string player_1, string player_2)
         {
+            string[] players = new string[2] { player_1, player_2 };
             int i = 0;
+
             foreach(Player player in Players)
             {
-                //Console.WriteLine("What is Your name, Player{0}?", i);
-                player.Name = (i==0)?  "Pioter":"Janusz";
-
-                //Console.WriteLine("Hello in BattleShip game, {0}!", player.Name);
-
+                player.Name = players[i];
                 i++;
             }
             
