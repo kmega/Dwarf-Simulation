@@ -37,6 +37,7 @@ namespace Socallship
 			while(!Player1.CheckIfLose() && !Player2.CheckIfLose())
 			{
 				PlayOneRound();
+
 			}
 		}
 
