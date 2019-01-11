@@ -19,11 +19,7 @@ namespace BattleShips
             int length = GetShipLength(type);
             Direction direct = GetDirection(direction);
             List<string> positions = BuildShipPositions(startingPoint, direct, length, player);
-<<<<<<< HEAD
-            player.FieldWithShips.AddRange(positions);    
-=======
             player.FieldWithShips.AddRange(positions);
->>>>>>> 20190110/GPS-MPochrzest
         }
 
         public List<string> BuildShipPositions(string startingPoint, Direction direct, int length, Player player)
@@ -32,23 +28,6 @@ namespace BattleShips
             positions.Add(startingPoint);
             var temporaryString = startingPoint.Insert(1, ",");
             var splitted = temporaryString.Split(",");
-<<<<<<< HEAD
-            for(int i = 0; i<length - 1; i++)
-            {
-                if(direct == Direction.Down)
-                {
-                    int verticalPosition = Int32.Parse(splitted[1]) + (i+1);
-                    CheckVerticalPosition(verticalPosition);
-                    positions.Add(splitted[0] + verticalPosition.ToString());
-                }
-                if(direct == Direction.Up)
-                {
-                    int verticalPosition = Int32.Parse(splitted[1]) - (i+1);
-                    CheckVerticalPosition(verticalPosition);
-                    positions.Add(splitted[0] + verticalPosition.ToString());
-                }
-                if(direct == Direction.Right)
-=======
             for (int i = 0; i < length - 1; i++)
             {
                 if (direct == Direction.Down)
@@ -64,36 +43,28 @@ namespace BattleShips
                     positions.Add(splitted[0] + verticalPosition.ToString());
                 }
                 if (direct == Direction.Right)
->>>>>>> 20190110/GPS-MPochrzest
                 {
                     char letter = splitted[0].ToCharArray().First();
                     var horizontalPosition = letter + (i + 1);
                     CheckHorizontalPosition(horizontalPosition);
                     positions.Add(Convert.ToChar(horizontalPosition) + splitted[1]);
                 }
-<<<<<<< HEAD
-                if(direct == Direction.Left)
-=======
                 if (direct == Direction.Left)
->>>>>>> 20190110/GPS-MPochrzest
                 {
                     char letter = splitted[0].ToCharArray().First();
                     var horizontalPosition = letter - (i + 1);
                     CheckHorizontalPosition(horizontalPosition);
                     positions.Add(Convert.ToChar(horizontalPosition) + splitted[1]);
-<<<<<<< HEAD
-                }             
-=======
                 }
-                CheckCollisionPositions(positions, player);
-                BuildUnavailablePositions(positions, direct);
->>>>>>> 20190110/GPS-MPochrzest
+
             }
+            CheckCollisionPositions(positions, player);
+            BuildUnavailablePositions(positions, direct);
+
+
             return positions;
         }
 
-<<<<<<< HEAD
-=======
         private void CheckCollisionPositions(List<string> positions, Player player)
         {
             foreach (var position in positions)
@@ -124,9 +95,9 @@ namespace BattleShips
                 var temporaryStringLeft = leftPos.Insert(1, ",");
                 var splittedLeft = temporaryStringLeft.Split(",");
                 char letter = splittedLeft[0].ToCharArray().First();
-                var horizontalPosition = letter -1;
-                UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (Int32.Parse(splittedLeft[1]) +1).ToString());
-                UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (Int32.Parse(splittedLeft[1]) -1).ToString());
+                var horizontalPosition = letter - 1;
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (Int32.Parse(splittedLeft[1]) + 1).ToString());
+                UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (Int32.Parse(splittedLeft[1]) - 1).ToString());
                 UnavailablePositions.Add(Convert.ToChar(horizontalPosition) + (splittedLeft[1]));
 
                 var temporaryStringRight = rightPos.Insert(1, ",");
@@ -136,8 +107,8 @@ namespace BattleShips
                 UnavailablePositions.Add(Convert.ToChar(horizontalPosition2) + (Int32.Parse(splittedLeft[1]) + 1).ToString());
                 UnavailablePositions.Add(Convert.ToChar(horizontalPosition2) + (Int32.Parse(splittedLeft[1]) - 1).ToString());
                 UnavailablePositions.Add(Convert.ToChar(horizontalPosition2) + (splittedLeft[1]));
-            
-}
+
+            }
             if (direction == Direction.Up || direction == Direction.Down)
             {
 
@@ -145,10 +116,9 @@ namespace BattleShips
 
         }
 
->>>>>>> 20190110/GPS-MPochrzest
         public void CheckHorizontalPosition(int horizontalPosition)
         {
-            if(horizontalPosition <65 || horizontalPosition > 74)
+            if (horizontalPosition < 65 || horizontalPosition > 74)
             {
                 throw new ArgumentException("Ship placed inproperly, try again: ");
             }
@@ -156,7 +126,7 @@ namespace BattleShips
 
         public void CheckVerticalPosition(int verticalPosition)
         {
-            if(verticalPosition > 10 || verticalPosition < 1)
+            if (verticalPosition > 10 || verticalPosition < 1)
             {
                 throw new ArgumentException("Ship placed inproperly, try again: ");
             }
@@ -188,7 +158,7 @@ namespace BattleShips
 
         private Direction GetDirection(string direction)
         {
-            switch(direction)
+            switch (direction)
             {
                 case "l":
                 case "L":
@@ -209,7 +179,7 @@ namespace BattleShips
 
         private int GetShipLength(ShipType shipType)
         {
-            switch(shipType)
+            switch (shipType)
             {
                 case ShipType.Carrier:
                     return 5;
