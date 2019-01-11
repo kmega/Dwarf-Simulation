@@ -14,14 +14,15 @@ namespace BattleshipsWar.UI
             {
                 for (int j = 0; j < 10; j++)
                 {
+                    //if(i)
                     Console.Write("[O]");
                 }
                 Console.WriteLine();
             }
             Console.ReadKey();
 
-            //StartGame Game = new StartGame();
-           // Game.PlaceShips();
+           StartGame Game = new StartGame();
+           Game.PlaceShips();
         }
     }
 }
