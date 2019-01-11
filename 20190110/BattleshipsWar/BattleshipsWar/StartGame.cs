@@ -81,7 +81,7 @@ namespace BattleshipsWar
                 coordsToChange = ship.Coords[i];
                 for (int j = 0; j < 10; j++)
                 {
-                    for (int k = 0; k < board.GetLength(k); k++)
+                    for (int k = 0; k < 10; k++)
                     {
                         if (coordsToChange[0] == j && coordsToChange[1] == k)
                         {
