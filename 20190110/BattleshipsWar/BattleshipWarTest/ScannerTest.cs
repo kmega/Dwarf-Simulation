@@ -38,8 +38,8 @@ namespace BattleshipWarTest
             int[] coordinates = new int[] { 0, 0, };
             CellProperty[,] warmap =new CellProperty[1,1] { { CellProperty.Empty } };
 
-            Scanner scaner = new Scanner();
-            CellProperty result = scaner.CheckCellStatus(warmap, coordinates);
+            Scanner scanner = new Scanner();
+            CellProperty result = scanner.CheckCellStatus(warmap, coordinates);
 
             Assert.AreEqual(CellProperty.Empty, result);
 
@@ -51,8 +51,8 @@ namespace BattleshipWarTest
             int[] coordinates = new int[] { 0, 0, };
             CellProperty[,] warmap = new CellProperty[1, 1] { { CellProperty.Occupied } };
 
-            Scanner scaner = new Scanner();
-            CellProperty result = scaner.CheckCellStatus(warmap, coordinates);
+            Scanner scanner = new Scanner();
+            CellProperty result = scanner.CheckCellStatus(warmap, coordinates);
 
             Assert.AreEqual(CellProperty.Occupied, result);
 
