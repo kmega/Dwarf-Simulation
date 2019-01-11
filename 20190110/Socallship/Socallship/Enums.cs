@@ -4,7 +4,5 @@ using System.Text;
 
 namespace Socallship
 {
-    class Enums
-    {
-    }
+    public enum Field { EMPTY, HIT, MISS, SHIP }
 }
