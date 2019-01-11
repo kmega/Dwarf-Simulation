@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    class Program
+    public enum Field
     {
-        static void Main(string[] args)
-        {
-
-        }
+        // 0 empty field
+        // H you hit ship
+        // F you hit and you do nothing 
+        // S ships
+        O, H, F, S
     }
 }

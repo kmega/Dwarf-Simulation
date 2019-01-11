@@ -62,7 +62,5 @@ namespace BattleShip
                 Console.WriteLine();
             }
         }
-
-       
     }
 }
