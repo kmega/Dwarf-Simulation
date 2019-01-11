@@ -59,12 +59,8 @@ namespace BattleshipsWar
             InputParser check = new InputParser();
             Coords = check.ChangeCordsToIndexes(placement);
 
-            if (Coords[0] == -1 && Coords[0] == -2)
+            if (Coords[0] == -1 && Coords[1] == -1)
             {
-                if ()
-                {
-
-                }
                 Console.WriteLine("Wrong coordinates!\n\n");
                 return board;
             }
