@@ -25,14 +25,14 @@ namespace BattleShips
                 "Kolumny są oznaczone poprzez współrzędne literami od A do J i liczbami 1 do 10. \n" +
                 "Na jednym z kwadratów gracz zaznacza swoje statki, których położenie będzie odgadywał przeciwnik. \n" +
                 "Na drugim zaznacza trafione statki przeciwnika i oddane przez siebie strzały. \n" +
-                "Statki ustawiane są w pionie lub poziomie, w taki sposób, aby nie stykały się one ze sobą ani bokami, ani rogami.\n" + 
+                "Statki ustawiane są w pionie lub poziomie, w taki sposób, aby nie stykały się one ze sobą ani bokami, ani rogami.\n" +
                 "Trafienie okrętu przeciwnika polega na strzale, który jest odgadnięciem położenia jakiegoś statku.\n" +
                 "Strzały oddawane są naprzemiennie, poprzez podanie współrzędnych pola(np.B5).\n" +
                 "W przypadku strzału trafionego, gracz kontynuuje strzelanie(czyli swój ruch) aż do momentu chybienia.\n" +
                 "Zatopienie statku ma miejsce wówczas, gdy gracz odgadnie położenie całego statku.\n" +
                 "O chybieniu interfejs informuje użytkownika słowem „Pudło”, o trafieniu „Trafiony” lub „(Trafiony)Zatopiony”.\n" +
                 "Wygrywa ten, kto pierwszy zatopi wszystkie statki przeciwnika.");
-         
+
         }
 
 
@@ -49,36 +49,54 @@ namespace BattleShips
         }
 
         // pusta plansza
-
         public void BoardGenerate()
         {
-            List<int> Numbers = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
-       
-            Console.Write(" _________________________________________");
-            Console.WriteLine();
-            Console.Write(" | A | B | C | D | E | F | G | H | I | J |");
-            Console.WriteLine();
-            for (int i = 0; i < 2*boardsize; i++)
+            List<string> ZeroRow = new List<string> { "  ", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J" };
+            List<string> FirstRow = new List<string> { "1 ", };
+            List<string> SecondRow = new List<string> { "2 ", };
+            List<string> ThirdRow = new List<string> { "3 ", };
+            List<string> FourthRow = new List<string> { "4 ", };
+            List<string> FifthRow = new List<string> { "5 ", };
+            List<string> SixthRow = new List<string> { "6 ", };
+            List<string> SeventhRow = new List<string> { "7 ", };
+            List<string> EightRow = new List<string> { "8 ", };
+            List<string> NineRow = new List<string> { "9 ", };
+            List<string> TenRow = new List<string> { "10", };
+            List<List<string>> ListOfBoardElements = new List<List<string>> { ZeroRow, FirstRow, SecondRow, ThirdRow, FourthRow, FifthRow, SixthRow, SeventhRow, EightRow, NineRow, TenRow };
+
+            for (int i = 0; i < ListOfBoardElements.Count; i++)
             {
-                Console.Write(" |");
-               
-               
-                    for (int j = 0; j < boardsize  ; j++)
-                    {
-                    if ( i % 2 != 0)
-                    {
 
-
-                        Console.Write(" *" + " |");
+                for (int j = 0; j < ListOfBoardElements[i].Count; j++)
+                {
+                    if (ListOfBoardElements[i].Count < ListOfBoardElements.Count)
+                    {
+                        ListOfBoardElements[i].Add("*");
                     }
-                    else
-                    { Console.Write("----"); }
-                    }
-                    Console.WriteLine();                         
+                }
             }
-            Console.Write(" _________________________________________");
-            //DODAC LICZBY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+            for (int i = 0; i < ListOfBoardElements.Count; i++)
+            {
+
+                Console.WriteLine("--------------------------------------------");
+
+                for (int j = 0; j < ListOfBoardElements[i].Count; j++)
+                {
+
+                    Console.Write(ListOfBoardElements[i][j] + " | ");
+
+                }
+                Console.WriteLine();
+
+
+            }
+            Console.WriteLine("--------------------------------------------");
+
         }
+
+        //DODAC LICZBY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        //}
         // wybierz statek / prawo lewo pole
         //czy wybrales dobre pole - wybierz jeszcze raz
         //nie mozesz wybrac statku w polu obok
