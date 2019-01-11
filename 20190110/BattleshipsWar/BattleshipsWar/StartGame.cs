@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("BattleshipWarTest")]
@@ -10,6 +11,9 @@ namespace BattleshipsWar
         public CellProperty[,] PlayerOneBoard;
         public CellProperty[,] PlayerTwoBoard;
 
+        public List<Ship> PlayerOneShips = new List<Ship>(); 
+        public List<Ship> PlayerTwoShips = new List<Ship>();
+
         private bool AllShipsPlaced = false;
         private int CounterOfShipsPlaced = 0;
 
@@ -20,7 +24,7 @@ namespace BattleshipsWar
             string placement = "", direction;
             while (AllShipsPlaced == false)
             {
-                Console.WriteLine("Choose where you want to place a ship:");
+                Console.WriteLine("Choose where you want to place a " +  + " ship:");
                 placement = Console.ReadLine();
                 Console.WriteLine("Choose ship direction (Up, right, Down, Left):");
                 direction = Console.ReadLine();
@@ -49,7 +53,6 @@ namespace BattleshipsWar
             }
 
             direction = direction.ToLower();
-
             Direction userChoice;
 
             switch (direction)
@@ -73,7 +76,29 @@ namespace BattleshipsWar
 
             KindOfShip lengthOfShip = KindOfShip.Six;
 
+            if (CounterOfShipsPlaced > 0)
+            {
+                lengthOfShip = KindOfShip.Four;
+                if (CounterOfShipsPlaced > 2)
+                {
+                    lengthOfShip = KindOfShip.Three;
+                    if (CounterOfShipsPlaced > 4)
+                    {
+                        lengthOfShip = KindOfShip.Two;
+                    }
+                }
+            }
+
             Ship ship = new Ship(lengthOfShip, Coords, userChoice);
+            if (CounterOfShipsPlaced < 7)
+            {
+                PlayerOneShips.Add(ship);
+            }
+            else
+            {
+                PlayerTwoShips.Add(ship);
+            }
+
             int[] coordsToChange;
 
             for (int i = 0; i < ship.Coords.Count; i++)
@@ -88,7 +113,7 @@ namespace BattleshipsWar
                             board[j, k] = CellProperty.Occupied;
                         }
                     }
-                }
+                }                                                                                                                                                                                                                                                                                                                                                                                                                                                              
             }
 
             CounterOfShipsPlaced++;
