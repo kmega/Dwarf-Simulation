@@ -1,6 +1,8 @@
 using BattleShips;
+using BattleShips.Enums;
 using NUnit.Framework;
 using System;
+using System.Collections.Generic;
 
 namespace Tests
 {
@@ -109,6 +111,21 @@ namespace Tests
             Assert.Throws<ArgumentException>(
                 () => actual.CheckHorizontalPosition(at),
                 "Ship placed inproperly, try again: ");
+        }
+        [Test]
+        public void SOMETHING()
+        {
+            //given:
+            List<string> positions = new List<string>()
+            {
+                "E2", "F2"
+            };
+            Direction direction = Direction.Right;
+            //when
+            ShipFactory actual = new ShipFactory();
+            actual.BuildUnavailablePositions(positions, direction);
+            //then
+
         }
     }
 }
