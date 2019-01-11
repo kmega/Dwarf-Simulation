@@ -50,7 +50,7 @@ namespace BattleshipsWar
                     {
                         for (int i = 1; i < 6; i++)
                         {
-                            Coords.Add(new[] { startCoords[0]-i, startCoords[1] })
+                            Coords.Add(new[] { startCoords[0] - i, startCoords[1] });
                         }
                         break;
                     }

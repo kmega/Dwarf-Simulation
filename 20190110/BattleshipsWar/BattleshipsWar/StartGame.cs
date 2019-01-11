@@ -8,15 +8,15 @@ namespace BattleshipsWar
 {
     class StartGame
     {
-        public object[,] PlayerOneBoard = MakeBoard();
+        public CellProperty[,] PlayerOneBoard = MakeBoard();
         private bool PlayerOnePlacedAllShips = false;
 
-        public object[,] PlayerTwoBoard = MakeBoard();
+        public CellProperty[,] PlayerTwoBoard = MakeBoard();
         private bool PlayerTwoPlacedAllShips = false;
 
-        private List<int> Ships = new List<int>
+        private List<KindOfShip> Ships = new List<KindOfShip>
         {
-            2, 2, 3, 3, 4, 4, 6
+            
         };
 
         private int[] Coords = { -1, -1 };
@@ -39,9 +39,9 @@ namespace BattleshipsWar
             }
         }
 
-        private static object[,] MakeBoard()
+        private static CellProperty[,] MakeBoard()
         {
-            object[,] Board = new object[10, 10];
+            CellProperty[,] Board = new CellProperty[10, 10];
 
             for (int i = 0; i < Board.GetLength(i); i++)
             {
@@ -54,7 +54,7 @@ namespace BattleshipsWar
             return Board;
         }
 
-        private object[,] PlaceShipOnBoard(object[,] board, string placement, string direction)
+        private CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction)
         {
             InputParser check = new InputParser();
             Coords = check.ChangeCordsToIndexes(placement);
@@ -64,6 +64,31 @@ namespace BattleshipsWar
                 Console.WriteLine("Wrong coordinates!\n\n");
                 return board;
             }
+
+            direction = direction.ToLower();
+
+            Direction userChoice;
+
+            switch (direction)
+            {
+                case "up":
+                    userChoice = Direction.Up;
+                    break;
+                case "right":
+                    userChoice = Direction.Right;
+                    break;
+                case "down":
+                    userChoice = Direction.Down;
+                    break;
+                case "left":
+                    userChoice = Direction.Left;
+                    break;
+                default:
+                    Console.WriteLine("Wrong direction!\n\n");
+                    return board;
+            }
+
+            Ship build = new Ship(KindOfShip.Six, Coords, userChoice);
 
             if (Ships.Count == 0)
             {
