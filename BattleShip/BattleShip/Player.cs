@@ -47,7 +47,7 @@ namespace BattleShip
             Console.WriteLine();
             for (int i = 0, k = 1; i < player.Player_Board.Fields.GetLength(0); i++)
             {
-                //Console.Write(k++ + "\t");
+              
                 Console.Write(String.Format("{0,-4}", k++)); ;
 
                 for (int j = 0; j < player.Player_Board.Fields.GetLength(1); j++)

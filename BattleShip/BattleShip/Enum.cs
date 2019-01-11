@@ -8,6 +8,6 @@ namespace BattleShip
 {
     public enum Field
     {
-        O, H, F
+        O, H, F, S
     }
 }

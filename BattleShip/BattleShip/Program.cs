@@ -11,7 +11,6 @@ namespace BattleShip
         static void Main(string[] args)
         {
 
-
         }
     }
 }
