@@ -37,7 +37,6 @@ namespace BattleShip
                 Console.WriteLine("Ship id " + ship.Id.ToString() + " Lenght Ship " + ship.Lenght);
             }
         }
-
         public void ShowBoard(Player player)
         {
             Console.Write("\t" );
@@ -62,5 +61,7 @@ namespace BattleShip
                 Console.WriteLine();
             }
         }
+
+
     }
 }
