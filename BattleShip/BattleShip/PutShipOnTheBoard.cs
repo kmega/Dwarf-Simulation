@@ -10,7 +10,7 @@ namespace BattleShip
     {
         public void PutShip(Player player, string Coordinates)
         {
-            int[] coordinate = CoordinatesParser(string Coordinates);
+            int[] coordinate = CoordinatesParser(Coordinates);
 
 
         }
