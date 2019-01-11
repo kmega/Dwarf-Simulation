@@ -11,7 +11,12 @@ namespace BattleshipsWar
     {
         public int[] ChangeCordsToIndexes(string coords)
         {
-            if (coords.Length > 3 || coords.Length <=0) throw new NotImplementedException();
+            if (coords.Length > 3 || coords.Length <=0)
+            {
+                int[] wrongCoords = { -1, -1 };
+                return wrongCoords;
+            }
+
             else
             {               
                 Regex re = new Regex(@"([a-zA-Z]+)(\d+)");
