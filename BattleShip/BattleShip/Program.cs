@@ -10,16 +10,6 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
-            Player player1 = new Player(1);
-            
-           
-
-           
-            player1.ShowBoard(player1);
-           
-
-            Console.ReadKey();
-
 
         }
     }
