@@ -27,6 +27,9 @@ namespace barcos
         public void SetShipsOnBoard(Ship ship, 
             int coordinateX, int coordinateY, ShipOrientation orientation)
         {
+            ship.CoordinatesX = coordinateX;
+            ship.CoordinatesY = coordinateY;
+            ship.Orientation = orientation;
 
         }
 
