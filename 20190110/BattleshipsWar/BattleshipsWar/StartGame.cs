@@ -16,7 +16,7 @@ namespace BattleshipsWar
 
         private int[] Coords = { -1, -1 };
 
-        internal (CellProperty[,], CellProperty[,]) PlaceShips()
+        public (CellProperty[,], CellProperty[,]) PlaceShips()
         {
             string placement = "", direction;
             while (AllShipsPlaced == false)
