@@ -10,15 +10,42 @@ namespace FoodTracks.Model
         {
             _discountCalculator = discountCalculator;
         }
-      
+
         public decimal HowMuch(Burger burger)
         {
-            return ValueBurger(burger) + _discountCalculator.Calculate();
+            if (_discountCalculator != null)
+            {
+                return ValueBurger(burger) + _discountCalculator.Calculate();
+            }
+            else
+            {
+                return ValueBurger(burger);
+            }
         }
 
         private decimal ValueBurger(Burger burger)
         {
-            return 0;
+            if(burger.Cheeseness == Cheeseness.Single)
+            {
+                if(burger.Meet.Type == MeetType.None)
+                {
+                    return 5;
+                }
+                if(burger.Addons.Contains(AddonType.Halapenio) 
+                    && burger.Addons.Contains(AddonType.Egg))
+                {
+                    return 25;
+                }
+                return 10;
+            }
+            else if(burger.Cheeseness == Cheeseness.Double)
+            {
+                return 20;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }
