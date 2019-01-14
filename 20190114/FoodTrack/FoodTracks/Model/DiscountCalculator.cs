@@ -11,7 +11,6 @@ namespace FoodTracks.Model
             {
                 return -15;
             }
-
             return 0;
         }
     }

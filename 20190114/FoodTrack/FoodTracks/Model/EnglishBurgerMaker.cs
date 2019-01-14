@@ -7,7 +7,7 @@ namespace FoodTracks.Model
         public Burger Make()
         {
 			return new Burger(Meet.CreateMeet(13), Cheeseness.Single, 
-				new List<AddonType>() { AddonType.Halapenio, AddonType.Egg });
+				new List<AddonType>() { AddonType.Halapenio, AddonType.Egg }, 25);
 		}
     }
 }

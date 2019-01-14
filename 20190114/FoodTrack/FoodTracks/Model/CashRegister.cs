@@ -22,7 +22,7 @@ namespace FoodTracks.Model
 
         private decimal ValueBurger(Burger burger)
         {
-            return 0;
+            return burger.Price;
         }
     }
 }
