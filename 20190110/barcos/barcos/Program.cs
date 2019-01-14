@@ -12,13 +12,30 @@ namespace barcos
             Player playerOne = new Player(hypervisor);
             Player playerTwo = new Player(hypervisor);
 
-            Console.WriteLine("What is Your name, Player_1?");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("What is Your name,");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(" Player_1?");
+            Console.WriteLine("");
             string player_1 = Console.ReadLine();
-            Console.WriteLine("Hello in BattleShip game, {0}!", player_1);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("Hello in BattleShip game,");
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.Write(" {0}!", player_1);
+            Console.WriteLine("");
 
-            Console.WriteLine("What is Your name, Player_2?");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("What is Your name,");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(" Player_2?");
+            Console.WriteLine("");
             string player_2 = Console.ReadLine();
-            Console.WriteLine("Hello in BattleShip game, {0}!", player_2);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("");
+            Console.Write("Hello in BattleShip game,");
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write(" {0}!", player_2);
+            Console.WriteLine("");
 
             hypervisor.InitiatePlayers(player_1, player_2);
 

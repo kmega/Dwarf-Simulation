@@ -41,6 +41,8 @@ namespace barcos
             {
                 player.Name = players[i];
 
+                Console.ForegroundColor = (player.Name == playerName_1) ? ConsoleColor.Red : ConsoleColor.Green;
+
                 Console.WriteLine("{0} locate Your ships on the board:", player.Name);
 
                 foreach (var ship in player.Ships)
@@ -74,14 +76,200 @@ namespace barcos
         {
             char markToDisplay;
             int i = 1;
+
+            
             foreach(FieldsStatus boardField in player.Board.Fields)
             {
-                 markToDisplay = (char)boardField;
+                for (int j = 0; j < 7; j++)
+                {
+                    if(player.Ships[j].CoordinatesY>0)
+                    LocateShipsOnPlayersBoard(j, player);
+                }
+
+                Console.ForegroundColor = (boardField == FieldsStatus.empty) ? ConsoleColor.White : ConsoleColor.Yellow;
+                markToDisplay = (char)boardField;
                 if (i % 10 == 0 ) { Console.WriteLine(markToDisplay + "   |   "); }
                 else { Console.Write(markToDisplay + "   |   "); }
                 i++;
             }
         }
 
+        private void LocateShipsOnPlayersBoard(int i, Player player)
+        {
+            int j = i;
+            if(player.Ships[i].Orientation == ShipOrientation.vertically)
+            {
+                switch(player.Ships[i].CoordinatesY)
+                {
+                    case 1:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 2:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[i+10] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 3:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 20] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 4:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 30] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 5:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 40] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 6:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 50] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 7:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 60] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 8:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 70] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 9:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 80] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+
+                    case 10:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 90] = FieldsStatus.ship;
+                            j+= 10;
+                        }
+                        break;
+                }
+  
+            }
+
+            else
+            {
+                switch (player.Ships[i].CoordinatesY)
+                {
+                    case 1:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 2:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 10] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 3:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 20] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 4:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 30] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 5:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 40] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 6:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 50] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 7:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 60] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 8:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 70] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 9:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 80] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+
+                    case 10:
+                        for (int m = 0; m < (int)player.Ships[i].Masts; m++)
+                        {
+                            player.Board.Fields[j+ 90] = FieldsStatus.ship;
+                            j++;
+                        }
+                        break;
+                }
+            }
+            
+        }
     }
 }

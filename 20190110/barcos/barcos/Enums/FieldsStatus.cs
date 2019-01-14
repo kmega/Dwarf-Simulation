@@ -4,7 +4,7 @@ namespace barcos.Enums
     public enum FieldsStatus
     {
         empty = 'o',
-        ship = '࿑',
+        ship = '^',
         hit = 'x'
     }
 }
