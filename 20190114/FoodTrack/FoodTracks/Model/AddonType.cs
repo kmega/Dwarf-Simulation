@@ -2,8 +2,9 @@
 {
     public enum AddonType
     {
+        
         Egg, 
         Halapenio,
-        None, 
+        None,
     }
 }

@@ -4,6 +4,11 @@
     {
         public Burger Create(IBurgerMaker burgerMaker)
         {
+            if (burgerMaker == null)
+            {
+                return new Burger();
+            }
+
             return burgerMaker.Make();
         }
     }
