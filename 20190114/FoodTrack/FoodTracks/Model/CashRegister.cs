@@ -11,10 +11,15 @@ namespace FoodTracks.Model
         {
             _discountCalculator = discountCalculator;
         }
-      
+
+        public CashRegister(bool chanceExist, IDiscountCalculator PercentChance50 = null)
+        {
+            _50PercentChance = PercentChance50;
+        }
+
         public decimal HowMuch(Burger burger)
         {
-            if (_50PercentChance != null)
+            if (_discountCalculator == null && _50PercentChance != null)
             {
                 return ValueBurger(burger) - (ValueBurger(burger) * _50PercentChance.Calculate()) ;
             }

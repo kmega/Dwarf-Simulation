@@ -1,10 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+
 
 namespace FoodTracks.Model
 {
-    class _50PercentChance
+    class _50PercentChance : IDiscountCalculator
     {
+        public decimal Calculate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
