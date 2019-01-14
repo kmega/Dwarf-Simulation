@@ -4,7 +4,8 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            Burger DoubleCheeseBurger = new Burger(Meet.CreateMeet(6), Cheeseness.Double, AddonType.None);
+            return DoubleCheeseBurger;
         }
     }
 }
