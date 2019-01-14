@@ -13,8 +13,27 @@ namespace FoodTracks.Model
       
         public decimal HowMuch(Burger burger)
         {
-            decimal discount = _discountCalculator == null ? 0.0m : _discountCalculator.Calculate();
-            return ValueBurger(burger) + discount;
+            DateTime date = DateTime.Today;
+            string currentDate = date.ToString("d");
+
+            int day = Convert.ToInt32(currentDate.ToString().Split('-')[2]);
+            int month = Convert.ToInt32(currentDate.ToString().Split('-')[1]);
+
+            if (_discountCalculator == null)
+            {
+                return ValueBurger(burger);
+            }
+            else
+            {
+                if (day == 11 && month == 11)
+                {
+                    return ValueBurger(burger) + _discountCalculator.Calculate();
+                }
+                else
+                {
+                    return ValueBurger(burger);
+                }
+            }
         }
 
         private decimal ValueBurger(Burger burger)
@@ -35,8 +54,10 @@ namespace FoodTracks.Model
             {
                 return 25;
             }
-
-            return 0;
+            else
+            {
+                return 0;
+            }
         }
     }
 }
