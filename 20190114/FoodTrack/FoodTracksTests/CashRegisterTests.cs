@@ -109,5 +109,31 @@ namespace Tests
             // Then
             Assert.AreEqual(price, 0);
         }
+        [Test]
+        public void T15_CheeseBurger_Should_Cost_10_When_50_Percent_Chance_Is_False()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new CheeseburgerMaker());
+            var chance = new TodayIsChanceToDiscount50Percent();
+            var cashRegister = new CashRegister(chance);
+            
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 10);
+        }
+        [Test]
+        public void T16_CheeseBurger_Should_Cost_5_When_50_Percent_Chance_Is_True()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new CheeseburgerMaker());
+            var cashRegister = new CashRegister(new TodayIs1211DiscountCalculator());
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 5);
+        }
     }
 }

@@ -5,6 +5,7 @@ namespace FoodTracks.Model
     public class CashRegister
     {
         private readonly IDiscountCalculator _discountCalculator;
+        private readonly IDiscountCalculator _50PercentChance;
 
         public CashRegister(IDiscountCalculator discountCalculator = null)
         {
@@ -13,8 +14,13 @@ namespace FoodTracks.Model
       
         public decimal HowMuch(Burger burger)
         {
-            if (_discountCalculator == null) return ValueBurger(burger);
+            if (_50PercentChance != null)
+            {
+                return ValueBurger(burger) - (ValueBurger(burger) * _50PercentChance.Calculate()) ;
+            }
 
+            if (_discountCalculator == null) return ValueBurger(burger);
+           
             return ValueBurger(burger) + _discountCalculator.Calculate();
         }
 
