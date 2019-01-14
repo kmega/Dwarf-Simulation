@@ -4,7 +4,21 @@
     {
         public Burger Create(IBurgerMaker burgerMaker)
         {
-            return burgerMaker.Make();
+
+            if (burgerMaker == null)
+            {
+                Burger burger = new Burger();
+                return burger;
+            }
+
+            else
+            {
+                var burger = burgerMaker.Make();
+                return burger;
+            }
+
+            
         }
+
     }
 }

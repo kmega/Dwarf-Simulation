@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FoodTracks.Model
 {
@@ -13,12 +14,49 @@ namespace FoodTracks.Model
       
         public decimal HowMuch(Burger burger)
         {
-            return ValueBurger(burger) + _discountCalculator.Calculate();
+
+            if (_discountCalculator == null)
+            {
+                return ValueBurger(burger);
+            }
+            else
+            {
+                return ValueBurger(burger) + _discountCalculator.Calculate();
+            }
+            
+            //return ValueBurger(burger);
         }
 
         private decimal ValueBurger(Burger burger)
         {
-            return 0;
+            
+            if (burger.Cheeseness == Cheeseness.None && burger.Meet.Type == MeetType.None)
+            {
+                return 0;
+            }
+            else if (burger.Cheeseness == Cheeseness.Single && burger.Meet.Type == MeetType.Medium)
+            {
+                return 10;
+            }
+            else if (burger.Cheeseness == Cheeseness.Double && burger.Meet.Type == MeetType.Medium)
+            {
+                return 20;
+            }
+            else if (burger.Cheeseness == Cheeseness.Single && burger.Meet.Type == MeetType.None)
+            {
+                return 5;
+            }
+            else if (burger.Cheeseness == Cheeseness.Single && burger.Meet.Type == MeetType.Full
+                && burger.Addons[0] == AddonType.Halapenio
+                && burger.Addons[1] == AddonType.Egg)
+            {
+                return 25;
+            }
+            else
+            {
+                return 0;
+            }
+            
         }
     }
 }

@@ -4,7 +4,8 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            Burger cheeseburger = new Burger(AddonType.None, Cheeseness.Single, 8);
+            return cheeseburger;
         }
     }
 }

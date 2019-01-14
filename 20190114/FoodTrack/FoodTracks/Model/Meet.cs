@@ -23,7 +23,10 @@ namespace FoodTracks.Model
             {
                 return new Meet(MeetType.Full, cookingTime);
             }
-
+            if (cookingTime == 0)
+            {
+                return new Meet(MeetType.None, cookingTime);
+            }
             if (cookingTime > 0)
             {
                 return new Meet(MeetType.Rare, cookingTime);
