@@ -1,10 +1,12 @@
-﻿namespace FoodTracks.Model
+﻿using System.Collections.Generic;
+
+namespace FoodTracks.Model
 {
     public class DoubleCheeseburgerMaker : IBurgerMaker
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            return new Burger(Meet.CreateMeet(6), Cheeseness.Double, new List<AddonType>() { AddonType.None}, BurgerType.Doublecheesseburger);
         }
     }
 }
