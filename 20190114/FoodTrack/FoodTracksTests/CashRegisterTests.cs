@@ -1,4 +1,5 @@
 using FoodTracks.Model;
+using FoodTracksTests;
 using NUnit.Framework;
 
 namespace Tests
@@ -116,6 +117,45 @@ namespace Tests
             var price = cashRegister.HowMuch(burger);
             // Then
             Assert.AreEqual(price, 0);
+        }
+        [Test]
+        public void T15_Cheese_Burger_Should_Cost_5_When_50Perc_Discount()
+        {
+            // Given //RANDOM PASS TESTS XDDDD
+            var cook = new Cook();
+            var burger = cook.Create(new CheeseburgerMaker());
+            var discount = new DiscountManager();
+            var cashRegister = new CashRegister(discount);
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 5);
+        }
+        [Test]
+        public void T16_Cheese_Burger_Should_Cost_5_When_50Perc_Discount()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new CheeseburgerMaker());
+            var discount = new FakeAlwaysTrueDiscount();
+            var cashRegister = new CashRegister(discount);
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 5);
+        }
+        [Test]
+        public void T17_Cheese_Burger_Should_Cost_10_When_No_Discount()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new CheeseburgerMaker());
+            var discount = new FakeAlwaysFalseDiscount();
+            var cashRegister = new CashRegister(discount);
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 10);
         }
     }
 }

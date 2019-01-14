@@ -5,21 +5,42 @@ namespace FoodTracks.Model
     public class CashRegister
     {
         private readonly IDiscountCalculator _discountCalculator;
+        private readonly IRandomDiscount _randomDiscountCalculator;
+        public bool HasDiscount { get; private set; }
 
         public CashRegister(IDiscountCalculator discountCalculator = null)
         {
             _discountCalculator = discountCalculator;
+        }
+        public CashRegister(IRandomDiscount randomDiscount)
+        {
+            _randomDiscountCalculator = randomDiscount;
         }
 
         public decimal HowMuch(Burger burger)
         {
             if (_discountCalculator != null)
             {
-                return ValueBurger(burger) + _discountCalculator.Calculate();
+                return CalculateFinalPrice(ValueBurger(burger) + _discountCalculator.Calculate());
             }
             else
             {
-                return ValueBurger(burger);
+                return CalculateFinalPrice(ValueBurger(burger));
+            }
+        }
+        private decimal CalculateFinalPrice(decimal price)
+        {
+            if(_randomDiscountCalculator != null)
+            {
+                HasDiscount = _randomDiscountCalculator.DrawDiscount();
+            }           
+            if(HasDiscount)
+            {
+                return price / 2;
+            }
+            else
+            {
+                return price;
             }
         }
 
