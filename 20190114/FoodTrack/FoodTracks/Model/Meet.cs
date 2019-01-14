@@ -8,6 +8,14 @@ namespace FoodTracks.Model
     {
         private readonly int _cookingTime;
 
+        private Meet(MeetType type, int cookingTime = 0)
+        {
+            _cookingTime = cookingTime;
+            Type = type;
+        }
+
+        public MeetType Type { get; }
+
         public static Meet CreateMeet()
         {
             return new Meet(MeetType.None);
@@ -30,11 +38,5 @@ namespace FoodTracks.Model
             }
             throw new ArgumentException();
         }
-        private Meet(MeetType type, int cookingTime = 0)
-        {
-            _cookingTime = cookingTime;
-            Type = type;
-        }
-        public MeetType Type { get;}
     }
 }
