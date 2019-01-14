@@ -17,7 +17,7 @@ namespace barcos
         //    new Ship(ShipMasts.five)
         //};
 
-        public Board Board;
+        public Board Board = new Board();
         public string Name;
         public List<IShip> ships;
 
@@ -30,7 +30,14 @@ namespace barcos
 
         public void SetShipsOnBoard(Ship ship)
         {
+<<<<<<< HEAD
             ships.Add(ship);
+=======
+            ship.CoordinatesX = coordinateX;
+            ship.CoordinatesY = coordinateY;
+            ship.Orientation = orientation;
+
+>>>>>>> origin/20190110/barcos-owca
         }
 
         public void AttackShipAtCoordinates(int x, IShip enemyShip)

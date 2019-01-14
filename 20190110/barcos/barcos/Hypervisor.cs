@@ -41,6 +41,7 @@ namespace barcos
             {
                 player.Name = players[i];
 
+<<<<<<< HEAD
                 for (int j = 0; j < 4; j++)
                 {
                     Console.WriteLine("Set ship orientation: ");
@@ -49,6 +50,26 @@ namespace barcos
                     Console.WriteLine("Set ship coordinate X");
                     int y = Convert.ToInt32(Console.ReadLine());
 
+=======
+                Console.WriteLine("{0} locate Your ships on the board:", player.Name);
+
+                foreach (var ship in player.Ships)
+                {
+                    Console.WriteLine("Set ship {0} masts coordinate X: ", ship.Masts);
+                    int x = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Set ship {0} masts coordinate Y: ", ship.Masts);
+                    int y = Convert.ToInt32(Console.ReadLine());
+
+                    Console.WriteLine("Would You like to place Your ship horizontally(0) or vertically(1)?");
+                    int orientation = Convert.ToInt32(Console.ReadLine());
+
+                    if (orientation == 0)
+                    player.SetShipsOnBoard(ship, x, y, ShipOrientation.horizontally);
+                    else player.SetShipsOnBoard(ship, x, y, ShipOrientation.vertically);
+
+                    UpDateBoard(player);
+>>>>>>> origin/20190110/barcos-owca
                 }
 
                 i++;
@@ -59,5 +80,18 @@ namespace barcos
         {
             Players.Add(player);
         }
+
+        public void UpDateBoard(Player player)
+        {
+            int i = 1;
+            foreach(FieldsStatus boardField in player.Board.Fields)
+            {
+                char markToDisplay = (char)boardField;
+                if (i % 10 == 0 ) { Console.WriteLine(markToDisplay + "   |   "); }
+                else { Console.Write(markToDisplay + "   |   "); }
+                i++;
+            }
+        }
+
     }
 }

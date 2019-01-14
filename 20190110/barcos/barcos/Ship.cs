@@ -4,13 +4,13 @@ using barcos.Enums;
 
 namespace barcos
 { 
-    public class Ship : IShip
+    public class Ship
     {
         public ShipMasts Masts { get; private set; }
         public bool Destroyed { get; private set; }
-        public ShipOrientation Orientation { get; }
-        public int CoordinatesX { get; }
-        public int CoordinatesY { get; }
+        public ShipOrientation Orientation { get; set; }
+        public int CoordinatesX { get; set; }
+        public int CoordinatesY { get; set; }
 
         public Ship(ShipOrientation shipOrientation, ShipMasts masts, int x, int y)
         {
