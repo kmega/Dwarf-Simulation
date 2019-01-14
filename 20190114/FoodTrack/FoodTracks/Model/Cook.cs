@@ -1,10 +1,21 @@
 ﻿namespace FoodTracks.Model
 {
-    public class Cook
+    public class Cook 
     {
         public Burger Create(IBurgerMaker burgerMaker)
         {
-            return burgerMaker.Make();
+
+            if (burgerMaker != null)
+            {
+
+                return burgerMaker.Make();
+            }
+            else
+            {
+                return new Burger();
+            }
         }
+
+       
     }
 }

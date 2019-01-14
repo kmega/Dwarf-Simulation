@@ -4,7 +4,8 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            int time = 5;
+            return new Burger(time, Cheeseness.Single);
         }
     }
 }

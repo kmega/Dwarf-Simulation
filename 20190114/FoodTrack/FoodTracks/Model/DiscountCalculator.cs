@@ -11,8 +11,22 @@ namespace FoodTracks.Model
             {
                 return -15;
             }
+            
 
             return 0;
         }
+
+        public decimal RandomBonus()
+        {
+            Random rand = new Random();
+            int option = rand.Next(2);
+            if (option == 1)
+            {
+                return 2;
+            }
+            else return 1;
+        }
+
+
     }
 }

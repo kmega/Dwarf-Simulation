@@ -1,4 +1,6 @@
+using FoodTracks;
 using FoodTracks.Model;
+using FoodTracksTests;
 using NUnit.Framework;
 
 namespace Tests
@@ -70,19 +72,19 @@ namespace Tests
             Assert.AreEqual(price, 25);
         }
 
-        [Test]       
-        public void T13_Cheap_Burger_On_11_11_2019_Should_Cost_Minus_15()
-        {
-            // Given
-            var cook = new Cook();
-            var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new DiscountCalculator());
-            // When
-            var price = cashRegister.HowMuch(burger);
-            // Then
-            Assert.AreEqual(price, -15);
-            //Your task is to tell me why this is alway (almost) red.
-        }
+        //[Test]       
+        //public void T13_Cheap_Burger_On_11_11_2019_Should_Cost_Minus_15()
+        //{
+        //    // Given
+        //    var cook = new Cook();
+        //    var burger = cook.Create(null);
+        //    var cashRegister = new CashRegister(new DiscountCalculator());
+        //    // When
+        //    var price = cashRegister.HowMuch(burger);
+        //    // Then
+        //    Assert.AreEqual(price, -15);
+        //    //Your task is to tell me why this is alway (almost) red.
+        //}
 
         [Test]
         public void T13_Bis_Cheap_Burger_On_11_11_2019_Should_Cost_Minus_15()
@@ -90,7 +92,7 @@ namespace Tests
             // Given
             var cook = new Cook();
             var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator(true));
             // When
             var price = cashRegister.HowMuch(burger);
             // Then
@@ -103,11 +105,40 @@ namespace Tests
             // Given
             var cook = new Cook();
             var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator(false));
             // When
             var price = cashRegister.HowMuch(burger);
             // Then
             Assert.AreEqual(price, 0);
         }
+        [Test]
+        public void T15_Cheeseburger_Should_Coast5()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new CheeseburgerMaker());
+            var cashRegister = new CashRegister(new DiscountCalculatorWithBonus(true));
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 5);
+
+        }
+
+
+        [Test]
+        public void T16_Cheeseburger_Should_Coast10()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new CheeseburgerMaker());
+            var cashRegister = new CashRegister(new DiscountCalculatorWithBonus(false));
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 10);
+
+        }
+
     }
 }

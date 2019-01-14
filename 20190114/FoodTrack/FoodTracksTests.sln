@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodTracksTests", "FoodTracksTests\FoodTracksTests.csproj", "{3A827F2E-B0AC-43A3-BBE6-B1EE5C84D6BE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodTracksTests", "FoodTracksTests\FoodTracksTests.csproj", "{3A827F2E-B0AC-43A3-BBE6-B1EE5C84D6BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoodTracks", "FoodTracks\FoodTracks.csproj", "{7E683517-E3A8-4DDF-81C5-61AE1A7DDD0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoodTracks", "FoodTracks\FoodTracks.csproj", "{7E683517-E3A8-4DDF-81C5-61AE1A7DDD0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
