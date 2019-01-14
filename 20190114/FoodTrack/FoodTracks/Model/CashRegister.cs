@@ -19,7 +19,18 @@ namespace FoodTracks.Model
         public decimal HowMuch(Burger burger)
         {
             if (_discountCalculator != null)
-                return ValueBurger(burger) + _discountCalculator.Calculate();
+            {
+                try
+                {
+                    return _discountCalculator.Calculate(ValueBurger(burger));
+                }
+                catch (Exception)
+                {
+
+                    return ValueBurger(burger) + _discountCalculator.Calculate();
+                }
+            }
+                
             else
                 return ValueBurger(burger);
 

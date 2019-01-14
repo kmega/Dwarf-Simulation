@@ -14,5 +14,10 @@ namespace FoodTracks.Model
 
             return 0;
         }
+
+        public decimal Calculate(decimal price)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
