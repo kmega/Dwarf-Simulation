@@ -4,7 +4,8 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            Burger vegeBurger = new Burger(this);
+            return vegeBurger;
         }
     }
 }
