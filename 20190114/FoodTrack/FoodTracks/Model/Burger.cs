@@ -21,5 +21,12 @@ namespace FoodTracks.Model
             Cheeseness = cheeseness;
             Addons = new List<AddonType>() { AddonType.None };
         }
+
+        public Burger(int meatCookingTime, Cheeseness cheeseness, List<AddonType> addons)
+        {
+            Meet = Meet.CreateMeet(meatCookingTime);
+            Cheeseness = cheeseness;
+            Addons = addons;
+        }
     }
 }

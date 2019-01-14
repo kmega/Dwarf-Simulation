@@ -41,7 +41,7 @@ namespace Tests
             // When
             var burger = cook.Create(burgerMaker);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.Medium);
+            Assert.AreEqual(burger.Meet.Type, MeetType.Medium);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.Double);
             Assert.AreEqual(burger.Addons.Contains(AddonType.None), true);
         }

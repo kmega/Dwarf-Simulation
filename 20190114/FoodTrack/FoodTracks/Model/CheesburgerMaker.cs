@@ -4,7 +4,7 @@
     {
         public Burger Make()
         {
-            return new Burger(5, Cheeseness.Single);
+            return new Burger(6, Cheeseness.Single);
         }
     }
 }
