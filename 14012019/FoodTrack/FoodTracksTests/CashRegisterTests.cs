@@ -81,7 +81,7 @@ namespace Tests
             var price = cashRegister.HowMuch(burger);
             // Then
             Assert.AreEqual(price, -15);
-            //Your task is to tell me why this is alway (almost) red.
+            //Your task is to tell me why this is always (almost) red.
         }
 
         [Test]

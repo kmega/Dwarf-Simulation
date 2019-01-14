@@ -35,6 +35,6 @@ namespace FoodTracks.Model
             _cookingTime = cookingTime;
             Type = type;
         }
-        public MeetType Type { get;}
+        public MeetType Type { get; }
     }
 }
