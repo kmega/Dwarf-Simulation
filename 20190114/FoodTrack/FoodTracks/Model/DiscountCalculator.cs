@@ -12,6 +12,11 @@ namespace FoodTracks.Model
                 return -15;
             }
 
+            if (DateTime.Now == new DateTime(2019, 11, 12))
+            {
+                return 0;
+            }
+
             return 0;
         }
     }

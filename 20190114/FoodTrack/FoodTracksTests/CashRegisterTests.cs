@@ -103,7 +103,7 @@ namespace Tests
             // Given
             var cook = new Cook();
             var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            var cashRegister = new CashRegister(new DiscountCalculator());
             // When
             var price = cashRegister.HowMuch(burger);
             // Then
