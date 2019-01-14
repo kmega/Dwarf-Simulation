@@ -103,11 +103,50 @@ namespace Tests
             // Given
             var cook = new Cook();
             var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            var cashRegister = new CashRegister(new TodayIs1211DiscountCalculator());
             // When
             var price = cashRegister.HowMuch(burger);
             // Then
             Assert.AreEqual(price, 0);
         }
+
+        [Test]
+        public void T15_Discount50PerCent()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new DoubleCheeseburgerMaker());
+            var cashRegister = new CashRegister();
+            AddDiscount addDiscount = new AddDiscount();
+
+            var price = cashRegister.HowMuch(burger);
+            Assert.AreEqual(price, 20);
+
+            // When
+            var price2 = addDiscount.Discoutn50PerCent(cashRegister, burger, true);
+            // Then
+
+            Assert.AreEqual(price2, 10);
+        }
+
+        [Test]
+        public void T15_WithcoutDiscount50PerCent()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new DoubleCheeseburgerMaker());
+            var cashRegister = new CashRegister();
+            AddDiscount addDiscount = new AddDiscount();
+
+            var price = cashRegister.HowMuch(burger);
+            Assert.AreEqual(price, 20);
+
+            // When
+            var price2 = addDiscount.Discoutn50PerCent(cashRegister, burger, false);
+            // Then
+
+            Assert.AreEqual(price2, 20);
+        }
+
     }
 }

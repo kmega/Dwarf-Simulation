@@ -7,6 +7,7 @@ namespace FoodTracks.Model
         public Meet Meet { get; }
         public Cheeseness Cheeseness { get; }
         public List<AddonType> Addons { get; set; }
+        public string Name;
 
         public Burger()
         {
@@ -18,6 +19,7 @@ namespace FoodTracks.Model
 
         public Burger(CheeseburgerMaker cheeseburger)
         {
+            Name = "Cheeseburger";
             Addons = new List<AddonType>();
             Addons.Add(AddonType.None);
             Meet = Meet.CreateMeet(6);
@@ -26,6 +28,7 @@ namespace FoodTracks.Model
 
         public Burger(DoubleCheeseburgerMaker doubleCheeseburger)
         {
+            Name = "DoubleCheeseburger";
             Addons = new List<AddonType>();
             Addons.Add(AddonType.None);
             Meet = Meet.CreateMeet(6);
@@ -34,6 +37,7 @@ namespace FoodTracks.Model
 
         public Burger(VegeBurgerMaker vegeBurger)
         {
+            Name = "VegeBurger";
             Addons = new List<AddonType>();
             Addons.Add(AddonType.None);
             Meet = Meet.CreateMeet();
@@ -42,6 +46,7 @@ namespace FoodTracks.Model
 
         public Burger(EnglishBurgerMaker englishBurger)
         {
+            Name = "EnglishBurger";
             Addons = new List<AddonType>();
             Addons.Add(AddonType.None);
             Meet = Meet.CreateMeet(11);
