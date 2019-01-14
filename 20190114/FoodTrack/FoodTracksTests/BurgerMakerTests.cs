@@ -55,7 +55,7 @@ namespace Tests
             // When
             var burger = cook.Create(burgerMaker);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.None);
+            Assert.AreEqual(burger.Meet.Type, MeetType.None);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.Single);
             Assert.AreEqual(burger.Addons.Contains(AddonType.None), true);
         }
@@ -69,7 +69,7 @@ namespace Tests
             // When
             var burger = cook.Create(burgerMaker);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.Full);
+            Assert.AreEqual(burger.Meet.Type, MeetType.Full);
             Assert.AreEqual(burger.Addons.Contains(AddonType.Halapenio), true);
             Assert.AreEqual(burger.Addons.Contains(AddonType.Egg), true);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.Single);

@@ -1,10 +1,18 @@
-﻿namespace FoodTracks.Model
+﻿using System.Collections.Generic;
+
+namespace FoodTracks.Model
 {
     public class EnglishBurgerMaker : IBurgerMaker
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            List<AddonType> addons = new List<AddonType>() 
+            {   
+                AddonType.Halapenio, 
+                AddonType.Egg
+            };
+
+            return new Burger(11, Cheeseness.Single, addons);
         }
     }
 }
