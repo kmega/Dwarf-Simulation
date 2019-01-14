@@ -8,5 +8,10 @@ namespace Tests
         {
             return -15;
         }
+
+        public int ChanceForWin()
+        {
+            return 1;
+        }
     }
 }

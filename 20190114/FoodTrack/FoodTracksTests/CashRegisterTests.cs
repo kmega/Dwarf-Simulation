@@ -1,4 +1,5 @@
 using FoodTracks.Model;
+using Moq;
 using NUnit.Framework;
 
 namespace Tests
@@ -76,7 +77,7 @@ namespace Tests
             // Given
             var cook = new Cook();
             var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new DiscountCalculator());
+            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
             // When
             var price = cashRegister.HowMuch(burger);
             // Then
@@ -96,18 +97,35 @@ namespace Tests
             // Then
             Assert.AreEqual(price, -15);
         }
-
         [Test]
-        public void T14_Cheap_Burger_On_12_11_2019_Should_Cost_0()
+        public void T14_Bis_Cheap_Burger_50percent_Chanse_that_Win_next_discount()
         {
+            var mock = new Mock<IDiscountCalculator>();
+            mock.Setup(x => x.ChanceForWin()).Returns(1);
+            mock.Setup(x => x.Calculate()).Returns(-10);
             // Given
             var cook = new Cook();
-            var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            var burger = cook.Create(new DoubleCheeseburgerMaker());
+            var cashRegister = new CashRegister(mock.Object);
             // When
             var price = cashRegister.HowMuch(burger);
             // Then
-            Assert.AreEqual(price, 0);
+            Assert.AreEqual(price, 5    );
+        }
+        [Test]
+        public void T15_IF_burger_have_50percent_discount_you_dont_win_discount()
+        {            
+            var mock = new Mock<IDiscountCalculator>();
+            mock.Setup(x => x.ChanceForWin()).Returns(0);
+            mock.Setup(x => x.Calculate()).Returns(-10);
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new DoubleCheeseburgerMaker());
+            var cashRegister = new CashRegister(mock.Object);
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(price, 10    );
         }
     }
 }
