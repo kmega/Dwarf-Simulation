@@ -28,6 +28,12 @@ namespace FoodTracks.Model
             {
                 return new Meet(MeetType.Rare, cookingTime);
             }
+
+            if (cookingTime == 0)
+            {
+                return new Meet(MeetType.None);
+            }
+
             throw new ArgumentException();
         }
         private Meet(MeetType type, int cookingTime = 0)

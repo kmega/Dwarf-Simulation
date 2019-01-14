@@ -16,4 +16,7 @@
     <ProjectReference Include="..\FoodTracks\FoodTracks.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="CalculateMassiveDiscount.cs" />
+  </ItemGroup>
 </Project>

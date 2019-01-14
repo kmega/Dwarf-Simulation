@@ -4,7 +4,11 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            return new Burger(Cheeseness.Single, 10, new System.Collections.Generic.List<AddonType>
+            {
+                AddonType.Halapenio,
+                AddonType.Egg
+            });
         }
     }
 }

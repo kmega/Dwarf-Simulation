@@ -90,7 +90,7 @@ namespace Tests
             // Given
             var cook = new Cook();
             var burger = cook.Create(null);
-            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator() { ifTodayIs1111 = true });
             // When
             var price = cashRegister.HowMuch(burger);
             // Then
@@ -108,6 +108,51 @@ namespace Tests
             var price = cashRegister.HowMuch(burger);
             // Then
             Assert.AreEqual(price, 0);
+        }
+
+        [Test]
+        public void T15_English_Burger_On_11_11_2019_Should_Cost_With_Discount_5()
+        {
+            // Given
+            var cook = new Cook();
+            var burgerMaker = new EnglishBurgerMaker();
+            var burger = cook.Create(burgerMaker);
+            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator() { ifTodayIs1111 = true});
+            // When
+            var temp= new MassiveDiscount(0);
+            var price = temp.CalculateMassiveDiscount(cashRegister.HowMuch(burger));
+            // Then
+            Assert.AreEqual(price, 5);
+        }
+
+        [Test]
+        public void T15_English_Burger_On_12_11_2019_Should_Cost_With_Discount_5()
+        {
+            // Given
+            var cook = new Cook();
+            var burgerMaker = new EnglishBurgerMaker();
+            var burger = cook.Create(burgerMaker);
+            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            // When
+            var temp = new MassiveDiscount(1);
+            var price = temp.CalculateMassiveDiscount(cashRegister.HowMuch(burger));
+            // Then
+            Assert.AreEqual(price, 25);
+        }
+
+        [Test]
+        public void T15_English_Burger_On_12_11_2019_Should_Cost_()
+        {
+            // Given
+            var cook = new Cook();
+            var burgerMaker = new EnglishBurgerMaker();
+            var burger = cook.Create(burgerMaker);
+            var cashRegister = new CashRegister(new TodayIs1111DiscountCalculator());
+            // When
+            var temp = new MassiveDiscount(0);
+            var price = temp.CalculateMassiveDiscount(cashRegister.HowMuch(burger));
+            // Then
+            Assert.AreEqual(price, 12.5);
         }
     }
 }
