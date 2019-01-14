@@ -4,7 +4,7 @@ namespace FoodTracks.Model
 {
     public class DiscountCalculator : IDiscountCalculator
     {
-        //Before chaning ask Bartek or Żółw :)
+        //Before changing ask Bartek or Żółw :)
         public decimal Calculate()
         {
             if (DateTime.Now == new DateTime(2019, 11, 11))

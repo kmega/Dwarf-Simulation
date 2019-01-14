@@ -10,9 +10,9 @@ namespace Tests
         {
             // Given
             // When
-            var result = Meet.CreateMeet();
+            var result = Meat.CreateMeet();
             // Then
-            Assert.AreEqual(result.Type, MeetType.None);
+            Assert.AreEqual(result.Type, MeatType.None);
         }
 
         [TestCase(1)]
@@ -23,9 +23,9 @@ namespace Tests
         {
             // Given
             // When
-            var result = Meet.CreateMeet(time);
+            var result = Meat.CreateMeet(time);
             // Then
-            Assert.AreEqual(result.Type, MeetType.Rare);
+            Assert.AreEqual(result.Type, MeatType.Rare);
         }
 
         [TestCase(5)]
@@ -37,9 +37,9 @@ namespace Tests
         {
             // Given
             // When
-            var result = Meet.CreateMeet(time);
+            var result = Meat.CreateMeet(time);
             // Then
-            Assert.AreEqual(result.Type, MeetType.Medium);
+            Assert.AreEqual(result.Type, MeatType.Medium);
         }
 
         [TestCase(10)]
@@ -51,9 +51,9 @@ namespace Tests
         {
             // Given
             // When
-            var result = Meet.CreateMeet(time);
+            var result = Meat.CreateMeet(time);
             // Then
-            Assert.AreEqual(result.Type, MeetType.Full);
+            Assert.AreEqual(result.Type, MeatType.Full);
         }
     }
 }

@@ -13,7 +13,7 @@ namespace Tests
             // When
             var burger = cook.Create(null);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.None);
+            Assert.AreEqual(burger.Meat.Type, MeatType.None);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.None);
             Assert.AreEqual(burger.Addons.Contains(AddonType.None), true);
         }
@@ -27,7 +27,7 @@ namespace Tests
             // When
             var burger = cook.Create(burgerMaker);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.Medium);
+            Assert.AreEqual(burger.Meat.Type, MeatType.Medium);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.Single);
             Assert.AreEqual(burger.Addons.Contains(AddonType.None), true);
         }
@@ -41,7 +41,7 @@ namespace Tests
             // When
             var burger = cook.Create(burgerMaker);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.Medium);
+            Assert.AreEqual(burger.Meat.Type, MeatType.Medium);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.Double);
             Assert.AreEqual(burger.Addons.Contains(AddonType.None), true);
         }
@@ -55,7 +55,7 @@ namespace Tests
             // When
             var burger = cook.Create(burgerMaker);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.None);
+            Assert.AreEqual(burger.Meat.Type, MeatType.None);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.Single);
             Assert.AreEqual(burger.Addons.Contains(AddonType.None), true);
         }
@@ -69,7 +69,7 @@ namespace Tests
             // When
             var burger = cook.Create(burgerMaker);
             // Then
-            Assert.AreEqual(burger.Meet, MeetType.Full);
+            Assert.AreEqual(burger.Meat.Type, MeatType.Full);
             Assert.AreEqual(burger.Addons.Contains(AddonType.Halapenio), true);
             Assert.AreEqual(burger.Addons.Contains(AddonType.Egg), true);
             Assert.AreEqual(burger.Cheeseness, Cheeseness.Single);

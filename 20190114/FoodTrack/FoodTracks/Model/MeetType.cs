@@ -1,6 +1,6 @@
 ﻿namespace FoodTracks.Model
 {
-    public enum MeetType
+    public enum MeatType
     {
         None, 
         Rare,
