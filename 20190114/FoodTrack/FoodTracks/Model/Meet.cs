@@ -10,7 +10,7 @@ namespace FoodTracks.Model
 
         public static Meet CreateMeet()
         {
-            return new Meet(MeetType.None);
+            return new Meet(MeetType.None,0);
         }
 
         public static Meet CreateMeet(int cookingTime)
@@ -35,6 +35,7 @@ namespace FoodTracks.Model
             _cookingTime = cookingTime;
             Type = type;
         }
+ 
         public MeetType Type { get;}
     }
 }

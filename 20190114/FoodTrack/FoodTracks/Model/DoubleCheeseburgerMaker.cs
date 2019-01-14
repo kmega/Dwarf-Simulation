@@ -4,7 +4,9 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            Burger burger = new Burger(Meet.CreateMeet(5),Cheeseness.Double);
+            burger.Price = 20;
+            return burger;
         }
     }
 }

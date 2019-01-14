@@ -4,9 +4,12 @@ namespace Tests
 {
     public class TodayIs1111DiscountCalculator : IDiscountCalculator
     {
+        public bool TodayIs1111;
         public decimal Calculate()
         {
-            return -15;
+            if(TodayIs1111)
+                return - 15;
+            return 0;
         }
     }
 }
