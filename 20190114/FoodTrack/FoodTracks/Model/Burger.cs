@@ -14,10 +14,5 @@ namespace FoodTracks.Model
             Cheeseness = Cheeseness.None;
             Addons = new List<AddonType>() { AddonType.None };
         }
-
-        public Burger Make()
-        {
-            return new Burger();
-        }
     }
 }
