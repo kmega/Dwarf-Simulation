@@ -7,7 +7,7 @@ namespace TeaInfuser
         static void Main(string[] args)
         {
             // IContainer cup = PickContainer();
-            var cup = CupFactory.
+            var cup = Shelf.
             // IBeverage tea = ChooseTea();
             var tea =  
             // Water water = Kettle.BoilWater();
