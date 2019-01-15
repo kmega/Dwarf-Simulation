@@ -13,7 +13,7 @@ namespace TaxesForFun.TaxCalculators
             {
                 case "personal first tax level":
                     return new PersonalTaxCalculator();
-                case "linear businessl":
+                case "linear business":
                     return new LinearTaxCalculator();
             }
 
@@ -22,6 +22,14 @@ namespace TaxesForFun.TaxCalculators
 
         public static ITaxCalculator Create(CustomerType type)
         {
+            switch (type)
+            {
+                case CustomerType.Personal:
+                    return new PersonalTaxCalculator();
+                case CustomerType.BusinessLinear:
+                    return new LinearTaxCalculator();
+            }
+
             throw new NotImplementedException("Implement me for happiness and joy!");
         }
 
