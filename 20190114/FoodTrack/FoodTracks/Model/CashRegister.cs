@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace FoodTracks.Model
 {
@@ -15,6 +16,7 @@ namespace FoodTracks.Model
         {
             if (_discountCalculator != null)
             {
+                burger = new Burger(Meet.CreateMeet(), Cheeseness.None, new List<AddonType>() { AddonType.None });
                 return ValueBurger(burger) + _discountCalculator.Calculate();
             }
             return ValueBurger(burger);

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace FoodTracks.Model
 {
@@ -14,5 +15,19 @@ namespace FoodTracks.Model
         public Meet Meet { get; }
         public Cheeseness Cheeseness { get; }
         public List<AddonType> Addons { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            var burger = obj as Burger;
+            return burger != null &&
+                   EqualityComparer<Meet>.Default.Equals(Meet, burger.Meet) &&
+                   Cheeseness == burger.Cheeseness &&
+                   EqualityComparer<List<AddonType>>.Default.Equals(Addons, burger.Addons);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Meet, Cheeseness, Addons);
+        }
     }
 }
