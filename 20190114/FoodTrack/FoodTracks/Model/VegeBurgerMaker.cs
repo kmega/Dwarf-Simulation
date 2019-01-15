@@ -4,7 +4,11 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            Burger vegeBurger = new Burger(AddonType.None, Cheeseness.Single);
+            vegeBurger.Name = "VegeBurger";
+            return vegeBurger;
         }
     }
 }
+
+

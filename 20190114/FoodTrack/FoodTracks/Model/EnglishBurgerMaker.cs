@@ -4,7 +4,10 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            Burger englishBurger = new Burger(AddonType.Halapenio, Cheeseness.Single, 11);
+            englishBurger.Addons.Add(AddonType.Egg);
+            englishBurger.Name = "EnglishBurger";
+            return englishBurger;
         }
     }
 }
