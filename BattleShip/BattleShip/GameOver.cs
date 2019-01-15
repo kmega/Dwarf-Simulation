@@ -8,7 +8,7 @@ namespace BattleShip
 {
     public static class GameOver
     {
-       static public bool ShipsAreDestroyed(Board board,int counter)
+        static public bool ShipsAreDestroyed(Board board, int counter)
         {
             bool result = false;
 
@@ -18,7 +18,7 @@ namespace BattleShip
             {
                 if (field == Field.H)
                 {
-                    count++; 
+                    count++;
                 }
             }
 
@@ -30,5 +30,27 @@ namespace BattleShip
             return result;
         }
 
+        static public void DisplayPlayerPutsShipsOnBoard(Player player)
+        {
+            if (player.ships.Count > 0)
+            {
+                Console.Clear();
+                Console.WriteLine("    Welcome in BattleShips \n");
+                Console.WriteLine($"\t PLAYER {player.Id}\n");
+                Console.WriteLine("Availible ships: \n");
+
+                foreach (var ship in player.ships)
+                {
+                    Console.WriteLine($"Ship: {ship.Id} Length {ship.Lenght}");
+                }
+                Console.WriteLine("\nPut your ships on the board\n");
+
+                player.ShowBoard(player.Player_Board);
+            }
+        }
+
+        
+
+       
     }
 }
