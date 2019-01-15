@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BattleshipsWar.UI;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,9 @@ namespace BattleshipsWar
                 int[] coordinates = new InputParser().ChangeCordsToIndexes(input);
                 War war = new War();
                result= war.Shoot(coordinates, enemywarmap, listofenemyships);
+               new ActionGameUI.DrawBoardAfterShoot(result[1],coordinates);
 
-               
+
 
             } while (result[0] == false);
 
@@ -41,7 +43,6 @@ namespace BattleshipsWar
             {
 
                 result = MakeSingleShoot(listofenemyships, enemywarmap);
-
                 int counter = 0;
                 for (int i = 0; i < 10; i++)
                 {
