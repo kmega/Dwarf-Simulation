@@ -24,7 +24,7 @@ namespace BattleshipsWar
             string placement = "", direction;
             while (AllShipsPlaced == false)
             {
-                Console.WriteLine("Choose where you want to place a " +  + " ship:");
+                Console.WriteLine("Choose where you want to place a " +   " ship:");
                 placement = Console.ReadLine();
                 Console.WriteLine("Choose ship direction (Up, right, Down, Left):");
                 direction = Console.ReadLine();
