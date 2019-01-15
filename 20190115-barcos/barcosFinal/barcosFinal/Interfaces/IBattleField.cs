@@ -4,7 +4,7 @@ using System.Text;
 
 namespace barcosFinal.Interfaces
 {
-    interface IBattleField
+    public interface IBattleField
     {
         char[] Board { get; set; }
         void DrawBoard();

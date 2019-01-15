@@ -5,12 +5,13 @@ using System.Text;
 
 namespace barcosFinal
 {
-    interface IShip
+    public interface IShip
     {
         int HP { get; set; }
         int Coordinate_X { get; set; }
         int Coordinate_Y { get; set; }
         Orientation Orientation { get; set; }
-        
+
+
     }
 }

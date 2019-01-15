@@ -4,7 +4,7 @@ using System.Text;
 
 namespace barcosFinal.Enums
 {
-    enum Orientation
+    public enum Orientation
     {
         vertical,
         horizontal
