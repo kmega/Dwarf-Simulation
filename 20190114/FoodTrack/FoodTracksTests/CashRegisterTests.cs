@@ -109,5 +109,22 @@ namespace Tests
             // Then
             Assert.AreEqual(price, 0);
         }
+
+		[Test]
+		public void T15_Double_Cheeseburger_Should_Cost_10_Random_Added()
+		{
+			//Given
+			var cook = new Cook();
+			
+			var burger = cook.Create(new DoubleCheeseburgerMaker());
+			var cashRegister = new CashRegister(new DiscountRandom());
+
+			//When
+			var price = cashRegister.HowMuch(burger);
+
+			//Then
+			Assert.AreEqual(price, 10);
+
+		}
     }
 }

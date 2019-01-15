@@ -7,7 +7,7 @@ namespace FoodTracks.Model
         public Meet Meet { get; }
         public Cheeseness Cheeseness { get; }
         public List<AddonType> Addons { get; set; }
-		public int Price { get; }
+		public decimal Price { get; }
 
 		public Burger()
 		{
@@ -16,14 +16,8 @@ namespace FoodTracks.Model
 			Cheeseness = Cheeseness.None;
 			Addons = new List<AddonType>() { AddonType.None };
 		}
-		//public Burger(Meet meet)
-		//{
-		//	Meet = meet;
-		//	Cheeseness = Cheeseness.None;
-		//	Addons = new List<AddonType>() { AddonType.None };
-		//}
 
-		public Burger(Cheeseness cheeseness, int price)
+		public Burger(Cheeseness cheeseness, decimal price)
 		{
 			Price = price;
 			Meet = Meet.CreateMeet();
@@ -31,7 +25,7 @@ namespace FoodTracks.Model
 			Addons = new List<AddonType>() { AddonType.None };
 		}
 
-		public Burger(Meet meet, Cheeseness cheeseness, int price)
+		public Burger(Meet meet, Cheeseness cheeseness, decimal price)
 		{
 			Price = price;
 			Meet = meet;
@@ -39,7 +33,7 @@ namespace FoodTracks.Model
 			Addons = new List<AddonType>() { AddonType.None };
 		}
 
-		public Burger(Meet meet, Cheeseness cheeseness, List<AddonType> addons, int price)
+		public Burger(Meet meet, Cheeseness cheeseness, List<AddonType> addons, decimal price)
 		{
 			Price = price;
 			Meet = meet;
