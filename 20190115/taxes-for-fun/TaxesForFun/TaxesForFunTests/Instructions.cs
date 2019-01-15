@@ -36,7 +36,7 @@ namespace Tests
             int expectedTax = (int)((receivedMoney - taxCredit) * 0.18);
 
             // When
-            int actualTax = new PersonalTaxCalculator().CalculateTax(receivedMoney-taxCredit);
+            int actualTax = new PersonalTaxCalculator().CalculateTax(receivedMoney - taxCredit);
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
@@ -256,11 +256,7 @@ namespace Tests
             // CHAIN two calculators. Look at Expected and split money appropriately.
             // If you don't know what I want from you, call me when you get here.
             ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.Personal);
-
-            // Expected
-            // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
-            // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
-            // TOTAL: 18586
+            // TOTAL: 14760
             int expectedTax = 14760;
 
             // When
@@ -268,6 +264,71 @@ namespace Tests
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
+        }
+        [Test]
+        public void T014_CustomerAsksForPersonalTaxComplexCalculatorWithHouseGoodsInclusion()
+        {
+            // Given
+            List<Goods> goods = new List<Goods>()
+            {
+                new Goods(500, "Internet Connection")
+            };
+            Customer customer = new Customer(20000, CustomerType.Personal, goods);
+            ComplexCalculator calculator = new ComplexCalculator();
+
+            // When
+            int owed = calculator.ProcessCustomer(customer);
+
+            // Then
+            Assert.AreEqual(2070, owed);
+        }
+        [Test]
+        public void T015_PersonalCustomersWithGoodsAndReductionsForComplexCalculator()
+        {
+            // Given
+            List<Goods> houseGoods = new List<Goods>()
+            {
+                new Goods(700, "internet"),
+                new Goods(1100, "child")
+            };
+            List<Customer> customers = new List<Customer>()
+            {
+                new Customer(30000, CustomerType.Personal, houseGoods), // this one uses new personal calc with goods -> 3636
+                new Customer(50000, CustomerType.Personal), // this one uses first stage of taxCalc -> 7560
+                new Customer(100000, CustomerType.Personal), // this one uses total two stage calculator -> 17466
+                new Customer(100000, CustomerType.Personal, houseGoods), // this one uses "new" personal calc with good and two stage -> 16890
+            };
+
+            ComplexCalculator calculator = new ComplexCalculator();
+
+            // When
+            int owed = calculator.ProcessCustomers(customers);
+
+            // Then
+            Assert.AreEqual(45552, owed);
+        }
+        [Test]
+        public void T016_BusinessCustomersWithGoodsAndAmortizationForComplexCalculator()
+        {
+            // Given
+            List<Goods> companyGoods = new List<Goods>()
+            {
+                new Goods(500, "mouse"),
+                new Goods(25000, "car")
+            };
+            List<Customer> customers = new List<Customer>()
+            {
+                new Customer(30000, CustomerType.BusinessLinear, companyGoods), // this one uses amortization with limitation -> 4417 
+                new Customer(50000, CustomerType.BusinessLinear),// this one uses simple buisness tax -> 9500
+            };
+
+            ComplexCalculator calculator = new ComplexCalculator();
+
+            // When
+            int owed = calculator.ProcessCustomers(customers);
+
+            // Then
+            Assert.AreEqual(13917, owed);
         }
     }
 }
