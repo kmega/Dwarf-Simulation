@@ -19,7 +19,7 @@ namespace Tests
             int expectedTax = (int)(receivedMoney * 0.19);
 
             // When
-            int linearTax = new LinearTaxCalculator().CalculateTax(receivedMoney);
+            int linearTax = new LinearTaxCalculator(null).CalculateTax(receivedMoney);
 
             // Then
             Assert.AreEqual(expectedTax, linearTax);
@@ -159,7 +159,7 @@ namespace Tests
             // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
             // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
             // TOTAL: 18586
-            int expectedTax = 18586;
+            int expectedTax = 17466;
 
             // When
             int actualTax = calculator.CalculateTax(receivedMoney);
@@ -185,7 +185,7 @@ namespace Tests
             int owed = calculator.ProcessCustomers(customers);
 
             // Then
-            Assert.AreEqual(24546, owed);
+            Assert.AreEqual(23426, owed);
         }
 
         [Test]

@@ -10,12 +10,20 @@ namespace TaxesForFun
     {
         public int ProcessCustomer(Customer customer)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            return (int)((customer.Money - 8000) * 0.18);
         }
 
         public int ProcessCustomers(List<Customer> customers)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            int tax = 0;
+
+            for (int i = 0; i < customers.Count; i++)
+            {
+                ITaxCalculator calculator = TaxCalculatorFactory.Create(customers[i].Type);
+                tax += calculator.CalculateTax(customers[i].Money);
+            }
+
+            return tax;
         }
     }
 }
