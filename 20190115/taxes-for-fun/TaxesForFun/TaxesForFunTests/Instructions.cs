@@ -217,5 +217,34 @@ namespace Tests
 
         }
 
+        [Test]
+        public void T012_CostsAbove10k()
+        {
+            // Given
+            int companyMoney = 23000;
+
+            List<Goods> goods = new List<Goods>()
+            {
+                new Goods(1000, "keyboard"), 
+                new Goods(1500, "mouse"),
+                new Goods(10000, "macbook")
+            };
+
+            // Expected
+            // We have 12500 from costs of generating the profits, but because costs are above 10k
+            // That only 25% of that costs can reduce profits
+            // Right. So, 23000 - 3125 from 'costs of generating the profits' = 19875
+            // Thus, total tax = 0.19 * 19875 = 3776,25
+            int expectedTax = 3776;
+
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.BusinessLinear, goods);
+
+            // When
+            int actualTax = calculator.CalculateTax(companyMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
+        }
+
     }
 }

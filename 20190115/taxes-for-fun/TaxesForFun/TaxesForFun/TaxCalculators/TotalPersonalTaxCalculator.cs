@@ -4,8 +4,6 @@ namespace TaxesForFun.TaxCalculators
 {
     internal class TotalPersonalTaxCalculator : ITaxCalculator
     {
-        private int generatedCosts;
-
         public int CalculateTax(int receivedMoney)
         {
             int calculatedTax = 0;

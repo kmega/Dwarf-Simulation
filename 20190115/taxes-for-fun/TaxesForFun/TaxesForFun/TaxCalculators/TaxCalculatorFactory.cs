@@ -44,6 +44,11 @@ namespace TaxesForFun.TaxCalculators
                 generatedCosts += x.Value;
             });
 
+            if (generatedCosts > 10000) 
+            { 
+                generatedCosts = (int)(generatedCosts * 0.25);
+            }
+
             return new LinearTaxCalculator(generatedCosts);
 
             //throw new NotImplementedException("Implement me for happiness and joy!");
