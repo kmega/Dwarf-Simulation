@@ -10,9 +10,7 @@ namespace BattleshipsWar.UI
     {               
         public static void DisplayUI()
         {
-            StartGame Game = new StartGame();
-
-            
+            StartGame Game = new StartGame();           
 
             DrawBoard(Game.PlayerOneBoard);
             Console.WriteLine();
