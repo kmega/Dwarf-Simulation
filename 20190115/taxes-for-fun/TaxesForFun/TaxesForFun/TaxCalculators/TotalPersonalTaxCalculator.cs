@@ -5,12 +5,14 @@
         public int CalculateTax(int receivedMoney)
         {
             int TotalPersonalTax = 0;
+            int reliefAtBeginnign = receivedMoney - 8000;
 
-            if(receivedMoney > 85528)
+            if (reliefAtBeginnign > 85528)
             {
-                int ToFirstLevelTax = receivedMoney - 85528;
+                int ToFirstLevelTax = reliefAtBeginnign - 85528;
+                //6472 * 0.32 = 2071
 
-                TotalPersonalTax += (int)((85528 - 8000) * 0.18);
+                TotalPersonalTax += (int)((85528) * 0.18);
                 TotalPersonalTax += (int)((ToFirstLevelTax) * 0.32);
 
                 return TotalPersonalTax;

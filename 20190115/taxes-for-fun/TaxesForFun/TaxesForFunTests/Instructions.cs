@@ -159,7 +159,7 @@ namespace Tests
             // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
             // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
             // TOTAL: 18586
-            int expectedTax = 18586;
+            int expectedTax = 17466;
 
             // When
             int actualTax = calculator.CalculateTax(receivedMoney);
@@ -185,7 +185,7 @@ namespace Tests
             int owed = calculator.ProcessCustomers(customers);
 
             // Then
-            Assert.AreEqual(24546, owed);
+            Assert.AreEqual(23426, owed);
         }
 
         [Test]
@@ -214,7 +214,29 @@ namespace Tests
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
+        }
 
+        [Test]
+        public void T012_depreciation_of_goods_is_25_over_10k()
+        {
+            // Given
+            int companyMoney = 23000;
+
+            List<Goods> goods = new List<Goods>()
+            {
+                new Goods(12000, "car")
+            };
+
+            // Expected
+            int expectedTax = 3800;
+
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.BusinessLinear, goods);
+
+            // When
+            int actualTax = calculator.CalculateTax(companyMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
         }
 
     }

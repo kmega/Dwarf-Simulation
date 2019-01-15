@@ -43,6 +43,11 @@ namespace TaxesForFun.TaxCalculators
                 int result = 0;
                 foreach (var item in goods)
                 {
+                    if(item.Value >= 10000)
+                    {
+                        result += (int)(item.Value * 0.25);
+                        continue;
+                    }
                     result += item.Value;
                 }
                 return new LinearTaxCalculator(result);
