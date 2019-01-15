@@ -8,9 +8,18 @@ namespace TaxesForFun.TaxCalculators
 {
     public class LinearTaxCalculator : ITaxCalculator
     {
+        int goodValue = 0;
         public int CalculateTax(int receivedMoney)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            return (int)((receivedMoney - goodValue) * 0.19);
+        }
+        public LinearTaxCalculator()
+        {
+
+        }
+        public LinearTaxCalculator(int goodValue)
+        {
+            this.goodValue = goodValue;
         }
     }
 }

@@ -9,17 +9,40 @@ namespace TaxesForFun.TaxCalculators
     {
         public static ITaxCalculator Create(string type)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            if (type == "personal first tax level")
+            {
+                PersonalTaxCalculator personalTaxCalculator = new PersonalTaxCalculator();
+                return personalTaxCalculator;
+            }
+            else if (type == "linear business")
+            {
+                LinearTaxCalculator linearTaxCalculator = new LinearTaxCalculator();
+                return linearTaxCalculator;
+            }
+            else if (type == "personal second tax level")
+            {
+                PersnoltaxAvboew85528 persnoltaxAvboew85528 = new PersnoltaxAvboew85528();
+                return persnoltaxAvboew85528;
+            }
+            else
+                return null;
         }
 
         public static ITaxCalculator Create(CustomerType type)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            PersonalTaxCalculator personalTaxCalculator = new PersonalTaxCalculator();
+            return personalTaxCalculator;
         }
 
         public static ITaxCalculator Create(CustomerType type, List<Goods> goods)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            int sum = 0;
+            foreach (var good in goods)
+            {
+                sum += good.Value;
+            }
+            LinearTaxCalculator linearTaxCalculator = new LinearTaxCalculator(sum);
+            return linearTaxCalculator;
         }
     }
 }
