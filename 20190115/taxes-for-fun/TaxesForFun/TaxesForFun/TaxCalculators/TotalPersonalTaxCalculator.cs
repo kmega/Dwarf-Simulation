@@ -7,6 +7,8 @@ namespace TaxesForFun.TaxCalculators
         public int CalculateTax(int receivedMoney)
         {
             int calculatedTax = 0;
+            int taxCredit = 8000;
+            receivedMoney -= taxCredit;
 
             if (receivedMoney <= 85528)
             {

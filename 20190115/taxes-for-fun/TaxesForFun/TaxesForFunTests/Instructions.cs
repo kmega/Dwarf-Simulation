@@ -36,7 +36,8 @@ namespace Tests
             int expectedTax = (int)((receivedMoney - taxCredit) * 0.18);
 
             // When
-            int actualTax = new PersonalTaxCalculator().CalculateTax(receivedMoney);
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.Personal);
+            int actualTax = calculator.CalculateTax(receivedMoney);
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
@@ -156,10 +157,12 @@ namespace Tests
             ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.Personal);
 
             // Expected
-            // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
-            // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
+            // Money up 100000 - 8000 = 92000
+            // 92000 - 85528 = 6472
+            // Money up to 85528: calculated like T002, so: 15395,04. But we have int, so 15395.
+            // Money above 85528 -> 6472: 32%. In this case, 2071,04. But we have int, so 2071.
             // TOTAL: 18586
-            int expectedTax = 18586;
+            int expectedTax = 17466;
 
             // When
             int actualTax = calculator.CalculateTax(receivedMoney);
@@ -175,7 +178,7 @@ namespace Tests
             List<Customer> customers = new List<Customer>()
             {
                 new Customer(20000, CustomerType.Personal), // this one uses "old" personal calc -> 2160
-                new Customer(100000, CustomerType.Personal), // this one uses "new" personal calc -> 18586
+                new Customer(100000, CustomerType.Personal), // this one uses "new" personal calc -> 17466
                 new Customer(20000, CustomerType.BusinessLinear)  // this one uses linear tax -> 3800
             };
 
@@ -185,7 +188,7 @@ namespace Tests
             int owed = calculator.ProcessCustomers(customers);
 
             // Then
-            Assert.AreEqual(24546, owed);
+            Assert.AreEqual(23426, owed);
         }
 
         [Test]
@@ -241,6 +244,28 @@ namespace Tests
 
             // When
             int actualTax = calculator.CalculateTax(companyMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
+        }
+
+        [Test]
+        public void T013_CalculateTaxCredit()
+        {
+            // Given
+            int receivedMoney = 120000;
+
+            // Expected
+            // 120000 - 8000 = 112000
+            // 112000 - 85528 = 26472
+            // 18% 15395,04
+            // 32% 8471,04
+            int expectedTax = 23866;
+
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.Personal);
+
+            // When
+            int actualTax = calculator.CalculateTax(receivedMoney);
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
