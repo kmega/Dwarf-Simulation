@@ -12,14 +12,22 @@ namespace TaxesForFun.TaxCalculators
             int belowTax;
             if(receivedMoney > 85528)
             {
-                belowMoney = 85528;
-                aboveMoney = receivedMoney - 85528;
-                belowTax = new PersonalTaxCalculator().CalculateTax(belowMoney);
-                return new PersonalTaxCalculatorSecondStage().CalculateTax(aboveMoney) + belowTax;
+                receivedMoney -= 8000;
+                if(receivedMoney <85528)
+                {
+                    return new PersonalTaxCalculator().CalculateTax(receivedMoney);
+                }
+                else
+                {
+                    belowMoney = 85528;
+                    aboveMoney = receivedMoney - 85528;
+                    belowTax = new PersonalTaxCalculator().CalculateTax(belowMoney);
+                    return new PersonalTaxCalculatorSecondStage().CalculateTax(aboveMoney) + belowTax;
+                }       
             }
             else
             {
-                return new PersonalTaxCalculator().CalculateTax(receivedMoney);
+                return new PersonalTaxCalculator().CalculateTax(receivedMoney - 8000);
             }
         }
     }

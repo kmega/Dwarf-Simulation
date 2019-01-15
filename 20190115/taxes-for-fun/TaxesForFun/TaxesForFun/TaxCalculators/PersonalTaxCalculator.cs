@@ -8,7 +8,7 @@ namespace TaxesForFun.TaxCalculators
     {
         public int CalculateTax(int receivedMoney)
         {
-            return (int)((receivedMoney - 8000)*0.18);
+            return (int)((receivedMoney)*0.18);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Tests
             int expectedTax = (int)((receivedMoney - taxCredit) * 0.18);
 
             // When
-            int actualTax = new PersonalTaxCalculator().CalculateTax(receivedMoney);
+            int actualTax = new PersonalTaxCalculator().CalculateTax(receivedMoney-taxCredit);
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
@@ -66,7 +66,6 @@ namespace Tests
         public void T005_CustomerAsksForPersonalTax()
         {
             // Here, you will have to build a second method of a Factory
-
             // Given
             Customer customer = new Customer(20000, CustomerType.Personal);
             ITaxCalculator calculator = TaxCalculatorFactory.Create(customer.Type);
@@ -159,7 +158,7 @@ namespace Tests
             // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
             // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
             // TOTAL: 18586
-            int expectedTax = 18586;
+            int expectedTax = 17466;
 
             // When
             int actualTax = calculator.CalculateTax(receivedMoney);
@@ -185,7 +184,7 @@ namespace Tests
             int owed = calculator.ProcessCustomers(customers);
 
             // Then
-            Assert.AreEqual(24546, owed);
+            Assert.AreEqual(23426, owed);
         }
 
         [Test]
@@ -243,6 +242,32 @@ namespace Tests
             // Then
             Assert.AreEqual(expectedTax, actualTax);
         }
+        [Test]
+        public void T013_CalculateTotalPersonalTaxWhenTaxCreditChangesTaxBorders()
+        {
+            // Given
+            int receivedMoney = 90000;
+            // int taxCredit = 8000; kwota wolna od podatku
+            // int taxLevel = 85528; zmiana progu podatkowego
 
+            // Once again, you may add a TotalPersonalTaxCalculator class and 
+            // swap old PersonalTax with this new one in the factory.
+            // You may note for previous tests it will work like first level tax, but it will let you
+            // CHAIN two calculators. Look at Expected and split money appropriately.
+            // If you don't know what I want from you, call me when you get here.
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.Personal);
+
+            // Expected
+            // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
+            // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
+            // TOTAL: 18586
+            int expectedTax = 14760;
+
+            // When
+            int actualTax = calculator.CalculateTax(receivedMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
+        }
     }
 }
