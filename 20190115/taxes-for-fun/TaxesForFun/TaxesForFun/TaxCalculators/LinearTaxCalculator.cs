@@ -7,10 +7,14 @@ using TaxesForFun.Business;
 namespace TaxesForFun.TaxCalculators
 {
     public class LinearTaxCalculator : ITaxCalculator
-    {
+    {   
         public int CalculateTax(int receivedMoney)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            int expectedTax = (int)(receivedMoney * 0.19);
+
+            return expectedTax;
+            
         }
+               
     }
 }
