@@ -31,13 +31,24 @@ namespace TaxesForFun.TaxCalculators
         {
             if(type == CustomerType.Personal)
             {
-                return new PersonalTaxCalculator();
+                return new TotalPersonalTaxCalculator();
             }
             throw new NotImplementedException("Implement me for happiness and joy!");
         }
 
         public static ITaxCalculator Create(CustomerType type, List<Goods> goods)
         {
+            if(type == CustomerType.BusinessLinear)
+            {
+                int result = 0;
+                foreach (var item in goods)
+                {
+                    result += item.Value;
+                }
+                return new LinearTaxCalculator(result);
+            }
+
+
             throw new NotImplementedException("Implement me for happiness and joy!");
         }
     }

@@ -20,7 +20,11 @@ namespace TaxesForFun
             {
                 if(singleCustomer.Type == CustomerType.Personal)
                 {
-                    owed += (int)((singleCustomer.Money - 8000) * 0.18);
+                    if (singleCustomer.Money < 85528)
+                    {
+                        owed += (int)((singleCustomer.Money - 8000) * 0.18);
+                    }
+                    else owed += new TotalPersonalTaxCalculator().CalculateTax(singleCustomer.Money);
                 }
 
                 if (singleCustomer.Type == CustomerType.BusinessLinear)

@@ -8,9 +8,22 @@ namespace TaxesForFun.TaxCalculators
 {
     public class LinearTaxCalculator : ITaxCalculator
     {
+        private int result;
+
+        public LinearTaxCalculator()
+        {
+            result = 0;
+        }
+
+        public LinearTaxCalculator(int result)
+        {
+            this.result = result;
+        }
+
+
         public int CalculateTax(int receivedMoney)
         {
-            return (int)(receivedMoney * 0.19);
+            return (int)((receivedMoney-result) * 0.19);
         }
     }
 }
