@@ -4,13 +4,11 @@ using System.Text;
 
 namespace TaxesForFun.TaxCalculators
 {
-    public class PersonalTaxCalculator : ITaxCalculator
+    class PersonalSecondTaxLevelCalculator : ITaxCalculator
     {
-
-        public const int taxCredit = 8000;
         public int CalculateTax(int receivedMoney)
         {
-            return (int)((receivedMoney - taxCredit) * 0.18);
+            return (int)(receivedMoney * 0.32);
         }
     }
 }
