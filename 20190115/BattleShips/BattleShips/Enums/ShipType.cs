@@ -10,7 +10,7 @@ namespace BattleShips.Enums
         Carrier,
         Battleship,
         Submarine,
-        Cruiser,
+        PatrolBoat,
         Destroyer
     }
 }
