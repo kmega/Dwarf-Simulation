@@ -6,9 +6,10 @@ namespace TaxesForFun.TaxCalculators
 {
     public class PersonalTaxCalculator : ITaxCalculator
     {
-        public int CalculateTax(int receivedMoney)
+		int taxCredit = 8000;
+		public int CalculateTax(int receivedMoney)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+			return (int)((receivedMoney - taxCredit ) * 0.18);
         }
     }
 }

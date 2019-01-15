@@ -6,16 +6,28 @@ using TaxesForFun.TaxCalculators;
 
 namespace TaxesForFun
 {
-    public class ComplexCalculator
+    public class ComplexCalculator 
     {
         public int ProcessCustomer(Customer customer)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
-        }
+            if(customer.Type == CustomerType.Personal)
+			{
+				return new TotalPersonalTaxCalculator().CalculateTax(customer.Money);
+			}else if (customer.Type == CustomerType.BusinessLinear)
+			{
+				return new LinearTaxCalculator().CalculateTax(customer.Money);
+			}
+			throw new NotImplementedException("Wrong customer type for calculate tax!");
+		}
 
         public int ProcessCustomers(List<Customer> customers)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+			int result = 0;
+			foreach(var customer in customers)
+			{
+				result += ProcessCustomer(customer);
+			}
+			return result;
         }
     }
 }
