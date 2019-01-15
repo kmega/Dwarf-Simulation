@@ -8,7 +8,8 @@ namespace TaxesForFun.TaxCalculators
     {
         public int CalculateTax(int receivedMoney)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            var taxCredit = 8000;
+            return (int)((receivedMoney - taxCredit) * 0.18);
         }
     }
 }
