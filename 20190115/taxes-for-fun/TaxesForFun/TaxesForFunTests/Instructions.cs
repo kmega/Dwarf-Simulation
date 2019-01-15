@@ -214,7 +214,6 @@ namespace Tests
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
-
         }
 
     }

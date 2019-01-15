@@ -31,9 +31,9 @@ namespace TaxesForFun.TaxCalculators
         {
             if (type == CustomerType.Personal)
             {
-                return new PersonalTaxCalculator();
+                return new TotalPersonalTaxCalculator();
             }
-            if (type == CustomerType.Personal)
+            if (type == CustomerType.BusinessLinear)
             {
                 return new LinearTaxCalculator();
             }
@@ -42,7 +42,14 @@ namespace TaxesForFun.TaxCalculators
 
         public static ITaxCalculator Create(CustomerType type, List<Goods> goods)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            int sum = 0;
+            foreach (var good in goods)
+            {
+                sum += good.Value;
+            }
+
+            return new LinearTaxCalculator(sum);
         }
+
     }
 }
