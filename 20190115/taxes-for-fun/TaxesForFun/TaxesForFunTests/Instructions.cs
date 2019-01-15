@@ -240,6 +240,29 @@ namespace Tests
             Assert.AreEqual(expectedTax, actualTax);
 
         }
+        [Test]
+        public void T013_TaxReduction()
+        {
+           
+                
+
+                // Given
+                Customer customer = new Customer(18000, CustomerType.Personal);
+                 List<Goods> reduction = new List<Goods>()
+            {
+                 new Goods (700, "ulga na internet")
+            };
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(customer.Type,reduction);
+
+                // When
+                int owed = calculator.CalculateTax(customer.Money);
+
+                // Then
+                Assert.AreEqual(1100, owed);
+            
+
+        }
+
 
 
     }

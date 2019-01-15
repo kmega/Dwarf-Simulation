@@ -40,7 +40,7 @@ namespace TaxesForFun.TaxCalculators
         public static ITaxCalculator Create(CustomerType type, List<Goods> goods)
         {
            
-                return new LinearTaxCalculatorWithSubstract(goods);
+                return new TaxCalculatorWithSubstract(goods, type);
             
         }
     }
