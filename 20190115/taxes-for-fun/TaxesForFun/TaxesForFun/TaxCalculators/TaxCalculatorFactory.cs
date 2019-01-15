@@ -9,6 +9,14 @@ namespace TaxesForFun.TaxCalculators
     {
         public static ITaxCalculator Create(string type)
         {
+            switch (type)
+            {
+                case "personal first tax level":
+                    return new PersonalTaxCalculator();
+                case "linear businessl":
+                    return new LinearTaxCalculator();
+            }
+
             throw new NotImplementedException("Implement me for happiness and joy!");
         }
 
