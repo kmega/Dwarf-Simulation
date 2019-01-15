@@ -109,5 +109,25 @@ namespace Tests
             // Then
             Assert.AreEqual(price, 0);
         }
+
+        [Test]
+        public void T15_Burger_Should_Have_50_Percent_Chance_For_Half_Prize()
+        {
+            // Given
+            var cook = new Cook();
+            var burger = cook.Create(new EnglishBurgerMaker());
+            var cashRegister = new CashRegister();
+            // When
+            var price = cashRegister.HowMuch(burger);
+            // Then
+            Assert.AreEqual(cashRegister.chance, 1);
+            Assert.AreEqual(price, 12.5);
+        }
+
+        [Test]
+        public void T15_Burger_With_Discount_Should_Have_50_Percent_Chance_For_Another_One()
+        {
+
+        }
     }
 }
