@@ -10,19 +10,21 @@ namespace TaxesForFun.TaxCalculators
         {
             int expectedtax = 0;
             int taxCredit = 8000;
-            int taxlevel = 85528;
+            int taxLevel = 85528;
 
-            if (receivedMoney < taxlevel)
+            
+            if (receivedMoney < taxLevel)
             {
+                receivedMoney -= taxCredit;
 
-
-                expectedtax = (int)((receivedMoney - taxCredit) * 0.18);
+                expectedtax = (int)(receivedMoney * 0.18);
             }
             else
             {
-                expectedtax += (int)((taxlevel - taxCredit) * 0.18);
+                receivedMoney -= taxCredit;
+                expectedtax += (int)(taxLevel * 0.18);
 
-                expectedtax += (int)((receivedMoney - taxlevel) * 0.32);
+                expectedtax += (int)((receivedMoney - taxLevel) * 0.32);
                 
             }
             return expectedtax;

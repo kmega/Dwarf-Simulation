@@ -18,7 +18,14 @@ namespace TaxesForFun.TaxCalculators
 
             foreach (var item in Goods)
             {
-                receivedMoney -= item.Value;
+                if (item.Value < 10000)
+                {
+                    receivedMoney -= item.Value;
+                }
+                else
+                {
+                    receivedMoney -= (int)(item.Value * 0.25);
+                }
 
             }
 
