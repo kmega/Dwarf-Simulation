@@ -10,12 +10,27 @@ namespace TaxesForFun
     {
         public int ProcessCustomer(Customer customer)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(customer.Type);
+            return calculator.CalculateTax(customer.Money);
         }
 
         public int ProcessCustomers(List<Customer> customers)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            PersonalTotalTaxCalculator personalFullTax = new PersonalTotalTaxCalculator();
+            LinearTaxCalculator linearTax = new LinearTaxCalculator();
+            int taxes = 0;
+
+            foreach (var customer in customers)
+            {
+
+
+                if (customer.Type == CustomerType.Personal)
+                    taxes += personalFullTax.CalculateTax(customer.Money);
+
+                else if (customer.Type == CustomerType.BusinessLinear)
+                    taxes += linearTax.CalculateTax(customer.Money);
+            }
+            return taxes;
         }
     }
 }
