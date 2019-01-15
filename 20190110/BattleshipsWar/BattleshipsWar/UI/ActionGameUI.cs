@@ -19,6 +19,10 @@ namespace BattleshipsWar.UI
         }
 
 
+        public static void DrawBoardAfterShoot(bool result, int[] coordinates)
+        {
+
+        }
 
         public static void DrawBoard(CellProperty[,] board)
         {
