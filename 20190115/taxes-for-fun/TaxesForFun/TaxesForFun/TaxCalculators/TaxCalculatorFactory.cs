@@ -15,6 +15,8 @@ namespace TaxesForFun.TaxCalculators
                     return new PersonalTaxCalculator();
                 case "linear business":
                     return new LinearTaxCalculator();
+                case "personal second tax level":
+                    return new PersonalSecondTaxCalculator();
             }
 
             throw new NotImplementedException("Implement me for happiness and joy!");
@@ -25,7 +27,7 @@ namespace TaxesForFun.TaxCalculators
             switch (type)
             {
                 case CustomerType.Personal:
-                    return new PersonalTaxCalculator();
+                    return new TotalPersonalTaxCalculator();
                 case CustomerType.BusinessLinear:
                     return new LinearTaxCalculator();
             }
@@ -35,7 +37,16 @@ namespace TaxesForFun.TaxCalculators
 
         public static ITaxCalculator Create(CustomerType type, List<Goods> goods)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            int generatedCosts = 0;
+
+            goods.ForEach(x =>
+            {
+                generatedCosts += x.Value;
+            });
+
+            return new LinearTaxCalculator(generatedCosts);
+
+            //throw new NotImplementedException("Implement me for happiness and joy!");
         }
     }
 }
