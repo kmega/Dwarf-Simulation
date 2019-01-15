@@ -8,6 +8,8 @@ namespace TaxesForFun.TaxCalculators
 	{
 		public int CalculateTax(int receivedMoney)
 		{
+			//zmienic obliczenia, żółw się pomylił, powinno być jeśli recivedMoney > taxLevel 
+			// to wpierw odejmujemy kwotę wolną od recived money a potem liczymy
 			int taxLevel = 85528;
 			if(receivedMoney > taxLevel)
 			{
