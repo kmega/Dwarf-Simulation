@@ -176,18 +176,32 @@ namespace BattleshipsWar
 
             int[] coordsToChange;
 
+            bool 
+
             for (int i = 0; i < ship.Coords.Count; i++)
             {
                 coordsToChange = ship.Coords[i];
-                for (int j = 0; j < 10; j++)
+
+                for (int row = -1; row <= 1; row++)
                 {
-                    for (int k = 0; k < 10; k++)
+                    for (int column = -1; column <= 1; column++)
                     {
-                        if (coordsToChange[0] == j && coordsToChange[1] == k)
+                        try
                         {
-                            board[j, k] = CellProperty.Occupied;
+                            if (board[coordsToChange[0] + row, coordsToChange[1] + column] != CellProperty.Empty)
+                            {
+                                // Rysuj komórki po sprawdzeniu sąsiadów.
+                            }
+                        }
+                        catch
+                        {
+
                         }
                     }
+                }
+
+                board[coordsToChange[0], coordsToChange[1]] = CellProperty.Occupied;
+            }
                 }                                                                                                                                                                                                                                                                                                                                                                                                                                                              
             }
         }
