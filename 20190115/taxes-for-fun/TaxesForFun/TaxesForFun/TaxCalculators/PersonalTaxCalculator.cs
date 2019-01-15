@@ -17,8 +17,6 @@ namespace TaxesForFun.TaxCalculators
             if (receivedMoney > nextLevel)
             {
                 secondLevel += (int) ((receivedMoney - nextLevel) * 0.32);
-                firstLevel += (int) ((nextLevel - taxCredit) * 0.18);
-
             }
             else
             {

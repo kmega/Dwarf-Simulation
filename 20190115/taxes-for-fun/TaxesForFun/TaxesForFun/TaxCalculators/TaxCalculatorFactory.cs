@@ -28,8 +28,9 @@ namespace TaxesForFun.TaxCalculators
 
         public static ITaxCalculator Create(CustomerType type, List<Goods> goods)
         {
-            int AllGoodsCost = goods.Sum(x => x.Value);
-
+            int AllGoodsCost = goods.Where(x=>x.Value<10000).Sum(x => x.Value);
+            AllGoodsCost += (int)(goods.Where(x => x.Value > 10000).Sum(x=>x.Value)*0.25);
+            
             return new LinearTaxBusinessCalculator(AllGoodsCost);
         }
     }

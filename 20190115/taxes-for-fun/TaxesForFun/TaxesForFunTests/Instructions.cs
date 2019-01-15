@@ -159,7 +159,7 @@ namespace Tests
             // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
             // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
             // TOTAL: 18586
-            int expectedTax = 18586;
+            int expectedTax = 4631;
 
             // When
             int actualTax = calculator.CalculateTax(receivedMoney);
@@ -185,7 +185,7 @@ namespace Tests
             int owed = calculator.ProcessCustomers(customers);
 
             // Then
-            Assert.AreEqual(24546, owed);
+            Assert.AreEqual(10591, owed);
         }
 
         [Test]
@@ -216,6 +216,30 @@ namespace Tests
             Assert.AreEqual(expectedTax, actualTax);
 
         }
+        [Test]
+        public void T012_BusinessHasAmortyzacja()
+        {
+            // Given
+            int companyMoney = 20000;
+
+            List<Goods> goods = new List<Goods>()
+            {
+               new Goods(10001,"laptop")
+            };
+
+
+            int expectedTax = 3325;
+
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.BusinessLinear, goods);
+
+            // When
+            int actualTax = calculator.CalculateTax(companyMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
+
+        }
+        
 
     }
 }
