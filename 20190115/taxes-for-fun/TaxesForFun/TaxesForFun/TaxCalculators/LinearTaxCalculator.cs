@@ -8,9 +8,14 @@ namespace TaxesForFun.TaxCalculators
 {
     public class LinearTaxCalculator : ITaxCalculator
     {
+ 
+        public string Type { get; set; }
+        public int PriceOfGoods { get ; set ; }
+
         public int CalculateTax(int receivedMoney)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            receivedMoney -= PriceOfGoods;
+            return (int)(receivedMoney * 0.19);
         }
     }
 }

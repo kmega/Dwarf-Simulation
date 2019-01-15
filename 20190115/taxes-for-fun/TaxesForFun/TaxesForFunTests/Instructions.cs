@@ -131,7 +131,7 @@ namespace Tests
             // Expected
             // Money above 85528: 32%, as this is the second tax level. Forget about tax credit this time.
             // TOTAL: 32000
-            int expectedTax = 32000;
+            int expectedTax = 18586;
 
             // When
             int actualTax = calculator.CalculateTax(receivedMoney);

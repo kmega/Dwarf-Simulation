@@ -6,6 +6,8 @@ namespace TaxesForFun.Business
 {
     public class Customer
     {
+        public int Money { get; }
+        public CustomerType Type { get; }
 
         public Customer(int money, CustomerType type)
         {
@@ -13,7 +15,6 @@ namespace TaxesForFun.Business
             Type = type;
         }
 
-        public int Money { get; }
-        public CustomerType Type { get; }
+        
     }
 }
