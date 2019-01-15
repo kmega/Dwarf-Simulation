@@ -109,7 +109,7 @@ PAMIĘTAJ O TESTACH AUTOMATYCZNYCH.
 | Klucz                                 | Wartość                   |
 |---------------------------------------|---------------------------|
 | Ścieżka                               | \cybermagic\opowiesci     |
-| Regex dla znalezienia tam Magdy       | # Zas.ugi.*?Magda Patiril.*?# |
+| Regex dla znalezienia tam Magdy       | # Zas.ugi.*?(Magda Patiril.*?)\*.*?# |
 | Regex dla znalezienia nazwy Opowieści | title: +"([\w\s]+)"       |
 
 ### Oczekiwany efekt
