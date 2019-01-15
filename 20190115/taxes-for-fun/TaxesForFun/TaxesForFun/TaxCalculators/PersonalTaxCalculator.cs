@@ -15,8 +15,10 @@ namespace TaxesForFun.TaxCalculators
             }
             else
             {
-                double firstTaxLevelValue = (85528 - 8000)*0.18;
-                double secondTaxLevelValue = (receivedMoney - 85528) * 0.32;
+                var value = receivedMoney - 8000;
+
+                double firstTaxLevelValue = 85528*0.18;
+                double secondTaxLevelValue = (value - 85528) * 0.32;
                 return (int)firstTaxLevelValue + (int)secondTaxLevelValue;
             }
 

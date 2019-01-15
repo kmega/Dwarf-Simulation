@@ -42,6 +42,10 @@ namespace TaxesForFun.TaxCalculators
 
             foreach (var good in goods)
             {
+                if (good.Value >= 10000)
+                {
+                    sum += (int)(good.Value*0.25);
+                }else
                 sum += good.Value;
             }
 

@@ -159,7 +159,7 @@ namespace Tests
             // Money up to 85528: calculated like T002, so: 13955.04. But we have int, so 13955.
             // Money above 85528: 32%. In this case, 4631.04. But we have int, so 4631.
             // TOTAL: 18586
-            int expectedTax = 18586;
+            int expectedTax = 17466;
 
             // When
             int actualTax = calculator.CalculateTax(receivedMoney);
@@ -175,7 +175,7 @@ namespace Tests
             List<Customer> customers = new List<Customer>()
             {
                 new Customer(20000, CustomerType.Personal), // this one uses "old" personal calc -> 2160
-                new Customer(100000, CustomerType.Personal), // this one uses "new" personal calc -> 18586
+                new Customer(100000, CustomerType.Personal), // this one uses "new" personal calc -> 17466
                 new Customer(20000, CustomerType.BusinessLinear)  // this one uses linear tax -> 3800
             };
 
@@ -185,7 +185,7 @@ namespace Tests
             int owed = calculator.ProcessCustomers(customers);
 
             // Then
-            Assert.AreEqual(24546, owed);
+            Assert.AreEqual(23426, owed);
         }
 
         [Test]
@@ -217,5 +217,34 @@ namespace Tests
 
         }
 
+
+        [Test]
+        public void T012_BusinessHasSubstractions()
+        {
+            // Given
+            int companyMoney = 23000;
+
+            List<Goods> goods = new List<Goods>()
+            {
+                new Goods(10000, "keyboard"), new Goods(20000, "mouse")
+            };
+
+            // Expected
+            // Right. So, 23000 - 3000 from 'costs of generating the profits' = 20000
+            // Thus, total tax = 0.19 * 20000 = 3800
+            int expectedTax = 2945;
+
+            // Yes, you will have to deal with a new method. You will have to pass appropriate parameters
+            // to the calculator using the CONSTRUCTOR, because you have no other way of
+            // passing without changing the interface of the method - the contract.
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.BusinessLinear, goods);
+
+            // When
+            int actualTax = calculator.CalculateTax(companyMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
+
+        }
     }
 }
