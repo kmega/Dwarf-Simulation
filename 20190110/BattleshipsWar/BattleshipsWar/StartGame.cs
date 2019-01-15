@@ -1,10 +1,8 @@
-<<<<<<< HEAD
+
 ﻿using BattleshipsWar.UI;
 using System;
-=======
 ﻿using System;
 using System.Collections.Generic;
->>>>>>> 98d14f95acf07fa7c228d53b3b0078e19368603b
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("BattleshipWarTest")]
@@ -29,17 +27,14 @@ namespace BattleshipsWar
             string placement = "", direction;
             while (AllShipsPlaced == false)
             {
-<<<<<<< HEAD
              
                 if (CounterOfShipsPlaced < 7)
-=======
                 Console.WriteLine("Choose where you want to place a " +   " ship:");
                 placement = Console.ReadLine();
                 Console.WriteLine("Choose ship direction (Up, right, Down, Left):");
                 direction = Console.ReadLine();
                 Console.Clear();
                 if (CounterOfShipsPlaced <= 7)
->>>>>>> 98d14f95acf07fa7c228d53b3b0078e19368603b
                 {
                     UserCommunication(out placement, out direction, "First");
                     PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
@@ -151,7 +146,6 @@ namespace BattleshipsWar
             }
                     
 
-<<<<<<< HEAD
             CounterOfShipsPlaced++;
 
             if (CounterOfShipsPlaced == 14)
@@ -164,7 +158,6 @@ namespace BattleshipsWar
 
         private void FillTheBoard(CellProperty[,] board, Direction userChoice, KindOfShip lengthOfShip)
         {
-=======
             if (CounterOfShipsPlaced > 0)
             {
                 lengthOfShip = KindOfShip.Four;
@@ -178,7 +171,6 @@ namespace BattleshipsWar
                 }
             }
 
->>>>>>> 98d14f95acf07fa7c228d53b3b0078e19368603b
             Ship ship = new Ship(lengthOfShip, Coords, userChoice);
             if (CounterOfShipsPlaced < 7)
             {
