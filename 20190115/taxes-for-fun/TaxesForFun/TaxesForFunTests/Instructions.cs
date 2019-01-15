@@ -214,7 +214,34 @@ namespace Tests
 
             // Then
             Assert.AreEqual(expectedTax, actualTax);
+        }
+        [Test]
+        public void T012_BusinessHasSubstractionsWithAmortizationWith25PercOfGoodValue()
+        {
+            // Given
+            int companyMoney = 23000;
 
+            List<Goods> goods = new List<Goods>()
+            {
+                new Goods(1000, "keyboard"), new Goods(20000, "car")
+            };
+
+            // Expected
+            // costOfIncome = 1000 + 20000*0.25 <-- amortization;
+            // Right. So, 23000 - 6000 from 'costs of generating the profits' = 20000
+            // Thus, total tax = 0.19 * 17000 = 3230
+            int expectedTax = 3230;
+
+            // Yes, you will have to deal with a new method. You will have to pass appropriate parameters
+            // to the calculator using the CONSTRUCTOR, because you have no other way of
+            // passing without changing the interface of the method - the contract.
+            ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.BusinessLinear, goods);
+
+            // When
+            int actualTax = calculator.CalculateTax(companyMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
         }
 
     }

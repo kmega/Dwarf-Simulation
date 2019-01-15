@@ -24,7 +24,14 @@ namespace TaxesForFun.TaxCalculators
                 int costOfIncome = 0;
                 foreach (var good in Goodies)
                 {
-                    costOfIncome += good.Value;
+                    if (good.Value > 10000)
+                    {
+                        costOfIncome += (int)(good.Value * 0.25);
+                    }
+                    else
+                    {
+                        costOfIncome += good.Value;
+                    }
                 }
                 receivedMoney -= costOfIncome;
             }
