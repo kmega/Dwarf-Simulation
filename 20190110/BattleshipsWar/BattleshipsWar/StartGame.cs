@@ -28,12 +28,6 @@ namespace BattleshipsWar
             {
              
                 if (CounterOfShipsPlaced < 7)
-                Console.WriteLine("Choose where you want to place a " +   " ship:");
-                placement = Console.ReadLine();
-                Console.WriteLine("Choose ship direction (Up, right, Down, Left):");
-                direction = Console.ReadLine();
-                Console.Clear();
-                if (CounterOfShipsPlaced <= 7)
                 {
                     UserCommunication(out placement, out direction, "First");
                     PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
@@ -157,13 +151,13 @@ namespace BattleshipsWar
 
         private void FillTheBoard(CellProperty[,] board, Direction userChoice, KindOfShip lengthOfShip)
         {
-            if (CounterOfShipsPlaced > 0)
+            if (CounterOfShipsPlaced > 0 && CounterOfShipsPlaced != 7)
             {
                 lengthOfShip = KindOfShip.Four;
-                if (CounterOfShipsPlaced > 2)
+                if (CounterOfShipsPlaced > 2 && CounterOfShipsPlaced != 8 && CounterOfShipsPlaced !=9)
                 {
                     lengthOfShip = KindOfShip.Three;
-                    if (CounterOfShipsPlaced > 4)
+                    if (CounterOfShipsPlaced > 4 && CounterOfShipsPlaced != 10 && CounterOfShipsPlaced != 11)
                     {
                         lengthOfShip = KindOfShip.Two;
                     }
