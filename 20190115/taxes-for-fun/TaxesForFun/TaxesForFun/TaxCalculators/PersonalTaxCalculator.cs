@@ -8,7 +8,26 @@ namespace TaxesForFun.TaxCalculators
     {
         public int CalculateTax(int receivedMoney)
         {
-            throw new NotImplementedException("Implement me for happiness and joy!");
+            int expectedtax = 0;
+            int taxCredit = 8000;
+            int taxlevel = 85528;
+
+            if (receivedMoney < taxlevel)
+            {
+
+
+                expectedtax = (int)((receivedMoney - taxCredit) * 0.18);
+            }
+            else
+            {
+                expectedtax += (int)((taxlevel - taxCredit) * 0.18);
+
+                expectedtax += (int)((receivedMoney - taxlevel) * 0.32);
+                
+            }
+            return expectedtax;
+           
+
         }
     }
 }
