@@ -5,7 +5,7 @@ using System.Text;
 
 namespace barcosFinal
 {
-    interface IShip
+    public interface IShip
     {
         int HP { get; set; }
         int Coordinate_X { get; set; }
