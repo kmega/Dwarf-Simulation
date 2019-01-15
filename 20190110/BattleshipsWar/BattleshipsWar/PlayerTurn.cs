@@ -9,22 +9,66 @@ namespace BattleshipsWar
     public class PlayerTurn
     {
 
-        public void MakeTurn(List<Ship> listofenemyships, CellProperty[,] enemywarmap, string input)
+        public bool MakeSingleShoot(List<Ship> listofenemyships, CellProperty[,] enemywarmap)
         {
-            bool breakloop = false;
+            bool[] result = { false, false };
+         
             do
             {
                 Console.WriteLine();
                 Console.WriteLine("Podaj koordynaty");
-                input = Console.ReadLine();
+                string input = Console.ReadLine();
 
                 int[] coordinates = new InputParser().ChangeCordsToIndexes(input);
                 War war = new War();
-               breakloop= war.Shoot(coordinates, enemywarmap, listofenemyships);
+               result= war.Shoot(coordinates, enemywarmap, listofenemyships);
+
+               
+
+            } while (result[0] == false);
 
 
-            } while (breakloop == false);
+            return result[1];
 
         }
+
+
+        public bool MakeTurn (List<Ship> listofenemyships, CellProperty[,] enemywarmap)
+        {
+            bool result = false;
+            bool Winner = false;
+            do
+            {
+
+                result = MakeSingleShoot(listofenemyships, enemywarmap);
+
+                int counter = 0;
+                for (int i = 0; i < 10; i++)
+                {
+                    for (int j = 0; j < 10; j++)
+                    {
+                        if (enemywarmap[i,j] == CellProperty.Occupied)
+                        {
+                            counter++;
+                                }
+                    }
+                }
+                if (counter == 0)
+                {
+                    Winner = true;
+                }
+
+            } while (result == false);
+
+            return Winner;
+        }
+
+
+
+
+
     }
+
+
+
 }
