@@ -30,7 +30,7 @@ namespace Tests
         {
             // Given
             int receivedMoney = 20000;
-            int taxCredit = 8000;
+            int taxCredit = 8000; //kwota wolna od podatku
 
             // Expected
             int expectedTax = (int)((receivedMoney - taxCredit) * 0.18);
