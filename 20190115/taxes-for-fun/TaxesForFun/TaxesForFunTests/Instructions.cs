@@ -217,5 +217,28 @@ namespace Tests
 
         }
 
-    }
+		[Test]
+		public void T012_BusinessHasSubstractions25_Above10k()
+		{
+			// Given
+			int companyMoney = 25000;
+
+			List<Goods> goods = new List<Goods>()
+			{
+				new Goods(5000, "keyboard"), new Goods(5000, "mouse"), new Goods(10000, "Laptop")
+			};
+
+			// Expected
+			int expectedTax = 3800;
+
+			ITaxCalculator calculator = TaxCalculatorFactory.Create(CustomerType.BusinessLinear, goods);
+
+			// When
+			int actualTax = calculator.CalculateTax(companyMoney);
+
+			// Then
+			Assert.AreEqual(expectedTax, actualTax);
+
+		}
+	}
 }

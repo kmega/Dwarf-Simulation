@@ -36,12 +36,22 @@ namespace TaxesForFun.TaxCalculators
         {
 			if (type == CustomerType.BusinessLinear)
 			{
+				int goodsLevel2 = 10000;
+				
 				int sum = 0;
 				foreach (var good in goods)
 				{
 					sum += good.Value;
 				}
-				return new LinearTaxCalculator(sum);
+				if (sum > goodsLevel2)
+				{
+					sum /= 4;
+					return new LinearTaxCalculator(sum);
+				}
+				else
+				{
+					return new LinearTaxCalculator(sum);
+				}
 			}
 			else
 				throw new Exception("buhahahah");
