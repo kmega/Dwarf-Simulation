@@ -88,6 +88,9 @@ namespace Tests
         [Test]
         public void T13_Bis_Cheap_Burger_On_11_11_2019_Should_Cost_Minus_15()
         {
+            var mock = new Mock<IDiscountCalculator>();
+            mock.Setup(x => x.ChanceForWin()).Returns(1);
+            mock.SetupGet(x=>x.discountDateTime).Returns()
             // Given
             var cook = new Cook();
             var burger = cook.Create(null);

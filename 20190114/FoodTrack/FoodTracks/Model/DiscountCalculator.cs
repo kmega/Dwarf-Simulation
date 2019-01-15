@@ -13,7 +13,7 @@ namespace FoodTracks.Model
         //Before chaning ask Bartek or Żółw :)
         public decimal Calculate()
         {
-            if (DateTime.Now == new DateTime(2019, 11, 11))
+            if (DateTime.Now == discountDateTime)
             {
                 return -15;
             }

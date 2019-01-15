@@ -16,7 +16,7 @@ namespace FoodTracks.Model
       
         public decimal HowMuch(Burger burger)
         {
-            if (ValueBurger(burger) + _discountCalculator.Calculate() == ValueBurger(burger)/2);
+            if ((ValueBurger(burger) + _discountCalculator.Calculate()) == ValueBurger(burger)/2);
             {
                 if (_discountCalculator.ChanceForWin() == 1)
                 {
