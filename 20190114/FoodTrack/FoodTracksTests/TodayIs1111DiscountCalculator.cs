@@ -8,7 +8,7 @@ namespace Tests
 
         public decimal Calculate()
         {
-            //zrobic to bez uzywania klasy daty
+            //zrobic to bez uzywania klasy daty klasa z nowa data
             DateTime dateTime = new DateTime();
             DateTime value = new DateTime(2019, 11, 12);
             if (value == new DateTime(2019, 11, 12))
