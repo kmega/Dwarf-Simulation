@@ -217,5 +217,34 @@ namespace Tests
 
         }
 
+        [Test]
+        public void T012_AmortizationIf20kOrAbove()
+        {
+            // Given
+            int companyMoney = 23000;
+
+            List<Goods> goods = new List<Goods>()
+            {
+                new Goods(1000, "keyboard"), new Goods(2000, "mouse")
+            };
+
+            // Expected
+            // Right. So, 23000 - 3000 from 'costs of generating the profits' = 20000
+            // Thus, total tax = 0.19 * 20000 = 3800
+            int expectedTax = 3800;
+
+            // Yes, you will have to deal with a new method. You will have to pass appropriate parameters
+            // to the calculator using the CONSTRUCTOR, because you have no other way of
+            // passing without changing the interface of the method - the contract.
+            ITaxCalculator calculator =  TaxCalculatorFactory.Create(CustomerType.BusinessLinear, goods);
+            
+            // When
+            int actualTax = calculator.CalculateTax(companyMoney);
+
+            // Then
+            Assert.AreEqual(expectedTax, actualTax);
+
+        }
+
     }
 }
