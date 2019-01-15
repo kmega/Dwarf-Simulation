@@ -12,11 +12,15 @@ namespace BattleshipsWar.UI
         {
             StartGame Game = new StartGame();
 
-            ActionGameUI.DrawBoard(Game.PlayerOneBoard);
+            
+
+            DrawBoard(Game.PlayerOneBoard);
             Console.WriteLine();
 
             Game.PlaceShips();
         }
+
+
 
         public static void DrawBoard(CellProperty[,] board)
         {
