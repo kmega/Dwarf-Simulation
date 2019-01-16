@@ -12,7 +12,10 @@ namespace BattleshipsWar.UI
             Console.WriteLine();
 
             Game.PlaceShips();
+<<<<<<< HEAD
 
+=======
+>>>>>>> 20190110/Lumika
             GameEngine war = new GameEngine();
             war.PlayWar(Game);
         }
