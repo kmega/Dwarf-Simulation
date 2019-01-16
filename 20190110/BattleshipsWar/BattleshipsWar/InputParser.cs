@@ -62,7 +62,7 @@ namespace BattleshipsWar
                     return 9;
                 default:
                     {
-                        throw new NotImplementedException();
+                        return -1;
                     }
 
 
