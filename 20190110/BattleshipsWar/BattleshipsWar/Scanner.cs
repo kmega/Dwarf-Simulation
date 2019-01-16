@@ -14,13 +14,12 @@ namespace BattleshipsWar
            
             bool answer = false;
          
-            if (tempcoordinates[0] <= 10)
+            if (tempcoordinates[0] <= 10 && tempcoordinates[1]<=10)
             {
+               
 
-                if (tempcoordinates[1] <= 10)
-                {
-                    answer = true;
-                }
+                answer = true;
+                
             }
 
             return answer;

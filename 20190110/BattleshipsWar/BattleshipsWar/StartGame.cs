@@ -48,7 +48,7 @@ namespace BattleshipsWar
             }
 
             AnyKeyToContinue();
-            return (PlayerOneBoard, PlayerTwoBoard);+
+            return (PlayerOneBoard, PlayerTwoBoard);
         }
 
         private static void AnyKeyToContinue()
