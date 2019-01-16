@@ -8,23 +8,16 @@ namespace BattleShip
 {
     public static class GameOver
     {
-        static public bool ShipsAreDestroyed(Board board, int counter)
+        static public bool ShipsAreDestroyed(Board board)
         {
             bool result = false;
 
-            int count = 0;
-
-            foreach (var field in board.Fields)
+            foreach (var item in board.Fields)
             {
-                if (field == Field.H)
+                if (item == Field.S)
                 {
-                    count++;
+                    result = true;
                 }
-            }
-
-            if (count == counter)
-            {
-                result = true;
             }
 
             return result;

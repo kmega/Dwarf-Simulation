@@ -10,11 +10,12 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
-                      Simulator simulator = new Simulator();
+            Simulator simulator = new Simulator();
+
             simulator.Simulate();
 
-          
-         
+
+
             Console.ReadKey();
 
             //bool result;

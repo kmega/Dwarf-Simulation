@@ -8,7 +8,7 @@ namespace Test
     public class GameOverTests
     {
         [TestMethod]
-        public void ShouldReturnFalseWhenBoardHaveShips()
+        public void ShouldReturnTrueWhenBoardHaveShips()
         {
             //Given
             Board board = new Board();
@@ -22,15 +22,15 @@ namespace Test
             board.Fields[4, 6] = Field.S;
             board.Fields[4, 7] = Field.S;
 
-            bool result = GameOver.ShipsAreDestroyed(board,6);
+            bool result = GameOver.ShipsAreDestroyed(board);
 
             //Then
-            Assert.AreEqual(false, result);
+            Assert.AreEqual(true, result);
 
         }
 
         [TestMethod]
-        public void ShouldReturnTrueWhenAllShipsOnBoardAreDestroyed()
+        public void ShouldReturnFalseWhenAllShipsOnBoardAreDestroyed()
         {
             //Given
             Board board = new Board();
@@ -44,10 +44,10 @@ namespace Test
             board.Fields[4, 6] = Field.H;
             board.Fields[4, 7] = Field.H;
 
-            bool result = GameOver.ShipsAreDestroyed(board,3);
+            bool result = GameOver.ShipsAreDestroyed(board);
 
             //Then
-            Assert.AreEqual(true, result);
+            Assert.AreEqual(false, result);
 
 
         }

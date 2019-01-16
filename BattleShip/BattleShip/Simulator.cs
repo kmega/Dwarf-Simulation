@@ -15,12 +15,59 @@ namespace BattleShip
             Fight fight = new Fight();
             Player player1 = new Player(1);
             Player player2 = new Player(2);
-            
+
             InitializePlayerBoard(player1);
             InitializePlayerBoard(player2);
 
+            bool player1_loose = false;
+            bool player2_loose = false;
+            do
+            {
+                PlayTurn(player1, player2);
+                player1_loose = GameOver.ShipsAreDestroyed(player2.Player_Board);
+                PlayTurn(player2, player1);
+                player2_loose = GameOver.ShipsAreDestroyed(player1.Player_Board);
+
+            } while (player1_loose || player2_loose);
+
+            Console.Clear();
+            DisplayWinner(player1_loose, player2_loose);
+         
+
         }
 
+        private void DisplayWinner(bool player1_loose, bool player2_loose)
+        {
+            if (!(player1_loose) && !(player2_loose))
+            {
+                Console.WriteLine("Remis");
+            }
+            else if (!player1_loose)
+            {
+                Console.WriteLine("Wygrał gracz 2");
+            }
+            else if (!player2_loose)
+            {
+                Console.WriteLine("Wygrał gracz 1");
+            }
+        }
+
+        public void PlayTurn(Player shooter, Player victim)
+        {
+            Arena arena = new Arena();
+
+            Console.WriteLine($@"Twoja tablica strzałów");
+            shooter.ShowBoard(shooter.Opponent_Board);
+            Console.WriteLine("Podaj koordynaty strzału");
+            string coordinates = Console.ReadLine();
+
+            arena.Fight(shooter, victim, coordinates);
+            Console.Clear();
+            Console.WriteLine("Tablica po strzale");
+            shooter.ShowBoard(shooter.Opponent_Board);
+            Console.ReadKey();
+            Console.Clear();
+        }
         public void InitializePlayerBoard(Player player)
         {
             PutShipOnTheBoard PutShipOnTheBoard = new PutShipOnTheBoard();
@@ -53,7 +100,7 @@ namespace BattleShip
                 PutShipOnTheBoard.PutShip(player, coordinates, horizontal, i);
                 Console.Clear();
                 i++;
-                
+
             }
 
             Console.WriteLine("Rozmieszczone statki");

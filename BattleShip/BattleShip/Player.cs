@@ -23,6 +23,7 @@ namespace BattleShip
                 new Ship(2,2),
                 new Ship(3,3),
 
+
             };
 
             Player_Board = new Board();
@@ -54,6 +55,14 @@ namespace BattleShip
                     if (board.Fields[i,j] == Field.S)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    if (board.Fields[i, j] == Field.H)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+                    if (board.Fields[i, j] == Field.F)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
                     }
                     Console.Write(board.Fields[i, j] + " ");
                     Console.ResetColor();
