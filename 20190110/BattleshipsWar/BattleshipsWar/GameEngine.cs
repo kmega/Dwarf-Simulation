@@ -16,12 +16,13 @@ namespace BattleshipsWar
 
             while (true)
             {
-
+                Console.WriteLine("Strzela pierwszy gracz");
                 pt.MakeTurn(game.PlayerTwoShips, game.PlayerTwoBoard);
                 if (Winner == true)
                 {
                     break;
                 }
+                Console.WriteLine("Strzela drugi gracz");
                 pt.MakeTurn(game.PlayerOneShips, game.PlayerOneBoard);
                 if (Winner == true)
                 {

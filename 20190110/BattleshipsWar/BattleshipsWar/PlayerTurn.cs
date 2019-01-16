@@ -16,6 +16,8 @@ namespace BattleshipsWar
          
             do
             {
+                
+                ActionGameUI.DrawBoardWar(enemywarmap);
                 Console.WriteLine();
                 Console.WriteLine("Podaj koordynaty");
                 string input = Console.ReadLine();
@@ -23,7 +25,7 @@ namespace BattleshipsWar
                 int[] coordinates = new InputParser().ChangeCordsToIndexes(input);
                 War war = new War();
                result= war.Shoot(coordinates, enemywarmap, listofenemyships);
-               //new ActionGameUI.DrawBoardAfterShoot(result[1],coordinates);
+                
 
 
 
