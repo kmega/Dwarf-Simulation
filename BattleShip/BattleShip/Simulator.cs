@@ -28,7 +28,7 @@ namespace BattleShip
                 PlayTurn(player2, player1);
                 player2_loose = GameOver.ShipsAreDestroyed(player1.Player_Board);
 
-            } while (player1_loose || player2_loose);
+            } while (player1_loose && player2_loose);
 
             Console.Clear();
             DisplayWinner(player1_loose, player2_loose);
@@ -44,11 +44,11 @@ namespace BattleShip
             }
             else if (!player1_loose)
             {
-                Console.WriteLine("Wygrał gracz 2");
+                Console.WriteLine("Wygrał gracz 1");
             }
             else if (!player2_loose)
             {
-                Console.WriteLine("Wygrał gracz 1");
+                Console.WriteLine("Wygrał gracz 2");
             }
         }
 

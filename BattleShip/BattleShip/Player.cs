@@ -40,19 +40,19 @@ namespace BattleShip
         }
         public void ShowBoard(Board board)
         {
-                      
+
             Console.Write("    A B C D E F G H I J ");
 
             Console.WriteLine();
             Console.WriteLine();
             for (int i = 0, k = 1; i < board.Fields.GetLength(0); i++)
             {
-              
+
                 Console.Write(String.Format("{0,-4}", k++)); ;
 
                 for (int j = 0; j < board.Fields.GetLength(1); j++)
                 {
-                    if (board.Fields[i,j] == Field.S)
+                    if (board.Fields[i, j] == Field.S)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                     }
@@ -64,7 +64,12 @@ namespace BattleShip
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
                     }
-                    Console.Write(board.Fields[i, j] + " ");
+                    if (board.Fields[i, j] == Field.O)
+                    {
+                        Console.Write(". ");
+                    }
+                    else
+                        Console.Write(board.Fields[i, j] + " ");
                     Console.ResetColor();
                 }
                 Console.WriteLine();
