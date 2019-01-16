@@ -123,9 +123,9 @@ namespace BattleshipsWar
                         Console.WriteLine("Zniszczyłeś statek {0} elementowy", shipStatus.Count);
                         foreach (var item2 in item.Coords)
                         {
-                            for (int row = -1; row < 1; row++)
+                            for (int row = -1; row <= 1; row++)
                             {
-                                for (int column = -1; column < 1; column++)
+                                for (int column = -1; column <= 1; column++)
                                 {
                                     try
                                     {
@@ -137,8 +137,6 @@ namespace BattleshipsWar
                                     }
                                 }
                             }
-                            warmap[item2[0], item2[1]] = CellProperty.Blocked;
-
                         }
                     }
 
