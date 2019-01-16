@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BattleShips.Models
 {
-    public class Player : IPlayer
+    public class Player
     {
         public Player()
         {
