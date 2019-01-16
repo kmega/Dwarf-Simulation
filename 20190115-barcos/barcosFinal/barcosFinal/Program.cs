@@ -6,7 +6,7 @@ namespace barcosFinal
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Ship!");
+            //Console.WriteLine("Hello Ship!");
         }
     }
 }
