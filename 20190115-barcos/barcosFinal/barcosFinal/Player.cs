@@ -15,7 +15,7 @@ namespace barcosFinal
         public char[,] Shoot(int x, int y, char[,] board)
         {
             if (board[x, y] == '^')
-                board[x, y] = 'X';
+                board[x, y] = 'x';
             
             return board;
         }

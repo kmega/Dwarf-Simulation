@@ -93,8 +93,8 @@ namespace Tests
                 }
             };
 
-
-            Assert.IsTrue('X' == player2.GetCurrentBattleField()[1,2]);
+            player1.Shoot(1, 2, player2.GetCurrentBattleField());
+            Assert.IsTrue('x' == player2.GetCurrentBattleField()[1,2]);
         }
     }
 }

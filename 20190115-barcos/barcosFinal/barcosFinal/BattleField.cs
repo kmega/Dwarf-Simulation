@@ -10,6 +10,11 @@ namespace barcosFinal
     {
         public char[,] Board { get; set; }
 
+        public BattleField()
+        {
+            DrawBoard();
+        }
+
         public void DrawBoard()
         {
             Board = new char[10, 10];
