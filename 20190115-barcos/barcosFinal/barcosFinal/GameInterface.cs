@@ -11,8 +11,9 @@ namespace barcosFinal
         {
         }
 
-        IPlayer CurrentPlayer = null;
-        List<IPlayer> Players = new List<IPlayer>() { };
+
+        public IPlayer CurrentPlayer { get; set; }
+        public List<IPlayer> Players { get; set; }
 
         public void MessageToPlayer(IPlayer player, string message)
         {
