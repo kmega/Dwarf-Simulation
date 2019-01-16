@@ -18,7 +18,18 @@ namespace barcosFinal
 
         public char[,] Shoot(int x, int y, char[,] board)
         {
+            bool isHit = false;
             if (board[x, y] == '^')
+                isHit = true;
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    board[i, j] = 'o';
+                }
+            }
+
+            if (isHit == true)
                 board[x, y] = 'x';
             
             return board;
