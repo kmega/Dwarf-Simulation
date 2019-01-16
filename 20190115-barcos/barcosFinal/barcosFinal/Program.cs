@@ -7,6 +7,8 @@ namespace barcosFinal
         static void Main(string[] args)
         {
             //Console.WriteLine("Hello Ship!");
+<<<<<<< HEAD
+=======
 
             //BattleField battleField = new BattleField();
             //battleField.DrawBoard();
@@ -17,7 +19,13 @@ namespace barcosFinal
             //userI.ShowBoard(battleField.Board);
 
             //Console.ReadKey();
+<<<<<<< HEAD
    
+=======
+
+            
+>>>>>>> b6df5c6d1b628dd2152eadcc847009340938d17a
+>>>>>>> e92f06634c6cb3502bdd6cebda26a98ce1902eea
         }
     }
 }
