@@ -13,7 +13,25 @@ namespace barcosFinal
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    
+                    if(i==0 && j ==0)
+                    {
+                        for (int z = 0; z < 10; z++)
+                        {
+                            if(z==0)
+                                Console.Write("          {0}", z + 1);
+                            else
+                            Console.Write("       {0}", z+1);
+                        }
+
+                        Console.WriteLine("");
+                        Console.Write(" {0} ", i + 1);
+                        
+                    }
+                    else if (j == 0 && i==9)
+                        Console.Write(" {0}", i + 1);
+                    else if (j==0)
+                        Console.Write(" {0} ", i + 1);
+
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.Write("   |   ");
                     switch (board[i, j])
