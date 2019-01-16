@@ -14,7 +14,7 @@ namespace BattleshipsWar
            
             bool answer = false;
          
-            if (tempcoordinates[0] <= 10 && tempcoordinates[1] <= 10)
+            if (tempcoordinates[0] <= 9 && tempcoordinates[1] <= 9)
             {
                 if (tempcoordinates[0] >= 0 && tempcoordinates[1] >= 0)
                 {

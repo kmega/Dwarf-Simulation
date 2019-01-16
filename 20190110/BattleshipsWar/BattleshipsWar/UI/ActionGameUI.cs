@@ -12,6 +12,8 @@ namespace BattleshipsWar.UI
             Console.WriteLine();
 
             Game.PlaceShips();
+            GameEngine war = new GameEngine();
+            war.PlayWar(Game);
         }
 
 

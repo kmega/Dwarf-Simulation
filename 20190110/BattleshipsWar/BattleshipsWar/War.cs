@@ -30,6 +30,7 @@ namespace BattleshipsWar
                     case CellProperty.Hit:
 
                         CellIsHit();
+                        isShootHit = true;
                         break;
 
 
@@ -50,6 +51,7 @@ namespace BattleshipsWar
                     case CellProperty.Blocked:
 
                         CellIsBlocked();
+                        isShootHit = true;
                         break;
 
                     default:
