@@ -7,11 +7,13 @@ namespace barcosFinal
     {
         static void Main(string[] args)
         {
+            Player pl1 = new Player();
+            IBattleField bf = new BattleField();
+            bf.DrawBoard();
+            pl1.BattleField = bf;
 
-            Console.WriteLine("Podaj imię gracza 1");
-            
-            
-            
+            pl1.AddShip();
+
             Console.ReadLine();
             Console.WriteLine("Hello Ship!");
         }
