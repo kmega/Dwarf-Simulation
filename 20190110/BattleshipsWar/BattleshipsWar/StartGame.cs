@@ -177,10 +177,13 @@ namespace BattleshipsWar
             int[] coordsToChange = { -1, -1 };
 
             bool canBePlaced = true;
+            Scanner scan = new Scanner();
 
             for (int i = 0; i < ship.Coords.Count; i++)
             {
                 coordsToChange = ship.Coords[i];
+
+                canBePlaced = scan.CheckCoordinatesCorrectness(coordsToChange, board);
 
                 for (int row = -1; row <= 1; row++)
                 {
