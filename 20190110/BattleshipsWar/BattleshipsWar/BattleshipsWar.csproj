@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Direction.cs" />
+    <Compile Include="GameEngine.cs" />
     <Compile Include="KindOfShip.cs" />
     <Compile Include="PlayerTurn.cs" />
     <Compile Include="Ship.cs" />

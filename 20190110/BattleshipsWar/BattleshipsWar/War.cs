@@ -9,11 +9,13 @@ namespace BattleshipsWar
     public class War
     {
 
-        public bool Shoot(int[] tempcoordinates, CellProperty[,] warmap, List<Ship> listofships)
+        public bool[] Shoot(int[] tempcoordinates, CellProperty[,] warmap, List<Ship> listofships)
         {
             Scanner sc = new Scanner();
             string result;
+            bool[] shootresult = new bool[2];
             bool isCoorinatesCorrect = false;
+            bool isShootHit = false;
             CellProperty option;
 
 
@@ -39,6 +41,8 @@ namespace BattleshipsWar
                     case CellProperty.Occupied:
 
                         CellIsOccupied(warmap, tempcoordinates,listofships);
+                        isShootHit = true;
+                        
                         break;
 
 
@@ -59,7 +63,11 @@ namespace BattleshipsWar
                 result = "Złe koordynaty, spróbuj jeszcze raz";
                 Console.WriteLine(result); 
             }
-            return isCoorinatesCorrect;
+
+            shootresult[1] = isShootHit;
+            shootresult[0] = isCoorinatesCorrect;
+            return shootresult;
+            
         }
 
 
