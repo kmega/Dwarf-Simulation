@@ -23,7 +23,7 @@ namespace BattleshipsWar
                 int[] coordinates = new InputParser().ChangeCordsToIndexes(input);
                 War war = new War();
                result= war.Shoot(coordinates, enemywarmap, listofenemyships);
-               new ActionGameUI.DrawBoardAfterShoot(result[1],coordinates);
+               //new ActionGameUI.DrawBoardAfterShoot(result[1],coordinates);
 
 
 
@@ -37,7 +37,7 @@ namespace BattleshipsWar
 
         public bool MakeTurn (List<Ship> listofenemyships, CellProperty[,] enemywarmap)
         {
-            bool result = false;
+            bool result = true;
             bool Winner = false;
             do
             {
@@ -59,7 +59,7 @@ namespace BattleshipsWar
                     Winner = true;
                 }
 
-            } while (result == false);
+            } while (result == true);
 
             return Winner;
         }

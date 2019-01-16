@@ -34,7 +34,7 @@ namespace BattleshipsWar
 
                     case CellProperty.Empty:
 
-                         CellISsEmpty();
+                         CellISsEmpty(warmap, tempcoordinates);
                         break;
 
 
@@ -89,10 +89,11 @@ namespace BattleshipsWar
             
         }
 
-        private void CellISsEmpty()
+        private void CellISsEmpty(CellProperty[,] warmap, int[] tempcoordinates)
         {
             string result = "Nie trafiłeś";
-                Console.WriteLine(result);
+            warmap[tempcoordinates[0], tempcoordinates[1]] = CellProperty.Blocked;
+            Console.WriteLine(result);
         }
 
         private void CellIsHit()
@@ -118,7 +119,7 @@ namespace BattleshipsWar
 
                     if (!shipStatus.Contains(CellProperty.Occupied))
                     {
-                        Console.WriteLine("Znisczyłeś statek {0} elementowy", shipStatus.Count);
+                        Console.WriteLine("Zniszczyłeś statek {0} elementowy", shipStatus.Count);
                         foreach (var item2 in item.Coords)
                         {
                             warmap[item2[0], item2[1]] = CellProperty.Blocked;
