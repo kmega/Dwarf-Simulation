@@ -17,8 +17,7 @@ namespace barcosFinal
             //userI.ShowBoard(battleField.Board);
 
             //Console.ReadKey();
-
-            
+   
         }
     }
 }
