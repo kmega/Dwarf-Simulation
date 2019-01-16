@@ -11,5 +11,7 @@ namespace BattleShips.Models
             Ships = new List<IShip>();
         }
         public List<IShip> Ships { get; set; }
+        public bool IsActive { get; set; }
+        public string Name { get; set; }
     }
 }
