@@ -174,23 +174,47 @@ namespace BattleshipsWar
                 PlayerTwoShips.Add(ship);
             }
 
-            int[] coordsToChange;
+            int[] coordsToChange = { -1, -1 };
+
+            bool canBePlaced = true;
 
             for (int i = 0; i < ship.Coords.Count; i++)
             {
                 coordsToChange = ship.Coords[i];
-                for (int j = 0; j < 10; j++)
+
+                for (int row = -1; row <= 1; row++)
                 {
-                    for (int k = 0; k < 10; k++)
+                    for (int column = -1; column <= 1; column++)
                     {
-                        if (coordsToChange[0] == j && coordsToChange[1] == k)
+                        try
                         {
-                            board[j, k] = CellProperty.Occupied;
+                            if (board[coordsToChange[0] + row, coordsToChange[1] + column] != CellProperty.Empty && board[coordsToChange[0] + row, coordsToChange[1] + column] != board[coordsToChange[0], coordsToChange[1]])
+                            {
+                                canBePlaced = false;
+                            }
+                        }
+                        catch
+                        {
+                            continue;
                         }
                     }
-                }                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+                }
             }
-        }
 
+            if (canBePlaced == true)
+            {
+                for (int j = 0; j < ship.Coords.Count; j++)
+                {
+                    coordsToChange = ship.Coords[j];
+
+                    board[coordsToChange[0], coordsToChange[1]] = CellProperty.Occupied;
+                }
+            }
+            else
+            {
+                CounterOfShipsPlaced--;
+            }
+        }                                                                                                                                                                                                                                                                                                                                                                                                                                                              
     }
 }
+
