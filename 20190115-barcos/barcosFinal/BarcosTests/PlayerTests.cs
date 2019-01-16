@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using barcosFinal;
+using barcosFinal.Enums;
 using barcosFinal.Interfaces;
 using Moq;
 using NUnit.Framework;
@@ -8,25 +11,90 @@ namespace Tests
     {
 
         [Test]
-        public void PlayerShotTest()
+        public void PlayerShotAndMiss()
         {
-            Mock<IPlayer> player = new Mock<IPlayer>();
-            Mock<IPlayer> player2 = new Mock<IPlayer>();
 
-            Mock<IBattleField> battleField = new Mock<IBattleField>();
-          //  battleField.SetupSet(x => x.Board).Callback<char[,]>(x => x = new char[,]);
+            var board1 = new char[9, 9];
+            var board2 = new char[9, 9];
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    board1[i, j] = 'o';
+                    board2[i, j] = 'o';
 
-            Mock<IBattleField> battleField2 = new Mock<IBattleField>();
-
-
-            player.SetupGet(x => x.BattleField).Returns(battleField.Object);
-            player2.SetupGet(x => x.BattleField).Returns(battleField2.Object);
+                }
+            }
+            
+            IPlayer player1 = new Player()
+            {
+                BattleField = new BattleField()
+                {
+                    Board = board1
+                },
+                Ships = new List<IShip>()
+                {
+                    new Ship(2, 1,2,Orientation.vertical)
+                }
+            };
 
             
+            IPlayer player2 = new Player()
+            {
+                BattleField = new BattleField()
+                {
+                    Board = board1
+                },
+                Ships = new List<IShip>()
+                {
+                    new Ship(2, 1,2,Orientation.vertical)
+                }
+            };
+            Assert.IsTrue('o' == player2.GetCurrentBattleField()[1,2]);
+        }
+        [Test]
+        public void PlayerShotAndHit()
+        {
+
+            var board1 = new char[9, 9];
+            var board2 = new char[9, 9];
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    board1[i, j] = '^';
+                    board2[i, j] = '^';
+
+                }
+            }
             
+            IPlayer player1 = new Player()
+            {
+                BattleField = new BattleField()
+                {
+                    Board = board1
+                },
+                Ships = new List<IShip>()
+                {
+                    new Ship(2, 1,2,Orientation.vertical)
+                }
+            };
+
             
-            
-            player.Object.Shoot(1, 2, player2.Object.GetCurrentBattleField());
+            IPlayer player2 = new Player()
+            {
+                BattleField = new BattleField()
+                {
+                    Board = board1
+                },
+                Ships = new List<IShip>()
+                {
+                    new Ship(2, 1,2,Orientation.vertical)
+                }
+            };
+
+
+            Assert.IsTrue('X' == player2.GetCurrentBattleField()[1,2]);
         }
     }
 }
