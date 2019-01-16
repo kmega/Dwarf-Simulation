@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetterBattleships", "BetterBattleships\BetterBattleships.csproj", "{205441F4-B0E7-4D28-B7A6-B9AE1C5E3940}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBetterBattleships", "TestBetterBattleships\TestBetterBattleships.csproj", "{2F7E3983-483E-4D3F-A648-CD6B689C0069}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{205441F4-B0E7-4D28-B7A6-B9AE1C5E3940}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205441F4-B0E7-4D28-B7A6-B9AE1C5E3940}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205441F4-B0E7-4D28-B7A6-B9AE1C5E3940}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205441F4-B0E7-4D28-B7A6-B9AE1C5E3940}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F7E3983-483E-4D3F-A648-CD6B689C0069}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F7E3983-483E-4D3F-A648-CD6B689C0069}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F7E3983-483E-4D3F-A648-CD6B689C0069}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F7E3983-483E-4D3F-A648-CD6B689C0069}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
