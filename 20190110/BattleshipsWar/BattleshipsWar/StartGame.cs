@@ -17,6 +17,8 @@ namespace BattleshipsWar
         public List<Ship> PlayerTwoShips = new List<Ship>();
 
         private bool AllShipsPlaced = false;
+        private bool NextPlayer = false;
+
         private int CounterOfShipsPlaced = 0;
 
         private int[] Coords = { -1, -1 };
@@ -27,19 +29,24 @@ namespace BattleshipsWar
             while (AllShipsPlaced == false)
             {
              
-                if (CounterOfShipsPlaced < 7)
+                if (CounterOfShipsPlaced <= 7 && NextPlayer != true)
                 {
                     UserCommunication(out placement, out direction, "First");
                     PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
 
                     ActionGameUI.DrawBoard(PlayerOneBoard);
 
-                    if(CounterOfShipsPlaced == 7) AnyKeyToContinue();
+                    if(CounterOfShipsPlaced == 6)
+                    {
+                        CounterOfShipsPlaced = 0;
+                        NextPlayer = true;
+                        AnyKeyToContinue();
+                    }
 
                 }
                 else
                 {                   
-                    if(CounterOfShipsPlaced == 7) ActionGameUI.DrawBoard(PlayerTwoBoard); // display empty board for second player
+                    if(CounterOfShipsPlaced < 7) ActionGameUI.DrawBoard(PlayerTwoBoard); // display empty board for second player
 
                     UserCommunication(out placement, out direction, "Second");
                     PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction);
@@ -103,7 +110,6 @@ namespace BattleshipsWar
             switch (CounterOfShipsPlaced)
             {
                 case 0:
-                case 7:
                     {
                         KindOfShip lengthOfShip = KindOfShip.Six;
                         FillTheBoard(board, userChoice, lengthOfShip);
@@ -111,8 +117,6 @@ namespace BattleshipsWar
                     }
                 case 1:
                 case 2:
-                case 8:
-                case 9:
                     {
                         KindOfShip lengthOfShip = KindOfShip.Four;
                         FillTheBoard(board, userChoice, lengthOfShip);
@@ -120,8 +124,6 @@ namespace BattleshipsWar
                     }
                 case 3:
                 case 4:
-                case 10:
-                case 11:
                     {
                         KindOfShip lengthOfShip = KindOfShip.Three;
                         FillTheBoard(board, userChoice, lengthOfShip);
@@ -129,8 +131,6 @@ namespace BattleshipsWar
                     }
                 case 5:
                 case 6:
-                case 12:
-                case 13:
                     {
                         KindOfShip lengthOfShip = KindOfShip.Two;
                         FillTheBoard(board, userChoice, lengthOfShip);
@@ -151,13 +151,13 @@ namespace BattleshipsWar
 
         private void FillTheBoard(CellProperty[,] board, Direction userChoice, KindOfShip lengthOfShip)
         {
-            if (CounterOfShipsPlaced > 0 && CounterOfShipsPlaced != 7)
+            if (CounterOfShipsPlaced > 0)
             {
                 lengthOfShip = KindOfShip.Four;
-                if (CounterOfShipsPlaced > 2 && CounterOfShipsPlaced != 8 && CounterOfShipsPlaced !=9)
+                if (CounterOfShipsPlaced > 2)
                 {
                     lengthOfShip = KindOfShip.Three;
-                    if (CounterOfShipsPlaced > 4 && CounterOfShipsPlaced != 10 && CounterOfShipsPlaced != 11)
+                    if (CounterOfShipsPlaced > 4)
                     {
                         lengthOfShip = KindOfShip.Two;
                     }
