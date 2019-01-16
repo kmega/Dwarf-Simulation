@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using barcosFinal.Enums;
 using barcosFinal.Interfaces;
 
 namespace barcosFinal
@@ -9,31 +7,15 @@ namespace barcosFinal
     {
         static void Main(string[] args)
         {
-//            Console.WriteLine("Podaj imię gracza 1");
-            UI ui = new UI();
-//            
-//
-            IPlayer player1 = new Player()
-            {
-                BattleField = new BattleField(),
-                Ships = new List<IShip>()
-                {
-                    new Ship(2, 1, 2, Orientation.vertical)
-                }
-            };
+            Player pl1 = new Player();
+            IBattleField bf = new BattleField();
+            bf.DrawBoard();
+            pl1.BattleField = bf;
 
-
-            IPlayer player2 = new Player()
-            {
-                BattleField = new BattleField(),
-                Ships = new List<IShip>()
-                {
-                    new Ship(2, 1, 2, Orientation.vertical)
-                }
-            };
-
+            pl1.AddShip();
 
             Console.ReadLine();
+            Console.WriteLine("Hello Ship!");
         }
     }
 }

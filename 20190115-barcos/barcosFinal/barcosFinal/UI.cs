@@ -1,4 +1,5 @@
-﻿using System;
+﻿using barcosFinal.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -29,7 +30,7 @@ namespace barcosFinal
                     }
 
                     Console.Write(board[i,j]);
-                    Console.ResetColor();
+                    
                     if (j == 9)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
@@ -37,7 +38,7 @@ namespace barcosFinal
                         Console.WriteLine("");
                         Console.WriteLine("");
                     }
-                        
+                    Console.ResetColor();
                 }
             }
         }

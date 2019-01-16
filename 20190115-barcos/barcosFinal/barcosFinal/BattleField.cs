@@ -27,5 +27,10 @@ namespace barcosFinal
             }
             
         }
+
+        public void AddShip(IShip ship)
+        {
+
+        }
     }
 }
