@@ -6,7 +6,7 @@ namespace barcosFinal.Interfaces
 {
     public interface IBattleField
     {
-        char[] Board { get; set; }
+        char[,] Board { get; set; }
         void DrawBoard();
     }
 }

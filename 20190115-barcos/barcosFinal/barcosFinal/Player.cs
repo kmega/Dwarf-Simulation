@@ -7,14 +7,17 @@ namespace barcosFinal
     {
         public List<IShip> Ships { get; set; }
         public IBattleField BattleField { get; set; }
-        public char[] GetCurrentBattleField()
+        public char[,] GetCurrentBattleField()
         {
             return BattleField.Board;
         }
 
-        public char[] Shoot(int x, int y, char[] board)
+        public char[,] Shoot(int x, int y, char[,] board)
         {
-            throw new System.NotImplementedException();
+            if (board[x, y] == '^')
+                board[x, y] = 'X';
+            
+            return board;
         }
     }
 }
