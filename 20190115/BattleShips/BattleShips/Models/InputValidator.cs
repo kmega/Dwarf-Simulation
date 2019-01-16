@@ -63,7 +63,7 @@ namespace BattleShips.Models
                     return true;
                 }
             }
-            return true;
+            return false;
         }
     }
 }

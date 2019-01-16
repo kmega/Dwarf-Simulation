@@ -81,5 +81,14 @@ namespace BattleShipsTests
             //Then
             Assert.IsTrue(InputValidator.CheckIfChoosenShipAlreadyExists(input, player));
         }
+        [Test]
+        [TestCase("d")]
+        public void T07_ShouldReturnFalseWhenChoosenShipDoesNotYetExist(string input)
+        {
+            //given
+            Player player = new Player();
+            //Then
+            Assert.IsFalse(InputValidator.CheckIfChoosenShipAlreadyExists(input, player));
+        }
     }
 }
