@@ -51,5 +51,19 @@ namespace BattleShips.Models
                     throw new Exception("Incorrect direction inserted, please try again!");
             }
         }
+
+        public static bool CheckIfChoosenShipAlreadyExists(string message, Player player)
+        {
+            int l;
+            var shipType = new Shipfactory().GetShipType(message, out l);
+            foreach(var ship in player.Ships)
+            {
+                if(ship.Type == shipType)
+                {
+                    return true;
+                }
+            }
+            return true;
+        }
     }
 }

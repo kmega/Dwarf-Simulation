@@ -71,5 +71,16 @@ namespace BattleShipsTests
                 () => InputValidator.CheckPosition(input)).Message;
             Assert.AreEqual("Wrong position inserted, please try again!", message);
         }
+        [Test]
+        [TestCase("d")]
+        public void T06_ShouldReturnTrueWhenChoosenShipAlreadyExists(string input)
+        {
+            //given
+            Player player = new Player();
+            //Then
+            string message = Assert.Throws<Exception>(
+                () => InputValidator.CheckDirection(input)).Message;
+            Assert.AreEqual("Incorrect direction inserted, please try again!", message);
+        }
     }
 }
