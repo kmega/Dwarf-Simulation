@@ -26,7 +26,7 @@ namespace Tests
         public void T_01_BattleFieldBoardHasOnlyEmptyFields()
         {
             //given
-            IBattleField board = new BattleField();
+            IBattleField board = new BattleField(); 
             
 
             //when
