@@ -11,5 +11,6 @@ namespace BattleShips.Models
         List<string> OccupiedPositions { get; set; }
         List<string> DamagedPositions { get; set; }
         List<string> BlockedNeighbourhood { get; set; }
+        
     }
 }
