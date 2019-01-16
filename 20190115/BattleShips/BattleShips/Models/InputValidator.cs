@@ -9,7 +9,7 @@ namespace BattleShips.Models
         public static bool CheckShipType(string message)
         {
             string validationInfo = message.ToLower();
-            switch(validationInfo)
+            switch (validationInfo)
             {
                 case "c":
                 case "d":
@@ -25,13 +25,22 @@ namespace BattleShips.Models
         public static bool CheckPosition(string message)
         {
             string validationInfo = message.ToUpper();
-            
-            return false;
+            int x = -2, y = -2;
+            if (message.Length == 3 || message.Length == 2)
+            {
+                TextParser.ParseFieldToInt(validationInfo, out x, out y);                
+            }
+            if (x >= 0 && x <= 9 && y >= 0 && y <= 9)
+            {
+                return true;
+            }
+            throw new Exception("Wrong position inserted, please try again!");
         }
+
         public static bool CheckDirection(string message)
         {
             string validationInfo = message.ToLower();
-            switch(validationInfo)
+            switch (validationInfo)
             {
                 case "u":
                 case "r":

@@ -32,7 +32,14 @@ namespace BattleShips.Models
         public static void ParseFieldToInt(string field, out int x, out int y)
         {
             x = field[0] - 65;
-            y = Convert.ToInt32(field[1]) - 49;
+            if (field.Length == 2)
+            {                
+                y = Convert.ToInt32(field[1]) - 49;
+            }
+            else
+            {
+                y = Int32.Parse($"{field[1]}{field[2]}")-1;
+            }         
         }
         public static string ParseIntToString(int x, int y)
         {
