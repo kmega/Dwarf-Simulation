@@ -51,8 +51,12 @@ namespace BattleShip
 
                 for (int j = 0; j < board.Fields.GetLength(1); j++)
                 {
-
+                    if (board.Fields[i, j] == Field.S)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
                     Console.Write(board.Fields[i, j] + " ");
+                    Console.ResetColor();
                 }
                 Console.WriteLine();
             }

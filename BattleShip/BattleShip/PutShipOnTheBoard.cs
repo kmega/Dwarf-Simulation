@@ -22,14 +22,15 @@ namespace BattleShip
                 {
                     if (horizontal)
                     {
-                        player.Player_Board.Fields[coordinate[0] + i, coordinate[1]] = Field.S;
+                        player.Player_Board.Fields[coordinate[1], coordinate[0] + i] = Field.S;
                     }
                     else
                     {
-                        player.Player_Board.Fields[coordinate[0], coordinate[1] + i] = Field.S;
+                        player.Player_Board.Fields[coordinate[1] + i, coordinate[0]] = Field.S;
                     }
                 }
             }
+            
 
         }
 
@@ -52,7 +53,7 @@ namespace BattleShip
         {
             Coordinates = Coordinates.ToLower();
             int[] result = new int[2];
-            result[0] = (Coordinates[0] % 97) + 1;
+            result[0] = (Coordinates[0] % 97)+1;
 
             string second_coordinate= "";
             for (int i = 1; i < Coordinates.Count(); i++)
