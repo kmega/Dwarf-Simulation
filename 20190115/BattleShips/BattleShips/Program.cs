@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BattleShips.Models;
+using System;
+using System.Collections.Generic;
 
 namespace BattleShips
 {
@@ -6,7 +8,12 @@ namespace BattleShips
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            List<Player> players = new List<Player>()
+            {
+                new Player(),
+                new Player()
+            };
+            UI ui = new UI(players);
         }
     }
 }
