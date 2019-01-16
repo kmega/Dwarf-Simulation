@@ -2,10 +2,10 @@
 {
     public interface IBoardPlacer
     {
-        CellStatus GetCurrentCellStatus(int[] coords, IPlayer player);
+        CellStatus GetCurrentCellStatus(int[] coords, CellStatus[,] Board);
         int[] GetCoordinatesToSetShip();
         string GetDirectionsForCoordinates();
-        void SetShipsOnBoard(IPlayer player);
-        void ExecuteShipPlacement(string direction, int[] startCoords, ShipTypes ship, IPlayer player);
+        void SetShipsOnBoard(CellStatus[,] Board);
+        void ExecuteShipPlacement(string direction, int[] startCoords, ShipTypes ship, CellStatus[,] Board);
     }
 }

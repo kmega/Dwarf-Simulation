@@ -5,7 +5,7 @@ namespace BetterBattleships
 {
     public class BoardPlacer : IBoardPlacer
     {
-        public void SetShipsOnBoard(IPlayer player)
+        public void SetShipsOnBoard(CellStatus[,] Board)
         {
             List<ShipTypes> ListOfShipsToSet = new AvailableShips().GetShipList();
             var cd = new ConsoleDisplayer();
@@ -15,8 +15,8 @@ namespace BetterBattleships
                 string direction = GetDirectionsForCoordinates();
                 int[] coords = GetCoordinatesToSetShip();
 
-                ExecuteShipPlacement(direction, coords, ship, player);
-                cd.DisplayBoard(player);
+                ExecuteShipPlacement(direction, coords, ship, Board);
+                cd.DisplayBoard(Board);
             }
         }
 
@@ -28,9 +28,9 @@ namespace BetterBattleships
             return new int[] { row, column };
         }
 
-        public CellStatus GetCurrentCellStatus(int[] coords, IPlayer player)
+        public CellStatus GetCurrentCellStatus(int[] coords, CellStatus[,] Board)
         {
-            return player.GetBoard()[coords[0], coords[1]];
+            return Board[coords[0], coords[1]];
         }
 
         public string GetDirectionsForCoordinates()
@@ -39,17 +39,17 @@ namespace BetterBattleships
             return System.Console.ReadLine();
         }
 
-        public void ExecuteShipPlacement(string direction, int[] startCoords, ShipTypes ship, IPlayer player)
+        public void ExecuteShipPlacement(string direction, int[] startCoords, ShipTypes ship, CellStatus[,] Board)
         {
             if (direction == "w")
             {
                 int temp = 0;
                 for (int i = startCoords[0]; i >= 0; i--)
                 {
-                    if (player.GetBoard()[i, startCoords[1]] == CellStatus.DECK)
+                    if (Board[i, startCoords[1]] == CellStatus.DECK)
                         throw new System.NotImplementedException();
 
-                    player.GetBoard()[i, startCoords[1]] = CellStatus.DECK;
+                    Board[i, startCoords[1]] = CellStatus.DECK;
 
                     temp++;
                     if (temp == (int)ship)
@@ -62,10 +62,10 @@ namespace BetterBattleships
                 int temp = 0;
                 for (int i = startCoords[0]; i <= 9; i++)
                 {
-                    if (player.GetBoard()[i, startCoords[1]] == CellStatus.DECK)
+                    if (Board[i, startCoords[1]] == CellStatus.DECK)
                         throw new System.NotImplementedException();
 
-                    player.GetBoard()[i, startCoords[1]] = CellStatus.DECK;
+                    Board[i, startCoords[1]] = CellStatus.DECK;
 
                     temp++;
                     if (temp == (int)ship)
@@ -78,10 +78,10 @@ namespace BetterBattleships
                 int temp = 0;
                 for (int i = startCoords[1]; i <= 9; i++)
                 {
-                    if (player.GetBoard()[startCoords[0], i] == CellStatus.DECK)
+                    if (Board[startCoords[0], i] == CellStatus.DECK)
                         throw new System.NotImplementedException();
 
-                    player.GetBoard()[startCoords[0], i] = CellStatus.DECK;
+                    Board[startCoords[0], i] = CellStatus.DECK;
 
                     temp++;
                     if (temp == (int)ship)

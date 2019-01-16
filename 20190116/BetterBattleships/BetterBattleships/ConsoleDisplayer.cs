@@ -2,13 +2,13 @@
 {
     public class ConsoleDisplayer
     {
-        public void DisplayBoard(IPlayer player)
+        public void DisplayBoard(CellStatus[,] Board)
         {
-            for (int i = 0; i < player.GetBoard().GetLength(0); i++)
+            for (int i = 0; i < Board.GetLength(0); i++)
             {
-                for (int j = 0; j < player.GetBoard().GetLength(1); j++)
+                for (int j = 0; j < Board.GetLength(1); j++)
                 {
-                    var uglyLongVar = new BoardPlacer().GetCurrentCellStatus(new int[] { i, j }, player);
+                    var uglyLongVar = new BoardPlacer().GetCurrentCellStatus(new int[] { i, j }, Board);
                     System.Console.Write("[{0}] ", (char)uglyLongVar);
                 }
                 System.Console.WriteLine();

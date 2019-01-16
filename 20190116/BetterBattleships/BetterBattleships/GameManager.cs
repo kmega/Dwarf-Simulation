@@ -5,9 +5,9 @@ namespace BetterBattleships
 {
     public class GameManager
     {
-        public void SetShipsOnBoard(IPlayer player)
+        public void ManageBoard(IPlayer player)
         {
-            new BoardPlacer().SetShipsOnBoard(player);
+            new BoardPlacer().SetShipsOnBoard(player.GetBoard());
         }
     }
 }

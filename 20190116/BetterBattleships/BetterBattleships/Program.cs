@@ -8,7 +8,7 @@ namespace BetterBattleships
         {
             var gm = new GameManager();
             IPlayer player1 = new PlayerFactory().ProducePlayer(name: "as");
-            gm.SetShipsOnBoard(player1);
+            gm.ManageBoard(player1);
 
             Console.ReadKey();
         }
