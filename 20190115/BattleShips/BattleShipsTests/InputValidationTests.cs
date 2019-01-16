@@ -77,10 +77,9 @@ namespace BattleShipsTests
         {
             //given
             Player player = new Player();
+            player.Ships.Add(new FakeDestroyer("d"));
             //Then
-            string message = Assert.Throws<Exception>(
-                () => InputValidator.CheckDirection(input)).Message;
-            Assert.AreEqual("Incorrect direction inserted, please try again!", message);
+            Assert.IsTrue(InputValidator.CheckIfChoosenShipAlreadyExists(input, player));
         }
     }
 }
