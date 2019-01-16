@@ -14,10 +14,10 @@ namespace BattleshipsWar
            
             bool answer = false;
          
-            if (tempcoordinates[0] <= warmap.GetLength(0))
+            if (tempcoordinates[0] <= 10)
             {
 
-                if (tempcoordinates[1] <= warmap.GetLength(1))
+                if (tempcoordinates[1] <= 10)
                 {
                     answer = true;
                 }

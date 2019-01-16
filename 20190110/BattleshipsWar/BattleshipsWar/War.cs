@@ -21,6 +21,7 @@ namespace BattleshipsWar
 
             if (sc.CheckCoordinatesCorrectness(tempcoordinates, warmap))
             {
+
                 option = sc.CheckCellStatus(warmap, tempcoordinates);
                 isCoorinatesCorrect = true;
 

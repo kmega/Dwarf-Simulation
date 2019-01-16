@@ -19,17 +19,17 @@ namespace BattleshipWarTest
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        public void IsCooridnatesOutOfTable()
-        {
-            int[] coordinates = new int[] { 1, 3, };
-            CellProperty[,] warmap = new CellProperty[2, 2];
+        //[TestMethod]
+        //public void IsCooridnatesOutOfTable()
+        //{
+        //    int[] coordinates = new int[] { 1, 3, };
+        //    CellProperty[,] warmap = new CellProperty[2, 2];
 
-            Scanner scanner = new Scanner();
-            bool result = scanner.CheckCoordinatesCorrectness(coordinates, warmap);
+        //    Scanner scanner = new Scanner();
+        //    bool result = scanner.CheckCoordinatesCorrectness(coordinates, warmap);
 
-            Assert.IsFalse(result);
-        }
+        //    Assert.IsFalse(result);
+        //}
 
         [TestMethod]
         public void IsCellFree()

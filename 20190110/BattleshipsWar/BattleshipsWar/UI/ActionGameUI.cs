@@ -180,13 +180,13 @@ namespace BattleshipsWar.UI
                 if (board[k, j] == CellProperty.Empty)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Cyan; Console.Write("O");
+                    Console.ForegroundColor = ConsoleColor.Cyan; Console.Write(" ");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
                 if (board[k, j] == CellProperty.Blocked)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("X");
+                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("#");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
                 if (board[k, j] == CellProperty.Hit)
@@ -198,7 +198,7 @@ namespace BattleshipsWar.UI
                 if (board[k, j] == CellProperty.Occupied)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Cyan; Console.Write("O");
+                    Console.ForegroundColor = ConsoleColor.Cyan; Console.Write(" ");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
 
@@ -215,13 +215,13 @@ namespace BattleshipsWar.UI
                 if (board[k, j] == CellProperty.Empty)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("O");
+                    Console.ForegroundColor = ConsoleColor.Cyan; Console.Write(" ");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
                 if (board[k, j] == CellProperty.Blocked)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("X");
+                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("#");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
                 if (board[k, j] == CellProperty.Hit)
@@ -233,7 +233,7 @@ namespace BattleshipsWar.UI
                 if (board[k, j] == CellProperty.Occupied)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("X");
+                    Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("X");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
                 
