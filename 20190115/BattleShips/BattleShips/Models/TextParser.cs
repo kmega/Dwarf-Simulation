@@ -12,6 +12,12 @@ namespace BattleShips.Models
             ParseFieldToInt(field, out x, out y);
             array[x, y] = "X ";
         }
+        public static void FillArrayWithBlockedArea(string[,] array, string field)
+        {
+            int x, y;
+            ParseFieldToInt(field, out x, out y);
+            array[x, y] = "O ";
+        }
         public static void DrawArray(string[,] array)
         {
             for (int i = 0; i < array.GetLength(0); i++)

@@ -41,6 +41,8 @@ namespace Tests
             //when
             var result = new Shipfactory().Create(type, position, direction, new Player());
             //then
+            Assert.IsTrue(expected.OccupiedPositions.Count == result.OccupiedPositions.Count);
+            Assert.IsTrue(expected.BlockedNeighbourhood.Count == result.BlockedNeighbourhood.Count);
             foreach(var pos in result.OccupiedPositions)
             {
                 Assert.IsTrue(expected.OccupiedPositions.Contains(pos));
