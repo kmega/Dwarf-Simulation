@@ -10,7 +10,7 @@ namespace BattleshipsWar
 {
     public class StartGame
     {
-        public CellProperty[,] PlayerOneBoard = new CellProperty[10,10];
+        public CellProperty[,] PlayerOneBoard = new CellProperty[10, 10];
         public CellProperty[,] PlayerTwoBoard = new CellProperty[10, 10];
 
         public List<Ship> PlayerOneShips = new List<Ship>(); 
@@ -48,7 +48,7 @@ namespace BattleshipsWar
             }
 
             AnyKeyToContinue();
-            return (PlayerOneBoard, PlayerTwoBoard);
+            return (PlayerOneBoard, PlayerTwoBoard);+
         }
 
         private static void AnyKeyToContinue()
@@ -67,12 +67,12 @@ namespace BattleshipsWar
             Console.Clear();
         }
 
-        private CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction)
+        internal CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction)
         {
             InputParser check = new InputParser();
             Coords = check.ChangeCordsToIndexes(placement);
 
-            if (Coords[0] == -1 && Coords[1] == -1)
+            if (Coords[0] == -1 || Coords[1] == -1)
             {
                 Console.WriteLine("Wrong coordinates!\n\n");
                 return board;
@@ -212,6 +212,8 @@ namespace BattleshipsWar
             }
             else
             {
+                Console.WriteLine("Ship couldn't be build. It was either: near another ship, on another ship or out board range.\n\n");
+
                 CounterOfShipsPlaced--;
             }
         }                                                                                                                                                                                                                                                                                                                                                                                                                                                              
