@@ -124,7 +124,7 @@ namespace BattleShips.Models
             }
             else
             {
-                throw new ArgumentException("Incorrect input, ship cannot be outside the board!");
+                throw new Exception("Incorrect input, ship cannot be outside the board!");
             }
         }
 

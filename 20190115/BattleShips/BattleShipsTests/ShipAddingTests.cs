@@ -60,7 +60,7 @@ namespace Tests
         [TestCase(2, 10)]
         public void T03_ShouldGetExceptionAboutWrongPositioningOutsideBoard(int x, int y)
         {
-            Assert.Throws<ArgumentException>(
+            Assert.Throws<Exception>(
                 () => new Shipfactory().BuildPosition(x,y),
                 "Incorrect input, ship cannot be outside the board!");
         }
