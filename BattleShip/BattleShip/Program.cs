@@ -11,10 +11,7 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
-            Player player1 = new Player(1);
-
-
-            bool result;
+         
 
                 Game game = new Game();
                 Player player1 = new Player(1);
@@ -76,6 +73,7 @@ namespace BattleShip
                     putShipOnTheBoard.PutShip(player2, coordinates, horizontal, i);
                     Console.Clear();
                     i++;
+<<<<<<< HEAD
 
                 }
 
@@ -85,6 +83,17 @@ namespace BattleShip
             Console.ReadKey();
             Console.Clear();
 
+=======
+
+                }
+
+            Console.WriteLine("Rozmieszczone statki");
+            player1.ShowBoard(player2.Player_Board);
+            Console.WriteLine("Naciśnij enter");
+            Console.ReadKey();
+            Console.Clear();
+
+>>>>>>> 04bf77e93525bbf5fdadb16d4fbf1fd644afd1fd
             do
             {
                 string cordinatesShipPlaye = "a1";
@@ -113,8 +122,11 @@ namespace BattleShip
             //    string coordinatePlayer2 = "a1";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
             //    game.TryHitShip(player1, player2, coordinatePlayer1, coordinatePlayer2);
 =======
+=======
+>>>>>>> 04bf77e93525bbf5fdadb16d4fbf1fd644afd1fd
                 
                 
 >>>>>>> 04bf77e93525bbf5fdadb16d4fbf1fd644afd1fd
