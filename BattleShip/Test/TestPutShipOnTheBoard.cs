@@ -75,13 +75,13 @@ namespace Test
             int id_ship = 2;
 
             Assert.AreEqual(player.Player_Board.Fields[1, 1], Field.O);
-            Assert.AreEqual(player.Player_Board.Fields[2, 1], Field.O);
+            Assert.AreEqual(player.Player_Board.Fields[1, 2], Field.O);
             //When
             put.PutShip(player, coordinates, horizontal, id_ship);
             //Then
 
             Assert.AreEqual(player.Player_Board.Fields[1, 1], Field.S);
-            Assert.AreEqual(player.Player_Board.Fields[2, 1], Field.S);
+            Assert.AreEqual(player.Player_Board.Fields[1, 2], Field.S);
         }
 
         [TestMethod]
@@ -94,16 +94,16 @@ namespace Test
             bool horizontal = false;
             int id_ship = 3;
 
-            Assert.AreEqual(player.Player_Board.Fields[0, 1], Field.O);
-            Assert.AreEqual(player.Player_Board.Fields[0, 2], Field.O);
-            Assert.AreEqual(player.Player_Board.Fields[0, 3], Field.O);
+            Assert.AreEqual(player.Player_Board.Fields[1, 0], Field.O);
+            Assert.AreEqual(player.Player_Board.Fields[2, 0], Field.O);
+            Assert.AreEqual(player.Player_Board.Fields[3, 0], Field.O);
             //When
             put.PutShip(player, coordinates, horizontal, id_ship);
             //Then
 
-            Assert.AreEqual(player.Player_Board.Fields[0, 1], Field.S);
-            Assert.AreEqual(player.Player_Board.Fields[0, 2], Field.S);
-            Assert.AreEqual(player.Player_Board.Fields[0, 3], Field.S);
+            Assert.AreEqual(player.Player_Board.Fields[1, 0], Field.S);
+            Assert.AreEqual(player.Player_Board.Fields[2, 0], Field.S);
+            Assert.AreEqual(player.Player_Board.Fields[3, 0], Field.S);
         }
 
     }

@@ -10,9 +10,8 @@ namespace BattleShip
     {
         static void Main(string[] args)
         {
-            Player player1 = new Player(1);
-
-            GameOver.DisplayPlayerPutsShipsOnBoard(player1);
+                      Simulator simulator = new Simulator();
+            simulator.Simulate();
 
           
          

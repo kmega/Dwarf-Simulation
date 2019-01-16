@@ -10,7 +10,7 @@ namespace Test
         [TestMethod]
         public void T01CheckDidAfterHitFieldsChangeToFieldEnumF()
         {
-            Game game = new Game();
+            Fight game = new Fight();
             Player player1 = new Player(1);
             Player player2 = new Player(2);
             string coordinatesPlayer1 = "a1";
@@ -27,7 +27,7 @@ namespace Test
         [TestMethod]
         public void T02CheckDidAfterHitFieldsChangeToFieldEnumH()
         {
-            Game game = new Game();
+            Fight game = new Fight();
             Player player1 = new Player(1);
             Player player2 = new Player(2);
             PutShipOnTheBoard putShipOnTheBoard = new PutShipOnTheBoard();
@@ -52,7 +52,7 @@ namespace Test
         [TestMethod]
         public void T03CheckDidTwoPlayerHitShipsEnemyGetResult2()
         {
-            Game game = new Game();
+            Fight game = new Fight();
             Player player1 = new Player(1);
             Player player2 = new Player(2);
             PutShipOnTheBoard putShipOnTheBoard = new PutShipOnTheBoard();
@@ -76,7 +76,7 @@ namespace Test
             {
                 counter++;
             }
-            if (player1.Opponent_Board.Fields[1, 2] == Field.H)
+            if (player1.Opponent_Board.Fields[2, 1] == Field.H)
             {
                 counter++;
             }

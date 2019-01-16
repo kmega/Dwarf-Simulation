@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BattleShip
 {
-    public class Game
+    public class Fight
     {
 
         public void TryHitShip(Player player1, Player player2, 
