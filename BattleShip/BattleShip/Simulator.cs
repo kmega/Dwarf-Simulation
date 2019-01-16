@@ -56,14 +56,14 @@ namespace BattleShip
         {
             Arena arena = new Arena();
 
-            Console.WriteLine($@"Twoja tablica strzałów");
+            Console.WriteLine($@"Graczu {shooter.Id}  Twoja tablica strzałów");
             shooter.ShowBoard(shooter.Opponent_Board);
             Console.WriteLine("Podaj koordynaty strzału");
             string coordinates = Console.ReadLine();
 
             arena.Fight(shooter, victim, coordinates);
             Console.Clear();
-            Console.WriteLine("Tablica po strzale");
+            Console.WriteLine($"Gracz {shooter.Id} Tablica po strzale");
             shooter.ShowBoard(shooter.Opponent_Board);
             Console.ReadKey();
             Console.Clear();
