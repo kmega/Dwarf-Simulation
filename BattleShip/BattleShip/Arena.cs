@@ -19,10 +19,20 @@ namespace BattleShip
             coordinates[0]--;
             coordinates[1]--;
 
-          
-            victim.Player_Board.Fields[coordinates[1], coordinates[0]] = Field.H;
-            shooter.Opponent_Board.Fields[coordinates[1], coordinates[0]] = Field.H;
-           
+
+            if (victim.Player_Board.Fields[coordinates[1], coordinates[0]] == Field.S)
+            {
+                victim.Player_Board.Fields[coordinates[1], coordinates[0]] = Field.H;
+                shooter.Opponent_Board.Fields[coordinates[1], coordinates[0]] = Field.H;
+            }
+            else if (victim.Player_Board.Fields[coordinates[1], coordinates[0]] == Field.O)
+            {
+                victim.Player_Board.Fields[coordinates[1], coordinates[0]] = Field.O;
+                shooter.Opponent_Board.Fields[coordinates[1], coordinates[0]] = Field.F;
+            }
+
+
+
         }
 
     }
