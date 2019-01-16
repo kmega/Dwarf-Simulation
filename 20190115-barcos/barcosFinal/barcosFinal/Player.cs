@@ -27,24 +27,21 @@ namespace barcosFinal
         public void AddShip()
         {
             Ships = new List<IShip>();
-            for (int i = 0; i < 7; i++)
+            for (int i = 1; i < 6; i++)
             {
                 int masts = 0;
                 switch(i)
                 {
-                    case 0:
                     case 1:
                         masts = 2;
                         break;
                     case 2:
-                    case 3:
                         masts = 3;
                         break;
-                    case 4:
-                    case 5:
+                    case 3:
                         masts = 4;
                         break;
-                    case 6:
+                    case 4:
                         masts = 5;
                         break;
                 }
@@ -61,11 +58,15 @@ namespace barcosFinal
                 IShip ship = new Ship(masts,x,y,shipOrientation);
                 Ships.Add(ship);
 
-                for (int j  = 0; j < masts; j++)
+              
+                
+                for (int j = 0; j < masts; j++)
                 {
-                    if(ship.Orientation == Orientation.horizontal)
-                    BattleField.Board[x - 1 +j, y - 1] = '^';
-                    else BattleField.Board[x - 1, y - 1 + j] = '^'; 
+                    if (shipOrientation == Orientation.vertical)
+                        BattleField.Board[y+j-1,x-1] = '^'; 
+                    else 
+                        BattleField.Board[y-1,x-1+j] = '^'; 
+
                 }
 
                 GetCurrentBattleField();

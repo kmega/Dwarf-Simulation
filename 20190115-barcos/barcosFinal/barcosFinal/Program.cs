@@ -13,6 +13,23 @@ namespace barcosFinal
             pl1.BattleField = bf;
 
             pl1.AddShip();
+            
+            
+            
+            
+            Player pl2 = new Player();
+            IBattleField bf2 = new BattleField();
+            bf2.DrawBoard();
+            pl2.BattleField = bf;
+
+
+            Console.WriteLine("Player 1 podaj X wroga");
+            int x = int.Parse(Console.ReadLine());
+            int y = int.Parse(Console.ReadLine());
+            
+          
+            pl1.Shoot(x,y,pl2.GetCurrentBattleField());
+            pl1.AddShip();
 
             Console.ReadLine();
             Console.WriteLine("Hello Ship!");
