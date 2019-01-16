@@ -1,6 +1,6 @@
 ﻿namespace BetterBattleships
 {
-    public interface IGameManager
+    public interface IBoardPlacer
     {
         CellStatus GetCurrentCellStatus(int[] coords, IPlayer player);
         int[] GetCoordinatesToSetShip();

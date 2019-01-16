@@ -1,6 +1,6 @@
 ﻿namespace BetterBattleships
 {
-    public class ConsoleDisplay
+    public class ConsoleDisplayer
     {
         public void DisplayBoard(IPlayer player)
         {
@@ -8,7 +8,7 @@
             {
                 for (int j = 0; j < player.GetBoard().GetLength(1); j++)
                 {
-                    var uglyLongVar = new GameManager().GetCurrentCellStatus(new int[] { i, j }, player);
+                    var uglyLongVar = new BoardPlacer().GetCurrentCellStatus(new int[] { i, j }, player);
                     System.Console.Write("[{0}] ", (char)uglyLongVar);
                 }
                 System.Console.WriteLine();

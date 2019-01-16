@@ -15,10 +15,6 @@ namespace BetterBattleships
             GM = new GameManager();
         }
 
-
-
-
-
         public CellStatus SetCellEmptyStatus()
         {
             return CellStatus.EMPTY;
