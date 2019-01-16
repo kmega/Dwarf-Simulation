@@ -207,7 +207,18 @@ namespace BattleshipsWar
                 {
                     coordsToChange = ship.Coords[j];
 
-                    board[coordsToChange[0], coordsToChange[1]] = CellProperty.Occupied;
+                    try
+                    {
+                        board[coordsToChange[0], coordsToChange[1]] = CellProperty.Occupied;
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Ship couldn't be build. It was either: near another ship, on another ship or out of board range.");
+
+                        CounterOfShipsPlaced--;
+
+                        break;
+                    }
                 }
             }
             else
