@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShips", "BattleShips\BattleShips.csproj", "{28070D10-9C20-44CA-AE11-BBAFDFAC21E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleShips", "BattleShips\BattleShips.csproj", "{28070D10-9C20-44CA-AE11-BBAFDFAC21E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShipsTests", "BattleShipsTests\BattleShipsTests.csproj", "{E3D68895-D475-4E49-96C6-ED3643322D14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BattleShipsTests", "BattleShipsTests\BattleShipsTests.csproj", "{E3D68895-D475-4E49-96C6-ED3643322D14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
