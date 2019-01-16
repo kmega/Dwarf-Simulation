@@ -4,9 +4,15 @@ using System.Text;
 
 namespace Socallship_v2
 {
-	public class Ship
+	public class Ship : IField
 	{
-		public ShipType type { get; private set; } 
-		public 
+		
+		public Direction direction { get; private set; }
+		public Field[] Deck;
+
+		public List<Field> GetFields()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
