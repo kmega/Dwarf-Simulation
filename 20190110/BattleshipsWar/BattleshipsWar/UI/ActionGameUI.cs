@@ -19,10 +19,6 @@ namespace BattleshipsWar.UI
         }
 
 
-        public static void DrawBoardAfterShoot(bool result, int[] coordinates)
-        {
-
-        }
 
         public static void DrawBoard(CellProperty[,] board)
         {
@@ -104,20 +100,32 @@ namespace BattleshipsWar.UI
         {
             
                 for (int j = 0; j < 10; j++)
+                {                 
+                if (board[k, j] == CellProperty.Empty)
                 {
-                    if (board[k, j] == CellProperty.Empty)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                        Console.ForegroundColor = ConsoleColor.Red; Console.Write("O");
-                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
-                    }
-                    if (board[k, j] == CellProperty.Occupied)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                        Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("X");
-                        Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
-                    }
-                    
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
+                    Console.ForegroundColor = ConsoleColor.Cyan; Console.Write("O");
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
+                }
+                if (board[k, j] == CellProperty.Blocked)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
+                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("O");
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
+                }
+                if (board[k, j] == CellProperty.Hit)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
+                    Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("X");
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
+                }
+                if (board[k, j] == CellProperty.Occupied)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
+                    Console.ForegroundColor = ConsoleColor.Yellow; Console.Write("X");
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
+                }
+                
                     Console.ForegroundColor = ConsoleColor.White;
                 }        
 
