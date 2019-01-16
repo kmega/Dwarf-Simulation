@@ -12,6 +12,9 @@ namespace BattleshipsWar.UI
             Console.WriteLine();
 
             Game.PlaceShips();
+
+            GameEngine war = new GameEngine();
+            war.PlayWar(Game);
         }
 
 
@@ -180,7 +183,7 @@ namespace BattleshipsWar.UI
                 if (board[k, j] == CellProperty.Blocked)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("X");
+                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("#");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
                 if (board[k, j] == CellProperty.Hit)
