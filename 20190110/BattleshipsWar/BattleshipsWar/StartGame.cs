@@ -36,7 +36,7 @@ namespace BattleshipsWar
 
                     ActionGameUI.DrawBoard(PlayerOneBoard);
 
-                    if(CounterOfShipsPlaced == 6)
+                    if(CounterOfShipsPlaced == 7)
                     {
                         CounterOfShipsPlaced = 0;
                         NextPlayer = true;
@@ -176,35 +176,40 @@ namespace BattleshipsWar
 
             int[] coordsToChange = { -1, -1 };
 
-            bool canBePlaced = true;
+            int canNotBePlaced = 0;
+            bool validCoordinates = false;
+
             Scanner scan = new Scanner();
 
             for (int i = 0; i < ship.Coords.Count; i++)
             {
                 coordsToChange = ship.Coords[i];
 
-                canBePlaced = scan.CheckCoordinatesCorrectness(coordsToChange, board);
+                validCoordinates = scan.CheckCoordinatesCorrectness(coordsToChange, board);
 
-                for (int row = -1; row <= 1; row++)
+                if (validCoordinates == true)
                 {
-                    for (int column = -1; column <= 1; column++)
+                    for (int row = -1; row <= 1; row++)
                     {
-                        try
+                        for (int column = -1; column <= 1; column++)
                         {
-                            if (board[coordsToChange[0] + row, coordsToChange[1] + column] != CellProperty.Empty && board[coordsToChange[0] + row, coordsToChange[1] + column] != board[coordsToChange[0], coordsToChange[1]])
+                            try
                             {
-                                canBePlaced = false;
+                                if (board[coordsToChange[0] + row, coordsToChange[1] + column] != CellProperty.Empty)
+                                {
+                                    canNotBePlaced++;
+                                }
                             }
-                        }
-                        catch
-                        {
-                            continue;
+                            catch
+                            {
+                                continue;
+                            }
                         }
                     }
                 }
             }
 
-            if (canBePlaced == true)
+            if (canNotBePlaced <= 0 && validCoordinates == true)
             {
                 for (int j = 0; j < ship.Coords.Count; j++)
                 {
