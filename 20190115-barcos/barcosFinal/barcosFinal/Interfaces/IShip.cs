@@ -11,7 +11,5 @@ namespace barcosFinal
         int Coordinate_X { get; set; }
         int Coordinate_Y { get; set; }
         Orientation Orientation { get; set; }
-
-
     }
 }
