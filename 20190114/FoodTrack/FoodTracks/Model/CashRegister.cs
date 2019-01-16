@@ -13,11 +13,28 @@ namespace FoodTracks.Model
       
         public decimal HowMuch(Burger burger)
         {
-            return ValueBurger(burger) + _discountCalculator.Calculate();
+                        
+            if(_discountCalculator != null)
+            {
+                
+                return ValueBurger(burger) + _discountCalculator.Calculate();
+            }
+            else  
+            return ValueBurger(burger);
         }
+        
 
         private decimal ValueBurger(Burger burger)
         {
+            if(burger.Cheeseness == Cheeseness.Single)
+            {
+                return 10;
+            }
+            if(burger.Cheeseness == Cheeseness.Double)
+            {
+                return 20;
+            }
+
             return 0;
         }
     }

@@ -4,7 +4,7 @@
     {
         public Burger Make()
         {
-            throw new System.NotImplementedException();
+            return new Burger(0, 0, 0);
         }
     }
 }
