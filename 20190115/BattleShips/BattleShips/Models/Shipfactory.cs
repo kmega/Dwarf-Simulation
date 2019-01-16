@@ -128,7 +128,7 @@ namespace BattleShips.Models
             }
         }
 
-        private ShipType GetShipType(string type, out int length)
+        public ShipType GetShipType(string type, out int length)
         {
             switch (type)
             {
