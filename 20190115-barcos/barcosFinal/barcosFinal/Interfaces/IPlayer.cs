@@ -9,6 +9,6 @@ namespace barcosFinal.Interfaces
         List<IShip> Ships { get; set; }
         IBattleField BattleField { get; set; }
         char[,] GetCurrentBattleField();
-        char[,] Shoot(int x, int y, char[,] board);
+        char[,] Shoot(Player enemyPlayer,int x, int y, char[,] board);
     }
 }

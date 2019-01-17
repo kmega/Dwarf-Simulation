@@ -68,7 +68,7 @@ namespace Tests
                 }
             }
             
-            IPlayer player1 = new Player()
+            Player player1 = new Player()
             {
                 BattleField = new BattleField()
                 {
@@ -81,7 +81,7 @@ namespace Tests
             };
 
             
-            IPlayer player2 = new Player()
+            Player player2 = new Player()
             {
                 BattleField = new BattleField()
                 {
@@ -93,7 +93,7 @@ namespace Tests
                 }
             };
 
-            player1.Shoot(1, 2, player2.GetCurrentBattleField());
+            player1.Shoot(player2,1, 2, player2.GetCurrentBattleField());
             Assert.IsTrue('x' == player2.GetCurrentBattleField()[1,2]);
         }
     }

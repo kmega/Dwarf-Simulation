@@ -10,6 +10,8 @@ namespace barcosFinal
         public List<IShip> Ships { get; set; }
         public int AllMasts { get; set; }
         public IBattleField BattleField { get; set; }
+        public IBattleField BattleFieldToDisplay { get; set; }
+        public bool OnRage { get; set; }
         public UI ShowBoard = new UI();
         public char[,] GetCurrentBattleField()
         {
@@ -22,28 +24,24 @@ namespace barcosFinal
             AllMasts = 23;
         }
 
-        public char[,] Shoot(int x, int y, char[,] board)
+        public char[,] Shoot(Player enemyPlayer, int x, int y, char[,] enemyBoard)
         {
+            OnRage = false;
 
-            bool isHit = false;
-            if (board[x-1, y-1] == '^')
+            if (enemyBoard[x - 1, y - 1] == '^')
             {
-                isHit = true;
-                AllMasts--;
+                enemyPlayer.BattleField.Board[x - 1, y - 1] = 'x';
+                BattleFieldToDisplay.Board[x - 1, y - 1] = 'x';
+                
             }
-            for (int i = 0; i < 10; i++)
+            else if (BattleFieldToDisplay.Board[x - 1, y - 1] == 'x' || BattleFieldToDisplay.Board[x - 1, y - 1] == ' ')
             {
-                for (int j = 0; j < 10; j++)
-                {
-                    board[i, j] = 'o';
-                }
+                OnRage = true;
             }
 
-            if (isHit == true)
-                board[x-1, y-1] = 'x';
+            else BattleFieldToDisplay.Board[x - 1, y - 1] = ' ';
 
-            
-            return board;
+            return BattleFieldToDisplay.Board;
         }
 
         public void AddShip()
