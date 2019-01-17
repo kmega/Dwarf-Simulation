@@ -24,10 +24,13 @@ namespace barcosFinal
 
         public char[,] Shoot(int x, int y, char[,] board)
         {
-<<<<<<< HEAD
+
             bool isHit = false;
-            if (board[x, y] == '^')
+            if (board[x-1, y-1] == '^')
+            {
                 isHit = true;
+                AllMasts--;
+            }
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -37,13 +40,8 @@ namespace barcosFinal
             }
 
             if (isHit == true)
-                board[x, y] = 'x';
-=======
-            if (board[x-1, y-1] == '^')
                 board[x-1, y-1] = 'x';
 
-            AllMasts--;
->>>>>>> 4ba0818aeb80a88550d24e97227e606e5aa12fbf
             
             return board;
         }
