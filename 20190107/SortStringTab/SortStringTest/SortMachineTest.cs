@@ -6,10 +6,10 @@ using SortStringTab;
 namespace SortStringTest
 {
     [TestClass]
-    public class UnitTest1
+    public class SortMachineTest
     {
         [TestMethod]
-        public void iswork()
+        public void isworkforsimplelettersandnumbers()
         {
             List<string> input = new List<string>()
             {

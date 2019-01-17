@@ -9,37 +9,38 @@ namespace SortStringTab
     public class SortMachine
     {
 
-        public List<string> SortString (List<string> input)
+        public List<string> SortString(List<string> input)
         {
             List<string> oddletter = new List<string>();
             List<string> evenletter = new List<string>();
             List<int> number = new List<int>();
             List<string> other = new List<string>();
+            List<string> polishlettersforexeption = new List<string>()
+            { "ą","ę","ó","ź","ż","ń","ś","Ą","Ę","Ó","Ż","Ź","Ń","Ś"};
 
             foreach (var item in input)
             {
                 if (Char.IsLetter(item, 0))
                 {
                     int value = Encoding.ASCII.GetBytes(item.ToCharArray())[0];
-                    if (value>122)
-                        {
+                    if (polishlettersforexeption.Contains(item))
+                    {
                         other.Add(item);
-
                     }
 
 
-                 else  if((value % 2 == 1))
+                    else if ((value % 2 == 1))
                     {
                         oddletter.Add(item);
 
                     }
-                   else
+                    else
                     {
                         evenletter.Add(item);
                     }
 
                 }
-                else if (Char.IsDigit(item,0))
+                else if (Char.IsDigit(item, 0))
                 {
                     number.Add(Int32.Parse(item));
                 }
@@ -48,17 +49,12 @@ namespace SortStringTab
                     other.Add(item);
                 }
 
-
             }
 
             oddletter.Sort();
             evenletter.Sort();
             number.Sort();
             other.Sort();
-
-            
-
-            
 
             List<string> numberstring = number.Select(s => s.ToString()).ToList();
             int index = numberstring.Count() / 2;
