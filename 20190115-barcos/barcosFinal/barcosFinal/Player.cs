@@ -8,16 +8,23 @@ namespace barcosFinal
     public class Player : IPlayer
     {
         public List<IShip> Ships { get; set; }
+        public int AllMasts { get; set; }
         public IBattleField BattleField { get; set; }
         public UI ShowBoard = new UI();
         public char[,] GetCurrentBattleField()
         {
-            ShowBoard.ShowBoard(BattleField.Board);
+            
             return BattleField.Board;
+        }
+
+        public Player()
+        {
+            AllMasts = 23;
         }
 
         public char[,] Shoot(int x, int y, char[,] board)
         {
+<<<<<<< HEAD
             bool isHit = false;
             if (board[x, y] == '^')
                 isHit = true;
@@ -31,6 +38,12 @@ namespace barcosFinal
 
             if (isHit == true)
                 board[x, y] = 'x';
+=======
+            if (board[x-1, y-1] == '^')
+                board[x-1, y-1] = 'x';
+
+            AllMasts--;
+>>>>>>> 4ba0818aeb80a88550d24e97227e606e5aa12fbf
             
             return board;
         }
@@ -38,21 +51,24 @@ namespace barcosFinal
         public void AddShip()
         {
             Ships = new List<IShip>();
-            for (int i = 1; i < 6; i++)
+            for (int i = 0; i < 7; i++)
             {
                 int masts = 0;
                 switch(i)
                 {
                     case 1:
+                    case 0:
                         masts = 2;
                         break;
+                    case 3:
                     case 2:
                         masts = 3;
                         break;
-                    case 3:
+                    case 4:
+                    case 5:
                         masts = 4;
                         break;
-                    case 4:
+                    case 6:
                         masts = 5;
                         break;
                 }
@@ -80,7 +96,9 @@ namespace barcosFinal
 
                 }
 
-                GetCurrentBattleField();
+                UI ui = new UI();
+                
+                ui.ShowBoard(GetCurrentBattleField());
                 
 
                 
