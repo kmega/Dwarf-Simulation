@@ -18,9 +18,9 @@ namespace BetterBattleships
             return boardHasDeckCells;
         }
 
-        public void Shoot(IPlayer vicitim)
+        public void Shoot(CellStatus[,] Board, int[] coords)
         {
-            throw new NotImplementedException();
+            Board[coords[0], coords[1]] = CellStatus.HIT;
         }
     }
 }

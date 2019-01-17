@@ -3,7 +3,7 @@ namespace BetterBattleships
 {
     public interface IShootingExecutor
     {
-        void Shoot(IPlayer vicitim);
-        bool PlayerHasDeckCells(CellStatus[,] Board;);
+        void Shoot(CellStatus[,] Board, int[] coords);
+        bool PlayerHasDeckCells(CellStatus[,] Board);
     }
 }

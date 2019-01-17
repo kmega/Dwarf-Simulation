@@ -9,35 +9,20 @@ namespace BetterBattleships
         {
             List<ShipTypes> ListOfShipsToSet = new AvailableShips().GetShipList();
             var consoleDisplayer = new ConsoleDisplayer();
+            var inputParser = new InputParser();
 
             consoleDisplayer.DisplayWhosBoard(Name);
             foreach (var ship in ListOfShipsToSet)
             {
                 consoleDisplayer.DisplayTakenShip(ship);
-                string direction = GetDirectionsForCoordinates();
-                int[] coords = GetCoordinatesToSetShip();
+                string direction = inputParser.GetDirectionsForCoordinates();
+                int[] coords = inputParser.GetCoordinatesToSetShip();
 
                 ExecuteShipPlacement(direction, coords, ship, Board);
                 consoleDisplayer.DisplayBoard(Board);
             }
             consoleDisplayer.PlayerHasFinishedSettingUpShips(Name);
             consoleDisplayer.ClearConsoleAndAwaitForAnyKey();
-        }
-
-        public int[] GetCoordinatesToSetShip()
-        {
-            Console.WriteLine("Podaj punkt pcozatkowy statku: ");
-            Console.WriteLine("Podaj rzad: {0-9}");
-            int row = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Podaj kolumna: {0-9}");
-            int column = Convert.ToInt32(Console.ReadLine());
-            return new int[] { row, column };
-        }
-
-        public string GetDirectionsForCoordinates()
-        {
-            new ConsoleDisplayer().DisplayAvailableMovementPossibilities();
-            return System.Console.ReadLine();
         }
 
         public CellStatus GetCurrentCellStatus(int[] coords, CellStatus[,] Board)
