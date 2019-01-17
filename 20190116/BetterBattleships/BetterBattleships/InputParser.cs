@@ -4,7 +4,7 @@ namespace BetterBattleships
 {
     public class InputParser : IInput
     {
-        public string SetNameForNewPlayer()
+        public string GetNameForNewPlayer()
         {
             System.Console.WriteLine("Podaj imie: ");
             return System.Console.ReadLine();

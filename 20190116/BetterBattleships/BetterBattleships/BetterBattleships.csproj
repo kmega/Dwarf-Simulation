@@ -8,4 +8,7 @@
   <ItemGroup>
     <Folder Include="Interfaces\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Interfaces\IBoard.cs" />
+  </ItemGroup>
 </Project>

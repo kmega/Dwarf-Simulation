@@ -4,15 +4,9 @@ namespace BetterBattleships
 {
     public class PlayerFactory
     {
-        public IPlayer CreateOnePlayer()
+        public IPlayer ProducePlayer(string name="defaultName")
         {
-            return ProducePlayer();
+            return new Player(name, new BoardFactory().Create());
         }
-
-        public IPlayer ProducePlayer(string name="cat")
-        {
-            return new Player(name, new Board().Create());
-        }
-
     }
 }

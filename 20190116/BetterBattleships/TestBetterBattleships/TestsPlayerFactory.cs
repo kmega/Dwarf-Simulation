@@ -5,14 +5,11 @@ using Moq;
 namespace TestBetterBattleships
 {
     [TestClass]
-    public class UnitTest1
+    public class TestsPlayerFactory
     {
         //[TestMethod]
         //public void Creates_New_Player_With_Name_And_Empty_Board()
         //{
-
-
-
         //    //given
         //    Mock<IPlayer> objPlayer = new Mock<IPlayer>();
         //    Mock<IInput> objInput = new Mock<IInput>();
@@ -51,13 +48,31 @@ namespace TestBetterBattleships
         //    Assert.AreEqual("QWE", player.Name);
         //}
 
+        
         [TestMethod]
-        public void dunno()
+        public void CreatesPlayerWithDefaultName()
         {
-            IPlayer temp = new PlayerFactory().CreateFakePlayer();
+            //given
+            PlayerFactory playerFactory = new PlayerFactory();
 
-            Assert.IsTrue(true);
+            //when
+            var player = playerFactory.ProducePlayer();
 
+            //then
+            Assert.AreEqual(player.Name, "defaultName");
+        }
+
+        [TestMethod]
+        public void CreatesPlayerWithCustomName()
+        {
+            //given
+            PlayerFactory playerFactory = new PlayerFactory();
+
+            //when
+            var player = playerFactory.ProducePlayer("Fryderyk Komciur");
+
+            //then
+            Assert.AreEqual(player.Name, "Fryderyk Komciur");
         }
 
 
@@ -65,45 +80,45 @@ namespace TestBetterBattleships
 
     }
 
-    public class FakePlayer : IPlayer
-    {
+    //public class FakePlayer : IPlayer
+    //{
 
 
-        public string Name => throw new System.NotImplementedException();
+    //    public string Name => throw new System.NotImplementedException();
 
-        public void DisplayBoard()
-        {
-            throw new System.NotImplementedException();
-        }
+    //    public void DisplayBoard()
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
 
-        public int[] GetCoordinatesToSetShip()
-        {
-            throw new System.NotImplementedException();
-        }
+    //    public int[] GetCoordinatesToSetShip()
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
 
-        public CellStatus GetCurrentCellStatus(int[] coords)
-        {
-            throw new System.NotImplementedException();
-        }
+    //    public CellStatus GetCurrentCellStatus(int[] coords)
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
 
-        public string GetDirectionsForCoordinates()
-        {
-            return "d";
-        }
+    //    public string GetDirectionsForCoordinates()
+    //    {
+    //        return "d";
+    //    }
 
-        public string GetPlayerName()
-        {
-            throw new System.NotImplementedException();
-        }
+    //    public string GetPlayerName()
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
 
-        public CellStatus SetCellEmptyStatus()
-        {
-            throw new System.NotImplementedException();
-        }
+    //    public CellStatus SetCellEmptyStatus()
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
 
-        public void SetShipsOnBoard(IPlayer player)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
+    //    public void SetShipsOnBoard(IPlayer player)
+    //    {
+    //        throw new System.NotImplementedException();
+    //    }
+    //}
 }
