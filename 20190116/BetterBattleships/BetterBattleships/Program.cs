@@ -12,6 +12,8 @@ namespace BetterBattleships
             gm.ManageBoard(player1);
             gm.ManageBoard(player2);
 
+
+
             Console.WriteLine("dsa");
 
             Console.ReadKey();

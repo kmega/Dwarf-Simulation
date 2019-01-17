@@ -7,28 +7,35 @@ namespace BetterBattleships
         public void StartGame(IPlayer player1, IPlayer player2)
         {
             var winner = ProcessGame(player1, player2);
-            //throw new NotImplementedException();
         }
 
         private IPlayer ProcessGame(IPlayer player1, IPlayer player2)
         {
-            var processExecutor  = new GameProcessExecutor();
+            var GameProcessExecutor = new GameProcessExecutor();
             var parser = new InputParser();
 
             while(true)
             {
-
-                processExecutor.Shoot(player2.GetBoard(), parser.GetCoordinatesToShootShip());
-                if(processExecutor.PlayerHasDeckCells(player2.GetBoard()) != true)
+                var temp = false;
+                do
                 {
-                    return player1;
-                }
+                    temp = GameProcessExecutor.Shoot(player2.GetBoard(), parser.GetCoordinatesToShootShip(player2.Name));
+                    if (GameProcessExecutor.PlayerHasDeckCells(player2.GetBoard()) != true)
+                    {
+                        return player1;
+                    }
+                } while (temp);
 
-                processExecutor.Shoot(player1.GetBoard(), parser.GetCoordinatesToShootShip());
-                if (processExecutor.PlayerHasDeckCells(player1.GetBoard()) != true)
+                temp = false;
+
+                do
                 {
-                    return player1;
-                }
+                    GameProcessExecutor.Shoot(player1.GetBoard(), parser.GetCoordinatesToShootShip(player1.Name));
+                    if (GameProcessExecutor.PlayerHasDeckCells(player1.GetBoard()) != true)
+                    {
+                        return player1;
+                    }
+                } while (temp);
             }
         }
     }

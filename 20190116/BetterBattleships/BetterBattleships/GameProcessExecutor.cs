@@ -18,9 +18,29 @@ namespace BetterBattleships
             return boardHasDeckCells;
         }
 
-        public void Shoot(CellStatus[,] Board, int[] coords)
+        public bool Shoot(CellStatus[,] Board, int[] coords)
         {
-            Board[coords[0], coords[1]] = CellStatus.HIT;
+            if (Board[coords[0], coords[1]] == CellStatus.MISS)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (Board[coords[0], coords[1]] == CellStatus.HIT)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            if (Board[coords[0], coords[1]] == CellStatus.EMPTY)
+            {
+                Board[coords[0], coords[1]] = CellStatus.MISS;
+            }
+
+            if (Board[coords[0], coords[1]] == CellStatus.DECK)
+            {
+                Board[coords[0], coords[1]] = CellStatus.HIT;
+                return true;
+            }
+            return false;
         }
     }
 }

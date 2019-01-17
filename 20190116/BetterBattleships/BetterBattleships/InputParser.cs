@@ -27,9 +27,9 @@ namespace BetterBattleships
             return Console.ReadLine();
         }
 
-        public int[] GetCoordinatesToShootShip()
+        public int[] GetCoordinatesToShootShip(string name)
         {
-            Console.WriteLine("Podaj punkt gdzie chcesz wykonac strzal: ");
+            Console.WriteLine("Podaj punkt gdzie chcesz wykonac strzal w plansze gracza: {0}", name);
             Console.WriteLine("Podaj rzad: {0-9}");
             int row = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Podaj kolumna: {0-9}");
