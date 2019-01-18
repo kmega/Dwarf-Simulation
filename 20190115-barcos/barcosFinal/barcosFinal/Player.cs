@@ -12,6 +12,7 @@ namespace barcosFinal
         public IBattleField BattleField { get; set; }
         public IBattleField BattleFieldToDisplay { get; set; }
         public bool OnRage { get; set; }
+        public string Name { get ; set ; }
         public UI ShowBoard = new UI();
         public char[,] GetCurrentBattleField()
         {
@@ -32,7 +33,8 @@ namespace barcosFinal
             {
                 enemyPlayer.BattleField.Board[x - 1, y - 1] = 'x';
                 BattleFieldToDisplay.Board[x - 1, y - 1] = 'x';
-                
+                OnRage = true;
+
             }
             else if (BattleFieldToDisplay.Board[x - 1, y - 1] == 'x' || BattleFieldToDisplay.Board[x - 1, y - 1] == ' ')
             {
@@ -46,6 +48,7 @@ namespace barcosFinal
 
         public void AddShip()
         {
+            UI ui = new UI();
             Ships = new List<IShip>();
             for (int i = 0; i < 7; i++)
             {
@@ -92,8 +95,8 @@ namespace barcosFinal
 
                 }
 
-                UI ui = new UI();
-                
+
+                Console.Clear();
                 ui.ShowBoard(GetCurrentBattleField());
                 
 

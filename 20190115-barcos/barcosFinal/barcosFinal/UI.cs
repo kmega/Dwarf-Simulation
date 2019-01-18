@@ -2,14 +2,16 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace barcosFinal
 {
     public class UI
     {
+        public bool ClearBoard { get; set; }
         public void ShowBoard(char[,] board)
         {
-            Console.Clear();
+            
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -58,8 +60,17 @@ namespace barcosFinal
                         Console.WriteLine("");
                     }
                     Console.ResetColor();
+
                 }
             }
+
+            if(ClearBoard)
+            {
+                Console.WriteLine("Next player's tour coming!");
+                Thread.Sleep(2000);
+                Console.Clear();
+            }
+            
         }
     }
 }
