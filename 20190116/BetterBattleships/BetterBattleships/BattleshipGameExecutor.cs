@@ -4,38 +4,39 @@ namespace BetterBattleships
 {
     public class BattleshipGameExecutor
     {
-        public void StartGame(IPlayer player1, IPlayer player2)
-        {
-            var winner = ProcessGame(player1, player2);
-        }
-
-        private IPlayer ProcessGame(IPlayer player1, IPlayer player2)
+        public IPlayer ProcessGameAndReturnWinner(IPlayer player1, IPlayer player2, bool shootBool = true)
         {
             var GameProcessExecutor = new GameProcessExecutor();
             var parser = new InputParser();
 
-            while(true)
+            while (true)
             {
-                var temp = false;
+                var repeatShoot = false;
                 do
                 {
-                    temp = GameProcessExecutor.Shoot(player2.GetBoard(), parser.GetCoordinatesToShootShip(player2.Name));
+                    if(shootBool)
+                    {
+                        repeatShoot = GameProcessExecutor.Shoot(player2.GetBoard(), parser.GetCoordinatesToShootShip(player2.Name));
+                    }
                     if (GameProcessExecutor.PlayerHasDeckCells(player2.GetBoard()) != true)
                     {
                         return player1;
                     }
-                } while (temp);
+                } while (repeatShoot);
 
-                temp = false;
+                repeatShoot = false;
 
                 do
                 {
-                    GameProcessExecutor.Shoot(player1.GetBoard(), parser.GetCoordinatesToShootShip(player1.Name));
+                    if (shootBool)
+                    {
+                        repeatShoot = GameProcessExecutor.Shoot(player1.GetBoard(), parser.GetCoordinatesToShootShip(player1.Name));
+                    }
                     if (GameProcessExecutor.PlayerHasDeckCells(player1.GetBoard()) != true)
                     {
-                        return player1;
+                        return player2;
                     }
-                } while (temp);
+                } while (repeatShoot);
             }
         }
     }

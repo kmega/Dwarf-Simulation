@@ -12,7 +12,8 @@ namespace BetterBattleships
 
         public void ManageGame(IPlayer player1, IPlayer player2)
         {
-            new BattleshipGameExecutor().StartGame(player1, player2);
+            //new BattleshipGameExecutor().StartGame(player1, player2);
+            new BattleshipGameExecutor().ProcessGameAndReturnWinner(player1, player2);
         }
     }
 }
