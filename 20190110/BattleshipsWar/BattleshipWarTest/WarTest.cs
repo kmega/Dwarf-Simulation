@@ -57,8 +57,8 @@ namespace BattleshipWarTest
             war.Shoot(coordinates, warmap, listofships);
 
 
-           Assert.IsTrue(warmap[0, 0] == CellProperty.Blocked);
-            Assert.IsTrue(warmap[0, 1] == CellProperty.Blocked);
+           Assert.IsTrue(warmap[0, 0] == CellProperty.Destroyed);
+            Assert.IsTrue(warmap[0, 1] == CellProperty.Destroyed);
         }
 
 
