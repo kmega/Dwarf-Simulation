@@ -41,7 +41,7 @@ namespace BetterBattleships
                 for (int i = startCoords[0]; i >= 0; i--)
                 {
                     if (Board[i, startCoords[1]] == CellStatus.DECK)
-                        throw new System.NotImplementedException();
+                        throw new System.NotImplementedException(); //reukrencja
 
                     Board[i, startCoords[1]] = CellStatus.DECK;
 

@@ -6,6 +6,7 @@ namespace BetterBattleships
     {
         int[] GetCoordinatesToSetShip();
         int[] GetCoordinatesToShootShip(string vicitmName, string shooter);
+        int[] ParseCorrectnessOfInputCoordsFromKeyboard(bool testCondition = false, string testInput = null);
         string GetNameForNewPlayer();
         string GetDirectionsForCoordinates();
     }
