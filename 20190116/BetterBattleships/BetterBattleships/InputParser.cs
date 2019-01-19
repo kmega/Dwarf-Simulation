@@ -36,14 +36,14 @@ namespace BetterBattleships
             if (inputFromKeyboard.Length > 2)
                 throw new ArgumentOutOfRangeException();
 
-            Regex regexPattern = new Regex("\\w");
+            Regex regexPattern = new Regex("\\d");
 
             MatchCollection matches = regexPattern.Matches(inputFromKeyboard);
 
             int firstArrayValue = 100;
             int secondArrayValue = 100;
 
-            switch (matches[0].ToString().ToLower())
+            switch (inputFromKeyboard[0].ToString().ToLower())
             {
                 case "a":
                     firstArrayValue = 0;
@@ -89,7 +89,7 @@ namespace BetterBattleships
                     break;
             }
 
-            switch (matches[1].ToString())
+            switch (matches[0].ToString())
             {
                 case "0":
                     secondArrayValue = 0;
@@ -153,47 +153,57 @@ namespace BetterBattleships
             Console.Write("Wpisz kierunek: ");
             string directionFromKeyboard = Console.ReadLine();
 
-            if(directionFromKeyboard == "a" || directionFromKeyboard == "A")
+            if (directionFromKeyboard != "a" &&
+                directionFromKeyboard != "A" &&
+                directionFromKeyboard != "w" &&
+                directionFromKeyboard != "W" &&
+                directionFromKeyboard != "s" &&
+                directionFromKeyboard != "S" &&
+                directionFromKeyboard != "d" &&
+                directionFromKeyboard != "D")
             {
-                if(coords[1] - shipLength < 0)
+                ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+            }
+
+            if (directionFromKeyboard == "a" || directionFromKeyboard == "A")
+            {
+                if (coords[1] - shipLength < 0)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
-                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                    directionFromKeyboard = GetDirectionsForCoordinates(coords, shipLength);
                 }
             }
-
-            if (directionFromKeyboard == "d" || directionFromKeyboard == "D")
+            else if (directionFromKeyboard == "d" || directionFromKeyboard == "D")
             {
                 if (coords[1] + shipLength > 9)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
-                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                    directionFromKeyboard = GetDirectionsForCoordinates(coords, shipLength);          
                 }
             }
-
-            if (directionFromKeyboard == "w" || directionFromKeyboard == "W")
+            else if (directionFromKeyboard == "w" || directionFromKeyboard == "W")
             {
                 if (coords[0] - shipLength < 0)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
-                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                    directionFromKeyboard = GetDirectionsForCoordinates(coords, shipLength);
                 }
             }
-
-            if (directionFromKeyboard == "s" || directionFromKeyboard == "S")
+            else if (directionFromKeyboard == "s" || directionFromKeyboard == "S")
             {
                 if (coords[0] + shipLength > 9)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
-                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                    directionFromKeyboard = GetDirectionsForCoordinates(coords, shipLength);
                 }
             }
 
             return directionFromKeyboard;
+
         }
 
         public int[] GetCoordinatesToShootShip(string vicitmName, string shooter)

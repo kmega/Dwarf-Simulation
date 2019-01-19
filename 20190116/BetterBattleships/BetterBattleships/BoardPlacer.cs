@@ -40,7 +40,7 @@ namespace BetterBattleships
 
         public void ExecuteShipPlacement(string direction, int[] startCoords, ShipTypes ship, CellStatus[,] Board, bool testCondition = false)
         {
-            if (direction == "w")
+            if (direction == "w" || direction == "W")
             {
                 int temp = 0;
                 for (int i = startCoords[0]; i >= 0; i--)
