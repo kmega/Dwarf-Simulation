@@ -89,5 +89,21 @@ namespace TestBetterBattleships
             Assert.AreEqual(CellStatus.DECK, boardPlacer.GetCurrentCellStatus(new int[] { 5, 6 }, defaultBoard));
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(Exception))]
+        public void ThrowExcepitonWhenShipLaysOnAnotherShip()
+        {
+            //given
+            string direction = "w";
+            int[] coords = { 5, 5 };
+            CellStatus[,] defaultBoard = new BoardFactory().Create();
+            ShipTypes ship = ShipTypes.Subarine;
+            IBoardPlacer boardPlacer = new BoardPlacer();
+
+            //when
+            defaultBoard[4, 5] = CellStatus.DECK;
+            new BoardPlacer().ExecuteShipPlacement(direction, coords, ship, defaultBoard, true);
+        }
+
     }
 }

@@ -33,7 +33,7 @@ namespace BetterBattleships
             return Board[coords[0], coords[1]];
         }
 
-        public void ExecuteShipPlacement(string direction, int[] startCoords, ShipTypes ship, CellStatus[,] Board)
+        public void ExecuteShipPlacement(string direction, int[] startCoords, ShipTypes ship, CellStatus[,] Board, bool testCondition = false)
         {
             if (direction == "w")
             {
@@ -41,7 +41,10 @@ namespace BetterBattleships
                 for (int i = startCoords[0]; i >= 0; i--)
                 {
                     if (Board[i, startCoords[1]] == CellStatus.DECK)
-                        throw new System.NotImplementedException(); //reukrencja
+                    {
+                        if(testCondition == true)
+                            throw new Exception("Ship cant lay one on another"); //reukrencja
+                    }
 
                     Board[i, startCoords[1]] = CellStatus.DECK;
 
