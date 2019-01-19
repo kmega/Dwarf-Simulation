@@ -11,12 +11,12 @@ namespace BetterBattleships
             //ShipTypes.Battleship,
             //ShipTypes.Battleship,
             //ShipTypes.Cruiser,
-            //ShipTypes.Cruiser,
+            ShipTypes.Cruiser,
             //ShipTypes.Cruiser,
             //ShipTypes.Subarine,
             //ShipTypes.Subarine,
-            ShipTypes.Subarine,
-            ShipTypes.Subarine
+            //ShipTypes.Subarine,
+            //ShipTypes.Subarine
         };
 
         public List<ShipTypes> GetShipList()

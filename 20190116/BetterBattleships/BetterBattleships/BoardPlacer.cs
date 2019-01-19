@@ -8,20 +8,23 @@ namespace BetterBattleships
         public void SetShipsOnBoard(CellStatus[,] Board, string Name)
         {
             List<ShipTypes> ListOfShipsToSet = new AvailableShips().GetShipList();
-            var consoleDisplayer = new ConsoleDisplayer();
-            var inputParser = new InputParser();
+            ConsoleDisplayer consoleDisplayer = new ConsoleDisplayer();
+            InputParser inputParser = new InputParser();
 
             consoleDisplayer.DisplayWhosBoard(Name);
+            new ConsoleDisplayer().DisplayAvailableMovementPossibilities(new BoardFactory().Create());
+
             foreach (var ship in ListOfShipsToSet)
             {
                 consoleDisplayer.DisplayTakenShip(ship);
+                consoleDisplayer.DisplayBoardLegend();
                 string direction = inputParser.GetDirectionsForCoordinates();
                 int[] coords = inputParser.GetCoordinatesToSetShip();
 
                 ExecuteShipPlacement(direction, coords, ship, Board);
                 consoleDisplayer.DisplayBoard(Board);
             }
-            consoleDisplayer.PlayerHasFinishedSettingUpShips(Name);
+            consoleDisplayer.DisplayPlayerHasFinishedSettingUpShips(Name);
             consoleDisplayer.ClearConsoleAndAwaitForAnyKey();
         }
 

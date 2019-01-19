@@ -8,6 +8,10 @@ namespace BetterBattleships
         {
             var GameProcessExecutor = new GameProcessExecutor();
             var parser = new InputParser();
+            CellStatus[,] TemporaryBoardWithMarkedShootsForPlayer1 = new BoardFactory().Create();
+            CellStatus[,] TemporaryBoardWithMarkedShootsForPlayer2 = new BoardFactory().Create();
+
+            new ConsoleDisplayer().DisplayBoard(new BoardFactory().Create());
 
             while (true)
             {
@@ -16,7 +20,8 @@ namespace BetterBattleships
                 {
                     if(shootBool)
                     {
-                        repeatShoot = GameProcessExecutor.Shoot(player2.GetBoard(), parser.GetCoordinatesToShootShip(player2.Name));
+                        new ConsoleDisplayer().DisplayBoardLegend();
+                        repeatShoot = GameProcessExecutor.Shoot(player2.GetBoard(), parser.GetCoordinatesToShootShip(player2.Name, player1.Name), TemporaryBoardWithMarkedShootsForPlayer1);
                     }
                     if (GameProcessExecutor.PlayerHasDeckCells(player2.GetBoard()) != true)
                     {
@@ -30,7 +35,8 @@ namespace BetterBattleships
                 {
                     if (shootBool)
                     {
-                        repeatShoot = GameProcessExecutor.Shoot(player1.GetBoard(), parser.GetCoordinatesToShootShip(player1.Name));
+                        new ConsoleDisplayer().DisplayBoardLegend();
+                        repeatShoot = GameProcessExecutor.Shoot(player1.GetBoard(), parser.GetCoordinatesToShootShip(player1.Name, player2.Name), TemporaryBoardWithMarkedShootsForPlayer2);
                     }
                     if (GameProcessExecutor.PlayerHasDeckCells(player1.GetBoard()) != true)
                     {

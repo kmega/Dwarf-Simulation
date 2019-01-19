@@ -5,7 +5,7 @@ namespace BetterBattleships
     public interface IInput
     {
         int[] GetCoordinatesToSetShip();
-        int[] GetCoordinatesToShootShip(string name);
+        int[] GetCoordinatesToShootShip(string vicitmName, string shooter);
         string GetNameForNewPlayer();
         string GetDirectionsForCoordinates();
     }

@@ -13,10 +13,11 @@ namespace TestBetterBattleships
             //given
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
+            var notUsedBoardForTest = new BoardFactory().Create();
             int[] coords = { 1, 0 };
 
             //when
-            GPE.Shoot(board, coords);
+            GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(CellStatus.MISS, board[1, 0]);
@@ -27,12 +28,13 @@ namespace TestBetterBattleships
         {
             //given
             var board = new BoardFactory().Create();
+            var notUsedBoardForTest = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
             int[] coords = { 1, 0 };
 
             //when
             board[1, 0] = CellStatus.DECK;
-            GPE.Shoot(board, coords);
+            GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(CellStatus.HIT, board[1, 0]);
@@ -42,13 +44,14 @@ namespace TestBetterBattleships
         public void ShootsAtFieldAndSetsItToHit()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
             int[] coords = { 1, 0 };
 
             //when
             board[1, 0] = CellStatus.DECK;
-            GPE.Shoot(board, coords);
+            GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(CellStatus.HIT, board[1, 0]);
@@ -59,13 +62,14 @@ namespace TestBetterBattleships
         public void ShootsAtMissFieldAndThrowsException()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
             int[] coords = { 1, 0 };
 
             //when
             board[1, 0] = CellStatus.MISS;
-            GPE.Shoot(board, coords);
+            GPE.Shoot(board, coords, notUsedBoardForTest);
         }
 
         [TestMethod]
@@ -73,26 +77,28 @@ namespace TestBetterBattleships
         public void ShootsAtHitFieldAndThrowsException()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
             int[] coords = { 1, 0 };
 
             //when
             board[1, 0] = CellStatus.HIT;
-            GPE.Shoot(board, coords);
+            GPE.Shoot(board, coords, notUsedBoardForTest);
         }
 
         [TestMethod]
         public void ReturnFalseWhenShootButDoesntHitDeck()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
             int[] coords = { 1, 0 };
 
             //when
             board[1, 0] = CellStatus.EMPTY;
-            var result = GPE.Shoot(board, coords);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(false, result);
@@ -102,13 +108,14 @@ namespace TestBetterBattleships
         public void ReturnTrueWhenShootAndHitDeck()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
             int[] coords = { 1, 0 };
 
             //when
             board[1, 0] = CellStatus.DECK;
-            var result = GPE.Shoot(board, coords);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(true, result);
@@ -118,11 +125,13 @@ namespace TestBetterBattleships
         public void ReturnsFalseWhenBoardHasEmptyCells()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
+            int[] coords = { 1, 0 };
 
             //when
-            var result = GPE.PlayerHasDeckCells(board);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(false, result);
@@ -132,12 +141,15 @@ namespace TestBetterBattleships
         public void ReturnsTrueWhenBoardHasDeckCells()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
+            int[] coords = { 1, 0 };
+
 
             //when
             board[1, 0] = CellStatus.DECK;
-            var result = GPE.PlayerHasDeckCells(board);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(true, result);
@@ -147,12 +159,14 @@ namespace TestBetterBattleships
         public void ReturnsFalseWhenBoardHasMissCells()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
+            int[] coords = { 2, 0 };
 
             //when
             board[1, 0] = CellStatus.MISS;
-            var result = GPE.PlayerHasDeckCells(board);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(false, result);
@@ -162,12 +176,15 @@ namespace TestBetterBattleships
         public void ReturnsFalseWhenBoardHasHitCells()
         {
             //given
+            var notUsedBoardForTest = new BoardFactory().Create();
             var board = new BoardFactory().Create();
             var GPE = new GameProcessExecutor();
+            int[] coords = { 2, 0 };
+
 
             //when
             board[1, 0] = CellStatus.HIT;
-            var result = GPE.PlayerHasDeckCells(board);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
 
             //then
             Assert.AreEqual(false, result);
