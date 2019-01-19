@@ -33,7 +33,7 @@ namespace BetterBattleships
         private static void DisplayNumbersHorizontalAboveTheBoard()
         {
             Console.Write("+ " );
-            for (int i = 1; i <= 10; i++)
+            for (int i = 0; i <= 9; i++)
             {
                 Console.Write(" {0}  ", i);
             }
@@ -91,10 +91,10 @@ namespace BetterBattleships
         public void DisplayAvailableMovementPossibilities(CellStatus[,] board)
         {
             Console.WriteLine("Podaj kierunek: ");
-            Console.WriteLine("\ta - lewo");
-            Console.WriteLine("\td - prawo");
-            Console.WriteLine("\tw - gora");
-            Console.WriteLine("\ts - dol");
+            Console.WriteLine("A/a - lewo");
+            Console.WriteLine("D/d - prawo");
+            Console.WriteLine("W/d - gora");
+            Console.WriteLine("S/s - dol");
             Console.WriteLine();
             DisplayBoard(board);
         }
@@ -111,13 +111,24 @@ namespace BetterBattleships
             Console.ReadKey();
         }
 
+        public void DisplayAwaitStatusAndClearConsole()
+        {
+            Console.WriteLine("Nacisnij dodowlny klawisz by kontynuowac...");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
         public void DisplayBoardLegend()
         {
-            Console.WriteLine("Legenda tablicy gry, znaczenie sybolow na tablicy gry");
-            Console.WriteLine("\tPuste pole = puste nawiasy kwadratowe");
-            Console.WriteLine("\tStatek = {0}", (char)CellStatus.DECK);
-            Console.WriteLine("\tTrafiony strzal w statek = {0}", (char)CellStatus.HIT);
-            Console.WriteLine("\tNietrafiony strzal w statek = {0}", (char)CellStatus.MISS);
+            Console.WriteLine("Legenda tablicy gry, znaczenie sybolow oraz oznaczenia kierunkow na tablicy gry");
+            Console.WriteLine("[ ] = Puste pole");
+            Console.WriteLine("{0} = Statek", (char)CellStatus.DECK);
+            Console.WriteLine("{0} = Trafiony strzal w statek", (char)CellStatus.HIT);
+            Console.WriteLine("{0} = Nietrafiony strzal w statek", (char)CellStatus.MISS);
+            Console.WriteLine("A/a - lewo");
+            Console.WriteLine("D/d - prawo");
+            Console.WriteLine("W/d - gora");
+            Console.WriteLine("S/s - dol");
             Console.WriteLine();
         }
     }

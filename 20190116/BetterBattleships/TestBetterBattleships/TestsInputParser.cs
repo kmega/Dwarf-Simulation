@@ -14,7 +14,7 @@ namespace TestBetterBattleships
             IInput inputParser = new InputParser();
 
             //when
-            int[] resultArray = inputParser.ParseCorrectnessOfInputCoordsFromKeyboard(true, "B6");
+            int[] resultArray = inputParser.ParseCorrectnessOfInputCoordsFromKeyboard(true, "B5");
 
             //then
             Assert.AreEqual(1, resultArray[0]);
@@ -28,7 +28,7 @@ namespace TestBetterBattleships
             IInput inputParser = new InputParser();
 
             //when
-            int[] resultArray = inputParser.ParseCorrectnessOfInputCoordsFromKeyboard(true, "a6");
+            int[] resultArray = inputParser.ParseCorrectnessOfInputCoordsFromKeyboard(true, "a5");
 
             //then
             Assert.AreEqual(0, resultArray[0]);

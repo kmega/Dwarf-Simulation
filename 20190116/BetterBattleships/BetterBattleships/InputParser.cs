@@ -15,7 +15,7 @@ namespace BetterBattleships
         public int[] GetCoordinatesToSetShip()
         {
             Console.WriteLine();
-            Console.WriteLine("Podaj punkt pcozatkowy statku: ");
+            Console.WriteLine("Podaj punkt poczatkowy statku");
 
             int[] coordsFromKeyboard = ParseCorrectnessOfInputCoordsFromKeyboard();
 
@@ -24,11 +24,14 @@ namespace BetterBattleships
 
         public int[] ParseCorrectnessOfInputCoordsFromKeyboard(bool testCondition = false, string testInput = null)
         {
-            Console.WriteLine("Podaj kooordynaty w formacie (LiteraNumer): ");
+            Console.Write("Podaj kooordynaty w formacie (LiteraNumer): ");
             string inputFromKeyboard = testInput;
 
             if (testCondition == false)
+            {
                 inputFromKeyboard = Console.ReadLine();
+                Console.WriteLine();
+            }
 
             if (inputFromKeyboard.Length > 2)
                 throw new ArgumentOutOfRangeException();
@@ -88,34 +91,34 @@ namespace BetterBattleships
 
             switch (matches[1].ToString())
             {
-                case "1":
+                case "0":
                     secondArrayValue = 0;
                     break;
-                case "2":
+                case "1":
                     secondArrayValue = 1;
                     break;
-                case "3":
+                case "2":
                     secondArrayValue = 2;
                     break;
-                case "4":
+                case "3":
                     secondArrayValue = 3;
                     break;
-                case "5":
+                case "4":
                     secondArrayValue = 4;
                     break;
-                case "6":
+                case "5":
                     secondArrayValue = 5;
                     break;
-                case "7":
+                case "6":
                     secondArrayValue = 6;
                     break;
-                case "8":
+                case "7":
                     secondArrayValue = 7;
                     break;
-                case "9":
+                case "8":
                     secondArrayValue = 8;
                     break;
-                case "10":
+                case "9":
                     secondArrayValue = 9;
                     break;
 
@@ -133,15 +136,64 @@ namespace BetterBattleships
                     break;
             }
 
-
             return new int[] { firstArrayValue, secondArrayValue };
         }
 
-        public string GetDirectionsForCoordinates()
+        internal (int[] coords, string direction) ReturnAllValuesFromUserNeededToSetUpShip(int shipLength)
         {
-            Console.WriteLine("Statki nie moga na siebie nachodzic");
+            int[] coords = GetCoordinatesToSetShip();
+            string direction = GetDirectionsForCoordinates(coords, (int)shipLength);
+
+            return (coords, direction);
+        }
+
+        public string GetDirectionsForCoordinates(int[] coords, int shipLength)
+        {
+            Console.WriteLine("Pamietaj, statki nie moga na siebie nachodzic");
             Console.Write("Wpisz kierunek: ");
-            return Console.ReadLine();
+            string directionFromKeyboard = Console.ReadLine();
+
+            if(directionFromKeyboard == "a" || directionFromKeyboard == "A")
+            {
+                if(coords[1] - shipLength < 0)
+                {
+                    Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
+                    new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
+                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                }
+            }
+
+            if (directionFromKeyboard == "d" || directionFromKeyboard == "D")
+            {
+                if (coords[1] + shipLength > 9)
+                {
+                    Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
+                    new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
+                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                }
+            }
+
+            if (directionFromKeyboard == "w" || directionFromKeyboard == "W")
+            {
+                if (coords[0] - shipLength < 0)
+                {
+                    Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
+                    new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
+                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                }
+            }
+
+            if (directionFromKeyboard == "s" || directionFromKeyboard == "S")
+            {
+                if (coords[0] + shipLength > 9)
+                {
+                    Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
+                    new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
+                    ReturnAllValuesFromUserNeededToSetUpShip(shipLength);
+                }
+            }
+
+            return directionFromKeyboard;
         }
 
         public int[] GetCoordinatesToShootShip(string vicitmName, string shooter)
