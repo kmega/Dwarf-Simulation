@@ -42,32 +42,46 @@ namespace BetterBattleships
         {
             if (direction == "w" || direction == "W")
             {
-                int temp = 0;
+                int iteratingLength = 0;
+
+                bool ifTrueThenSetShipOnBoard = true;
                 for (int i = startCoords[0]; i >= 0; i--)
                 {
                     if (Board[i, startCoords[1]] == CellStatus.DECK)
                     {
-                        if(testCondition == true)
+                        ifTrueThenSetShipOnBoard = false;
+                        if (testCondition == true)
                         {
-                            throw new Exception("Ship cant lay one on another"); //reukrencja
+                            throw new Exception("Ship cant lay one on another");
                         }
-                        Console.WriteLine("Statki nie moga na siebie nachodzic!");
-                        Console.WriteLine("Powtorz ruch!");
-                        new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
-                        StartSettingSingleShip(Board, new ConsoleDisplayer(), new InputParser(), ship);
-                    }
-
-                    Board[i, startCoords[1]] = CellStatus.DECK;
-
-                    temp++;
-                    if (temp == (int)ship)
                         break;
+                    }
+                }
+
+                if(ifTrueThenSetShipOnBoard == false)
+                {
+                    Console.WriteLine("Statki nie moga na siebie nachodzic!");
+                    Console.WriteLine("Powtorz ruch!");
+                    new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
+                    StartSettingSingleShip(Board, new ConsoleDisplayer(), new InputParser(), ship);
+                }
+
+                if (ifTrueThenSetShipOnBoard == true)
+                {
+                    for (int i = startCoords[0]; i >= 0; i--)
+                    {
+                        Board[i, startCoords[1]] = CellStatus.DECK;
+
+                        iteratingLength++;
+                        if (iteratingLength == (int)ship)
+                            break;
+                    }
                 }
             }
 
             if (direction == "s")
             {
-                int temp = 0;
+                int iteratingLength = 0;
                 for (int i = startCoords[0]; i <= 9; i++)
                 {
                     if (Board[i, startCoords[1]] == CellStatus.DECK)
@@ -84,15 +98,15 @@ namespace BetterBattleships
 
                     Board[i, startCoords[1]] = CellStatus.DECK;
 
-                    temp++;
-                    if (temp == (int)ship)
+                    iteratingLength++;
+                    if (iteratingLength == (int)ship)
                         break;
                 }
             }
 
             if (direction == "d")
             {
-                int temp = 0;
+                int iteratingLength = 0;
                 for (int i = startCoords[1]; i <= 9; i++)
                 {
                     if (Board[startCoords[0], i] == CellStatus.DECK)
@@ -109,15 +123,15 @@ namespace BetterBattleships
 
                     Board[startCoords[0], i] = CellStatus.DECK;
 
-                    temp++;
-                    if (temp == (int)ship)
+                    iteratingLength++;
+                    if (iteratingLength == (int)ship)
                         break;
                 }
             }
 
             if (direction == "a")
             {
-                int temp = 0;
+                int iteratingLength = 0;
                 for (int i = startCoords[1]; i >= 0; i--)
                 {
                     if (Board[startCoords[0], i] == CellStatus.DECK)
@@ -134,8 +148,8 @@ namespace BetterBattleships
 
                     Board[startCoords[0], i] = CellStatus.DECK;
 
-                    temp++;
-                    if (temp == (int)ship)
+                    iteratingLength++;
+                    if (iteratingLength == (int)ship)
                         break;
                 }
             }
