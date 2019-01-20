@@ -141,7 +141,7 @@ namespace BattleshipsWar
 
             CounterOfShipsPlaced++;
 
-            if (CounterOfShipsPlaced == 14)
+            if (CounterOfShipsPlaced == 7)
             {
                 AllShipsPlaced = true;
             }
