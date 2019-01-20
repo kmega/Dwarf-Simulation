@@ -12,7 +12,7 @@ namespace BetterBattleships
             InputParser inputParser = new InputParser();
 
             consoleDisplayer.DisplayWhosBoard(Name);
-            new ConsoleDisplayer().DisplayAvailableMovementPossibilities(new BoardFactory().Create());
+            //new ConsoleDisplayer().DisplayAvailableMovementPossibilities(new BoardFactory().Create());
 
             foreach (var ship in ListOfShipsToSet)
             {
@@ -26,6 +26,8 @@ namespace BetterBattleships
         {
             consoleDisplayer.DisplayTakenShip(ship);
             consoleDisplayer.DisplayBoardLegend();
+            consoleDisplayer.DisplayBoard(Board);
+
             (int[] coords, string direction) = inputParser.ReturnAllValuesFromUserNeededToSetUpShip((int)ship);
 
 
@@ -166,52 +168,48 @@ namespace BetterBattleships
                         Board[startCoords[0], i] = CellStatus.DECK;
                     }
                 }
-
-                //int iteratingLength = 0;
-                //for (int i = startCoords[1]; i <= 9; i++)
-                //{
-                //    if (Board[startCoords[0], i] == CellStatus.DECK)
-                //    {
-                //        if (testCondition == true)
-                //        {
-                //            throw new Exception("Ship cant lay one on another"); //reukrencja
-                //        }
-                //        Console.WriteLine("Statki nie moga na siebie nachodzic!");
-                //        Console.WriteLine("Powtorz ruch!");
-                //        new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
-                //        StartSettingSingleShip(Board, new ConsoleDisplayer(), new InputParser(), ship);
-                //    }
-
-                //    Board[startCoords[0], i] = CellStatus.DECK;
-
-                //    iteratingLength++;
-                //    if (iteratingLength == (int)ship)
-                //        break;
-                //}
             }
 
             if (direction == "a")
             {
                 int iteratingLength = 0;
+                bool ifTrueThenSetShipOnBoard = true;
                 for (int i = startCoords[1]; i >= 0; i--)
                 {
-                    if (Board[startCoords[0], i] == CellStatus.DECK)
-                    {
-                        if (testCondition == true)
-                        {
-                            throw new Exception("Ship cant lay one on another"); //reukrencja
-                        }
-                        Console.WriteLine("Statki nie moga na siebie nachodzic!");
-                        Console.WriteLine("Powtorz ruch!");
-                        new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
-                        StartSettingSingleShip(Board, new ConsoleDisplayer(), new InputParser(), ship);
-                    }
-
-                    Board[startCoords[0], i] = CellStatus.DECK;
-
-                    iteratingLength++;
                     if (iteratingLength == (int)ship)
                         break;
+                    iteratingLength++;
+                    if (Board[startCoords[0], i] == CellStatus.DECK)
+                    {
+                        ifTrueThenSetShipOnBoard = false;
+                        if (testCondition == true)
+                        {
+                            throw new Exception("Ship cant lay one on another");
+                        }
+                        break;
+                    }
+                }
+
+                iteratingLength = 0;
+
+                if (ifTrueThenSetShipOnBoard == false)
+                {
+                    Console.WriteLine("Statki nie moga na siebie nachodzic!");
+                    Console.WriteLine("Kolizja!!!");
+                    Console.WriteLine("Powtorz ruch!");
+                    new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
+                    StartSettingSingleShip(Board, new ConsoleDisplayer(), new InputParser(), ship);
+                }
+
+                if (ifTrueThenSetShipOnBoard == true)
+                {
+                    for (int i = startCoords[1]; i >= 0; i--)
+                    {
+                        if (iteratingLength == (int)ship)
+                            break;
+                        iteratingLength++;
+                        Board[startCoords[0], i] = CellStatus.DECK;
+                    }
                 }
             }
         }

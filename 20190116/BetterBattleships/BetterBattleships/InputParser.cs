@@ -35,10 +35,8 @@ namespace BetterBattleships
 
             if (inputFromKeyboard.Length > 2)
                 throw new ArgumentOutOfRangeException();
-
-            Regex regexPattern = new Regex("\\d");
-
-            MatchCollection matches = regexPattern.Matches(inputFromKeyboard);
+            if(inputFromKeyboard.Length == 1)
+                ParseCorrectnessOfInputCoordsFromKeyboard();
 
             int firstArrayValue = 100;
             int secondArrayValue = 100;
@@ -88,7 +86,8 @@ namespace BetterBattleships
                     ParseCorrectnessOfInputCoordsFromKeyboard();
                     break;
             }
-                       switch (matches[0].ToString())
+
+            switch (inputFromKeyboard[1].ToString())
             {
                 case "0":
                     secondArrayValue = 0;
@@ -120,7 +119,6 @@ namespace BetterBattleships
                 case "9":
                     secondArrayValue = 9;
                     break;
-
 
                 default:
                     if(testCondition == true)
