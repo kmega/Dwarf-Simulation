@@ -77,10 +77,14 @@ namespace BattleShips.Models
         }
         public void ChooseDirection()
         {
-            do
-            {
-                Console.WriteLine("Wybierz kierunek: (L - Left, R- Right, U - Up, D -Down");
-                ChoosingDirectionByPlayerAfterValidation = (Console.ReadLine()).ToLower();
+            //do
+            //{
+            //    try
+            //    {
+                    do
+                    {
+                        Console.WriteLine("Wybierz kierunek: (L - Left, R- Right, U - Up, D -Down");
+                        ChoosingDirectionByPlayerAfterValidation = (Console.ReadLine()).ToLower();
                 try
                 {
                     IsShipTypeCorrect = InputValidator.CheckPosition(ChoosingStartPointAfterValidation);
@@ -92,6 +96,13 @@ namespace BattleShips.Models
                 }
 
             } while (IsShipTypeCorrect == false);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Console.WriteLine(e.Message);
+            //        IsShipTypeCorrect = false;
+            //    }
+            //} while (IsShipTypeCorrect == false);
         }
         public void ChooseStartPoint()
         {
@@ -166,7 +177,7 @@ namespace BattleShips.Models
         {
             string[,] array = new string[10, 10];
             TextParser.FillArray(array, "- ");
-            string field = "";
+            //string field = "";
             List<string> PlaceWithShip = new List<string>() {};
             //foreach (string x in occupiedPositions) //przeslac gracza do tego, dokopac sie 
             //PlaceWithShip.Add(ChoosingStartPointAfterValidation = (Console.ReadLine()).ToLower());
