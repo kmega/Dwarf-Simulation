@@ -88,8 +88,7 @@ namespace BetterBattleships
                     ParseCorrectnessOfInputCoordsFromKeyboard();
                     break;
             }
-
-            switch (matches[0].ToString())
+                       switch (matches[0].ToString())
             {
                 case "0":
                     secondArrayValue = 0;
@@ -167,7 +166,7 @@ namespace BetterBattleships
 
             if (directionFromKeyboard == "a" || directionFromKeyboard == "A")
             {
-                if (coords[1] - shipLength < 0)
+                if (coords[1] - (shipLength - 1) < 0)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
@@ -176,7 +175,7 @@ namespace BetterBattleships
             }
             else if (directionFromKeyboard == "d" || directionFromKeyboard == "D")
             {
-                if (coords[1] + shipLength > 9)
+                if (coords[1] + (shipLength - 1) > 9)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
@@ -185,7 +184,7 @@ namespace BetterBattleships
             }
             else if (directionFromKeyboard == "w" || directionFromKeyboard == "W")
             {
-                if (coords[0] - shipLength < 0)
+                if (coords[0] - (shipLength-1) < 0)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();
@@ -194,7 +193,7 @@ namespace BetterBattleships
             }
             else if (directionFromKeyboard == "s" || directionFromKeyboard == "S")
             {
-                if (coords[0] + shipLength > 9)
+                if (coords[0] + (shipLength - 1) > 9)
                 {
                     Console.WriteLine("Statek w tym kierunku nie zmiesci sie na planszy, wprowadz kierunek i wspolrzedne jeszcze raz!");
                     new ConsoleDisplayer().ClearConsoleAndAwaitForAnyKey();

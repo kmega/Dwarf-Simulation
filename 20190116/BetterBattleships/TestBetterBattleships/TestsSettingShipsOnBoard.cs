@@ -37,18 +37,18 @@ namespace TestBetterBattleships
             CellStatus[,] defaultBoard = Board.Create();
             ShipTypes ship = ShipTypes.Carrier;
             string direction = "s";
-            int[] coords = { 5, 5 };
+            int[] coords = { 4, 5 };
             IBoardPlacer boardPlacer = new BoardPlacer();
 
             //when
             new BoardPlacer().ExecuteShipPlacement(direction, coords, ship, defaultBoard);
 
             //then
+            Assert.AreEqual(CellStatus.DECK, boardPlacer.GetCurrentCellStatus(new int[] { 4, 5 }, defaultBoard));
             Assert.AreEqual(CellStatus.DECK, boardPlacer.GetCurrentCellStatus(new int[] { 5, 5 }, defaultBoard));
             Assert.AreEqual(CellStatus.DECK, boardPlacer.GetCurrentCellStatus(new int[] { 6, 5 }, defaultBoard));
             Assert.AreEqual(CellStatus.DECK, boardPlacer.GetCurrentCellStatus(new int[] { 7, 5 }, defaultBoard));
             Assert.AreEqual(CellStatus.DECK, boardPlacer.GetCurrentCellStatus(new int[] { 8, 5 }, defaultBoard));
-            Assert.AreEqual(CellStatus.DECK, boardPlacer.GetCurrentCellStatus(new int[] { 9, 5 }, defaultBoard));
         }
 
         [TestMethod]
