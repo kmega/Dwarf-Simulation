@@ -21,6 +21,7 @@ namespace BetterBattleships
                     if(shootBool)
                     {
                         new ConsoleDisplayer().DisplayBoardLegend();
+                        new ConsoleDisplayer().DisplayBoard(TemporaryBoardWithMarkedShootsForPlayer1);
                         repeatShoot = GameProcessExecutor.Shoot(player2.GetBoard(), parser.GetCoordinatesToShootShip(player2.Name, 
                                                                         player1.Name), TemporaryBoardWithMarkedShootsForPlayer1);
                     }
@@ -40,6 +41,7 @@ namespace BetterBattleships
                     if (shootBool)
                     {
                         new ConsoleDisplayer().DisplayBoardLegend();
+                        new ConsoleDisplayer().DisplayBoard(TemporaryBoardWithMarkedShootsForPlayer2);
                         repeatShoot = GameProcessExecutor.Shoot(player1.GetBoard(), parser.GetCoordinatesToShootShip(player1.Name, 
                                                                         player2.Name), TemporaryBoardWithMarkedShootsForPlayer2);
                     }
