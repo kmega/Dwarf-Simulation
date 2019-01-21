@@ -184,37 +184,36 @@ namespace barcosFinal
 
                     else
                     {
-                        Ship ship;
-                        bool firstDraw = true;
+                        
                         switch (firstLine[1])
                         {
                             case "cross":
-                                new Ship(casualShipsShapes.Cross, x, y, shipOrientation);
-                                for (int z = 0; z < casualShipsShapes.Cross; z++)
+                                Ships.Add(new Ship(ShipShapes.Cross_ship, x, y, shipOrientation));
+                                //BattleField.Board[y - 1, x] = '^';
+                                //BattleField.Board[y, x] = '^';
+                                //BattleField.Board[y + 1, x] = '^';
+                                //BattleField.Board[y, x - 1] = '^';
+                                //BattleField.Board[y, x + 1] = '^';
+                                for (int z = 0; z < (int)ShipShapes.Cross_ship+1; z++)
                                 {
-                                    
-                                    if (z <= 3 && firstDraw==true)
-                                        BattleField.Board[y - 1, x - 1 + z] = '^';
+
+                                    if (z < 3 )
+                                        BattleField.Board[y - 1+z, x - 1] = '^';
                                     else
                                     {
-                                        z = (firstDraw == true) ? 0 : z;
-                                        BattleField.Board[y - 2 + z, x - 2] = '^';
-                                        firstDraw = false;
+                                        BattleField.Board[y, x - 5 + z] = '^';
                                     }
-
-
                                 }
                                 break;
                             case "L":
-                                new Ship(casualShipsShapes.L_ship, x, y, shipOrientation);
-                                for (int z = 0; z < casualShipsShapes.L_ship; z++)
+                                Ships.Add(new Ship(ShipShapes.L_ship, x, y, shipOrientation));
+                                for (int z = 0; z < (int)ShipShapes.L_ship; z++)
                                 {
-                                    if (z <= 4 && firstDraw == true)
-                                        BattleField.Board[y - 1, x - 1 + z] = '^';
+                                    if (z < 4)
+                                        BattleField.Board[y - 1 + z, x - 1] = '^';
                                     else
                                     {
-                                        z = (firstDraw == true) ? 0 : z;
-                                        BattleField.Board[y - 1 + z, x - 5] = '^';
+                                        BattleField.Board[y+2, x - 4+z] = '^';
                                     }
                                 }
                                 break;
