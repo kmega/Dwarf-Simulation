@@ -79,7 +79,7 @@ namespace Tests
             //when
             player.Ships.Add(shipfactory.Create(type, position, direction, player));
             var message = Assert.Throws<Exception>(() => shipfactory.Create(type2, position2, direction2, player)).Message;
-            Assert.AreEqual("Error! You cannot place ship so close to others!", message);
+            Assert.AreEqual("B³¹d! Nie mo¿esz umieszczaæ statków tak blisko innych!", message);
         }
     }
 }

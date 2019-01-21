@@ -8,12 +8,6 @@ namespace BattleShips
     {
         static void Main(string[] args)
         {
-            List<Player> players = new List<Player>()
-            {
-                new Player(),
-                new Player()
-            };
-            UI ui = new UI();
         }
     }
 }

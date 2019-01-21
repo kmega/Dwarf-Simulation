@@ -18,7 +18,7 @@ namespace BattleShips.Models
                 case "p":
                     return true;
                 default:
-                    throw new Exception("Incorrect ship type inserted. Please try again!");
+                    throw new Exception("Wprowadzono nieprawidłowy typ okrętu! Spróbuj ponownie!");
             }
         }
 
@@ -34,7 +34,7 @@ namespace BattleShips.Models
             {
                 return true;
             }
-            throw new Exception("Wrong position inserted, please try again!");
+            throw new Exception("Wprowadzono nieprawidłową pozycję! Spróbuj ponownie!");
         }
 
         public static bool CheckDirection(string message)
@@ -48,7 +48,7 @@ namespace BattleShips.Models
                 case "d":
                     return true;
                 default:
-                    throw new Exception("Incorrect direction inserted, please try again!");
+                    throw new Exception("Wprowadzono nieprawidłowy kierunek! Spróbuj ponownie!");
             }
         }
 
