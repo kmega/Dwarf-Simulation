@@ -28,18 +28,30 @@ namespace BattleshipsWar.Tools
                     continue;
                 }
 
-                string[] temp = line.Split(':');
+               
+                AddShip(harbororder, line);
 
-                for (int i = 0; i <= Int32.Parse(temp[1]); i++)
-                {
-                    if ((Enum.TryParse<KindOfShip>(temp[0], out KindOfShip result)){
-                        harbororder.Add(result);
-                    }
-
-                }
             }
             return harbororder;
 
+
+        }
+
+        public void AddShip (List<KindOfShip> harbororder, string line)
+        {
+            string[] temp = line.Split(':');
+            for (int i = 0; i < Int32.Parse(temp[1]); i++)
+            {
+                if ((Enum.TryParse<KindOfShip>(temp[0], out KindOfShip result)))
+                {
+                    harbororder.Add(result);
+                }
+                else
+                {
+                    Console.WriteLine("Nie da się zbudować statku {}-elementowego", temp[0]);
+                }
+
+            }
 
         }
     }
