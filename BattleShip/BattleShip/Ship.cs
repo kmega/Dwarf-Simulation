@@ -17,5 +17,9 @@ namespace BattleShip
             this.Lenght = lenght;
         }
 
+        public override string ToString()
+        {
+            return $"Ship Id {Id}, Ship Length {Lenght}";
+        }
     }
 }

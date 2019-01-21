@@ -14,8 +14,6 @@ namespace BattleShip
 
             simulator.Simulate();
 
-
-
             Console.ReadKey();
 
             //bool result;
