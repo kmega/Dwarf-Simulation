@@ -9,12 +9,11 @@ namespace BattleShips
     {
         public List<Player> Players { get; set; }
 
-        public void StartGame(List<Player> players)
+        public void StartGame()
         {
-            //PrepareBoard();
-            
+            ShowPlayersBoards(Players);
 
-            SetActivePlayer(players);
+            SetActivePlayer(Players);
             while (WhetherInactivePlayersHasShips(Players))
             {
                 string field = "A0"; //field input by active player
@@ -22,8 +21,86 @@ namespace BattleShips
                 var inactivePlayers = CreateInactivePlayersList(Players);
                 Turn(inactivePlayers, field);
             }
-            var activePlayer = players.Where(p => p.IsActive == true).First();
+            var activePlayer = Players.Where(p => p.IsActive == true).First();
             Console.WriteLine($"The winner is: " + activePlayer.IsActive);
+        }
+
+        public void ShowPlayersBoards(List<Player> players)
+        {
+            foreach (var player in players)
+            {
+                CreatePlayerBoard(player);
+                Console.WriteLine("");
+            }
+        }
+
+        private void CreatePlayerBoard(Player player)
+        {
+            string[,] board = new string[10, 10];
+            CreateEmptyBoard(board);
+            FillArrayPlayerChoosenFields(player, board);
+            FillArrayPlayerShips(player, board);
+            ShowBoard(board);
+        }
+
+        private void FillArrayPlayerChoosenFields(Player player, string[,] board)
+        {
+            foreach (var field in player.ChoosenFields)
+            {
+                int x, y;
+                ParseFieldToInt(field, out x, out y);
+                board[x, y] = "o ";
+            }
+        }
+
+        private void FillArrayPlayerShips(Player player, string[,] board)
+        {
+            foreach (var ship in player.Ships)
+            {
+                foreach (var field in ship.OccupiedPositions)
+                {
+                    int x, y;
+                    ParseFieldToInt(field, out x, out y);
+                    board[x, y] = "X ";
+                }
+            }
+        }
+
+        private void ParseFieldToInt(string field, out int x, out int y)
+        {
+            x = field[0] - 65;
+            if (field.Length == 2)
+            {
+                y = Convert.ToInt32(field[1]) - 49;
+            }
+            else
+            {
+                y = Int32.Parse($"{field[1]}{field[2]}") - 1;
+            }
+        }
+
+        private void ShowBoard(string[,] board)
+        {
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    Console.Write(board[i, j]);
+                }
+                Console.WriteLine("");
+            }
+        }
+
+        private static void CreateEmptyBoard(string[,] board)
+        {
+            var symbol = "-";
+            for (int i = 0; i < board.GetLength(0); i++)
+            {
+                for (int j = 0; j < board.GetLength(1); j++)
+                {
+                    board[i, j] = symbol;
+                }
+            }
         }
 
         private List<Player> CreateInactivePlayersList(List<Player> players)
@@ -46,7 +123,6 @@ namespace BattleShips
                         }
                     }
                 }
-                
             }
             else
             {
