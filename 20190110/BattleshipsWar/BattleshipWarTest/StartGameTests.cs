@@ -15,9 +15,10 @@ namespace BattleshipWarTest
             CellProperty[,] board = new CellProperty[10, 10];
             string coordinates = "z1";
             string direction = "up";
+            KindOfShip kind = KindOfShip.Two;
 
             // Given
-            CellProperty[,] expectedBoard = game.PlaceShipOnBoard(board, coordinates, direction);
+            CellProperty[,] expectedBoard = game.PlaceShipOnBoard(board, coordinates, direction, kind);
 
             // Assert
             for (int i = 0; i < 10; i++)
@@ -38,10 +39,11 @@ namespace BattleshipWarTest
             CellProperty[,] board = new CellProperty[10, 10];
             string coordinates = "a1";
             string direction = "below";
+            KindOfShip kind = KindOfShip.Two;
 
             // Given
             StartGame game = new StartGame();
-            expectedBoard = game.PlaceShipOnBoard(board, coordinates, direction);
+            expectedBoard = game.PlaceShipOnBoard(board, coordinates, direction, kind);
 
             // Assert
             for (int i = 0; i < 10; i++)
@@ -62,10 +64,11 @@ namespace BattleshipWarTest
             CellProperty[,] board = new CellProperty[10, 10];
             string coordinates = "a1";
             string direction = "right";
+            KindOfShip kind = KindOfShip.Two;
 
             // Given
             StartGame game = new StartGame();
-            game.PlaceShipOnBoard(board, coordinates, direction);
+            game.PlaceShipOnBoard(board, coordinates, direction, kind);
 
             // Assert
             for (int i = 0; i < 6; i++)
