@@ -17,14 +17,8 @@ namespace BattleShip
         {
             this.Id = Id;
 
-            ships = new List<Ship>()
-            {
-                new Ship(1,1),
-                new Ship(2,2),
-                new Ship(3,3),
-
-
-            };
+            ships = ShipCreator.ReadShipsFromConfigFile();
+          
 
             Player_Board = new Board();
             ShootBoard = new Board();
