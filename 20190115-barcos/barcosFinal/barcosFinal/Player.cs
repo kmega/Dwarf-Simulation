@@ -65,6 +65,23 @@ namespace barcosFinal
                 string[] firstLine = content[i].Split(new string[] { "," }, StringSplitOptions.None);
                 bool casualShipsShapes = int.TryParse(firstLine[1], out int masts);
 
+                //string[] firstLine = content[i].Split(new string[] { "," }, StringSplitOptions.None);
+
+                //int masts = 0;
+
+                //switch (firstLine[1])
+                //{
+                //    case "cross":
+                //        masts = (int)ShipShapes.Cross_ship;
+                //        break;
+                //    case "L":
+                //        masts = (int)ShipShapes.L_ship;
+                //        break;
+                //    default:
+                //        masts = int.Parse(firstLine[1]);
+                //        break;
+                //}
+
                 for (int j = 0; j < int.Parse(firstLine[0]); j++)
                 {
                     Console.WriteLine("Locate ship with {0} masts on Your board on coordinate X:", masts);
