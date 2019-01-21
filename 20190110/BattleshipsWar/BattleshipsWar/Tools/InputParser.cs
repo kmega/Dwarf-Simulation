@@ -28,7 +28,10 @@ namespace BattleshipsWar
                 string numberPart = result.Groups[2].Value;
 
                 int firstIndex = AdjustAlphaPartToNumber(alphaPart);
-                int secondIndex = int.Parse(numberPart) - 1;
+                int secondIndex ;
+                bool resultParse = int.TryParse(numberPart, out secondIndex);
+                secondIndex += -1;
+                if (resultParse == false) secondIndex = -1;
 
                 int[] changedCoords = { firstIndex, secondIndex };
 
@@ -38,6 +41,7 @@ namespace BattleshipsWar
 
         private int AdjustAlphaPartToNumber(string alphaPart)
         {
+            if (alphaPart == "") return -1;
             switch (alphaPart[0])
             {
                 case 'a':
