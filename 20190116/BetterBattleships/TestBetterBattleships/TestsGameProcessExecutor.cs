@@ -58,8 +58,7 @@ namespace TestBetterBattleships
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), "Miss on miss")]
-        public void ShootsAtMissFieldAndThrowsException()
+        public void ShootsAtMissFieldAndReturnsFalse()
         {
             //given
             var notUsedBoardForTest = new BoardFactory().Create();
@@ -69,12 +68,14 @@ namespace TestBetterBattleships
 
             //when
             board[1, 0] = CellStatus.MISS;
-            GPE.Shoot(board, coords, notUsedBoardForTest);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
+
+            //then
+            Assert.AreEqual(false, result);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException), "Hit on hit")]
-        public void ShootsAtHitFieldAndThrowsException()
+        public void ShootsAtHitFieldAndReturnsFalse()
         {
             //given
             var notUsedBoardForTest = new BoardFactory().Create();
@@ -84,7 +85,10 @@ namespace TestBetterBattleships
 
             //when
             board[1, 0] = CellStatus.HIT;
-            GPE.Shoot(board, coords, notUsedBoardForTest);
+            var result = GPE.Shoot(board, coords, notUsedBoardForTest);
+
+            //then
+            Assert.AreEqual(false, result);
         }
 
         [TestMethod]

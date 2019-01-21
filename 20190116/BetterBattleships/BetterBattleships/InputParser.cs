@@ -35,7 +35,7 @@ namespace BetterBattleships
 
             if (inputFromKeyboard.Length > 2)
                 throw new ArgumentOutOfRangeException();
-            if(inputFromKeyboard.Length == 1)
+            if(inputFromKeyboard.Length == 1 || inputFromKeyboard == "")
                 ParseCorrectnessOfInputCoordsFromKeyboard();
 
             int firstArrayValue = 100;

@@ -15,7 +15,7 @@ namespace BetterBattleships
             //ShipTypes.Cruiser,
             //ShipTypes.Subarine,
             //ShipTypes.Subarine,
-            ShipTypes.Subarine,
+            //ShipTypes.Subarine,
             ShipTypes.Subarine
         };
 

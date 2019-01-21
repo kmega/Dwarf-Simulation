@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 
 namespace BetterBattleships
 {
@@ -22,18 +23,28 @@ namespace BetterBattleships
         {
             if (Board[coords[0], coords[1]] == CellStatus.MISS)
             {
-                throw new ArgumentOutOfRangeException();
+                Console.WriteLine("TRAFIENIE W POLE MISS SKUTKUJE STRATA KOLEJKI!");
+                Console.WriteLine("Nacisnij dodwolny klawisz by kontynuowac!");
+                Thread.Sleep(2000);
+                return false;
+                //throw new ArgumentOutOfRangeException();
             }
 
             if (Board[coords[0], coords[1]] == CellStatus.HIT)
             {
-                throw new ArgumentOutOfRangeException();
+                Console.WriteLine("TRAFIENIE W POLE HIT SKUTKUJE STRATA KOLEJKI!");
+                Console.WriteLine("Nacisnij dodwolny klawisz by kontynuowac!");
+                Thread.Sleep(2000);
+                return false;
+                //throw new ArgumentOutOfRangeException();
             }
 
             if (Board[coords[0], coords[1]] == CellStatus.EMPTY)
             {
                 Board[coords[0], coords[1]] = CellStatus.MISS;
                 TemporaryBoardWithMarkedShoots[coords[0], coords[1]] = CellStatus.MISS;
+                Console.WriteLine("Ops, nie trafiles");
+                Thread.Sleep(2000);
                 //new ConsoleDisplayer().DisplayBoard(TemporaryBoardWithMarkedShoots);
             }
 
