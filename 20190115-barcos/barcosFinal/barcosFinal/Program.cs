@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using barcosFinal.Interfaces;
 
 namespace barcosFinal
@@ -8,7 +9,16 @@ namespace barcosFinal
         static void Main(string[] args)
         {
             GameEngine startGame = new GameEngine();
-            startGame.StartGame();
+
+            if (File.Exists("ships.txt"))
+            {
+                string[] shipsFromFile = File.ReadAllLines("ships.txt");
+                startGame.StartGame(shipsFromFile); 
+            }
+            else
+            {
+                startGame.StartGame();
+            }
         }
     }
 }

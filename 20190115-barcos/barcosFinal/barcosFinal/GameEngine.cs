@@ -8,7 +8,7 @@ namespace barcosFinal
 {
     class GameEngine
     {
-        public void StartGame()
+        public void StartGame(string[] shipsFromFile = null)
         {
 
             UI ui = new UI();
@@ -27,7 +27,15 @@ namespace barcosFinal
             pl1.BattleField = bf;
             pl1.BattleFieldToDisplay = bfToDisplay;
             ui.ShowBoard(bf.Board);
-            pl1.AddShip();
+
+            if (shipsFromFile != null)
+            {
+                pl1.AddShip(shipsFromFile);
+            }
+            else
+            {
+                pl1.AddShip();
+            }
 
             Console.Clear();
 
@@ -38,7 +46,15 @@ namespace barcosFinal
             pl2.BattleField = bf2;
             pl2.BattleFieldToDisplay = bfToDisplay2;
             ui.ShowBoard(bf2.Board);
-            pl2.AddShip();
+
+            if (shipsFromFile != null)
+            {
+                pl2.AddShip(shipsFromFile);
+            }
+            else
+            {
+                pl2.AddShip();
+            }
 
 
             do
