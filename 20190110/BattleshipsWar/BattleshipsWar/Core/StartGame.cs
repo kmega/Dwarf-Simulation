@@ -1,5 +1,6 @@
 
-﻿using BattleshipsWar.UI;
+using BattleshipsWar.Tools;
+using BattleshipsWar.UI;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -16,6 +17,8 @@ namespace BattleshipsWar
         public List<Ship> PlayerOneShips = new List<Ship>(); 
         public List<Ship> PlayerTwoShips = new List<Ship>();
 
+        private string ShipBuilder = ".../.../.../ShipBuilder.txt";
+
         private bool AllShipsPlaced = false;
         private bool NextPlayer = false;
 
@@ -28,7 +31,7 @@ namespace BattleshipsWar
             string placement = "", direction;
 
             ShipInputParser game = new ShipInputParser();
-            List<KindOfShip> kind = game.MakeHarborOrder();
+            List<KindOfShip> kind = game.MakeHarborOrder(ShipBuilder);
 
             while (AllShipsPlaced == false)
             {
@@ -142,15 +145,8 @@ namespace BattleshipsWar
                         break;
                     }
             }
-                    
 
             CounterOfShipsPlaced++;
-
-            if (CounterOfShipsPlaced == 7)
-            {
-                AllShipsPlaced = true;
-            }
-            
 
             return board;
         }

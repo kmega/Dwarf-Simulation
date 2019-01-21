@@ -30,9 +30,9 @@ namespace BattleshipsWar.Tools
 
                 string[] temp = line.Split(':');
 
-                for (int i = 0; i <= Int32.Parse(temp[1]); i++)
+                for (int i = 0; i < Int32.Parse(temp[1]); i++)
                 {
-                    if ((Enum.TryParse<KindOfShip>(temp[0], out KindOfShip result)){
+                    if ((Enum.TryParse<KindOfShip>(temp[0], out KindOfShip result))){
                         harbororder.Add(result);
                     }
 

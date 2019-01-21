@@ -14,25 +14,34 @@ namespace BattleshipsWar
         {
             switch (kindOfShip)
             {
-                case KindOfShip.Two:
+                case KindOfShip.One:
                     {
-                        BuildShipKindTwo(direction, startCoords);
+                        BuildShip(direction, startCoords, 1);
                         break;
                     }
-                    
+                case KindOfShip.Two:
+                    {
+                        BuildShip(direction, startCoords, 2);
+                        break;
+                    }
                 case KindOfShip.Three:
                     {
-                        BuildShipKindThree(direction, startCoords);
+                        BuildShip(direction, startCoords, 3);
                         break;
                     }
                 case KindOfShip.Four:
                     {
-                        BuildShipKindFour(direction, startCoords);
+                        BuildShip(direction, startCoords, 4);
+                        break;
+                    }
+                case KindOfShip.Five:
+                    {
+                        BuildShip(direction, startCoords, 5);
                         break;
                     }
                 case KindOfShip.Six:
                     {
-                        BuildShipKindSix(direction, startCoords);
+                        BuildShip(direction, startCoords, 6);
                         break;
                     }
                 default:
@@ -40,7 +49,7 @@ namespace BattleshipsWar
             }
         }
 
-        private void BuildShipKindSix(Direction direction, int[] startCoords)
+        private void BuildShip(Direction direction, int[] startCoords, int kind)
         {
             Coords.Add(new[]{startCoords[0], startCoords[1]});
 
@@ -48,7 +57,7 @@ namespace BattleshipsWar
             {
                 case Direction.Up:
                     {
-                        for (int i = 1; i < 6; i++)
+                        for (int i = 1; i < kind; i++)
                         {
                             Coords.Add(new[] { startCoords[0] - i, startCoords[1] });
                         }
@@ -56,7 +65,7 @@ namespace BattleshipsWar
                     }
                 case Direction.Down:
                     {
-                        for (int i = 1; i < 6; i++)
+                        for (int i = 1; i < kind; i++)
                         {
                             Coords.Add(new[] { startCoords[0] + i, startCoords[1] });
                         }
@@ -64,7 +73,7 @@ namespace BattleshipsWar
                     }
                 case Direction.Left:
                     {
-                        for (int i = 1; i < 6; i++)
+                        for (int i = 1; i < kind; i++)
                         {
                             Coords.Add(new[] { startCoords[0], startCoords[1]-i});
                         }
@@ -72,131 +81,9 @@ namespace BattleshipsWar
                     }
                 case Direction.Right:
                     {
-                        for (int i = 1; i < 6; i++)
+                        for (int i = 1; i < kind; i++)
                         {
                             Coords.Add(new[] { startCoords[0], startCoords[1]+i});
-                        }
-                        break;
-                    }
-            }
-        }
-
-        private void BuildShipKindFour(Direction direction, int[] startCoords)
-        {
-            Coords.Add(new[] { startCoords[0], startCoords[1] });
-
-            switch (direction)
-            {
-                case Direction.Up:
-                    {
-                        for (int i = 1; i < 4; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0] - i, startCoords[1] });
-                        }
-                        break;
-                    }
-                case Direction.Down:
-                    {
-                        for (int i = 1; i < 4; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0] + i, startCoords[1] });
-                        }
-                        break;
-                    }
-                case Direction.Left:
-                    {
-                        for (int i = 1; i < 4; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0], startCoords[1] - i });
-                        }
-                        break;
-                    }
-                case Direction.Right:
-                    {
-                        for (int i = 1; i < 4; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0], startCoords[1] + i });
-                        }
-                        break;
-                    }
-            }
-        }
-
-        private void BuildShipKindThree(Direction direction, int[] startCoords)
-        {
-            Coords.Add(new[] { startCoords[0], startCoords[1] });
-
-            switch (direction)
-            {
-                case Direction.Up:
-                    {
-                        for (int i = 1; i < 3; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0] - i, startCoords[1] });
-                        }
-                        break;
-                    }
-                case Direction.Down:
-                    {
-                        for (int i = 1; i < 3; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0] + i, startCoords[1] });
-                        }
-                        break;
-                    }
-                case Direction.Left:
-                    {
-                        for (int i = 1; i < 3; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0], startCoords[1] - i });
-                        }
-                        break;
-                    }
-                case Direction.Right:
-                    {
-                        for (int i = 1; i < 3; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0], startCoords[1] + i });
-                        }
-                        break;
-                    }
-            }
-        }
-
-        private void BuildShipKindTwo(Direction direction, int[] startCoords)
-        {
-            Coords.Add(new[] { startCoords[0], startCoords[1] });
-            switch (direction)
-            {
-                case Direction.Up:
-                    {
-                        for (int i = 1; i < 2; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0] - i, startCoords[1] });
-                        }
-                        break;
-                    }
-                case Direction.Down:
-                    {
-                        for (int i = 1; i < 2; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0] + i, startCoords[1] });
-                        }
-                        break;
-                    }
-                case Direction.Left:
-                    {
-                        for (int i = 1; i < 2; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0], startCoords[1] - i });
-                        }
-                        break;
-                    }
-                case Direction.Right:
-                    {
-                        for (int i = 1; i < 2; i++)
-                        {
-                            Coords.Add(new[] { startCoords[0], startCoords[1] + i });
                         }
                         break;
                     }

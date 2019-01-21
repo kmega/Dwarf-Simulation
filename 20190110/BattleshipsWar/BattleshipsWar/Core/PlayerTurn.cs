@@ -55,12 +55,13 @@ namespace BattleshipsWar
                         if (enemywarmap[i,j] == CellProperty.Occupied)
                         {
                             counter++;
-                                }
+                        }
                     }
                 }
                 if (counter == 0)
                 {
                     Winner = true;
+                    break;
                 }
 
             } while (result == true);
