@@ -164,6 +164,15 @@ namespace BattleShips.Models
                 }
             } while (IsShipTypeCorrect == false || ShipExists == true);
         }
+        public static string InputFieldToAttack() //METODA ZWRÓCI STRING JEŻELI WPROWADZONE POLE JEST W PORZĄDKU
+                                                 //JAK KTOŚ WPROWADZI BŁĘDNE POLE, RZUCA EXCEPTION
+        {
+            string attackthisfield;
+            attackthisfield = Console.ReadLine();
+            InputValidator.CheckIfYouCanAttackThisPosition(attackthisfield);
+            return attackthisfield;
+
+        }
     }
 }
 
