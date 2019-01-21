@@ -11,7 +11,7 @@ namespace BetterBattleships
             CellStatus[,] TemporaryBoardWithMarkedShootsForPlayer1 = new BoardFactory().Create();
             CellStatus[,] TemporaryBoardWithMarkedShootsForPlayer2 = new BoardFactory().Create();
 
-            new ConsoleDisplayer().DisplayBoard(new BoardFactory().Create());
+            //new ConsoleDisplayer().DisplayBoard(new BoardFactory().Create());
 
             while (true)
             {
