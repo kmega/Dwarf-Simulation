@@ -112,6 +112,7 @@ namespace BattleShip
                     Console.Clear();
                 }
 
+
             }
 
             Console.WriteLine("Rozmieszczone statki");

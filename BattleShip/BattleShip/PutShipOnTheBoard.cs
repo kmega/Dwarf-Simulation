@@ -18,6 +18,7 @@ namespace BattleShip
 
             if (CheckIfShipIsOutOfBord(player, coordinate, horizontal, id_ship))
             {
+
                 if (CheckIfPlaceIsEmpty(player, coordinate, horizontal, id_ship))
                 {
                     for (int i = 0; i < player.ships[id_ship].Lenght; i++)
