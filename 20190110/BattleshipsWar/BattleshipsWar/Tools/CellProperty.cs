@@ -5,6 +5,8 @@
         Empty,
         Occupied,
         Hit,
-        Blocked
+        Blocked,
+        Destroyed
     }
+
 }
