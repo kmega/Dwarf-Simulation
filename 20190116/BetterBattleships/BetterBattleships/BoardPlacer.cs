@@ -18,6 +18,7 @@ namespace BetterBattleships
             {
                 StartSettingSingleShip(Board, consoleDisplayer, inputParser, ship);
             }
+            consoleDisplayer.DisplayBoard(Board);
             consoleDisplayer.DisplayPlayerHasFinishedSettingUpShips(Name);
             consoleDisplayer.ClearConsoleAndAwaitForAnyKey();
         }
@@ -32,7 +33,7 @@ namespace BetterBattleships
 
 
             ExecuteShipPlacement(direction, coords, ship, Board);
-            consoleDisplayer.DisplayBoard(Board);
+            //consoleDisplayer.DisplayBoard(Board);
         }
 
         public CellStatus GetCurrentCellStatus(int[] coords, CellStatus[,] Board)
