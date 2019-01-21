@@ -31,15 +31,6 @@ namespace BattleshipsWar.Tools
                
                 AddShip(harbororder, line);
 
-
-                for (int i = 0; i < Int32.Parse(temp[1]); i++)
-                {
-                    if ((Enum.TryParse<KindOfShip>(temp[0], out KindOfShip result))){
-                        harbororder.Add(result);
-                    }
-
-                }
-
             }
             return harbororder;
 

@@ -13,7 +13,7 @@ namespace BattleshipsWar
         public bool[] Shoot(int[] tempcoordinates, CellProperty[,] warmap, List<Ship> listofships)
         {
             Scanner sc = new Scanner();
-            string result;
+          
             bool[] shootresult = new bool[2];
             bool isCoorinatesCorrect = false;
             bool isShootHit = false;
