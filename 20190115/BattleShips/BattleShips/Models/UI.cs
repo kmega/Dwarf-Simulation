@@ -13,22 +13,47 @@ namespace BattleShips.Models
         Player player = new Player();
         public bool IsShipBuildCorrectly = false;
         bool IsShipTypeCorrect = false;
-        public string ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, ChoosingDirectionByPlayerAfterValidation, NameOfPlayer;
-        public UI(List<Player> players)
-        {            
-            GameRules();
-            Console.WriteLine();       
-            ChoosePlacesOfShips(players[0]);           
-            Console.WriteLine();
-            BoardGenerate();
+        public string ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, ChoosingDirectionByPlayerAfterValidation, NameOfPlayer,NameOfPlayer2;
+        public UI()
+        {
+            List<Player> players = new List<Player> { };
+            TheEarlyGame(players);  //choosing ships 
+            TheGameStarts();
             Console.ReadKey();
         }
 
-        public void ChoosePlacesOfShips(Player player)
+        public void TheGameStarts()
         {
-            Console.WriteLine("Podaj swoje imię:");
+            Console.WriteLine("Twoja plansza:");
+            //generowanie planszy z gotowymi statkami
+            Console.WriteLine("Plansza przeciwnika:");
+            // generowanie planszy przeciwnika tylko ze strzałami
+            Console.WriteLine("Wpisz pole, które chcesz zaatakować");
+            //wyswietlenie planszy przeciwnika
+
+        }
+
+        public void TheEarlyGame(List<Player> players)
+        {
+             Console.WriteLine("Gracz 1- Podaj swoje imię:");
             NameOfPlayer = Console.ReadLine();
             player.Name = NameOfPlayer;
+            GameRules();
+            Console.WriteLine();       
+            ChoosePlacesOfShips();           
+            Console.WriteLine();
+            BoardGenerate();
+            Console.WriteLine("Gracz 2-Podaj swoje imię:");
+            NameOfPlayer2 = Console.ReadLine();
+            player.Name = NameOfPlayer2;
+            ChoosePlacesOfShips();
+            Console.WriteLine();
+            BoardGenerate();
+
+        }
+
+        public void ChoosePlacesOfShips()
+        {           
             for (int i = 0; i < 5; i++)
             {
                 do
@@ -76,18 +101,15 @@ namespace BattleShips.Models
             } while (IsShipBuildCorrectly == false);
         }
         public void ChooseDirection()
-        {
-            //do
-            //{
-            //    try
-            //    {
-                    do
-                    {
+        {      
+                do
+                {
                         Console.WriteLine("Wybierz kierunek: (L - Left, R- Right, U - Up, D -Down");
                         ChoosingDirectionByPlayerAfterValidation = (Console.ReadLine()).ToLower();
                 try
                 {
                     IsShipTypeCorrect = InputValidator.CheckPosition(ChoosingStartPointAfterValidation);
+                    IsShipTypeCorrect = true;
                 }
                 catch (Exception e)
                 {
@@ -96,13 +118,7 @@ namespace BattleShips.Models
                 }
 
             } while (IsShipTypeCorrect == false);
-            //    }
-            //    catch (Exception e)
-            //    {
-            //        Console.WriteLine(e.Message);
-            //        IsShipTypeCorrect = false;
-            //    }
-            //} while (IsShipTypeCorrect == false);
+          
         }
         public void ChooseStartPoint()
         {
@@ -127,17 +143,11 @@ namespace BattleShips.Models
             {
                 Console.WriteLine(e.Message);
                 IsShipTypeCorrect = false;
-            }
-      
-        }
-
-            
-
+            }     
+        }          
     public void ChooseTypeOfShip()
         {
-           
-         
-                List<string> TypeOfShips = new List<string> { "C- CARRIER (pięciomasztowiec o wielkości 5 pól)\n",
+              List<string> TypeOfShips = new List<string> { "C- CARRIER (pięciomasztowiec o wielkości 5 pól)\n",
                 "B- BATTLESHIP (czteromasztowiec o wielkości 4 pól) \n",
                 "D- DESTROYER (trzymasztowiec o wielkości 3 pól)\n",
                 "S- SUBMARINE (trzymasztowiec o wielkości 3 pól)\n",
@@ -169,10 +179,8 @@ namespace BattleShips.Models
                     }
                     IsShipExist = InputValidator.CheckIfChoosenShipAlreadyExists(ChoosingShipByPlayerAfterValidation, player);
                 } while (IsShipExist == true);
-                } while (IsShipTypeCorrect == false);
-          
+                } while (IsShipTypeCorrect == false);         
         }
-
         public void BoardGenerate()
         {
             string[,] array = new string[10, 10];
@@ -180,7 +188,7 @@ namespace BattleShips.Models
             //string field = "";
             List<string> PlaceWithShip = new List<string>() {};
             //foreach (string x in occupiedPositions) //przeslac gracza do tego, dokopac sie 
-            //PlaceWithShip.Add(ChoosingStartPointAfterValidation = (Console.ReadLine()).ToLower());
+            //PlaceWithShip.Add(ChoosingStartPointAfterValidation = (Console.ReadLine()).ToLower());          
             foreach (var item in PlaceWithShip)
             {
                 TextParser.FillArrayWithShip(array, item);

@@ -35,9 +35,9 @@ namespace BattleShips.Models
         public void CheckForCollisionWithOtherShipsOnBoard(
             List<string> occupiedPositions, List<string> blockedNeighbourhood, List<IShip> ships)
         {
-            foreach(var ship in ships)
+            foreach (var ship in ships)
             {
-                foreach(var position in ship.OccupiedPositions)
+                foreach (var position in ship.OccupiedPositions)
                 {
                     if (occupiedPositions.Contains(position) || blockedNeighbourhood.Contains(position))
                     {

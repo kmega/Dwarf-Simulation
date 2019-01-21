@@ -13,7 +13,7 @@ namespace BattleShips
                 new Player(),
                 new Player()
             };
-            UI ui = new UI(players);
+            UI ui = new UI();
         }
     }
 }
