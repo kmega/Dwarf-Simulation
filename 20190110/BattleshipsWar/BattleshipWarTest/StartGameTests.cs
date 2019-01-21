@@ -1,5 +1,4 @@
-﻿using System;
-using BattleshipsWar;
+﻿using BattleshipsWar;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace BattleshipWarTest

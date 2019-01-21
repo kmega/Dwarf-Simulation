@@ -1,5 +1,6 @@
 
-﻿using BattleshipsWar.UI;
+using BattleshipsWar.Tools;
+using BattleshipsWar.UI;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -28,7 +29,7 @@ namespace BattleshipsWar
             string placement = "", direction;
 
             ShipInputParser game = new ShipInputParser();
-            List<KindOfShip> kind = game.MakeHarborOrder();
+            List<KindOfShip> kind = game.MakeHarborOrder("abc");
 
             while (AllShipsPlaced == false)
             {

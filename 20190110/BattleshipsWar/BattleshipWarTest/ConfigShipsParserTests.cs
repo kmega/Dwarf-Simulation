@@ -4,20 +4,23 @@ using System.Collections.Generic;
 using System.IO;
 using BattleshipsWar;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BattleshipsWar.Tools;
+
 namespace BattleshipWarTest
 {
     [TestClass]
-    class ConfigShipsParserTests
+    public class ConfigShipsParserTests
     {
         [TestMethod]
         public void ListShipsShouldBeEmptyWhenStringIsEmpty()
         {
             //Given
+            ShipInputParser parser = new ShipInputParser();
             string text = "";
             
 
             //When
-            List<KindOfShip> result = ShipInputParser.costam(text);
+            List<KindOfShip> result = parser.MakeHarborOrder(text);
 
             //Then
             Assert.AreEqual(result.Count, 0);
@@ -27,10 +30,11 @@ namespace BattleshipWarTest
         public void ShouldReturnTwoShipsKindOfOne()
         {
             //Given
+            ShipInputParser parser = new ShipInputParser();
             string text = "1:2";
 
             //When
-            List<KindOfShip> result = ShipInputParser.costam(text, listastatkow);
+            List<KindOfShip> result = parser.MakeHarborOrder(text);
 
             //Then
             Assert.AreEqual(result[0], KindOfShip.One);
@@ -42,10 +46,11 @@ namespace BattleshipWarTest
         public void LastShipShouldBeKindFive()
         {
             //Given
+            ShipInputParser parser = new ShipInputParser();
             string text = "1:2\n3:1\n5:2";
 
-            //When
-            List<KindOfShip> result = ShipInputParser.costam(text, listastatkow);
+            //When          
+            List<KindOfShip> result = parser.MakeHarborOrder(text);
 
             //Then
             Assert.AreEqual(result[result.Count-1], KindOfShip.Five);
@@ -55,10 +60,11 @@ namespace BattleshipWarTest
         public void ShipsShouldContainsThreeShipsKindOf4()
         {
             //Given
+            ShipInputParser parser = new ShipInputParser();
             string text = "1:2\n3:1\n5:2\n4:3";
 
             //When
-            List<KindOfShip> result = ShipInputParser.costam(text, listastatkow);
+            List<KindOfShip> result = parser.MakeHarborOrder(text);
 
             var ShipsKindOfFour = result.Where(x => x == KindOfShip.Four).ToList();
 
