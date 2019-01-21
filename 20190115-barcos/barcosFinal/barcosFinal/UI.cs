@@ -68,7 +68,7 @@ namespace barcosFinal
             {
                 Console.WriteLine("Next player's tour coming!");
                 Thread.Sleep(2000);
-                Console.Clear();
+                Console.Clear(); 
             }
             
         }
