@@ -15,15 +15,16 @@ namespace BattleshipWarTest
         public void ListShipsShouldBeEmptyWhenStringIsEmpty()
         {
             //Given
+            List<KindOfShip> harbororder = new List<KindOfShip>();
             ShipInputParser parser = new ShipInputParser();
-            string text = "";
+            string text = "emptyfile.txt";
             
 
             //When
-            List<KindOfShip> result = parser.MakeHarborOrder(text);
+            parser.MakeHarborOrder(text);
 
             //Then
-            Assert.AreEqual(result.Count, 0);
+            Assert.AreEqual(harbororder.Count, 0);
 
         }
         [TestMethod]
@@ -31,37 +32,40 @@ namespace BattleshipWarTest
         {
             //Given
             ShipInputParser parser = new ShipInputParser();
+            List<KindOfShip> harbororder = new List<KindOfShip>();
             string text = "1:2";
 
             //When
-            List<KindOfShip> result = parser.MakeHarborOrder(text);
+            parser.AddShip(harbororder,text);
 
             //Then
-            Assert.AreEqual(result[0], KindOfShip.One);
-            Assert.AreEqual(result[1], KindOfShip.One);
-            Assert.AreEqual(result.Count, 2);
+            Assert.AreEqual(harbororder[0], KindOfShip.One);
+            Assert.AreEqual(harbororder[1], KindOfShip.One);
+            Assert.AreEqual(harbororder.Count, 2);
 
         }
         [TestMethod]
         public void LastShipShouldBeKindFive()
         {
             //Given
+            List<KindOfShip> harbororder = new List<KindOfShip>();
             ShipInputParser parser = new ShipInputParser();
-            string text = "1:2\n3:1\n5:2";
+            string text = "PlayerOneShipPlacement1.txt";
 
             //When          
             List<KindOfShip> result = parser.MakeHarborOrder(text);
 
             //Then
-            Assert.AreEqual(result[result.Count-1], KindOfShip.Five);
+            Assert.AreEqual(result[result.Count - 1], KindOfShip.Five);
 
         }
         [TestMethod]
         public void ShipsShouldContainsThreeShipsKindOf4()
         {
             //Given
+            List<KindOfShip> harbororder = new List<KindOfShip>();
             ShipInputParser parser = new ShipInputParser();
-            string text = "1:2\n3:1\n5:2\n4:3";
+            string text = "PlayerOneShipPlacement1.txt";
 
             //When
             List<KindOfShip> result = parser.MakeHarborOrder(text);
