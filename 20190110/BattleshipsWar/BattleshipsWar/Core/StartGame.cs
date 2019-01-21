@@ -29,28 +29,32 @@ namespace BattleshipsWar
             while (AllShipsPlaced == false)
             {
              
-                if (CounterOfShipsPlaced <= 7 && NextPlayer != true)
+                if (NextPlayer == false)
                 {
                     UserCommunication(out placement, out direction, "First");
                     PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
 
                     ActionGameUI.DrawBoard(PlayerOneBoard);
 
-                    if(CounterOfShipsPlaced == 7)
+                    if (CounterOfShipsPlaced == 7)
                     {
                         CounterOfShipsPlaced = 0;
                         NextPlayer = true;
                         AnyKeyToContinue();
+                        ActionGameUI.DrawBoard(PlayerTwoBoard);
                     }
 
                 }
                 else
-                {                   
-                    if(CounterOfShipsPlaced < 7) ActionGameUI.DrawBoard(PlayerTwoBoard); // display empty board for second player
-
+                {
                     UserCommunication(out placement, out direction, "Second");
                     PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction);
                     ActionGameUI.DrawBoard(PlayerTwoBoard);
+
+                    if (CounterOfShipsPlaced == 7)
+                    {
+                        AllShipsPlaced = true;
+                    }
                 }
             }
 
@@ -141,10 +145,7 @@ namespace BattleshipsWar
 
             CounterOfShipsPlaced++;
 
-            if (CounterOfShipsPlaced == 7)
-            {
-                AllShipsPlaced = true;
-            }
+            
 
             return board;
         }
@@ -165,7 +166,7 @@ namespace BattleshipsWar
             }
 
             Ship ship = new Ship(lengthOfShip, Coords, userChoice);
-            if (CounterOfShipsPlaced < 7)
+            if (NextPlayer == false)
             {
                 PlayerOneShips.Add(ship);
             }
