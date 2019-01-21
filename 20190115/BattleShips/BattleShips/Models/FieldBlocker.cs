@@ -64,7 +64,7 @@ namespace BattleShips.Models
         private static List<string> BlockHorizontallyOrientedSideOfShip(int[] x, int[] y)
         {
             List<string> result = new List<string>();
-            foreach (int coord in y)
+            foreach (int coord in x)
             {
                 result.Add(TextParser.ParseIntToString(coord, y[0] - 1));
                 result.Add(TextParser.ParseIntToString(coord, y[0] + 1));
