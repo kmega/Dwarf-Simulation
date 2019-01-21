@@ -26,7 +26,7 @@ namespace BattleShipsTests
             //Then
             string message = Assert.Throws<Exception>(
                 () => InputValidator.CheckShipType(input)).Message;
-            Assert.AreEqual("Incorrect ship type inserted. Please try again!", message);
+            Assert.AreEqual("Wprowadzono nieprawidłowy typ okrętu! Spróbuj ponownie!", message);
         }
         [Test]
         [TestCase("u")]
@@ -46,7 +46,7 @@ namespace BattleShipsTests
             //Then
             string message = Assert.Throws<Exception>(
                 () => InputValidator.CheckDirection(input)).Message;
-            Assert.AreEqual("Incorrect direction inserted, please try again!", message);
+            Assert.AreEqual("Wprowadzono nieprawidłowy kierunek! Spróbuj ponownie!", message);
         }
         [Test]
         [TestCase("B5")]
@@ -69,7 +69,7 @@ namespace BattleShipsTests
             //Then
             string message = Assert.Throws<Exception>(
                 () => InputValidator.CheckPosition(input)).Message;
-            Assert.AreEqual("Wrong position inserted, please try again!", message);
+            Assert.AreEqual("Wprowadzono nieprawidłową pozycję! Spróbuj ponownie!", message);
         }
         [Test]
         [TestCase("d")]

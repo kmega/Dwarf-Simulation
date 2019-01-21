@@ -8,8 +8,6 @@ namespace BattleShips
     {
         static void Main(string[] args)
         {
-            UI ui = new UI();
-            ui.PrepareBoard();
         }
     }
 }

@@ -13,7 +13,7 @@ namespace BattleShips.Models
 
         public bool IsShipBuildCorrectly = false;
         bool IsShipTypeCorrect = false;
-        public string ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, Direction, NameOfPlayer, NameOfPlayer2;
+        public string ShipType, ChoosingStartPointAfterValidation, Direction, NameOfPlayer, NameOfPlayer2;
         public UI()
         {
 
@@ -56,13 +56,13 @@ namespace BattleShips.Models
         {
             while (player.Ships.Count != 5)
             {
-                //ShowPlayersBoards(List<Player> players)
+                Game.ShowPlayersBoards(new List<Player> { player });
                 ChooseTypeOfShip(player);
                 ChooseStartPoint();
                 ChooseDirection();
                 SendTheDataToPlayer(player);
             }
-            Console.ReadKey();
+            Game.ShowPlayersBoards(new List<Player> { player });
         }
         //zasady gry 
         public void GameRules()
@@ -83,7 +83,7 @@ namespace BattleShips.Models
         {
             try
             {
-                player.Ships.Add(shipfactory.Create(ChoosingShipByPlayerAfterValidation,
+                player.Ships.Add(shipfactory.Create(ShipType,
                     ChoosingStartPointAfterValidation.ToUpper(),
                     Direction, player));
             }
@@ -98,10 +98,10 @@ namespace BattleShips.Models
             do
             {
                 Console.WriteLine("Wybierz kierunek: (L - Left, R- Right, U - Up, D -Down");
-                string direction = (Console.ReadLine()).ToLower();
+                Direction = (Console.ReadLine()).ToLower();
                 try
                 {
-                    isDirectionCorrect = InputValidator.CheckDirection(direction);
+                    isDirectionCorrect = InputValidator.CheckDirection(Direction);
                 }
                 catch (Exception e)
                 {
@@ -145,17 +145,17 @@ namespace BattleShips.Models
             do
             {
                     Console.WriteLine("Wybierz rodzaj statku:");
-                    string shipType = (Console.ReadLine()).ToLower();
+                    ShipType = (Console.ReadLine()).ToLower();
                     try
                     {
-                        IsShipTypeCorrect = InputValidator.CheckShipType(shipType);
+                        IsShipTypeCorrect = InputValidator.CheckShipType(ShipType);
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                         continue;
                     }
-                    ShipExists = InputValidator.CheckIfChoosenShipAlreadyExists(shipType, player);
+                    ShipExists = InputValidator.CheckIfChoosenShipAlreadyExists(ShipType, player);
                 if(ShipExists)
                 {
                     Console.WriteLine("Ten typ statku już istnieje, wybierz inny!");

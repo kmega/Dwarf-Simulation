@@ -41,7 +41,7 @@ namespace BattleShips.Models
                 {
                     if (occupiedPositions.Contains(position) || blockedNeighbourhood.Contains(position))
                     {
-                        throw new Exception("Error! You cannot place ship so close to others!");
+                        throw new Exception("Błąd! Nie możesz umieszczać statków tak blisko innych!");
                     }
                 }
             }

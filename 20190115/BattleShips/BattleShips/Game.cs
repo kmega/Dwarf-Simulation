@@ -25,7 +25,7 @@ namespace BattleShips
             Console.WriteLine($"The winner is: " + activePlayer.IsActive);
         }
 
-        public void ShowPlayersBoards(List<Player> players)
+        public static void ShowPlayersBoards(List<Player> players)
         {
             foreach (var player in players)
             {
@@ -34,7 +34,7 @@ namespace BattleShips
             }
         }
 
-        private void CreatePlayerBoard(Player player)
+        private static void CreatePlayerBoard(Player player)
         {
             string[,] board = new string[10, 10];
             CreateEmptyBoard(board);
@@ -43,7 +43,7 @@ namespace BattleShips
             ShowBoard(board);
         }
 
-        private void FillArrayPlayerChoosenFields(Player player, string[,] board)
+        private static void FillArrayPlayerChoosenFields(Player player, string[,] board)
         {
             foreach (var field in player.ChoosenFields)
             {
@@ -53,7 +53,7 @@ namespace BattleShips
             }
         }
 
-        private void FillArrayPlayerShips(Player player, string[,] board)
+        private static void FillArrayPlayerShips(Player player, string[,] board)
         {
             foreach (var ship in player.Ships)
             {
@@ -61,12 +61,12 @@ namespace BattleShips
                 {
                     int x, y;
                     ParseFieldToInt(field, out x, out y);
-                    board[x, y] = "X ";
+                    board[y, x] = "X ";
                 }
             }
         }
 
-        private void ParseFieldToInt(string field, out int x, out int y)
+        private static void ParseFieldToInt(string field, out int x, out int y)
         {
             x = field[0] - 65;
             if (field.Length == 2)
@@ -79,7 +79,7 @@ namespace BattleShips
             }
         }
 
-        private void ShowBoard(string[,] board)
+        private static void ShowBoard(string[,] board)
         {
             for (int i = 0; i < board.GetLength(0); i++)
             {
@@ -93,7 +93,7 @@ namespace BattleShips
 
         private static void CreateEmptyBoard(string[,] board)
         {
-            var symbol = "-";
+            var symbol = "- ";
             for (int i = 0; i < board.GetLength(0); i++)
             {
                 for (int j = 0; j < board.GetLength(1); j++)
