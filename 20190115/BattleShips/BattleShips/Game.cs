@@ -37,8 +37,13 @@ namespace BattleShips
                     foreach (var ship in player.Ships)
                     {
                         MoveFieldFromOneListToAnother(field, ship.OccupiedPositions, ship.DamagedPositions);
+                        if (ship.OccupiedPositions.Count() == 0)
+                        {
+                            Console.WriteLine($"The ship {ship.Type} has been destroyed");
+                        }
                     }
                 }
+                
             }
             else
             {
