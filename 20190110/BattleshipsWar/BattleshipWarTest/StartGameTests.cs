@@ -8,7 +8,6 @@ namespace BattleshipWarTest
     public class StartGameTests
     {
         [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
         public void ShouldReturnEmptyBoardWhenCoordinatesAreWrong()
         {
             // For
@@ -21,7 +20,13 @@ namespace BattleshipWarTest
             CellProperty[,] expectedBoard = game.PlaceShipOnBoard(board, coordinates, direction);
 
             // Assert
-            Assert.Fail();
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    Assert.IsTrue(board[i, j] == expectedBoard[i, j]);
+                }
+            }
         }
 
         [TestMethod]
