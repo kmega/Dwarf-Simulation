@@ -33,7 +33,7 @@ namespace barcosFinal
                 if (enemyBoard[x - 1, y - 1] == '^')
                 {
                     enemyPlayer.BattleField.Board[x - 1, y - 1] = 'x';
-                    BattleFieldToDisplay.Board[x - 1, y - 1] = 'x';
+                    BattleFieldToDisplay.Board[x - 1, y - 1] = 'x';//here blad, rzuca wyjatkiem
                     OnRage = true;
 
                 }

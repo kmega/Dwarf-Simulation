@@ -22,7 +22,7 @@ namespace Tests
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    board1[i, j] = 'o';
+                    board1[i, j] = 'o'; 
                     board2[i, j] = 'o';
 
                 }
@@ -69,7 +69,7 @@ namespace Tests
 
                 }
             }
-            
+
             Player player1 = new Player()
             {
                 BattleField = new BattleField()
@@ -78,7 +78,11 @@ namespace Tests
                 },
                 Ships = new List<IShip>()
                 {
-                    new Ship(2, 1,2,Orientation.vertical)
+                    new Ship(2,1,2,Orientation.vertical)
+                },
+                BattleFieldToDisplay = new BattleField()
+                {
+                    Board = board1
                 }
             };
 
@@ -91,12 +95,17 @@ namespace Tests
                 },
                 Ships = new List<IShip>()
                 {
-                    new Ship(2, 1,2,Orientation.vertical)
+                    new Ship(2,1,2,Orientation.vertical)
+                },
+                BattleFieldToDisplay = new BattleField()
+                {
+                    Board = board1
                 }
             };
 
-            player1.Shoot(player2,1, 2, player2.GetCurrentBattleField());
-            Assert.IsTrue('x' == player2.GetCurrentBattleField()[1,2]);
+            var result = player1.Shoot(player2,1, 2, player2.GetCurrentBattleField());
+            //var temp = 1 + 2;
+            Assert.IsTrue('x' == player2.GetCurrentBattleField()[0,1]);
         }
 
         [Test]
@@ -123,7 +132,11 @@ namespace Tests
                 },
                 Ships = new List<IShip>()
                 {
-                    new Ship(2, 1,2,Orientation.vertical)
+                    new Ship(2,1,2,Orientation.vertical)
+                },
+                BattleFieldToDisplay = new BattleField()
+                {
+                    Board = board1
                 }
             };
 
@@ -136,12 +149,16 @@ namespace Tests
                 },
                 Ships = new List<IShip>()
                 {
-                    new Ship(2, 1,2,Orientation.vertical)
+                    new Ship(2,1,2,Orientation.vertical)
+                },
+                BattleFieldToDisplay = new BattleField()
+                {
+                    Board = board1
                 }
             };
             Console.SetOut(TextWriter.Null);
 
-            char[,] boardToDisplay = player1.Shoot(player2, 15, 17, player2.GetCurrentBattleField());
+            player1.Shoot(player2, 15, 17, player2.GetCurrentBattleField());
             Assert.AreEqual(player1.OnRage, true);
         }
     }
