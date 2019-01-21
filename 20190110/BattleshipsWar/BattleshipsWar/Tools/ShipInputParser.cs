@@ -11,7 +11,7 @@ namespace BattleshipsWar.Tools
     {
 
 
-        public List<KindOfShip> MakeHarborOrder(string directory)
+        public Dictionary<KindOfShip,string> MakeHarborOrder(string directory)
         {
 
             //1.directory ->Parser -> one line string
@@ -19,7 +19,7 @@ namespace BattleshipsWar.Tools
             //3.Add ship to list
             string line;
             StreamReader sr = new StreamReader(directory);
-            List<KindOfShip> harbororder = new List<KindOfShip>();
+            Dictionary<KindOfShip,string> harbororder = new Dictionary<KindOfShip,string>();
 
             while ((line=sr.ReadLine()) != null)
             {
@@ -27,7 +27,7 @@ namespace BattleshipsWar.Tools
                 {
                     continue;
                 }
-
+               
                
                 AddShip(harbororder, line);
 
@@ -37,14 +37,14 @@ namespace BattleshipsWar.Tools
 
         }
 
-        public void AddShip (List<KindOfShip> harbororder, string line)
+        public void AddShip (Dictionary<KindOfShip,string> harbororder, string line)
         {
             string[] temp = line.Split(':');
             for (int i = 0; i < Int32.Parse(temp[1]); i++)
             {
                 if ((Enum.TryParse<KindOfShip>(temp[0], out KindOfShip result)))
                 {
-                    harbororder.Add(result);
+                    harbororder.Add(result,temp[2]);
                 }
                 else
                 {
