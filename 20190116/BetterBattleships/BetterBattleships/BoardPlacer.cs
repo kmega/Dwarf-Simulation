@@ -7,7 +7,8 @@ namespace BetterBattleships
     {
         public void SetShipsOnBoard(CellStatus[,] Board, string Name)
         {
-            List<ShipTypes> ListOfShipsToSet = new AvailableShips().GetShipList();
+            //List<ShipTypes> ListOfShipsToSet = new AvailableShips().GetShipList();
+            List<ShipTypes> ListOfShipsToSet = new AvailableShips().GetShipsFromConfigFile();
             ConsoleDisplayer consoleDisplayer = new ConsoleDisplayer();
             InputParser inputParser = new InputParser();
 
