@@ -83,7 +83,7 @@ namespace barcosFinal
                 Console.Clear();
                 ui.ShowBoard(pl1.BattleFieldToDisplay.Board);
                 Console.WriteLine("{0} write X,Y of enemy", pl1.Name);
-
+                
                 int x = int.Parse(Console.ReadLine());
                 int y = int.Parse(Console.ReadLine());
 
