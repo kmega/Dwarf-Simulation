@@ -28,20 +28,30 @@ namespace barcosFinal
         public char[,] Shoot(Player enemyPlayer, int x, int y, char[,] enemyBoard)
         {
             OnRage = false;
-
-            if (enemyBoard[x - 1, y - 1] == '^')
+            try
             {
-                enemyPlayer.BattleField.Board[x - 1, y - 1] = 'x';
-                BattleFieldToDisplay.Board[x - 1, y - 1] = 'x';
-                OnRage = true;
+                if (enemyBoard[x - 1, y - 1] == '^')
+                {
+                    enemyPlayer.BattleField.Board[x - 1, y - 1] = 'x';
+                    BattleFieldToDisplay.Board[x - 1, y - 1] = 'x';
+                    OnRage = true;
 
+                }
+                else if (BattleFieldToDisplay.Board[x - 1, y - 1] == 'x' || BattleFieldToDisplay.Board[x - 1, y - 1] == ' ')
+                {
+                    OnRage = true;
+                }
+
+                else BattleFieldToDisplay.Board[x - 1, y - 1] = ' ';
             }
-            else if (BattleFieldToDisplay.Board[x - 1, y - 1] == 'x' || BattleFieldToDisplay.Board[x - 1, y - 1] == ' ')
+
+            catch (Exception)
             {
+
+                Console.WriteLine("You didn't shoot on board, try again");
                 OnRage = true;
             }
-
-            else BattleFieldToDisplay.Board[x - 1, y - 1] = ' ';
+            
 
             return BattleFieldToDisplay.Board;
         }
