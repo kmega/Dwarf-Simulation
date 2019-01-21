@@ -17,7 +17,7 @@ namespace Test
             player2.Player_Board.Fields[0, 0] = Field.S;
 
             arena.Fight(player1, player2, "A1");
-            Assert.AreEqual(player1.Opponent_Board.Fields[0, 0], Field.H);
+            Assert.AreEqual(player1.ShootBoard.Fields[0, 0], Field.H);
             Assert.AreEqual(player2.Player_Board.Fields[0, 0], Field.H);
 
         }

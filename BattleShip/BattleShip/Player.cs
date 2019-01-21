@@ -10,7 +10,7 @@ namespace BattleShip
     {
         public Board Player_Board { get; set; }
         public int Id { get; set; }
-        public Board Opponent_Board { get; set; }
+        public Board ShootBoard { get; set; }
         public List<Ship> ships { get; set; }
 
         public Player(int Id)
@@ -27,7 +27,7 @@ namespace BattleShip
             };
 
             Player_Board = new Board();
-            Opponent_Board = new Board();
+            ShootBoard = new Board();
         }
 
         public void ShowShips(Player player)

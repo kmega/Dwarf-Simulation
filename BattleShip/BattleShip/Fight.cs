@@ -19,11 +19,11 @@ namespace BattleShip
             
             if (player2.Player_Board.Fields[lenghtBoard,heightBoard] == Field.O)
             {
-                player1.Opponent_Board.Fields[lenghtBoard, heightBoard] = Field.F;
+                player1.ShootBoard.Fields[lenghtBoard, heightBoard] = Field.F;
             }
             else if (player2.Player_Board.Fields[lenghtBoard, heightBoard] == Field.S)
             {
-                player1.Opponent_Board.Fields[lenghtBoard, heightBoard] = Field.H;
+                player1.ShootBoard.Fields[lenghtBoard, heightBoard] = Field.H;
             }
 
             ////Player 2 try hit player 1 ships
@@ -33,11 +33,11 @@ namespace BattleShip
             player2.Player_Board.Fields[0, 0] = Field.S;
             if (player1.Player_Board.Fields[lenghtBoard, heightBoard] == Field.O)
             {
-                player2.Opponent_Board.Fields[lenghtBoard, heightBoard] = Field.F;
+                player2.ShootBoard.Fields[lenghtBoard, heightBoard] = Field.F;
             }
             else if (player1.Player_Board.Fields[lenghtBoard, heightBoard] == Field.S)
             {
-                player2.Opponent_Board.Fields[lenghtBoard, heightBoard] = Field.H;
+                player2.ShootBoard.Fields[lenghtBoard, heightBoard] = Field.H;
             }
         }
     }

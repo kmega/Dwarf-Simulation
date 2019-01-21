@@ -17,7 +17,7 @@ namespace Test
             string coordinatesPlayer2 = "a1";
             game.TryHitShip(player1, player2, coordinatesPlayer1, coordinatesPlayer2);
             int counter = 0;
-            if (player1.Opponent_Board.Fields[0, 0] == Field.F)
+            if (player1.ShootBoard.Fields[0, 0] == Field.F)
             {
                 counter++;
             }
@@ -42,7 +42,7 @@ namespace Test
             string coordinatesPlayer2 = "a1";
             game.TryHitShip(player1, player2, coordinatesPlayer1, coordinatesPlayer2);
             int counter = 0;
-            if (player2.Opponent_Board.Fields[0, 0] == Field.H)
+            if (player2.ShootBoard.Fields[0, 0] == Field.H)
             {
                 counter++;
             }
@@ -72,11 +72,11 @@ namespace Test
             string coordinatesPlayer2 = "a1";
             game.TryHitShip(player1, player2, coordinatesPlayer1, coordinatesPlayer2);
             int counter = 0;
-            if (player2.Opponent_Board.Fields[0, 0] == Field.H)
+            if (player2.ShootBoard.Fields[0, 0] == Field.H)
             {
                 counter++;
             }
-            if (player1.Opponent_Board.Fields[2, 1] == Field.H)
+            if (player1.ShootBoard.Fields[2, 1] == Field.H)
             {
                 counter++;
             }
