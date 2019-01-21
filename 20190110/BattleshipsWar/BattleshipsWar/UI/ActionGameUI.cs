@@ -183,7 +183,6 @@ namespace BattleshipsWar.UI
                 if (board[k, j] == CellProperty.Blocked)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
-                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("#");
                     Console.ForegroundColor = ConsoleColor.Red; Console.Write("O");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }

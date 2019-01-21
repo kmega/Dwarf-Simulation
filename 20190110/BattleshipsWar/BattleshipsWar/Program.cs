@@ -12,6 +12,7 @@ namespace BattleshipsWar
         static void Main(string[] args)
         {
             ActionGameUI.DisplayUI();
+            Console.ReadKey();
 
         }
     }

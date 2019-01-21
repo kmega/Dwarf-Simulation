@@ -17,6 +17,8 @@ namespace BattleshipsWar
         public List<Ship> PlayerOneShips = new List<Ship>(); 
         public List<Ship> PlayerTwoShips = new List<Ship>();
 
+        private string ShipBuilder = ".../.../.../ShipBuilder.txt";
+
         private bool AllShipsPlaced = false;
         private bool NextPlayer = false;
 
@@ -29,7 +31,7 @@ namespace BattleshipsWar
             string placement = "", direction;
 
             ShipInputParser game = new ShipInputParser();
-            List<KindOfShip> kind = game.MakeHarborOrder("abc");
+            List<KindOfShip> kind = game.MakeHarborOrder(ShipBuilder);
 
             while (AllShipsPlaced == false)
             {
@@ -143,15 +145,8 @@ namespace BattleshipsWar
                         break;
                     }
             }
-                    
 
             CounterOfShipsPlaced++;
-
-            if (CounterOfShipsPlaced == 7)
-            {
-                AllShipsPlaced = true;
-            }
-            
 
             return board;
         }
