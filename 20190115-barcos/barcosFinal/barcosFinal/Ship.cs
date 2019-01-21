@@ -17,7 +17,13 @@ namespace barcosFinal
             Coordinate_Y = y;
             Orientation = orientation;
         }
-        
-        
+
+        public Ship(ShipShapes shipShape, int x, int y, Orientation orientation)
+        {
+            HP = (int) shipShape;
+            Coordinate_X = x;
+            Coordinate_Y = y;
+            Orientation = orientation;
+        }
     }
 }
