@@ -10,9 +10,11 @@
 
     public enum ShipTypes
     {
+
         Carrier = 5,
         Battleship = 4,
         Cruiser = 3,
-        Subarine = 2
+        Subarine = 2,
+        L_Ship = 6,
     }
 }

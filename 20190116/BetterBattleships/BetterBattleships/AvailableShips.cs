@@ -8,7 +8,7 @@ namespace BetterBattleships
     {
         private readonly List<ShipTypes> ShipList = new List<ShipTypes>
         {
-            //ShipTypes.Carrier,
+            ShipTypes.Carrier,
             //ShipTypes.Battleship,
             //ShipTypes.Battleship,
             //ShipTypes.Cruiser,
@@ -17,7 +17,8 @@ namespace BetterBattleships
             //ShipTypes.Subarine,
             //ShipTypes.Subarine,
             //ShipTypes.Subarine,
-            ShipTypes.Subarine
+            //ShipTypes.Subarine,
+            ShipTypes.L_Ship
         };
 
         public List<ShipTypes> GetShipList()
