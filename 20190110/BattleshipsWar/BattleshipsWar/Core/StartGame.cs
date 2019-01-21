@@ -145,6 +145,10 @@ namespace BattleshipsWar
 
             CounterOfShipsPlaced++;
 
+            if (CounterOfShipsPlaced == 7)
+            {
+                AllShipsPlaced = true;
+            }
             
 
             return board;
