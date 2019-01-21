@@ -10,6 +10,6 @@ namespace barcosFinal.Interfaces
         IBattleField BattleField { get; set; }
         string Name { get; set; }
         char[,] GetCurrentBattleField();
-        char[,] Shoot(Player enemyPlayer,int x, int y, char[,] board);
+        char[,] Shoot(Player enemyPlayer,int x, int y, char[,] board); 
     }
 }
