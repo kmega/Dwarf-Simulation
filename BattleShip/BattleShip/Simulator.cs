@@ -71,19 +71,20 @@ namespace BattleShip
         public void InitializePlayerBoard(Player player)
         {
             PutShipOnTheBoard PutShipOnTheBoard = new PutShipOnTheBoard();
-            int i = 1;
+            int j = 1;
             string coordinates = "";
             bool horizontal;
             string horizontal_string = "";
+            bool flag;
 
-            foreach (var item in player.ships)
+            for (int i = 0; i < player.ships.Count; i++)
             {
                 Console.WriteLine($"Gracz {player.Id}");
                 player.ShowShips(player);
                 Console.WriteLine();
                 player.ShowBoard(player.Player_Board);
                 Console.WriteLine();
-                Console.WriteLine($"Rozmieść " + i + " statek");
+                Console.WriteLine($"Rozmieść " + j + " statek");
                 Console.WriteLine("Podaj koordynaty ,np. A1");
                 coordinates = Console.ReadLine();
                 Console.WriteLine("Rozmiesć statek poziomo: 1, pionowo 2");
@@ -97,9 +98,19 @@ namespace BattleShip
                     horizontal = false;
                 };
 
-                PutShipOnTheBoard.PutShip(player, coordinates, horizontal, i);
-                Console.Clear();
-                i++;
+                flag = PutShipOnTheBoard.PutShip(player, coordinates, horizontal, j);
+                if (flag)
+                {
+                    Console.Clear();
+                    j++;
+                }
+                else
+                {
+                    Console.WriteLine("Nie udało się dodać statku. Błędne koordynaty");
+                    i--;
+                    Console.ReadKey();
+                    Console.Clear();
+                }
 
             }
 

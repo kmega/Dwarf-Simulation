@@ -8,7 +8,7 @@ namespace BattleShip
 {
     public class PutShipOnTheBoard
     {
-        public void PutShip(Player player, string Coordinates, bool horizontal, int id_ship)
+        public bool PutShip(Player player, string Coordinates, bool horizontal, int id_ship)
         {
 
             int[] coordinate = CoordinatesParser(Coordinates);
@@ -18,32 +18,64 @@ namespace BattleShip
 
             if (CheckIfShipIsOutOfBord(player, coordinate, horizontal, id_ship))
             {
-                for (int i = 0; i < player.ships[id_ship].Lenght; i++)
+                if (CheckIfPlaceIsEmpty(player, coordinate, horizontal, id_ship))
                 {
-                    if (horizontal)
+                    for (int i = 0; i < player.ships[id_ship].Lenght; i++)
                     {
-                        player.Player_Board.Fields[coordinate[1], coordinate[0] + i] = Field.S;
+                        if (horizontal)
+                        {
+                            player.Player_Board.Fields[coordinate[1], coordinate[0] + i] = Field.S;
+                        }
+                        else
+                        {
+                            player.Player_Board.Fields[coordinate[1] + i, coordinate[0]] = Field.S;
+                        }
                     }
-                    else
-                    {
-                        player.Player_Board.Fields[coordinate[1] + i, coordinate[0] ] = Field.S;
-                    }
+                    return true;
                 }
             }
-
+            return false;
         }
 
-        public bool CheckIfShipIsOutOfBord(Player player, int[] coordinate, bool horizontal, int id_ship)
+       private bool CheckIfPlaceIsEmpty(Player player, int[] coordinate, bool horizontal, int id_ship)
         {
             for (int i = 0; i < player.ships[id_ship].Lenght; i++)
             {
                 if (horizontal)
                 {
-                      return (coordinate[0] + player.ships[id_ship].Lenght < 10);
+                    if (player.Player_Board.Fields[coordinate[1], coordinate[0] + i] == Field.S)
+                    {
+                        return false;
+                    }   
                 }
                 else
                 {
-                    return (coordinate[0] + player.ships[id_ship].Lenght < 10);
+                    if (player.Player_Board.Fields[coordinate[1] + i, coordinate[0]] == Field.S)
+                    {
+                        return false;
+                    } 
+                }
+            }
+            return true;
+        }
+
+       public bool CheckIfShipIsOutOfBord(Player player, int[] coordinate, bool horizontal, int id_ship)
+        {
+            for (int i = 0; i < player.ships[id_ship].Lenght; i++)
+            {
+                if (horizontal)
+                {
+                    if (coordinate[0] + player.ships[id_ship].Lenght <= 10)
+                    {
+                        return true;
+                    } 
+                }
+                else
+                {
+                    if (coordinate[1] + player.ships[id_ship].Lenght <= 10)
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
