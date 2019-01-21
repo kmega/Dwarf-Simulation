@@ -184,6 +184,7 @@ namespace BattleshipsWar.UI
                 {
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
                     Console.ForegroundColor = ConsoleColor.Red; Console.Write("#");
+                    Console.ForegroundColor = ConsoleColor.Red; Console.Write("O");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
                 if (board[k, j] == CellProperty.Hit)
@@ -198,6 +199,13 @@ namespace BattleshipsWar.UI
                     Console.ForegroundColor = ConsoleColor.Cyan; Console.Write(" ");
                     Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
                 }
+                if (board[k, j] == CellProperty.Destroyed)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("[");
+                    Console.ForegroundColor = ConsoleColor.DarkRed; Console.Write("#");
+                    Console.ForegroundColor = ConsoleColor.Blue; Console.Write("]");
+                }
+
 
                 Console.ForegroundColor = ConsoleColor.White;
             }
