@@ -15,12 +15,21 @@ namespace BattleShips
             while (WhetherInactivePlayersHasShips(Players))
             {
                 string field = "A0"; //field input by active player
-
+                InputFieldToAttack();
                 var inactivePlayers = CreateInactivePlayersList(Players);
                 Turn(inactivePlayers, field);
             }
             var activePlayer = players.Where(p => p.IsActive == true).First();
             Console.WriteLine($"The winner is: " + activePlayer.IsActive);
+        }
+
+        public string InputFieldToAttack() //METODA ZWRÓCI STRING JEŻELI WPROWADZONE POLE JEST W PORZĄDKU
+            //JAK KTOŚ WPROWADZI BŁĘDNE POLE, RZUCA EXCEPTION
+        {
+            string attackthisfield;            
+            attackthisfield = Console.ReadLine();
+            InputValidator.CheckIfYouCanAttackThisPosition(attackthisfield);
+            return attackthisfield;
         }
 
         private List<Player> CreateInactivePlayersList(List<Player> players)

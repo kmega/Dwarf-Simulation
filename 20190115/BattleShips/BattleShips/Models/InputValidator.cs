@@ -65,5 +65,19 @@ namespace BattleShips.Models
             }
             return false;
         }
+        public static bool CheckIfYouCanAttackThisPosition(string position)
+        {
+            if (InputValidator.CheckPosition(position) == false)
+            {
+                throw new Exception("You cannot attack this field. It doesn't exist");
+            }
+
+            //else if () czy atakowane pole jest atakowane drugi raz
+            //
+            return true;
+        }
+
+
+
     }
 }

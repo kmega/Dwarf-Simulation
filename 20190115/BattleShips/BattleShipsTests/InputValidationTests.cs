@@ -90,5 +90,23 @@ namespace BattleShipsTests
             //Then
             Assert.IsFalse(InputValidator.CheckIfChoosenShipAlreadyExists(input, player));
         }
+        [Test]
+        public void T08_ShouldReturnTrueWhenYouTryAttackThePlaceWhichExist()
+        {
+            bool expected = true;
+            string attackedfield = "A1";
+            bool result = InputValidator.CheckPosition(attackedfield);
+            Assert.AreEqual(expected, result);
+        }
+        [Test]
+        public void T09_ShouldReturnTrueWhenYouAttackPlaceWhichYouAttackBefore()
+        {
+            bool expected = true;
+            string attackedfield = "A1";
+            List<string> OccupiedFields = new List<string> { "A1","A2" };
+            bool result = OccupiedFields.Contains(attackedfield);
+                Assert.AreEqual(expected, result);
+        }
+        
     }
 }
