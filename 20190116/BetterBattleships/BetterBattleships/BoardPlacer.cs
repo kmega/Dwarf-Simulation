@@ -31,7 +31,6 @@ namespace BetterBattleships
 
             (int[] coords, string direction) = inputParser.ReturnAllValuesFromUserNeededToSetUpShip((int)ship);
 
-
             ExecuteShipPlacement(direction, coords, ship, Board);
             //consoleDisplayer.DisplayBoard(Board);
         }

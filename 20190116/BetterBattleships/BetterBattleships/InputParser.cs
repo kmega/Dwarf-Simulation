@@ -83,8 +83,7 @@ namespace BetterBattleships
                     Console.WriteLine("Zeby wprowadzic dane jeszcze raz, to nacisnij dowolny klawisz...");
                     Console.ReadKey();
                     Console.Clear();
-                    ParseCorrectnessOfInputCoordsFromKeyboard();
-                    break;
+                    return ParseCorrectnessOfInputCoordsFromKeyboard();
             }
 
             switch (inputFromKeyboard[1].ToString())
@@ -129,8 +128,7 @@ namespace BetterBattleships
                     Console.WriteLine("Zeby wprowadzic dane jeszcze raz, to nacisnij dowolny klawisz...");
                     Console.ReadKey();
                     Console.Clear();
-                    ParseCorrectnessOfInputCoordsFromKeyboard();
-                    break;
+                    return ParseCorrectnessOfInputCoordsFromKeyboard();
             }
 
             return new int[] { firstArrayValue, secondArrayValue };
