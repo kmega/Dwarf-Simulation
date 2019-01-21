@@ -14,7 +14,7 @@ namespace BattleShip
         {
             List<Ship> ships = new List<Ship>();
 
-            string[] file = File.ReadAllLines(@"ShipConfig.txt");
+            string[] file = File.ReadAllLines(@"ShipConfig.md");
 
             foreach (var line in file)
             {
