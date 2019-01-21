@@ -11,11 +11,14 @@ namespace BattleShips
 
         public void StartGame(List<Player> players)
         {
+            //PrepareBoard();
+            
+
             SetActivePlayer(players);
             while (WhetherInactivePlayersHasShips(Players))
             {
                 string field = "A0"; //field input by active player
-
+                //field = InputFieldToAttack();
                 var inactivePlayers = CreateInactivePlayersList(Players);
                 Turn(inactivePlayers, field);
             }

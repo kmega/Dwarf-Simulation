@@ -34,7 +34,7 @@ namespace BattleShips.Models
             {
                 return true;
             }
-            throw new Exception("Wrong position inserted, please try again!");
+            throw new Exception("Wprowadzono nieprawidłową pozycję! Spróbuj ponownie:");
         }
 
         public static bool CheckDirection(string message)
