@@ -19,12 +19,15 @@ namespace BattleShips
                 var field = UI.InputFieldToAttack();
                 var inactivePlayers = CreateInactivePlayersList(Players);
                 Turn(inactivePlayers, field);
+                ShowPlayersBoards(Players);
             }
             var activePlayer = Players.Where(p => p.IsActive == true).First();
             Console.WriteLine($"The winner is: " + activePlayer.IsActive);
         }
 
+        #region CreateBoard
 
+        
         public static void ShowPlayersBoards(List<Player> players)
         {
             foreach (var player in players)
@@ -43,18 +46,7 @@ namespace BattleShips
             ShowBoard(board);
         }
 
-        private static void FillArrayPlayerChoosenFields(Player player, string[,] board)
-        {
-            foreach (var field in player.ChoosenFields)
-            {
-                int x, y;
-                ParseFieldToInt(field, out x, out y);
-                board[x, y] = "o ";
-            }
-        }
-
         private static void FillArrayPlayerShips(Player player, string[,] board)
-
         {
             foreach (var ship in player.Ships)
             {
@@ -65,6 +57,48 @@ namespace BattleShips
                     board[y, x] = "X ";
                 }
             }
+        }
+
+        private static void FillArrayPlayerChoosenFields(Player player, string[,] board)
+        {
+            foreach (var field in player.ChoosenFields)
+            {
+                int x, y;
+                ParseFieldToInt(field, out x, out y);
+                board[x, y] = "o ";
+            }
+        }
+
+        private static void FillArrayPlayerDestroyedShips(Player player, string[,] board)
+
+        {
+            foreach (var ship in player.Ships)
+            {
+                foreach (var field in ship.DamagedPositions)
+                {
+                    int x, y;
+                    ParseFieldToInt(field, out x, out y);
+                    board[y, x] = "X ";
+                }
+            }
+        }
+
+        public static void ShowPlayersBoardsWithShips(List<Player> players)
+        {
+            foreach (var player in players)
+            {
+                CreatePlayerBoardWithShips(player);
+                Console.WriteLine("");
+            }
+        }
+
+        private static void CreatePlayerBoardWithShips(Player player)
+        {
+            string[,] board = new string[10, 10];
+            CreateEmptyBoard(board);
+            FillArrayPlayerChoosenFields(player, board);
+            FillArrayPlayerShips(player, board);
+            ShowBoard(board);
         }
 
         private static void ParseFieldToInt(string field, out int x, out int y)
@@ -104,7 +138,7 @@ namespace BattleShips
                 }
             }
         }
-
+        #endregion
 
         private List<Player> CreateInactivePlayersList(List<Player> players)
         {

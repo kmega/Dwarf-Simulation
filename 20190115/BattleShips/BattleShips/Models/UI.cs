@@ -34,16 +34,7 @@ namespace BattleShips.Models
             }
             return players;
         }
-        public void TheGameStarts()
-        {
-            Console.WriteLine("Twoja plansza:");
-            //generowanie planszy z gotowymi statkami
-            Console.WriteLine("Plansza przeciwnika:");
-            // generowanie planszy przeciwnika tylko ze strzałami
-            Console.WriteLine("Wpisz pole, które chcesz zaatakować");
-            //wyswietlenie planszy przeciwnika
-
-        }
+        
 
         public void BuildShipsForSinglePlayer(Player player)
         {
@@ -56,7 +47,7 @@ namespace BattleShips.Models
         {
             while (player.Ships.Count != 5)
             {
-                Game.ShowPlayersBoards(new List<Player> { player });
+                Game.ShowPlayersBoardsWithShips(new List<Player> { player });
                 ChooseTypeOfShip(player);
                 ChooseStartPoint();
                 ChooseDirection();
@@ -168,6 +159,7 @@ namespace BattleShips.Models
                                                  //JAK KTOŚ WPROWADZI BŁĘDNE POLE, RZUCA EXCEPTION
         {
             string attackthisfield;
+            Console.Write("Podaj pole ataku: ");
             attackthisfield = Console.ReadLine();
             InputValidator.CheckIfYouCanAttackThisPosition(attackthisfield);
             return attackthisfield;
