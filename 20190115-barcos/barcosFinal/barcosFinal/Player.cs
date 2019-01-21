@@ -12,11 +12,11 @@ namespace barcosFinal
         public IBattleField BattleField { get; set; }
         public IBattleField BattleFieldToDisplay { get; set; }
         public bool OnRage { get; set; }
-        public string Name { get ; set ; }
+        public string Name { get; set; }
         public UI ShowBoard = new UI();
         public char[,] GetCurrentBattleField()
         {
-            
+
             return BattleField.Board;
         }
 
@@ -51,7 +51,7 @@ namespace barcosFinal
                 Console.WriteLine("You didn't shoot on board, try again");
                 OnRage = true;
             }
-            
+
 
             return BattleFieldToDisplay.Board;
         }
@@ -63,7 +63,7 @@ namespace barcosFinal
             for (int i = 0; i < content.Length; i++)
             {
                 string[] firstLine = content[i].Split(new string[] { "," }, StringSplitOptions.None);
-                int masts = int.Parse(firstLine[1]);
+                bool casualShipsShapes = int.TryParse(firstLine[1], out int masts);
 
                 for (int j = 0; j < int.Parse(firstLine[0]); j++)
                 {
@@ -120,8 +120,10 @@ namespace barcosFinal
                         }
                     }
 
+
                     Console.WriteLine("Locate ship with {0} masts on Your board vertically(0) or horizontally(1)", masts);
                     int orientation = 2;
+
 
                     while (orientation == 2)
                     {
@@ -146,20 +148,67 @@ namespace barcosFinal
                     }
 
                     Orientation shipOrientation = (orientation == 0) ? Orientation.vertical : Orientation.horizontal;
-
-                    IShip ship = new Ship(masts, x, y, shipOrientation);
-                    Ships.Add(ship);
-
-
-
-                    for (int z = 0; z < masts; z++)
+                    if (casualShipsShapes)
                     {
-                        if (shipOrientation == Orientation.vertical)
-                            BattleField.Board[y + z - 1, x - 1] = '^';
-                        else
-                            BattleField.Board[y - 1, x - 1 + z] = '^';
+                        IShip ship = new Ship(masts, x, y, shipOrientation);
+                        Ships.Add(ship);
+
+
+
+                        for (int z = 0; z < masts; z++)
+                        {
+                            if (shipOrientation == Orientation.vertical)
+                                BattleField.Board[y + z - 1, x - 1] = '^';
+                            else
+                                BattleField.Board[y - 1, x - 1 + z] = '^';
+
+                        }
+                    }
+
+                    else
+                    {
+                        Ship ship;
+                        bool firstDraw = true;
+                        switch (firstLine[1])
+                        {
+                            case "cross":
+                                new Ship(casualShipsShapes.Cross, x, y, shipOrientation);
+                                for (int z = 0; z < casualShipsShapes.Cross; z++)
+                                {
+                                    
+                                    if (z <= 3 && firstDraw==true)
+                                        BattleField.Board[y - 1, x - 1 + z] = '^';
+                                    else
+                                    {
+                                        z = (firstDraw == true) ? 0 : z;
+                                        BattleField.Board[y - 2 + z, x - 2] = '^';
+                                        firstDraw = false;
+                                    }
+
+
+                                }
+                                break;
+                            case "L":
+                                new Ship(casualShipsShapes.L_ship, x, y, shipOrientation);
+                                for (int z = 0; z < casualShipsShapes.L_ship; z++)
+                                {
+                                    if (z <= 4 && firstDraw == true)
+                                        BattleField.Board[y - 1, x - 1 + z] = '^';
+                                    else
+                                    {
+                                        z = (firstDraw == true) ? 0 : z;
+                                        BattleField.Board[y - 1 + z, x - 5] = '^';
+                                    }
+                                }
+                                break;
+                            default:
+                                throw new Exception("ship shape");
+
+                        }
+
 
                     }
+
 
 
                     Console.Clear();
@@ -175,7 +224,7 @@ namespace barcosFinal
             for (int i = 0; i < 7; i++)
             {
                 int masts = 0;
-                switch(i)
+                switch (i)
                 {
                     case 1:
                     case 0:
@@ -273,26 +322,26 @@ namespace barcosFinal
 
                 Orientation shipOrientation = (orientation == 0) ? Orientation.vertical : Orientation.horizontal;
 
-                IShip ship = new Ship(masts,x,y,shipOrientation);
+                IShip ship = new Ship(masts, x, y, shipOrientation);
                 Ships.Add(ship);
 
-              
-                
+
+
                 for (int j = 0; j < masts; j++)
                 {
                     if (shipOrientation == Orientation.vertical)
-                        BattleField.Board[y+j-1,x-1] = '^'; 
-                    else 
-                        BattleField.Board[y-1,x-1+j] = '^'; 
+                        BattleField.Board[y + j - 1, x - 1] = '^';
+                    else
+                        BattleField.Board[y - 1, x - 1 + j] = '^';
 
                 }
 
 
                 Console.Clear();
                 ui.ShowBoard(GetCurrentBattleField());
-                
 
-                
+
+
             }
         }
     }
