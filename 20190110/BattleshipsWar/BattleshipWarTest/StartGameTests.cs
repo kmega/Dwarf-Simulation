@@ -71,7 +71,7 @@ namespace BattleshipWarTest
             game.PlaceShipOnBoard(board, coordinates, direction, kind);
 
             // Assert
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < 2; i++)
             {
                 Assert.IsTrue(board[0, i] != expectedBoard[0, i]);
             }

@@ -4,6 +4,7 @@ using BattleshipsWar.UI;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 [assembly: InternalsVisibleTo("BattleshipWarTest")]
 
@@ -31,14 +32,14 @@ namespace BattleshipsWar
             string placement = "", direction;
 
             ShipInputParser game = new ShipInputParser();
-            List<KindOfShip> kind = game.MakeHarborOrder(ShipBuilder);
+            Dictionary<KindOfShip, string> kind = game.MakeHarborOrder(ShipBuilder);
 
             while (AllShipsPlaced == false)
             {
                 if (NextPlayer == false)
                 {
-                    UserCommunication(out placement, out direction, "First");
-                    PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction, kind[CounterOfShipsPlaced]);
+                    UserCommunication(out placement, out direction, "First", kind.ElementAt(CounterOfShipsPlaced).Value);
+                    PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction, kind.ElementAt(CounterOfShipsPlaced).Key, kind.ElementAt(CounterOfShipsPlaced).Value);
 
                     ActionGameUI.DrawBoard(PlayerOneBoard);
 
@@ -53,8 +54,8 @@ namespace BattleshipsWar
                 }
                 else
                 {
-                    UserCommunication(out placement, out direction, "Second");
-                    PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction, kind[CounterOfShipsPlaced]);
+                    UserCommunication(out placement, out direction, "Second", kind.ElementAt(CounterOfShipsPlaced).Value);
+                    PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction, kind.ElementAt(CounterOfShipsPlaced).Key, kind.ElementAt(CounterOfShipsPlaced).Value);
                     ActionGameUI.DrawBoard(PlayerTwoBoard);
 
                     if (CounterOfShipsPlaced == kind.Count)
@@ -75,16 +76,38 @@ namespace BattleshipsWar
             Console.Clear();
         }
 
-        private static void UserCommunication(out string placement, out string direction, string user)
+        private static void UserCommunication(out string placement, out string direction, string user, string type)
         {
-            Console.Write($"{user} Player, please choose where you want start build ship:");
-            placement = Console.ReadLine();
-            Console.Write("Choose ship direction (Up, right, Down, Left):");
-            direction = Console.ReadLine();
-            Console.Clear();
+            type.ToLower();
+
+            if (type == "l")
+            {
+                Console.Write($"{user} Player, please choose where you want start build ship:");
+                placement = Console.ReadLine();
+                Console.Write("Choose first arm of your L ship (Up, right, Down, Left):");
+                direction = Console.ReadLine();
+                direction.ToLower();
+                if (direction == "right" || direction == "left")
+                {
+
+                }
+                else
+                {
+
+                }
+                Console.Clear();
+            }
+            else
+            {
+                Console.Write($"{user} Player, please choose where you want start build ship:");
+                placement = Console.ReadLine();
+                Console.Write("Choose ship direction (Up, right, Down, Left):");
+                direction = Console.ReadLine();
+                Console.Clear();
+            }
         }
 
-        internal CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction, KindOfShip kind)
+        internal CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction, KindOfShip kind, string type)
         {
             InputParser check = new InputParser();
             Coords = check.ChangeCordsToIndexes(placement);
@@ -97,6 +120,13 @@ namespace BattleshipsWar
 
             direction = direction.ToLower();
             Direction userChoice;
+
+            type.ToLower();
+
+            if (type == "l")
+            {
+
+            }
 
             switch (direction)
             {
