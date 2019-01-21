@@ -11,13 +11,12 @@ namespace BattleShips
 
         public void StartGame()
         {
+            Players = new UI().PrepareBoard();
             ShowPlayersBoards(Players);
-
             SetActivePlayer(Players);
             while (WhetherInactivePlayersHasShips(Players))
             {
-                string field = "A0"; //field input by active player
-                UI.InputFieldToAttack();
+                var field = UI.InputFieldToAttack();
                 var inactivePlayers = CreateInactivePlayersList(Players);
                 Turn(inactivePlayers, field);
             }
