@@ -18,13 +18,14 @@ namespace BattleShips
             while (WhetherInactivePlayersHasShips(Players))
             {
                 string field = "A0"; //field input by active player
-
+                InputFieldToAttack();
                 var inactivePlayers = CreateInactivePlayersList(Players);
                 Turn(inactivePlayers, field);
             }
             var activePlayer = Players.Where(p => p.IsActive == true).First();
             Console.WriteLine($"The winner is: " + activePlayer.IsActive);
         }
+
 
         public void ShowPlayersBoards(List<Player> players)
         {
@@ -35,7 +36,7 @@ namespace BattleShips
             }
         }
 
-        private void CreatePlayerBoard(Player player)
+        public void CreatePlayerBoard(Player player)
         {
             string[,] board = new string[10, 10];
             CreateEmptyBoard(board);
@@ -44,7 +45,7 @@ namespace BattleShips
             ShowBoard(board);
         }
 
-        private void FillArrayPlayerChoosenFields(Player player, string[,] board)
+        public void FillArrayPlayerChoosenFields(Player player, string[,] board)
         {
             foreach (var field in player.ChoosenFields)
             {
@@ -54,7 +55,7 @@ namespace BattleShips
             }
         }
 
-        private void FillArrayPlayerShips(Player player, string[,] board)
+        public void FillArrayPlayerShips(Player player, string[,] board)
         {
             foreach (var ship in player.Ships)
             {
@@ -67,7 +68,7 @@ namespace BattleShips
             }
         }
 
-        private void ParseFieldToInt(string field, out int x, out int y)
+        public void ParseFieldToInt(string field, out int x, out int y)
         {
             x = field[0] - 65;
             if (field.Length == 2)
@@ -80,7 +81,7 @@ namespace BattleShips
             }
         }
 
-        private void ShowBoard(string[,] board)
+        public void ShowBoard(string[,] board)
         {
             for (int i = 0; i < board.GetLength(0); i++)
             {
@@ -92,7 +93,7 @@ namespace BattleShips
             }
         }
 
-        private static void CreateEmptyBoard(string[,] board)
+        public static void CreateEmptyBoard(string[,] board)
         {
             var symbol = "-";
             for (int i = 0; i < board.GetLength(0); i++)
@@ -102,6 +103,16 @@ namespace BattleShips
                     board[i, j] = symbol;
                 }
             }
+        }
+
+        public static string InputFieldToAttack() //METODA ZWRÓCI STRING JEŻELI WPROWADZONE POLE JEST W PORZĄDKU
+            //JAK KTOŚ WPROWADZI BŁĘDNE POLE, RZUCA EXCEPTION
+        {
+            string attackthisfield;            
+            attackthisfield = Console.ReadLine();
+            InputValidator.CheckIfYouCanAttackThisPosition(attackthisfield);
+            return attackthisfield;
+
         }
 
         private List<Player> CreateInactivePlayersList(List<Player> players)

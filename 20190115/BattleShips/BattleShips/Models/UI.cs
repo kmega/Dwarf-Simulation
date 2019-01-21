@@ -13,10 +13,11 @@ namespace BattleShips.Models
         Player player = new Player();
         public bool IsShipBuildCorrectly = false;
         bool IsShipTypeCorrect = false;
+        List<Player> players;
         public string ChoosingShipByPlayerAfterValidation, ChoosingStartPointAfterValidation, ChoosingDirectionByPlayerAfterValidation, NameOfPlayer,NameOfPlayer2;
         public UI()
         {
-            List<Player> players = new List<Player> { };
+            players = new List<Player> { new Player { }, new Player { } };
             TheEarlyGame(players);  //choosing ships 
             TheGameStarts();
             Console.ReadKey();
@@ -37,7 +38,7 @@ namespace BattleShips.Models
         {
              Console.WriteLine("Gracz 1- Podaj swoje imię:");
             NameOfPlayer = Console.ReadLine();
-            player.Name = NameOfPlayer;
+            players[0].Name = NameOfPlayer;
             GameRules();
             Console.WriteLine();       
             ChoosePlacesOfShips();           
@@ -45,7 +46,7 @@ namespace BattleShips.Models
             BoardGenerate();
             Console.WriteLine("Gracz 2-Podaj swoje imię:");
             NameOfPlayer2 = Console.ReadLine();
-            player.Name = NameOfPlayer2;
+            players[1].Name = NameOfPlayer2;
             ChoosePlacesOfShips();
             Console.WriteLine();
             BoardGenerate();
@@ -91,7 +92,7 @@ namespace BattleShips.Models
                     player.Ships.Add(shipfactory.Create(ChoosingShipByPlayerAfterValidation,
                         ChoosingStartPointAfterValidation.ToUpper(),
                         ChoosingDirectionByPlayerAfterValidation, player));
-                    IsShipTypeCorrect = true;
+                    IsShipBuildCorrectly = true;
                 }
                 catch (ArgumentException e)
                 {
@@ -184,7 +185,15 @@ namespace BattleShips.Models
         public void BoardGenerate()
         {
             string[,] array = new string[10, 10];
-            TextParser.FillArray(array, "- ");
+            TextParser.FillArray(array, "- ");       
+            foreach (var ship in players[0].Ships)
+            {
+                foreach (var positions in ship.OccupiedPositions)
+                {
+                    TextParser.FillArrayWithShip(array, positions);
+                }
+            }
+            
             //string field = "";
             List<string> PlaceWithShip = new List<string>() {};
             //foreach (string x in occupiedPositions) //przeslac gracza do tego, dokopac sie 
