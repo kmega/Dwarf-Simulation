@@ -24,6 +24,7 @@ namespace BattleShips.Models
                 new Player(),
                 new Player()
             };
+            GameRules();
             for (int i = 0; i < 2; i++)
             {                
                 Console.Write($"Gracz {i + 1} podaj swoje imię: ");
