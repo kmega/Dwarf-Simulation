@@ -12,30 +12,28 @@ namespace tests
         public void TestMethod1()
         {
             var calendar = new Mock<ICalendarDiscountCalculator>();
-            calendar.Setup(x => x.SetDiscountByDate()).Returns(new DateTime(2018, 12, 1));
+            calendar.Setup(x => x.SetDiscountByDate()).Returns(0.5m);
 
             var product = new ProductFactory().CreateSingleProduct("Buty", 100);
 
             var temp = new DiscountCalculator();
             var result = temp.CalculateFinalDiscount(calendar.Object, product);
 
-            Assert.AreEqual(170, result);
+            Assert.AreEqual(20, result);
         }
 
         [TestMethod]
         public void TestMethod2()
         {
             var calendar = new Mock<ICalendarDiscountCalculator>();
-            calendar.Setup(x => x.SetDiscountByDate()).Returns(new DateTime(2018, 12, 24));
+            calendar.Setup(x => x.SetDiscountByDate()).Returns(0.2m);
 
             var product = new ProductFactory().CreateSingleProduct("Buty", 100);
-            //product.Setu(x => x.CreateSingleProduct(It.IsAny<string>(),
-                                //It.IsAny<decimal>())).Returns(new Product("Buty", 100));
 
             var temp = new DiscountCalculator();
             var result = temp.CalculateFinalDiscount(calendar.Object, product);
 
-            Assert.AreEqual(120, result);
+            Assert.AreEqual(50, result);
         }
     }
 }

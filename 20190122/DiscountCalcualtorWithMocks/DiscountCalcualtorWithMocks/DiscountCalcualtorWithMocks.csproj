@@ -11,5 +11,6 @@
   <ItemGroup>
     <Compile Remove="ProductCalculator.cs" />
     <Compile Remove="DataExtractor.cs" />
+    <Compile Remove="DataGetter.cs" />
   </ItemGroup>
 </Project>

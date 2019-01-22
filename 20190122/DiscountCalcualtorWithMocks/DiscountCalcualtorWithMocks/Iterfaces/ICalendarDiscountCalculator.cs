@@ -3,6 +3,6 @@ namespace DiscountCalcualtorWithMocks
 {
     public interface ICalendarDiscountCalculator
     {
-        DateTime SetDiscountByDate();
+        decimal SetDiscountByDate();
     }
 }
