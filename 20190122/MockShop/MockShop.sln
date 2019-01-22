@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockShop", "MockShop\MockShop.csproj", "{197F6A8E-214B-454F-87A2-AB87B9CAD560}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MockShopTests", "MockShopTests\MockShopTests.csproj", "{051AD42F-CCAD-4849-814F-911FB7A86D3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{197F6A8E-214B-454F-87A2-AB87B9CAD560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{197F6A8E-214B-454F-87A2-AB87B9CAD560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{197F6A8E-214B-454F-87A2-AB87B9CAD560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{197F6A8E-214B-454F-87A2-AB87B9CAD560}.Release|Any CPU.Build.0 = Release|Any CPU
+		{051AD42F-CCAD-4849-814F-911FB7A86D3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{051AD42F-CCAD-4849-814F-911FB7A86D3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{051AD42F-CCAD-4849-814F-911FB7A86D3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{051AD42F-CCAD-4849-814F-911FB7A86D3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C35A576E-690D-4DA9-8178-8B91E272374C}
+	EndGlobalSection
+EndGlobal
