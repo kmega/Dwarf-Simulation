@@ -18,24 +18,24 @@ namespace BattleShips
             Console.WriteLine("\nPress any key to start game\n");
             Console.ReadKey();
             Console.Clear();
-            
+
             SetActivePlayer(Players);
             while (WhetherInactivePlayersHasShips(Players))
             {
                 var field = UI.InputFieldToAttack();
 
                 MakeTurnInGame(Players, field);
-                Players.Where(x => x.IsActive == true).First().ChoosenFields.Add(field);
-                ShowPlayersBoardsWithChoosenFields(Players);
+                ShowActivePlayerBoards();
             }
             var activePlayer = Players.Where(p => p.IsActive == true).First();
-            Console.WriteLine($"The winner is: " + activePlayer.IsActive);
+            Console.WriteLine($"The winner is: " + activePlayer.Name);
         }
         #endregion
 
-        public void ChangeActivePlayer(List<Player> players)
+        public void ChangeActivePlayer(List<Player> players, string field)
         {
             var index = players.FindIndex(p => p.IsActive == true);
+            players.Where(x => x.IsActive == true).First().ChoosenFields.Add(field);
             players[index].IsActive = false;
             if (index < players.Count() - 1)
             {
@@ -143,12 +143,52 @@ namespace BattleShips
             for (int i = 0; i < board.GetLength(0); i++)
             {
                 if (i == 9) Console.Write(i + 1 + " ");
-                else Console.Write(i + 1 +"  ");
+                else Console.Write(i + 1 + "  ");
                 for (int j = 0; j < board.GetLength(1); j++)
                 {
                     Console.Write(board[i, j]);
                 }
                 Console.WriteLine("");
+            }
+        }
+        public void ShowActivePlayerBoard(Player player)
+        {
+            string[,] board = new string[10, 10];
+            CreateEmptyBoard(board);
+            FillActivePlayerShips(player, board);
+            ShowBoard(board);
+        }
+        public void ShowEnemyBoardWithUsedFieldsAndDamagedShips(List<Player> players)
+        {
+            string[,] board = new string[10, 10];
+            CreateEmptyBoard(board);
+            var activePlayer = players.Where(x => x.IsActive == true).First();
+            FillBoardWithChosenFields(activePlayer, board);
+            var inActivePlayer = players.Where(x => x.IsActive == false).First();
+            FillPlayerBoardByDestroyedShips(inActivePlayer, board);
+            ShowBoard(board);
+        }
+
+        private void FillBoardWithChosenFields(Player player, string[,] board)
+        {
+            foreach (var field in player.ChoosenFields)
+            {
+                int x, y;
+                ParseFieldToInt(field, out x, out y);
+                board[y, x] = "O ";
+            }
+        }
+
+        private void FillActivePlayerShips(Player player, string[,] board)
+        {
+            foreach (var ship in player.Ships)
+            {
+                foreach (var field in ship.OccupiedPositions)
+                {
+                    int x, y;
+                    ParseFieldToInt(field, out x, out y);
+                    board[y, x] = "X ";
+                }
             }
         }
 
@@ -200,14 +240,14 @@ namespace BattleShips
         {
             var deadPlayer = players.Where(x => x.IsActive == false).FirstOrDefault();
             var hasShips = deadPlayer.Ships.Where(x => x.OccupiedPositions.Any()).FirstOrDefault();
-            if(hasShips != null)
+            if (hasShips != null)
             {
                 return true;
             }
             else
             {
                 return false;
-            } 
+            }
         }
 
         public List<Player> CreateInactivePlayersList(List<Player> players)
@@ -240,7 +280,7 @@ namespace BattleShips
             else
             {
                 Console.WriteLine("You missed :-)");
-                ChangeActivePlayer(players);
+                ChangeActivePlayer(players, field);
             }
         }
 
@@ -256,15 +296,16 @@ namespace BattleShips
             Console.WriteLine($"\n{player.Name} starts game");
         }
 
-        public void ShowPlayersBoardsWithChoosenFields(List<Player> players)
+        public void ShowActivePlayerBoards()
         {
-            foreach (var player in players)
-            {
-                ShowPlayerBoardWithChoosenFieldsAndDestroyerShips(player);
-                Console.WriteLine("");
-            }
+            var activePlayer = Players.Where(x => x.IsActive == true).First();
+            Console.WriteLine($"{activePlayer.Name} turn: ");
+            Console.WriteLine("Your board: \n");
+            ShowActivePlayerBoard(activePlayer);
+            Console.WriteLine("\nYour shots: \n");
+            ShowEnemyBoardWithUsedFieldsAndDamagedShips(Players);
         }
 
-        
+
     }
 }
