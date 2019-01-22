@@ -145,8 +145,6 @@ namespace BattleshipsWar
 
             CounterOfShipsPlaced++;
 
-            
-
             return board;
         }
 
