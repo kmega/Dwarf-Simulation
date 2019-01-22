@@ -18,7 +18,7 @@ namespace BattleShips.Models
         {
 
         }
-        public List<Player> PrepareBoard()
+        public List<Player> PreparePlayersGameBoard()
         {
             List<Player> players = new List<Player>()
             {
@@ -46,10 +46,10 @@ namespace BattleShips.Models
 
         public void ChoosePlacesOfShips(Player player)
         {
-            
+            Game game = new Game();  //Change showPlayersBoardsWithShips from static to non static
             while (player.Ships.Count != 5)
             {
-                Game.ShowPlayersBoardsWithShips(new List<Player>() { player });
+                game.ShowPlayersBoardsWithShips(new List<Player>() { player });
                 ChooseTypeOfShip(player);
                 ChooseStartPoint();
                 ChooseDirection();
@@ -59,7 +59,7 @@ namespace BattleShips.Models
             
         }
         //zasady gry 
-        public static void GameRules()
+        public static void ShowGameRules()
         {
             Console.WriteLine("ZASADY GRY \nKażdy z graczy posiada po dwie plansze o wielkości 10x10 pól.\n" +
                 "Kolumny są oznaczone poprzez współrzędne literami od A do J i liczbami 1 do 10. \n" +
@@ -162,7 +162,7 @@ namespace BattleShips.Models
                                                  //JAK KTOŚ WPROWADZI BŁĘDNE POLE, RZUCA EXCEPTION
         {
             string attackthisfield;
-            Console.Write("Podaj pole ataku: ");
+            Console.Write("\nPodaj pole ataku: ");
             attackthisfield = Console.ReadLine().ToUpper();
             InputValidator.CheckIfYouCanAttackThisPosition(attackthisfield);
             return attackthisfield;

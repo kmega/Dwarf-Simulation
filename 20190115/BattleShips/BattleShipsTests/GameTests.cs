@@ -29,8 +29,9 @@ namespace BattleShipsTests
             List<Player> players = new List<Player>();
             players.Add(player1);
             players.Add(player2);
+            Game game = new Game();
             //when
-            Game.ChangeActivePlayer(players);
+            game.ChangeActivePlayer(players);
             //then
             Assert.IsTrue(player1.IsActive);
             Assert.IsFalse(player2.IsActive);
@@ -45,8 +46,9 @@ namespace BattleShipsTests
             player.Ships.Add(new FakeCarrier());
             List<Player> players = new List<Player>();
             players.Add(player);
+            Game game = new Game();
             //when
-            bool result = Game.ShipIsHit(field, players);
+            bool result = game.CheckIfShipIsHit(field, players);
             //then
             Assert.IsTrue(result);
         }
