@@ -20,15 +20,33 @@ namespace BattleShips
                 var field = UI.InputFieldToAttack();
                 
                 Turn(Players, field);
-                ShowPlayersBoards(Players); //without ships
+                ShowPlayersBoardsWithChoosenFields(Players);
             }
             var activePlayer = Players.Where(p => p.IsActive == true).First();
             Console.WriteLine($"The winner is: " + activePlayer.IsActive);
         }
 
+        private void ShowPlayersBoardsWithChoosenFields(List<Player> players)
+        {
+            foreach (var player in players)
+            {
+                CreatePlayerBoardWithChoosenField(player);
+                Console.WriteLine("");
+            }
+        }
+
+        private void CreatePlayerBoardWithChoosenField(Player player)
+        {
+            string[,] board = new string[10, 10];
+            CreateEmptyBoard(board);
+            FillArrayPlayerChoosenFields(player, board);
+            FillArrayPlayerDestroyedShips(player, board);
+            ShowBoard(board);
+        }
+
         #region CreateBoard
 
-        
+
         public static void ShowPlayersBoards(List<Player> players)
         {
             foreach (var player in players)
