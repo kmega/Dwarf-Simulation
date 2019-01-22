@@ -11,15 +11,16 @@ namespace BattleShips
 
         public void StartGame()
         {
+            UI.GameRules();
             Players = new UI().PrepareBoard();
             ShowPlayersBoards(Players);
             SetActivePlayer(Players);
             while (WhetherInactivePlayersHasShips(Players))
             {
                 var field = UI.InputFieldToAttack();
-                var inactivePlayers = CreateInactivePlayersList(Players);
-                Turn(inactivePlayers, field);
-                ShowPlayersBoards(Players);
+                
+                Turn(Players, field);
+                ShowPlayersBoards(Players); //without ships
             }
             var activePlayer = Players.Where(p => p.IsActive == true).First();
             Console.WriteLine($"The winner is: " + activePlayer.IsActive);
@@ -96,7 +97,6 @@ namespace BattleShips
         {
             string[,] board = new string[10, 10];
             CreateEmptyBoard(board);
-            FillArrayPlayerChoosenFields(player, board);
             FillArrayPlayerShips(player, board);
             ShowBoard(board);
         }
@@ -147,13 +147,18 @@ namespace BattleShips
 
         private void Turn(List<Player> players, string field)
         {
-            if (ShipIsHit(field, players))
+            var inactivePlayers = CreateInactivePlayersList(players);
+            if (ShipIsHit(field, inactivePlayers))
             {
-                foreach (var player in Players)
+                foreach (var player in inactivePlayers)
                 {
                     foreach (var ship in player.Ships)
                     {
-                        MoveFieldFromOneListToAnother(field, ship.OccupiedPositions, ship.DamagedPositions);
+                        if (ship.OccupiedPositions.Contains(field))
+                        {
+                            MoveFieldFromOneListToAnother(field, ship.OccupiedPositions, ship.DamagedPositions);
+                        }
+                        
                         if (ship.OccupiedPositions.Count() == 0)
                         {
                             Console.WriteLine($"The ship {ship.Type} has been destroyed");
@@ -189,7 +194,7 @@ namespace BattleShips
             {
                 foreach (var position in ship.OccupiedPositions)
                 {
-                    if (position == field)
+                    if (position.Equals(field))
                     {
                         return true;
                     }

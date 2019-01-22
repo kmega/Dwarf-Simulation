@@ -27,10 +27,11 @@ namespace BattleShips.Models
             };
             for (int i = 0; i < 2; i++)
             {
-                GameRules();
+                
                 Console.Write($"Gracz {i + 1} podaj swoje imię: ");
                 players[i].Name = Console.ReadLine();
                 BuildShipsForSinglePlayer(players[i]);
+                
             }
             return players;
         }
@@ -45,18 +46,20 @@ namespace BattleShips.Models
 
         public void ChoosePlacesOfShips(Player player)
         {
+            
             while (player.Ships.Count != 5)
             {
-                Game.ShowPlayersBoardsWithShips(new List<Player> { player });
+                Game.ShowPlayersBoardsWithShips(new List<Player>() { player });
                 ChooseTypeOfShip(player);
                 ChooseStartPoint();
                 ChooseDirection();
+                
                 SendTheDataToPlayer(player);
             }
-            Game.ShowPlayersBoards(new List<Player> { player });
+            
         }
         //zasady gry 
-        public void GameRules()
+        public static void GameRules()
         {
             Console.WriteLine("ZASADY GRY \nKażdy z graczy posiada po dwie plansze o wielkości 10x10 pól.\n" +
                 "Kolumny są oznaczone poprzez współrzędne literami od A do J i liczbami 1 do 10. \n" +
@@ -160,7 +163,7 @@ namespace BattleShips.Models
         {
             string attackthisfield;
             Console.Write("Podaj pole ataku: ");
-            attackthisfield = Console.ReadLine();
+            attackthisfield = Console.ReadLine().ToUpper();
             InputValidator.CheckIfYouCanAttackThisPosition(attackthisfield);
             return attackthisfield;
 
