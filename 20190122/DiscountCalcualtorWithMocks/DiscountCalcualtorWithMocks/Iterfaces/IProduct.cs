@@ -1,7 +1,9 @@
 ﻿using System;
-namespace DiscountCalcualtorWithMocks.Iterfaces
+namespace DiscountCalcualtorWithMocks
 {
     public interface IProduct
     {
+        string GetProductType();
+        decimal GetPrice();
     }
 }

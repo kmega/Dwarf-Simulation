@@ -1,10 +1,11 @@
 ﻿using System;
 namespace DiscountCalcualtorWithMocks
 {
-    public class CalendarDiscountCalculator
+    public class CalendarDiscountCalculator : ICalendarDiscountCalculator
     {
-        public CalendarDiscountCalculator()
+        public DateTime SetDiscountByDate()
         {
+            return DateTime.Now;
         }
     }
 }

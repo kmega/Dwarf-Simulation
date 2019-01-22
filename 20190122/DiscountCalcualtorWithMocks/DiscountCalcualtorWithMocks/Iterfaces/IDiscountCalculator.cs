@@ -1,7 +1,8 @@
 ﻿using System;
-namespace DiscountCalcualtorWithMocks.Iterfaces
+namespace DiscountCalcualtorWithMocks
 {
     public interface IDiscountCalculator
     {
+        decimal CalculateFinalDiscount(ICalendarDiscountCalculator date, IProduct produk);
     }
 }

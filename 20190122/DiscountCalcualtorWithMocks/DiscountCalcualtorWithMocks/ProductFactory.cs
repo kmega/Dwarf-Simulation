@@ -3,8 +3,9 @@ namespace DiscountCalcualtorWithMocks
 {
     public class ProductFactory
     {
-        public ProductFactory()
+        public Product CreateSingleProduct(string type, decimal price)
         {
+            return new Product(type, price);
         }
     }
 }

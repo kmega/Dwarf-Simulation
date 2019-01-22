@@ -1,7 +1,8 @@
 ﻿using System;
-namespace DiscountCalcualtorWithMocks.Iterfaces
+namespace DiscountCalcualtorWithMocks
 {
     public interface ICalendarDiscountCalculator
     {
+        DateTime SetDiscountByDate();
     }
 }
