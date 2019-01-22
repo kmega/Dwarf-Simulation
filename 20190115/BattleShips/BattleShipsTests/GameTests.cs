@@ -13,11 +13,24 @@ namespace BattleShipsTests
             //given
             Player player = new Player();
             player.Ships.Add(new FakeDestroyedCarrier());
-            List<Player> players = new List<Player>();
+            List<Player> players = new List<Player>() { player };
             //when
             bool result = Game.WhetherInactivePlayersHasShips(players);
             //then
             Assert.IsFalse(result);
+        }
+        [Test]
+        public void ShouldReturnTrueWhenInactivePlayerHasAtleastOneActiveShip()
+        {
+            //given
+            Player player = new Player();
+            player.Ships.Add(new FakeDestroyedCarrier());
+            player.Ships.Add(new FakeCarrier());
+            List<Player> players = new List<Player>() { player };
+            //when
+            bool result = Game.WhetherInactivePlayersHasShips(players);
+            //then
+            Assert.IsTrue(result);
         }
 
         [Test]

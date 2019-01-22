@@ -25,6 +25,7 @@ namespace BattleShips
                 var field = UI.InputFieldToAttack();
 
                 MakeTurnInGame(Players, field);
+                Players.Where(x => x.IsActive == true).First().ChoosenFields.Add(field);
                 ShowPlayersBoardsWithChoosenFields(Players);
             }
             var activePlayer = Players.Where(p => p.IsActive == true).First();
@@ -44,7 +45,7 @@ namespace BattleShips
             else
             {
                 players[0].IsActive = true;
-                Console.WriteLine($"\n{players[index + 1].Name} turn\n");
+                Console.WriteLine($"\n{players[0].Name} turn\n");
             }
         }
 
@@ -91,7 +92,7 @@ namespace BattleShips
             {
                 int x, y;
                 ParseFieldToInt(field, out x, out y);
-                board[x, y] = "o ";
+                board[y, x] = "o ";
             }
         }
 
@@ -138,8 +139,11 @@ namespace BattleShips
         public static void ShowBoard(string[,] board)
 
         {
+            Console.WriteLine("   A B C D E F G H I J");
             for (int i = 0; i < board.GetLength(0); i++)
             {
+                if (i == 9) Console.Write(i + 1 + " ");
+                else Console.Write(i + 1 +"  ");
                 for (int j = 0; j < board.GetLength(1); j++)
                 {
                     Console.Write(board[i, j]);
@@ -194,7 +198,16 @@ namespace BattleShips
 
         public static bool WhetherInactivePlayersHasShips(List<Player> players)
         {
-            return players.Where(p => p.IsActive == false).Select(p => p.Ships).Select(p => p.Count > 0).Any();
+            var deadPlayer = players.Where(x => x.IsActive == false).FirstOrDefault();
+            var hasShips = deadPlayer.Ships.Where(x => x.OccupiedPositions.Any()).FirstOrDefault();
+            if(hasShips != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            } 
         }
 
         public List<Player> CreateInactivePlayersList(List<Player> players)

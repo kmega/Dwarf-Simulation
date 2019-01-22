@@ -10,13 +10,12 @@ namespace BattleShips.Models
     {
         public int boardsize = 10;
         Shipfactory shipfactory = new Shipfactory();
-
+        Game game;
         public bool IsShipBuildCorrectly = false;
-        bool IsShipTypeCorrect = false;
         public string ShipType, ChoosingStartPointAfterValidation, Direction, NameOfPlayer, NameOfPlayer2;
         public UI()
         {
-
+            game = new Game();
         }
         public List<Player> PreparePlayersGameBoard()
         {
@@ -26,12 +25,14 @@ namespace BattleShips.Models
                 new Player()
             };
             for (int i = 0; i < 2; i++)
-            {
-                
+            {                
                 Console.Write($"Gracz {i + 1} podaj swoje imię: ");
                 players[i].Name = Console.ReadLine();
                 BuildShipsForSinglePlayer(players[i]);
-                
+                Console.WriteLine($"Plansza gracza nr {i + 1}: ");
+                game.ShowPlayerBoardWithShips(players[i]);
+                Console.ReadKey();
+                Console.Clear();
             }
             return players;
         }
@@ -46,7 +47,7 @@ namespace BattleShips.Models
 
         public void ChoosePlacesOfShips(Player player)
         {
-            Game game = new Game();  //Change showPlayersBoardsWithShips from static to non static
+              //Change showPlayersBoardsWithShips from static to non static
             while (player.Ships.Count != 5)
             {
                 game.ShowPlayersBoardsWithShips(new List<Player>() { player });
