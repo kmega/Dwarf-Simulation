@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscountApp", "Mock\DiscountApp.csproj", "{21A14050-479D-45A2-890A-C642CFC1F70F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestDiscount", "TestDiscount\TestDiscount.csproj", "{95BEEAA8-D2F2-4E20-87C7-B0208ECE1B21}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21A14050-479D-45A2-890A-C642CFC1F70F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21A14050-479D-45A2-890A-C642CFC1F70F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21A14050-479D-45A2-890A-C642CFC1F70F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21A14050-479D-45A2-890A-C642CFC1F70F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95BEEAA8-D2F2-4E20-87C7-B0208ECE1B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95BEEAA8-D2F2-4E20-87C7-B0208ECE1B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95BEEAA8-D2F2-4E20-87C7-B0208ECE1B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95BEEAA8-D2F2-4E20-87C7-B0208ECE1B21}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {309D3D50-E9C4-4883-A0EC-4092B09B968E}
+	EndGlobalSection
+EndGlobal
