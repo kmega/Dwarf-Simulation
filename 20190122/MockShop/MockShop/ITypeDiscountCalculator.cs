@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MockShop
 {
-    public interface IDiscountCalculator
+    public interface ITypeDiscountCalculator
     {
         double Calculate(ProductType productType);
     }

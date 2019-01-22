@@ -8,49 +8,51 @@ namespace Tests
     public class Tests
     {
         private Mock<ICalendarDiscountCalculator> calendarDiscountCalculator;
-        private Mock<IDiscountCalculator> discountCalculator;
+        private Mock<ITypeDiscountCalculator> discountCalculator;
         private Mock<IPriceRepo> priceRepo;
+        private Mock<IDateProvider> dateProvider;
         private Product defaultProduct;
         [SetUp]
         public void Setup()
         {
             calendarDiscountCalculator = new Mock<ICalendarDiscountCalculator>();
-            discountCalculator = new Mock<IDiscountCalculator>();
+            discountCalculator = new Mock<ITypeDiscountCalculator>();
             priceRepo = new Mock<IPriceRepo>();
-
-            defaultProduct = new Product("szalik", ProductType.Clothes);
+            dateProvider = new Mock<IDateProvider>();
+            dateProvider.Setup(x => x.Now()).Returns(new DateTime(9999, 11, 9));
+            defaultProduct = new Product("", ProductType.Clothes);
             calendarDiscountCalculator
-                .Setup(x => x.Calculate(It.Is<DateTime>(i => !CheckDateDiscount(i))))
-                .Returns(1.0);
-            discountCalculator.Setup(x => x.Calculate(ProductType.Clothes)).Returns(0.7);
+                .Setup(x => x.Calculate())
+                .Returns(0.0);
+            discountCalculator.Setup(x => x.Calculate(ProductType.Clothes)).Returns(0.3);
             priceRepo.Setup(x => x.GetProductPrice(ProductType.Clothes)).Returns(10.0);  
         }
 
         [Test]
-        public void T01_ShouldReturn3dot5WhenDateIsBlackFridayAndProductIsCloth()
+        public void T01_ShouldReturn2WhenDateIsBlackFridayAndProductIsCloth()
         {
             //given
-            calendarDiscountCalculator.Setup(x => x.Calculate(new DateTime(2019, 11, 29))).Returns(0.5);
+            calendarDiscountCalculator.Setup(x => x.Calculate()).Returns(0.5);
             var productCalculator = new ProductCalculator(calendarDiscountCalculator.Object, 
                 discountCalculator.Object, priceRepo.Object);
             //when
-            var result = productCalculator.Calculate(new DateTime(2019, 11, 29), defaultProduct);
+            var result = productCalculator.Calculate(defaultProduct.type);
             //then
-            Assert.AreEqual(3.5, result);
+            Assert.AreEqual(2, result,0.01);            
         }
         [Test]
-        public void T02_ShouldReturn5dot6WhenDateIsChristmasAndProductIsCloth()
+        public void T02_ShouldReturn5WhenDateIsChristmasAndProductIsCloth()
         {
             //given
             calendarDiscountCalculator
-                .Setup(x => x.Calculate(It.IsInRange(new DateTime(2019,12,19),new DateTime(2019,12,23),Range.Inclusive)))
-                .Returns(0.8);
+                .Setup(x => x.Calculate())
+                .Returns(0.2);
             var productCalculator = new ProductCalculator(calendarDiscountCalculator.Object,
                 discountCalculator.Object, priceRepo.Object);
             //when
-            var result = productCalculator.Calculate(new DateTime(2019, 12, 22), defaultProduct);
+            var result = productCalculator.Calculate(defaultProduct.type);
             //then
-            Assert.AreEqual(5.6, result);
+            Assert.AreEqual(5, result, 0.01);
         }
         [Test]
         public void T03_ShouldReturn7WhenDateWithoudDiscountAndProductIsCloth()
@@ -59,7 +61,7 @@ namespace Tests
             var productCalculator = new ProductCalculator(calendarDiscountCalculator.Object,
                 discountCalculator.Object, priceRepo.Object);
             //when
-            var result = productCalculator.Calculate(new DateTime(2019, 12, 18), defaultProduct);
+            var result = productCalculator.Calculate(defaultProduct.type);
             //then
             Assert.AreEqual(7, result);
         }
@@ -67,59 +69,48 @@ namespace Tests
         public void T04_ShouldReturn18WhenDateWithoudDiscountAndProductIsTurtleShoes()
         {
             //given
-            discountCalculator.Setup(x => x.Calculate(ProductType.TurtleOrthopedicShoes)).Returns(1.2);
+            discountCalculator.Setup(x => x.Calculate(ProductType.TurtleOrthopedicShoes)).Returns(-0.2);
             priceRepo.Setup(x => x.GetProductPrice(ProductType.TurtleOrthopedicShoes)).Returns(15.0);
             var productCalculator = new ProductCalculator(calendarDiscountCalculator.Object,
                 discountCalculator.Object, priceRepo.Object);
             defaultProduct.type = ProductType.TurtleOrthopedicShoes;
             //when
-            var result = productCalculator.Calculate(new DateTime(2019, 12, 18), defaultProduct);
+            var result = productCalculator.Calculate(defaultProduct.type);
             //then
             Assert.AreEqual(18, result);
         }
         [Test]
-        public void T05_ShouldReturn14dot4WhenChristmasAndProductIsTurtleShoes()
+        public void T05_ShouldReturn15WhenChristmasAndProductIsTurtleShoes()
         {
             //given
-            discountCalculator.Setup(x => x.Calculate(ProductType.TurtleOrthopedicShoes)).Returns(1.2);
+            discountCalculator.Setup(x => x.Calculate(ProductType.TurtleOrthopedicShoes)).Returns(-0.2);
             priceRepo.Setup(x => x.GetProductPrice(ProductType.TurtleOrthopedicShoes)).Returns(15.0);
             calendarDiscountCalculator
-                .Setup(x => x.Calculate(It.IsInRange(new DateTime(2019, 12, 19), new DateTime(2019, 12, 23), Range.Inclusive)))
-                .Returns(0.8);
+                .Setup(x => x.Calculate())
+                .Returns(0.2);
             var productCalculator = new ProductCalculator(calendarDiscountCalculator.Object,
                 discountCalculator.Object, priceRepo.Object);
             defaultProduct.type = ProductType.TurtleOrthopedicShoes;
             //when
-            var result = productCalculator.Calculate(new DateTime(2019, 12, 20), defaultProduct);
+            var result = productCalculator.Calculate(defaultProduct.type);
             //then
-            Assert.AreEqual(14.4, result, 0.01);
+            Assert.AreEqual(15, result, 0.01);
         }
         [Test]
         public void T06_ShouldReturn14dot4WhenChristmasAndProductIsTurtleShoes()
         {
             //given
-            calendarDiscountCalculator.Setup(x => x.Calculate(new DateTime(2019, 11, 29))).Returns(0.5);
-            discountCalculator.Setup(x => x.Calculate(ProductType.TurtleOrthopedicShoes)).Returns(1.2);
+            calendarDiscountCalculator.Setup(x => x.Calculate()).Returns(0.5);
+            discountCalculator.Setup(x => x.Calculate(ProductType.TurtleOrthopedicShoes)).Returns(-0.2);
             priceRepo.Setup(x => x.GetProductPrice(ProductType.TurtleOrthopedicShoes)).Returns(15.0);
             
             var productCalculator = new ProductCalculator(calendarDiscountCalculator.Object,
                 discountCalculator.Object, priceRepo.Object);
             defaultProduct.type = ProductType.TurtleOrthopedicShoes;
             //when
-            var result = productCalculator.Calculate(new DateTime(2019, 11, 29), defaultProduct);
+            var result = productCalculator.Calculate(defaultProduct.type);
             //then
-            Assert.AreEqual(9.0, result, 0.01);
-        }
-        private bool CheckDateDiscount(DateTime i)
-        {
-            if(i.Month == 12)
-            {
-                if(i.Day >= 19 && i.Day <= 23)
-                {
-                    return true;
-                }
-            }
-            return false;
+            Assert.AreEqual(10.5, result, 0.01);
         }
     }
 }

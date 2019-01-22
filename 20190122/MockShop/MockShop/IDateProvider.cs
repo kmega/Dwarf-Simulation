@@ -4,8 +4,8 @@ using System.Text;
 
 namespace MockShop
 {
-    public interface ICalendarDiscountCalculator
+    public interface IDateProvider
     {
-        double Calculate();
+        DateTime Now();
     }
 }

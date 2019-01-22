@@ -7,21 +7,21 @@ namespace MockShop
     public class ProductCalculator
     {
         private ICalendarDiscountCalculator calendarDiscountCalculator;
-        private IDiscountCalculator discountTypeCalculator;
+        private ITypeDiscountCalculator discountTypeCalculator;
         private IPriceRepo priceRepo;
         public ProductCalculator(ICalendarDiscountCalculator calendarDiscount, 
-            IDiscountCalculator discountCalculator, IPriceRepo priceRepo)
+            ITypeDiscountCalculator discountCalculator, IPriceRepo priceRepo)
         {
             calendarDiscountCalculator = calendarDiscount;
             discountTypeCalculator = discountCalculator;
             this.priceRepo = priceRepo;
         }
-        public double Calculate(DateTime dateTime, Product product)
+        public double Calculate(ProductType productType)
         {
-            var calendarDsc = calendarDiscountCalculator.Calculate(dateTime);
-            var typeDsc = discountTypeCalculator.Calculate(product.type);
-            var originalPrice = priceRepo.GetProductPrice(product.type);
-            return originalPrice * calendarDsc * typeDsc;
+            var originalPrice = priceRepo.GetProductPrice(productType);
+            var calendarDsc = calendarDiscountCalculator.Calculate();
+            var typeDsc = discountTypeCalculator.Calculate(productType);            
+            return originalPrice *(1 - (calendarDsc + typeDsc));
         }
     }
 }
