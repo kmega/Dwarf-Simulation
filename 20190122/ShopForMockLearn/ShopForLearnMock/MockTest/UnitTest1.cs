@@ -11,6 +11,7 @@ namespace Tests
         Mock<IDataBase> database = new Mock<IDataBase>();
         Mock<ICalendarDiscountCalculator> calendardiscount = new Mock<ICalendarDiscountCalculator>();
         Mock<IDiscountCalculator> discountcalc = new Mock<IDiscountCalculator>();
+        Mock<Product> product = new Mock<Product>();
 
 
 
@@ -26,13 +27,13 @@ namespace Tests
         public void Return10ForClothes()
         {
             //given
-            Product product = new Product();
-            product.Type = ProductType.Clothes;
+           
+            product.Setup(i=>i.Type).Returns (ProductType.Clothes);
 
-            database.Setup(i => i.Price(product)).Returns(10);
+            database.Setup(i => i.Price(product.Object)).Returns(10);
 
             //when
-            double result = database.Object.Price(product);
+            double result = database.Object.Price(product.Object);
 
             //then
 
@@ -44,15 +45,16 @@ namespace Tests
         public void Return7ForClothesWorth10()
         {
             //given
-            Product product = new Product();
+      
             var datatime = new DateTime(1914,06,28);
-            product.Type = ProductType.Clothes;
-            database.Setup(i => i.Price(product)).Returns(10);
-            discountcalc.Setup(i => i.CalcDiscount(product)).Returns(0.3);
-            ProductCalc pricecalculator = new ProductCalc(calendardiscount.Object, discountcalc.Object, database.Object);
+            product.Setup(i => i.Type).Returns(ProductType.Clothes);
+            database.Setup(i => i.Price(product.Object)).Returns(10);
+            discountcalc.Setup(i => i.CalcDiscount(product.Object)).Returns(0.3);
+            ProductCalc pricecalculator =
+                new ProductCalc(calendardiscount.Object, discountcalc.Object, database.Object);
 
             //when;
-            double result = pricecalculator.Calculate(datatime, product);
+            double result = pricecalculator.Calculate(datatime, product.Object);
 
 
             //then
@@ -64,15 +66,16 @@ namespace Tests
         public void Return18ForTortoiseWorth15()
         {
             //given
-            Product product = new Product();
+          
             var datatime = new DateTime(1914, 06, 28);
-            product.Type = ProductType.TortoiseShoes;
-            database.Setup(i => i.Price(product)).Returns(15);
-            discountcalc.Setup(i => i.CalcDiscount(product)).Returns(-0.2);
-            ProductCalc pricecalculator = new ProductCalc(calendardiscount.Object, discountcalc.Object, database.Object);
+            product.Setup(i => i.Type).Returns(ProductType.TortoiseShoes);
+            database.Setup(i => i.Price(product.Object)).Returns(15);
+            discountcalc.Setup(i => i.CalcDiscount(product.Object)).Returns(-0.2);
+            ProductCalc pricecalculator = 
+                new ProductCalc(calendardiscount.Object, discountcalc.Object, database.Object);
 
             //when;
-            double result = pricecalculator.Calculate(datatime, product);
+            double result = pricecalculator.Calculate(datatime, product.Object);
 
 
             //then
@@ -88,16 +91,17 @@ namespace Tests
         {
             //given
             DateTime data = new DateTime(2019, 12, 20);
-            Product product = new Product();
-            product.Type = ProductType.Clothes;
-            database.Setup(i => i.Price(product)).Returns(10);
-            discountcalc.Setup(i => i.CalcDiscount(product)).Returns(0.3);
+           
+            product.Setup(i => i.Type).Returns(ProductType.Clothes);
+            database.Setup(i => i.Price(product.Object)).Returns(10);
+            discountcalc.Setup(i => i.CalcDiscount(product.Object)).Returns(0.3);
             calendardiscount.Setup(i => i.CalcDiscountDate(data)).Returns(0.2);
 
-            ProductCalc pricecalculator = new ProductCalc(calendardiscount.Object, discountcalc.Object, database.Object);
+            ProductCalc pricecalculator = 
+                new ProductCalc(calendardiscount.Object, discountcalc.Object, database.Object);
 
             //when;
-            double result = pricecalculator.Calculate(data, product);
+            double result = pricecalculator.Calculate(data, product.Object);
 
 
             //then
@@ -112,15 +116,16 @@ namespace Tests
         {
             //given
             DateTime data = new DateTime(2019, 12, 20);
-            Product product = new Product();
-            product.Type = ProductType.Clothes;
-            database.Setup(i => i.Price(product)).Returns(10);
-            ProductCalc pricecalculator = new ProductCalc(new CalendarDiscount(), new DiscountCalc(), database.Object);
+          
+            product.Setup(i => i.Type).Returns(ProductType.Clothes);
+            database.Setup(i => i.Price(product.Object)).Returns(10);
+            ProductCalc pricecalculator = 
+                new ProductCalc(new CalendarDiscount(), new DiscountCalc(), database.Object);
 
 
 
             //when;
-            double result = pricecalculator.Calculate(data, product);
+            double result = pricecalculator.Calculate(data, product.Object);
 
 
             //then
@@ -133,13 +138,8 @@ namespace Tests
         {
             //given
             DateTime data = new DateTime(2019, 11, 20);
-
-         
-
-
             //when;
             double result = new CalendarDiscount().CalcDiscountDate(data);
-
 
             //then
 
@@ -170,16 +170,15 @@ namespace Tests
         public void ShouldReturn2OnBlacFridayForClothes()
         {
             //given
-            Product product = new Product();
             DateTime data = new DateTime(2019, 11, 29);
-            product.Type = ProductType.Clothes;
-            database.Setup(i => i.Price(product)).Returns(10);
+            product.Setup(i => i.Type).Returns(ProductType.Clothes);
+            database.Setup(i => i.Price(product.Object)).Returns(10);
             ProductCalc pc = new ProductCalc(new CalendarDiscount(), new DiscountCalc(), database.Object);
 
 
             //when;
 
-            double result = pc.Calculate(data, product);
+            double result = pc.Calculate(data, product.Object);
 
             //then
 
@@ -190,16 +189,15 @@ namespace Tests
         [Test]
         public void ShouldReturn18ForTortoise()
         {
-            Product product = new Product();
             DateTime data = new DateTime(2019, 11, 27);
-            product.Type = ProductType.TortoiseShoes;
-            database.Setup(i => i.Price(product)).Returns(15);
+            product.Setup(i => i.Type).Returns(ProductType.TortoiseShoes);
+            database.Setup(i => i.Price(product.Object)).Returns(15);
             ProductCalc pc = new ProductCalc(new CalendarDiscount(), new DiscountCalc(), database.Object);
 
 
             //when;
 
-            double result = pc.Calculate(data, product);
+            double result = pc.Calculate(data, product.Object);
 
             //then
 
