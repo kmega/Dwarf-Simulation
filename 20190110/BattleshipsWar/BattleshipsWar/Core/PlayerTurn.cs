@@ -16,7 +16,8 @@ namespace BattleshipsWar
          
             do
             {
-                
+
+                Console.Clear();
                 ActionGameUI.DrawBoardWar(enemywarmap);
                 Console.WriteLine();
                 Console.WriteLine("Podaj koordynaty");
@@ -31,6 +32,7 @@ namespace BattleshipsWar
 
             } while (result[0] == false);
 
+            ActionGameUI.DrawBoardWar(enemywarmap);
 
             return result[1];
 
@@ -53,12 +55,13 @@ namespace BattleshipsWar
                         if (enemywarmap[i,j] == CellProperty.Occupied)
                         {
                             counter++;
-                                }
+                        }
                     }
                 }
                 if (counter == 0)
                 {
                     Winner = true;
+                    break;
                 }
 
             } while (result == true);

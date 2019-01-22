@@ -1,8 +1,10 @@
 
-﻿using BattleshipsWar.UI;
+using BattleshipsWar.Tools;
+using BattleshipsWar.UI;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Linq;
 
 [assembly: InternalsVisibleTo("BattleshipWarTest")]
 
@@ -16,6 +18,8 @@ namespace BattleshipsWar
         public List<Ship> PlayerOneShips = new List<Ship>(); 
         public List<Ship> PlayerTwoShips = new List<Ship>();
 
+        private string ShipBuilder = ".../.../.../ShipBuilder.txt";
+
         private bool AllShipsPlaced = false;
         private bool NextPlayer = false;
 
@@ -26,17 +30,20 @@ namespace BattleshipsWar
         public (CellProperty[,], CellProperty[,]) PlaceShips()
         {
             string placement = "", direction;
+
+            ShipInputParser game = new ShipInputParser();
+            Dictionary<KindOfShip, string> kind = game.MakeHarborOrder(ShipBuilder);
+
             while (AllShipsPlaced == false)
             {
-             
                 if (NextPlayer == false)
                 {
-                    UserCommunication(out placement, out direction, "First");
-                    PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction);
+                    UserCommunication(out placement, out direction, "First", kind.ElementAt(CounterOfShipsPlaced).Value);
+                    PlayerOneBoard = PlaceShipOnBoard(PlayerOneBoard, placement, direction, kind.ElementAt(CounterOfShipsPlaced).Key, kind.ElementAt(CounterOfShipsPlaced).Value);
 
                     ActionGameUI.DrawBoard(PlayerOneBoard);
 
-                    if (CounterOfShipsPlaced == 7)
+                    if (CounterOfShipsPlaced == kind.Count)
                     {
                         CounterOfShipsPlaced = 0;
                         NextPlayer = true;
@@ -47,11 +54,11 @@ namespace BattleshipsWar
                 }
                 else
                 {
-                    UserCommunication(out placement, out direction, "Second");
-                    PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction);
+                    UserCommunication(out placement, out direction, "Second", kind.ElementAt(CounterOfShipsPlaced).Value);
+                    PlayerTwoBoard = PlaceShipOnBoard(PlayerTwoBoard, placement, direction, kind.ElementAt(CounterOfShipsPlaced).Key, kind.ElementAt(CounterOfShipsPlaced).Value);
                     ActionGameUI.DrawBoard(PlayerTwoBoard);
 
-                    if (CounterOfShipsPlaced == 7)
+                    if (CounterOfShipsPlaced == kind.Count)
                     {
                         AllShipsPlaced = true;
                     }
@@ -69,16 +76,38 @@ namespace BattleshipsWar
             Console.Clear();
         }
 
-        private static void UserCommunication(out string placement, out string direction, string user)
+        private static void UserCommunication(out string placement, out string direction, string user, string type)
         {
-            Console.Write($"{user} Player, please choose where you want start build ship:");
-            placement = Console.ReadLine();
-            Console.Write("Choose ship direction (Up, right, Down, Left):");
-            direction = Console.ReadLine();
-            Console.Clear();
+            type.ToLower();
+
+            if (type == "l")
+            {
+                Console.Write($"{user} Player, please choose where you want start build ship:");
+                placement = Console.ReadLine();
+                Console.Write("Choose first arm of your L ship (Up, right, Down, Left):");
+                direction = Console.ReadLine();
+                direction.ToLower();
+                if (direction == "right" || direction == "left")
+                {
+
+                }
+                else
+                {
+
+                }
+                Console.Clear();
+            }
+            else
+            {
+                Console.Write($"{user} Player, please choose where you want start build ship:");
+                placement = Console.ReadLine();
+                Console.Write("Choose ship direction (Up, right, Down, Left):");
+                direction = Console.ReadLine();
+                Console.Clear();
+            }
         }
 
-        internal CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction)
+        internal CellProperty[,] PlaceShipOnBoard(CellProperty[,] board, string placement, string direction, KindOfShip kind, string type)
         {
             InputParser check = new InputParser();
             Coords = check.ChangeCordsToIndexes(placement);
@@ -91,6 +120,13 @@ namespace BattleshipsWar
 
             direction = direction.ToLower();
             Direction userChoice;
+
+            type.ToLower();
+
+            if (type == "l")
+            {
+
+            }
 
             switch (direction)
             {
@@ -111,37 +147,34 @@ namespace BattleshipsWar
                     return board;
             }
 
-            switch (CounterOfShipsPlaced)
+            switch (kind)
             {
-                case 0:
+                case KindOfShip.One:
                     {
-                        KindOfShip lengthOfShip = KindOfShip.Six;
-                        FillTheBoard(board, userChoice, lengthOfShip);
+                        FillTheBoard(board, userChoice, KindOfShip.One);
                         break;
                     }
-                case 1:
-                case 2:
+                case KindOfShip.Two:
                     {
-                        KindOfShip lengthOfShip = KindOfShip.Four;
-                        FillTheBoard(board, userChoice, lengthOfShip);
+                        FillTheBoard(board, userChoice, KindOfShip.Two);
                         break;
                     }
-                case 3:
-                case 4:
+                case KindOfShip.Three:
                     {
-                        KindOfShip lengthOfShip = KindOfShip.Three;
-                        FillTheBoard(board, userChoice, lengthOfShip);
+                        FillTheBoard(board, userChoice, KindOfShip.Three);
                         break;
                     }
-                case 5:
-                case 6:
+                case KindOfShip.Four:
                     {
-                        KindOfShip lengthOfShip = KindOfShip.Two;
-                        FillTheBoard(board, userChoice, lengthOfShip);
+                        FillTheBoard(board, userChoice, KindOfShip.Four);
+                        break;
+                    }
+                case KindOfShip.Five:
+                    {
+                        FillTheBoard(board, userChoice, KindOfShip.Five);
                         break;
                     }
             }
-                    
 
             CounterOfShipsPlaced++;
 
@@ -150,19 +183,6 @@ namespace BattleshipsWar
 
         private void FillTheBoard(CellProperty[,] board, Direction userChoice, KindOfShip lengthOfShip)
         {
-            if (CounterOfShipsPlaced > 0)
-            {
-                lengthOfShip = KindOfShip.Four;
-                if (CounterOfShipsPlaced > 2)
-                {
-                    lengthOfShip = KindOfShip.Three;
-                    if (CounterOfShipsPlaced > 4)
-                    {
-                        lengthOfShip = KindOfShip.Two;
-                    }
-                }
-            }
-
             Ship ship = new Ship(lengthOfShip, Coords, userChoice);
             if (NextPlayer == false)
             {

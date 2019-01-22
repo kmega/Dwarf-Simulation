@@ -11,7 +11,7 @@ namespace BattleshipsWar
     {
         public int[] ChangeCordsToIndexes(string coords)
         {
-            if (coords.Length > 3 || coords.Length <=0)
+            if (coords.Length > 3 || coords.Length <=1)
             {
                 int[] wrongCoords = { -1, -1 };
                 return wrongCoords;
