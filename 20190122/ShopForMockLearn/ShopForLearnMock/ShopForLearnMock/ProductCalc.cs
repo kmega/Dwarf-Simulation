@@ -25,8 +25,9 @@ namespace ShopForLearnMock
         {
 
             double temmprice = Database.Price(product);
-            double finalprice = temmprice - DiscountCalculator.CalcDiscount(product);
-               finalprice -= CalendarDiscountCalculator.CalcDiscountDate(date);
+            double finalprice = temmprice;
+            finalprice -= temmprice * DiscountCalculator.CalcDiscount(product);
+               finalprice -= temmprice * CalendarDiscountCalculator.CalcDiscountDate(date);
             return finalprice;
             
         }
