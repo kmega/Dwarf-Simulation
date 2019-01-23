@@ -4,7 +4,9 @@
     {
         public void WriteLine(string information)
         {
+            
             System.Console.WriteLine(information);
         }
+
     }
 }

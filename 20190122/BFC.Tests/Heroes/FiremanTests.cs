@@ -13,7 +13,7 @@ namespace BFC.Tests.Heroes
         {
             // given 
             var branch = BranchHelper.PutAnimalOnBranch(AnimalTypes.Child);
-
+            
             // when 
             _fireman.RescuAnimals(branch);
 

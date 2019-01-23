@@ -12,6 +12,7 @@ namespace BFC.Console.AppLogic
         private Person _person;
         private TimeOfDay _timeOfDay;
         private AnimalTypes _animalOnBranch;
+        private IList<Animal> _animalList;
 
         public BlackForest(IOutputWritter presenter)
         {
@@ -20,13 +21,66 @@ namespace BFC.Console.AppLogic
 
         public void SetTimeOfDay(TimeOfDay timeOfDay)
         {
-            _timeOfDay = timeOfDay;
+            try
+            {
+                if (_animalList.Count != 0 && _timeOfDay == TimeOfDay.Night && timeOfDay == TimeOfDay.Fire)
+                {
+                    string[] tmp = new string[_animalList.Count];
+                    for (int i = 0; i < _animalList.Count; i++)
+                    {
+                        tmp[i] = _animalList[i].ToString();
+                    }
+                    string message = string.Join(", ", tmp);
+                    _presenter.WriteLine($"{message} will be rescued by Fireman.");
+                }
+
+                if (_animalList.Count != 0 && timeOfDay == TimeOfDay.Fire)
+                {
+                    string[] tmp = new string[_animalList.Count];
+                    for (int i = 0; i < _animalList.Count; i++)
+                    {
+                        tmp[i] = _animalList[i].ToString();
+                    }
+                    string message = string.Join(", ", tmp);
+
+                        ActivateFireman();
+
+                        _person.RescuAnimals(_animalList);
+
+                        int counter = 0;
+
+                        for (int i = 0; i < tmp.Length; i++)
+                        {
+                            if (tmp[i] == AnimalTypes.Bird.ToString())
+                            {
+                                counter++;
+                            }
+                        }
+
+                        if (counter == tmp.Length)
+                        {
+                            _presenter.WriteLine("Nobody will be rescued by Fireman.");
+                            _presenter.WriteLine("Fireman generated alarm sound.");
+                    }
+                        else
+                            _presenter.WriteLine($"{message} doesn't sit on the Tree");
+                    
+
+                    _timeOfDay = timeOfDay;
+                }
+            }
+            catch (System.Exception)
+            {
+
+                _timeOfDay = timeOfDay;
+            }
+
         }
 
         public void SitOnTheTree(AnimalTypes animalType)
         {
             _animalOnBranch = animalType;
-
+ 
             switch (_timeOfDay)
             {
                 case TimeOfDay.Day:
@@ -62,22 +116,41 @@ namespace BFC.Console.AppLogic
         public void SitOnTheTree(AnimalTypes[] animalType)
         {
             BranchHelper branch = new BranchHelper();
-            IList<Animal> animalList = new List<Animal>();
+            _animalList = branch.PutAnimalsOnBranch(animalType);
 
-            animalList = branch.PutAnimalsOnBranch(animalType);
+            string[] tmp = new string[_animalList.Count];
+            for (int i = 0; i < _animalList.Count; i++)
+            {
+                tmp[i] = _animalList[i].ToString();
+            }
+            string message = string.Join(", ", tmp);
 
 
             if (_timeOfDay == TimeOfDay.Fire)
             {
                 ActivateFireman();
 
-                _person.RescuAnimals(animalList);
+                _person.RescuAnimals(_animalList);
 
+                int counter = 0;
+
+                for (int i = 0; i < tmp.Length; i++)
+                {
+                    if (tmp[i] == AnimalTypes.Bird.ToString())
+                    {
+                        counter++;
+                    }
+                }
+
+                if (counter == tmp.Length)
+                {
+                    _presenter.WriteLine("Nobody will be rescued by Fireman.");
+                }
+                else
+                    _presenter.WriteLine($"{message} doesn't sit on the Tree");
 
             }
 
-            if (animalList.Count == 1)
-                _presenter.WriteLine("Bird, Cat, Child doesn't sit on the Tree");
 
         }
 

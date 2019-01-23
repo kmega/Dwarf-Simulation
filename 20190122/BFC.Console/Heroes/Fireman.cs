@@ -15,7 +15,7 @@ namespace BFC.Console.Heroes
                 if (branch[i].AnimalType != AnimalTypes.Bird)
                 {
                     branch.RemoveAt(i);
-                    i = 0;
+                    i = -1;
                 }
                     
             }
