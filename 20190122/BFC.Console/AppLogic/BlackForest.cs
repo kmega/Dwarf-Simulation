@@ -1,6 +1,7 @@
 ﻿using BFC.Console.Animals;
 using BFC.Console.Heroes;
 using BFC.Console.Presentation;
+using System;
 using System.Collections.Generic;
 
 namespace BFC.Console.AppLogic
@@ -12,7 +13,9 @@ namespace BFC.Console.AppLogic
         private TimeOfDay TimeOfDay;
         public List<Animal> branch = new List<Animal>();
         public bool SpeakerActive = false;
-        
+        public IWillRomanArrive Romanticarrive = new WillRomanBeHero();
+
+
 
         public BlackForest(IOutputWritter presenter)
         {
@@ -22,10 +25,25 @@ namespace BFC.Console.AppLogic
         public void SetTimeOfDay(TimeOfDay timeOfDay)
         {
             TimeOfDay = timeOfDay;
+
             if (TimeOfDay == TimeOfDay.Fire)
             {
-                if (_person != null)
-                new RescueMission().Help(_presenter,_person,branch,SpeakerActive);
+
+                if (_person == null)
+                {
+                    
+                    if (Romanticarrive.IsRomanArrive())
+                    {
+                        ActivateRomantic();
+                        new RescueMission().Help(_presenter, _person, branch, SpeakerActive);
+                    }
+                    ActivateFireman();
+
+                    new RescueMission().Help(_presenter, _person, branch, SpeakerActive);
+                }
+
+                else
+                    new RescueMission().Help(_presenter, _person, branch, SpeakerActive);
             }
 
             
@@ -109,5 +127,7 @@ namespace BFC.Console.AppLogic
         {
             _person = new Romantic();
         }
+
+       
     }
 }
