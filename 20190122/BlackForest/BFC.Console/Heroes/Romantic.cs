@@ -39,11 +39,6 @@ namespace BFC.Console.Heroes
                 {
                     branch.Remove(children[i-1]);
                 }
-                _presenter.WriteLine("Child will be rescued by Romantic.");
-            }
-            else
-            {
-
             }
         }
     }

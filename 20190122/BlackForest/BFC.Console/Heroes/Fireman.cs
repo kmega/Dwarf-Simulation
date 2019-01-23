@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using BFC.Console.Animals;
 using BFC.Console.Presentation;
 
@@ -37,7 +38,21 @@ namespace BFC.Console.Heroes
             if (branch.Where(x => x.AnimalType == AnimalTypes.Cat).Any()
            || branch.Where(x => x.AnimalType == AnimalTypes.Child).Any())
             {
-                _presenter.WriteLine("Child, Cat will be rescued by Fireman.");
+                StringBuilder stringBuilder = new StringBuilder();
+                if(branch.Where(x => x.AnimalType == AnimalTypes.Child).Any())
+                {
+                    stringBuilder.Append(AnimalTypes.Child.ToString());
+                    if (branch.Where(x => x.AnimalType == AnimalTypes.Cat).Any())
+                    {
+                        stringBuilder.Append(", " + AnimalTypes.Cat.ToString() + " ");                        
+                    }
+                    else
+                    {
+                        stringBuilder.Append(" ");
+                    }
+                    stringBuilder.Append("will be rescued by Fireman.");
+                }
+                _presenter.WriteLine(stringBuilder.ToString());
             }
             else
             {

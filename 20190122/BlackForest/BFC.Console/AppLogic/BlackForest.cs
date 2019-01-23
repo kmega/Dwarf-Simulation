@@ -11,7 +11,7 @@ namespace BFC.Console.AppLogic
     public class BlackForest
     {       
         private IOutputWritter _presenter;
-        private Person _person;
+        private List<Person> _people;
         private TimeOfDay _timeOfDay;
         private IList<Animal> animalsOnBranch;
         private Speaker _speaker;
@@ -19,25 +19,29 @@ namespace BFC.Console.AppLogic
         public BlackForest(IOutputWritter presenter)
         {
             _presenter = presenter ?? new WindowsConsole();
+            _people = new List<Person>();
             animalsOnBranch = new List<Animal>();
         }
 
         public void SetTimeOfDay(TimeOfDay timeOfDay)
         {
             _timeOfDay = timeOfDay;
-            if(_person != null) _person.DisplayActionInformation(animalsOnBranch);
-            if (timeOfDay == TimeOfDay.Fire && animalsOnBranch.Any())
+            foreach(var person in _people)
             {
-                _person.RescueAnimals(animalsOnBranch);
-                if (animalsOnBranch
-                    .Where(x => x.AnimalType == AnimalTypes.Bird)
-                    .Any())
+                if (person != null) person.DisplayActionInformation(animalsOnBranch);
+                if (timeOfDay == TimeOfDay.Fire && animalsOnBranch.Any())
                 {
-                    ActivateLowTuneSpeaker();
-                    _speaker.GenerateSound();
-                    animalsOnBranch.Clear();
-                }                    
-            }
+                    person.RescueAnimals(animalsOnBranch);
+                    if (animalsOnBranch
+                        .Where(x => x.AnimalType == AnimalTypes.Bird)
+                        .Any() && person is Fireman)
+                    {
+                        ActivateLowTuneSpeaker();
+                        _speaker.GenerateSound();
+                        animalsOnBranch.Clear();
+                    }
+                }
+            }            
         }
         private void ActivateLowTuneSpeaker()
         {
@@ -120,12 +124,19 @@ namespace BFC.Console.AppLogic
 
         public void ActivateFireman()
         {
-            _person = new Fireman(_presenter);
+            _people.Add(new Fireman(_presenter));
         }
 
         public void ActivateRomantic()
         {
-            _person = new Romantic(_presenter);
+            _people.Insert(0,new Romantic(_presenter));
+        }
+        public void TryToActivateRomantic(IProbablilityOfRomantic randomRomantic)
+        {
+            if(randomRomantic.Draw())
+            {
+                ActivateRomantic();
+            }
         }
     }
 }
