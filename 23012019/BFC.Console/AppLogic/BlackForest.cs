@@ -24,14 +24,8 @@ namespace BFC.Console.AppLogic
             _timeOfDay = timeOfDay;
             int chance = GenerateChance();
 
-            if (chance != 0)
-            {
-                RomanticToTheRescue();
-            }
-            if (timeOfDay == TimeOfDay.Fire)
-            {
-                FiremanToTheRescue();
-            }
+            FiremanToTheRescue();
+            RomanticToTheRescue();
         }
 
         public void RomanticToTheRescue()
@@ -110,24 +104,32 @@ namespace BFC.Console.AppLogic
         {
             CheckIfAnimalCanSit(animalType);
 
+            FiremanToTheRescue();
             RomanticToTheRescue();
         }
 
         public void SitOnTheTree(AnimalTypes[] animalType)
         {
-            if (_timeOfDay != TimeOfDay.Fire)
+            for (int i = 0; i < animalType.Length; i++)
             {
-                for (int i = 0; i < animalType.Length; i++)
-                {
-                    CheckIfAnimalCanSit(animalType[i]);
-                }
+                CheckIfAnimalCanSit(animalType[i]);
+            }
+
+            if (_timeOfDay == TimeOfDay.Fire)
+            {
+                FiremanToTheRescue();
             }
             else
             {
-                _presenter.WriteLine("Bird, Cat, Child doesn't sit on the Tree");
+                if (_timeOfDay != TimeOfDay.Fire)
+                {
+                    RomanticToTheRescue();
+                }
+                else
+                {
+                    _presenter.WriteLine("Bird, Cat, Child doesn't sit on the Tree");
+                }
             }
-
-            RomanticToTheRescue();
         }
 
         public void ActivateFireman()
