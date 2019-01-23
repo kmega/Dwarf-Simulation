@@ -73,7 +73,18 @@ namespace BFC.Console.AppLogic
 
         public void SitOnTheTree(AnimalTypes[] animalType)
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
+            // "Bird, Cat, Child doesn't sit on the Tree"
+            switch (_timeOfDay)
+            {
+                case TimeOfDay.Fire:
+                    _presenter.WriteLine("Bird, Cat, Child doesn't sit on the Tree");
+                    break;
+                case TimeOfDay.Day:
+                    break;
+                case TimeOfDay.Night:
+                    break;
+            }
         }
 
         public void ActivateFireman()
