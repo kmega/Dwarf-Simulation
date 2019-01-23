@@ -8,6 +8,8 @@ namespace BFC.Console.Heroes
 
     public class Fireman: Person
     {
+        private List<Animal> RescuedAnimals = new List<Animal>();
+
         public void RescuAnimals(IList<Animal> branch)
         {
             //throw new NotImplementedException();
@@ -21,9 +23,21 @@ namespace BFC.Console.Heroes
             {
                 if (animal.AnimalType != AnimalTypes.Bird)
                 {
+                    RescuedAnimals.Add(animal);
                     branch.Remove(animal);
                 }
             });
+        }
+
+        public string ListOfRescuedAnimals()
+        {
+            string animalList = "";
+            RescuedAnimals.ForEach(animal =>
+            {
+                animalList += animal + ", ";
+            });
+
+            return animalList.Remove(animalList.Length - 2) + " will be rescued by Fireman.";
         }
     }
 }
