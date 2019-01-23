@@ -1,7 +1,6 @@
 ﻿using BFC.Console.Animals;
 using BFC.Console.Heroes;
 using BFC.Console.Presentation;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,7 +11,8 @@ namespace BFC.Console.AppLogic
         private IOutputWritter _presenter;
         private Person _person;
         private TimeOfDay _timeOfDay;
-        private List<Animal> _animals = new List<Animal>();
+        private IList<Animal> _animals = new List<Animal>();
+        private string information = "";
 
         public BlackForest(IOutputWritter presenter)
         {
@@ -27,13 +27,13 @@ namespace BFC.Console.AppLogic
             {
                 case TimeOfDay.Fire:
                     ActivateFireman();
-                    _person.RescuAnimals(_animals);
-                    if (new Random().Next(0, 2) == 1)
-                    {
-                        ActivateRomantic();
-                        _person.RescuAnimals(_animals);
-                        _presenter.WriteLine("Child will be rescued by Romantic.");
-                    }
+                    //_person.RescuAnimals(_animals);
+                    //if (new System.Random().Next(0, 2) == 1)
+                    //{
+                    //    ActivateRomantic();
+                    //    _person.RescuAnimals(_animals);
+                    //    _presenter.WriteLine("Child will be rescued by Romantic.");
+                    //}
                     break;
                 case TimeOfDay.Day:
                     break;
@@ -44,13 +44,15 @@ namespace BFC.Console.AppLogic
 
         public void SitOnTheTree(AnimalTypes animalType)
         {
-            List<AnimalTypes> animals = new List<AnimalTypes>();
-            _animals.Add(new Animal(animalType.ToString(), animalType));
+            _animals = new List<Animal>()
+            {
+                new Animal(animalType.ToString(), animalType)
+            };
 
             switch (_timeOfDay)
             {
                 case TimeOfDay.Day:
-                    switch (animalType)
+                    switch (_animals.First().AnimalType)
                     {
                         case AnimalTypes.Bird:
                             _presenter.WriteLine("Bird sit on the Tree.");
@@ -64,7 +66,7 @@ namespace BFC.Console.AppLogic
                     }
                     break;
                 case TimeOfDay.Night:
-                    switch (animalType)
+                    switch (_animals.First().AnimalType)
                     {
                         case AnimalTypes.Bird:
                             _presenter.WriteLine("Bird doesn't sit on the Tree.");
@@ -78,7 +80,7 @@ namespace BFC.Console.AppLogic
                     }
                     break;
                 case TimeOfDay.Fire:
-                    switch (animalType)
+                    switch (_animals.First().AnimalType)
                     {
                         case AnimalTypes.Bird:
                             _presenter.WriteLine("Bird doesn't sit on the Tree.");
@@ -96,37 +98,39 @@ namespace BFC.Console.AppLogic
 
         public void SitOnTheTree(AnimalTypes[] animalType)
         {
-            List<AnimalTypes> animals = animalType.ToList();
+            animalType.ToList().ForEach(
+                a => {
+                    _animals.Add(new Animal(a.ToString(), a));
+                });
 
-            foreach (var animal in animals)
-            {
-                _animals.Add(new Animal(animal.ToString(), animal));
-            }
+            //switch (_timeOfDay)
+            //{
+            //    case TimeOfDay.Fire:
+            //        foreach (var animal in _animals)
+            //        {
+            //            switch (animal.AnimalType)
+            //            {
+            //                case AnimalTypes.Child:
+            //                    _presenter.WriteLine("Child will be rescued by Romantic.");
+            //                    break;
+            //            }
+            //        }
+            //        _presenter.WriteLine("Bird, Cat, Child doesn't sit on the Tree");
+            //        break;
+            //    case TimeOfDay.Day:
+            //        break;
+            //    case TimeOfDay.Night:
+            //        break;
+            //}
 
-            switch (_timeOfDay)
-            {
-                case TimeOfDay.Fire:
-                    animals.ForEach(animal =>
-                    {
-                        switch (animal)
-                        {
-                            case AnimalTypes.Child:
-                                _presenter.WriteLine("Child will be rescued by Romantic.");
-                                break;
-                        }
-                    });
-                    _presenter.WriteLine("Bird, Cat, Child doesn't sit on the Tree");
-                    break;
-                case TimeOfDay.Day:
-                    break;
-                case TimeOfDay.Night:
-                    break;
-            }
+            //_presenter.WriteLine(information);
         }
 
         public void ActivateFireman()
         {
             _person = new Fireman();
+
+
         }
 
         public void ActivateRomantic()
