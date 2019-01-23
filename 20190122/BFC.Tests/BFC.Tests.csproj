@@ -17,4 +17,7 @@
     <ProjectReference Include="..\BFC.Console\BFC.Console.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scenarios\50 Random\" />
+  </ItemGroup>
 </Project>

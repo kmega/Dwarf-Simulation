@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using BFC.Console.Animals;
 using BFC.Console.Heroes;
 using BFC.Console.Presentation;
+using BFC.Tests.Heroes;
 
 namespace BFC.Console.AppLogic
 {
@@ -28,36 +30,52 @@ namespace BFC.Console.AppLogic
 
             if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0)
             {
-                List<Animal> ListOfAnimalsToBeRescuedByFireman = new List<Animal>();
+                IList<Animal> ListOfAnimalToBeRescuedByFireman = new List<Animal>();
 
-                SetListWithCertainAnimalTypes(ListOfAnimalsToBeRescuedByFireman, AnimalTypes.Bird);
+                //ListOfAnimalToBeRescuedByFireman = BranchHelper.PutAnimalsOnBranch(_AnimalsOnBranch.ToArray());
 
-                _person.RescuAnimals(ListOfAnimalsToBeRescuedByFireman);
-                _presenter.WriteLine("Child, Cat will be rescued by Fireman.");
+                foreach (var AnimalType in _AnimalsOnBranch)
+                {
+                    if (AnimalType != AnimalTypes.Bird)
+                    ListOfAnimalToBeRescuedByFireman.Add(new Animal(AnimalType.ToString(), AnimalType));
+                }
+
+                if (ListOfAnimalToBeRescuedByFireman.Count != 0)
+                {
+                    _person.RescuAnimals(ListOfAnimalToBeRescuedByFireman);
+                    _presenter.WriteLine("Child, Cat will be rescued by Fireman.");
+                }
+
+                _presenter.WriteLine("Nobody will be rescued by Fireman.");
+                _presenter.WriteLine("Fireman generated alarm sound.");
             }
 
             if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0)
             {
-                List<Animal> ListOfAnimalsToBeRescuedByPedofil = new List<Animal>();
+                IList<Animal> ListOfAnimalToBeRescuedByPedofil = new List<Animal>();
 
-                SetListWithCertainAnimalTypes(ListOfAnimalsToBeRescuedByPedofil, AnimalTypes.Child);
+                //ListOfAnimalToBeRescuedByPedofil = BranchHelper.PutAnimalsOnBranch(_AnimalsOnBranch.ToArray());
 
-                if (ListOfAnimalsToBeRescuedByPedofil.Count != 0)
+                foreach (var AnimalType in _AnimalsOnBranch)
                 {
-                    _person.RescuAnimals(ListOfAnimalsToBeRescuedByPedofil);
+                    if (AnimalType == AnimalTypes.Child)
+                        ListOfAnimalToBeRescuedByPedofil.Add(new Animal(AnimalType.ToString(), AnimalType));
+                }
+
+                if (ListOfAnimalToBeRescuedByPedofil.Count != 0)
+                {
+                    _person.RescuAnimals(ListOfAnimalToBeRescuedByPedofil);
                     _presenter.WriteLine("Child will be rescued by Romantic.");
                 }
-                _presenter.WriteLine("Nobody will be rescued by Fireman.");
-                _presenter.WriteLine("Fireman generated alarm sound.");
             }
         }
 
-        private void SetListWithCertainAnimalTypes(List<Animal> ListWithCertainAnimals, AnimalTypes animalTypes)
+        private void NewMethod(List<Animal> temp)
         {
-            foreach (var AniamlType in _AnimalsOnBranch)
+            foreach (var item in _AnimalsOnBranch)
             {
-                if (AniamlType == animalTypes)
-                    ListWithCertainAnimals.Add(new Animal(AniamlType.ToString(), AniamlType));
+                if (item == AnimalTypes.Child)
+                    temp.Add(new Animal(item.ToString(), item));
             }
         }
 
@@ -90,6 +108,17 @@ namespace BFC.Console.AppLogic
         public void ActivateRomantic()
         {
             _person = new Romantic();
+        }
+
+        public void ActivateFiremanOrPedofil()
+        {
+            Random rand = new Random();
+
+            if (rand.Next(0, 1) == 1)
+            {
+                _person = new Fireman();
+            }
+            else _person = new Romantic();
         }
 
         private void BranchSetter(AnimalTypes animalType)
