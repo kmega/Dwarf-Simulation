@@ -10,7 +10,7 @@ namespace BFC.Console.AppLogic
         private IOutputWritter _presenter;
         private Person _person;
 		private TimeOfDay _timeOfDay;
-		public List<AnimalTypes> _animalsOnBranch = new List<AnimalTypes>();
+		public List<Animal> _animalsOnBranch = new List<Animal>();
 
 		public BlackForest(IOutputWritter presenter)
         {
@@ -20,10 +20,16 @@ namespace BFC.Console.AppLogic
         public void SetTimeOfDay(TimeOfDay timeOfDay)
         {
 			_timeOfDay = timeOfDay;
+			if(timeOfDay == TimeOfDay.Fire)
+			{
+				ActivateFireman();
+				_person.RescuAnimals(_animalsOnBranch);
+			}
         }
 
         public void SitOnTheTree(AnimalTypes animalType)
         {
+			string name = animalType.ToString();
 			switch (_timeOfDay)
 			{
 				case TimeOfDay.Day:
@@ -31,14 +37,14 @@ namespace BFC.Console.AppLogic
 					{
 						case AnimalTypes.Bird:
 							_presenter.WriteLine("Bird sit on the Tree.");
-							_animalsOnBranch.Add(animalType);
+							_animalsOnBranch.Add(new Animal(name, animalType));
 							break;
 						case AnimalTypes.Cat:
 							_presenter.WriteLine("Cat doesn't sit on the Tree.");
 							break;
 						case AnimalTypes.Child:
 							_presenter.WriteLine("Child sit on the Tree.");
-							_animalsOnBranch.Add(animalType);
+							_animalsOnBranch.Add(new Animal(name, animalType));
 							break;
 					}
 				break;
@@ -50,11 +56,11 @@ namespace BFC.Console.AppLogic
 							break;
 						case AnimalTypes.Cat:
 							_presenter.WriteLine("Cat sit on the Tree.");
-							_animalsOnBranch.Add(animalType);
+							_animalsOnBranch.Add(new Animal(name, animalType));
 							break;
 						case AnimalTypes.Child:
 							_presenter.WriteLine("Child sit on the Tree.");
-							_animalsOnBranch.Add(animalType);
+							_animalsOnBranch.Add(new Animal(name, animalType));
 							break;
 					}
 				break;
@@ -72,7 +78,6 @@ namespace BFC.Console.AppLogic
 							break;
 					}
 				break;
-
 			}
         }
 
@@ -89,12 +94,17 @@ namespace BFC.Console.AppLogic
 					SitOnTheTree(animal);
 				}
 			}
+			if (_timeOfDay == TimeOfDay.Fire)
+			{
+				ActivateFireman();
+				_person.RescuAnimals(_animalsOnBranch);
+			}
 			
         }
 
         public void ActivateFireman()
         {
-            _person = new Fireman();
+            _person = new Fireman(_presenter);
         }
 
         public void ActivateRomantic()

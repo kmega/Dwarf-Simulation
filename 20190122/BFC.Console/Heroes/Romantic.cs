@@ -1,17 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using BFC.Console.Animals;
+using System.Linq;
 
 namespace BFC.Console.Heroes
 {
     public class Romantic : Person
     {
-        public void RescuAnimals(IList<Animal> branch)
+		private IOutputWritter _presenter;
+		public Romantic
+		public void RescuAnimals(IList<Animal> branch)
         {
-            if(branch[0].AnimalType == AnimalTypes.Child)
+			if(branch.Where(x => x.AnimalType == AnimalTypes.Child).Any())
 			{
-				branch.RemoveAt(0);
+
 			}
+			for(int i = 0; i < branch.Count; i++)
+			{
+				if (branch[i].AnimalType == AnimalTypes.Child)
+				{
+					branch.RemoveAt(i);
+					i = -1;
+				}
+			}
+           
         }
     }
 }

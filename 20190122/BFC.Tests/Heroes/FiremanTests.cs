@@ -11,8 +11,8 @@ namespace BFC.Tests.Heroes
         [Test]
         public void ShouldBeAbleToRescueAnimalFromBranchWhenTimeOfDayIsFireAndAnimalTypeIsChild()
         {
-            // given 
-            var branch = BranchHelper.PutAnimalOnBranch(AnimalTypes.Child);
+			// given 
+			var branch = BranchHelper.PutAnimalOnBranch(AnimalTypes.Child);
 
             // when 
             _fireman.RescuAnimals(branch);
