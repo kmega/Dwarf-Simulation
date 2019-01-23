@@ -8,7 +8,10 @@ namespace BFC.Console.Heroes
     {
         public void RescuAnimals(IList<Animal> branch)
         {
-            throw new NotImplementedException();
+            if(branch[0].AnimalType == AnimalTypes.Child)
+			{
+				branch.RemoveAt(0);
+			}
         }
     }
 }
