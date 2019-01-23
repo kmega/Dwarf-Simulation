@@ -20,9 +20,44 @@ namespace BFC.Console.AppLogic
         public void SetTimeOfDay(TimeOfDay timeOfDay)
         {
             _timeOfDay = timeOfDay;
+
+            if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count == 0)
+            {
+                _presenter.WriteLine("Nobody will be rescued by Romantic.");
+            }
+
             if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0)
             {
-                //_person.RescuAnimals(_AnimalsOnBranch);
+                List<Animal> ListOfAnimalsToBeRescuedByFireman = new List<Animal>();
+
+                SetListWithCertainAnimalTypes(ListOfAnimalsToBeRescuedByFireman, AnimalTypes.Bird);
+
+                _person.RescuAnimals(ListOfAnimalsToBeRescuedByFireman);
+                _presenter.WriteLine("Child, Cat will be rescued by Fireman.");
+            }
+
+            if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0)
+            {
+                List<Animal> ListOfAnimalsToBeRescuedByPedofil = new List<Animal>();
+
+                SetListWithCertainAnimalTypes(ListOfAnimalsToBeRescuedByPedofil, AnimalTypes.Child);
+
+                if (ListOfAnimalsToBeRescuedByPedofil.Count != 0)
+                {
+                    _person.RescuAnimals(ListOfAnimalsToBeRescuedByPedofil);
+                    _presenter.WriteLine("Child will be rescued by Romantic.");
+                }
+                _presenter.WriteLine("Nobody will be rescued by Fireman.");
+                _presenter.WriteLine("Fireman generated alarm sound.");
+            }
+        }
+
+        private void SetListWithCertainAnimalTypes(List<Animal> ListWithCertainAnimals, AnimalTypes animalTypes)
+        {
+            foreach (var AniamlType in _AnimalsOnBranch)
+            {
+                if (AniamlType == animalTypes)
+                    ListWithCertainAnimals.Add(new Animal(AniamlType.ToString(), AniamlType));
             }
         }
 
