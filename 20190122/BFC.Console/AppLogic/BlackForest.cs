@@ -22,6 +22,9 @@ namespace BFC.Console.AppLogic
 			_timeOfDay = timeOfDay;
 			if(timeOfDay == TimeOfDay.Fire)
 			{
+				ActivateRomantic();
+				_person.RescuAnimals(_animalsOnBranch);
+
 				ActivateFireman();
 				_person.RescuAnimals(_animalsOnBranch);
 			}
@@ -94,12 +97,6 @@ namespace BFC.Console.AppLogic
 					SitOnTheTree(animal);
 				}
 			}
-			if (_timeOfDay == TimeOfDay.Fire)
-			{
-				ActivateFireman();
-				_person.RescuAnimals(_animalsOnBranch);
-			}
-			
         }
 
         public void ActivateFireman()
@@ -109,7 +106,7 @@ namespace BFC.Console.AppLogic
 
         public void ActivateRomantic()
         {
-            _person = new Romantic();
+            _person = new Romantic(_presenter);
         }
     }
 }
