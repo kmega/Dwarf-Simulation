@@ -5,6 +5,6 @@ namespace BFC.Console.Heroes
 {
     public interface Person
     {
-        void RescuAnimals(IList<Animal> branch);
+        void RescueAnimals(IList<Animal> branch);
     }
 }

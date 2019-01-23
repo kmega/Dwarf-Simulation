@@ -15,7 +15,7 @@ namespace BFC.Tests.Heroes
             var branch = BranchHelper.PutAnimalOnBranch(AnimalTypes.Child);
 
             // when 
-            _fireman.RescuAnimals(branch);
+            _fireman.RescueAnimals(branch);
 
             // then
             const int expected = 0;
@@ -29,7 +29,7 @@ namespace BFC.Tests.Heroes
             var branch = BranchHelper.PutAnimalOnBranch(AnimalTypes.Cat);
 
             // when 
-            _fireman.RescuAnimals(branch);
+            _fireman.RescueAnimals(branch);
 
             // then
             const int expected = 0;
@@ -43,7 +43,7 @@ namespace BFC.Tests.Heroes
             var branch = BranchHelper.PutAnimalOnBranch(AnimalTypes.Bird);
 
             // when 
-            _fireman.RescuAnimals(branch);
+            _fireman.RescueAnimals(branch);
 
             // then
             const int expected = 1;
