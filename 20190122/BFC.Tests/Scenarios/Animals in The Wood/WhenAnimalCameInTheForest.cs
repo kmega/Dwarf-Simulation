@@ -47,7 +47,7 @@ namespace BFC.Tests.Scenarios.Animals_in_The_Wood
         public void AndTimeOfDayIsFireThenNoAnimalsShouldSitOnTree()
         {
             // given 
-            var animals = new[] { AnimalTypes.Bird, AnimalTypes.Cat, AnimalTypes.Bird };
+            var animals = new[] { AnimalTypes.Bird, AnimalTypes.Cat, AnimalTypes.Child };
             _blackForest.SetTimeOfDay(TimeOfDay.Fire);
 
             // when 

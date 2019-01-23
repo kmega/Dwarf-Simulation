@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using BFC.Console.Animals;
+using BFC.Console.AppLogic;
 
 namespace BFC.Console.Heroes
 {
@@ -9,7 +10,16 @@ namespace BFC.Console.Heroes
     {
         public void RescuAnimals(IList<Animal> branch)
         {
-            throw new NotImplementedException();
+            for (int i = 0; i < branch.Count; i++)
+            {
+                if (branch[i].AnimalType != AnimalTypes.Bird)
+                {
+                    branch.RemoveAt(i);
+                    i = 0;
+                }
+                    
+            }
+            
         }
     }
 }
