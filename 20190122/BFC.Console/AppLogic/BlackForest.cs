@@ -1,6 +1,7 @@
 ﻿using BFC.Console.Animals;
 using BFC.Console.Heroes;
 using BFC.Console.Presentation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -21,66 +22,11 @@ namespace BFC.Console.AppLogic
 
         public void SetTimeOfDay(TimeOfDay timeOfDay)
         {
+            
             try
             {
-                if (_animalList.Count != 0 && _timeOfDay == TimeOfDay.Night && timeOfDay == TimeOfDay.Fire)
-                {
-                    string[] tmp = new string[_animalList.Count];
-                    for (int i = 0; i < _animalList.Count; i++)
-                    {
-                        tmp[i] = _animalList[i].ToString();
-                    }
-                    string message = string.Join(", ", tmp);
-                    _presenter.WriteLine($"{message} will be rescued by Fireman.");
-                }
-
-                if (_animalList.Count != 0 && timeOfDay == TimeOfDay.Fire)
-                {
-                    string[] tmp = new string[_animalList.Count];
-                    for (int i = 0; i < _animalList.Count; i++)
-                    {
-                        tmp[i] = _animalList[i].ToString();
-                    }
-                    string message = string.Join(", ", tmp);
-
-                    ActivateFireman();
-
-                    _person.RescuAnimals(_animalList);
-
-                    int birdCounter = 0;
-                    int childCounter = 0;
-
-                    for (int i = 0; i < tmp.Length; i++)
-                    {
-                        if (tmp[i] == AnimalTypes.Bird.ToString())
-                        {
-                            birdCounter++;
-                        }
-                    }
-
-                    for (int i = 0; i < tmp.Length; i++)
-                    {
-                        if (tmp[i] == AnimalTypes.Child.ToString())
-                        {
-                            childCounter++;
-                        }
-                    }
-
-                    if (birdCounter == tmp.Length)
-                    {
-                        _presenter.WriteLine("Nobody will be rescued by Fireman.");
-                        _presenter.WriteLine("Fireman generated alarm sound.");
-                    }
-                    else if (childCounter == tmp.Length)
-                    {
-                        _presenter.WriteLine("Child will be rescued by Romantic.");
-                    }
-                    else
-                    _presenter.WriteLine($"{message} doesn't sit on the Tree");
-
-
-                    _timeOfDay = timeOfDay;
-                }
+                SetTimeHelper(timeOfDay);
+            
             }
             catch (System.Exception)
             {
@@ -88,6 +34,68 @@ namespace BFC.Console.AppLogic
                 _timeOfDay = timeOfDay;
             }
 
+        }
+
+        private void SetTimeHelper(TimeOfDay timeOfDay)
+        {
+            if (_animalList.Count != 0 && _timeOfDay == TimeOfDay.Night && timeOfDay == TimeOfDay.Fire)
+            {
+                string[] tmp = new string[_animalList.Count];
+                for (int i = 0; i < _animalList.Count; i++)
+                {
+                    tmp[i] = _animalList[i].ToString();
+                }
+                string message = string.Join(", ", tmp);
+                _presenter.WriteLine($"{message} will be rescued by Fireman.");
+            }
+
+            if (_animalList.Count != 0 && timeOfDay == TimeOfDay.Fire)
+            {
+                string[] tmp = new string[_animalList.Count];
+                for (int i = 0; i < _animalList.Count; i++)
+                {
+                    tmp[i] = _animalList[i].ToString();
+                }
+                string message = string.Join(", ", tmp);
+
+                ActivateFireman();
+
+                _person.RescuAnimals(_animalList);
+
+                int birdCounter = 0;
+                int childCounter = 0;
+
+                for (int i = 0; i < tmp.Length; i++)
+                {
+                    if (tmp[i] == AnimalTypes.Bird.ToString())
+                    {
+                        birdCounter++;
+                    }
+                }
+
+                for (int i = 0; i < tmp.Length; i++)
+                {
+                    if (tmp[i] == AnimalTypes.Child.ToString())
+                    {
+                        childCounter++;
+                    }
+                }
+
+                if (birdCounter == tmp.Length)
+                {
+                    _presenter.WriteLine("Nobody will be rescued by Fireman.");
+                    _presenter.WriteLine("Fireman generated alarm sound.");
+                }
+                else if (childCounter == tmp.Length)
+                {
+                    _presenter.WriteLine("Child will be rescued by Romantic.");
+                }
+                else
+                    _presenter.WriteLine($"{message} doesn't sit on the Tree");
+
+
+                _timeOfDay = timeOfDay;
+            }
         }
 
         public void SitOnTheTree(AnimalTypes animalType)
@@ -131,6 +139,12 @@ namespace BFC.Console.AppLogic
             BranchHelper branch = new BranchHelper();
             _animalList = branch.PutAnimalsOnBranch(animalType);
 
+            SetOnTreeHelper(animalType);
+
+        }
+
+        private void SetOnTreeHelper(AnimalTypes[] animalType)
+        {
             string[] tmp = new string[_animalList.Count];
             for (int i = 0; i < _animalList.Count; i++)
             {
@@ -176,8 +190,6 @@ namespace BFC.Console.AppLogic
                     _presenter.WriteLine($"{message} doesn't sit on the Tree");
 
             }
-
-
         }
 
         public void ActivateFireman()
