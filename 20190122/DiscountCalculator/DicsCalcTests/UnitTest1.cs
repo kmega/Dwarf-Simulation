@@ -29,7 +29,8 @@ namespace Tests
             double price = 30.00;
             DateTime date = new DateTime(1,1,1);
 
-            faktory.Setup(i => i.CreateProduct(name, type, price)).Returns(new Product(type,name,price));
+            faktory.Setup(i => i.CreateProduct(name, type, price)).Returns(new Product(name, type, price));
+            faktory.Setup(i => i.CreateProduct("casual shoes", "casual shoes", 20)).Returns(new Product("casual shoes", "casual shoes", 20));
             var tortoiseShoes = faktory.Object.CreateProduct(name, type, price);
             var casualShoes = faktory.Object.CreateProduct("casual shoes", "casual shoes", 20);
 
