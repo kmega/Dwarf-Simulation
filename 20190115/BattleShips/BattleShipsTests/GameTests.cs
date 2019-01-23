@@ -44,7 +44,7 @@ namespace BattleShipsTests
             players.Add(player2);
             Game game = new Game();
             //when
-            game.ChangeActivePlayer(players);
+            game.ChangeActivePlayer(players, "");
             //then
             Assert.IsTrue(player1.IsActive);
             Assert.IsFalse(player2.IsActive);
