@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace BFC.Console.AppLogic
 {
     public class BlackForest
-    {       
+    {
         private IOutputWritter _presenter;
         private Person _fireman;
         private Person _romantic;
@@ -22,20 +22,19 @@ namespace BFC.Console.AppLogic
         public void SetTimeOfDay(TimeOfDay timeOfDay)
         {
             _timeOfDay = timeOfDay;
+            int chance = GenerateChance();
 
-            Random r = new Random();
-            if (r.Next(0, 2) == 0)
+            if (chance != 0)
             {
                 RomanticToTheRescue();
             }
-
             if (timeOfDay == TimeOfDay.Fire)
             {
                 FiremanToTheRescue();
             }
         }
 
-        private void RomanticToTheRescue()
+        public void RomanticToTheRescue()
         {
             ActivateRomantic();
             bool romanticIsInterestedInRescue = false;
@@ -110,6 +109,8 @@ namespace BFC.Console.AppLogic
         public void SitOnTheTree(AnimalTypes animalType)
         {
             CheckIfAnimalCanSit(animalType);
+
+            RomanticToTheRescue();
         }
 
         public void SitOnTheTree(AnimalTypes[] animalType)
@@ -125,6 +126,8 @@ namespace BFC.Console.AppLogic
             {
                 _presenter.WriteLine("Bird, Cat, Child doesn't sit on the Tree");
             }
+
+            RomanticToTheRescue();
         }
 
         public void ActivateFireman()
@@ -169,6 +172,13 @@ namespace BFC.Console.AppLogic
             {
                 _presenter.WriteLine(animalType + " doesn't sit on the Tree.");
             }
+        }
+
+        public int GenerateChance()
+        {
+            Random r = new Random();
+
+            return r.Next(0, 2);
         }
     }
 }

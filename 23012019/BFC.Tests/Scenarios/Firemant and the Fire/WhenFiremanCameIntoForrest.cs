@@ -30,6 +30,9 @@ namespace BFC.Tests.Scenarios.Firemant_and_the_Fire
             _blackForest.SetTimeOfDay(TimeOfDay.Night);
             _blackForest.SitOnTheTree(animals);
 
+            Mock<BlackForest> blackForest = new Mock<BlackForest>();
+            blackForest.Setup(i => i.FiremanToTheRescue());
+
             // when 
             _blackForest.SetTimeOfDay(TimeOfDay.Fire);
 
