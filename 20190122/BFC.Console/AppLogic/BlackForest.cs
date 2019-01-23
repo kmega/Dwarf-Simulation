@@ -11,7 +11,7 @@ namespace BFC.Console.AppLogic
 
         public BlackForest(IOutputWritter presenter)
         {
-            _presenter = presenter ?? new WindowsConsole();
+            _presenter = presenter ?? new WindowsConsole(); //jesli lewa strona jest nullem, to wykona sie prawa
         }
 
         public void SetTimeOfDay(TimeOfDay timeOfDay)
