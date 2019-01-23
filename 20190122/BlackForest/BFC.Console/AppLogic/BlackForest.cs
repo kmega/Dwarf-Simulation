@@ -15,11 +15,19 @@ namespace BFC.Console.AppLogic
         private TimeOfDay _timeOfDay;
         private IList<Animal> animalsOnBranch;
         private Speaker _speaker;
+        private IReactVoice _reactVoice;
 
         public BlackForest(IOutputWritter presenter)
         {
             _presenter = presenter ?? new WindowsConsole();
             _people = new List<Person>();
+            animalsOnBranch = new List<Animal>();
+        }
+        public BlackForest(IOutputWritter presenter, IReactVoice reactor)
+        {
+            _presenter = presenter ?? new WindowsConsole();
+            _people = new List<Person>();
+            _reactVoice = reactor;
             animalsOnBranch = new List<Animal>();
         }
 
@@ -32,13 +40,16 @@ namespace BFC.Console.AppLogic
                 if (timeOfDay == TimeOfDay.Fire && animalsOnBranch.Any())
                 {
                     person.RescueAnimals(animalsOnBranch);
-                    if (animalsOnBranch
-                        .Where(x => x.AnimalType == AnimalTypes.Bird)
-                        .Any() && person is Fireman)
+                    var birds = animalsOnBranch
+                        .Where(x => x.AnimalType == AnimalTypes.Bird).ToList();
+                    if (birds.Any() && person is Fireman)
                     {
-                        ActivateLowTuneSpeaker();
-                        _speaker.GenerateSound();
-                        animalsOnBranch.Clear();
+                        ActivateLowTuneSpeaker();    
+                        for(int i = birds.Count; i > 0; i--)
+                        {                            
+                            _speaker.GenerateSound(birds[i-1]);                           
+                        }
+                        birds.Clear();
                     }
                 }
             }            
@@ -85,7 +96,15 @@ namespace BFC.Console.AppLogic
         {
             if(_timeOfDay == TimeOfDay.Day)
             {
-                animalsOnBranch.Add(new Animal("", AnimalTypes.Bird));
+                var myVoice = _reactVoice.VoiceIReact();
+                if(_reactVoice != null)
+                {
+                    animalsOnBranch.Add(new Animal("", AnimalTypes.Bird, myVoice));
+                }
+                else
+                {
+                    animalsOnBranch.Add(new Animal("", AnimalTypes.Bird));
+                }
                 return "Bird sit on the Tree.";
             }
             else

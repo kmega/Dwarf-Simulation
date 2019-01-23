@@ -1,4 +1,5 @@
-﻿using BFC.Console.Presentation;
+﻿using BFC.Console.Animals;
+using BFC.Console.Presentation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,8 +13,9 @@ namespace BFC.Console.AppLogic
         {
             _presenter = presenter ?? new WindowsConsole();
         }
-        public void GenerateSound()
+        public void GenerateSound(Animal animal)
         {
+
             _presenter.WriteLine("Fireman generated alarm sound.");
         }
     }
