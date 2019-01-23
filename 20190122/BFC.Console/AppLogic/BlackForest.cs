@@ -110,15 +110,9 @@ namespace BFC.Console.AppLogic
             _person = new Romantic();
         }
 
-        public void ActivateFiremanOrPedofil()
+        public void RandomRomanticOrFireman(IRandomizer randomizer)
         {
-            Random rand = new Random();
-
-            if (rand.Next(0, 1) == 1)
-            {
-                _person = new Fireman();
-            }
-            else _person = new Romantic();
+            _person = randomizer.ActivateFiremanOrPedofil();
         }
 
         private void BranchSetter(AnimalTypes animalType)
