@@ -16,54 +16,52 @@ namespace BFC.Tests.Scenarios.Firemant_and_the_Fire
         [SetUp]
         public void SetUp()
         {
-
             _presenter = new Mock<IOutputWritter>();
             _blackForest = new BlackForest(_presenter.Object);
             _blackForest.ActivateFireman();
         }
 
         [Test]
-        public void AndChildAndCatSitOnTheBranchThenItWillBeRescued()
+        public void AndBirdSitOnTheBranchThenFiremanWillGenerateSound()
         {
-            // given 
-            var animals = new[] { AnimalTypes.Child, AnimalTypes.Cat };
-            _blackForest.SetTimeOfDay(TimeOfDay.Night);
+            // given
+            var animals = new[] { AnimalTypes.Bird };
             _blackForest.SitOnTheTree(animals);
 
-            // when 
+            // when
             _blackForest.SetTimeOfDay(TimeOfDay.Fire);
 
             // then
-            _presenter.Verify(i => i.WriteLine("Child, Cat will be rescued by Fireman."));
+            _presenter.Verify(i => i.WriteLine("Fireman generated alarm sound."));
         }
 
         [Test]
         public void AndBirdSitOnTheBranchThenItWillNotBeRescued()
         {
-            // given 
+            // given
             var animals = new[] { AnimalTypes.Bird };
             _blackForest.SitOnTheTree(animals);
 
-            // when 
+            // when
             _blackForest.SetTimeOfDay(TimeOfDay.Fire);
 
             // then
             _presenter.Verify(i => i.WriteLine("Nobody will be rescued by Fireman."));
         }
 
-
         [Test]
-        public void AndBirdSitOnTheBranchThenFiremanWillGenerateSound()
+        public void AndChildAndCatSitOnTheBranchThenItWillBeRescued()
         {
-            // given 
-            var animals = new[] { AnimalTypes.Bird };
+            // given
+            var animals = new[] { AnimalTypes.Child, AnimalTypes.Cat };
+            _blackForest.SetTimeOfDay(TimeOfDay.Night);
             _blackForest.SitOnTheTree(animals);
 
-            // when 
+            // when
             _blackForest.SetTimeOfDay(TimeOfDay.Fire);
 
             // then
-            _presenter.Verify(i => i.WriteLine("Fireman generated alarm sound."));
+            _presenter.Verify(i => i.WriteLine("Child, Cat will be rescued by Fireman."));
         }
     }
 }

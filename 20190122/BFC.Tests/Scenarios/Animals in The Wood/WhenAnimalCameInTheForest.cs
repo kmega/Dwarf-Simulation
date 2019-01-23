@@ -16,7 +16,6 @@ namespace BFC.Tests.Scenarios.Animals_in_The_Wood
         [SetUp]
         public void SetUp()
         {
-
             _presenter = new Mock<IOutputWritter>();
             _blackForest = new BlackForest(_presenter.Object);
         }
@@ -32,25 +31,24 @@ namespace BFC.Tests.Scenarios.Animals_in_The_Wood
         [TestCase(AnimalTypes.Bird, TimeOfDay.Fire, "Bird doesn't sit on the Tree.")]
         public void ThenProperInformationShouldBeDisplayed(AnimalTypes animalType, TimeOfDay timeOfDay, string information)
         {
-            // given 
+            // given
             _blackForest.SetTimeOfDay(timeOfDay);
 
-            // when 
+            // when
             _blackForest.SitOnTheTree(animalType);
 
             // then
             _presenter.Verify(i => i.WriteLine(information));
-
         }
 
         [Test]
         public void AndTimeOfDayIsFireThenNoAnimalsShouldSitOnTree()
         {
-            // given 
+            // given
             var animals = new[] { AnimalTypes.Bird, AnimalTypes.Cat, AnimalTypes.Bird };
             _blackForest.SetTimeOfDay(TimeOfDay.Fire);
 
-            // when 
+            // when
             _blackForest.SitOnTheTree(animals);
 
             // then
