@@ -11,7 +11,10 @@ namespace Core.Technical.RanGens
     {
         public Card DrawCard(List<Card> cards)
         {
-            throw new NotImplementedException("Implement this for T111 Always-first selector");
+            var temp = cards.First();
+            cards.Remove(temp);
+            return temp;
+            //throw new NotImplementedException("Implement this for T111 Always-first selector");
         }
     }
 }
