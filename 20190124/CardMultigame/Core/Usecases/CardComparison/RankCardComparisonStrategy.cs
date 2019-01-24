@@ -9,9 +9,10 @@ namespace Core.Usecases.CardComparison
 {
     public class RankCardComparisonStrategy : ICardComparisonStrategy
     {
+
         public bool AreTheSame(Card card1, Card card2)
         {
-            throw new NotImplementedException("Test 104");
+            return card1.Rank().Equals(card2.Rank());
         }
     }
 }

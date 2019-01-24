@@ -9,9 +9,15 @@ namespace Core.Usecases.CardComparison
 {
     public class BlackRedColourOnlyComparisonStrategy : ICardComparisonStrategy
     {
+        private List<string> redTypeOfCards = new List<string>() { "H", "D" };
+        private List<string> blackTypeOfCards = new List<string>() { "S", "C" };
         public bool AreTheSame(Card card1, Card card2)
         {
-            throw new NotImplementedException("Test 103");
+            if (redTypeOfCards.Contains(card1.Colour()) && redTypeOfCards.Contains(card2.Colour()))
+                return true;
+            else if (blackTypeOfCards.Contains(card1.Colour()) && blackTypeOfCards.Contains(card2.Colour()))
+                return true;
+            return false;
         }
     }
 }

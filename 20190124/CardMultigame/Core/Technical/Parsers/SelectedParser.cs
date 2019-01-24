@@ -51,7 +51,8 @@ namespace Core.Technical.Parsers
             // Some changes here, perhaps? For T110 - parsers
 
             var registeredStrategies = new List<IParseStrategy>()
-            {
+            {      
+                new DashParseStrategy(),
                 new CommaParseStrategy(),
                 new SemicolonParseStrategy()
             };

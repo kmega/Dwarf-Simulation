@@ -10,12 +10,26 @@ namespace Core.Usecases.CardComparison
     {
         public ICardComparisonStrategy Create(string selector)
         {
-            throw new NotImplementedException("Test 105");
+            switch(selector)
+            {
+                case "strict":
+                    return new StrictCardComparisonStrategy();
+                    break;
+                case "colour":
+                    return new ColourCardComparisonStrategy();
+                    break;
+                case "rank":
+                    return new RankCardComparisonStrategy();
+                    break;
+                case "blackred":
+                    return new BlackRedColourOnlyComparisonStrategy();
+            }
+            return None();
         }
 
         public ICardComparisonStrategy None()
         {
-            throw new NotImplementedException("Test 107");
+            return new AlwaysFailComparisonStrategy();
         }
     }
 }
