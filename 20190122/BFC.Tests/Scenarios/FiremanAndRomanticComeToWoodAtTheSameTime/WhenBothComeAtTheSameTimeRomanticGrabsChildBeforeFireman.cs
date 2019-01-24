@@ -22,6 +22,8 @@ namespace BFC.Tests.Scenarios.FiremanAndRomanticComeToWoodAtTheSameTime
             _presenter = new Mock<IOutputWritter>();
             _blackForest = new BlackForest(_presenter.Object);
             _BothHeroes = new Mock<IBothHeroes>();
+            _BothHeroes.Setup(x => x.ActivateFiremanAndRomanticAtTheSameTime())
+                                    .Returns(new List<Person> { new Romantic(), new Fireman() });
         }
 
         [Test]
@@ -29,8 +31,7 @@ namespace BFC.Tests.Scenarios.FiremanAndRomanticComeToWoodAtTheSameTime
         {
             //gievn
             var animals = new[] { AnimalTypes.Child };
-            _BothHeroes.Setup(x => x.ActivateFiremanAndRomanticAtTheSameTime())
-                                    .Returns(new List<Person> { new Romantic(), new Fireman()});
+            
             _blackForest.SitOnTheTree(animals);
 
             //when
@@ -47,8 +48,6 @@ namespace BFC.Tests.Scenarios.FiremanAndRomanticComeToWoodAtTheSameTime
         {
             //gievn
             var animals = new[] { AnimalTypes.Child, AnimalTypes.Cat };
-            _BothHeroes.Setup(x => x.ActivateFiremanAndRomanticAtTheSameTime())
-                                    .Returns(new List<Person> { new Romantic(), new Fireman() });
             _blackForest.SetTimeOfDay(TimeOfDay.Night);
             _blackForest.SitOnTheTree(animals);
 
@@ -66,8 +65,6 @@ namespace BFC.Tests.Scenarios.FiremanAndRomanticComeToWoodAtTheSameTime
         {
             //gievn
             var animals = new[] { AnimalTypes.Cat };
-            _BothHeroes.Setup(x => x.ActivateFiremanAndRomanticAtTheSameTime())
-                                    .Returns(new List<Person> { new Romantic(), new Fireman() });
             _blackForest.SetTimeOfDay(TimeOfDay.Night);
             _blackForest.SitOnTheTree(animals);
 
