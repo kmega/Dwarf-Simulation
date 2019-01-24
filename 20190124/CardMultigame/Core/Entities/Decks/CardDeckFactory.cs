@@ -67,7 +67,7 @@ namespace Core.Entities.Decks
         /// </summary>
         public void SetCardSelector(ICardSelector selector)
         {
-            throw new NotImplementedException("Implement this for T113 Reconfigure selector");
+            _selectedCardSelector = selector;
         }
 
     }
