@@ -82,7 +82,8 @@ namespace TrainingTests
             // When
             bool areIdentical_1 = new BlackRedColourOnlyComparisonStrategy().AreTheSame(reference, identical_1);
             bool areIdentical_2 = new BlackRedColourOnlyComparisonStrategy().AreTheSame(reference, identical_2);
-            bool areDifferent_1 = new BlackRedColourOnlyComparisonStrategy().AreTheSame(reference, different_1);
+            bool areDifferent_1 = new BlackRedColourOnlyComparisonStrategy().AreTheSame(
+            reference, different_1);
             bool areDifferent_2 = new BlackRedColourOnlyComparisonStrategy().AreTheSame(reference, different_2);
 
             // Then
