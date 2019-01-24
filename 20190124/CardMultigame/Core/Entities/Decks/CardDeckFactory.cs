@@ -66,7 +66,16 @@ namespace Core.Entities.Decks
         /// </summary>
         public void SetCardSelector(ICardSelector selector)
         {
-            throw new NotImplementedException("Implement this for T113 Reconfigure selector");
+            if (selector == new AlwaysFirstSelector())
+            {
+                new AlwaysFirstSelector();
+            }
+
+            if (selector == new AlwaysLastSelector())
+            {
+                new AlwaysLastSelector();
+            }
+
         }
 
     }
