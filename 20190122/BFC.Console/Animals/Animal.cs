@@ -1,4 +1,6 @@
-﻿namespace BFC.Console.Animals
+﻿using BFC.Console.AppLogic;
+
+namespace BFC.Console.Animals
 {
     public sealed class Animal
     {
@@ -16,6 +18,5 @@
         {
             return _name;
         }
-
     }
 }

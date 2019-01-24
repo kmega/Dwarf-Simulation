@@ -32,7 +32,6 @@ namespace BFC.Console.AppLogic
 
             if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0 && _persons.Count == 0)
             {
-                //ListOfAnimalToBeRescuedByFireman = BranchHelper.PutAnimalsOnBranch(_AnimalsOnBranch.ToArray());
                 if (_person.ToString().Contains("Fireman", StringComparison.Ordinal))
                 {
                     RescueChildAndCatWhileFireByFireman();
@@ -43,15 +42,12 @@ namespace BFC.Console.AppLogic
                 }
             }
 
-            if(_persons.Count != 0)
+            if(_persons.Count != 0 && _timeOfDay == TimeOfDay.Fire)
             {
-                if (_timeOfDay == TimeOfDay.Fire)
-                {
                     _person = _persons[0];
                     RescueOnlyChildAndRapeByRomantic();
                     _person = _persons[1];
                     RescueChildAndCatWhileFireByFireman();
-                }
             }
         }
 
@@ -83,6 +79,7 @@ namespace BFC.Console.AppLogic
 
         private void RescueChildAndCatWhileFireByFireman()
         {
+            //IList<Animal> ListOfAnimalToBeRescuedByFireman = BranchHelper.PutAnimalsOnBranch(_AnimalsOnBranch.ToArray());
             IList<Animal> ListOfAnimalToBeRescuedByFireman = new List<Animal>();
 
             var temp = _AnimalsOnBranch;
