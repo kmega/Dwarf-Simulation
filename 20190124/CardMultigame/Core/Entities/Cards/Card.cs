@@ -10,14 +10,18 @@ namespace Core.Entities.Cards
     {
         private string _rank;
         private string _colour;
+        private string _colourName;
 
         public Card(string rank, string colour)
         {
             this._rank = rank;
             this._colour = colour;
+            _colourName = (colour == "D" || colour == "H") ? "red" : "black";
         }
 
         public string Rank() => _rank;
         public string Colour() => _colour;
+        public string ColourName() => _colourName;
+       
     }
 }
