@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using BFC.Console.Animals;
 using BFC.Console.Heroes;
 using BFC.Console.Presentation;
@@ -11,6 +12,7 @@ namespace BFC.Console.AppLogic
     {       
         private IOutputWritter _presenter;
         private Person _person;
+        private List<Person> _persons = new List<Person>();
         private TimeOfDay _timeOfDay;
         private List<AnimalTypes> _AnimalsOnBranch = new List<AnimalTypes>();
 
@@ -28,54 +30,81 @@ namespace BFC.Console.AppLogic
                 _presenter.WriteLine("Nobody will be rescued by Romantic.");
             }
 
-            if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0)
+            if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0 && _persons.Count == 0)
             {
-                IList<Animal> ListOfAnimalToBeRescuedByFireman = new List<Animal>();
-
                 //ListOfAnimalToBeRescuedByFireman = BranchHelper.PutAnimalsOnBranch(_AnimalsOnBranch.ToArray());
-
-                foreach (var AnimalType in _AnimalsOnBranch)
+                if (_person.ToString().Contains("Fireman", StringComparison.Ordinal))
                 {
-                    if (AnimalType != AnimalTypes.Bird)
-                    ListOfAnimalToBeRescuedByFireman.Add(new Animal(AnimalType.ToString(), AnimalType));
+                    RescueChildAndCatWhileFireByFireman();
                 }
-
-                if (ListOfAnimalToBeRescuedByFireman.Count != 0)
+                else
                 {
-                    _person.RescuAnimals(ListOfAnimalToBeRescuedByFireman);
-                    _presenter.WriteLine("Child, Cat will be rescued by Fireman.");
+                    RescueOnlyChildAndRapeByRomantic();
                 }
-
-                _presenter.WriteLine("Nobody will be rescued by Fireman.");
-                _presenter.WriteLine("Fireman generated alarm sound.");
             }
 
-            if (_timeOfDay == TimeOfDay.Fire && _AnimalsOnBranch.Count != 0)
+            if(_persons.Count != 0)
             {
-                IList<Animal> ListOfAnimalToBeRescuedByPedofil = new List<Animal>();
-
-                //ListOfAnimalToBeRescuedByPedofil = BranchHelper.PutAnimalsOnBranch(_AnimalsOnBranch.ToArray());
-
-                foreach (var AnimalType in _AnimalsOnBranch)
+                if (_timeOfDay == TimeOfDay.Fire)
                 {
-                    if (AnimalType == AnimalTypes.Child)
-                        ListOfAnimalToBeRescuedByPedofil.Add(new Animal(AnimalType.ToString(), AnimalType));
-                }
-
-                if (ListOfAnimalToBeRescuedByPedofil.Count != 0)
-                {
-                    _person.RescuAnimals(ListOfAnimalToBeRescuedByPedofil);
-                    _presenter.WriteLine("Child will be rescued by Romantic.");
+                    _person = _persons[0];
+                    RescueOnlyChildAndRapeByRomantic();
+                    _person = _persons[1];
+                    RescueChildAndCatWhileFireByFireman();
                 }
             }
         }
 
-        private void NewMethod(List<Animal> temp)
+        private void RescueOnlyChildAndRapeByRomantic()
         {
-            foreach (var item in _AnimalsOnBranch)
+            IList<Animal> ListOfAnimalToBeRescuedByPedofil = new List<Animal>();
+
+            var temp = _AnimalsOnBranch;
+
+            for (int i = 0; i < _AnimalsOnBranch.Count; i++)
             {
-                if (item == AnimalTypes.Child)
-                    temp.Add(new Animal(item.ToString(), item));
+                if (temp[i] == AnimalTypes.Child)
+                {
+                    ListOfAnimalToBeRescuedByPedofil.Add(new Animal(temp[i].ToString(), temp[i]));
+                    _AnimalsOnBranch.Remove(temp[i]);
+                }
+            }
+
+            if (ListOfAnimalToBeRescuedByPedofil.Count != 0)
+            {
+                _person.RescuAnimals(ListOfAnimalToBeRescuedByPedofil);
+                _presenter.WriteLine("Child will be rescued by Romantic.");
+            }
+            else
+            {
+                _presenter.WriteLine("Nobody will be rescued by Romantic.");
+            }
+        }
+
+        private void RescueChildAndCatWhileFireByFireman()
+        {
+            IList<Animal> ListOfAnimalToBeRescuedByFireman = new List<Animal>();
+
+            var temp = _AnimalsOnBranch;
+
+            for (int i = 0; i < _AnimalsOnBranch.Count; i++)
+            {
+                if (temp[i] != AnimalTypes.Bird)
+                {
+                    ListOfAnimalToBeRescuedByFireman.Add(new Animal(temp[i].ToString(), temp[i]));
+                    _AnimalsOnBranch.Remove(temp[i]);
+                }
+            }
+
+            if (ListOfAnimalToBeRescuedByFireman.Count != 0)
+            {
+                _person.RescuAnimals(ListOfAnimalToBeRescuedByFireman);
+                _presenter.WriteLine("Child, Cat will be rescued by Fireman.");
+            }
+            else
+            {
+                _presenter.WriteLine("Nobody will be rescued by Fireman.");
+                _presenter.WriteLine("Fireman generated alarm sound.");
             }
         }
 
@@ -113,6 +142,11 @@ namespace BFC.Console.AppLogic
         public void RandomRomanticOrFireman(IRandomizer randomizer)
         {
             _person = randomizer.ActivateFiremanOrPedofil();
+        }
+
+        public void ActivateFiremanAndRomantic(IBothHeroes bothHeros)
+        {
+            _persons = bothHeros.ActivateFiremanAndRomanticAtTheSameTime();
         }
 
         private void BranchSetter(AnimalTypes animalType)

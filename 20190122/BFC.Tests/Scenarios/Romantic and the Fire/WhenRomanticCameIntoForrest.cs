@@ -16,7 +16,6 @@ namespace BFC.Tests.Scenarios.Romantic_and_the_Fire
         [SetUp]
         public void SetUp()
         {
-
             _presenter = new Mock<IOutputWritter>();
             _blackForest = new BlackForest(_presenter.Object);
             _blackForest.ActivateRomantic();
@@ -26,7 +25,7 @@ namespace BFC.Tests.Scenarios.Romantic_and_the_Fire
         public void AndChildSitOnTheBranchThenItWillBeRescued()
         {
             // given 
-            var animals = new[] { AnimalTypes.Child };
+            var animals = new[] { AnimalTypes.Child , AnimalTypes.Cat};
             _blackForest.SitOnTheTree(animals);
 
             // when 

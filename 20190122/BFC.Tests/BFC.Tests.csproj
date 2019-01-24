@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Scenarios\50 Random\" />
+    <Folder Include="Scenarios\RaceBetweenFiremanAndRomantic\" />
+    <Folder Include="Scenarios\FiremanAndRomanticComeToWoodAtTheSameTime\" />
   </ItemGroup>
 </Project>

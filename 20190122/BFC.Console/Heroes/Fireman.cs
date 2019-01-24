@@ -18,8 +18,6 @@ namespace BFC.Console.Heroes
                     branch.Remove(temp[i]);
                 }
             }
-
-
         }
     }
 }
