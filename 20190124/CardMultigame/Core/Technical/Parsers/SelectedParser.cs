@@ -48,12 +48,14 @@ namespace Core.Technical.Parsers
 
         private List<IParseStrategy> RegisterPossibleStrategies()
         {
-            // Some changes here, perhaps? For T110 - parsers
+			// Some changes here, perhaps? For T110 - parsers
 
-            var registeredStrategies = new List<IParseStrategy>()
-            {
-                new CommaParseStrategy(),
-                new SemicolonParseStrategy()
+			var registeredStrategies = new List<IParseStrategy>()
+			{
+				new CommaParseStrategy(),
+				new SemicolonParseStrategy(),
+				new DashParseStrategy()
+
             };
 
             return registeredStrategies;
