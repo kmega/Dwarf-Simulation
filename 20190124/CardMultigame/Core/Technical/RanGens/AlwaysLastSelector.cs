@@ -11,7 +11,8 @@ namespace Core.Technical.RanGens
     {
         public Card DrawCard(List<Card> cards)
         {
-            throw new NotImplementedException("Implement this for T112");
+            Card drawn = cards[cards.Count - 1];
+            return drawn;
         }
     }
 }
