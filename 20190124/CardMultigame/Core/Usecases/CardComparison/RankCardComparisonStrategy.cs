@@ -11,7 +11,15 @@ namespace Core.Usecases.CardComparison
     {
         public bool AreTheSame(Card card1, Card card2)
         {
-            throw new NotImplementedException("Test 104");
+            if(card1.Rank() == card2.Rank())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            //throw new NotImplementedException("Test 104");
         }
     }
 }

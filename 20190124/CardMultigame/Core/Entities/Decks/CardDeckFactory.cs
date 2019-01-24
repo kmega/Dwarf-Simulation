@@ -39,7 +39,22 @@ namespace Core.Entities.Decks
 
         public CardDeck Simple2ToAWith4Colours()
         {
-            throw new NotImplementedException("Implement this for T109 Different creation methods");
+            List<string> ranks = new List<string>() { "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A" };
+            List<string> colours = new List<string>() { "S", "H", "D", "C" };
+
+            List<Card> cards = new List<Card>();
+            foreach (var rank in ranks)
+            {
+                foreach (var colour in colours)
+                {
+                    string cardPrototype = rank + colour;
+                    Card card = new CardFactory().CreateSingle(cardPrototype);
+                    cards.Add(card);
+                }
+            }
+
+            return new CardDeck(_selectedCardSelector, cards);
+            //throw new NotImplementedException("Implement this for T109 Different creation methods");
         }
 
         public CardDeck Empty()

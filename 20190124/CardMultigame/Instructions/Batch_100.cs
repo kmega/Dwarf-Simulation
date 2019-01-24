@@ -150,7 +150,6 @@ namespace TrainingTests
 
             // Then
             Assert.IsTrue(areTheSame_Strict);
-
         }
 
         [Test]

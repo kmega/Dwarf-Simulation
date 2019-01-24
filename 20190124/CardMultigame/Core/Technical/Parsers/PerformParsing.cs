@@ -33,6 +33,7 @@ namespace Core.Technical.Parsers
                 string actionSigil = actionSigilMatch.Value;
                 string paramsSigil = record.Substring(actionSigil.Length +1);
 
+
                 actionsWithParams.Add(new Tuple<string, string>(actionSigil.Trim(), paramsSigil.Trim()));
             }
 

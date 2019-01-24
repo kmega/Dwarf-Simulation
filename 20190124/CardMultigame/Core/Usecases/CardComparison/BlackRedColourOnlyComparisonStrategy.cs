@@ -11,7 +11,16 @@ namespace Core.Usecases.CardComparison
     {
         public bool AreTheSame(Card card1, Card card2)
         {
-            throw new NotImplementedException("Test 103");
+            if((card1.Colour() == "H" || card1.Colour() == "D") && (card2.Colour() == "H" || card2.Colour() == "D"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            //throw new NotImplementedException("Test 103");
         }
     }
 }

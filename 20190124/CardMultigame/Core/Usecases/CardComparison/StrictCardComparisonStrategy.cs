@@ -15,10 +15,8 @@ namespace Core.Usecases.CardComparison
             {
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false; 
         }
     }
 }
