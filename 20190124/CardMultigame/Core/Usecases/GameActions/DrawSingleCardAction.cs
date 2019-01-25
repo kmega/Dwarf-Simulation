@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Containers.GameRules;
+using Core.Entities.Decks;
 using Core.Entities.GameStates;
 using Core.Usecases.InfluenceState;
 
@@ -13,7 +14,12 @@ namespace Core.Usecases.GameActions
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            throw new NotImplementedException("Implement this for T201 and I guess change it in T205 too.");
+			CardDeck Deck = QueryGameState.ExtractCardDeck(currentGameState);
+			Deck.DrawRandomCard();
+			if(Deck.CardsLeft() == 0)
+			{
+				currentGameState["Guess"] = true;
+			}
         }
 
         public bool ShouldReactTo(string item1)
