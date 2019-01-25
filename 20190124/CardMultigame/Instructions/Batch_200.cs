@@ -254,6 +254,7 @@ namespace TrainingTests
             // ---
 
             // Given
+
             GameState gameState = new GameStateFactory().Default();
             gameState[GameStateKeys.IsGameWon] = false;
             gameState[GameStateKeys.IsGameLost] = false;
