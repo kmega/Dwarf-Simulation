@@ -8,9 +8,39 @@ namespace Core.Usecases.GameActions
 {
     public class GameActionsFactory
     {
+
+
+       
+
         public List<IGameAction> HavingOrders(string actionsToPerform)
         {
-            throw new NotImplementedException("Implement this for T204 Factorize me");
+            List<IGameAction> orders = new List<IGameAction>();
+           
+            string[] actions = actionsToPerform.Split(",");
+            
+
+            foreach (var item in actions)
+            {
+                
+                switch (item.Trim())
+                {
+                    case "drawSingleCard":
+                        orders.Add(new DrawSingleCardAction());
+                        break;
+
+                    case "addQH":
+                        orders.Add(new AddQueenOfHeartsToDeck());
+                        break;
+
+                    case "add10cOrDraw":
+                        orders.Add(new Add10COrDrawACard());
+                        break;
+                    default:
+                        break;
+                }
+            }
+            return orders;
+
         }
     }
 }

@@ -16,7 +16,12 @@ namespace Core.Usecases.GameConditions
     {
         public void CheckAndUpdate(GameState currentGameState)
         {
-            throw new NotImplementedException("Implement this for T208 WinCondition, LossCondition");
+            if (currentGameState["Guess"] != null && (bool)currentGameState["Guess"])
+            {
+               ModifyGameState.DeclareGameToBeWon(currentGameState);
+
+            }
+            
         }
     }
 }
