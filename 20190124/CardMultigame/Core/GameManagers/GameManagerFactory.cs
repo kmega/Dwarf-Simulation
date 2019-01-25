@@ -18,9 +18,8 @@ namespace Core.Interfaces.GameManagers
         public GameManager DefaultsWithOrders(string orderString)
         {
             List<Tuple<string, string>> orders = new SelectedParser().ProperlyParse(orderString);
-
+           
             GameManagerInternalsBuilder builder = new GameStructureFactory().BuildRulesAndInitialState(orders);
-
             PlayedGameRules rules = builder.ConstructRuleset();
             GameState initialState = builder.ConstructGameState();
 

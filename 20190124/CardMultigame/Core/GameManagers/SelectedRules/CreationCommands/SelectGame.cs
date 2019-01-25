@@ -8,6 +8,7 @@ using Core.Entities.Games.Guessing;
 using Core.Entities.Games;
 using Core.Usecases.CardComparison;
 using Core.Usecases.GameConditions;
+using Core.Entities.GameStates;
 
 namespace Core.Containers.GameRules.CreationCommands
 {
@@ -19,11 +20,12 @@ namespace Core.Containers.GameRules.CreationCommands
         {
             if(parameters.Equals("GuessACard"))
             {
+                builder.SetInitialGameState(new GameState());
                 builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
                 builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
                 builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
                 builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
-                //builder.SetMaxTurns(5);
+                builder.SetMaxTurns(5);
             }
         }
 
