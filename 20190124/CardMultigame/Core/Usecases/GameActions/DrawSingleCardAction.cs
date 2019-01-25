@@ -12,8 +12,11 @@ namespace Core.Usecases.GameActions
     public class DrawSingleCardAction : IGameAction
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
-        {
-            throw new NotImplementedException("Implement this for T201 and I guess change it in T205 too.");
+        { 
+            QueryGameState.ExtractCardDeck(currentGameState).DrawLastAddedCard();
+            int cards = QueryGameState.ExtractCardDeck(currentGameState).CardsLeft();
+            if (cards == 0)
+                currentGameState["Guess"] = true;
         }
 
         public bool ShouldReactTo(string item1)

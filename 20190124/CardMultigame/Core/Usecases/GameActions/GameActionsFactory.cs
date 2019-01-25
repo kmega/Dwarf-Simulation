@@ -10,7 +10,25 @@ namespace Core.Usecases.GameActions
     {
         public List<IGameAction> HavingOrders(string actionsToPerform)
         {
-            throw new NotImplementedException("Implement this for T204 Factorize me");
+            List<IGameAction> gameActions = new List<IGameAction>();
+            string[] spllitedOrders = actionsToPerform.Split(',');
+            foreach(string order in spllitedOrders)
+            {
+                switch(order.Trim())
+                {
+                    case "drawSingleCard":
+                        gameActions.Add(new DrawSingleCardAction());
+                        break;
+                    case "addQH":
+                        gameActions.Add(new AddQueenOfHeartsToDeck());
+                        break;
+                    case "add10cOrDraw":
+                        gameActions.Add(new Add10COrDrawACard());
+                        break;
+                }
+            }
+            return gameActions;
+            
         }
     }
 }
