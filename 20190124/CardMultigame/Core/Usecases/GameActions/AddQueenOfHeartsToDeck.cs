@@ -15,7 +15,11 @@ namespace Core.Usecases.GameActions
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            throw new NotImplementedException("Implement this for T202 Add Queen of Hearts");
+            CardDeck deck = QueryGameState.ExtractCardDeck(currentGameState);
+            Card newCard = new Card("Q", "H");
+
+            deck.AddASingleCard(newCard);
+
         }
 
         public bool ShouldReactTo(string item1)

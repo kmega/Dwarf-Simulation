@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Containers.GameRules;
+using Core.Entities.Decks;
 using Core.Entities.GameStates;
 using Core.Usecases.InfluenceState;
 
@@ -13,7 +14,15 @@ namespace Core.Usecases.GameActions
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            throw new NotImplementedException("Implement this for T201 and I guess change it in T205 too.");
+            //if(orderParams == null)
+            //{
+            //    List<string> keys = new List<string>(currentGameState.Keys);
+            //    CardDeck deck = currentGameState[keys[0]] as CardDeck;
+            //    deck.DrawRandomCard();
+            //}
+
+            CardDeck modifiedDeck = QueryGameState.ExtractCardDeck(currentGameState);
+            modifiedDeck.DrawRandomCard();
         }
 
         public bool ShouldReactTo(string item1)
