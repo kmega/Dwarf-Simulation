@@ -17,12 +17,21 @@ namespace Core.Usecases.GameActions
                 gameActionsFromOrders.Add(BuildSingleOrder(order));
             }
             return gameActionsFromOrders;
-            //throw new NotImplementedException("Implement this for T204 Factorize me");
         }
 
         private IGameAction BuildSingleOrder(string order)
         {
-            throw new NotImplementedException();
+            switch(order)
+            {
+                case "drawSingleCard":
+                    return new DrawSingleCardAction();
+                case "add10cOrDraw":
+                    return new Add10COrDrawACard();
+                case "addQH":
+                    return new AddQueenOfHeartsToDeck();
+                default:
+                    return null;
+            }
         }
     }
 }
