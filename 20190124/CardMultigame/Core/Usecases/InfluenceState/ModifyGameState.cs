@@ -19,12 +19,14 @@ namespace Core.Usecases.InfluenceState
 
         public static void DeclareGameToBeLost(GameState currentGameState)
         {
-            throw new NotImplementedException("Implement this for T207 ModifyTheGameState");
+            //throw new NotImplementedException("Implement this for T207 ModifyTheGameState");
+            currentGameState[GameStateKeys.IsGameLost] = true;
         }
 
         public static void DeclareGameToBeWon(GameState currentGameState)
         {
-            throw new NotImplementedException("Implement this for T207 ModifyTheGameState");
+            //throw new NotImplementedException("Implement this for T207 ModifyTheGameState");
+            currentGameState[GameStateKeys.IsGameWon] = true;
         }
 
 
