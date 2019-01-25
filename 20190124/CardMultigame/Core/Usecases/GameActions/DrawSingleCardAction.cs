@@ -16,8 +16,7 @@ namespace Core.Usecases.GameActions
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
             CardDeck cardDeck = QueryGameState.ExtractCardDeck(currentGameState);
-            Card drawnCard = cardDeck.DrawRandomCard();
-            currentGameState.Add("DrawnCard", drawnCard);
+            currentGameState["DrawnCard"] = cardDeck.DrawRandomCard();
             if(cardDeck.CardsLeft() == 0)
             {
                 currentGameState["Guess"] = true;

@@ -18,12 +18,14 @@ namespace Core.Usecases.GameActions
 
         public void ChangeGameState(GameState currentGameState, PlayedGameRules rules, string orderParams)
         {
+            Card chosenCard = new CardFactory().CreateSingle(orderParams);
             //DrawSingleCard()
             var action = new GameActionsFactory().HavingOrders("drawSingleCard").FirstOrDefault();
             action.ChangeGameState(currentGameState, rules, orderParams);
             //Compare
             var comparator = rules.CardComparator();
-            //var result = comparator.AreTheSame(drawnCard, choosenCard);
+            currentGameState[_identifier] = comparator
+                .AreTheSame(currentGameState["DrawnCard"] as Card, chosenCard);
             //WriteResult
             rules.CheckGameStopConditions(currentGameState);
             rules.CheckVictoryConditions(currentGameState);

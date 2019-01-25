@@ -23,6 +23,7 @@ namespace Core.Containers.GameRules.CreationCommands
                 builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
                 builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
                 builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
+                //builder.SetMaxTurns(5);
             }
         }
 

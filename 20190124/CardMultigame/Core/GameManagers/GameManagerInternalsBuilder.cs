@@ -5,6 +5,7 @@ using Core.Usecases.GameConditions;
 using Core.Entities.GameStates;
 using Core.Usecases.CardComparison;
 using Core.GameManagers.SelectedRules;
+using Core.Entities.Cards;
 
 namespace Core.Containers.GameRules
 {
@@ -16,7 +17,6 @@ namespace Core.Containers.GameRules
         private List<IGameCondition> _victories;
         private List<IGameCondition> _gameStops;
         private GameState _initialGameState;
-
         //This one is specific to Guessing Game.
         private ICardComparisonStrategy _compareCards;
 

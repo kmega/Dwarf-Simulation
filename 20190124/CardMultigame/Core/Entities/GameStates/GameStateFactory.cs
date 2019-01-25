@@ -15,7 +15,7 @@ namespace Core.Entities.GameStates
             {
                 constructedState[kvPair.Key] = kvPair.Value;
             }
-
+            constructedState[GameStateKeys.DrawnCard] = null;
             constructedState[GameStateKeys.CardDeck] = deck2;
             return constructedState;
         }
