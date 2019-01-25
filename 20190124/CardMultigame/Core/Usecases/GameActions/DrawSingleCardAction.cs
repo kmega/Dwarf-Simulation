@@ -23,6 +23,10 @@ namespace Core.Usecases.GameActions
 
             CardDeck modifiedDeck = QueryGameState.ExtractCardDeck(currentGameState);
             modifiedDeck.DrawRandomCard();
+
+            currentGameState["Guess"] = true;
+
+
         }
 
         public bool ShouldReactTo(string item1)

@@ -22,12 +22,17 @@ namespace Core.Usecases.InfluenceState
 
         public static bool IsGameWon(GameState currentState)
         {
-            throw new NotImplementedException("Implement this for T206 Queries Can't Change A Lot");
+            bool isWon = (bool)currentState[GameStateKeys.IsGameWon];
+
+            return isWon;
+  
         }
 
         public static bool IsGameLost(GameState currentState)
         {
-            throw new NotImplementedException("Implement this for T206 Queries Can't Change A Lot");
+            bool isLost = (bool)currentState[GameStateKeys.IsGameLost];
+
+            return isLost;
         }
 
         public static bool IsGameFinished(GameState currentState)
