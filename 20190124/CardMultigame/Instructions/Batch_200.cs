@@ -165,7 +165,6 @@ namespace TrainingTests
             // But THIS means it is possible to do it using a factory. So, same test, but with a factory now.
             // Hint: string.Split(','); string.Trim(); List.Add; foreach; are your best friends in this task.
             // ---
-
             // Given
             CardDeck deck = new CardDeckFactory().FromGivenCards("2H, 3H, 4H");
             GameState gameState = new GameStateFactory().DefaultsPlusDeck(deck);
