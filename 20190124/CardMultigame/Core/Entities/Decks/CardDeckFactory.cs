@@ -65,11 +65,7 @@ namespace Core.Entities.Decks
         /// </summary>
         public void SetCardSelector(ICardSelector selector)
         {
-            if (selector == )
-            {
-
-            }
-            //
+            _selectedCardSelector = selector;
         }
 
     }
