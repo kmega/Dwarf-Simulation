@@ -66,15 +66,7 @@ namespace Core.Entities.Decks
         /// </summary>
         public void SetCardSelector(ICardSelector selector)
         {
-            if (selector == new AlwaysFirstSelector())
-            {
-                new AlwaysFirstSelector();
-            }
-
-            if (selector == new AlwaysLastSelector())
-            {
-                new AlwaysLastSelector();
-            }
+            _selectedCardSelector = selector;
 
         }
 
