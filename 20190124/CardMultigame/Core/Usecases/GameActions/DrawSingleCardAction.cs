@@ -15,7 +15,12 @@ namespace Core.Usecases.GameActions
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
             CardDeck TransformedGameStateToDeck = QueryGameState.ExtractCardDeck(currentGameState);
-            TransformedGameStateToDeck.DrawRandomCard();
+            TransformedGameStateToDeck.DrawLastAddedCard();
+
+            if (TransformedGameStateToDeck.CardsLeft() == 0)
+            {
+                currentGameState["Guess"] = true;
+            }
             //throw new NotImplementedException("Implement this for T201 and I guess change it in T205 too.");
         }
 

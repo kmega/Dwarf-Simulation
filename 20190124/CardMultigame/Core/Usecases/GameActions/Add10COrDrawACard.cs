@@ -15,7 +15,17 @@ namespace Core.Usecases.GameActions
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            throw new NotImplementedException("Implement this for T203 ChainSomeCommands");
+            CardDeck TransformedGameStateToDeck = QueryGameState.ExtractCardDeck(currentGameState);
+
+            if(TransformedGameStateToDeck.CardsLeft() % 2 == 0)
+            {
+                TransformedGameStateToDeck.AddASingleCard(new CardFactory().CreateSingle("10C"));
+                return;
+            }
+
+            TransformedGameStateToDeck.DrawRandomCard();
+
+            //throw new NotImplementedException("Implement this for T203 ChainSomeCommands");
         }
 
         public bool ShouldReactTo(string item1)
