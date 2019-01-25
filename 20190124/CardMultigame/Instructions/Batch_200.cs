@@ -144,6 +144,7 @@ namespace TrainingTests
             };
 
             // Expected:
+            var temp = QueryGameState.AmountOfCardsLeft(gameState);
             Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 3);
             int amountOfCardsAfterDrawingOne = 2;
 
