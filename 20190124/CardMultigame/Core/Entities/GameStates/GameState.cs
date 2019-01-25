@@ -21,7 +21,7 @@ namespace Core.Entities.GameStates
         {
             get
             {
-                if(base.ContainsKey(index))
+                if (base.ContainsKey(index))
                     return base[index];
                 else
                     return null;

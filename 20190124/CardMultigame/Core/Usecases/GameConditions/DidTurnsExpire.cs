@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core.Entities.Decks;
 using Core.Entities.GameStates;
 using Core.Usecases.InfluenceState;
 
@@ -15,7 +16,14 @@ namespace Core.Usecases.GameConditions
     {
         public void CheckAndUpdate(GameState currentGameState)
         {
-            throw new NotImplementedException("Implement this for T208 WinCondition, LossCondition");
+            var currentTurn = QueryGameState.CurrentTurn(currentGameState);
+            var maxTurn = QueryGameState.MaximumTurns(currentGameState);
+
+            if (currentTurn >= maxTurn)
+            {
+                ModifyGameState.DeclareGameToBeLost(currentGameState);
+            }
+      
         }
     }
 }
