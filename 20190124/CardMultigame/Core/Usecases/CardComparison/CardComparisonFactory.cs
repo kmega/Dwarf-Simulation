@@ -10,7 +10,31 @@ namespace Core.Usecases.CardComparison
     {
         public ICardComparisonStrategy Create(string selector)
         {
-            throw new NotImplementedException("Test 105");
+            ICardComparisonStrategy strategy;
+
+            if (selector == "colour")
+            {
+                strategy = new ColourCardComparisonStrategy();
+            }
+            else if (selector == "strict")
+            {
+                strategy = new StrictCardComparisonStrategy();
+            }
+            else if (selector == "rank")
+            {
+                strategy = new RankCardComparisonStrategy();
+            }
+            else if (selector == "blackred")
+            {
+                strategy = new BlackRedColourOnlyComparisonStrategy();
+            }
+            else
+                strategy = new AlwaysFailComparisonStrategy();
+
+
+
+            return strategy;
+
         }
 
         public ICardComparisonStrategy None()

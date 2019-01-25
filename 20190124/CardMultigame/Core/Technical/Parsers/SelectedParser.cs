@@ -52,6 +52,7 @@ namespace Core.Technical.Parsers
 
             var registeredStrategies = new List<IParseStrategy>()
             {
+                new DashParseStrategy(),
                 new CommaParseStrategy(),
                 new SemicolonParseStrategy()
             };

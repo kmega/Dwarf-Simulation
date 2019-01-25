@@ -9,9 +9,13 @@ namespace Core.Technical.RanGens
 {
     public class AlwaysLastSelector : ICardSelector
     {
+     
+
         public Card DrawCard(List<Card> cards)
         {
-            throw new NotImplementedException("Implement this for T112");
+            int index = cards.Count - 1;
+            Card drawn = cards[index];
+            return drawn; ;
         }
     }
 }

@@ -9,9 +9,13 @@ namespace Core.Technical.RanGens
 {
     public class AlwaysFirstSelector : ICardSelector
     {
+   
+
         public Card DrawCard(List<Card> cards)
         {
-            throw new NotImplementedException("Implement this for T111 Always-first selector");
+            int index = 0;
+            Card drawn = cards[index];
+            return drawn;
         }
     }
 }

@@ -46,7 +46,7 @@ namespace Core.Entities.Games
 
         public ICardComparisonStrategy CardComparisonStrategy()
         {
-            throw new NotImplementedException("Implement this for T108 Strategy for the future");
+            return new StrictCardComparisonStrategy();
         }
     }
 }
