@@ -97,6 +97,7 @@ namespace TrainingTests
             }
 
             // Then
+            var temp = QueryGameState.AmountOfCardsLeft(gameState);
             Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == amountOfCardsAfterDrawingOne);
 
             CardDeck retrievedDeck = QueryGameState.ExtractCardDeck(gameState);

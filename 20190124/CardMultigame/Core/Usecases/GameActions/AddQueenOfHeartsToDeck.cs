@@ -15,12 +15,28 @@ namespace Core.Usecases.GameActions
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            throw new NotImplementedException("Implement this for T202 Add Queen of Hearts");
+            CardDeck temp = QueryGameState.ExtractCardDeck(currentGameState);
+            CardDeck temp1 = temp;
+            Card xd;
+            if(ShouldReactTo("QH"))
+            {
+                xd = new CardFactory().CreateSingle("QH");
+                temp1.AddASingleCard(xd);
+            }
+
+            temp = temp1;
+
+            //throw new NotImplementedException("Implement this for T202 Add Queen of Hearts");
         }
 
         public bool ShouldReactTo(string item1)
         {
-            throw new NotImplementedException();
+            if(item1 == "QH")
+            {
+                return true;
+            }
+            return false;
+            //throw new NotImplementedException();
         }
     }
 }
