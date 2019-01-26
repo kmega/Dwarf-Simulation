@@ -24,7 +24,7 @@ namespace Core.Usecases.GameActions
             action.ChangeGameState(currentGameState, rules, orderParams);
             //Compare
             var comparator = rules.CardComparator();
-            var temp = currentGameState["DrawCard"] as Card;
+            var temp = currentGameState["DrawnCard"] as Card;
             currentGameState[_identifier] = comparator.AreTheSame(currentGameState["DrawnCard"] as Card, chosenCard);
             //WriteResult
             rules.CheckGameStopConditions(currentGameState);

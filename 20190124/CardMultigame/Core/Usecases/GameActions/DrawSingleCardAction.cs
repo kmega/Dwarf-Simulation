@@ -15,7 +15,10 @@ namespace Core.Usecases.GameActions
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
             CardDeck TransformedGameStateToDeck = QueryGameState.ExtractCardDeck(currentGameState);
-            TransformedGameStateToDeck.DrawLastAddedCard();
+            currentGameState["DrawnCard"] = TransformedGameStateToDeck.DrawFirstAddedCard();
+
+            //TransformedGameStateToDeck.DrawFirstAddedCard();
+
 
             if (TransformedGameStateToDeck.CardsLeft() == 0)
             {
