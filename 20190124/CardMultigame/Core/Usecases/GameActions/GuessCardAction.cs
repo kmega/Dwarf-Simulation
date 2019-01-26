@@ -18,7 +18,31 @@ namespace Core.Usecases.GameActions
 
         public void ChangeGameState(GameState currentGameState, PlayedGameRules rules, string orderParams)
         {
-            throw new NotImplementedException("Implement this. T212, GuessingACard command");
+            Card chosenCard = new CardFactory().CreateSingle(orderParams);
+            //DrawSingleCard()
+            var action = new GameActionsFactory().HavingOrders("drawSingleCard").FirstOrDefault();
+            action.ChangeGameState(currentGameState, rules, orderParams);
+            //Compare
+            var comparator = rules.CardComparator();
+            currentGameState[_identifier] = comparator
+                .AreTheSame(currentGameState["DrawnCard"] as Card, chosenCard);
+            //WriteResult
+            rules.CheckGameStopConditions(currentGameState);
+            rules.CheckVictoryConditions(currentGameState);
+
+            //Card orderCard = new CardFactory().CreateSingle(orderParams);
+
+            //var action = new GameActionsFactory().HavingOrders("drawSingleCard").FirstOrDefault();
+
+            //action.ChangeGameState(currentGameState, rules, orderParams);
+            //var comparator = rules.CardComparator();
+
+            //currentGameState[_identifier] = comparator.AreTheSame(orderCard, currentGameState["DrawnCard"] as Card);
+
+            //rules.CheckVictoryConditions(currentGameState);
+            //rules.CheckGameStopConditions(currentGameState);
+
+            //throw new NotImplementedException("Implement this. T212, GuessingACard command");
         }
 
         public bool ShouldReactTo(string orderName)

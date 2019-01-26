@@ -15,7 +15,6 @@ namespace Core.Usecases.GameConditions
     {
         public void CheckAndUpdate(GameState currentGameState)
         {
-            //(int)currentGameState["MaximumTurns"
             if (QueryGameState.CurrentTurn(currentGameState) >= QueryGameState.MaximumTurns(currentGameState))
             {
                 ModifyGameState.DeclareGameToBeLost(currentGameState);

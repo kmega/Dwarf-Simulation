@@ -39,6 +39,14 @@ namespace Core.Entities.Decks
             return drawn;
         }
 
+        public Card DrawFirstAddedCard() //by me 
+        {
+            Card drawn = _cards.First();
+            _cards.Remove(drawn);
+
+            return drawn;
+        }
+
         public void AddASingleCard(Card card)
         {
             _cards.Add(card);
