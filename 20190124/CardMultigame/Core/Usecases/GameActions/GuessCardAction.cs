@@ -24,23 +24,11 @@ namespace Core.Usecases.GameActions
             action.ChangeGameState(currentGameState, rules, orderParams);
             //Compare
             var comparator = rules.CardComparator();
-            currentGameState[_identifier] = comparator
-                .AreTheSame(currentGameState["DrawnCard"] as Card, chosenCard);
+            var temp = currentGameState["DrawCard"] as Card;
+            currentGameState[_identifier] = comparator.AreTheSame(currentGameState["DrawnCard"] as Card, chosenCard);
             //WriteResult
             rules.CheckGameStopConditions(currentGameState);
             rules.CheckVictoryConditions(currentGameState);
-
-            //Card orderCard = new CardFactory().CreateSingle(orderParams);
-
-            //var action = new GameActionsFactory().HavingOrders("drawSingleCard").FirstOrDefault();
-
-            //action.ChangeGameState(currentGameState, rules, orderParams);
-            //var comparator = rules.CardComparator();
-
-            //currentGameState[_identifier] = comparator.AreTheSame(orderCard, currentGameState["DrawnCard"] as Card);
-
-            //rules.CheckVictoryConditions(currentGameState);
-            //rules.CheckGameStopConditions(currentGameState);
 
             //throw new NotImplementedException("Implement this. T212, GuessingACard command");
         }

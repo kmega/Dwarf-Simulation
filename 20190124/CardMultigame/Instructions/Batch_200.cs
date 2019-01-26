@@ -514,10 +514,10 @@ namespace TrainingTests
 
             // When
             //Second guess is 10H (red), should come a red card, so should be a hit
-            //action.ChangeGameState(gameState, rules, "10H");
+            action.ChangeGameState(gameState, rules, "10H");
 
-            //// Then
-            //Assert.IsTrue(gameState["Guess"] as bool? == true);
+            // Then
+            Assert.IsTrue(gameState["Guess"] as bool? == true);
 
         }
 
