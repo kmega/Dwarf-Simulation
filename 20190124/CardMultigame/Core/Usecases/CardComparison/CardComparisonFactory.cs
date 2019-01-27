@@ -22,13 +22,14 @@ namespace Core.Usecases.CardComparison
                     return new BlackRedColourOnlyComparisonStrategy();
 
                 default:
-                    return new AlwaysFailComparisonStrategy();
+                    return None();
             }
         }
 
         public ICardComparisonStrategy None()
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            return new AlwaysFailComparisonStrategy();
         }
     }
 }

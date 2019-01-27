@@ -48,7 +48,7 @@ namespace Core.GameManagers.SelectedRules
                 selectedCardComparators = compareCards;
 
             return new PlayedGameRules(string.Empty, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
-            //return new PlayedGameRules(gameName, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
+            //return new PlayedGameRules(_defaultGameName, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
         }
     }
 }

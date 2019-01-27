@@ -19,39 +19,16 @@ namespace Core.Containers.GameRules.CreationCommands
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
             //throw new NotImplementedException("Implement this for T210 BuilderRevealsItself");
-            //IGameImplementation gameImplementation = SelectGameImplementation(parameters);
-
-            //builder.SetName(gameImplementation.Title());
-            //builder.SetAvailableActions(gameImplementation.AvailableActions());
-            //builder.SetVictoryConditions(gameImplementation.VictoryConditions());
-            //builder.SetGameStopConditions(gameImplementation.GameStopConditions());
-            //builder.SetDeck(gameImplementation.CardDeck());
-            //builder.SetInitialGameState(gameImplementation.InitialGameState());
-            //builder.SetMaxTurns(5);
-            //builder.SetCardComparisonStrategy(gameImplementation.CardComparisonStrategy());
-
-            //switch (parameters)
-            //{
-            //    case "GuessACard":
-            //        builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
-            //        builder.SetInitialGameState(new GameState());
-            //        builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
-            //        builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
-            //        builder.SetMaxTurns(5);
-            //        builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
-            //        builder.SetName("");
-            //        break;
-            //}
-
-
-            if (parameters.Equals("GuessACard")) 
+            switch (parameters)
             {
-                builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
-                builder.SetInitialGameState(new GameState());
-                builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
-                builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
-                builder.SetMaxTurns(5);
-                builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
+                case "GuessACard":
+                    builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
+                    builder.SetInitialGameState(new GameState());
+                    builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
+                    builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
+                    builder.SetMaxTurns(5);
+                    builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
+                    break;
             }
         }
 
