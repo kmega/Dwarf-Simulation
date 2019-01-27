@@ -35,6 +35,9 @@ namespace Core.GameManagers.SelectedRules
             var selectedGameStops = _defaultGameStops;
             var selectedCardComparators = _defaultCardComparators;
 
+            if (gameName != null)
+                _defaultGameName = gameName;
+
             if (actions != null)
                 selectedActions = actions;
 
@@ -47,8 +50,8 @@ namespace Core.GameManagers.SelectedRules
             if (compareCards != null)
                 selectedCardComparators = compareCards;
 
-            return new PlayedGameRules(string.Empty, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
-            //return new PlayedGameRules(_defaultGameName, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
+            //return new PlayedGameRules(string.Empty, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
+            return new PlayedGameRules(_defaultGameName, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
         }
     }
 }
