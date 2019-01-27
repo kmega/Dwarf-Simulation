@@ -30,20 +30,29 @@ namespace Core.Containers.GameRules.CreationCommands
             //builder.SetMaxTurns(5);
             //builder.SetCardComparisonStrategy(gameImplementation.CardComparisonStrategy());
 
-            switch (parameters)
+            //switch (parameters)
+            //{
+            //    case "GuessACard":
+            //        builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
+            //        builder.SetInitialGameState(new GameState());
+            //        builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
+            //        builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
+            //        builder.SetMaxTurns(5);
+            //        builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
+            //        builder.SetName("");
+            //        break;
+            //}
+
+
+            if (parameters.Equals("GuessACard")) 
             {
-                case "GuessACard":
-                    builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
-                    builder.SetInitialGameState(new GameState());
-                    builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
-                    builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
-                    builder.SetMaxTurns(5);
-                    builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
-                    builder.SetName("");
-                    break;
+                builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
+                builder.SetInitialGameState(new GameState());
+                builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
+                builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
+                builder.SetMaxTurns(5);
+                builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
             }
-
-
         }
 
         public bool ShouldReactTo(string outerCommandName)
