@@ -17,6 +17,13 @@ namespace Core.Containers.GameManagers.Rules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
+            if (parameters == "RedBlack")
+            {
+                _identifier = parameters;
+                builder.SetCardComparisonStrategy(new BlackRedColourOnlyComparisonStrategy());               
+            }
+               
+
             // Implement this. T211, GloryOfDeferredConstruction
         }
 

@@ -15,16 +15,10 @@ namespace Core.Usecases.GameConditions
     {
         public void CheckAndUpdate(GameState currentGameState)
         {
-            //var currentTurn = currentGameState[GameStateKeys.CurrentTurn];
-            //var maxTurns = currentGameState[GameStateKeys.MaxTurns];
+            var maxTurns = QueryGameState.MaximumTurns(currentGameState);
+            var currentTurn = QueryGameState.CurrentTurn(currentGameState);
 
-            //if(int.Parse(currentTurn) >= maxTurns)
-
-            //if(currentGameState.Va >= int.Parse(GameStateKeys.MaxTurns))
-            //{
-            //    ModifyGameState.DeclareGameToBeWon(currentGameState);
-            //}
-            //currentTurn >= maxTurns
+            if(currentTurn >= maxTurns) ModifyGameState.DeclareGameToBeLost(currentGameState);
         }
     }
 }

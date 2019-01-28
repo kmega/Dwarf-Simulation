@@ -15,7 +15,16 @@ namespace Core.Containers.GameRules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
-            throw new NotImplementedException("Implement this for T210 BuilderRevealsItself");
+            _identifier = parameters;
+            var Game = SelectGameImplementation(parameters);
+            builder.ConstructGameState();
+            builder.ConstructRuleset();
+            builder.SetAvailableActions(Game.AvailableActions());
+            builder.SetCardComparisonStrategy(Game.CardComparisonStrategy());
+            builder.SetDeck(Game.CardDeck());
+            builder.SetGameStopConditions(Game.GameStopConditions());
+            builder.SetInitialGameState(Game.InitialGameState());
+            builder.SetVictoryConditions(Game.VictoryConditions());
         }
 
         public bool ShouldReactTo(string outerCommandName)

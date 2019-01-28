@@ -18,17 +18,25 @@ namespace Core.Entities.Games
 
         public List<IGameAction> AvailableActions()
         {
-            throw new NotImplementedException("Implement this for T209 GuessACardGame was a strategy!");
+            List<IGameAction> Actions = new List<IGameAction>();
+            Actions.Add(new GuessCardAction());
+            return Actions;
+            
         }
 
         public List<IGameCondition> GameStopConditions()
         {
-            throw new NotImplementedException("Implement this for T209 GuessACardGame was a strategy!");
+            List<IGameCondition> GameStopConditions = new List<IGameCondition>();
+            GameStopConditions.Add(new DidTurnsExpire());
+            return GameStopConditions;
+
         }
 
         public List<IGameCondition> VictoryConditions()
         {
-            throw new NotImplementedException("Implement this for T209 GuessACardGame was a strategy!");
+            List<IGameCondition> VictoryConditions = new List<IGameCondition>();
+            VictoryConditions.Add(new DidGuessACard());
+            return VictoryConditions;
         }
 
         public GameState InitialGameState()

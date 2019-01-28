@@ -18,7 +18,12 @@ namespace Core.Usecases.GameActions
 
         public void ChangeGameState(GameState currentGameState, PlayedGameRules rules, string orderParams)
         {
-            throw new NotImplementedException("Implement this. T212, GuessingACard command");
+            
+            ModifyGameState.AddTurn(currentGameState);
+
+            ModifyGameState.DeclareGameToBeLost(currentGameState);
+            QueryGameState.IsGameFinished(currentGameState);
+
         }
 
         public bool ShouldReactTo(string orderName)

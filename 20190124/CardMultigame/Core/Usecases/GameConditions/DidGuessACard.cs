@@ -16,9 +16,11 @@ namespace Core.Usecases.GameConditions
     {
         public void CheckAndUpdate(GameState currentGameState)
         {
-            if(currentGameState.ContainsKey("Guess") == true)
+            
+            if(currentGameState.ContainsKey("Guess"))
             {
-                ModifyGameState.DeclareGameToBeWon(currentGameState);
+                if((bool)currentGameState["Guess"] == true)
+                    ModifyGameState.DeclareGameToBeWon(currentGameState);
             }
                       
         }
