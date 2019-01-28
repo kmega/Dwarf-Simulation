@@ -17,7 +17,7 @@ namespace Core.Containers.GameManagers.Rules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
-            // Implement this. T211, GloryOfDeferredConstruction
+            builder.SetCardComparisonStrategy(new BlackRedColourOnlyComparisonStrategy());
         }
 
         public bool ShouldReactTo(string outerCommandName)

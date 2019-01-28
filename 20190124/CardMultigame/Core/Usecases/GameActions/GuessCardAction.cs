@@ -18,7 +18,16 @@ namespace Core.Usecases.GameActions
 
         public void ChangeGameState(GameState currentGameState, PlayedGameRules rules, string orderParams)
         {
-            throw new NotImplementedException("Implement this. T212, GuessingACard command");
+            //change later PW
+
+            // rules.CardComparator()
+
+            new DrawSingleCardAction().ChangeGameState(currentGameState, null, null);
+            if (currentGameState["Guess"] as bool? == true)
+            {
+                ModifyGameState.DeclareGameToBeWon(currentGameState);
+            }
+
         }
 
         public bool ShouldReactTo(string orderName)

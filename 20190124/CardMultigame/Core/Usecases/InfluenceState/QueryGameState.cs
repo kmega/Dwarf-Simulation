@@ -20,12 +20,12 @@ namespace Core.Usecases.InfluenceState
             else return currentTurn.Value;
         }
 
-        public static bool IsGameWon(GameState currentState)
+        public static bool IsGameLost(GameState currentState)
         {
             return (bool)currentState[GameStateKeys.IsGameLost];
         }
 
-        public static bool IsGameLost(GameState currentState)
+        public static bool IsGameWon(GameState currentState)
         {
             return (bool)currentState[GameStateKeys.IsGameWon];
         }
