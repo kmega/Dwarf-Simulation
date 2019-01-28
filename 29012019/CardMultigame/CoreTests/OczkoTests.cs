@@ -10,14 +10,14 @@ namespace CoreTests
 {
     class OczkoTests
     {
+        private bool ExpectedState = true;
+
         [Test]
         public void ShouldLoseCase1()
         {
             // For
             CardDeck deck = new CreateCardDeck().FromGivenCards("KH, QC, KS, QH");
             GameState gameState = new CreateGameState().DefaultsPlusDeck(deck);
-
-            bool expectedState = true;
 
             // Given
             List<IGameAction> actions = new List<IGameAction>()
@@ -34,44 +34,40 @@ namespace CoreTests
             }
 
             // Assert
-            Assert.AreEqual(expectedState, (bool)gameState[GameStateKeys.IsGameLost]);
+            Assert.AreEqual(ExpectedState, (bool)gameState[GameStateKeys.IsGameLost]);
         }
 
         [Test]
-        public void ShouldWinCase2()
-        {
-            // For
-            CardDeck deck = new CreateCardDeck().FromGivenCards("KH, QC, KS, QH");
-            GameState gameState = new CreateGameState().DefaultsPlusDeck(deck);
-
-            bool expectedState = true;
-
-            // Given
-            List<IGameAction> actions = new List<IGameAction>()
-            {
-                new DrawTurnAction(),
-                new DrawTurnAction(),
-                new DrawTurnAction(),
-                new PassTurnAction()
-            };
-
-            foreach (var action in actions)
-            {
-                action.ChangeGameState(gameState, null, null);
-            }
-
-            // Assert
-            Assert.AreEqual(expectedState, (bool)gameState[GameStateKeys.IsGameWon]);
-        }
-
-        [Test]
-        public void ShouldLoseCase3()
+        public void ShouldLoseCase2()
         {
             // For
             CardDeck deck = new CreateCardDeck().FromGivenCards("KH, QC, KS, JD");
             GameState gameState = new CreateGameState().DefaultsPlusDeck(deck);
 
-            bool expectedState = true;
+            // Given
+            List<IGameAction> actions = new List<IGameAction>()
+            {
+                new DrawTurnAction(),
+                new DrawTurnAction(),
+                new DrawTurnAction(),
+                new PassTurnAction()
+            };
+
+            foreach (var action in actions)
+            {
+                action.ChangeGameState(gameState, null, null);
+            }
+
+            // Assert
+            Assert.AreEqual(ExpectedState, (bool)gameState[GameStateKeys.IsGameLost]);
+        }
+
+        [Test]
+        public void ShouldWin()
+        {
+            // For
+            CardDeck deck = new CreateCardDeck().FromGivenCards("KH, QC, KS, QH");
+            GameState gameState = new CreateGameState().DefaultsPlusDeck(deck);
 
             // Given
             List<IGameAction> actions = new List<IGameAction>()
@@ -88,7 +84,7 @@ namespace CoreTests
             }
 
             // Assert
-            Assert.AreEqual(expectedState, (bool)gameState[GameStateKeys.IsGameLost]);
+            Assert.AreEqual(ExpectedState, (bool)gameState[GameStateKeys.IsGameWon]);
         }
     }
 }

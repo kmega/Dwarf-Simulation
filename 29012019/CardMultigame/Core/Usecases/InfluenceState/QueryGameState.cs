@@ -61,7 +61,7 @@ namespace Core.Usecases.InfluenceState
             return currentState[GameStateKeys.CardDeck] as CardDeck;
         }
 
-        public static int AddPoints(GameState currentState, Card card)
+        public static void AddPoints(GameState currentState, Card card)
         {
             int addPoints = (int)currentState[GameStateKeys.Points];
 
@@ -85,9 +85,6 @@ namespace Core.Usecases.InfluenceState
             }
 
             currentState[GameStateKeys.Points] = addPoints;
-
-            return (int)currentState[GameStateKeys.Points];
         }
-
     }
 }
