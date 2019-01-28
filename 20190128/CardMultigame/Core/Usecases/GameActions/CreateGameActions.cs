@@ -20,7 +20,8 @@ namespace Core.Usecases.GameActions
                 if (sanitized == "drawSingleCard") actions.Add(new DrawSingleCardAction());
                 if (sanitized == "addQH") actions.Add(new AddQueenOfHeartsToDeck());
                 if (sanitized == "add10cOrDraw") actions.Add(new Add10COrDrawACard());
-
+                if (sanitized == "passTurn") actions.Add(new PassTurn());
+                if (sanitized == "sumScore") actions.Add(new SumScoreAction());
             }
 
             return actions;

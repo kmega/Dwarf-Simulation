@@ -1,5 +1,6 @@
 ﻿using Core.Entities.Cards;
 using Core.Technical.RanGens;
+using Core.Usecases.GameActions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,25 @@ namespace Core.Entities.Decks
         public CardDeck FromGivenCards(string cardsInDeck)
         {
             List<Card> cards = new CreateCards().CreateCollection(cardsInDeck);
+            return new CardDeck(_selectedCardSelector, cards);
+        }
+
+        public CardDeck Simple9ToKWith4Colours()
+        {
+            List<string> ranks = new List<string>() { "9", "10", "J", "Q", "K" };
+            List<string> colours = new List<string>() { "S", "H", "D", "C" };
+
+            List<Card> cards = new List<Card>();
+            foreach (var rank in ranks)
+            {
+                foreach (var colour in colours)
+                {
+                    string cardPrototype = rank + colour;
+                    Card card = new CreateCards().CreateSingle(cardPrototype);
+                    cards.Add(card);
+                }
+            }
+
             return new CardDeck(_selectedCardSelector, cards);
         }
 

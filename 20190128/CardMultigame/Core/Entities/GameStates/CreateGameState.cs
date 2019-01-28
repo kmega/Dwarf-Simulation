@@ -15,7 +15,9 @@ namespace Core.Entities.GameStates
             {
                 constructedState[kvPair.Key] = kvPair.Value;
             }
-
+            constructedState[GameStateKeys.LastDrawnCard] = null;
+            constructedState[GameStateKeys.BlackJackScore] = null;
+            constructedState[GameStateKeys.DidPlayerPassed] = null;
             constructedState[GameStateKeys.CardDeck] = deck2;
             return constructedState;
         }

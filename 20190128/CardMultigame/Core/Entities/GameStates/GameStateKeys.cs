@@ -13,5 +13,8 @@ namespace Core.Entities.GameStates
         public const string IsGameWon = "IsGameFinishedWithVictory";
         public const string IsGameLost = "IsGameFinishedWithDefeat";
         public const string CardDeck = "CardDeck";
+        public const string LastDrawnCard = "LastDrawnCard";
+        public const string BlackJackScore = "BlackJackScore";
+        public const string DidPlayerPassed = "DidPlayerPassed";
     }
 }
