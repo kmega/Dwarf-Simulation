@@ -20,7 +20,7 @@ namespace Core.Entities.Games
 
         public List<IGameAction> AvailableActions()
         {
-            return new List<IGameAction>() { new DrawSingleCardAction() };
+            return new List<IGameAction>() { new DrawSingleCardForBlackjack(), new PassBlackjack()};
         }
 
         public List<IGameCondition> GameStopConditions()
@@ -30,7 +30,7 @@ namespace Core.Entities.Games
 
         public List<IGameCondition> VictoryConditions()
         {
-            return new List<IGameCondition>() { new DidCardsExceeded21() };
+            return new List<IGameCondition>() { new CardsValueIsEqual21() };
         }
 
         public GameState InitialGameState()

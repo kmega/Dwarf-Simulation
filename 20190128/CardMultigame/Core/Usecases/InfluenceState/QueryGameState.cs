@@ -22,7 +22,7 @@ namespace Core.Usecases.InfluenceState
 
         public static int CurrentCardsValue(GameState currentState)
         {
-            return (int)currentState[GameStateKeys.CurrentCardsValuse];//////////
+            return (int)currentState[GameStateKeys.CurrentCardsValue];//////////
         }
 
         public static bool IsGameWon(GameState currentState)

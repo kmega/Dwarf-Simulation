@@ -8,7 +8,7 @@ namespace Core.Entities.GameStates
 {
     public static class GameStateKeys
     {
-        public const string CurrentCardsValuse = "CurrentCardsValuse";
+        public const string CurrentCardsValue = "CurrentCardsValue";
         public const string CurrentTurn = "CurrentTurnNumber";
         public const string MaxTurns = "MaximumTurns";
         public const string IsGameWon = "IsGameFinishedWithVictory";

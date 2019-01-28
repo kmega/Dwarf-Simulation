@@ -38,7 +38,7 @@ namespace Core.Entities.GameStates
         {
             return new GameState()
             {
-                {GameStateKeys.CurrentCardsValuse, 0},
+                {GameStateKeys.CurrentCardsValue, 0},
                 //
                 { GameStateKeys.CardDeck, new CreateCardDeck().Empty()},
                 { GameStateKeys.CurrentTurn, 0 },

@@ -1,17 +1,20 @@
 ﻿using System;
 using Core.Containers.GameRules;
 using Core.Entities.GameStates;
+using Core.Usecases.GameConditions;
 using Core.Usecases.InfluenceState;
 
 namespace Core.Usecases.GameActions
 {
-    public class PassBlackjack : IGameAction
+    public class PassBlackjack : IGameAction, IGameCondition
     {
+        string _identifier = "Pass";
+
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            new DrawSingleCardAction().ChangeGameState(currentGameState, gameRules, orderParams);
+            new DrawSingleCardForBlackjack().ChangeGameState(currentGameState, gameRules, orderParams);
 
-            if((int)currentGameState[GameStateKeys.CurrentCardsValuse] == 21)
+            if((int)currentGameState[GameStateKeys.CurrentCardsValue] == 21)
             {
                 currentGameState[GameStateKeys.IsGameWon] = true;
             }
@@ -21,9 +24,23 @@ namespace Core.Usecases.GameActions
             }
         }
 
-        public bool ShouldReactTo(string item1)
+        public void CheckAndUpdate(GameState currentGameState)
         {
-            throw new NotImplementedException();
+            object result = currentGameState["Pass"];
+
+            if (result != null)
+            {
+                bool isGameWon = (result as bool?).Value;
+                if (isGameWon)
+                {
+                    ModifyGameState.DeclareGameToBeWon(currentGameState);
+                }
+            }
+        }
+
+        public bool ShouldReactTo(string orderName)
+        {
+            return _identifier.ToLower() == orderName.ToLower();
         }
     }
 }

@@ -5,7 +5,7 @@ using Core.Usecases.InfluenceState;
 
 namespace Core.Usecases.GameConditions
 {
-    public class DidCardsExceeded21 : IGameCondition
+    public class CardsValueIsEqual21 : IGameCondition
     {
         public void CheckAndUpdate(GameState currentGameState)
         {

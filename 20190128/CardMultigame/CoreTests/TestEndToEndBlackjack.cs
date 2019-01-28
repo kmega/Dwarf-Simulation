@@ -38,7 +38,7 @@ namespace CoreTests
 
             List<IGameAction> actions = new List<IGameAction>()
             {
-                new DrawSingleCardAction(),
+                new DrawSingleCardForBlackjack(),
             };
 
             // Expected:
@@ -64,14 +64,8 @@ namespace CoreTests
 
             List<IGameAction> actions = new List<IGameAction>()
             {
-                new DrawSingleCardAction(),
-                new DrawSingleCardAction(),
-                //new DrawSingleCardAction(),
-                //new DrawSingleCardAction(),     // now it should be empty
-                //new AddQueenOfHeartsToDeck(),
-                //new AddQueenOfHeartsToDeck(),
-                //new Add10COrDrawACard(),        // should add +1 card, because even
-                //new Add10COrDrawACard()         // should draw a card, because odd
+                new DrawSingleCardForBlackjack(),
+                new DrawSingleCardForBlackjack(),
             };
 
             // Expected:
@@ -97,9 +91,9 @@ namespace CoreTests
 
             List<IGameAction> actions = new List<IGameAction>()
             {
-                new DrawSingleCardAction(),
-                new DrawSingleCardAction(),
-                new DrawSingleCardAction(),
+                new DrawSingleCardForBlackjack(),
+                new DrawSingleCardForBlackjack(),
+                new DrawSingleCardForBlackjack(),
                 new PassBlackjack()
             };
 
@@ -127,15 +121,15 @@ namespace CoreTests
 
             List<IGameAction> actions = new List<IGameAction>()
             {
-                new DrawSingleCardAction(),
-                new DrawSingleCardAction(),
-                new DrawSingleCardAction(),
+                new DrawSingleCardForBlackjack(),
+                new DrawSingleCardForBlackjack(),
+                new DrawSingleCardForBlackjack(),
                 new PassBlackjack()
             };
 
             // Expected:
             Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 4);
-            int amountOfCardsAfterDrawingOne = 0;
+            int amountOfCardsAfterOperations = 0;
 
             // When
             foreach (var action in actions)
@@ -144,9 +138,40 @@ namespace CoreTests
             }
 
             // Then
-            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == amountOfCardsAfterDrawingOne);
+            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == amountOfCardsAfterOperations);
             Assert.IsTrue(QueryGameState.CurrentCardsValue(gameState) == 21);
             Assert.IsTrue(QueryGameState.IsGameWon(gameState) == true);
+        }
+
+        [Test]
+        public void FinalValueIs18AndGameIsLost()
+        {
+            CardDeck deck = new CreateCardDeck().FromGivenCards("KH, KH, KH, 10H");
+            GameState gameState = new CreateGameState().DefaultsPlusDeck(deck);
+
+            List<IGameAction> actions = new List<IGameAction>()
+            {
+                new DrawSingleCardForBlackjack(),
+                new DrawSingleCardForBlackjack(),
+                new PassBlackjack()
+            };
+
+            // Expected:
+            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 4);
+            int amountOfCardsAfterOperations = 1;
+
+            // When
+            foreach (var action in actions)
+            {
+                action.ChangeGameState(gameState, null, null);
+            }
+
+            var temp = QueryGameState.CurrentCardsValue(gameState);
+            // Then
+            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == amountOfCardsAfterOperations);
+            Assert.IsTrue(QueryGameState.CurrentCardsValue(gameState) == 15);
+            Assert.IsTrue(QueryGameState.IsGameWon(gameState) == false);
+            Assert.IsTrue(QueryGameState.IsGameLost(gameState) == true);
         }
     }
 }
