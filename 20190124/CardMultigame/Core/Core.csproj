@@ -7,4 +7,10 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\Games\Blackjack\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Usecases\CardComparison\BlackjackComparisionStrategy.cs~" />
+  </ItemGroup>
 </Project>

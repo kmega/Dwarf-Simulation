@@ -19,23 +19,44 @@ namespace TrainingTests
 
     public class Batch_300
     {
-
         [Test]
-        public void T_301_GenerateDeckForBlackjack()
+        public void T_301_ImplementGuessACardCommand()
         {
             // Given
-            CardDeck createdDeck = new CardDeckFactory().Simple9ToKWith4Colours();
+            GameManagerInternalsBuilder builder = new GameManagerInternalsBuilder();
 
-            // Expected
-            CardDeck expectedDeck = new CardDeckFactory()
-                                .FromGivenCards("9S 9H 9D 9C 10S 10H 10D 10C JS JH JD JC " +
-                                                "QS QH QD QC KS KH KD KC");
+            List<ICreateGameRulesCommand> commands = new List<ICreateGameRulesCommand>()
+            {
+                new SelectGame(), new GameVariant(), new SetDeck()
+            };
+
+            List<string> arguments = new List<string>() { "Blackjack", "KH,QC,KS,QH" };
+
+            for (int i = 0; i < commands.Count; i++)
+            {
+                commands[i].ChangeGameRuleset(builder, arguments[i]);
+            }
+
+            PlayedGameRules rules = builder.ConstructRuleset();
+            GameState gameState = builder.ConstructGameState();
+
+            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 4);
+
+            IGameAction action = new BlackjackDrawCardAction();
 
             // When
-
+            // First guess is 2S (black), should come a red card, so should be a miss
+            action.ChangeGameState(gameState, rules, "2S");
 
             // Then
-            Assert.AreSame(createdDeck, expectedDeck);
+            Assert.IsTrue(gameState["Guess"] as bool? == false);
+
+            // When
+            // Second guess is 10H (red), should come a red card, so should be a hit
+            action.ChangeGameState(gameState, rules, "10H");
+
+            // Then
+            Assert.IsTrue(gameState["Guess"] as bool? == true);
 
         }
     }
