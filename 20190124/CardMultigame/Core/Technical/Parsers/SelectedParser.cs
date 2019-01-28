@@ -1,15 +1,12 @@
 ﻿using Core.Technical.Parsers.ParseStrategies;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Technical.Parsers
 {
     public class SelectedParser
     {
-        List<IParseStrategy> _parseStrategies;
+        private List<IParseStrategy> _parseStrategies;
 
         public SelectedParser()
         {
@@ -25,7 +22,6 @@ namespace Core.Technical.Parsers
             List<Tuple<string, string>> result = new PerformParsing(selectedStrategy).ExecuteOn(orderString);
             return result;
         }
-
 
         private IParseStrategy SelectAppropriateStrategy(string orderString)
         {
@@ -53,11 +49,11 @@ namespace Core.Technical.Parsers
             var registeredStrategies = new List<IParseStrategy>()
             {
                 new CommaParseStrategy(),
-                new SemicolonParseStrategy()
-            };
+                new SemicolonParseStrategy(),
+                new DashParseStrategy()
+        };
 
             return registeredStrategies;
         }
-
     }
 }
