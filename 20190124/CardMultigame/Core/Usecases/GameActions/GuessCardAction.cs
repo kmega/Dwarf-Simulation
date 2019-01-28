@@ -9,6 +9,7 @@ using Core.Containers.GameRules;
 using Core.Usecases.CardComparison;
 using Core.Usecases.InfluenceState;
 using Core.Entities.Decks;
+using Core.Technical.Parsers;
 
 namespace Core.Usecases.GameActions
 {
@@ -18,7 +19,14 @@ namespace Core.Usecases.GameActions
 
         public void ChangeGameState(GameState currentGameState, PlayedGameRules rules, string orderParams)
         {
-            throw new NotImplementedException("Implement this. T212, GuessingACard command");
+            var ordersReceived = new SelectedParser().ProperlyParse(orderParams);
+
+            if (currentGameState["Guess"] as bool? == false)
+            {
+
+                ModifyGameState.AddTurn(currentGameState);
+            };
+            
         }
 
         public bool ShouldReactTo(string orderName)

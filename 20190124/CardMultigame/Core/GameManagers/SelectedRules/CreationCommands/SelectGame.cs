@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.Usecases.GameActions;
 using Core.Entities.Games.Guessing;
 using Core.Entities.Games;
+using Core.Usecases.GameConditions;
 
 namespace Core.Containers.GameRules.CreationCommands
 {
@@ -15,8 +16,19 @@ namespace Core.Containers.GameRules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
-            throw new NotImplementedException("Implement this for T210 BuilderRevealsItself");
+
+
+            var game = SelectGameImplementation(parameters);
+
+            builder.SetAvailableActions(game.AvailableActions());
+            builder.SetDeck(game.CardDeck());
+            builder.SetGameStopConditions(game.GameStopConditions());
+            builder.SetInitialGameState(game.InitialGameState());
+            builder.SetVictoryConditions(game.VictoryConditions());
+                                
+
         }
+
 
         public bool ShouldReactTo(string outerCommandName)
         {
