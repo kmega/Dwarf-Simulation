@@ -17,7 +17,10 @@ namespace Core.Containers.GameManagers.Rules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
-            builder.SetCardComparisonStrategy(new BlackRedColourOnlyComparisonStrategy());
+            if (parameters == "RedBlack")
+                builder.SetCardComparisonStrategy(new BlackRedColourOnlyComparisonStrategy());
+            else
+                throw new NotImplementedException("Method implemented for RedBlack variant only (Game Variant -> ChangeGameRuleset");
         }
 
         public bool ShouldReactTo(string outerCommandName)

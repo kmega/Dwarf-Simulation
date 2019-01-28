@@ -569,6 +569,81 @@ namespace TrainingTests
             Assert.IsTrue(actualRules.CardComparator() is AlwaysFailComparisonStrategy);
 
         }
+
+        //[Test]
+        //public void T_214_EyeGame()
+        //{
+        //    // Given
+        //    GameState gameState = new GameStateFactory().DefaultsWithFullDeck();
+
+        //    string actionsToPerform = "drawSingleCard, drawSingleCard";
+        //    List<IGameAction> actions = new GameActionsFactory().HavingOrders(actionsToPerform);
+
+        //    List<IGameCondition> conditions = new List<IGameCondition>()
+        //    {
+        //        new DidGuessACard(), new DidTurnsExpire()
+        //    };
+
+        //    // When
+
+        //    do
+        //    {
+        //        //foreach (var action in actions)
+        //        //{
+        //        //    action.ChangeGameState(gameState, null, null);
+        //        //}
+
+        //        //foreach (var condition in conditions)
+        //        //{
+        //        //    condition.CheckAndUpdate(gameState);
+        //        //}
+
+        //    } while (QueryGameState.IsGameFinished(gameState) == false);
+
+
+        //    // Given
+        //    GameManagerInternalsBuilder builder = new GameManagerInternalsBuilder();
+
+        //    List<ICreateGameRulesCommand> commands = new List<ICreateGameRulesCommand>()
+        //    {
+        //        new SelectGame(), new SetDeck()
+        //    };
+
+        //    List<string> arguments = new List<string>() { "eye", "KH,KH,KH,KH" };
+
+        //    for (int i = 0; i < commands.Count; i++)
+        //    {
+        //        commands[i].ChangeGameRuleset(builder, arguments[i]);
+        //    }
+
+        //    //PlayedGameRules rules = builder.ConstructRuleset();
+        //    //GameState gameState = builder.ConstructGameState();
+
+        //    ////when
+        //    //for (int i = 0; i < 5; i++)
+        //    //{
+        //    //    new DrawSingleCardAction().ChangeGameState(gameState,rules,orderParams);
+        //    //}
+
+        //    Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 4);
+
+        //    IGameAction action = new GuessCardAction();
+
+        //    // When
+        //    // First guess is 2S (black), should come a red card, so should be a miss
+        //    action.ChangeGameState(gameState, rules, "2S");
+
+        //    // Then
+        //    Assert.IsTrue(gameState["Guess"] as bool? == false);
+
+        //    // When
+        //    // Second guess is 10H (red), should come a red card, so should be a hit
+        //    action.ChangeGameState(gameState, rules, "10H");
+
+        //    // Then
+        //    Assert.IsTrue(gameState["Guess"] as bool? == true);
+
+        //}
     }
 
 }

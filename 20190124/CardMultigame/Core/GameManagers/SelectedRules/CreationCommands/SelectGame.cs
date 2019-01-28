@@ -17,11 +17,23 @@ namespace Core.Containers.GameRules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
+            if (parameters == "GuessACard")
+            {
+                builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
+                builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
+                builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
+                builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
+            }
+
+            else if ( parameters == "eye")
+            {
+                builder.SetCardComparisonStrategy(new PointsCardComparsionStrategy());
+                builder.SetAvailableActions(new List<IGameAction>() { new DrawSingleCardAction() });
+                builder.SetGameStopConditions(new List<IGameCondition>() { new IsItMoreThan21() });
+                builder.SetVictoryConditions(new List<IGameCondition>() { new IsItMoreThan21() });
+            }
             builder.SetName(parameters);
-            builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
-            builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
-            builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
-            builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
+            
         }
 
         public bool ShouldReactTo(string outerCommandName)

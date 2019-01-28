@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.Containers.GameRules;
 using Core.Entities.Decks;
 using Core.Entities.GameStates;
+using Core.Usecases.CardComparison;
 using Core.Usecases.InfluenceState;
 
 namespace Core.Usecases.GameActions
@@ -22,12 +23,29 @@ namespace Core.Usecases.GameActions
             //}
 
             CardDeck modifiedDeck = QueryGameState.ExtractCardDeck(currentGameState);
-            modifiedDeck.DrawRandomCard();
 
-            if (modifiedDeck.CardsLeft() == 0)
-                currentGameState["Guess"] = true;
-            else
-                currentGameState["Guess"] = false;
+            PointsCardComparsionStrategy countPoints = new PointsCardComparsionStrategy();
+            
+
+            if (orderParams == "eye")
+            {
+                int points = (int)currentGameState[GameStateKeys.CurrentTurn];
+                points += countPoints.CompareForPoints(modifiedDeck.DrawLastAddedCard(), orderParams);
+
+                currentGameState[GameStateKeys.CurrentTurn] = points;
+
+            }
+            else if (orderParams == null)
+            {
+                
+                modifiedDeck.DrawRandomCard();
+
+                if (modifiedDeck.CardsLeft() == 0)
+                    currentGameState["Guess"] = true;
+                else
+                    currentGameState["Guess"] = false;
+            }
+            
 
 
         }

@@ -34,6 +34,18 @@ namespace Core.Entities.GameStates
             return constructedState;
         }
 
+        public GameState Eye()
+        {
+            return new GameState()
+            {
+                { GameStateKeys.CardDeck, new CardDeckFactory().EyeDeck() },
+                { GameStateKeys.CurrentTurn, 0 },
+                { GameStateKeys.MaxTurns, 21 },
+                { GameStateKeys.IsGameLost, false },
+                { GameStateKeys.IsGameWon, false }
+            };
+        }
+
         public GameState Default()
         {
             return new GameState()

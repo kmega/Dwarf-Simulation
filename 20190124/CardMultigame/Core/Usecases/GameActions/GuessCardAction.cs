@@ -18,7 +18,12 @@ namespace Core.Usecases.GameActions
 
         public void ChangeGameState(GameState currentGameState, PlayedGameRules rules, string orderParams)
         {
-            //if (rules.CardComparator ) 
+            if (rules.CardComparator().AreTheSame(QueryGameState.ExtractCardDeck(currentGameState).DrawRandomCard(), new CardFactory().CreateSingle(orderParams)))
+            {
+                currentGameState["Guess"] = true;
+            }
+            else
+                currentGameState["Guess"] = false;
 
         }
 
