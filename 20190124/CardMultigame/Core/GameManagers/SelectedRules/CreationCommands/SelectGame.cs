@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Core.Usecases.GameActions;
 using Core.Entities.Games.Guessing;
 using Core.Entities.Games;
+using Core.Usecases.CardComparison;
+using Core.Usecases.GameConditions;
 
 namespace Core.Containers.GameRules.CreationCommands
 {
@@ -15,7 +17,11 @@ namespace Core.Containers.GameRules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
-            throw new NotImplementedException("Implement this for T210 BuilderRevealsItself");
+            builder.SetName(parameters);
+            builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
+            builder.SetAvailableActions(new List<IGameAction>() { new GuessCardAction() });
+            builder.SetGameStopConditions(new List<IGameCondition>() { new DidTurnsExpire() });
+            builder.SetVictoryConditions(new List<IGameCondition>() { new DidGuessACard() });
         }
 
         public bool ShouldReactTo(string outerCommandName)

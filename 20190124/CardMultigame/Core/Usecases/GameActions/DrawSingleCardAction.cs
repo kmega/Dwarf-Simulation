@@ -24,7 +24,10 @@ namespace Core.Usecases.GameActions
             CardDeck modifiedDeck = QueryGameState.ExtractCardDeck(currentGameState);
             modifiedDeck.DrawRandomCard();
 
-            currentGameState["Guess"] = true;
+            if (modifiedDeck.CardsLeft() == 0)
+                currentGameState["Guess"] = true;
+            else
+                currentGameState["Guess"] = false;
 
 
         }
