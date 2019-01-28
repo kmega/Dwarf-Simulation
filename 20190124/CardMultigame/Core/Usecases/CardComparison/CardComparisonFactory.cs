@@ -28,7 +28,7 @@ namespace Core.Usecases.CardComparison
 
         public ICardComparisonStrategy None()
         {
-            throw new NotImplementedException("Test 107");
+            return new StrictCardComparisonStrategy();
         }
     }
 }
