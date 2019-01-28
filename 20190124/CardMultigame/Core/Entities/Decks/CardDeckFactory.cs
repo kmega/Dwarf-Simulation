@@ -23,7 +23,28 @@ namespace Core.Entities.Decks
             List<string> ranks = new List<string>() { "9", "10", "J", "Q", "K", "A" };
             List<string> colours = new List<string>() { "S", "H", "D", "C" };
 
+            List<Card> cards = AddCards(ranks, colours);
+
+            return new CardDeck(_selectedCardSelector, cards);
+        }
+
+        public CardDeck Simple2ToAWith4Colours()
+        {
+            CardDeck cardDeck = Simple9ToAWith4Colours();
+
+            List<string> ranks = new List<string>() { "2", "3", "4", "5", "6", "7", "8" };
+            List<string> colours = new List<string>() { "S", "H", "D", "C" };
+
+            List<Card> cards = AddCards(ranks, colours);
+            cards.AddRange(cardDeck.AllCards());
+
+            return new CardDeck(_selectedCardSelector, cards);
+        }
+
+        private List<Card> AddCards(List<string> ranks, List<string> colours)
+        {
             List<Card> cards = new List<Card>();
+
             foreach (var rank in ranks)
             {
                 foreach (var colour in colours)
@@ -34,12 +55,7 @@ namespace Core.Entities.Decks
                 }
             }
 
-            return new CardDeck(_selectedCardSelector, cards);
-        }
-
-        public CardDeck Simple2ToAWith4Colours()
-        {
-            throw new NotImplementedException("Implement this for T109 Different creation methods");
+            return cards;
         }
 
         public CardDeck Empty()
@@ -52,7 +68,7 @@ namespace Core.Entities.Decks
         /// </summary>
         public void SetCardSelector(ICardSelector selector)
         {
-            throw new NotImplementedException("Implement this for T113 Reconfigure selector");
+            _selectedCardSelector = selector;
         }
 
     }

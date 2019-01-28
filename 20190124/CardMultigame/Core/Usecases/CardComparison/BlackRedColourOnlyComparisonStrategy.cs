@@ -11,7 +11,31 @@ namespace Core.Usecases.CardComparison
     {
         public bool AreTheSame(Card card1, Card card2)
         {
-            throw new NotImplementedException("Test 103");
+            switch (card1.Colour())
+            {
+                case "S":
+                case "C":
+                    switch (card2.Colour())
+                    {
+                        case "S":
+                        case "C":
+                            return true;
+                        default:
+                            return false;
+                    }
+                case "H":
+                case "D":
+                    switch (card2.Colour())
+                    {
+                        case "H":
+                        case "D":
+                            return true;
+                        default:
+                            return false;
+                    }
+                default:
+                    return false;
+            }
         }
     }
 }

@@ -18,7 +18,18 @@ namespace Core.Usecases.GameActions
 
         public void ChangeGameState(GameState currentGameState, PlayedGameRules rules, string orderParams)
         {
-            throw new NotImplementedException("Implement this. T212, GuessingACard command");
+            CardFactory factory = new CardFactory();
+            CardDeck deck = QueryGameState.ExtractCardDeck(currentGameState);
+            Card card1 = deck.DrawRandomCard(), card2 = factory.CreateSingle(orderParams);
+
+            if (rules.CardComparator().AreTheSame(card1, card2))
+            {
+                currentGameState["Guess"] = true;
+            }
+            else
+            {
+                currentGameState["Guess"] = false;
+            }
         }
 
         public bool ShouldReactTo(string orderName)

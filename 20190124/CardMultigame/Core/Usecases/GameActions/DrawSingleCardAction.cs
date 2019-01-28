@@ -13,7 +13,13 @@ namespace Core.Usecases.GameActions
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            throw new NotImplementedException("Implement this for T201 and I guess change it in T205 too.");
+            var deck = QueryGameState.ExtractCardDeck(currentGameState);
+            deck.DrawRandomCard();
+
+            if (deck.CardsLeft() == 0)
+            {
+                currentGameState["Guess"] = true;
+            }
         }
 
         public bool ShouldReactTo(string item1)

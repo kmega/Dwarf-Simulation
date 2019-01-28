@@ -18,17 +18,17 @@ namespace Core.Entities.Games
 
         public List<IGameAction> AvailableActions()
         {
-            throw new NotImplementedException("Implement this for T209 GuessACardGame was a strategy!");
+            return new List<IGameAction> { new GuessCardAction() };
         }
 
         public List<IGameCondition> GameStopConditions()
         {
-            throw new NotImplementedException("Implement this for T209 GuessACardGame was a strategy!");
+            return new List<IGameCondition> { new DidTurnsExpire() };
         }
 
         public List<IGameCondition> VictoryConditions()
         {
-            throw new NotImplementedException("Implement this for T209 GuessACardGame was a strategy!");
+            return new List<IGameCondition> { new DidGuessACard() };
         }
 
         public GameState InitialGameState()
@@ -46,7 +46,7 @@ namespace Core.Entities.Games
 
         public ICardComparisonStrategy CardComparisonStrategy()
         {
-            throw new NotImplementedException("Implement this for T108 Strategy for the future");
+            return new StrictCardComparisonStrategy();
         }
     }
 }

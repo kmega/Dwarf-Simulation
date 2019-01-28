@@ -10,7 +10,29 @@ namespace Core.Usecases.GameActions
     {
         public List<IGameAction> HavingOrders(string actionsToPerform)
         {
-            throw new NotImplementedException("Implement this for T204 Factorize me");
+            List<IGameAction> orders = new List<IGameAction>();
+
+            foreach (var action in actionsToPerform.Split(','))
+            {
+                orders.Add(CreateAction(action.Trim()));
+            }
+
+            return orders;
+        }
+
+        private IGameAction CreateAction(string action)
+        {
+            switch (action)
+            {
+                case "drawSingleCard":
+                    return new DrawSingleCardAction();
+                case "addQH":
+                    return new AddQueenOfHeartsToDeck();
+                case "add10cOrDraw":
+                    return new Add10COrDrawACard();
+                default:
+                    return null;
+            }
         }
     }
 }

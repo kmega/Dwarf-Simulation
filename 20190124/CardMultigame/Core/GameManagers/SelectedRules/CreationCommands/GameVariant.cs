@@ -17,7 +17,9 @@ namespace Core.Containers.GameManagers.Rules.CreationCommands
 
         public void ChangeGameRuleset(GameManagerInternalsBuilder builder, string parameters)
         {
-            // Implement this. T211, GloryOfDeferredConstruction
+            CardComparisonFactory factory = new CardComparisonFactory();
+
+            builder.SetCardComparisonStrategy(factory.Create(parameters));
         }
 
         public bool ShouldReactTo(string outerCommandName)
