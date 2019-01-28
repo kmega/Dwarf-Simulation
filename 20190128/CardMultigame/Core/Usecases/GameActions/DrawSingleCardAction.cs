@@ -13,7 +13,7 @@ namespace Core.Usecases.GameActions
     {
         public void ChangeGameState(GameState currentGameState, PlayedGameRules gameRules, string orderParams)
         {
-            QueryGameState.ExtractCardDeck(currentGameState).DrawRandomCard();
+            QueryGameState.ExtractCardDeck(currentGameState).DrawLastAddedCard();
 
             if (QueryGameState.AmountOfCardsLeft(currentGameState) == 0)
                 currentGameState["Guess"] = true;

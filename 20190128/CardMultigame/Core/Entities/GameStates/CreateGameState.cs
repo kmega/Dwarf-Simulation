@@ -38,6 +38,8 @@ namespace Core.Entities.GameStates
         {
             return new GameState()
             {
+                {GameStateKeys.CurrentCardsValuse, 0},
+                //
                 { GameStateKeys.CardDeck, new CreateCardDeck().Empty()},
                 { GameStateKeys.CurrentTurn, 0 },
                 { GameStateKeys.MaxTurns, 0 },

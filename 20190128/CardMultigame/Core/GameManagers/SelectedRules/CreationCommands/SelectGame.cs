@@ -40,6 +40,11 @@ namespace Core.Containers.GameRules.CreationCommands
                 gameImpl = new GuessACardGame();
             }
 
+            if (parameters.ToLower() == "Blackjack".ToLower())
+            {
+                gameImpl = new BlackjackGame();
+            }
+
             if (gameImpl == null) throw new ArgumentException("Either the game is not registered in factory or game identifier has a typo. Got: " + parameters);
 
             return gameImpl;
