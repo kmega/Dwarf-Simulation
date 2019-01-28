@@ -1,0 +1,6 @@
+Fabryka dla tworzenia obiektów w grze statki -> lepszy uk³ad projektu co zwiêksza czytelnoœæ jeœli ktoœ zna 
+metodykê (wie co powinno byæ w fabryce)
+
+Strategia - wyeksportowanie do klasy(obiekt) nie trzeba znaæ typu obiektu, a mozna po³¹czyæ po interfejsie
+
+Builder, Factory, Strategia, Command, 
