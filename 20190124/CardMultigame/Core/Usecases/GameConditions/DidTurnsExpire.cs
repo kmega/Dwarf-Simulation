@@ -15,7 +15,14 @@ namespace Core.Usecases.GameConditions
     {
         public void CheckAndUpdate(GameState currentGameState)
         {
-            throw new NotImplementedException("Implement this for T208 WinCondition, LossCondition");
+            if (QueryGameState.CurrentTurn(currentGameState) >= QueryGameState.MaximumTurns(currentGameState)) 
+         
+                ModifyGameState.DeclareGameToBeLost(currentGameState);
+
+            //*DidGuessACard is supposed to set victory(ModifyGameState.DeclareGameToBeWon) IF 'Guess' is true.
+            //// * DidTurnsExpire is supposed to set a loss (ModifyGameState.DeclareGameToBeLost) IF currentTurn >= maxTurns.
+
+            //throw new NotImplementedException("Implement this for T208 WinCondition, LossCondition");
         }
     }
 }
