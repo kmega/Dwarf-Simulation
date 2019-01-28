@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalSimulator", "AnimalSimulator\AnimalSimulator.csproj", "{E6CE8651-7087-4545-97D8-37C772EAA944}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimalPresentionTests", "AnimalPresentionTests\AnimalPresentionTests.csproj", "{5BFAF896-865F-428B-A91E-535BEF70A847}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E6CE8651-7087-4545-97D8-37C772EAA944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6CE8651-7087-4545-97D8-37C772EAA944}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6CE8651-7087-4545-97D8-37C772EAA944}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6CE8651-7087-4545-97D8-37C772EAA944}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BFAF896-865F-428B-A91E-535BEF70A847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BFAF896-865F-428B-A91E-535BEF70A847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BFAF896-865F-428B-A91E-535BEF70A847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BFAF896-865F-428B-A91E-535BEF70A847}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {21B507AA-D8E2-4CD1-899E-E4CDC01C335B}
+	EndGlobalSection
+EndGlobal
