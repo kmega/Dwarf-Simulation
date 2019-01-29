@@ -43,7 +43,24 @@ namespace CoreTests
 
             Assert.IsTrue(result.Contains("[CurrentTurnNumber, 0]"));
             Assert.IsTrue(result.Contains("[MaximumTurns, 5]"));
+        }
 
+        [Test]
+        public void WithBaseBlackjackVariantHasProperSetup()
+        {
+            // Given
+            string input = "SETUP dog; Play Blackjack;";
+
+            var dispatcher = new UiLogicDispatcher();
+
+            // When
+            dispatcher.SetupGame(input);
+
+            // Then
+            string result = dispatcher.DisplayCurrentState();
+
+            Assert.IsTrue(result.Contains("[CurrentTurnNumber, 0]"));
+            Assert.IsTrue(result.Contains("[MaximumTurns, 20]"));
         }
 
     }
