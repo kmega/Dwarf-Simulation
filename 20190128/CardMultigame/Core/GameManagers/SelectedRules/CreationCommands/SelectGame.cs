@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Core.Usecases.GameActions;
 using Core.Entities.Games.Guessing;
 using Core.Entities.Games;
+using Core.Entities.Games.Oczko;
 
 namespace Core.Containers.GameRules.CreationCommands
 {
@@ -38,6 +39,10 @@ namespace Core.Containers.GameRules.CreationCommands
             if (parameters.ToLower() == "GuessACard".ToLower())
             {
                 gameImpl = new GuessACardGame();
+            }
+            else if (parameters.ToLower() == "BlackJack".ToLower())
+            {
+                gameImpl = new BlackJackGame();
             }
 
             if (gameImpl == null) throw new ArgumentException("Either the game is not registered in factory or game identifier has a typo. Got: " + parameters);
