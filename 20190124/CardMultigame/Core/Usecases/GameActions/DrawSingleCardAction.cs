@@ -24,19 +24,8 @@ namespace Core.Usecases.GameActions
 
             CardDeck modifiedDeck = QueryGameState.ExtractCardDeck(currentGameState);
 
-            PointsCardComparsionStrategy countPoints = new PointsCardComparsionStrategy();
             
-
-            if (orderParams == "eye")
-            {
-                int points = (int)currentGameState[GameStateKeys.CurrentTurn];
-                points += countPoints.CompareForPoints(modifiedDeck.DrawLastAddedCard(), orderParams);
-
-                currentGameState[GameStateKeys.CurrentTurn] = points;
-
-            }
-            else if (orderParams == null)
-            {
+            
                 
                 modifiedDeck.DrawRandomCard();
 
@@ -44,7 +33,7 @@ namespace Core.Usecases.GameActions
                     currentGameState["Guess"] = true;
                 else
                     currentGameState["Guess"] = false;
-            }
+            
             
 
 

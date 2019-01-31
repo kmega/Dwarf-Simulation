@@ -11,16 +11,24 @@ namespace Core.Usecases.GameConditions
     {
         public void CheckAndUpdate(GameState currentGameState)
         {
-
-            if ((int)currentGameState[GameStateKeys.CurrentTurn] >= (int)currentGameState[GameStateKeys.MaxTurns])
+            try
             {
-                ModifyGameState.DeclareGameToBeLost(currentGameState);
-            }
+                if ((int)currentGameState[GameStateKeys.CurrentTurn] >= (int)currentGameState[GameStateKeys.MaxTurns] && (bool)currentGameState["IsGameLost"] == true)
+                {
+                    ModifyGameState.DeclareGameToBeLost(currentGameState);
+                }
 
-            if ((int)currentGameState[GameStateKeys.CurrentTurn] == (int)currentGameState[GameStateKeys.MaxTurns])
-            {
-                ModifyGameState.DeclareGameToBeWon(currentGameState);
+                if ((int)currentGameState[GameStateKeys.CurrentTurn] == (int)currentGameState[GameStateKeys.MaxTurns] || (bool)currentGameState["IsGameWon"] == true)
+                {
+                    ModifyGameState.DeclareGameToBeWon(currentGameState);
+                }
             }
+            catch (Exception)
+            {
+
+                
+            }
+            
         }
     }
 }

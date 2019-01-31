@@ -37,6 +37,10 @@ namespace Core.Usecases.GameActions
                     return new AddQueenOfHeartsToDeck();
                 case "add10cOrDraw":
                     return new Add10COrDrawACard();
+                case "draw_bj":
+                    return new Draw_BlackJack();
+                case "pass_bj":
+                    return new Pass_BlackJack();
                 default:
                     return null;
             }
