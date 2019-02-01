@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Core.Entities.GameStates;
+using Core.Usecases.InfluenceState;
+
+namespace Core.Usecases.GameConditions
+{
+    /// <summary>
+    /// If there exists a 'Guess' key in the gameState AND the value is true, 
+    /// declare game has been won.
+    /// </summary>
+    public class BlackjackVictory : IGameCondition
+    {
+        public void CheckAndUpdate(GameState currentGameState)
+        {
+            //throw new NotImplementedException("Implement this for T208 WinCondition, LossCondition");
+            if (currentGameState["Pass"] as bool? == true)
+                if (currentGameState["Points"] as int? > 21)
+                    ModifyGameState.DeclareGameToBeWon(currentGameState);
+        }
+    }
+}

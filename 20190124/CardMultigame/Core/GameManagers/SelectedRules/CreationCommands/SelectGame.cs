@@ -29,6 +29,14 @@ namespace Core.Containers.GameRules.CreationCommands
                     builder.SetMaxTurns(5);
                     builder.SetCardComparisonStrategy(new StrictCardComparisonStrategy());
                     break;
+                case "Blackjack":
+                    builder.SetAvailableActions(new List<IGameAction>() { new BlackjackDrawAction(), new BlackjackPassAction() });
+                    builder.SetInitialGameState(new GameState());
+                    builder.SetVictoryConditions(new List<IGameCondition>() { new BlackjackVictory() });
+                    builder.SetGameStopConditions(new List<IGameCondition>() { new BlackjackGameStop() });
+                    builder.SetMaxTurns(20);
+                    builder.SetCardComparisonStrategy(null);
+                    break;
             }
         }
 
@@ -44,6 +52,11 @@ namespace Core.Containers.GameRules.CreationCommands
             if (parameters.ToLower() == "GuessACard".ToLower())
             {
                 gameImpl = new GuessACardGame();
+            }
+
+            if (parameters.ToLower() == "Blackjack".ToLower())
+            {
+                gameImpl = new BlackjackGame();
             }
 
             if (gameImpl == null) throw new ArgumentException("Either the game is not registered in factory or game identifier has a typo. Got: " + parameters);
