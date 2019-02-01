@@ -1,4 +1,4 @@
-// **Input**: cztery drzewa z gwarancją tego samego roota ("Świat")
+﻿// **Input**: cztery drzewa z gwarancją tego samego roota ("Świat")
 
 
 1. Świat
