@@ -574,14 +574,14 @@ namespace TrainingTests
         public void T_214_EyeGame()
         {
             // Given
-            GameState gameState = new GameStateFactory().DefaultsWithFullDeck();
+            GameState gameState = new GameStateFactory().Eye();
 
             string actionsToPerform = "draw_bj, draw_bj, draw_bj, draw_bj";
             List<IGameAction> actions = new GameActionsFactory().HavingOrders(actionsToPerform);
 
             List<IGameCondition> conditions = new List<IGameCondition>()
             {
-                new IsItMoreThan21(), new IsItMoreThan21()
+                new IsItMoreThan21(), new IsItMoreThan21(), new IsItMoreThan21(), new IsItMoreThan21()
             };
 
             // When
@@ -620,12 +620,12 @@ namespace TrainingTests
             gameState = builder.ConstructGameState();
 
             //when
-            for (int i = 0; i < 5; i++)
+            for (int i = 0; i < 3; i++)
             {
                 new Draw_BlackJack().ChangeGameState(gameState, rules, orderParams);
             }
 
-            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 4);
+            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 1);
 
             IGameAction action = new Draw_BlackJack();
 
@@ -641,7 +641,7 @@ namespace TrainingTests
             action.ChangeGameState(gameState, rules, "eye");
 
             // Then
-            Assert.IsTrue(gameState["Guess"] as bool? == true);
+            Assert.IsTrue(gameState["IsGameLost"] as bool? == true);
 
         }
     }
