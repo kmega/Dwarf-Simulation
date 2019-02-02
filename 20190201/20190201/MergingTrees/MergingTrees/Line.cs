@@ -8,15 +8,27 @@ namespace MergingTrees
         {
             public string Name { get; set; }
             public int SpaceCout { get; set; }
-            public string Parent { get; set; }
-            public List<string> ParentList { get; set; }
+            public Parent Parent { get; set; }
+            public List<Parent> ParentList { get; set; }
 
-            public Line(string name, int spaceCout, string Parent)
+            public Line(string name, int spaceCout, string parent)
             {
                 Name = name;
                 SpaceCout = spaceCout;
-                this.Parent = Parent;
+                this.Parent = new Parent(parent, spaceCout);
             }
+        }
+    }
+
+    public class Parent
+    {
+        public string parent;
+        public int spaceCout;
+
+        public Parent(string parent, int spaceCout)
+        {
+            this.parent = parent;
+            this.spaceCout = spaceCout;
         }
     }
 }

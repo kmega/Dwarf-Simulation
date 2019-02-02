@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,22 +16,43 @@ namespace MergingTrees
             var SecondTree = "1. Świat\n    1. Primus\n        1. Astoria, Asteroidy".Split("\n").ToList();
             var ThirdTree = "1. Świat\n    1. Primus\n        1. Astoria\n            1. Szczeliniec\n                1. Powiat Pustogorski\n                    1. Zaczęstwo\n                        1. Kasyno Marzeń\n                        1. Szkoła Magów".Split("\n").ToList();
 
+            List<Line> FirstTreeObj = new LineManager().CreateAllLineObjects(FirstTree);
+            List<Line> SecondTreeObj = new LineManager().CreateAllLineObjects(SecondTree);
 
-            List<string> ListOfParents = new List<string>();
+            List<Line> temp12 = FirstTreeObj.Concat(SecondTreeObj).ToList();
 
-            List<Line> FirstTreeObj = new LineManager().CreateAllLineObjects(FirstTree, ListOfParents);
+            var distinctItems = temp12.GroupBy(x => x.Name).Select(y => y.First());
 
-            List<Line> SecondTreeObj = new LineManager().CreateAllLineObjects(SecondTree, ListOfParents);
 
-            List<Line> ThirdTreeObj = new LineManager().CreateAllLineObjects(ThirdTree, ListOfParents);
-
-            var temp2 = FirstTreeObj.Union(ThirdTreeObj).ToList();
-            var final = temp2.GroupBy(x => x.ParentList).Select(x => x.First()).ToList();
-            var final2 = final.GroupBy(x => x.Name).Select(x => x.First()).ToList();
-
-            foreach (var item in final2)
+            foreach (var item in distinctItems)
             {
                 Console.WriteLine(item.Name);
+            }
+        }
+
+        class MethodComparer : IEqualityComparer<Line>
+        {
+            public bool Equals(Line x, Line y)
+            {
+                if (Object.ReferenceEquals(x, y)) return true;
+
+                if (Object.ReferenceEquals(x, null) ||
+                    Object.ReferenceEquals(y, null))
+                    return false;
+
+                return x.Name == y.Name && x.ParentList.SequenceEqual(y.ParentList);
+            }
+
+            public int GetHashCode(Line line)
+            {
+                if (Object.ReferenceEquals(line, null)) return 0;
+
+                int hashID = line.Name == null
+                    ? 0 : line.Name.GetHashCode();
+
+                int hashName = line.ParentList.GetHashCode();
+
+                return hashID ^ hashName;
             }
         }
 
@@ -38,22 +60,43 @@ namespace MergingTrees
         {
             List<Line> ListOfLines = new List<Line>();
             LineCreator lineCreator = new LineCreator();
+            List<Parent> ListOfParents = new List<Parent>();
 
-            public List<Line> CreateAllLineObjects(List<string> tList, List<string> ListOfParents)
+            public List<Line> CreateAllLineObjects(List<string> tList)
             {
-                foreach (var item in tList)
-                {
-                    var TemporaryLine = lineCreator.CreateSingleLine(item);
-                    int size = ListOfParents.Count - 1;
+                int topDepth;
 
-                    if (TemporaryLine.SpaceCout != ListOfParents.Count-1)
+                for (int i = 0; i < tList.Count; i++)
+                {
+                    var TemporaryLine = lineCreator.CreateSingleLine(tList[i]);
+
+                    if (ListOfLines.Any())
+                        topDepth = ListOfLines.Max(x => x.SpaceCout);
+                    else topDepth = 0;
+
+                    if(TemporaryLine.SpaceCout > topDepth)
                     {
                         ListOfParents.Add(TemporaryLine.Parent);
+                        TemporaryLine.ParentList = new List<Parent>(ListOfParents);
+                        TemporaryLine.ParentList.Reverse();
+                        TemporaryLine.ParentList.RemoveAt(0);
+
                     }
 
-                    TemporaryLine.ParentList = new List<string>(ListOfParents);
-                    TemporaryLine.ParentList.RemoveAt(TemporaryLine.ParentList.Count - 1);
-                    TemporaryLine.ParentList.Reverse();
+                    if (TemporaryLine.SpaceCout < topDepth || TemporaryLine.SpaceCout == topDepth)
+                    {
+                        var tempParentList = new List<Parent>(ListOfParents);
+                        var correctParrentList = tempParentList.Where(x => 
+                                                                        x.spaceCout < topDepth && 
+                                                                        x.spaceCout != topDepth-1)
+                                                                        .ToList();
+                        TemporaryLine.ParentList = new List<Parent>(correctParrentList);
+                        TemporaryLine.ParentList.Reverse();
+                        if(TemporaryLine.ParentList.Count > 1)
+                            TemporaryLine.ParentList.RemoveAt(0);
+                    }
+
+
                     ListOfLines.Add(TemporaryLine);
                 }
 
@@ -73,5 +116,10 @@ namespace MergingTrees
                 return line.Replace("1.", "").Trim();
             }
         }
+
     }
 }
+
+
+
+
