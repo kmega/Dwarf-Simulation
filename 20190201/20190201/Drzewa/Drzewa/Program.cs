@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Drzewa
 {
@@ -8,25 +9,36 @@ namespace Drzewa
         static void Main(string[] args)
         {
             List<Location> lista = new List<Location>();
-          
+
             string test = "Świat|" +
                 " Primus|" +
                 "  Astoria|" +
-                "   Szczeliniec|" +
-                "    Powiat Pustogórski|" +
-                "     Pustogor|" +
-                "      Gabinet Pięknotki|" +
-                "     Zaczęstwo|" +
-                "      Cyberszkoła|" +
-                "      Osiedle Ptasie|" +
-                "     Trzęsawisko Zjawosztup|" +
-                "      Głodna Ziemia";
-            string test2 = "Świat| Estrinus";
-           string  test3 = "Świat| Estrinus";
+                "   Szczeliniec|"+
+            "    Powiat Pustogórski|" +
+            "     Pustogor|" +
+            "      Gabinet Pięknotki|" +
+            "     Zaczęstwo|" +
+            "      Cyberszkoła|" +
+            "      Osiedle Ptasie|" +
+            "     Trzęsawisko Zjawosztup|" +
+            "      Głodna Ziemia";
+            string test2 = "Świat| Primus|  Astoria, Asteroidy";
+            string test3 = "Świat|" +
+                 " Primus|" +
+                 "  Astoria|" +
+            "   Szczeliniec|" +
+            "    Powiat Pustogórski|" +
+            "     Zaczęstwo|" +
+            "      Kasyno Marzeń|" +
+            "      Szkoła Magów";
+            string test4 = "Świat|" +
+                " Esuriit|" +
+                "  Astoria|" +
+                "   Szczeliniec";
 
 
 
-           string[] parse = test.Split('|');
+            string[] parse = test.Split('|');
             for (int i = 0; i < parse.Length; i++)
             {
                 Location temp = new Location(parse[i],parse, i);
@@ -40,7 +52,7 @@ namespace Drzewa
                 {
                     for (int j=0;j<lista.Count;j++)
                       
-                        if (!(lista.Exists(k => k.name == temp.name)))
+                        if (!(lista.Exists(k => (k.name == temp.name)&&(k.path==temp.path))))
                         {
                             lista.Add(temp);
                         }
@@ -56,9 +68,9 @@ namespace Drzewa
                 Location temp = new Location(parse[i], parse, i);
 
                     for (int j=0;j<lista.Count;j++)
-                      
-                        if (!(lista.Exists(k => k.name == temp.name)))
-                        {
+
+                    if (!(lista.Exists(k => (k.name == temp.name) && (k.path == temp.path))))
+                    {
                             lista.Add(temp);
                         }
 
@@ -74,17 +86,33 @@ namespace Drzewa
                 
                     for (int j = 0; j < lista.Count; j++)
 
-                        if (!(lista.Exists(k => k.name == temp.name)))
-                        {
+                    if (!(lista.Exists(k => (k.name == temp.name) && (k.path == temp.path))))
+                    {
                             lista.Add(temp);
                         }
                 
             }
 
-            
-           foreach (var item in lista)
+
+            parse = test4.Split('|');
+            for (int i = 0; i < parse.Length; i++)
             {
-                Console.WriteLine(item.depth + " " + item.name + "     " + item.path);
+                Location temp = new Location(parse[i], parse, i);
+
+
+                for (int j = 0; j < lista.Count; j++)
+
+                    if (!(lista.Exists(k => (k.name == temp.name) && (k.path == temp.path))))
+                    {
+                        lista.Add(temp);
+                    }
+
+            }
+
+            lista = lista.OrderBy(i => i.path).ToList();
+            foreach (var item in lista)
+            {
+                Console.WriteLine(item.ToString());
                     
             }
 
