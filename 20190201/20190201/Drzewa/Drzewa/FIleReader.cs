@@ -11,8 +11,8 @@ namespace Drzewa
 	{
 		public List<string> ReadFromFile(string path)
 		{
-			List<string> listOfAllFile = new List<string>();
-			return listOfAllFile = File.ReadAllLines(path).ToList();
+			List<string> listOfAllFile = File.ReadAllLines(path).ToList();
+			return listOfAllFile;
 		}
 	}
 }

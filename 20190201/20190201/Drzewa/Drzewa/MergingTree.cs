@@ -17,7 +17,7 @@ namespace Drzewa
 					mainTree.Add(record);
 				} 
 			}
-			return mainTree;
+			return mainTree.OrderBy(x => x._path).ToList();
 		}
 	}
 }

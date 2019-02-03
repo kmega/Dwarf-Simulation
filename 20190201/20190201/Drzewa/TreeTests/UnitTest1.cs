@@ -64,5 +64,46 @@ namespace Tests
 			//then
 			Assert.AreEqual(RecordListTest.Count, 12);
 		}
+
+		[Test]
+		public void DepthShouldBe10()
+		{
+			//given
+			List<string> drzewo1 = new List<string>()
+			{
+				"          1. NazwaTestowa"
+			};
+			//when
+			List<Record> TestRecordList = new TreeFactory().CreateTreeOfRecords(drzewo1);
+			int resultDepth = TestRecordList[0]._depth;
+			//then
+			Assert.AreEqual(10, resultDepth);
+		}
+
+		[Test]
+		public void Merging2simpleTreesAfterMergeTree1ShouldHave3Records()
+		{
+			//given
+			List<string> drzewo1 = new List<string>()
+			{
+				"1. SwiatTestowy",
+				"    1. KontynentTestowy"
+			};
+			List<string> drzewo2 = new List<string>()
+			{
+				"1. SwiatTestowy",
+				"    1. KontynentTestowy",
+				"        1. MiastoTestowe"
+			};
+			TreeFactory rf = new TreeFactory();
+			List<Record> tree1 = rf.CreateTreeOfRecords(drzewo1);
+			List<Record> tree2 = rf.CreateTreeOfRecords(drzewo2);
+
+			//when
+			tree1 = new MergingTree().MergeTwoTrees(tree1, tree2);
+			int result = tree1.Count;
+			//then
+			Assert.AreEqual(3, result);
+		}
 	}
 }

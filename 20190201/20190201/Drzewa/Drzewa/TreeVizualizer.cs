@@ -10,7 +10,6 @@ namespace Drzewa
 	{
 		public void ShowTreeOfRecordsOnConsole(List<Record> treeToShow)
 		{
-			treeToShow = treeToShow.OrderBy(x => x._path).ToList();
 			foreach (Record record in treeToShow)
 			{
 				for (int i = 0; i < record._depth; i++)
