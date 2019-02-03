@@ -18,41 +18,28 @@ namespace MergingTrees
 
             List<Line> FirstTreeObj = new LineManager().CreateAllLineObjects(FirstTree);
             List<Line> SecondTreeObj = new LineManager().CreateAllLineObjects(SecondTree);
+            List<Line> ThirdTreeObj = new LineManager().CreateAllLineObjects(ThirdTree);
 
             List<Line> temp12 = FirstTreeObj.Concat(SecondTreeObj).ToList();
+            List<Line> newtemp = temp12.Concat(ThirdTreeObj).ToList();
 
-            var distinctItems = temp12.GroupBy(x => x.Name).Select(y => y.First());
+            var distinctItems = temp12.GroupBy(x => x.Name).Select(y => y.First()).ToList();
+            var newdc = newtemp.GroupBy(x => x.Name).Select(y => y.First()).ToList();
 
 
             foreach (var item in distinctItems)
             {
                 Console.WriteLine(item.Name);
             }
-        }
 
-        class MethodComparer : IEqualityComparer<Line>
-        {
-            public bool Equals(Line x, Line y)
+            Console.WriteLine();
+            Console.WriteLine();
+
+            var xd12 = newdc.OrderBy(x => x.ParentList.Count).ToList();
+
+            foreach (var item in xd12)
             {
-                if (Object.ReferenceEquals(x, y)) return true;
-
-                if (Object.ReferenceEquals(x, null) ||
-                    Object.ReferenceEquals(y, null))
-                    return false;
-
-                return x.Name == y.Name && x.ParentList.SequenceEqual(y.ParentList);
-            }
-
-            public int GetHashCode(Line line)
-            {
-                if (Object.ReferenceEquals(line, null)) return 0;
-
-                int hashID = line.Name == null
-                    ? 0 : line.Name.GetHashCode();
-
-                int hashName = line.ParentList.GetHashCode();
-
-                return hashID ^ hashName;
+                Console.WriteLine(item.Name);
             }
         }
 
