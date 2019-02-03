@@ -10,47 +10,71 @@ namespace Drzewa
 	{
 		static void Main(string[] args)
 		{
-			List<string> drzewo1 = new List<string>()
-			{
-				"1. Świat",
-				"    1. Primus",
-				"        1. Astoria",
-				"            1. Szczeliniec",
-				"                1. Powiat Pustogorski",
-				"                    1. Pustogor",
-				"                        1. Gabinet Pięknotki",
-				"                    1. Zaczęstwo",
-				"                        1. Cyberszkoła",
-				"                        1. Osiedle Ptasie",
-				"                    1. Trzęsawisko Zjawosztup",
-				"                        1. Głodna Ziemia"
-			};
-			List<Record> RecordList = new List<Record>();
+			//List<string> tree11 = new List<string>()
+			//{
+			//	"1. Świat",
+			//	"    1. Primus",
+			//	"        1. Astoria",
+			//	"            1. Szczeliniec",
+			//	"                1. Powiat Pustogorski",
+			//	"                    1. Pustogor",
+			//	"                        1. Gabinet Pięknotki",
+			//	"                    1. Zaczęstwo",
+			//	"                        1. Cyberszkoła",
+			//	"                        1. Osiedle Ptasie",
+			//	"                    1. Trzęsawisko Zjawosztup",
+			//	"                        1. Głodna Ziemia"
+			//};
 
-			for(int i=0; i < drzewo1.Count; i++)
-			{
-				int depth = 0;
-				string name = "";
-				string path = "";
+			//List<string> tree2 = new List<string>()
+			//{
+			//	"1. Świat",
+			//	"    1. Primus",
+			//	"        1. Astoria, Asteroidy"
+			//};
 
-				depth = drzewo1[i].IndexOf('1');
-				name = drzewo1[i].Substring(depth + 3);
+			//List<string> tree3 = new List<string>()
+			//{
+			//	"1. Świat",
+			//	"    1. Primus",
+			//	"        1. Astoria",
+			//	"            1. Szczeliniec",
+			//	"                1. Powiat Pustogorski",
+			//	"                    1. Zaczęstwo",
+			//	"                        1. Kasyno Marzeń",
+			//	"                        1. Szkoła Magów"
+			//};
 
-				if(i != 0)
-				{
-					for(int j = RecordList.Count; j > 0; j--)
-					{
-						if(depth > RecordList[j-1]._depth)
-						{
-							path += RecordList[j-1]._path + RecordList[j-1]._name + "|";
-							break;
-						}
-					}
-				}
+			//List<string> tree4 = new List<string>()
+			//{
+			//	"1. Świat",
+			//	"    1. Esuriit",
+			//	"        1. Astoria",
+			//	"            1. Szczeliniec"
+			//};
 
-				RecordList.Add(new Record(name, path, depth));
-			}
-			
+
+			FileReader fr = new FileReader();
+			TreeVizualizer tv = new TreeVizualizer();
+			MergingTree merge = new MergingTree();
+			TreeFactory tf = new TreeFactory();
+
+			List<string> tree1 = fr.ReadFromFile("tree1.txt");
+			List<string> tree2 = fr.ReadFromFile("tree2.txt");
+			List<string> tree3 = fr.ReadFromFile("tree3.txt");
+			List<string> tree4 = fr.ReadFromFile("tree4.txt");
+
+			var maintree = tf.CreateTreeOfRecords(tree1);
+			var recordTree2 = tf.CreateTreeOfRecords(tree2);
+			var recordTree3 = tf.CreateTreeOfRecords(tree3);
+			var recordTree4 = tf.CreateTreeOfRecords(tree4);
+
+			maintree = merge.MergeTwoTrees(maintree, recordTree2);
+			maintree = merge.MergeTwoTrees(maintree, recordTree3);
+			maintree = merge.MergeTwoTrees(maintree, recordTree4);
+
+			tv.ShowTreeOfRecordsOnConsole(maintree);
+
 			Console.ReadKey();
 		}
 	}

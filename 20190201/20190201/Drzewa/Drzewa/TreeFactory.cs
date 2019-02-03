@@ -8,8 +8,7 @@ namespace Drzewa
 {
 	public class TreeFactory
 	{
-
-		public List<Record> CreateListOfRecords(List<string> givenTree)
+		public List<Record> CreateTreeOfRecords(List<string> givenTree)
 		{
 			List<Record> RecordList = new List<Record>();
 			for (int i = 0; i < givenTree.Count; i++)
@@ -32,7 +31,6 @@ namespace Drzewa
 						}
 					}
 				}
-
 				RecordList.Add(new Record(name, path, depth));
 			}
 			return RecordList;

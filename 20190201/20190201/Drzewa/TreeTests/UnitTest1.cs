@@ -33,7 +33,7 @@ namespace Tests
 			TreeFactory rf = new TreeFactory();
 
 			//when
-			var RecordListTest = rf.CreateListOfRecords(drzewo1);
+			var RecordListTest = rf.CreateTreeOfRecords(drzewo1);
 			Record expected = new Record("G³odna Ziemia", "Œwiat|Primus|Astoria|Szczeliniec|Powiat Pustogorski|Trzêsawisko Zjawosztup|", 24);
 			//then
 			Assert.AreEqual(RecordListTest[11]._path, expected._path);
@@ -60,7 +60,7 @@ namespace Tests
 			TreeFactory rf = new TreeFactory();
 
 			//when
-			var RecordListTest = rf.CreateListOfRecords(drzewo1);
+			var RecordListTest = rf.CreateTreeOfRecords(drzewo1);
 			//then
 			Assert.AreEqual(RecordListTest.Count, 12);
 		}
