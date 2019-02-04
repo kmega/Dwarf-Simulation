@@ -571,38 +571,58 @@ namespace TrainingTests
         }
 
         [Test]
-        public void T_214_EyeGame()
+        public void T_214_EyeGame_GameIsLostYouDrawnMoreThan20()
         {
-            // Given
-            GameState gameState = new GameStateFactory().Eye();
+            //Given
+            GameManagerInternalsBuilder builder = new GameManagerInternalsBuilder();
 
-            string actionsToPerform = "draw_bj, draw_bj, draw_bj, draw_bj";
-            List<IGameAction> actions = new GameActionsFactory().HavingOrders(actionsToPerform);
-
-            List<IGameCondition> conditions = new List<IGameCondition>()
+            List<ICreateGameRulesCommand> commands = new List<ICreateGameRulesCommand>()
             {
-                new IsItMoreThan21(), new IsItMoreThan21(), new IsItMoreThan21(), new IsItMoreThan21()
+                new SelectGame(), new SetDeck()
             };
 
+            List<string> arguments = new List<string>() { "eye", "KH,KH,KH,KH" };
+
+            for (int i = 0; i < commands.Count; i++)
+            {
+                commands[i].ChangeGameRuleset(builder, arguments[i]);
+            }
+ 
             // When
 
             
-                foreach (var act in actions)
-                {
-                    act.ChangeGameState(gameState, null, null);
-                }
-
-                foreach (var condition in conditions)
-                {
-                    condition.CheckAndUpdate(gameState);
-                }
-
-            
-
-
-            // Given
-            GameManagerInternalsBuilder builder = new GameManagerInternalsBuilder();
             string orderParams = "eye";
+
+           
+
+            PlayedGameRules rules = builder.ConstructRuleset();
+            GameState gameState = builder.ConstructGameState();
+
+            //when
+            for (int i = 0; i < 3; i++)
+            {
+                new Draw_BlackJack().ChangeGameState(gameState, rules, orderParams);
+            }
+
+            Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 1);
+
+            IGameAction action = new Draw_BlackJack();
+
+            // When
+            // You draw again and You are beyond 20 points limit
+            action.ChangeGameState(gameState, rules, "eye");
+
+            // Then
+            Assert.AreEqual((bool)gameState["IsGameWon"], false);
+            Assert.AreEqual((bool)gameState["IsGameLost"], true);
+
+        }
+
+        [Test]
+        public void T_214_EyeGame_GameIsWonYouPassedInRightMoment20()
+        {
+            //Given
+            GameManagerInternalsBuilder builder = new GameManagerInternalsBuilder();
 
             List<ICreateGameRulesCommand> commands = new List<ICreateGameRulesCommand>()
             {
@@ -616,8 +636,15 @@ namespace TrainingTests
                 commands[i].ChangeGameRuleset(builder, arguments[i]);
             }
 
+            // When
+
+
+            string orderParams = "eye";
+
+
+
             PlayedGameRules rules = builder.ConstructRuleset();
-            gameState = builder.ConstructGameState();
+            GameState gameState = builder.ConstructGameState();
 
             //when
             for (int i = 0; i < 3; i++)
@@ -627,21 +654,15 @@ namespace TrainingTests
 
             Assert.IsTrue(QueryGameState.AmountOfCardsLeft(gameState) == 1);
 
-            IGameAction action = new Draw_BlackJack();
+            IGameAction action = new Pass_BlackJack();
 
             // When
-            // First guess is 2S (black), should come a red card, so should be a miss
+            // You passed and You are under 20 points
             action.ChangeGameState(gameState, rules, "eye");
 
             // Then
-            Assert.IsTrue(gameState["IsGameWon"] as bool? == false);
-
-            // When
-            // Second guess is 10H (red), should come a red card, so should be a hit
-            action.ChangeGameState(gameState, rules, "eye");
-
-            // Then
-            Assert.IsTrue(gameState["IsGameLost"] as bool? == true);
+            Assert.AreEqual((bool)gameState["IsGameWon"], true);
+            Assert.AreEqual((bool)gameState["IsGameLost"], false);
 
         }
     }

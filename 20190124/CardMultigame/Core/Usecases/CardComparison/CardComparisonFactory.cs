@@ -29,7 +29,7 @@ namespace Core.Usecases.CardComparison
 
         public ICardComparisonStrategy None()
         {
-            return null;
+            return new AlwaysFailComparisonStrategy();
         }
     }
 }

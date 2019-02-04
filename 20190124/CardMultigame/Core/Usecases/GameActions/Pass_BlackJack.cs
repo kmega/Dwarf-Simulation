@@ -20,10 +20,16 @@ namespace Core.Usecases.GameActions
             PointsCardComparsionStrategy countPoints = new PointsCardComparsionStrategy();
             int points = countPoints.CompareForPoints(drawnCard, orderParams);
 
-            if (points <= (int)currentGameState[GameStateKeys.CurrentTurn])
-                currentGameState["IsGameWon"] = true;
+            if (points + (int)currentGameState[GameStateKeys.CurrentTurn] <= 20)
+            {
+                currentGameState["IsGameLost"] = true;
+                currentGameState["IsGameWon"] = false;
+            }
             else
-                currentGameState["IsGameWLost"] = true;
+            {
+                currentGameState["IsGameLost"] = false;
+                currentGameState["IsGameWon"] = true;
+            }
 
         }
 

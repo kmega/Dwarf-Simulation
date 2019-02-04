@@ -25,7 +25,18 @@ namespace Core.Usecases.GameActions
 
                 currentGameState[GameStateKeys.CurrentTurn] = points;
 
-            
+            if ((int)currentGameState[GameStateKeys.CurrentTurn] > 20)
+            {
+                currentGameState["IsGameLost"] = true;
+                currentGameState["IsGameWon"] = false;
+            }
+                
+            else
+            {
+                currentGameState["IsGameLost"] = false;
+                currentGameState["IsGameWon"] = true;
+            }
+
         }
 
         public bool ShouldReactTo(string item1)

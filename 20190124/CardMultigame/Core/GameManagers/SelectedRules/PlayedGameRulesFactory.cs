@@ -30,6 +30,7 @@ namespace Core.GameManagers.SelectedRules
         {
             // You have to make changes to this method: T213 Factory + NullObject'
 
+            _defaultGameName = gameName;
             var selectedActions = _defaultActions;
             var selectedVictories = _defaultVictories;
             var selectedGameStops = _defaultGameStops;
@@ -47,7 +48,7 @@ namespace Core.GameManagers.SelectedRules
             if (compareCards != null)
                 selectedCardComparators = compareCards;
 
-            return new PlayedGameRules(string.Empty, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
+            return new PlayedGameRules(_defaultGameName, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
 
         }
     }
