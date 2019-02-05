@@ -9,8 +9,12 @@ namespace DwarfsCity.DwarfContener
     {
         //Field
         Backpack Backpack = new Backpack();
-        private Type Attrybute;
+        private Type _attribute;
 
+        public void SetAttribute(Type attribute)
+        {
+            _attribute = attribute;
+        }
 
     }
 }
