@@ -21,6 +21,8 @@ namespace Core.GameManagers.SelectedRules
 
         public PlayedGameRules Empty()
         {
+            _defaultCardComparators = new AlwaysFailComparisonStrategy();
+
             return new PlayedGameRules(_defaultGameName, _defaultActions, _defaultVictories, _defaultGameStops, _defaultCardComparators);
         }
 
@@ -30,11 +32,14 @@ namespace Core.GameManagers.SelectedRules
         {
             // You have to make changes to this method: T213 Factory + NullObject'
 
-            _defaultGameName = gameName;
+            
             var selectedActions = _defaultActions;
             var selectedVictories = _defaultVictories;
             var selectedGameStops = _defaultGameStops;
             var selectedCardComparators = _defaultCardComparators;
+
+            if (gameName != null)
+                _defaultGameName = gameName;
 
             if (actions != null)
                 selectedActions = actions;
@@ -43,10 +48,14 @@ namespace Core.GameManagers.SelectedRules
                 selectedVictories = victories;
 
             if (gameStops != null)
-                selectedGameStops = gameStops;
+                selectedGameStops.Add(new DidTurnsExpire());
 
             if (compareCards != null)
                 selectedCardComparators = compareCards;
+            else
+                selectedCardComparators = new AlwaysFailComparisonStrategy();
+
+
 
             return new PlayedGameRules(_defaultGameName, selectedActions, selectedVictories, selectedGameStops, selectedCardComparators);
 
