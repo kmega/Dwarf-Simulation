@@ -51,7 +51,7 @@ namespace DwarfMineSimulator
         {
             Hospital hospital = new Hospital();
             // F
-
+            hospital.TryBirthDwarf(DwarfsPopulation);
             Mines mines = new Mines();
             // F
 
@@ -60,6 +60,7 @@ namespace DwarfMineSimulator
 
             Guild guild = new Guild();
             // F
+            guild.HowMuchDwarfEarnedMoney(DwarfsPopulation);
 
             DiningRoom diningRoom = new DiningRoom();
             // F

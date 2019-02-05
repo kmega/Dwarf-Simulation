@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DwarfMineSimulator.Enums;
 
 namespace DwarfMineSimulator
 {
@@ -15,14 +14,13 @@ namespace DwarfMineSimulator
             int chanceToBirthDwarf = rnd.Next(1, 101);
 
             if (chanceToBirthDwarf == 1)
-            {
-                hospital.CreateNewDawrf(DwarfsPopulation);
-            }
+                hospital.CreateNewDwarf(DwarfsPopulation);
+
             return DwarfsPopulation;
         }
 
-        public List<Dwarf> CreateNewDawrf(List<Dwarf> DwarfsPopulation)
-        {
+        private void  CreateNewDwarf(List<Dwarf> DwarfsPopulation)
+        {         
             Random rnd = new Random();
             DwarfTypes dwarfTypes;
             //33 % chance to Father, Lazy, Single
@@ -40,7 +38,6 @@ namespace DwarfMineSimulator
             Money = 0,
             MoneyEarndedThisDay = 0});
 
-            return DwarfsPopulation;
         }
     }
 }

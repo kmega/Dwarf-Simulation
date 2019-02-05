@@ -51,4 +51,5 @@ namespace DwarfMineSimulator
             DwarfsPopulation[i].MineralsMined[Minerals.TaintedGold] = 0;
         }
     }
+    //dwarfminer-pkozlowski
 }
