@@ -38,20 +38,19 @@ namespace Mergee_tree
                                     m = sortListTree.Count;
                                     j = ReadTree.Count;
                                 }                               
-                            }
-                            else
-                            {
-                                sortListTree.Insert(m, ReadTree[j]);
-                                m = sortListTree.Count;
-                                j = ReadTree.Count;
-                            }
+                            }                            
+                        }
+                        if (howManyPath == 0)
+                        {
+                            sortListTree.Insert(index, ReadTree[j]);
+                            j = ReadTree.Count;
                         }
                         j = ReadTree.Count;
                     }
                 }
                
                 //someList.Insert(2, someValue);
-                // �wiat
+               
             }
             return sortListTree;
         }
