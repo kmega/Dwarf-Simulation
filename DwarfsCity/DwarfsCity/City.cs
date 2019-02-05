@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DwarfsCity.DwarfContener;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,6 +7,7 @@ namespace DwarfsCity
 {
     public class City
     {
+        List<Dwarf> Dwarfs = new List<Dwarf>();
         //Start simulation
         public void Run()
         {
@@ -18,9 +20,18 @@ namespace DwarfsCity
             Shop shop = new Shop();
             Cementary cementary = new Cementary();
 
+<<<<<<< HEAD:DwarfsCity/DwarfsCity/City.cs
+=======
+            
+>>>>>>> DurinSons:DwarfsCity/DwarfsCity/City/City.cs
             //
 
 
+        }
+
+        public List<Dwarf> GetDwarfs()
+        {
+            return Dwarfs;
         }
     }
 }
