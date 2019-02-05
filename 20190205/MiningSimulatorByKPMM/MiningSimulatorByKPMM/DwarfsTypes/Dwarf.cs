@@ -5,9 +5,9 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
 {
     public class Dwarf
     {
-        E_DwarfType DwarfType { get; set; }
-        decimal BankAccount { get; set; }
-        decimal DailySalary { get; set; }
-        List<E_Minerals> PersonalEquipment { get; set; }
+        public E_DwarfType DwarfType { get; set; }
+        public decimal BankAccount { get; set; }
+        public decimal DailySalary { get; set; }
+        public List<E_MineralsType> PersonalEquipment { get; set; }
     }
 }
