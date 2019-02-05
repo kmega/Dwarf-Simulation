@@ -18,7 +18,6 @@ namespace DwarfsCity
             Shop shop = new Shop();
             Cementary cementary = new Cementary();
 
-
             //
 
 
