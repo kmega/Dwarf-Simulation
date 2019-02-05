@@ -1,6 +1,7 @@
 ﻿using DwarfsCity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace DwarfCityTests
 {
@@ -13,6 +14,8 @@ namespace DwarfCityTests
         {
             int Supply = bar.SupplyofFood;
             bar.GiveAFoodToDwarfs(Supply);
+            //List<DwarfsCity.DwarfContener.Dwarf> Dwarfs = List
+                //return new DwarfsCity.DwarfContener.Dwarf();
             int expectedsupply = 190;
             int resultsupply = bar.SupplyofFood;
             Assert.AreEqual(expectedsupply, resultsupply);
