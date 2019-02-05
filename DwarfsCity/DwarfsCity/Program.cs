@@ -6,7 +6,10 @@ namespace DwarfsCity
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Genetare City and return instante of ne city
+            City city = new City();
+            city.Run();
+            //
         }
     }
 }
