@@ -42,7 +42,7 @@ namespace DwarfsCity
             else if (probabilityOfEachAttribute > 66 && probabilityOfEachAttribute <= 99)
                 return Type.Single;
             else
-                return Type.Saboteur;
+                return Type.Saboteur; 
         }
 
         public void InitialiseBasicNumberOfDwarfs(List<Dwarf> dwarfs,int numberOfDwarfs)
