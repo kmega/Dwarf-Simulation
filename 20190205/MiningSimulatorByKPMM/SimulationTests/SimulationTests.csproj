@@ -21,7 +21,6 @@
     <Folder Include="Hospital Tests\" />
     <Folder Include="Canteen Tests\" />
     <Folder Include="Cementary Tests\" />
-    <Folder Include="Guild Tests\" />
     <Folder Include="Market Tests\" />
     <Folder Include="Mine Tests\" />
   </ItemGroup>
