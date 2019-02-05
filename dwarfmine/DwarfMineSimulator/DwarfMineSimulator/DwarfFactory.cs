@@ -6,5 +6,6 @@ namespace DwarfMineSimulator
 {
     class DwarfFactory
     {
+
     }
 }

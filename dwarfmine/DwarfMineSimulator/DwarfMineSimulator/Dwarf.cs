@@ -5,17 +5,17 @@ using DwarfMineSimulator.Enums;
 
 namespace DwarfMineSimulator
 {
-    class Dwarf
+    public class Dwarf
     {
-        DwarfTypes Type { get; set; }
+        internal DwarfTypes Type { get; set; }
 
-        bool Alive { get; set; }
+        internal bool Alive { get; set; }
 
-        decimal Money { get; set; }
+        internal decimal Money { get; set; }
 
-        decimal MoneyEarndedThisDay { get; set; }
+        internal decimal MoneyEarndedThisDay { get; set; }
 
-        Dictionary<Minerals, int> MineralsMined { get; set; }
+        internal Dictionary<Minerals, int> MineralsMined { get; set; }
 
 
 
