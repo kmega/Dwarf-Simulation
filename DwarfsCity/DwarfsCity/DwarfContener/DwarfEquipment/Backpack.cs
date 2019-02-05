@@ -10,6 +10,7 @@ namespace DwarfsCity.DwarfContener.DwarfEquipment
         private decimal Moneys;
         private List<Item> Items;
 
-
+               
+        
     }
 }
