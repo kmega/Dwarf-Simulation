@@ -1,4 +1,6 @@
-﻿namespace DwarfMineSimulator
+﻿using System.Collections.Generic;
+
+namespace DwarfMineSimulator
 {
     internal class Simulation
     {
@@ -23,6 +25,7 @@
         int FoodBought { get; set; }
         int AlcoholBought { get; set; }
 
+        List<Dwarf> DwarfsPopulation = new List<Dwarf>();
 
         public Simulation()
         {
