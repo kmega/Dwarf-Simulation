@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfMineSimulator", "DwarfMineSimulator\DwarfMineSimulator.csproj", "{97F305C7-D1B3-48E7-B355-2C44A768F6EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DwarfMineSimulator", "DwarfMineSimulator\DwarfMineSimulator.csproj", "{97F305C7-D1B3-48E7-B355-2C44A768F6EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfMineSimulatorTests", "DwarfMineSimulatorTests\DwarfMineSimulatorTests.csproj", "{0077E3EC-BAB6-455F-9B89-2FDF4A711CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DwarfMineSimulatorTests", "DwarfMineSimulatorTests\DwarfMineSimulatorTests.csproj", "{0077E3EC-BAB6-455F-9B89-2FDF4A711CC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

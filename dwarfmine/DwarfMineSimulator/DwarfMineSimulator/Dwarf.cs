@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using DwarfMineSimulator.Enums;
+
 
 namespace DwarfMineSimulator
 {
+
     public class Dwarf
     {
         internal DwarfTypes Type { get; set; }
@@ -16,8 +17,6 @@ namespace DwarfMineSimulator
         internal decimal MoneyEarndedThisDay { get; set; }
 
         internal Dictionary<Minerals, int> MineralsMined { get; set; }
-
-
 
     }
 }
