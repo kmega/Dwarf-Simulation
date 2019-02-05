@@ -6,8 +6,15 @@ namespace DwarfMineSimulator
 {
     public class Shaft
     {
-        internal bool Collapsed = false;
-        internal int MaxInside = 5;
-        internal List<Dwarf> Miners = new List<Dwarf>();
+        internal bool Collapsed;
+        internal int MaxInside;
+        internal List<Dwarf> Miners;
+
+        public Shaft()
+        {
+            Collapsed = false;
+            MaxInside = 5;
+            Miners = new List<Dwarf>();
+        }
     }
 }
