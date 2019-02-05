@@ -42,7 +42,7 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
         }
         public void EarnMoney(decimal earnedMoney)
         {
-            DailySalary = earnedMoney;
+            DailySalary += earnedMoney;
         }
         public void SpendMoney(decimal spentMoney)
         {

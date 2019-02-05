@@ -10,18 +10,27 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
 {
     public class Hospital
     {
-        Dictionary<string, IRandomGenerator> randomGenerators;
-        public Hospital()
+        List<IRandomGenerator> randomGenerator;
+        public Hospital(List<IRandomGenerator> generator)
         {
-            randomGenerators = new Dictionary<string, IRandomGenerator>();
-            randomGenerators.Add("Birth", new DwarfBirthChanceGenerator());
-            randomGenerators.Add("DwarfType", new DwarfTypeGenerator());
+            if(generator == null)
+            {
+                randomGenerator = new List<IRandomGenerator>()
+                {
+                    new DwarfBirthChanceGenerator(),
+                    new DwarfBirthChanceGenerator()
+                };
+            }
+            else
+            {
+                randomGenerator = generator;
+            }
         }
         public Dwarf TryToCreateDwarf()
         {
-            if(!Convert.ToBoolean(randomGenerators["Birth"].GenerateSignleRandomNumber()))
+            if(!Convert.ToBoolean(randomGenerator[0].GenerateSignleRandomNumber()))
             {
-                int dwarfType = randomGenerators["DwarfType"].GenerateSignleRandomNumber();
+                int dwarfType = randomGenerator[1].GenerateSignleRandomNumber();
                 E_DwarfType type = GetDwarfType(dwarfType);
                 return DwarfFactory.Create(type);
             }

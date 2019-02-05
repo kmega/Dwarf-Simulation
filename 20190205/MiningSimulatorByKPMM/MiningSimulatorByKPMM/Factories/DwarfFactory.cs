@@ -17,7 +17,7 @@ namespace MiningSimulatorByKPMM.Factories
                 case E_DwarfType.Dwarf_Single:
                     return new Dwarf_Single().CreateSingleDwarf();
                 case E_DwarfType.Dwarf_Sluggard:
-                    return new Dwarf_Single().CreateSingleDwarf();
+                    return new Dwarf_Sluggard().CreateSingleDwarf();
                 case E_DwarfType.Dwarf_Suicide:
                     return new Dwarf_Suicide().CreateSingleDwarf();
                 default:
