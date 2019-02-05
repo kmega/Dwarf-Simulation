@@ -5,24 +5,18 @@ namespace DwarfMineSimulator.Simulation
     {
         Simulation _simulation = new Simulation();
 
-        public void SetDaysLimit(int maxDays)
-        {
-
-        }
-
         public void SetSimulationEndConditions()
         {
+            //int maxDays = 30;
+            // isDwarftCount <= 0
+            // 200 rations on start
 
         }
 
         public void SetDwarfs()
         {
-
-        }
-
-        public void SetMaterials()
-        {
-
+            // 10 dwarft on first day
+            // dwarf has not money when born
         }
 
         public Simulation GetSimulation()

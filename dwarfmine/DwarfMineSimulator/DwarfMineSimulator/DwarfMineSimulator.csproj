@@ -8,5 +8,12 @@
   <ItemGroup>
     <Folder Include="Dwarfs\" />
     <Folder Include="Simulation\" />
+    <Folder Include="Building\" />
+    <Folder Include="Building\Mine\" />
+    <Folder Include="Building\Hospital\" />
+    <Folder Include="Building\Graveyard\" />
+    <Folder Include="Building\Guild\" />
+    <Folder Include="Building\Shop\" />
+    <Folder Include="Building\DinningRoom\" />
   </ItemGroup>
 </Project>
