@@ -11,6 +11,8 @@ namespace DwarfMineSimulator
         int SuiciderBorn { get; set; } = 0;
         int TotalBorn { get; set; } = 0;
 
+        List<Shaft> ShaftsNumber = new List<Shaft>();
+
         int MithrilMinded { get; set; } = 0;
         int GoldMinded { get; set; } = 0;
         int SilverMinded { get; set; } = 0;
@@ -53,7 +55,7 @@ namespace DwarfMineSimulator
             // F
 
             Mines mines = new Mines();
-            // F
+            DwarfsPopulation = mines.MineInShafts(DwarfsPopulation, ShaftsNumber);
 
             Graveyard graveyard = new Graveyard();
             // F
