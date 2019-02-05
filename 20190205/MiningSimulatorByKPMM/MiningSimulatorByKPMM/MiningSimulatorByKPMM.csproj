@@ -10,9 +10,7 @@
     <Folder Include="Interfaces\" />
     <Folder Include="Factories\" />
     <Folder Include="DwarfsTypes\" />
-    <Folder Include="Locations\" />
     <Folder Include="Locations\Mine\" />
-    <Folder Include="Locations\Canteen\" />
     <Folder Include="Locations\Hospital\" />
     <Folder Include="Locations\Market\" />
     <Folder Include="Locations\Guild\" />
