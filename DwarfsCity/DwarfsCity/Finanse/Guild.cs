@@ -20,6 +20,7 @@ namespace DwarfsCity
                 decimal EarnedMoney = dwarf.Backpack.Moneys;
                 decimal TaxesOfGuild = 0.25m * dwarf.Backpack.Moneys;
                 EarnedMoney -= TaxesOfGuild;
+                dwarf.Backpack.Moneys = EarnedMoney;
                 TheSumOfTaxes += TaxesOfGuild;
             }
             return TheSumOfTaxes;          
