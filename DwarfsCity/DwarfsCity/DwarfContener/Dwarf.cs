@@ -8,9 +8,8 @@ namespace DwarfsCity.DwarfContener
     public class Dwarf
     {
         //Field
-        Backpack Backpack = new Backpack();
-        private Type Attrybute;
-
-
+        public Backpack Backpack = new Backpack();
+        public Type Attribute { get; set; }
+  
     }
 }

@@ -1,14 +1,14 @@
-﻿using System;
+﻿using DwarfsCity.DwarfContener;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DwarfsCity
 {
     public class City
-    { //Start simulation
-
-        List<DwarfContener.Dwarf> dwarfs = new List<DwarfContener.Dwarf>();
-       
+    {
+        List<Dwarf> Dwarfs = new List<Dwarf>();
+        //Start simulation
         public void Run()
         {
             //Create new instance hospital, mine, bank, guild, bar, shop, cementary
@@ -19,12 +19,16 @@ namespace DwarfsCity
             Bar bar = new Bar();
             Shop shop = new Shop();
             Cementary cementary = new Cementary();
+
             
-
-
             //
 
 
+        }
+
+        public List<Dwarf> GetDwarfs()
+        {
+            return Dwarfs;
         }
         
     }
