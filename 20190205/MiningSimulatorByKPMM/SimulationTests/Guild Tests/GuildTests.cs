@@ -20,11 +20,10 @@ namespace SimulationTests.Guild_Tests
             Guild guild = new Guild();
             List<Dwarf> dwarves = new List<Dwarf>()
         {
-            new Dwarf()
-            {
-               PersonalEquipment = new List<E_MineralsType> {E_MineralsType.DirtGold}
-            }
+            new Dwarf(E_DwarfType.Dwarf_Father,null,null)
+           
         };
+            dwarves[0].AddMinedMaterial(E_MineralsType.DirtGold);
 
             //when
             guild.PaymentForDwars(dwarves);
@@ -41,16 +40,13 @@ namespace SimulationTests.Guild_Tests
             Guild guild = new Guild();
             List<Dwarf> dwarves = new List<Dwarf>()
         {
-            new Dwarf()
-            {
-               PersonalEquipment = new List<E_MineralsType> {E_MineralsType.DirtGold}
-            },
-            new Dwarf()
-            {
-               PersonalEquipment = new List<E_MineralsType> {E_MineralsType.DirtGold}
-            },
+            new Dwarf(E_DwarfType.Dwarf_Father,null,null),
+             new Dwarf(E_DwarfType.Dwarf_Father,null,null)
+
 
         };
+            dwarves[0].AddMinedMaterial(E_MineralsType.DirtGold);
+            dwarves[1].AddMinedMaterial(E_MineralsType.DirtGold);
 
             //when
             guild.PaymentForDwars(dwarves);
@@ -68,16 +64,19 @@ namespace SimulationTests.Guild_Tests
             Guild guild = new Guild();
             List<Dwarf> dwarves = new List<Dwarf>()
         {
-            new Dwarf()
-            {
-               PersonalEquipment = new List<E_MineralsType> {E_MineralsType.DirtGold, E_MineralsType.DirtGold, E_MineralsType.DirtGold }
-            },
-            new Dwarf()
-            {
-               PersonalEquipment = new List<E_MineralsType>  {E_MineralsType.DirtGold, E_MineralsType.DirtGold, E_MineralsType.DirtGold }
-            },
+            new Dwarf(E_DwarfType.Dwarf_Father,null,null),
+             new Dwarf(E_DwarfType.Dwarf_Father,null,null)
+
 
         };
+            dwarves[0].AddMinedMaterial(E_MineralsType.DirtGold);
+            dwarves[0].AddMinedMaterial(E_MineralsType.DirtGold);
+            dwarves[0].AddMinedMaterial(E_MineralsType.DirtGold);
+            dwarves[1].AddMinedMaterial(E_MineralsType.DirtGold);
+            dwarves[1].AddMinedMaterial(E_MineralsType.DirtGold);
+            dwarves[1].AddMinedMaterial(E_MineralsType.DirtGold);
+
+
 
             //when
             guild.PaymentForDwars(dwarves);
@@ -96,12 +95,10 @@ namespace SimulationTests.Guild_Tests
             Guild guild = new Guild();
             List<Dwarf> dwarves = new List<Dwarf>()
         {
-            new Dwarf()
-            {
-               PersonalEquipment = new List<E_MineralsType> {E_MineralsType.Gold}
-            },
+            new Dwarf(E_DwarfType.Dwarf_Father,null,null)
 
         };
+            dwarves[0].AddMinedMaterial(E_MineralsType.Gold);
 
             //when
             guild.PaymentForDwars(dwarves);

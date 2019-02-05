@@ -38,7 +38,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                     decimal value = (decimal)ReturnValue(mineral);
                     decimal tax = Math.Round((value / 4), 2);
                     decimal payment = value - tax;
-                    dwarf.DailySalary += payment;
+                    dwarf.EarnMoney(payment);
                     Account += tax;
                     Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment,mineral,tax);
 
