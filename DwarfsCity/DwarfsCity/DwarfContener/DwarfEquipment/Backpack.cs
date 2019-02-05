@@ -7,8 +7,8 @@ namespace DwarfsCity.DwarfContener.DwarfEquipment
     public class Backpack
     {
         //Fields
-        private decimal Moneys;
-        private List<Item> Items;
+        public decimal Moneys;
+        public List<Item> Items;
 
 
     }

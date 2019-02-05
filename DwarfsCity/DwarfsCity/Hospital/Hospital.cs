@@ -23,7 +23,7 @@ namespace DwarfsCity
             {
                 Type attribute = CreateDwarfAttribute();
                 Dwarf newBornDwarf = new Dwarf();
-                newBornDwarf.SetAttribute(attribute);
+                newBornDwarf.Attribute = attribute;
                 dwarfs.Add(newBornDwarf);
             }
 
