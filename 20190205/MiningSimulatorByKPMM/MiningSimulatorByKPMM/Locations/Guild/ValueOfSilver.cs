@@ -9,7 +9,9 @@ namespace MiningSimulatorByKPMM.Locations.Guild
     {
         public int GenerateSignleRandomNumber()
         {
-            throw new NotImplementedException();
+            Random rand = new Random();
+            return rand.Next(5, 15);
+
         }
     }
 }

@@ -61,5 +61,58 @@ namespace SimulationTests.Guild_Tests
             Assert.AreEqual(1m, guild.Account);
         }
 
+        [Test]
+        public void TestThreeDirtGoldForTwoDwarves()
+        {
+            //given
+            Guild guild = new Guild();
+            List<Dwarf> dwarves = new List<Dwarf>()
+        {
+            new Dwarf()
+            {
+               PersonalEquipment = new List<E_MineralsType> {E_MineralsType.DirtGold, E_MineralsType.DirtGold, E_MineralsType.DirtGold }
+            },
+            new Dwarf()
+            {
+               PersonalEquipment = new List<E_MineralsType>  {E_MineralsType.DirtGold, E_MineralsType.DirtGold, E_MineralsType.DirtGold }
+            },
+
+        };
+
+            //when
+            guild.PaymentForDwars(dwarves);
+
+            //then
+            Assert.AreEqual(4.5m, dwarves[0].DailySalary);
+            Assert.AreEqual(4.5m, dwarves[1].DailySalary);
+            Assert.AreEqual(3m, guild.Account);
+        }
+
+
+        [Test]
+        public void TestGoldForOneDwarf()
+        {
+            //given
+            Guild guild = new Guild();
+            List<Dwarf> dwarves = new List<Dwarf>()
+        {
+            new Dwarf()
+            {
+               PersonalEquipment = new List<E_MineralsType> {E_MineralsType.Gold}
+            },
+
+        };
+
+            //when
+            guild.PaymentForDwars(dwarves);
+
+            //then
+            Assert.IsTrue(guild.Account >= 2.5m);
+            Assert.IsTrue(guild.Account <= 5m);
+            Assert.IsTrue(dwarves[0].DailySalary >= 7.5m);
+            Assert.IsTrue(dwarves[0].DailySalary <= 15m);
+
+
+        }
     }
 }
