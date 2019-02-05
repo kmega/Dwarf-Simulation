@@ -8,7 +8,7 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
     {
         public Dwarf CreateSingleDwarf()
         {
-            throw new NotImplementedException();
+            return new Dwarf(E_DwarfType.Dwarf_Sluggard, null, null);
         }
     }
 }

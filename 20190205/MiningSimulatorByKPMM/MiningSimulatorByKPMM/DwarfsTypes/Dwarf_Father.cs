@@ -1,4 +1,5 @@
 ﻿using System;
+using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Interfaces;
 
 namespace MiningSimulatorByKPMM.DwarfsTypes
@@ -7,7 +8,7 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
     {
         public Dwarf CreateSingleDwarf()
         {
-            throw new NotImplementedException();
+            return new Dwarf(E_DwarfType.Dwarf_Father, null, null);
         }
     }
 }
