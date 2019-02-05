@@ -21,10 +21,9 @@ namespace DwarfCityTests
 
             //then
             Assert.AreEqual(10, city.GetDwarfs().Count);
-       
-
-            
+  
         }
-        
+
+
     }
 }
