@@ -7,6 +7,6 @@ namespace MiningSimulatorByKPMM.Interfaces
 {
     public interface IShopAction
     {
-        void BuyProdcutsFromMarket(Dwarf shopCustomer);
+        void BuyProdcutsFromMarket(decimal dailySalary, Market market);
     }
 }

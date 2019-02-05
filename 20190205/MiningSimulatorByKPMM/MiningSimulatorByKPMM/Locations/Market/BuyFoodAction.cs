@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MiningSimulatorByKPMM.DwarfsTypes;
+using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Interfaces;
 using MiningSimulatorByKPMM.Locations;
 
@@ -9,10 +10,13 @@ namespace MiningSimulatorByKPMM.Locations.Market
 {
 	public class BuyFoodAction : IShopAction
 	{
-		public void BuyProdcutsFromMarket(Dwarf shopCustomer)
+		public void BuyProdcutsFromMarket(decimal dailySalary, Market market)
 		{
-			decimal amoutOfFood = shopCustomer.SpendMoney();
-			Market.marketState.Add(Enums.E_ProductsType.Food, amoutOfFood);
+			decimal spentMoney = dailySalary / 2;
+
+			decimal amountOfFood = market.marketState[E_ProductsType.Food];
+			amountOfFood += spentMoney;
+			market.marketState[E_ProductsType.Food] = amountOfFood;
 		}
 	}
 }
