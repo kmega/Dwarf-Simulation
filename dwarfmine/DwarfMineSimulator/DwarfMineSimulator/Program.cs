@@ -1,4 +1,5 @@
 ﻿using System;
+using DwarfMineSimulator.Simulation;
 
 namespace DwarfMineSimulator
 {
@@ -6,9 +7,8 @@ namespace DwarfMineSimulator
     {
         static void Main(string[] args)
         {
-            Simulation simulation = new Simulation();
-
-
+            SimulationDirector simulation = 
+                new SimulationDirector(new CorealateSimulation());
         }
     }
 }
