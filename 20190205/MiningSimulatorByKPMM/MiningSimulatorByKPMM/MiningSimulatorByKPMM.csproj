@@ -16,6 +16,9 @@
     <Folder Include="Locations\Guild\" />
     <Folder Include="Locations\Cementary\" />
     <Folder Include="Reports\" />
+    <Folder Include="Locations\Mine\SubMine Locations\" />
+    <Folder Include="Locations\Mine\Enums\" />
+    <Folder Include="Locations\Mine\Factories\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Interfaces\IMineAction %28another copy%29.cs" />
