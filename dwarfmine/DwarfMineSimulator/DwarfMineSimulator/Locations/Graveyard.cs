@@ -4,8 +4,7 @@ using System.Text;
 
 namespace DwarfMineSimulator
 {
-    class Mines
+    class Graveyard
     {
-
     }
 }

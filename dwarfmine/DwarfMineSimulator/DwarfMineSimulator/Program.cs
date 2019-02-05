@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("DwarfMineSimulatorTests")]
 
 namespace DwarfMineSimulator
 {
@@ -8,7 +10,9 @@ namespace DwarfMineSimulator
         {
             Simulation simulation = new Simulation();
 
+            simulation.Simulate();
 
+            Console.ReadKey();
         }
     }
 }
