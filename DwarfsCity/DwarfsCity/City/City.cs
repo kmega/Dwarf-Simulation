@@ -5,8 +5,10 @@ using System.Text;
 namespace DwarfsCity
 {
     public class City
-    {
-        //Start simulation
+    { //Start simulation
+
+        List<DwarfContener.Dwarf> dwarfs = new List<DwarfContener.Dwarf>();
+       
         public void Run()
         {
             //Create new instance hospital, mine, bank, guild, bar, shop, cementary
@@ -17,11 +19,14 @@ namespace DwarfsCity
             Bar bar = new Bar();
             Shop shop = new Shop();
             Cementary cementary = new Cementary();
+            
 
 
             //
 
 
         }
+        
     }
+    
 }
