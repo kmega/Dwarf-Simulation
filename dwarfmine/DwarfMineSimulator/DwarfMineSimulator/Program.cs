@@ -24,3 +24,9 @@ namespace DwarfMineSimulator
 //1,2 lub ruchy w kopalni(wykop)
 
 //jezeli liczba racji spadnie ponize 10 domawianych jest 30
+
+// 0
+// <0,5> mithril
+// <5,20>
+// <20,55>
+// <55,100>
