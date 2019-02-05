@@ -9,12 +9,14 @@
     <Folder Include="Enums\" />
     <Folder Include="DwarfsTypes\" />
     <Folder Include="Locations\Mine\" />
-    <Folder Include="Locations\Canteen\" />
+    <Folder Include="Locations\Hospital\" />
     <Folder Include="Locations\Market\" />
     <Folder Include="Locations\Guild\" />
     <Folder Include="Locations\Cementary\" />
     <Folder Include="Reports\" />
-    <Folder Include="ShopActions\" />
+    <Folder Include="Locations\Mine\SubMine Locations\" />
+    <Folder Include="Locations\Mine\Enums\" />
+    <Folder Include="Locations\Mine\Factories\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Interfaces\IMineAction %28another copy%29.cs" />
