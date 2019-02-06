@@ -16,14 +16,18 @@ namespace MiningSimulatorByKPMM.Locations.Market
 
 		public Dictionary<E_ProductsType, decimal> marketState = new Dictionary<E_ProductsType, decimal>();
 		
-		public void PerformShopping(decimal customerMoney, E_DwarfType customerType)
+		public void PerformShopping(List<BankAccount> bankAccounts, List<E_DwarfType> customers)
 		{
-			if(customerType == E_DwarfType.Dwarf_Single)
+			foreach (var customer in customers)
 			{
-				BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Alcohol);
-			} else if (customerType == E_DwarfType.Dwarf_Father)
-			{
-				BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Food);
+				if (customer == E_DwarfType.Dwarf_Single)
+				{
+					BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Alcohol);
+				}
+				else if (customer == E_DwarfType.Dwarf_Father)
+				{
+					BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Food);
+				}
 			}
 		}
 
