@@ -12,7 +12,6 @@
     <Folder Include="Locations\Hospital\" />
     <Folder Include="Locations\Market\" />
     <Folder Include="Locations\Guild\" />
-    <Folder Include="Locations\Cementary\" />
     <Folder Include="Reports\" />
     <Folder Include="Locations\Mine\SubMine Locations\" />
     <Folder Include="Locations\Mine\Enums\" />

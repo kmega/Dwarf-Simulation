@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using MiningSimulatorByKPMM.Enums;
-using MiningSimulatorByKPMM.Interfaces;
-using MiningSimulatorByKPMM.Locations.Mine.Miningoutputs;
+﻿using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.PersonalItems;
 
 namespace MiningSimulatorByKPMM.DwarfsTypes
@@ -13,6 +9,7 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
         public Wallet Wallet { get; private set; }
         public Backpack Backpack { get; set; }
         public bool IsAlive { get; set; }
+
         public Dwarf(E_DwarfType dwarfType)
         {
             DwarfType = dwarfType;
