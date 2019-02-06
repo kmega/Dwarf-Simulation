@@ -24,6 +24,24 @@ namespace SimulationTests.Guild_Tests
         }
 
         [Test]
+        public void DwarfWithEmptyBackpack()
+        {
+            //given
+
+            BankAccount bankAccount = new BankAccount();
+            Backpack backpack = new Backpack();
+           
+
+            //when
+            guild.PaymentForDwarf(backpack, bankAccount);
+
+            //then
+            Assert.AreEqual(0, guild.Account.OverallAccount);
+            Assert.AreEqual(0, bankAccount.LastInput);
+            Assert.IsTrue(backpack.ShowBackpackContent().Count == 0);
+
+        }
+        [Test]
         public void DirtGoldForOneDwarf()
         {
             //given

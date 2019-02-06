@@ -34,9 +34,9 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
                 //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
 
-                // int value;
-                // Bank.PutIn(bankAccount, value);
-                // Bank.Putin(GuildAccount, valuezarobionie25%);
+                guild.DwarvesVisitGuild(_currentSimulationState.Dwarves);
+
+              
 
                 //Canteen(numberOfWorkersToday);
                 canteen.GiveFoodRations(_currentSimulationState.Dwarves.Count);

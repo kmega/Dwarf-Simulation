@@ -36,9 +36,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
         }
 
         public void PaymentForDwarf(Backpack backpack, BankAccount account)
-
         {
-
             foreach (var mineral in backpack.ShowBackpackContent())
             {
                 decimal value = (decimal)ReturnValue(mineral.OutputType);
@@ -56,6 +54,14 @@ namespace MiningSimulatorByKPMM.Locations.Guild
             }
             backpack.ShowBackpackContent().Clear();
 
+        }
+
+        public void DwarvesVisitGuild (List<Dwarf> dwarves)
+        {
+            foreach (var dwarf in dwarves)
+            {
+                PaymentForDwarf(dwarf.Backpack, dwarf.BankAccount);
+            }
         }
     }
 }
