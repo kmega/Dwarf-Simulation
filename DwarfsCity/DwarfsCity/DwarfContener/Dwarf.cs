@@ -30,22 +30,12 @@ namespace DwarfsCity.DwarfContener
 
         public void Digging()
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < Randomizer.CountsOfDigging(); i++)
             {
+                //Digging minerals by ratio  -> 5% mithril, 15% gold 35% silver, 45% dirty gold
 
-                //Randomize ratio to chance for a minning mineral
-                var ratioChance = Randomizer.GetChanceRatio();
+                Backpack.Items.Add(Randomizer.ItemDigged());
 
-            //Digging minerals by ratio  -> 5% mithril, 15% gold 35% silver, 45% dirty gold
-            
-                if (Enumerable.Range(1, 5).Contains(ratioChance))
-                    Backpack.Items.Add(Item.Mithril);
-                else if (Enumerable.Range(5, 20).Contains(ratioChance))
-                    Backpack.Items.Add(Item.Gold);
-                else if (Enumerable.Range(20, 55).Contains(ratioChance))
-                    Backpack.Items.Add(Item.Silver);
-                else if (Enumerable.Range(55, 100).Contains(ratioChance))
-                    Backpack.Items.Add(Item.DirtyGold);
             }
             
         }
