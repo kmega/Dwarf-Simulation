@@ -1,7 +1,7 @@
 ﻿using System;
 namespace MiningSimulatorByKPMM.Enums
 {
-    public enum E_MineralsType
+    public enum E_Minerals
     {
         Gold,
         Silver,
