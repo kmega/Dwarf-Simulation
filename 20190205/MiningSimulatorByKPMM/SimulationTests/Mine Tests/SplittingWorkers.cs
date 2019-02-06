@@ -6,6 +6,7 @@ using NUnit.Framework;
 
 namespace SimulationTests.MineTests
 {
+    [TestFixture]
     public class SplittingWorkers
     {
         [Test]

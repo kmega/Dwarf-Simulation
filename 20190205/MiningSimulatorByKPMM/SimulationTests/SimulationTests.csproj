@@ -25,4 +25,7 @@
     <Folder Include="Market Tests\" />
     <Folder Include="Mine Tests\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="UnitTest1.cs" />
+  </ItemGroup>
 </Project>
