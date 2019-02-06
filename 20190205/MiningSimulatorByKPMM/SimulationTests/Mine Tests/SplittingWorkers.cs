@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using MiningSimulatorByKPMM.DwarfsTypes;
+using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Mine;
 using NUnit.Framework;
 
@@ -15,16 +16,16 @@ namespace SimulationTests.MineTests
             //given
             List<Dwarf> dwarves = new List<Dwarf>
             {
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf(),
-                new Dwarf()
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father),
+                new Dwarf(E_DwarfType.Dwarf_Father)
             };
 
             var Splitter = new TeamSplitter();

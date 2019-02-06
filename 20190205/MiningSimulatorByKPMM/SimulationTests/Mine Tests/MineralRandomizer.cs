@@ -13,7 +13,7 @@ namespace SimulationTests.MineTests
         [TestCase(E_Minerals.Silver)]
         public void GetsEveryMineralType()
         {
-
+            Assert.Fail();
         }
     }
 }

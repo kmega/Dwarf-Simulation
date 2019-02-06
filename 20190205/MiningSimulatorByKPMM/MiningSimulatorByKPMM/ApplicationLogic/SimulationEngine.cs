@@ -19,6 +19,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             for (int i = 0; i < 30; i++)
             {
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
+
                 //Mine.Work(List<Backpack>,List<dwarfType>) -> aktualizacja Backpack;
                 //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
                 // int value;

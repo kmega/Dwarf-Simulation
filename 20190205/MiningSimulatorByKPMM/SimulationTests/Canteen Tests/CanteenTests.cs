@@ -1,4 +1,5 @@
 ﻿using MiningSimulatorByKPMM.DwarfsTypes;
+using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Canteen;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace SimulationTests.Canteen_Tests
     [TestFixture]
     internal class CanteenTests
     {
-        private readonly List<Dwarf> dwarfs = new List<Dwarf>() { new Dwarf(), new Dwarf(), new Dwarf() };
+        private readonly List<Dwarf> dwarfs = new List<Dwarf>() { new Dwarf(E_DwarfType.Dwarf_Father), new Dwarf(E_DwarfType.Dwarf_Father), new Dwarf(E_DwarfType.Dwarf_Father) };
         private Canteen canteen = new Canteen();
 
         [Test]
