@@ -7,11 +7,11 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 {
     public class SimulationEngine
     {
-        private SimulationState currentSimulationState;
+        private SimulationState _currentSimulationState;
 
         public SimulationEngine()
         {
-            currentSimulationState = new SimulationState();
+            _currentSimulationState = new SimulationState();
         }
 
         public void Start()
