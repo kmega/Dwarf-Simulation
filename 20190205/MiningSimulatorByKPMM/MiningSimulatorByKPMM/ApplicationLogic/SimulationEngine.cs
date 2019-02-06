@@ -7,7 +7,8 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 {
     public class SimulationEngine
     {
-        SimulationState currentSimulationState;
+        private SimulationState currentSimulationState;
+
         public SimulationEngine()
         {
             currentSimulationState = new SimulationState();
@@ -15,23 +16,24 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
         public void Start()
         {
-            for(int i = 0; i<30; i++)
+            for (int i = 0; i < 30; i++)
             {
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
                 //Mine.Work(List<Backpack>,List<dwarfType>) -> aktualizacja Backpack;
                 //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
-                    // int value;
-                    // Bank.PutIn(bankAccount, value);
-                    // Bank.Putin(GuildAccount, valuezarobionie25%);
+                // int value;
+                // Bank.PutIn(bankAccount, value);
+                // Bank.Putin(GuildAccount, valuezarobionie25%);
 
                 //Canteen(numberOfWorkersToday);
                 //Shop.BuyStaff(List<BankAccount> bankAccounts, List<DwarfType> dwarftypes);
-                    // int ostatniaWpłata = Bank.GetLastInput(bankaccount);
-                    //int paragon = ostatniawplata /2 
-                    // int result = Bank.PayTax(paragon);
-                    // Bank.Putin(shopBankAccount, result);
+                // int ostatniaWpłata = Bank.GetLastInput(bankaccount);
+                //int paragon = ostatniawplata /2
+                // int result = Bank.PayTax(paragon);
+                // Bank.Putin(shopBankAccount, result);
                 //Bank.SumDay(List<bankAccount>);
-            //Bankaccount -> overallMoney, lastInput
+                //Bankaccount -> overallMoney, lastInput
+                //
             }
         }
     }
