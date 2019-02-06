@@ -12,33 +12,35 @@ namespace MiningSimulatorByKPMM.Locations.Market
 		{
 			marketState.Add(E_ProductsType.Food, 0);
 			marketState.Add(E_ProductsType.Alcohol, 0);
+			shopBankAccount = 0;
 		}
 
+		private decimal shopBankAccount;
 		public Dictionary<E_ProductsType, decimal> marketState = new Dictionary<E_ProductsType, decimal>();
 		
-		public void PerformShopping(List<BankAccount> bankAccounts, List<E_DwarfType> customers)
+		public void PerformShopping(List<Dwarf> customers)
 		{
 			foreach (var customer in customers)
 			{
-				if (customer == E_DwarfType.Dwarf_Single)
+				if (customer.DwarfType == E_DwarfType.Dwarf_Single)
 				{
-					BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Alcohol);
+					BuyProdcutsFromMarket(dailySalary, this, E_ProductsType.Alcohol);
 				}
-				else if (customer == E_DwarfType.Dwarf_Father)
+				else if (customer.DwarfType == E_DwarfType.Dwarf_Father)
 				{
-					BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Food);
+					BuyProdcutsFromMarket(dailySalary, this, E_ProductsType.Food);
 				}
 			}
 		}
 
-		public void BuyProdcutsFromMarket(decimal dailySalary, Market market, E_ProductsType productType)
+		public void BuyProdcutsFromMarket(decimal dailySalary, Market market, E_ProductsType productType, Bank bank)
 		{
 			decimal spentMoney = dailySalary / 2;
 			decimal amountOfProduct = market.marketState[productType];
 			amountOfProduct += spentMoney;
 			market.marketState[productType] = amountOfProduct;
-			decimal tax = Bank.PayTax(spentMoney);
-			Bank.PayIntoYourAccount(shopBankAccount, spentMoney - tax)
+			decimal tax = bank.PayTax(spentMoney);
+			bank.PayIntoYourAccount(shopBankAccount, spentMoney - tax);
 		}
 	}
 }

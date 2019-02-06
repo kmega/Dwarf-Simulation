@@ -1,6 +1,5 @@
 ﻿using MiningSimulatorByKPMM.DwarfsTypes;
 using MiningSimulatorByKPMM.Enums;
-using MiningSimulatorByKPMM.Interfaces;
 using System;
 using System.Collections;
 using System.Collections.Generic;

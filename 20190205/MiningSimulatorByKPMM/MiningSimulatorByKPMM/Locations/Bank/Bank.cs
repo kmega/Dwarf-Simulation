@@ -21,23 +21,12 @@ namespace MiningSimulatorByKPMM.Locations.Bank
         public void PayTax (decimal receipt)
         {
             BankAccount += (receipt * 23) / 100;
-            receipt = (receipt * 77) / 100;
-
         }
 
         public void SumUp (decimal overalaccount, decimal daily)
         {
-
             overalaccount += daily;
             daily = 0;
         }
-
-
-
-       
-
-
-
-
     }
 }
