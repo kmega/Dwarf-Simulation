@@ -4,29 +4,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using DwarfsCity.DwarfContener;
+using DwarfsCity.Reports;
 
 namespace DwarfsCity
 {
-    public class Bar
+    public class Bar: IReport
     {
-        public int SupplyofFood { get; set; } = 200;        
-        //public Bar()
-        //{ //zostawiam tu konstruktor, który wywoła całość kodu z klasy jakby był potrzebny
-        //    City city = new City();
-        //    List<Dwarf> Dwarfs = city.GetDwarfs();
-        //    GiveAFoodToDwarfs(SupplyofFood, Dwarfs);
-        //}
+        public int SupplyofFood { get; set; } = 200;    //Zapas jedzenia w sklepie  
+        public int GivenFoodToDwarfsDuringOneDay { get; set; } // Jedzenie wydane w danym dniu
+        public List<string> Reports { get; set; }
 
-        public void GiveAFoodToDwarfs(int supplyoffood, List<Dwarf> Dwarfs)
-        {                   
-           this.SupplyofFood = SupplyofFood - Dwarfs.Count(); 
+        public void GiveAFoodToDwarfs(List<Dwarf> Dwarfs) //Rozdaje porcje jedzenia wszystkim krasnoludom
+        {           
+            this.GivenFoodToDwarfsDuringOneDay = Dwarfs.Count;         
+            this.SupplyofFood = SupplyofFood - GivenFoodToDwarfsDuringOneDay; 
             if (SupplyofFood < 0)
             {
-                throw new Exception("koniec zapasów, klasa Bar, potrzebny odsyłacz do zakończenia symulacji");
+                throw new Exception("There is no more food in bar. The simulation is over");
             }
             else if (SupplyofFood <= 10)
                 this.SupplyofFood += 30;
+            ReportBar();
         }
 
+        private void ReportBar()
+        {
+            Reports = new List<string>();
+            GiveReport("Today "+ GivenFoodToDwarfsDuringOneDay + "get a portion of food. Actual amount of supply in Bar: " + SupplyofFood + ".");
+        }
+
+        public void GiveReport(string message)
+        {
+            Reports.Add(message);
+        }
     }
 }

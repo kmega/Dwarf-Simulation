@@ -8,18 +8,20 @@ using System.Text;
 namespace DwarfCityTests
 {
     [TestClass]
-    public class GuildTaxes
+    public class GuildTests
     {
         [TestMethod]
         public void ShouldReturnTaxesForOneDwarf()
         {
             List<Dwarf> Dwarfs = new List<Dwarf>();
             Dwarfs.Add(new Dwarf());
-            Dwarfs[0].Backpack.Money = 4;
+            Dwarfs[0].Backpack.Money = 5;
             Guild guild = new Guild();
+            guild.GetTaxesofAllDwarfs(Dwarfs);
             decimal expected = 1;
-            decimal result = guild.GetTaxesofAllDwarfs(Dwarfs);
+            decimal result = guild.TheSumOfTaxes;           
             Assert.AreEqual(expected, result);
+
         }
 
         [TestMethod]
@@ -27,9 +29,9 @@ namespace DwarfCityTests
         {
             List<Dwarf> Dwarfs = new List<Dwarf>();
             Dwarfs.Add(new Dwarf());
-            Dwarfs[0].Backpack.Money = 4;
+            Dwarfs[0].Backpack.Money = 5;
             Guild guild = new Guild();
-            decimal expected = 3;          
+            decimal expected = 4;          
             guild.GetTaxesofAllDwarfs(Dwarfs);
             decimal result = Dwarfs[0].Backpack.Money;
             Assert.AreEqual(expected, result);

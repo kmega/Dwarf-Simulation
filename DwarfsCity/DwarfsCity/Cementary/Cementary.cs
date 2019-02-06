@@ -1,13 +1,16 @@
 ﻿using DwarfsCity.DwarfContener;
 using DwarfsCity.MineContener;
+using DwarfsCity.Reports;
 using System;
 using System.Collections.Generic;
 
 namespace DwarfsCity
 {
-    public class Cementary
+    public class Cementary: IReport
     {
         public static List<Dwarf> graves { get; private set; } = new List<Dwarf>();
+
+        public List<string> Reports { get; set; } = new List<string>();
 
         private void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
         {
@@ -21,11 +24,17 @@ namespace DwarfsCity
         {
             AddKilledDwarfsToGraves(dwarfs.KilledDwarfs);
 
-            Console.WriteLine("kopalnia wybuchla, zginely krasnale:");
+            GiveReport("The mine is explode! The death Dwarfs: ");
             foreach (var killedDwarf in dwarfs.KilledDwarfs)
-            {
-                Console.WriteLine(killedDwarf.Attribute);
+            {                
+                GiveReport("killedDwarf.Attribute");               
             }
+            
+        }
+
+        public void GiveReport(string message)
+        {
+            Reports.Add(message);
         }
     }
 }
