@@ -15,7 +15,7 @@ namespace DwarfCityTests
         {
             List<Dwarf> Dwarfs = new List<Dwarf>();
             Dwarfs.Add(new Dwarf());
-            Dwarfs[0].Backpack.Money = 4;
+            Dwarfs[0].Backpack.Money = 5;
             Guild guild = new Guild();
             guild.GetTaxesofAllDwarfs(Dwarfs);
             decimal expected = 1;
@@ -29,9 +29,9 @@ namespace DwarfCityTests
         {
             List<Dwarf> Dwarfs = new List<Dwarf>();
             Dwarfs.Add(new Dwarf());
-            Dwarfs[0].Backpack.Money = 4;
+            Dwarfs[0].Backpack.Money = 5;
             Guild guild = new Guild();
-            decimal expected = 3;          
+            decimal expected = 4;          
             guild.GetTaxesofAllDwarfs(Dwarfs);
             decimal result = Dwarfs[0].Backpack.Money;
             Assert.AreEqual(expected, result);
