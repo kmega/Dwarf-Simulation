@@ -15,7 +15,7 @@ namespace DwarfMineSimulator
                 CheckHowMuchDwarfGetMinerals(DwarfsPopulation, i, out howMuchGold, out howMuchMithril, out howMuchTrainedGold, out howMuchSilver);
                 
                 //mithril 15 - 25j, zoto 10 - 20j, srebro 5 - 15, brudne zoto 2
-                int earnedMoney = HowMuchMonetDwarfsGet(priceForRawMaterials, howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver);
+                decimal earnedMoney = HowMuchMonetDwarfsGet(priceForRawMaterials, howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver);
 
                 DwarfsPopulation[i].MoneyEarndedThisDay = earnedMoney;
                 DwarfsPopulation[i].Money += earnedMoney;
@@ -25,13 +25,16 @@ namespace DwarfMineSimulator
             return DwarfsPopulation;
         }
 
-        private static int HowMuchMonetDwarfsGet(Random priceForRawMaterials, int howMuchGold, int howMuchMithril, int howMuchTrainedGold, int howMuchSilver)
+        private static decimal HowMuchMonetDwarfsGet(Random priceForRawMaterials, int howMuchGold, int howMuchMithril, int howMuchTrainedGold, int howMuchSilver)
         {
             int priceMithril = priceForRawMaterials.Next(15, 26);
             int priceGold = priceForRawMaterials.Next(10, 21);
             int priceSilver = priceForRawMaterials.Next(5, 16);
-            int earnedMoney = (howMuchGold * priceGold) + (howMuchMithril * priceMithril)
+            decimal earnedMoney = (howMuchGold * priceGold) + (howMuchMithril * priceMithril)
                 + (howMuchSilver * priceSilver) + (howMuchTrainedGold * 2);
+            Simulation.TotalMoneyEarned += earnedMoney;
+            decimal taxMoney = earnedMoney * 0.25m;
+            Simulation.TaxedMoney += taxMoney;
             return earnedMoney;
         }
 

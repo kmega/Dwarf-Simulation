@@ -14,7 +14,10 @@ namespace DwarfMineSimulator
             int chanceToBirthDwarf = rnd.Next(1, 101);
             bool born = false;
             if (chanceToBirthDwarf == 1)
+            {
                 born = true;
+                Simulation.TotalBorn++;
+            }
             hospital.CreateNewDwarf(DwarfsPopulation, born);
             return DwarfsPopulation;
         }
@@ -28,13 +31,25 @@ namespace DwarfMineSimulator
                 //33 % chance to Father, Lazy, Single
                 int chanceToFatherOrSingle = rnd.Next(1, 100);
                 if (chanceToFatherOrSingle <= 33)
+                {
                     dwarfTypes = DwarfTypes.Father;
+                    Simulation.FatherBorn++;
+                } 
                 else if (chanceToFatherOrSingle > 33 && chanceToFatherOrSingle <= 66)
+                {
                     dwarfTypes = DwarfTypes.Single;
+                    Simulation.SingleBorn++;
+                }                   
                 else if (chanceToFatherOrSingle > 66 && chanceToFatherOrSingle <= 99)
+                {
                     dwarfTypes = DwarfTypes.Lazy;
+                    Simulation.LazyBorn++;
+                }
                 else
+                {
                     dwarfTypes = DwarfTypes.Suicider;
+                    Simulation.SuiciderBorn++;
+                }
 
                 DwarfsPopulation.Add(new Dwarf
                 {
