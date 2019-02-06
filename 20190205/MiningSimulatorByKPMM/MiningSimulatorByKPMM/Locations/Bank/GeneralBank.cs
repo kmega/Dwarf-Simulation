@@ -4,16 +4,16 @@ using System.Text;
 
 namespace MiningSimulatorByKPMM.Locations.Bank
 {
-    public class Bank
+    public class GeneralBank
     {
        private decimal BankAccount;
 
-        public Bank()
+        public GeneralBank()
         {
             BankAccount = 0;
         }
 
-        public void PayIntoYourAccount (decimal dailybankaccount, decimal daily)
+        public void PayIntoYourAccount ( decimal dailybankaccount, decimal daily)
         {
             dailybankaccount += daily;
         }
@@ -25,7 +25,7 @@ namespace MiningSimulatorByKPMM.Locations.Bank
 
         }
 
-        public void SumUp (decimal overalaccount, decimal daily)
+        public void SumUp (ref decimal overalaccount, ref decimal daily)
         {
 
             overalaccount += daily;

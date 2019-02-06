@@ -1,5 +1,6 @@
 ﻿using MiningSimulatorByKPMM.DwarfsTypes;
 using MiningSimulatorByKPMM.Enums;
+using MiningSimulatorByKPMM.Locations.Bank;
 using MiningSimulatorByKPMM.PersonalItems;
 using System;
 using System.Collections;
@@ -10,7 +11,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 {
     public class Guild
     {
-        public decimal Account { get; private set; }
+        public BankAccount Account { get; private set; }
 
         private Dictionary<E_Minerals, ICreateOreValue> GoodsOnMarket =
             new Dictionary<E_Minerals, ICreateOreValue>()
@@ -20,8 +21,13 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 {E_Minerals.DirtGold, new ValueOfDirtGold() },
                 {E_Minerals.Mithril, new ValueOfMithril() },
                 {E_Minerals.Silver, new ValueOfSilver() }
-            }
-            ;
+            };
+
+        public Guild()
+        {
+            Account = new BankAccount();
+        }
+
 
         private int ReturnValue(E_Minerals mineralsType)
         {
@@ -29,21 +35,25 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 
         }
 
-        public void PaymentForDwars  (Backpack backpack, )
-        {
-            foreach (var dwarf in listofdwarfs)
-            {
-                foreach (var mineral in dwarf.P)
-                {
-                    decimal value = (decimal)ReturnValue(mineral);
-                    decimal tax = Math.Round((value / 4), 2);
-                    decimal payment = value - tax;
-                    dwarf.EarnMoney(payment);
-                    Account += tax;
-                    Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment,mineral,tax);
+        public void PaymentForDwarf(Backpack backpack, BankAccount account, GeneralBank bank)
 
-                }
+        {
+
+            foreach (var mineral in backpack.ShowBackpackContent())
+            {
+                decimal value = (decimal)ReturnValue(mineral.OutputType);
+
+                decimal tax = Math.Round((value / 4), 2);
+                bank.PayIntoYourAccount(Account.DailyPayment, tax);
+
+                decimal payment = value - tax;
+                bank.PayIntoYourAccount(account.DailyPayment, payment);
+
+                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral, tax);
+
             }
+            backpack.ShowBackpackContent().Clear();
+
 
 
 
