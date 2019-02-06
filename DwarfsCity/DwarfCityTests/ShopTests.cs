@@ -5,12 +5,46 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using DwarfsCity.DwarfContener;
 using DwarfsCity;
 using DwarfsCity.ShopContener;
+using DwarfsCity.DwarfContener.DwarfEquipment;
 
 namespace DwarfCityTests
 {
     [TestClass]
     public class ShopTests
     {
+        [TestMethod]
+        public void ShouldGiveReportWhenDwarfVisitShop()
+        {
+            // given
+            List<Dwarf> dwarfs = new List<Dwarf>();
+            Dwarf dwarfFather = new Dwarf() { Backpack = new Backpack()};
+            dwarfFather.Attribute = DwarfsCity.DwarfContener.Type.Father;
+            Dwarf dwarfSingle = new Dwarf() { Backpack = new Backpack() };
+            dwarfSingle.Attribute = DwarfsCity.DwarfContener.Type.Father;
+            dwarfs.Add(dwarfFather);
+            dwarfs.Add(dwarfSingle);
+            Shop shop = new Shop();
+
+            // when
+            string expectectedDwarFatherReport = @"Dwarf bought Alcohol and paid 0";
+            string expectectedDwarSingleReport = @"Dwarf bought Alcohol and paid 0";
+            shop.PerformShopping(dwarfs);
+            var Raports = shop.Reports;
+
+            //then
+            string actualDwarfFatherReport = Raports[0];
+            string actualDwarfSingleReport = Raports[1];
+            Assert.AreEqual(expectectedDwarFatherReport, actualDwarfFatherReport);
+            Assert.AreEqual(expectectedDwarSingleReport, actualDwarfSingleReport);
+
+
+
+
+
+
+        }
+
+
         [TestMethod]
         public void ShouldDwarfPayHalfMoneyWhenDwarfTypeIsFatherOrSingle()
         {

@@ -1,17 +1,20 @@
 ﻿using DwarfsCity.DwarfContener;
+using DwarfsCity.Reports;
 using System;
 using System.Collections.Generic;
 using Type = DwarfsCity.DwarfContener.Type;
 
 namespace DwarfsCity
 {
-    public class Hospital
+    public class Hospital:IReport
     {
         Random _probabilityOfBirth = new Random();
 
+        public List<string> Reports { get; set; }
 
         public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
         {
+            Reports = new List<string>();
             int probability = 0;
 
             if (initalState)
@@ -25,6 +28,7 @@ namespace DwarfsCity
                 Dwarf newBornDwarf = new Dwarf();
                 newBornDwarf.Attribute = attribute;
                 dwarfs.Add(newBornDwarf);
+                GiveReport($"Hospital: new {attribute} dwarf was born"); 
             }
 
         }
@@ -51,6 +55,11 @@ namespace DwarfsCity
             {
                 GiveBirthToDwarf(dwarfs, true);
             }
+        }
+
+        public void GiveReport(string message)
+        {
+            Reports.Add(message);
         }
     }
 }
