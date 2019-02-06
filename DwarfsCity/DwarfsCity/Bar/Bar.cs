@@ -14,7 +14,7 @@ namespace DwarfsCity
         public int GivenFoodToDwarfsDuringOneDay { get; set; } // Jedzenie wydane w danym dniu
         public List<string> Reports { get; set; }
 
-        public void GiveAFoodToDwarfs(int supplyoffood, List<Dwarf> Dwarfs) //Rozdaje porcje jedzenia wszystkim krasnoludom
+        public void GiveAFoodToDwarfs(List<Dwarf> Dwarfs) //Rozdaje porcje jedzenia wszystkim krasnoludom
         {           
             this.GivenFoodToDwarfsDuringOneDay = Dwarfs.Count;         
             this.SupplyofFood = SupplyofFood - GivenFoodToDwarfsDuringOneDay; 
