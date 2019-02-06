@@ -17,8 +17,9 @@ namespace DwarfCityTests
             Dwarfs.Add(new Dwarf());
             Dwarfs[0].Backpack.Money = 4;
             Guild guild = new Guild();
+            guild.GetTaxesofAllDwarfs(Dwarfs);
             decimal expected = 1;
-            decimal result = guild.GetTaxesofAllDwarfs(Dwarfs);
+            decimal result = guild.TheSumOfTaxes;
             Assert.AreEqual(expected, result);
         }
 

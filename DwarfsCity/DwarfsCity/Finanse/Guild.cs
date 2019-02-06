@@ -6,6 +6,7 @@ namespace DwarfsCity
 {
     public class Guild
     {
+        public decimal TheSumOfTaxes { get; set; } = 0;// Suma podatków, które posiada Gildia
         //private decimal _guildMoney = 0;
 
         //public void GetMoneyFromDwarfs(List<Dwarf> dwarfs)
@@ -33,18 +34,15 @@ namespace DwarfsCity
         //}
                 
 
-        public decimal GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
-        {
-            decimal TheSumOfTaxes = 0;
+        public void GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
+        {      
             foreach (Dwarf dwarf in dwarfs)
             {
-                decimal EarnedMoney = dwarf.Backpack.Money;
                 decimal TaxesOfGuild = 0.25m * dwarf.Backpack.Money;
-                EarnedMoney -= TaxesOfGuild;
+                decimal EarnedMoney = dwarf.Backpack.Money - TaxesOfGuild;
                 dwarf.Backpack.Money = EarnedMoney;
                 TheSumOfTaxes += TaxesOfGuild;
-            }
-            return TheSumOfTaxes;          
+            }                 
         }
     }
 }
