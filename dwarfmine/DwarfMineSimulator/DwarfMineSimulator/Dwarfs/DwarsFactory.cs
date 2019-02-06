@@ -8,6 +8,7 @@ namespace DwarfMineSimulator.Dwarfs
     {
         public Dwarf BornDwarf(int range = 0)
         {
+            
             return new Dwarf(RandomDwarfType(range), true, 0);
         }
 
