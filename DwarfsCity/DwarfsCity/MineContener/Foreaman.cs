@@ -11,8 +11,8 @@ namespace DwarfsCity.MineContener
         public void SendDwarfsToShaft(List<Dwarf> dwarfs, Shaft shaft)
         {
             List<Dwarf> sendedDwarfs = new List<Dwarf>();
-
-            shaft.ShaftExploded += Cementary.OnShaftExploded;  
+            Cementary cementary = new Cementary();
+            shaft.ShaftExploded += cementary.OnShaftExploded;  
 
             foreach (var dwarf in dwarfs)
             {
