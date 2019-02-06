@@ -12,6 +12,7 @@ namespace DwarfMineSimulator
             int foodConsumed = dwarfes.Where(dwarf => dwarf.MoneyEarndedThisDay > 0).Count();
             int lazyDwarfWithoutMoney = dwarfes.Where(dwarf => dwarf.MoneyEarndedThisDay == 0).Count();
             Food = Food - foodConsumed;
+            Console.WriteLine();
             Console.WriteLine("### Dining Room ###");
             Console.WriteLine("Dwarfs Eats " + foodConsumed + " meals");
             Console.WriteLine("Hungry dwarfs " + lazyDwarfWithoutMoney);
