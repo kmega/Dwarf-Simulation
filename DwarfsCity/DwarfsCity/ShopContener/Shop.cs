@@ -1,9 +1,15 @@
 ﻿using DwarfsCity.DwarfContener;
+using DwarfsCity.Reports;
 using System.Collections.Generic;
 namespace DwarfsCity.ShopContener
 {
-    public class Shop
+    public class Shop : IReport
     {
+        public List<string> Reports { get; set; }
+        public Shop()
+        {
+            Reports = new List<string>();
+        }
         public void PerformShopping(List<Dwarf> dwarfs)
         {
             foreach(Dwarf dwarf in dwarfs)
@@ -13,9 +19,13 @@ namespace DwarfsCity.ShopContener
                     decimal price = dwarf.Backpack.Money / 2;
                     dwarf.Backpack.Money /= 2;
                     string product = dwarf.Attribute == Type.Father ? "Alcohol" : "Food";
-                    // Log.Shop(@"Dwarf bought {product}");
+                    GiveReport("Dwarf bought " + product + " and paid " + price);
                 }
             }
+        }
+        public void GiveReport(string message)
+        {
+            Reports.Add(message);
         }
     }
 }
