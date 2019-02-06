@@ -8,18 +8,35 @@ namespace MiningSimulatorByKPMM.Locations.Bank
     {
        private decimal BankAccount;
 
-        public static void PayIntoYourAccount (decimal bankaccount, decimal value)
+        public Bank()
         {
-            bankaccount += value;
+            BankAccount = 0;
         }
 
-        public static void PayTax (decimal receipt)
+        public void PayIntoYourAccount (decimal dailybankaccount, decimal daily)
         {
-           
+            dailybankaccount += daily;
+        }
 
-
+        public void PayTax (decimal receipt)
+        {
+            BankAccount += (receipt * 23) / 100;
+            receipt = (receipt * 77) / 100;
 
         }
+
+        public void SumUp (decimal overalaccount, decimal daily)
+        {
+
+            overalaccount += daily;
+            daily = 0;
+        }
+
+
+
+       
+
+
 
 
     }
