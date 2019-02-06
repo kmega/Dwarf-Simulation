@@ -62,7 +62,7 @@ namespace DwarfMineSimulator
                 while(tenDwarfs < 10)
                 {
                     Dwarfs.Add(new DwarfFactory().BornDwarf(3)); //without suicider
-                    Console.WriteLine("A Dwarf type of {0} was born in the hospital.", Dwarfs[tenDwarfs].GetDwarfType());
+                    Console.WriteLine("A Dwarf type of {0} was born in the hospital.", Dwarfs[Dwarfs.Count - 1].GetDwarfType());
                     tenDwarfs++;
                 }
             }
@@ -70,6 +70,14 @@ namespace DwarfMineSimulator
             while (EndConditions())
             {
                 Console.WriteLine("Day {0} begins...", DayCount);
+
+                // Hospital
+                if (IsChance())
+                {
+                    Dwarfs.Add(new DwarfFactory().BornDwarf(4));
+                    Console.WriteLine("A Dwarf type of {0} was born in the hospital.", Dwarfs[Dwarfs.Count - 1].GetDwarfType());
+                }
+
 
                 Console.WriteLine("The end of day {0}", DayCount);
                 DayPassed();
@@ -79,6 +87,11 @@ namespace DwarfMineSimulator
         private void DayPassed()
         {
             DayCount++;
+        }
+
+        private bool IsChance()
+        {
+            return new Random().Next(0, 2) == 1;
         }
     }
 }
