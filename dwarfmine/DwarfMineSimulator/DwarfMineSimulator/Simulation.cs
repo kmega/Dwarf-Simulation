@@ -27,6 +27,7 @@ namespace DwarfMineSimulator
 
         internal static  int FoodBought { get; set; } = 0;
         internal static int AlcoholBought { get; set; } = 0;
+        internal static decimal ShopEarned { get; set; }
 
         internal static List<Dwarf> DwarfsPopulation = new List<Dwarf>();
 
@@ -59,16 +60,25 @@ namespace DwarfMineSimulator
             DwarfsPopulation = mines.MineInShafts(DwarfsPopulation, ShaftsNumber);
 
             Graveyard graveyard = new Graveyard();
-            // F
+            DwarfsPopulation = graveyard.DeleteDeadDwarfFromList(DwarfsPopulation);
+            DeathCount = graveyard.HowManyDead();
 
             Guild guild = new Guild();
             // F
             guild.HowMuchDwarfEarnedMoney(DwarfsPopulation);
 
             DiningRoom diningRoom = new DiningRoom();
-            // F
+            if (diningRoom.CanEat(FoodInDiningRoom, DwarfsPopulation))
+            { FoodInDiningRoom = diningRoom.DwarfsEat(FoodInDiningRoom, DwarfsPopulation); }
+                
+
 
             Shop shop = new Shop();
+            shop.BuyProducts(DwarfsPopulation);
+            shop.DisplaySaleValues();
+            FoodBought += shop.FoodBought;
+            AlcoholBought += shop.AlcoholBought;
+            ShopEarned += shop.EarnedMoney;
             // F
         }
     }
