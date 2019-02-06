@@ -19,8 +19,9 @@ namespace DwarfCityTests
             Guild guild = new Guild();
             guild.GetTaxesofAllDwarfs(Dwarfs);
             decimal expected = 1;
-            decimal result = guild.TheSumOfTaxes;
+            decimal result = guild.TheSumOfTaxes;           
             Assert.AreEqual(expected, result);
+
         }
 
         [TestMethod]
