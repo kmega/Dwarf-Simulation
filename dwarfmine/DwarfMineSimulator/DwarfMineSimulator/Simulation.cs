@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DwarfMineSimulator
 {
@@ -40,7 +41,15 @@ namespace DwarfMineSimulator
 
         internal static void PrepareSimulation()
         {
-            // Add ten dwarfs to lists.
+            Hospital hospital = new Hospital();
+
+            for (int i = 0; i < 10; i++)
+            {
+                hospital.CreateNewDwarf(DwarfsPopulation, true);
+            }
+
+            ShaftsNumber.Add(new Shaft());
+            ShaftsNumber.Add(new Shaft());
         }
 
         internal static void StartSimulation()
@@ -48,6 +57,8 @@ namespace DwarfMineSimulator
             for (int daysCount = 0; daysCount < 30; daysCount++)
             {
                 DayOfWork();
+
+                Console.ReadKey();
             }
         }
 

@@ -74,10 +74,17 @@ namespace DwarfMineSimulator
                 _shaftsNumber[i].Collapsed = true;
             }
 
-            for (int j = 0; j < _shaftsNumber[i].Miners.Count; j++)
+            for (int j = 0; j < _shaftsNumber[i].MaxInside; j++)
             {
-                _dwarfsThatMined.Add(_shaftsNumber[i].Miners[j]);
-                _shaftsNumber[i].Miners.RemoveAt(j);
+                try
+                {
+                    _dwarfsThatMined.Add(_shaftsNumber[i].Miners[i]);
+                    _shaftsNumber[i].Miners.RemoveAt(i);
+                }
+                catch
+                {
+                    continue;
+                }
             }
         }
 
@@ -135,7 +142,7 @@ namespace DwarfMineSimulator
             }
 
             _shaftsNumber[i].Miners[j].MineralsMined[mineral]++;
-            Console.WriteLine("Dwarf " + i + " mined " + mineral);
+            Console.WriteLine("Dwarf " + j + " mined " + mineral);
         }
     }
 }
