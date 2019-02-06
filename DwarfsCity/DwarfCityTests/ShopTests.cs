@@ -20,14 +20,14 @@ namespace DwarfCityTests
             Dwarf dwarfFather = new Dwarf() { Backpack = new Backpack()};
             dwarfFather.Attribute = DwarfsCity.DwarfContener.Type.Father;
             Dwarf dwarfSingle = new Dwarf() { Backpack = new Backpack() };
-            dwarfSingle.Attribute = DwarfsCity.DwarfContener.Type.Father;
+            dwarfSingle.Attribute = DwarfsCity.DwarfContener.Type.Single;
             dwarfs.Add(dwarfFather);
             dwarfs.Add(dwarfSingle);
             Shop shop = new Shop();
 
             // when
-            string expectectedDwarFatherReport = @"Dwarf bought Alcohol and paid 0";
-            string expectectedDwarSingleReport = @"Dwarf bought Alcohol and paid 0";
+            string expectectedDwarFatherReport = "Dwarf bought Alcohol and paid 0";
+            string expectectedDwarSingleReport = "Dwarf bought Food and paid 0";
             shop.PerformShopping(dwarfs);
             var Raports = shop.Reports;
 
@@ -36,11 +36,6 @@ namespace DwarfCityTests
             string actualDwarfSingleReport = Raports[1];
             Assert.AreEqual(expectectedDwarFatherReport, actualDwarfFatherReport);
             Assert.AreEqual(expectectedDwarSingleReport, actualDwarfSingleReport);
-
-
-
-
-
 
         }
 
