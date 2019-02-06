@@ -111,7 +111,7 @@ namespace DwarfMineSimulator
                 Dwarfs.ForEach(x => 
                 {
                     x.GoToMine(mine);
-                    x.MineMinerals();
+                    MineralsDugCounter(x.MineMinerals());
                 });
 
 
@@ -139,11 +139,16 @@ namespace DwarfMineSimulator
             Console.WriteLine("Father Born = {0}", FatherBorn);
             Console.WriteLine("Suicider Born = {0}", SuiciderBorn);
             Console.WriteLine("Total Born = {0}", TotalBorn);
+            Console.WriteLine();
+            Console.WriteLine("Mithril Minded = {0}", MithrilMinded);
+            Console.WriteLine("Gold Minded = {0}", GoldMinded);
+            Console.WriteLine("Silver Minded = {0}", SilverMinded);
+            Console.WriteLine("Tainted Gold Minded = {0}", TaintedGoldMinded);
         }
 
         private void DwarfBornCounter()
         {
-            switch (Dwarfs[Dwarfs.Count - 1].GetDwarfType())
+            switch(Dwarfs[Dwarfs.Count - 1].GetDwarfType())
             {
                 case DwarfTypes.Lazy:
                     LazyBorn++;
@@ -160,6 +165,32 @@ namespace DwarfMineSimulator
             }
 
             TotalBorn++;
+        }
+
+        private void MineralsDugCounter(Dictionary<Minerals, int> mineralsToCount)
+        {
+            foreach (var mineral in mineralsToCount)
+            {
+                if(mineral.Key.Equals(Minerals.Mithril))
+                {
+                    MithrilMinded += mineral.Value;
+                }
+
+                if (mineral.Key.Equals(Minerals.Gold))
+                {
+                    GoldMinded += mineral.Value;
+                }
+
+                if (mineral.Key.Equals(Minerals.Silver))
+                {
+                    SilverMinded += mineral.Value;
+                }
+
+                if (mineral.Key.Equals(Minerals.TaintedGold))
+                {
+                    TaintedGoldMinded += mineral.Value;
+                }
+            }
         }
     }
 }

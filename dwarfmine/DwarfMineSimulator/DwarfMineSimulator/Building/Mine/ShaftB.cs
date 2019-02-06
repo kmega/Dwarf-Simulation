@@ -6,6 +6,7 @@ namespace DwarfMineSimulator.Building.Mine
 {
     internal class ShaftB : IShaft
     {
+        string name = "ShaftB";
         List<Dwarf> DwarfsInShaft;
         bool Collapsed;
         int MaxDwarfsInShaft;
@@ -30,6 +31,11 @@ namespace DwarfMineSimulator.Building.Mine
         public void DwarfGoIntoShaft(Dwarf worker)
         {
             DwarfsInShaft.Add(worker);
+        }
+
+        public string ShaftName()
+        {
+            return name;
         }
     }
 }

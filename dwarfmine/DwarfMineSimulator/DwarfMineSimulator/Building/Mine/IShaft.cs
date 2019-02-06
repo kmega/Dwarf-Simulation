@@ -8,5 +8,6 @@ namespace DwarfMineSimulator.Building.Mine
         void SetMaxNumberOfDwarfsInShaft(int maxNumber);
         bool IsFullOfDwarfes();
         void DwarfGoIntoShaft(Dwarf worker);
+        string ShaftName();
     }
 }
