@@ -19,71 +19,89 @@ namespace DwarfMineSimulator
 
             while (_dwarfsPopulation.Count > 0)
             {
-                for (int i = 0; i < shaftsNumber.Count; i++)
+                for (int index = 0; index < _shaftsNumber.Count; index++)
                 {
-                    if (shaftsNumber[i].Collapsed == true)
+                    if (_shaftsNumber[index].Collapsed == true)
                     {
                         collapsedShaftsCounter++;
-                        if (collapsedShaftsCounter == _shaftsNumber.Count)
-                        {
-                            return _dwarfsPopulation;
-                        }
                     }
                     else
                     {
-                        StartMining(i);
+                        AddToShaft(index);
                     }
                 }
 
-                collapsedShaftsCounter = 0;
+                if (collapsedShaftsCounter == _shaftsNumber.Count)
+                {
+                    return _dwarfsPopulation;
+                }
+                else
+                {
+                    StartMining();
+                }
             }
 
             return _dwarfsThatMined;
         }
 
-        private void StartMining(int i)
+        private void AddToShaft(int index)
         {
-            bool suiciderInside = false;
-
-            for (int j = 0; j < _shaftsNumber[i].MaxInside; j++)
+            for (int i = 0; i < _shaftsNumber[index].MaxInside; i++)
             {
                 try
                 {
-                    if (_dwarfsPopulation[i].Type == DwarfTypes.Suicider)
+                    _shaftsNumber[index].Miners.Add(_dwarfsPopulation[0]);
+                    _dwarfsPopulation.RemoveAt(0);
+                }
+                catch
+                {
+                    break;
+                }
+            }
+        }
+
+        private void StartMining()
+        {
+            for (int index = 0; index < _shaftsNumber.Count; index++)
+            {
+                CheckForSuicider(index);
+
+                if (_shaftsNumber[index].Collapsed == true)
+                {
+                    continue;
+                }
+                else
+                {
+                    MineOre(index);
+                }
+
+                for (int i = 0; i < _shaftsNumber[index].MaxInside; i++)
+                {
+                    try
                     {
-                        suiciderInside = true;
+                        _dwarfsThatMined.Add(_shaftsNumber[index].Miners[0]);
+                        _shaftsNumber[index].Miners.RemoveAt(0);
+                    }
+                    catch
+                    {
+                        continue;
+                    }
+                }
+            }
+        }
+
+        private void CheckForSuicider(int index)
+        {
+            for (int i = 0; i < _shaftsNumber[index].Miners.Count; i++)
+            {
+                if (_shaftsNumber[index].Miners[i].Type == DwarfTypes.Suicider)
+                {
+                    for (int j = 0; j < _shaftsNumber[index].Miners.Count; j++)
+                    {
+                        _shaftsNumber[index].Miners[j].Alive = false;
                     }
 
-                    _shaftsNumber[i].Miners.Add(_dwarfsPopulation[i]);
-                    _dwarfsPopulation.RemoveAt(i);
-                }
-                catch
-                {
-                    continue;
-                }
-            }
-
-            MineOre(i);
-
-            if (suiciderInside == true)
-            {
-                for (int j = 0; j < _shaftsNumber[i].Miners.Count; j++)
-                {
-                    _shaftsNumber[i].Miners[j].Alive = false;
-                }
-                _shaftsNumber[i].Collapsed = true;
-            }
-
-            for (int j = 0; j < _shaftsNumber[i].MaxInside; j++)
-            {
-                try
-                {
-                    _dwarfsThatMined.Add(_shaftsNumber[i].Miners[i]);
-                    _shaftsNumber[i].Miners.RemoveAt(i);
-                }
-                catch
-                {
-                    continue;
+                    _shaftsNumber[index].Collapsed = true;
                 }
             }
         }
