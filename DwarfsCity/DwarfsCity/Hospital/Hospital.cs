@@ -1,5 +1,6 @@
 ﻿using DwarfsCity.DwarfContener;
 using DwarfsCity.Reports;
+using DwarfsCity.Tools;
 using System;
 using System.Collections.Generic;
 using Type = DwarfsCity.DwarfContener.Type;
@@ -8,21 +9,21 @@ namespace DwarfsCity
 {
     public class Hospital:IReport
     {
-        Random _probabilityOfBirth = new Random();
+        
 
         public List<string> Reports { get; set; }
 
         public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
         {
+            bool isBorn;
             Reports = new List<string>();
-            int probability = 0;
-
+            
             if (initalState)
-                probability = 5;
+                isBorn = true;
             else
-             probability = _probabilityOfBirth.Next(1, 100);
+                isBorn = Randomizer.IsDwarfBorn();
 
-            if (probability == 5)
+            if (isBorn)
             {
                 Type attribute = CreateDwarfAttribute();
                 Dwarf newBornDwarf = new Dwarf();
