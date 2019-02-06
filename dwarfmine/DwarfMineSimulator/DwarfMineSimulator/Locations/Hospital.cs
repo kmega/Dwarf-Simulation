@@ -14,13 +14,13 @@ namespace DwarfMineSimulator
             int chanceToBirthDwarf = rnd.Next(1, 101);
             bool born = false;
             DwarfTypes dwarfTypes;
-            dwarfTypes = RandomTypeDwarf();
             if (chanceToBirthDwarf == 1)
             {
                 born = true;
                 Simulation.TotalBorn++;
+                dwarfTypes = RandomTypeDwarf();
+                hospital.CreateNewDwarf(DwarfsPopulation, born, dwarfTypes);
             }
-            hospital.CreateNewDwarf(DwarfsPopulation, born, dwarfTypes);
             Console.WriteLine("## Born dwarfs ##");
             Console.WriteLine("how many fathers there are: " + Simulation.FatherBorn);
             Console.WriteLine("how many single there are: " + Simulation.SingleBorn);
