@@ -37,6 +37,8 @@ namespace MiningSimulatorByKPMM.Locations.Market
 			decimal amountOfProduct = market.marketState[productType];
 			amountOfProduct += spentMoney;
 			market.marketState[productType] = amountOfProduct;
+			decimal tax = Bank.PayTax(spentMoney);
+			Bank.PayIntoYourAccount(shopBankAccount, spentMoney - tax)
 		}
 	}
 }
