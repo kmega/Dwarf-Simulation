@@ -8,7 +8,7 @@ namespace DwarfsCity
 {
     public class Cementary: IReport
     {
-        private static List<Dwarf> graves { get; set; } = new List<Dwarf>();
+        public static List<Dwarf> graves { get; private set; } = new List<Dwarf>();
 
         public List<string> Reports { get; set; } = new List<string>();
 

@@ -27,6 +27,7 @@ namespace DwarfsCity
             //Dwarfs go to minning -> return still alive dwarfs within resources
             dwarfs = mine.StartWorking(dwarfs);
 
+
         }
 
         public List<Dwarf> GetDwarfs()

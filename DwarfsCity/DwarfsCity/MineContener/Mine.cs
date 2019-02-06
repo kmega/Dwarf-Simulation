@@ -1,11 +1,12 @@
 ﻿using DwarfsCity.DwarfContener;
+using DwarfsCity.Reports;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DwarfsCity.MineContener
 {
-    public class Mine
+    public class Mine: IReport
     {
         Foreaman foreaman;
         List<Shaft> shafts = new List<Shaft>();
@@ -17,14 +18,19 @@ namespace DwarfsCity.MineContener
             shafts.Add(new Shaft());
         }
 
+        public List<string> Reports { get; set; } = new List<string>();
 
+        public void GiveReport(string message)
+        {
+            Reports.Add(message);
+        }
 
         public List<Dwarf> StartWorking(List<Dwarf> dwarfsThatWillWork)
         {
-            List<Dwarf> dwarfsThatWorkedAndStillAlive = new List<Dwarf>();
-            
-            //Send Dwarfs to shafts  -> assign dwarfs to excact shaft
+            GiveReport(dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
 
+            List<Dwarf> dwarfsThatWorkedAndStillAlive = new List<Dwarf>();          
+            //Send Dwarfs to shafts  -> assign dwarfs to excact shaft
             while(dwarfsThatWillWork.Count > 0)
             {
                 if (shafts[0].Exist == true && dwarfsThatWillWork.Count > 0)
@@ -47,7 +53,7 @@ namespace DwarfsCity.MineContener
                     if (shafts[1].Exist == true)
                     {
                         MiningDeposits(shafts[1]);
-                        dwarfsThatWorkedAndStillAlive.AddRange(foreaman.LetTheDwarfsOutTheShaft(shafts[0])); // return dwarfs whose was working 
+                        dwarfsThatWorkedAndStillAlive.AddRange(foreaman.LetTheDwarfsOutTheShaft(shafts[1])); // return dwarfs whose was working 
                     }                   
                 }
 
@@ -55,6 +61,7 @@ namespace DwarfsCity.MineContener
                     
             }
 
+            GiveReport(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
             return dwarfsThatWorkedAndStillAlive;
            
         }
@@ -63,6 +70,7 @@ namespace DwarfsCity.MineContener
         {
             foreach (var dwarf in shaft.dwarfs)
             {
+                GiveReport(dwarf + " goes to digging");
                 dwarf.Digging();
             }
         }
