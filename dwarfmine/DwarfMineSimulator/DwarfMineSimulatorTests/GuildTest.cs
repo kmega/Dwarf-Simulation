@@ -29,7 +29,7 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money >= 10 && money <= 20)
+            if (money >= (10 * 0.75m) && money <= (20 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }
@@ -51,7 +51,7 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money >= 15 && money <= 25)
+            if (money >= (15 * 0.75m) && money <= (25 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }
@@ -73,7 +73,7 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money >= 5 && money <= 15)
+            if (money >= (5 *0.75m) && money <= (15 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }
@@ -95,7 +95,7 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money == 2)
+            if (money == (2 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }

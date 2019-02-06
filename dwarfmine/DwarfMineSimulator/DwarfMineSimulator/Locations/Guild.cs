@@ -19,6 +19,7 @@ namespace DwarfMineSimulator
                 //mithril 15 - 25j, zoto 10 - 20j, srebro 5 - 15, brudne zoto 2
                 decimal earnedMoney = HowMuchMonetDwarfsGet(priceForRawMaterials, howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver);
                 decimal taxMoney = earnedMoney * 0.25m;
+                earnedMoney -= taxMoney;
                 Simulation.TotalMoneyEarned += earnedMoney;
                 Simulation.TaxedMoney += taxMoney;
                 sumMoney += earnedMoney;

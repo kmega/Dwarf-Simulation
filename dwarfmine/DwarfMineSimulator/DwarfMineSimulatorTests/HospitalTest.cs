@@ -37,7 +37,7 @@ namespace HospitalTest
 
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 20; i++)
                 hospital.CreateNewDwarf(DwarfsPopulation, true);
 
             for (int i = 0; i < DwarfsPopulation.Count; i++)
