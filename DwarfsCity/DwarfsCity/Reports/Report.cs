@@ -10,9 +10,12 @@ namespace DwarfsCity.Reports
 
         public void AnaliseReports(List<IReport> classesReports)
         {
-            foreach (var reports in classesReports)
+            for (int i = 0; i < classesReports.Count; i++)
             {
-               _reportsToDisplay.Add(reports.Report);
+                for (int j = 0; j < classesReports[i].Reports.Count; j++)
+                {
+                    _reportsToDisplay.Add(classesReports[i].Reports[j]);
+                }
             }
         }
 
