@@ -6,11 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Factories\" />
+    <Folder Include="Enums\" />
     <Folder Include="DwarfsTypes\" />
     <Folder Include="Locations\Mine\" />
     <Folder Include="Locations\Hospital\" />
+    <Folder Include="Locations\Market\" />
     <Folder Include="Locations\Guild\" />
     <Folder Include="Locations\Cementary\" />
     <Folder Include="Reports\" />
