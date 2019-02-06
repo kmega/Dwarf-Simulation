@@ -111,22 +111,31 @@ namespace DwarfMineSimulator
 
         private void AssignMinedOre(int miningChance, int i, int j)
         {
+            Minerals mineral;
+
             if (miningChance <= 5)
             {
-                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.Mithril]++;
+                mineral = Minerals.Mithril;
+                Simulation.MithrilMinded++;
             }
             else if (miningChance <= 20)
             {
-                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.Gold]++;
+                mineral = Minerals.Gold;
+                Simulation.GoldMinded++;
             }
             else if (miningChance <= 55)
             {
-                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.Silver]++;
+                mineral = Minerals.Silver;
+                Simulation.SilverMinded++;
             }
             else
             {
-                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.TaintedGold]++;
+                mineral = Minerals.TaintedGold;
+                Simulation.TaintedGoldMinded++;
             }
+
+            _shaftsNumber[i].Miners[j].MineralsMined[mineral]++;
+            Console.WriteLine("Dwarf " + i + " mined " + mineral);
         }
     }
 }
