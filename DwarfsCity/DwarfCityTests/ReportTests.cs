@@ -51,7 +51,7 @@ namespace DwarfCityTests
             Assert.AreEqual(100, report.GetReportsToDisplay().Count);
             Assert.AreEqual("Hospital: new Single dwarf was born", report.GetReportsToDisplay()[numberInListOfDwarfs_Single]);
             Assert.AreEqual("Hospital: new Father dwarf was born", report.GetReportsToDisplay()[numberInListOfDwarfs_Father]);
-            Assert.AreEqual("Hospital: new Lazy dwarf was born", report.GetReportsToDisplay()[numberInListOfDwarfs_Lazy]);
+            Assert.AreEqual("Hospital: new Lazy dwarf was born", report.GetReportsToDisplay()[numberInListOfDwarfs_Lazy]); 
             
         }
     }
