@@ -8,12 +8,6 @@ namespace DwarfsCity
     public class Cementary
     {
         private static List<Dwarf> graves { get; set; } = new List<Dwarf>();
-        public void BurryDeadDwarfs(List<Dwarf> deadDwarfs)
-        {
-            deadDwarfs.Clear();
-
-            //give report it the shape of log/logger 
-        }
 
         private static void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
         {
