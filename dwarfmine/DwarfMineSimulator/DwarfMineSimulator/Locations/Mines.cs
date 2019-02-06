@@ -6,49 +6,60 @@ namespace DwarfMineSimulator
 {
     class Mines
     {
-        List<Dwarf> DwarfsThatMined = new List<Dwarf>();
-        List<Dwarf> DwarfsPopulation = new List<Dwarf>();
-        List<Shaft> ShaftsNumber = new List<Shaft>();
+        List<Dwarf> _dwarfsThatMined = new List<Dwarf>();
+        List<Dwarf> _dwarfsPopulation = new List<Dwarf>();
+        List<Shaft> _shaftsNumber = new List<Shaft>();
 
         internal List<Dwarf> MineInShafts(List<Dwarf> dwarfsPopulation, List<Shaft> shaftsNumber)
         {
-            DwarfsPopulation = dwarfsPopulation;
-            ShaftsNumber = shaftsNumber;
+            _dwarfsPopulation = dwarfsPopulation;
+            _shaftsNumber = shaftsNumber;
 
-            for (int i = 0; i < shaftsNumber.Count; i++)
+            int collapsedShaftsCounter = 0;
+
+            while (_dwarfsPopulation.Count > 0)
             {
-                if (shaftsNumber[i].Collapsed == true)
+                for (int i = 0; i < shaftsNumber.Count; i++)
                 {
-                    continue;
+                    if (shaftsNumber[i].Collapsed == true)
+                    {
+                        collapsedShaftsCounter++;
+                        if (collapsedShaftsCounter == _shaftsNumber.Count)
+                        {
+                            return _dwarfsPopulation;
+                        }
+                    }
+                    else
+                    {
+                        StartMining(i);
+                    }
                 }
-                else
-                {
-                    StartMining(i);
-                }
+
+                collapsedShaftsCounter = 0;
             }
 
-            return DwarfsThatMined;
+            return _dwarfsThatMined;
         }
 
         private void StartMining(int i)
         {
             bool suiciderInside = false;
 
-            for (int j = 0; j < ShaftsNumber[i].MaxInside; j++)
+            for (int j = 0; j < _shaftsNumber[i].MaxInside; j++)
             {
                 try
                 {
-                    ShaftsNumber[i].Miners.Add(DwarfsPopulation[j]);
-                    DwarfsPopulation.RemoveAt(j);
-
-                    if (DwarfsPopulation[j].Type == DwarfTypes.Suicider)
+                    if (_dwarfsPopulation[i].Type == DwarfTypes.Suicider)
                     {
                         suiciderInside = true;
                     }
+
+                    _shaftsNumber[i].Miners.Add(_dwarfsPopulation[i]);
+                    _dwarfsPopulation.RemoveAt(i);
                 }
                 catch
                 {
-                    break;
+                    continue;
                 }
             }
 
@@ -56,17 +67,17 @@ namespace DwarfMineSimulator
 
             if (suiciderInside == true)
             {
-                for (int j = 0; j < ShaftsNumber[i].Miners.Count; j++)
+                for (int j = 0; j < _shaftsNumber[i].Miners.Count; j++)
                 {
-                    ShaftsNumber[i].Miners[j].Alive = false;
+                    _shaftsNumber[i].Miners[j].Alive = false;
                 }
-                ShaftsNumber[i].Collapsed = true;
+                _shaftsNumber[i].Collapsed = true;
             }
 
-            for (int j = 0; j < ShaftsNumber[i].Miners.Count; j++)
+            for (int j = 0; j < _shaftsNumber[i].Miners.Count; j++)
             {
-                DwarfsThatMined.Add(ShaftsNumber[i].Miners[j]);
-                ShaftsNumber[i].Miners.RemoveAt(j);
+                _dwarfsThatMined.Add(_shaftsNumber[i].Miners[j]);
+                _shaftsNumber[i].Miners.RemoveAt(j);
             }
         }
 
@@ -75,9 +86,9 @@ namespace DwarfMineSimulator
             Random random = new Random();
             int miningChance = 0;
 
-            for (int j = 0; j < ShaftsNumber[i].Miners.Count; j++)
+            for (int j = 0; j < _shaftsNumber[i].Miners.Count; j++)
             {
-                if (ShaftsNumber[i].Miners[j].Type == DwarfTypes.Lazy)
+                if (_shaftsNumber[i].Miners[j].Type == DwarfTypes.Lazy)
                 {
                     for (int m = 0; m < random.Next(0, 2); m++)
                     {
@@ -102,19 +113,19 @@ namespace DwarfMineSimulator
         {
             if (miningChance <= 5)
             {
-                ShaftsNumber[i].Miners[j].MineralsMined[Minerals.Mithril]++;
+                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.Mithril]++;
             }
             else if (miningChance <= 20)
             {
-                ShaftsNumber[i].Miners[j].MineralsMined[Minerals.Gold]++;
+                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.Gold]++;
             }
             else if (miningChance <= 55)
             {
-                ShaftsNumber[i].Miners[j].MineralsMined[Minerals.Silver]++;
+                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.Silver]++;
             }
             else
             {
-                ShaftsNumber[i].Miners[j].MineralsMined[Minerals.TaintedGold]++;
+                _shaftsNumber[i].Miners[j].MineralsMined[Minerals.TaintedGold]++;
             }
         }
     }

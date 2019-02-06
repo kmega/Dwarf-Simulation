@@ -24,11 +24,13 @@ namespace DwarfMineSimulator
         decimal TotalMoneyEarned { get; set; } = 0.0m;
 
         int FoodEaten { get; set; } = 0;
+        int FoodInDiningRoom { get; set; } = 200;
 
         int FoodBought { get; set; } = 0;
         int AlcoholBought { get; set; } = 0;
 
         List<Dwarf> DwarfsPopulation = new List<Dwarf>();
+
 
         internal void Simulate()
         {
