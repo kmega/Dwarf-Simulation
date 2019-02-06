@@ -8,5 +8,10 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         public List<Dwarf> Dwarves { get; set; }
         public int NumberOfDeadDwarves { get; set; }
         public bool ShouldSimulationBreak { get; set; }
+
+        public SimulationState()
+        {
+            Dwarves = new List<Dwarf>();
+        }
     }
 }

@@ -20,6 +20,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             Hospital hospital = new Hospital();
             Guild guild = new Guild();
             Canteen canteen = new Canteen();
+            _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
             for (int i = 0; i < 30; i++)
             {
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
