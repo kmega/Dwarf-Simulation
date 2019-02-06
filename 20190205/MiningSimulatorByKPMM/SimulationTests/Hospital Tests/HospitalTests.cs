@@ -1,33 +1,32 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MiningSimulatorByKPMM.Enums;
-using MiningSimulatorByKPMM.Interfaces;
 using MiningSimulatorByKPMM.Locations.Hospital;
 using Moq;
-using System.Collections.Generic;
 
 namespace SimulationTests.Hospital_Tests
 {
     [TestClass]
     public class HospitalTests
     {
-        private Mock<IRandomGenerator> randomGenerator = new Mock<IRandomGenerator>();
-        private Mock<IRandomGenerator> randomGenerator2 = new Mock<IRandomGenerator>();
+        private Mock<IBirthChanceRandomizer> birthChanceMock = new Mock<IBirthChanceRandomizer>();
+        private Mock<IDwarfTypeRandomizer> dwarfTypeGeneratorMock = new Mock<IDwarfTypeRandomizer>();
 
-        private List<IRandomGenerator> SetRandomMocks(int resultOfFirstGenerator, int resultOfSecondGenerator)
+        private void SetBirthMock(bool result)
         {
-            randomGenerator.Setup(x => x.GenerateSignleRandomNumber()).Returns(resultOfFirstGenerator);
-            randomGenerator2.Setup(x => x.GenerateSignleRandomNumber()).Returns(resultOfSecondGenerator);
-            return new List<IRandomGenerator>()
-            {
-                randomGenerator.Object, randomGenerator2.Object
-            };
+            birthChanceMock.Setup(random => random.IsDwarfBorn()).Returns(result);
+        }
+        private void SetDwarfTypeMock(E_DwarfType result)
+        {
+            dwarfTypeGeneratorMock.Setup(random => random.GenerateType()).Returns(result);
         }
 
         [TestMethod]
         public void ShouldCreateSuicideDwarf()
         {
             //given   
-            var hospital = new Hospital(SetRandomMocks(0,0));
+            SetBirthMock(true);
+            SetDwarfTypeMock(E_DwarfType.Dwarf_Suicide);
+            var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
             //when
             var result = hospital.TryToCreateDwarf();
             //then
@@ -37,7 +36,9 @@ namespace SimulationTests.Hospital_Tests
         public void ShouldCreateFatherDwarf()
         {
             //given
-            var hospital = new Hospital(SetRandomMocks(0,13));
+            SetBirthMock(true);
+            SetDwarfTypeMock(E_DwarfType.Dwarf_Father);
+            var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
             //when
             var result = hospital.TryToCreateDwarf();
             //then
@@ -47,7 +48,8 @@ namespace SimulationTests.Hospital_Tests
         public void ShouldReturnNullWhenFirstRandomReturnDifferentThan0()
         {
             //given
-            var hospital = new Hospital(SetRandomMocks(12, 13));
+            SetBirthMock(false);
+            var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
             //when
             var result = hospital.TryToCreateDwarf();
             //then

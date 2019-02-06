@@ -1,5 +1,7 @@
 ﻿using MiningSimulatorByKPMM.DwarfsTypes;
 using MiningSimulatorByKPMM.Enums;
+using MiningSimulatorByKPMM.Locations.Bank;
+using MiningSimulatorByKPMM.PersonalItems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,43 +11,50 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 {
     public class Guild
     {
-        public decimal Account { get; private set; }
+        public BankAccount Account { get; private set; }
 
-        private Dictionary<E_MineralsType, IRandomGenerator> GoodsOnMarket =
-            new Dictionary<E_MineralsType, IRandomGenerator>()
+        private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket =
+            new Dictionary<E_Minerals, ICreateOreValue>()
 
             {
-                {E_MineralsType.Gold, new ValueOfGold()},
-                {E_MineralsType.DirtGold, new ValueOfDirtGold() },
-                {E_MineralsType.Mithril, new ValueOfMithril() },
-                {E_MineralsType.Silver, new ValueOfSilver() }
-            }
-            ;
+                {E_Minerals.Gold, new ValueOfGold()},
+                {E_Minerals.DirtGold, new ValueOfDirtGold() },
+                {E_Minerals.Mithril, new ValueOfMithril() },
+                {E_Minerals.Silver, new ValueOfSilver() }
+            };
 
-        private int ReturnValue(E_MineralsType mineralsType)
+        public Guild()
         {
-            return GoodsOnMarket[mineralsType].GenerateSignleRandomNumber();
+            Account = new BankAccount();
+        }
+
+
+        private int ReturnValue(E_Minerals mineralsType)
+        {
+            return OreOnMarket[mineralsType].GenerateSingleValue();
 
         }
 
-        public void PaymentForDwars  (List<Dwarf> listofdwarfs)
+        public void PaymentForDwarf(Backpack backpack, BankAccount account, GeneralBank bank)
+
         {
-            foreach (var dwarf in listofdwarfs)
+
+            foreach (var mineral in backpack.ShowBackpackContent())
             {
-                foreach (var mineral in dwarf.PersonalEquipment)
-                {
-                    decimal value = (decimal)ReturnValue(mineral);
-                    decimal tax = Math.Round((value / 4), 2);
-                    decimal payment = value - tax;
-                    dwarf.EarnMoney(payment);
-                    Account += tax;
-                    Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment,mineral,tax);
+                decimal value = (decimal)ReturnValue(mineral.OutputType);
 
-                }
+                decimal tax = Math.Round((value / 4), 2);
+                Account.ReceivedMoney(tax);
+                Account.CalculateOverallAccount();
+
+
+                decimal payment = value - tax;
+                account.ReceivedMoney(payment);
+
+                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral, tax);
+
             }
-
-
-
+            backpack.ShowBackpackContent().Clear();
 
         }
     }

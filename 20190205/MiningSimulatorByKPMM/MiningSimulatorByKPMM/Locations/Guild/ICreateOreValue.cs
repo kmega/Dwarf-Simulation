@@ -4,7 +4,9 @@ using System.Text;
 
 namespace MiningSimulatorByKPMM.Locations.Guild
 {
-    class ICreateOreValue
+    public interface ICreateOreValue
     {
+        int GenerateSingleValue();
+
     }
 }
