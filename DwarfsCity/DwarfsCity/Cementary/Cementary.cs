@@ -28,7 +28,7 @@ namespace DwarfsCity
             AddKilledDwarfsToGraves(dwarfs.KilledDwarfs);
 
             Console.WriteLine("kopalnia wybuchla, zginely krasnale:");
-            foreach (var killedDwarf in graves)
+            foreach (var killedDwarf in dwarfs.KilledDwarfs)
             {
                 Console.WriteLine(killedDwarf.Attribute);
             }

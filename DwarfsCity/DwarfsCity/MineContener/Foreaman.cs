@@ -5,7 +5,7 @@ using DwarfsCity.DwarfContener;
 
 namespace DwarfsCity.MineContener
 {
-    public class Foreaman
+    public class Foreaman: IForeman
     {
 
         public void SendDwarfsToShaft(List<Dwarf> dwarfs, Shaft shaft)
@@ -31,6 +31,18 @@ namespace DwarfsCity.MineContener
                 shaft.ChangeShaftExistStatusToDestroyed();                
             }
         }
-       
+
+        public List<Dwarf> LetTheDwarfsOutTheShaft(Shaft shaft)
+        {
+            List<Dwarf> dwarfsThatWasWorked = new List<Dwarf>();
+            foreach (var dwarf in shaft.dwarfs)
+            {
+                dwarfsThatWasWorked.Add(dwarf);
+            }
+
+            shaft.dwarfs.Clear();
+
+            return dwarfsThatWasWorked;
+        }
     }
 }

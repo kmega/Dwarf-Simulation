@@ -23,7 +23,9 @@ namespace DwarfsCity
             Cementary cementary = new Cementary();
 
             hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 12);
-            mine.StartWorking(dwarfs);
+
+            //Dwarfs go to minning -> return still alive dwarfs within resources
+            dwarfs = mine.StartWorking(dwarfs);
 
         }
 
