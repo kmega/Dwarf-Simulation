@@ -42,6 +42,18 @@ namespace Tests
             return DwarfsPopulation;
         }
 
+        public List<Dwarf> Setup3()
+        {
+            List<Dwarf> DwarfsPopulation = new List<Dwarf>()
+            {
+                new Dwarf() { Alive = false, Type = DwarfTypes.Suicider, Money = 0, MoneyEarndedThisDay = 0 },
+                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 },
+                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 },
+                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 }
+            };
+            return DwarfsPopulation;
+        }
+
 
         [Test]
         public void DeleteOneDeadDwarfFromList()
@@ -96,6 +108,25 @@ namespace Tests
                 Assert.AreEqual(dwarf.Alive, true);
             }
             Assert.AreEqual(graveyard.HowManyDead(), 4);
+        }
+
+        [Test]
+        public void DeleteAllDeadDwarfFromListAndSuicider()
+        {
+            //Given
+            List<Dwarf> DwarfsPopulation = Setup3();
+            Graveyard graveyard = new Graveyard();
+
+            //When
+            DwarfsPopulation = graveyard.DeleteDeadDwarfFromList(DwarfsPopulation);
+
+            //Then
+            foreach (var dwarf in DwarfsPopulation)
+            {
+                Assert.AreEqual(dwarf.Alive, true);
+            }
+            Assert.AreEqual(graveyard.HowManyDead(), 4);
+            Assert.IsEmpty(DwarfsPopulation);
         }
 
     }
