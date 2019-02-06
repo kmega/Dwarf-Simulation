@@ -37,5 +37,10 @@ namespace DwarfMineSimulator.Building.Mine
         {
             return name;
         }
+
+        public bool IsCollapsed()
+        {
+            return Collapsed;
+        }
     }
 }

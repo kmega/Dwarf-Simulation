@@ -105,7 +105,17 @@ namespace DwarfMineSimulator.Dwarfs
         {
             IShaft choosenShaft = mine.WhichShaft();
             choosenShaft.DwarfGoIntoShaft(this);
-            Console.WriteLine("Dwartf no {0} goes to {1}", Identifier, choosenShaft.ShaftName());
+            Console.WriteLine("Dwart no {0} goes to {1}", Identifier, choosenShaft.ShaftName());
+        }
+
+        public bool IsAlive()
+        {
+            return Alive;
+        }
+
+        public void SummonDeath()
+        {
+            Alive = false;
         }
     }
 }

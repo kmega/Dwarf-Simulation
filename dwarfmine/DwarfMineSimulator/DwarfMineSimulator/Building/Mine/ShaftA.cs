@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DwarfMineSimulator.Dwarfs;
+using DwarfMineSimulator.Enums;
 
 namespace DwarfMineSimulator.Building.Mine
 {
@@ -30,12 +31,27 @@ namespace DwarfMineSimulator.Building.Mine
 
         public void DwarfGoIntoShaft(Dwarf worker)
         {
-            DwarfsInShaft.Add(worker);
+            if (worker.IsAlive())
+            {
+                DwarfsInShaft.Add(worker);
+                if (worker.GetDwarfType().Equals(DwarfTypes.Suicider))
+                {
+                    DwarfsInShaft.ForEach(x =>
+                    {
+                        x.SummonDeath();
+                    });
+                }
+            }
         }
 
         public string ShaftName()
         {
             return name;
+        }
+
+        public bool IsCollapsed()
+        {
+            return Collapsed;
         }
     }
 }

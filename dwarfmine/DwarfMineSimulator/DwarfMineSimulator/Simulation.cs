@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DwarfMineSimulator.Dwarfs;
 using DwarfMineSimulator.Enums;
 using DwarfMineSimulator.Building.Mine;
@@ -110,8 +111,11 @@ namespace DwarfMineSimulator
                 // Mine
                 Dwarfs.ForEach(x => 
                 {
-                    x.GoToMine(mine);
-                    MineralsDugCounter(x.MineMinerals());
+                    if(x.IsAlive())
+                    {
+                        x.GoToMine(mine);
+                        MineralsDugCounter(x.MineMinerals());
+                    }
                 });
 
 
@@ -119,6 +123,7 @@ namespace DwarfMineSimulator
                 DayPassed();
             }
 
+            DeathCount = Dwarfs.Count(x => x.IsAlive() == false);
             Report();
         }
 
@@ -134,6 +139,7 @@ namespace DwarfMineSimulator
 
         private void Report()
         {
+            Console.WriteLine();
             Console.WriteLine("Lazy Born = {0}", LazyBorn);
             Console.WriteLine("Single Born = {0}", SingleBorn);
             Console.WriteLine("Father Born = {0}", FatherBorn);
@@ -144,6 +150,8 @@ namespace DwarfMineSimulator
             Console.WriteLine("Gold Minded = {0}", GoldMinded);
             Console.WriteLine("Silver Minded = {0}", SilverMinded);
             Console.WriteLine("Tainted Gold Minded = {0}", TaintedGoldMinded);
+            Console.WriteLine();
+            Console.WriteLine("Death Count = {0}", DeathCount);
         }
 
         private void DwarfBornCounter()
