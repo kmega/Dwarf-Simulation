@@ -10,29 +10,31 @@ namespace SimulationTests.MineTests
     public class SplittingWorkers
     {
         [Test]
-        public void IntoSingleTeam()
+        public void IntoTwoTeams()
         {
             //given
+            List<Dwarf> dwarves = new List<Dwarf>
+            {
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf(),
+                new Dwarf()
+            };
+
             var Splitter = new TeamSplitter();
 
             //when
-            var result = Splitter.SplitWorkersIntoTeam(10);
+            (List<Dwarf> team1, List<Dwarf> team2) = Splitter.SplitWorkersIntoTwoTeams(dwarves);
 
             //then
-            Assert.IsTrue(result == 5);
-        }
-
-        [Test]
-        public void IntoSmallerTeam()
-        {
-            //given
-            var Splitter = new TeamSplitter();
-
-            //when
-            var result = Splitter.SplitWorkersIntoTeam(3);
-
-            //then
-            Assert.IsTrue(result == 3);
+            Assert.IsTrue(team1.Count == 5);
+            Assert.IsTrue(team2.Count == 5);
         }
     }
 }

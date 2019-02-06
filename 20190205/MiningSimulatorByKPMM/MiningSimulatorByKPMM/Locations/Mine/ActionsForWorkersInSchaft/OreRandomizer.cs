@@ -8,12 +8,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine.ActionsForWorkersInSchaft
 {
     public class OreRandomizer : IOreRandomizer
     {
-        private E_Minerals MineralType { get; set; }
-
-        public E_Minerals GetOreType()
-        {
-            return MineralType;
-        }
+        E_Minerals mineralType;
 
         public Ore GetRandomMineral()
         {
@@ -21,16 +16,16 @@ namespace MiningSimulatorByKPMM.Locations.Mine.ActionsForWorkersInSchaft
             var randomValue = new Random().Next(1, 100);
 
             if (randomValue <= 5)
-                MineralType = E_Minerals.Mithril;
+                mineralType = E_Minerals.Mithril;
             else if (randomValue > 5 && randomValue <= 20)
-                MineralType = E_Minerals.Gold;
+                mineralType = E_Minerals.Gold;
             else if (randomValue > 20 && randomValue <= 55)
-                MineralType = E_Minerals.Silver;
-            else MineralType = E_Minerals.DirtGold;
+                mineralType = E_Minerals.Silver;
+            else mineralType = E_Minerals.DirtGold;
 
             //E_Minerals mineral = (E_Minerals)mineralValues.GetValue(random.Next(mineralValues.Length));
 
-            return new Ore(MineralType);
+            return new Ore(mineralType);
         }
     }
 }

@@ -7,16 +7,21 @@ namespace MiningSimulatorByKPMM.Locations.Mine
 {
     public class TeamSplitter
     {
-        const int SchaftSize = 5;
-
-        public int SplitWorkersIntoTeam(int workersCount)
+        public (List<Dwarf>, List<Dwarf>) SplitWorkersIntoTwoTeams(List<Dwarf> EntryWorkers)
         {
-            if (workersCount > SchaftSize)
+            List<Dwarf> FirstWorkingTeam = new List<Dwarf>();
+            List<Dwarf> SecondWorkingTeam = new List<Dwarf>();
+
+            int AmountOfAvilabeWorkers = EntryWorkers.Count;
+
+            if (AmountOfAvilabeWorkers >= 10)
             {
-                workersCount -= SchaftSize;
-                return SchaftSize;
+                FirstWorkingTeam.Take(5);
+                SecondWorkingTeam.Take(5);
             }
-            else return workersCount;
+            else throw new NotImplementedException("Empty list of workers, cannot split");
+
+            return (FirstWorkingTeam, SecondWorkingTeam);
         }
     }
 }
