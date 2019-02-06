@@ -55,6 +55,21 @@ namespace SimulationTests.Hospital_Tests
             //then
             Assert.IsNull(result);
         }
+        [TestMethod]
+        public void ShouldCreateListOf10DwarfFather()
+        {
+            //given
+            SetDwarfTypeMock(E_DwarfType.Dwarf_Father);
+            var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
+            //when
+            var result = hospital.BuildInitialSocietyMembers();
+            //then
+            Assert.AreEqual(10, result.Count);
+            foreach(var dwarf in result)
+            {
+                Assert.AreEqual(E_DwarfType.Dwarf_Father, dwarf.DwarfType);
+            }
+        }
     }
 }
 
