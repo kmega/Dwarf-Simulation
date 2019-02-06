@@ -21,7 +21,7 @@ namespace DwarfsCity.Reports
 
         public List<string> GetReportsToDisplay()
         {
-            return _reportsToDisplay;
+            return _reportsToDisplay; 
         }
 
     }
