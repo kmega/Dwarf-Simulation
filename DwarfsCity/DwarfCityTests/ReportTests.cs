@@ -44,7 +44,6 @@ namespace DwarfCityTests
                     case "Hospital: new Lazy dwarf was born":
                         numberInListOfDwarfs_Lazy = i;
                         break;
-
                 }
                     
             }
