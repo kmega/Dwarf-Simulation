@@ -142,7 +142,7 @@ namespace DwarfMineSimulator
             }
 
             _shaftsNumber[i].Miners[j].MineralsMined[mineral]++;
-            Console.WriteLine($"Dwarf " + j + " mined " + mineral);
+            Console.WriteLine("Dwarf " + j + " mined " + mineral);
         }
     }
 }

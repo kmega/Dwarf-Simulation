@@ -34,7 +34,6 @@ namespace DwarfMineSimulator
 
         internal void DisplaySaleValues()
         {
-            Console.WriteLine("/n");
             Console.WriteLine("### SHOP ###");
             Console.WriteLine($"Dwarfs bought: {FoodBought} food.");
             Console.WriteLine($"Dwarfs bought: {AlcoholBought} alcohol.");
