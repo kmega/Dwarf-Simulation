@@ -91,6 +91,8 @@ namespace DwarfMineSimulator
             AlcoholBought += shop.AlcoholBought;
             ShopEarned += shop.EarnedMoney;
             // F
+
+           
         }
     }
 }

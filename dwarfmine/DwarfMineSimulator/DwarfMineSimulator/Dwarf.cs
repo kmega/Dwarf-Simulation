@@ -14,9 +14,9 @@ namespace DwarfMineSimulator
         internal decimal MoneyEarndedThisDay { get; set; }
 
         internal Dictionary<Minerals, int> MineralsMined { get; set; }
-
+     
         public Dwarf()
-        {
+        {                  
             Alive = true;
             Money = 0;
             MoneyEarndedThisDay = 0;
