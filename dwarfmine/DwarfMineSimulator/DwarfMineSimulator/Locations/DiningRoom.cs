@@ -7,6 +7,7 @@ namespace DwarfMineSimulator
 {
     internal class DiningRoom
     {
+        static internal int ConsumedFood = 0;
         internal int DwarfsEat(int FoodInDinningRoom, List<Dwarf> dwarfes)
         {
             int foodConsumed = dwarfes.Where(dwarf => dwarf.MoneyEarndedThisDay > 0).Count();
@@ -17,7 +18,7 @@ namespace DwarfMineSimulator
             Console.WriteLine("Dwarfs Eats " + foodConsumed + " meals");
             Console.WriteLine("Hungry dwarfs " + lazyDwarfWithoutMoney);
             Console.WriteLine("Food in dining room Food " + FoodInDinningRoom);
-            Simulation.FoodEaten += foodConsumed;
+            Simulation.FoodEaten += foodConsumed; 
             return OrderFood(FoodInDinningRoom);
         }
 
