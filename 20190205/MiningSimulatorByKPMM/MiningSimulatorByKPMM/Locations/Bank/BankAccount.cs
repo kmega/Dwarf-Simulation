@@ -8,7 +8,7 @@ namespace MiningSimulatorByKPMM.Locations.Bank
     {
         public decimal OveralAccount { get; private set; }
 
-        public decimal DailyPayment { get; private set }
+        public decimal DailyPayment { get; private set; }
 
     }
 }
