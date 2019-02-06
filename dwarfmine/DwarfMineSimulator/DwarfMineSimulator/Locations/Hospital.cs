@@ -29,7 +29,7 @@ namespace DwarfMineSimulator
                 Random rnd = new Random();
                 DwarfTypes dwarfTypes;
                 //33 % chance to Father, Lazy, Single
-                int chanceToFatherOrSingle = rnd.Next(1, 100);
+                int chanceToFatherOrSingle = rnd.Next(1, 101);
                 if (chanceToFatherOrSingle <= 33)
                 {
                     dwarfTypes = DwarfTypes.Father;
