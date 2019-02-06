@@ -14,7 +14,8 @@ namespace MiningSimulatorByKPMM.Locations.Bank
             OverallAccount = 0.0m;
             LastInput = 0.0m;
         }
-        public void SetDailyIncome(decimal income)
+
+        public void ReceivedMoney(decimal income)
         {
             LastInput += income;
         }
@@ -22,6 +23,11 @@ namespace MiningSimulatorByKPMM.Locations.Bank
         {
             OverallAccount += LastInput;
             LastInput = 0;
+        }
+
+        public void Withdraw(decimal value)
+        {
+            LastInput -= value;
         }
     }
 }

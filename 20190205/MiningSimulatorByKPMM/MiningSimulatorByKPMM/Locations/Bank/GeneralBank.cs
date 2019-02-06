@@ -6,17 +6,18 @@ namespace MiningSimulatorByKPMM.Locations.Bank
 {
     public class GeneralBank
     {
-       private decimal BankAccount;
-
-        public GeneralBank()
-        {
-            BankAccount = 0;
-        }
+        private BankAccount bankAccount = new BankAccount();
 
         public void PayTax (decimal receipt)
         {
-            BankAccount += (receipt * 23) / 100;
+            bankAccount.ReceivedMoney(Math.Round(((receipt * 23) / 100),2));
+            bankAccount.CalculateOverallAccount();
            
+        }
+
+        public decimal BankTresure()
+        {
+            return bankAccount.OverallAccount;
         }
     }
 }

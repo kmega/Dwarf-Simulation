@@ -44,12 +44,12 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 decimal value = (decimal)ReturnValue(mineral.OutputType);
 
                 decimal tax = Math.Round((value / 4), 2);
-                Account.SetDailyIncome(tax);
+                Account.ReceivedMoney(tax);
                 Account.CalculateOverallAccount();
 
 
                 decimal payment = value - tax;
-                account.SetDailyIncome(payment);
+                account.ReceivedMoney(payment);
 
                 Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral, tax);
 
