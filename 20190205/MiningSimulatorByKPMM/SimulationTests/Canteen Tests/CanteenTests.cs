@@ -9,7 +9,6 @@ namespace SimulationTests.Canteen_Tests
     [TestFixture]
     internal class CanteenTests
     {
-        private readonly List<Dwarf> dwarfs = new List<Dwarf>() { new Dwarf(E_DwarfType.Dwarf_Father), new Dwarf(E_DwarfType.Dwarf_Father), new Dwarf(E_DwarfType.Dwarf_Father) };
         private Canteen canteen = new Canteen();
 
         [Test]
@@ -17,8 +16,9 @@ namespace SimulationTests.Canteen_Tests
         {
             //given
             canteen.FoodRations = 100;
+            var numberOfDwarves = 3;
             //when
-            canteen.GiveFoodRations(dwarfs);
+            canteen.GiveFoodRations(numberOfDwarves);
             //then
             Assert.AreEqual(97, canteen.FoodRations);
         }

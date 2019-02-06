@@ -9,9 +9,9 @@ namespace MiningSimulatorByKPMM.Locations.Canteen
     {
         public int FoodRations { get; set; }
 
-        public void GiveFoodRations(List<Dwarf> dwarfs)
+        public void GiveFoodRations(int dwarfs)
         {
-            var numberOfRationsToGive = dwarfs.Count;
+            var numberOfRationsToGive = dwarfs;
             FoodRations -= numberOfRationsToGive;
         }
 
