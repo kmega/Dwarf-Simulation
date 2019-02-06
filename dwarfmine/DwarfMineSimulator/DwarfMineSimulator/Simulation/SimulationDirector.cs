@@ -13,7 +13,6 @@ namespace DwarfMineSimulator.Simulation
         public void ConfigureSimulation()
         {
             simulationBuilder.SetDwarfs();
-            simulationBuilder.SetMaterials();
         }
 
         public Simulation GetSimulation()
