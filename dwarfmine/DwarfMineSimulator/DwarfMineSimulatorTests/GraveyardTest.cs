@@ -2,7 +2,7 @@
 using DwarfMineSimulator;
 using System.Collections.Generic;
 
-namespace Tests
+namespace GraveyardTest
 {
     public class GraveyardTest
     {
