@@ -7,8 +7,8 @@ namespace DwarfMineSimulator
         static void Main(string[] args)
         {
             Simulation simulation = new Simulation();
-
-
+            simulation.SetDaysToEnd(30);
+            simulation.Execute();
         }
     }
 }
