@@ -6,10 +6,9 @@ namespace DwarfMineSimulator.Dwarfs
 {
     internal class DwarfFactory
     {
-        public Dwarf BornDwarf(int range = 0)
+        public Dwarf BornDwarf(int dwarfId, int range = 0)
         {
-            
-            return new Dwarf(RandomDwarfType(range), true, 0);
+            return new Dwarf(dwarfId, RandomDwarfType(range), true, 0);
         }
 
         private DwarfTypes RandomDwarfType(int range)

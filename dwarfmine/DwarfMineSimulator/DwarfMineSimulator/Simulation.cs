@@ -84,7 +84,7 @@ namespace DwarfMineSimulator
                 int tenDwarfs = 0;
                 while(tenDwarfs < 10)
                 {
-                    Dwarfs.Add(new DwarfFactory().BornDwarf(3)); //without suicider
+                    Dwarfs.Add(new DwarfFactory().BornDwarf(Dwarfs.Count + 1,3)); //without suicider
                     Console.WriteLine("A Dwarf type of {0} was born in the hospital.", Dwarfs[Dwarfs.Count - 1].GetDwarfType());
 
                     DwarfBornCounter();
@@ -102,7 +102,7 @@ namespace DwarfMineSimulator
                 // Hospital
                 if (IsChance())
                 {
-                    Dwarfs.Add(new DwarfFactory().BornDwarf(4));
+                    Dwarfs.Add(new DwarfFactory().BornDwarf(Dwarfs.Count + 1,4));
                     DwarfBornCounter();
                     Console.WriteLine("A Dwarf type of {0} was born in the hospital.", Dwarfs[Dwarfs.Count - 1].GetDwarfType());
                 }
