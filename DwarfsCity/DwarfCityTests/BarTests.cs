@@ -16,7 +16,7 @@ namespace DwarfCityTests
         public void ShouldReturnSupplyAfterDinner()
         {
             int Supply = bar.SupplyofFood;
-            bar.GiveAFoodToDwarfs(Supply, DwarfsList);
+            bar.GiveAFoodToDwarfs(DwarfsList);
             int expectedsupply = 190;
             int resultsupply = bar.SupplyofFood;
             Assert.AreEqual(expectedsupply, resultsupply);
@@ -27,7 +27,7 @@ namespace DwarfCityTests
         {
             bar.SupplyofFood = 5;
             int Supply = bar.SupplyofFood;
-            bar.GiveAFoodToDwarfs(Supply, DwarfsList);
+            bar.GiveAFoodToDwarfs(DwarfsList);
             int expectedsupply = -5;
             int resultsupply = bar.SupplyofFood;
             Assert.AreEqual(expectedsupply, resultsupply);    
@@ -37,7 +37,7 @@ namespace DwarfCityTests
         {        
             bar.SupplyofFood = 11;
             int Supply = bar.SupplyofFood;           
-            bar.GiveAFoodToDwarfs(Supply, DwarfsList);
+            bar.GiveAFoodToDwarfs(DwarfsList);
             int expectedsupply = 31;
             int resultsupply = bar.SupplyofFood;  
             Assert.AreEqual(expectedsupply, resultsupply);
