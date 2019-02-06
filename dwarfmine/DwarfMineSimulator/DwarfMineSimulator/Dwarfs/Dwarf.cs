@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using DwarfMineSimulator.Enums;
+using DwarfMineSimulator.Building.Mine;
 
 namespace DwarfMineSimulator.Dwarfs
 {
@@ -23,12 +25,66 @@ namespace DwarfMineSimulator.Dwarfs
             Alive = alive;
             Money = money;
             MoneyEarndedThisDay = 0;
-            MineralsMined = new Dictionary<Minerals, int>();
+            MineralsMined = new Dictionary<Minerals, int>()
+            {
+                { Minerals.Mithril, 0 },
+                { Minerals.Gold, 0 },
+                { Minerals.Silver, 0 },
+                { Minerals.TaintedGold, 0 }
+            };
         }
 
         public DwarfTypes GetDwarfType()
         {
             return Type;
+        }
+
+        public void MineMinerals()
+        {
+            int howMany = HowManyHits();
+            while(howMany > 0)
+            {
+                int chance = new Random().Next(1, 100);
+                if (Enumerable.Range(1, 5).Contains(chance))
+                {
+                    MineralsMined.TryGetValue(Minerals.Mithril, out var currentValue);
+                    MineralsMined[Minerals.Mithril] = currentValue++;
+                    Console.WriteLine("Dwarf dug {0}", Minerals.Mithril.ToString());
+                }
+
+                if (Enumerable.Range(6, 20).Contains(chance))
+                {
+                    MineralsMined.TryGetValue(Minerals.Gold, out var currentValue);
+                    MineralsMined[Minerals.Gold] = currentValue++;
+                    Console.WriteLine("Dwarf dug {0}", Minerals.Gold.ToString());
+                }
+
+                if (Enumerable.Range(21, 55).Contains(chance))
+                {
+                    MineralsMined.TryGetValue(Minerals.Silver, out var currentValue);
+                    MineralsMined[Minerals.Silver] = currentValue++;
+                    Console.WriteLine("Dwarf dug {0}", Minerals.Silver.ToString());
+                }
+
+                if (Enumerable.Range(56, 100).Contains(chance))
+                {
+                    MineralsMined.TryGetValue(Minerals.TaintedGold, out var currentValue);
+                    MineralsMined[Minerals.TaintedGold] = currentValue++;
+                    Console.WriteLine("Dwarf dug {0}", Minerals.TaintedGold.ToString());
+                }
+
+                howMany--;
+            }
+        }
+
+        private int HowManyHits()
+        {
+            return new Random().Next(1, 4);
+        }
+
+        public void GoToMine(Mine mine)
+        {
+            mine.WhichShaft().DwarfGoIntoShaft(this);
         }
     }
 }

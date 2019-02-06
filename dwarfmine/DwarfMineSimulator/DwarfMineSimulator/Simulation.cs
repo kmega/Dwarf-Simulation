@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DwarfMineSimulator.Dwarfs;
 using DwarfMineSimulator.Enums;
+using DwarfMineSimulator.Building.Mine;
 
 namespace DwarfMineSimulator
 {
@@ -92,6 +93,8 @@ namespace DwarfMineSimulator
                 }
             }
 
+            Mine mine = new Mine();
+
             while (EndConditions())
             {
                 Console.WriteLine("Day {0} begins...", DayCount);
@@ -105,7 +108,11 @@ namespace DwarfMineSimulator
                 }
 
                 // Mine
-
+                Dwarfs.ForEach(x => 
+                {
+                    x.GoToMine(mine);
+                    x.MineMinerals();
+                });
 
 
                 Console.WriteLine("The end of day {0}", DayCount);
