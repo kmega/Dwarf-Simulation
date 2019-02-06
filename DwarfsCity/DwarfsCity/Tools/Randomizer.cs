@@ -11,7 +11,7 @@ namespace DwarfsCity.Tools
         public static int GetChanceRatio(int min = 1,int max = 100)
         {
             Random rand = new Random();
-            return rand.Next(min, max);
+            return rand.Next(min, max); 
         }
 
         public static bool IsDwarfBorn()
