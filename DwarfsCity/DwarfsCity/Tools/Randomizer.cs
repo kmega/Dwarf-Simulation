@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Type = DwarfsCity.DwarfContener.Type;
 
 namespace DwarfsCity.Tools
 {
@@ -20,6 +21,20 @@ namespace DwarfsCity.Tools
                 return true;
             else
                 return false;
+        }
+
+        public static Type TypeOfBornDwarf()
+        {
+            int probability = GetChanceRatio();
+
+            if (Enumerable.Range(1, 33).Contains(probability))
+                return Type.Father;
+            else if (Enumerable.Range(33, 66).Contains(probability))
+                return Type.Single;
+            else if (Enumerable.Range(66, 99).Contains(probability))
+                return Type.Lazy;
+            else
+                return Type.Saboteur;
         }
 
         public static decimal ValueOfItem(Item item)
