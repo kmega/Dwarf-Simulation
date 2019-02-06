@@ -19,6 +19,7 @@ namespace DwarfMineSimulator
                 Simulation.TotalBorn++;
             }
             hospital.CreateNewDwarf(DwarfsPopulation, born);
+            Console.WriteLine("##Born");
             Console.WriteLine("how many fathers there are: " + Simulation.FatherBorn);
             Console.WriteLine("how many single there are: " + Simulation.SingleBorn);
             Console.WriteLine("how many lazy there are: " + Simulation.LazyBorn);

@@ -22,6 +22,7 @@ namespace DwarfMineSimulator
 
                 SetMaterialstozero(DwarfsPopulation, i);
             }
+            Console.WriteLine("##Money and taxed from guild");
             Console.WriteLine("Total money earned:" + Simulation.TotalMoneyEarned);
             Console.WriteLine("Total money from tax guild" + Simulation.TaxedMoney);
             return DwarfsPopulation;
@@ -37,6 +38,7 @@ namespace DwarfMineSimulator
             Simulation.TotalMoneyEarned += earnedMoney;
             decimal taxMoney = earnedMoney * 0.25m;
             Simulation.TaxedMoney += taxMoney;
+            earnedMoney -= taxMoney;
             return earnedMoney;
         }
 
