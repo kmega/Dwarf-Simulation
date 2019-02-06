@@ -49,7 +49,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 decimal payment = value - tax;
                 account.ReceivedMoney(payment);
 
-                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral, tax);
+                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral.OutputType, tax);
 
             }
             backpack.ShowBackpackContent().Clear();

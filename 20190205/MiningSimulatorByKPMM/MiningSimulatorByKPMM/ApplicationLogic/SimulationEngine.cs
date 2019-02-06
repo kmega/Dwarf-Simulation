@@ -1,4 +1,5 @@
-﻿using MiningSimulatorByKPMM.Locations.Canteen;
+﻿using MiningSimulatorByKPMM.Locations.Bank;
+using MiningSimulatorByKPMM.Locations.Canteen;
 using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
 using System.Linq;
@@ -49,6 +50,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 // Bank.Putin(shopBankAccount, result);
                 //Bank.SumDay(List<bankAccount>);
                 //Bankaccount -> overallMoney, lastInput
+                UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
                 //
             }
         }
