@@ -36,6 +36,18 @@ namespace MarketTests
 			//then
 			Assert.AreEqual(0, expected);
 		}
+
+		[TestMethod]
+		public void OneFatherBuyProductsFromMarketHeHas50DailySalary()
+		{
+			//given
+			Market marketTest = new Market();
+			//when
+			marketTest.PerformShopping(50, E_DwarfType.Dwarf_Father);
+			decimal expected = marketTest.marketState[E_ProductsType.Food];
+			//then
+			Assert.AreEqual(25, expected);
+		}
 	}
 }
 

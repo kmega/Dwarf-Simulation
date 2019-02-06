@@ -16,12 +16,23 @@ namespace MiningSimulatorByKPMM.Locations.Market
 
 		public Dictionary<E_ProductsType, decimal> marketState = new Dictionary<E_ProductsType, decimal>();
 		
-		public void PerformShopping(List<Dwarf> dwarvesList)
+		public void PerformShopping(decimal customerMoney, E_DwarfType customerType)
 		{
-			foreach (Dwarf customer in dwarvesList)
+			if(customerType == E_DwarfType.Dwarf_Single)
 			{
-				customer.ShoppingActions.BuyProdcutsFromMarket(customer.DailySalary, this);
+				BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Alcohol);
+			} else if (customerType == E_DwarfType.Dwarf_Father)
+			{
+				BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Food);
 			}
+		}
+
+		public void BuyProdcutsFromMarket(decimal dailySalary, Market market, E_ProductsType productType)
+		{
+			decimal spentMoney = dailySalary / 2;
+			decimal amountOfProduct = market.marketState[productType];
+			amountOfProduct += spentMoney;
+			market.marketState[productType] = amountOfProduct;
 		}
 	}
 }
