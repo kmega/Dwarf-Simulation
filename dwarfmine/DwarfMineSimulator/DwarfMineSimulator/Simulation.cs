@@ -27,6 +27,7 @@ namespace DwarfMineSimulator
 
         internal static  int FoodBought { get; set; } = 0;
         internal static int AlcoholBought { get; set; } = 0;
+        internal static decimal ShopEarned { get; set; }
 
         internal static List<Dwarf> DwarfsPopulation = new List<Dwarf>();
 
@@ -69,6 +70,11 @@ namespace DwarfMineSimulator
             // F
 
             Shop shop = new Shop();
+            shop.BuyProducts(DwarfsPopulation);
+            shop.DisplaySaleValues();
+            FoodBought += shop.FoodBought;
+            AlcoholBought += shop.AlcoholBought;
+            ShopEarned += shop.EarnedMoney;
             // F
         }
     }
