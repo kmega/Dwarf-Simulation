@@ -1,6 +1,6 @@
 ﻿using DwarfsCity.DwarfContener;
 using System.Collections.Generic;
-namespace DwarfsCity
+namespace DwarfsCity.ShopContener
 {
     public class Shop
     {
@@ -10,8 +10,8 @@ namespace DwarfsCity
             {
                 if(dwarf.Attribute == Type.Father || dwarf.Attribute == Type.Single)
                 {
-                    decimal price = dwarf.Backpack.Moneys / 2;
-                    dwarf.Backpack.Moneys /= 2;
+                    decimal price = dwarf.Backpack.Money / 2;
+                    dwarf.Backpack.Money /= 2;
                     string product = dwarf.Attribute == Type.Father ? "Alcohol" : "Food";
                     // Log.Shop(@"Dwarf bought {product}");
                 }

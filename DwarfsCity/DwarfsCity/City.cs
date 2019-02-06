@@ -1,4 +1,6 @@
 ﻿using DwarfsCity.DwarfContener;
+using DwarfsCity.MineContener;
+using DwarfsCity.ShopContener;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +9,7 @@ namespace DwarfsCity
 {
     public class City
     {
-        List<Dwarf> Dwarfs = new List<Dwarf>();
+        List<Dwarf> dwarfs = new List<Dwarf>();
         //Start simulation
         public void Run()
         {
@@ -20,15 +22,18 @@ namespace DwarfsCity
             Shop shop = new Shop();
             Cementary cementary = new Cementary();
 
-            
-            //
+            hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 12);
 
+            //Dwarfs go to minning -> return still alive dwarfs within resources
+            dwarfs = mine.StartWorking(dwarfs);
 
         }
 
         public List<Dwarf> GetDwarfs()
         {
-            return Dwarfs;
+            return dwarfs;
         }
+        
     }
+    
 }

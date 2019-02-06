@@ -1,5 +1,9 @@
 ﻿using System;
 using DwarfsCity.DwarfContener.DwarfEquipment;
+using System.Collections.Generic;
+using DwarfsCity;
+using DwarfsCity.DwarfContener;
+
 
 namespace DwarfsCity
 {
@@ -7,7 +11,12 @@ namespace DwarfsCity
     {
 
         // Get Items from Backpack
-        Backpack backpack = new Backpack();
+        City city = new City();
+        public Bank()
+        {
+            city.GetDwarfs();
+            List<Dwarf> Dwarfs = city.GetDwarfs();
+        }
         
         // Change Items to Money
 
