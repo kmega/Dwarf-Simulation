@@ -1,13 +1,13 @@
-﻿using MiningSimulatorByKPMM.Interfaces;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MiningSimulatorByKPMM.Locations.Guild
 {
-    public class ValueOfDirtGold : IRandomGenerator
+    public class ValueOfDirtGold : ICreateOreValue
     {
-        public int GenerateSignleRandomNumber()
+        public int GenerateSingleValue()
         {
             return 2;
         }

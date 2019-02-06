@@ -1,6 +1,6 @@
 ﻿using MiningSimulatorByKPMM.DwarfsTypes;
 using MiningSimulatorByKPMM.Enums;
-using MiningSimulatorByKPMM.Interfaces;
+using MiningSimulatorByKPMM.PersonalItems;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -12,28 +12,28 @@ namespace MiningSimulatorByKPMM.Locations.Guild
     {
         public decimal Account { get; private set; }
 
-        private Dictionary<E_MineralsType, IRandomGenerator> GoodsOnMarket =
-            new Dictionary<E_MineralsType, IRandomGenerator>()
+        private Dictionary<E_Minerals, ICreateOreValue> GoodsOnMarket =
+            new Dictionary<E_Minerals, ICreateOreValue>()
 
             {
-                {E_MineralsType.Gold, new ValueOfGold()},
-                {E_MineralsType.DirtGold, new ValueOfDirtGold() },
-                {E_MineralsType.Mithril, new ValueOfMithril() },
-                {E_MineralsType.Silver, new ValueOfSilver() }
+                {E_Minerals.Gold, new ValueOfGold()},
+                {E_Minerals.DirtGold, new ValueOfDirtGold() },
+                {E_Minerals.Mithril, new ValueOfMithril() },
+                {E_Minerals.Silver, new ValueOfSilver() }
             }
             ;
 
-        private int ReturnValue(E_MineralsType mineralsType)
+        private int ReturnValue(E_Minerals mineralsType)
         {
-            return GoodsOnMarket[mineralsType].GenerateSignleRandomNumber();
+            return GoodsOnMarket[mineralsType].GenerateSingleValue();
 
         }
 
-        public void PaymentForDwars  (List<Dwarf> listofdwarfs)
+        public void PaymentForDwars  (Backpack backpack, )
         {
             foreach (var dwarf in listofdwarfs)
             {
-                foreach (var mineral in dwarf.PersonalEquipment)
+                foreach (var mineral in dwarf.P)
                 {
                     decimal value = (decimal)ReturnValue(mineral);
                     decimal tax = Math.Round((value / 4), 2);
