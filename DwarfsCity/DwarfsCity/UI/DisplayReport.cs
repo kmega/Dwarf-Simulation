@@ -12,7 +12,10 @@ namespace DwarfsCity.UI
             foreach (string report in reports.GetReportsToDisplay())
             {
                 Console.WriteLine(report);
+                Console.WriteLine("-");
             }
+
+            Console.WriteLine("==============");
         }
     }
 }

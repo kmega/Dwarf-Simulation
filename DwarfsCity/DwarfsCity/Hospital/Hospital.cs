@@ -9,15 +9,18 @@ namespace DwarfsCity
 {
     public class Hospital:IReport
     {
-        
 
         public List<string> Reports { get; set; }
+
+        public Hospital()
+        {
+            Reports = new List<string>();
+        }
 
         public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
         {
             bool isBorn;
-            Reports = new List<string>();
-            
+
             if (initalState)
                 isBorn = true;
             else
