@@ -12,32 +12,38 @@ namespace DwarfMineSimulator
             Random rnd = new Random();
             //1 % chance birth
             int chanceToBirthDwarf = rnd.Next(1, 101);
-
+            bool born = false;
             if (chanceToBirthDwarf == 1)
-                hospital.CreateNewDwarf(DwarfsPopulation);
-
+                born = true;
+            hospital.CreateNewDwarf(DwarfsPopulation, born);
             return DwarfsPopulation;
         }
 
-        private void  CreateNewDwarf(List<Dwarf> DwarfsPopulation)
-        {         
-            Random rnd = new Random();
-            DwarfTypes dwarfTypes;
-            //33 % chance to Father, Lazy, Single
-            int chanceToFatherOrSingle = rnd.Next(1, 100);
-            if (chanceToFatherOrSingle <= 33)
-                dwarfTypes = DwarfTypes.Father;
-            else if (chanceToFatherOrSingle > 33 && chanceToFatherOrSingle <= 66)
-                dwarfTypes = DwarfTypes.Single;
-            else
-                dwarfTypes = DwarfTypes.Lazy;
+        public void CreateNewDwarf(List<Dwarf> DwarfsPopulation, bool born)
+        {
+            if (born)
+            {
+                Random rnd = new Random();
+                DwarfTypes dwarfTypes;
+                //33 % chance to Father, Lazy, Single
+                int chanceToFatherOrSingle = rnd.Next(1, 100);
+                if (chanceToFatherOrSingle <= 33)
+                    dwarfTypes = DwarfTypes.Father;
+                else if (chanceToFatherOrSingle > 33 && chanceToFatherOrSingle <= 66)
+                    dwarfTypes = DwarfTypes.Single;
+                else if (chanceToFatherOrSingle > 66 && chanceToFatherOrSingle <= 99)
+                    dwarfTypes = DwarfTypes.Lazy;
+                else
+                    dwarfTypes = DwarfTypes.Suicider;
 
-            DwarfsPopulation.Add(new Dwarf {
-                Type = dwarfTypes,
-                Alive = true,
-            Money = 0,
-            MoneyEarndedThisDay = 0});
-
+                DwarfsPopulation.Add(new Dwarf
+                {
+                    Type = dwarfTypes,
+                    Alive = true,
+                    Money = 0,
+                    MoneyEarndedThisDay = 0
+                });
+            }
         }
     }
 }

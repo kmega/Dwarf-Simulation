@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfMineSimulatorTests
+namespace HospitalTest
 {
     class HospitalTest
     {
@@ -17,40 +17,42 @@ namespace DwarfMineSimulatorTests
         public void T01PopulationIsGrowing()
         {
             bool moreDwars = false;
-            //Poprawic bo random i mogą byc testy czerwone
-            List<Dwarf> DwarfsPopulation = new List<Dwarf>()
-            {
-                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0,},
-                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 },
-                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 },
-                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 }
-            };
-            Hospital hospital = new Hospital();
-            for (int i = 0; i < 1000; i++)
-                hospital.TryBirthDwarf(DwarfsPopulation);
 
-            if (DwarfsPopulation.Count > 4)
+            List<Dwarf> DwarfsPopulation = new List<Dwarf>();
+            Hospital hospital = new Hospital();
+            hospital.CreateNewDwarf(DwarfsPopulation, true);
+
+            if (DwarfsPopulation.Count > 0)
                 moreDwars = true;
 
             Assert.IsTrue(moreDwars);
         }
 
         [Test]
-        public void T02CheckNewDwarfsAreLazyFatherSingle()
+        public void T02CheckNewDwarfsAreLazyOrFatherOrSingle()
         {
-            bool moreDwars = false;
-            //Poprawic bo random i mogą byc testy czerwone
-            List<Dwarf> DwarfsPopulation = new List<Dwarf>()
-            {
-            };
+            bool lazy = false;
+            bool father = false;
+            bool single = false;
+
+            List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
-            for (int i = 0; i < 1000; i++)
-                hospital.TryBirthDwarf(DwarfsPopulation);
+            for (int i = 0; i < 10; i++)
+                hospital.CreateNewDwarf(DwarfsPopulation, true);
 
-            if (DwarfsPopulation.Count > 4)
-                moreDwars = true;
+            for (int i = 0; i < DwarfsPopulation.Count; i++)
+            {
+                if (DwarfsPopulation[i].Type == DwarfTypes.Lazy)
+                    lazy = true;
+                if (DwarfsPopulation[i].Type == DwarfTypes.Single)
+                    single = true;
+                if (DwarfsPopulation[i].Type == DwarfTypes.Father)
+                    father = true;
+            }
 
-            Assert.IsTrue(moreDwars);
+            Assert.IsTrue(lazy);
+            Assert.IsTrue(single);
+            Assert.IsTrue(father);
         }
     }
 }
