@@ -9,7 +9,7 @@ namespace DwarfsCity
     {
         public static List<Dwarf> graves { get; private set; } = new List<Dwarf>();
 
-        private static void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
+        private void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
         {
             foreach (var dwarf in killedDwarfs)
             {
@@ -17,7 +17,7 @@ namespace DwarfsCity
             }
         }
 
-        public static void OnShaftExploded(object o, ShaftExplodedEventArgs dwarfs)
+        public void OnShaftExploded(object o, ShaftExplodedEventArgs dwarfs)
         {
             AddKilledDwarfsToGraves(dwarfs.KilledDwarfs);
 

@@ -1,4 +1,5 @@
 ﻿using DwarfsCity.DwarfContener.DwarfEquipment;
+using DwarfsCity.Reports;
 using DwarfsCity.Tools;
 using System;
 using System.Collections.Generic;
@@ -7,11 +8,13 @@ using System.Text;
 
 namespace DwarfsCity.DwarfContener
 {
-    public class Dwarf
+    public class Dwarf: IReport
     {
         //Field
         public Backpack Backpack = new Backpack();
         public Type Attribute { get; set; }
+
+        public List<string> Reports { get; set; } = new List<string>();
 
         public void AddItemsToBackpack(Item item)
         {
@@ -33,12 +36,17 @@ namespace DwarfsCity.DwarfContener
             for (int i = 0; i < Randomizer.CountsOfDigging(); i++)
             {
                 //Digging minerals by ratio  -> 5% mithril, 15% gold 35% silver, 45% dirty gold
+                var toDigging = Randomizer.ItemDigged();
+                Backpack.Items.Add(toDigging);
 
-                Backpack.Items.Add(Randomizer.ItemDigged());
-
+                GiveReport(Attribute + " digged " + toDigging);
             }
             
         }
 
+        public void GiveReport(string message)
+        {
+            Reports.Add(message);
+        }
     }
 }

@@ -61,6 +61,7 @@ namespace DwarfsCity.MineContener
                     
             }
 
+            GiveReport(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
             return dwarfsThatWorkedAndStillAlive;
            
         }
