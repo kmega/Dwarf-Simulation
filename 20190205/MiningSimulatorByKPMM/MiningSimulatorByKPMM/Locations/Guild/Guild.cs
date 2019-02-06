@@ -35,7 +35,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 
         }
 
-        public void PaymentForDwarf(Backpack backpack, BankAccount account, GeneralBank bank)
+        public void PaymentForDwarf(Backpack backpack, BankAccount account)
 
         {
 
