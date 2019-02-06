@@ -22,7 +22,7 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
         private void SetInitialState()
         {
             Backpack = new Backpack();
-
+            IsAlive = true;
         }
     }
 }
