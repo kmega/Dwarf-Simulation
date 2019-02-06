@@ -34,6 +34,8 @@ namespace DwarfsCity
                 dwarfs.Add(newBornDwarf);
                 GiveReport($"Hospital: new {attribute} dwarf was born"); 
             }
+            else
+                GiveReport($"Hospital: no dwarf was born"); 
 
         }
 
