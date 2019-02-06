@@ -26,6 +26,7 @@ namespace DwarfsCity.DwarfContener
             return Backpack.Items;    
         }
 
+    
         public void SetAttribute(Type attribute)
         {
             Attribute = attribute;

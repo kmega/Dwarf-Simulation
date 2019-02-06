@@ -1,6 +1,8 @@
 ﻿using DwarfsCity.DwarfContener;
 using DwarfsCity.MineContener;
+using DwarfsCity.Reports;
 using DwarfsCity.ShopContener;
+using DwarfsCity.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -21,11 +23,21 @@ namespace DwarfsCity
             Bar bar = new Bar();
             Shop shop = new Shop();
             Cementary cementary = new Cementary();
+            DisplayReport ui = new DisplayReport();
+            Report report = new Report();
 
-            hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 12);
+            hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 10);
 
-            //Dwarfs go to minning -> return still alive dwarfs within resources
-            dwarfs = mine.StartWorking(dwarfs);
+            for (int i = 0; i < 30; i++)
+            {
+                //Dwarfs go to minning -> return still alive dwarfs within resources
+                dwarfs = mine.StartWorking(dwarfs);
+                guild.GetTaxesofAllDwarfs(dwarfs);
+                bar.GiveAFoodToDwarfs(dwarfs);
+                shop.PerformShopping(dwarfs);
+                ui.Display(report);
+            }
+            
 
 
         }

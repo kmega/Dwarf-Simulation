@@ -29,6 +29,8 @@ namespace DwarfsCity.MineContener
         {
             GiveReport(dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
 
+            InitializeMineEveryDay();
+            
             List<Dwarf> dwarfsThatWorkedAndStillAlive = new List<Dwarf>();          
             //Send Dwarfs to shafts  -> assign dwarfs to excact shaft
             while(dwarfsThatWillWork.Count > 0)
@@ -64,6 +66,12 @@ namespace DwarfsCity.MineContener
             GiveReport(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
             return dwarfsThatWorkedAndStillAlive;
            
+        }
+
+        private void InitializeMineEveryDay()
+        {
+            shafts[0].Exist = true;
+            shafts[1].Exist = true;
         }
 
         private void MiningDeposits(Shaft shaft)
