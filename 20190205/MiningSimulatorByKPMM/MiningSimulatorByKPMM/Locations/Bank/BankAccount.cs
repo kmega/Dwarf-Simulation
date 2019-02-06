@@ -16,11 +16,12 @@ namespace MiningSimulatorByKPMM.Locations.Bank
         }
         public void SetDailyIncome(decimal income)
         {
-            LastInput = income;
+            LastInput += income;
         }
         public void CalculateOverallAccount()
         {
             OverallAccount += LastInput;
+            LastInput = 0;
         }
     }
 }

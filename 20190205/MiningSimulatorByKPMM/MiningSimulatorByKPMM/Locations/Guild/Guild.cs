@@ -13,7 +13,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
     {
         public BankAccount Account { get; private set; }
 
-        private Dictionary<E_Minerals, ICreateOreValue> GoodsOnMarket =
+        private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket =
             new Dictionary<E_Minerals, ICreateOreValue>()
 
             {
@@ -31,7 +31,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 
         private int ReturnValue(E_Minerals mineralsType)
         {
-            return GoodsOnMarket[mineralsType].GenerateSingleValue();
+            return OreOnMarket[mineralsType].GenerateSingleValue();
 
         }
 
@@ -44,19 +44,17 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 decimal value = (decimal)ReturnValue(mineral.OutputType);
 
                 decimal tax = Math.Round((value / 4), 2);
-                bank.PayIntoYourAccount(Account.DailyPayment, tax);
+                Account.SetDailyIncome(tax);
+                Account.CalculateOverallAccount();
+
 
                 decimal payment = value - tax;
-                bank.PayIntoYourAccount(account.DailyPayment, payment);
+                account.SetDailyIncome(payment);
 
                 Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral, tax);
 
             }
             backpack.ShowBackpackContent().Clear();
-
-
-
-
 
         }
     }

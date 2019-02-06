@@ -37,10 +37,62 @@ namespace SimulationTests.Guild_Tests
 
             //then
             Assert.AreEqual(0.5, guild.Account.OverallAccount);
-            Assert.AreEqual(1.5, bankAccount.DailyPayment);
-            Assert.IsNull(backpack.ShowBackpackContent());
+            Assert.AreEqual(1.5, bankAccount.LastInput);
+            Assert.IsTrue(backpack.ShowBackpackContent().Count == 0);
+
+        }
+
+        [Test]
+        public void DirtGoldForTwoDwarf()
+        {
+            //given
+
+            BankAccount bankAccountOne = new BankAccount();
+            BankAccount bankAccountTwo = new BankAccount();
+            Backpack backpackOne = new Backpack();
+            Backpack backpackTwo = new Backpack();
+            backpackOne.AddSingleOre(new Ore(E_Minerals.DirtGold));
+            backpackTwo.AddSingleOre(new Ore(E_Minerals.DirtGold));
 
 
+            //when
+            guild.PaymentForDwarf(backpackOne, bankAccountOne, bank);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo, bank);
+
+            //then
+            Assert.AreEqual(1, guild.Account.OverallAccount);
+            Assert.AreEqual(1.5, bankAccountOne.LastInput);
+            Assert.AreEqual(1.5, bankAccountTwo.LastInput);
+            Assert.IsTrue(backpackOne.ShowBackpackContent().Count == 0);
+            Assert.IsTrue(backpackTwo.ShowBackpackContent().Count == 0);
+
+        }
+
+        [Test]
+        public void TwoDirtGoldForTwoDwarf()
+        {
+            //given
+
+            BankAccount bankAccountOne = new BankAccount();
+            BankAccount bankAccountTwo = new BankAccount();
+            Backpack backpackOne = new Backpack();
+            Backpack backpackTwo = new Backpack();
+            backpackOne.AddSingleOre(new Ore(E_Minerals.DirtGold));
+            backpackOne.AddSingleOre(new Ore(E_Minerals.DirtGold));
+            backpackTwo.AddSingleOre(new Ore(E_Minerals.DirtGold));
+            backpackTwo.AddSingleOre(new Ore(E_Minerals.DirtGold));
+
+
+            //when
+            guild.PaymentForDwarf(backpackOne, bankAccountOne, bank);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo, bank);
+
+            //then
+            Assert.AreEqual(2, guild.Account.OverallAccount);
+            Assert.AreEqual(3, bankAccountOne.LastInput);
+            Assert.AreEqual(3, bankAccountTwo.LastInput);
+            Assert.IsTrue(backpackOne.ShowBackpackContent().Count == 0);
+            Assert.IsTrue(backpackTwo.ShowBackpackContent().Count == 0);
 
         }
 
