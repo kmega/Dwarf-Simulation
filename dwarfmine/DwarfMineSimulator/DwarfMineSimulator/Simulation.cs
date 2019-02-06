@@ -59,14 +59,18 @@ namespace DwarfMineSimulator
             DwarfsPopulation = mines.MineInShafts(DwarfsPopulation, ShaftsNumber);
 
             Graveyard graveyard = new Graveyard();
-            // F
+            DwarfsPopulation = graveyard.DeleteDeadDwarfFromList(DwarfsPopulation);
+            DeathCount = graveyard.HowManyDead();
 
             Guild guild = new Guild();
             // F
             guild.HowMuchDwarfEarnedMoney(DwarfsPopulation);
 
             DiningRoom diningRoom = new DiningRoom();
-            // F
+            if (diningRoom.CanEat(FoodInDiningRoom, DwarfsPopulation))
+            { FoodInDiningRoom = diningRoom.DwarfsEat(FoodInDiningRoom, DwarfsPopulation); }
+                
+
 
             Shop shop = new Shop();
             // F
