@@ -10,10 +10,11 @@ namespace DwarfsCity
     {
         Random _probabilityOfBirth = new Random();
 
-        public List<string> Reports { get; }
+        public List<string> Reports { get; set; }
 
         public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
         {
+            Reports = new List<string>();
             int probability = 0;
 
             if (initalState)
