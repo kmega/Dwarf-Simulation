@@ -8,9 +8,7 @@ namespace DwarfMineSimulator
     {
         static void Main(string[] args)
         {
-            Simulation simulation = new Simulation();
-
-            simulation.Simulate();
+            Simulation.Simulate();
 
             Console.ReadKey();
         }
