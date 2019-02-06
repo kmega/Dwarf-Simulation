@@ -11,7 +11,7 @@ namespace DwarfsCity
         {
             foreach (var dwarfMoney in dwarfs)
             {
-                _guildMoney += dwarfMoney.Backpack.Moneys;
+                _guildMoney += 0.20m*dwarfMoney.Backpack.Moneys;
             }
         }
 
