@@ -19,6 +19,10 @@ namespace DwarfMineSimulator
                 Simulation.TotalBorn++;
             }
             hospital.CreateNewDwarf(DwarfsPopulation, born);
+            Console.WriteLine("how many fathers there are: " + Simulation.FatherBorn);
+            Console.WriteLine("how many single there are: " + Simulation.SingleBorn);
+            Console.WriteLine("how many lazy there are: " + Simulation.LazyBorn);
+            Console.WriteLine("how many suicider there are: " + Simulation.SuiciderBorn);
             return DwarfsPopulation;
         }
 
@@ -34,25 +38,21 @@ namespace DwarfMineSimulator
                 {
                     dwarfTypes = DwarfTypes.Father;
                     Simulation.FatherBorn++;
-                    Console.WriteLine("Father:"+ Simulation.FatherBorn);
                 } 
                 else if (chanceToFatherOrSingle > 33 && chanceToFatherOrSingle <= 66)
                 {
                     dwarfTypes = DwarfTypes.Single;
                     Simulation.SingleBorn++;
-                    Console.WriteLine("Single:" + Simulation.SingleBorn);
                 }                   
                 else if (chanceToFatherOrSingle > 66 && chanceToFatherOrSingle <= 99)
                 {
                     dwarfTypes = DwarfTypes.Lazy;
                     Simulation.LazyBorn++;
-                    Console.WriteLine("Lazy:" + Simulation.LazyBorn);
                 }
                 else
                 {
                     dwarfTypes = DwarfTypes.Suicider;
                     Simulation.SuiciderBorn++;
-                    Console.WriteLine("Suicider:" + Simulation.SuiciderBorn);
                 }
 
                 DwarfsPopulation.Add(new Dwarf
