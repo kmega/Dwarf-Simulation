@@ -45,7 +45,8 @@ namespace DwarfMineSimulator
 
             for (int i = 0; i < 10; i++)
             {
-                hospital.CreateNewDwarf(DwarfsPopulation, true);
+                DwarfTypes dwarfTypes = hospital.RandomTypeDwarf();
+                hospital.CreateNewDwarf(DwarfsPopulation, true, dwarfTypes);
             }
 
             ShaftsNumber.Add(new Shaft());
