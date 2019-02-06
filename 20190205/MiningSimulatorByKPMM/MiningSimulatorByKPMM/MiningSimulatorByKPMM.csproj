@@ -9,7 +9,6 @@
     <Folder Include="Enums\" />
     <Folder Include="DwarfsTypes\" />
     <Folder Include="Locations\Mine\" />
-    <Folder Include="Locations\Hospital\" />
     <Folder Include="Locations\Market\" />
     <Folder Include="Locations\Guild\" />
     <Folder Include="Reports\" />

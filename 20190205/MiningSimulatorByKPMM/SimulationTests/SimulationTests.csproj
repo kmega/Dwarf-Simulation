@@ -19,6 +19,7 @@
     <ProjectReference Include="..\MiningSimulatorByKPMM\MiningSimulatorByKPMM.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Canteen Tests\" />
     <Folder Include="Hospital Tests\" />
     <Folder Include="Cementary Tests\" />
     <Folder Include="Guild Tests\" />
