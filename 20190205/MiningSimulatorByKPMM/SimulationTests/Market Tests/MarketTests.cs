@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using MiningSimulatorByKPMM.Locations.Market;
 using MiningSimulatorByKPMM.Interfaces;
 using MiningSimulatorByKPMM.DwarfsTypes;
 using MiningSimulatorByKPMM.Enums;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace MarketTests
 {
@@ -48,6 +48,8 @@ namespace MarketTests
 			//then
 			Assert.AreEqual(25, expected);
 		}
+
+
 	}
 }
 
