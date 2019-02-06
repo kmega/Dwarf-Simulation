@@ -7,7 +7,7 @@ namespace DwarfsCity
 {
     public class Cementary
     {
-        private static List<Dwarf> graves { get; set; } = new List<Dwarf>();
+        public static List<Dwarf> graves { get; private set; } = new List<Dwarf>();
 
         private static void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
         {

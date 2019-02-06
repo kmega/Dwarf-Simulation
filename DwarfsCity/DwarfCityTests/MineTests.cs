@@ -1,4 +1,5 @@
-﻿using DwarfsCity.DwarfContener;
+﻿using DwarfsCity;
+using DwarfsCity.DwarfContener;
 using DwarfsCity.MineContener;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
@@ -17,11 +18,61 @@ namespace DwarfCityTests
             //Given
             List<Dwarf> saboteurDwarf = new List<Dwarf>() { new Dwarf() { Attribute = DwarfsCity.DwarfContener.Type.Saboteur } };
             Shaft shaft = new Shaft();
-            var mock = new Mock<IForeman>();
-            mock.Setup(foreman => foreman.SendDwarfsToShaft(saboteurDwarf, shaft));
-            
+
+            Foreaman foreaman = new Foreaman();
+
+
             //When
-            
+            foreaman.SendDwarfsToShaft(saboteurDwarf, shaft);
+
+            //Then
+            Assert.AreEqual(shaft.Exist, false);
+
+        }
+
+        [TestMethod]
+        public void ShouldReturn7AliveDwarfsWhenIsSended12DwarfsAnd8DwarfIsSabouteur()
+        {
+            //Given
+            List<Dwarf> dwarfs = new List<Dwarf>();
+            List<Dwarf> saboteurDwarf = new List<Dwarf>() { new Dwarf() { Attribute = DwarfsCity.DwarfContener.Type.Saboteur } };
+            Mine mine = new Mine();
+            Hospital hospital = new Hospital();
+            hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 11);
+
+            dwarfs.Insert(8, new Dwarf() { Attribute = DwarfsCity.DwarfContener.Type.Saboteur });
+
+            //When
+            dwarfs = mine.StartWorking(dwarfs);
+
+            //Then
+            Assert.AreEqual(dwarfs.Count, 7);
+
+        }
+
+        [TestMethod]
+        public void WhenInShaftIsSaboteurGravesShouldHaveAtLeastOneKilledDwarf()
+        {
+            //Given
+            List<Dwarf> dwarfs = new List<Dwarf>();
+            Mine mine = new Mine();
+            Hospital hospital = new Hospital();
+            hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 11);
+
+            Cementary cementary = new Cementary();
+
+            dwarfs.Insert(8, new Dwarf() { Attribute = DwarfsCity.DwarfContener.Type.Saboteur });
+
+            int result = 0;
+
+            //When
+            dwarfs = mine.StartWorking(dwarfs);
+
+            result = Cementary.graves.Count;
+
+            //Then
+
+            Assert.IsTrue(result >= 1);
 
         }
     }
