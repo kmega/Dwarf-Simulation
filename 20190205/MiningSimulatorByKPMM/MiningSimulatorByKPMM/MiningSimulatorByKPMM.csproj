@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Enums\" />
+    <Folder Include="DwarfsTypes\" />
+    <Folder Include="Locations\Mine\" />
+    <Folder Include="Locations\Hospital\" />
+    <Folder Include="Locations\Market\" />
+    <Folder Include="Locations\Guild\" />
+    <Folder Include="Locations\Cementary\" />
+    <Folder Include="Reports\" />
+    <Folder Include="Locations\Mine\SubMine Locations\" />
+    <Folder Include="Locations\Mine\Enums\" />
+    <Folder Include="Locations\Mine\Factories\" />
+    <Folder Include="Locations\Mine\Interfaces\" />
+    <Folder Include="Locations\Mine\Mining outputs\" />
+    <Folder Include="Locations\Mine\ActionsForWorkersInSchaft\" />
+    <Folder Include="PersonalItems\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Interfaces\IMineAction %28another copy%29.cs" />
+    <Compile Remove="Locations\Mine\Interfaces\MiningOutput.cs" />
+    <Compile Remove="Locations\Mine\Mining outputs\DirtGold.cs" />
+    <Compile Remove="Locations\Mine\Mining outputs\EmptyClass.cs" />
+    <Compile Remove="Locations\Mine\Mining outputs\Mithril.cs" />
+    <Compile Remove="Locations\Mine\Interfaces\IMiningOutput.cs" />
+    <Compile Remove="Interfaces\IMineAction.cs" />
+  </ItemGroup>
+</Project>
