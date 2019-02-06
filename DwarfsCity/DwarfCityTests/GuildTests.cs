@@ -8,7 +8,7 @@ using System.Text;
 namespace DwarfCityTests
 {
     [TestClass]
-    public class GuildTaxes
+    public class GuildTests
     {
         [TestMethod]
         public void ShouldReturnTaxesForOneDwarf()

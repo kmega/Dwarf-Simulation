@@ -12,7 +12,7 @@ namespace DwarfsCity
         public List<string> Reports { get; set; }
 
         public void GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
-        { Reports = new List<string>();
+        {
             this.TheSumOfTaxes = 0;
             foreach (Dwarf dwarf in dwarfs)
             {              
@@ -22,7 +22,13 @@ namespace DwarfsCity
                 TheSumOfTaxes += TaxesOfGuild;
             }
             this.GeneralGuildFunds += TheSumOfTaxes;
-            GiveReport($"Guild: Today all dwarfs pay " + TheSumOfTaxes + " taxes. The current state of the guild account is " + GeneralGuildFunds + ".");
+            ReportGuild();
+        }
+
+        private void ReportGuild()
+        {
+             Reports = new List<string>();
+             GiveReport("Guild: Today all dwarfs pay " + TheSumOfTaxes + " taxes. The current state of the guild account is " + GeneralGuildFunds + ".");    
         }
 
         public void GiveReport(string message)
