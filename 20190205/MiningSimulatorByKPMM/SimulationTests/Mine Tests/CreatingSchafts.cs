@@ -7,7 +7,7 @@ using NUnit.Framework;
 
 namespace SimulationTests.MineTests
 {
-    
+    [TestFixture]
     public class CreatingSchafts
     {
         [Test]
