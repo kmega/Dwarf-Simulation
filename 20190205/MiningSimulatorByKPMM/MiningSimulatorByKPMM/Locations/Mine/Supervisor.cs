@@ -9,21 +9,29 @@ namespace MiningSimulatorByKPMM.Locations.Mine
     public class MineSupervisor
     {
         private List<MiningSchaft> Schafts { get; set; }
-        private TeamSplitter teamSplitter { get; }
-        private List<Dwarf> FirstWorkingTeam, SecondWorkingTeam;
+        private TeamSplitter TeamSplitter = new TeamSplitter();
+        private List<int> WorkingTeamMembers = new List<int>();
 
         public MineSupervisor()
         {
             Schafts = SchaftFactory.CreateTwoSchafts();
         }
 
-        public void SendMinersToMine(List<Dwarf> workers)
+        public int GetWorkingTeamMembersListAmount()
+        {
+            return WorkingTeamMembers.Count;
+        }
+
+        public void SendMinersToMine(int workersCount)
         {
             //podzielic workerow na dwa szyby
-            (FirstWorkingTeam, SecondWorkingTeam) = teamSplitter.SplitWorkersIntoTwoTeams(workers);
+            while (workersCount > 0)
+            {
+                WorkingTeamMembers.Add(TeamSplitter.SplitWorkersIntoTeam(workersCount));
+            }
 
             //przydzielic szybom grupy workerow
-            SendWorokersToCertainSchafts();
+            //SendWorokersToCertainSchafts();
 
             //kazac  im pracowac -> oni sami maja wykonywac prace gdy znajda sie w szybie, ale kiedy beda wiedziec ze w nim sa?
         }
@@ -35,8 +43,6 @@ namespace MiningSimulatorByKPMM.Locations.Mine
 
         private void SendWorokersToCertainSchafts()
         {
-            Schafts[0].AssingWorkers(FirstWorkingTeam);
-            Schafts[1].AssingWorkers(SecondWorkingTeam);
         }
 
     }
