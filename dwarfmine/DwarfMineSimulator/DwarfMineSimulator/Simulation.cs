@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DwarfMineSimulator.Dwarfs;
 
 namespace DwarfMineSimulator
 {
@@ -55,9 +56,21 @@ namespace DwarfMineSimulator
 
         public void Execute()
         {
+            if (DayCount == 1)
+            {
+                int tenDwarfs = 0;
+                while(tenDwarfs < 10)
+                {
+                    Dwarfs.Add(new DwarfFactory().BornDwarf(3)); //without suicider
+                    Console.WriteLine("A Dwarf type of {0} was born in the hospital.", Dwarfs[tenDwarfs].GetDwarfType());
+                    tenDwarfs++;
+                }
+            }
+
             while (EndConditions())
             {
                 Console.WriteLine("Day {0} begins...", DayCount);
+
                 Console.WriteLine("The end of day {0}", DayCount);
                 DayPassed();
             }
