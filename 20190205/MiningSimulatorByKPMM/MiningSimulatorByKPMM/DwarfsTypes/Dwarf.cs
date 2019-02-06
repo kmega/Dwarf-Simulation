@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-﻿using MiningSimulatorByKPMM.Enums;
-=======
-﻿using System;
-using System.Collections.Generic;
 using MiningSimulatorByKPMM.Enums;
-using MiningSimulatorByKPMM.Locations.Mine.Miningoutputs;
->>>>>>> 20190204/KPMM
 using MiningSimulatorByKPMM.PersonalItems;
 
 namespace MiningSimulatorByKPMM.DwarfsTypes
