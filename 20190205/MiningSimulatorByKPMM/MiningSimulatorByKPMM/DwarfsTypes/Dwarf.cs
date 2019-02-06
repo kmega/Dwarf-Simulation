@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using MiningSimulatorByKPMM.Enums;
-using MiningSimulatorByKPMM.Interfaces;
-using MiningSimulatorByKPMM.Locations.Mine.Miningoutputs;
 using MiningSimulatorByKPMM.PersonalItems;
 
 namespace MiningSimulatorByKPMM.DwarfsTypes
