@@ -27,7 +27,7 @@ namespace DwarfsCity
                 Dwarf newBornDwarf = new Dwarf();
                 newBornDwarf.Attribute = attribute;
                 dwarfs.Add(newBornDwarf);
-                GiveReport($"Hospital: new {attribute} dwarf was born");
+                GiveReport($"Hospital: new {attribute} dwarf was born"); 
             }
 
         }
