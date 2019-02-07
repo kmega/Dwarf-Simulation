@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfMineSimulator
 {
-    class RandomBirthAndTypeDwarf
+    class Randomizer
     {
         Random rnd = new Random();
 
@@ -46,9 +46,15 @@ namespace DwarfMineSimulator
             return chanceToBirthDwarf;
         }
 
-        public int GetPriceMinerals(int howMuchGold, int howMuchMithril, int howMuchTrainedGold, int howMuchSilver)
+        public Dictionary<Minerals, int> GetPriceMinerals()
         {
-            return howMuchGold;
+            int MithrilPrice, GoldPrice, SilverPrice, TrainedGoldPrice;
+            var dictionary = new Dictionary<Minerals, int>();
+            dictionary.Add(Minerals.Mithril,MithrilPrice = rnd.Next(15, 26));
+            dictionary.Add(Minerals.Gold, GoldPrice = rnd.Next(10, 21));
+            dictionary.Add(Minerals.Silver, SilverPrice = rnd.Next(5, 16));
+            dictionary.Add(Minerals.TaintedGold, TrainedGoldPrice = 2);
+            return dictionary;
         }
     }
 }

@@ -86,7 +86,7 @@ namespace GuildTest
             bool isGood = false;
             List<Dwarf> DwarfsPopulation = new List<Dwarf>()
             {
-                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 }
+                new Dwarf() {  Type = DwarfTypes.Father}
             };
 
             DwarfsPopulation[0].MineralsMined[Minerals.TaintedGold] = 1;

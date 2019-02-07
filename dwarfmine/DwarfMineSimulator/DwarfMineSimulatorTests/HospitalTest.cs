@@ -20,7 +20,7 @@ namespace HospitalTest
 
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
-            RandomBirthAndTypeDwarf birthAndTypeDwarf = new RandomBirthAndTypeDwarf();
+            Randomizer birthAndTypeDwarf = new Randomizer();
             DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
             hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
 
@@ -36,7 +36,7 @@ namespace HospitalTest
             bool lazy = false;
             bool father = false;
             bool single = false;
-            RandomBirthAndTypeDwarf birthAndTypeDwarf = new RandomBirthAndTypeDwarf();
+            Randomizer birthAndTypeDwarf = new Randomizer();
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
             for (int i = 0; i < 20; i++)
