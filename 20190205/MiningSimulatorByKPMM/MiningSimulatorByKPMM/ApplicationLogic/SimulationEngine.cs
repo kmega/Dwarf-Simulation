@@ -5,7 +5,6 @@ using MiningSimulatorByKPMM.Locations.Hospital;
 using MiningSimulatorByKPMM.Locations.Market;
 using MiningSimulatorByKPMM.Locations.Mine;
 using MiningSimulatorByKPMM.Reports;
-using System;
 using System.Linq;
 
 namespace MiningSimulatorByKPMM.ApplicationLogic
@@ -13,13 +12,13 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
     public class SimulationEngine
     {
         private SimulationState _currentSimulationState;
-        Hospital hospital;
-        MineSupervisor mineSupervisor;
-        Guild guild;
-        Market market;
-        Canteen canteen;
-        GeneralBank generalBank;
-        Logger logger;
+        private Hospital hospital;
+        private MineSupervisor mineSupervisor;
+        private Guild guild;
+        private Market market;
+        private Canteen canteen;
+        private GeneralBank generalBank;
+        private Logger logger;
 
         public SimulationEngine()
         {
@@ -31,13 +30,10 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             canteen = new Canteen();
             generalBank = new GeneralBank();
             logger = Logger.Instance;
-
-
         }
 
         public void Start()
         {
-           
             canteen.FoodRations = 200;
             _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
             for (int i = 0; i < 30; i++)
@@ -60,21 +56,32 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
                 market.PerformShopping(_currentSimulationState.Dwarves, generalBank);
 
-                //Canteen(numberOfWorkersToday);
+                _currentSimulationState.NumberOfDeadDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == false).Count();
+
+                //Canteen(numberOfWorkersToday); nie karm martwych!!
                 canteen.GiveFoodRations(_currentSimulationState.Dwarves.Count);
                 canteen.OrderFoodRations();
 
-                _currentSimulationState.NumberOfDeadDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == false).Count();
-
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
-                //
-            }
 
+                var a = ShouldSimulationBeContinued(canteen);
+                if (a == 1)
+                {
+                    break;
+                }
+            }
             PrepareFinalState();
             logger.GenerateReport(_currentSimulationState);
+        }
 
-
-
+        private int ShouldSimulationBeContinued(Canteen canteen)
+        {
+            if (_currentSimulationState.NumberOfDeadDwarves == _currentSimulationState.Dwarves.Count ||
+                _currentSimulationState.Dwarves.Where(p => p.IsAlive).Count() > canteen.FoodRations)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         private void PrepareFinalState()
@@ -83,8 +90,6 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             _currentSimulationState.guildBankAccount = guild.Account.OverallAccount;
             _currentSimulationState.taxBankAccount = generalBank.BankTresure();
             _currentSimulationState.marketState = market.marketState;
-            
-            
         }
 
         private void BirthDwarf(Hospital hospital)
