@@ -43,7 +43,12 @@ namespace MiningSimulatorByKPMM.Reports
 
         public void GenerateReport(SimulationState finalState)
         {
-            throw new NotImplementedException();
+            DisplayDeadDwarves(finalState.NumberOfDeadDwarves);
+            DisplayMiningSummary(finalState.extractedOre);
+            //DisplayShopSummary(finalState.)
+            DisplayHospitalBirths(finalState.NumberOfBirths);
+            DisplayGuildBankState(finalState.guildBankAccount);
+            DisplayTaxBankState(finalState.taxBankAccount);
         }
     }
 }

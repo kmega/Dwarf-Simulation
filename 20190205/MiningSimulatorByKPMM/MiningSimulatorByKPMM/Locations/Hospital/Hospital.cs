@@ -12,10 +12,11 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
     {
         private int totalNumberOfBirth;
         private ILogger logger;
-        IBirthChanceRandomizer birthChanceRandomizer;
-        IDwarfTypeRandomizer dwarfTypeRandomizer;
+        private IBirthChanceRandomizer birthChanceRandomizer;
+        private IDwarfTypeRandomizer dwarfTypeRandomizer;
 
         #region Constructors
+
         public Hospital(IBirthChanceRandomizer birthChanceRandomizer,
             IDwarfTypeRandomizer dwarfTypeRandomizer)
         {
@@ -23,13 +24,15 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
             this.birthChanceRandomizer = birthChanceRandomizer;
             this.dwarfTypeRandomizer = dwarfTypeRandomizer;
         }
+
         public Hospital()
         {
             SetInitialState();
             birthChanceRandomizer = new IsDwarfBorn1PercentStrategy();
             dwarfTypeRandomizer = new DwarfTypeGenerator();
         }
-        #endregion
+
+        #endregion Constructors
 
         private void SetInitialState()
         {
@@ -39,7 +42,7 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
 
         public Dwarf TryToCreateDwarf()
         {
-            if(birthChanceRandomizer.IsDwarfBorn())
+            if (birthChanceRandomizer.IsDwarfBorn())
             {
                 E_DwarfType type = dwarfTypeRandomizer.GenerateType();
                 logger.AddLog($"A {type} is born.");
@@ -48,14 +51,16 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
             }
             return null;
         }
+
         public List<Dwarf> BuildInitialSocietyMembers()
         {
             List<Dwarf> dwarves = new List<Dwarf>();
-            for(int i = 0; i < 10; i++)
+            for (int i = 0; i < 10; i++)
             {
                 dwarves.Add(new Dwarf(dwarfTypeRandomizer.GenerateType()));
             }
             logger.AddLog($"Initial Society Size: {dwarves.Count}");
+
             return dwarves;
         }
     }
