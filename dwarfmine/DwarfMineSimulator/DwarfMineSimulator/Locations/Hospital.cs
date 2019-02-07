@@ -6,10 +6,10 @@ namespace DwarfMineSimulator
 {
     class Hospital
     {
+        Hospital hospital = new Hospital();
+        Randomizer birthAndTypeDwarf = new Randomizer();
         public List<Dwarf> TryBirthDwarf(List<Dwarf> DwarfsPopulation)
         {
-            Hospital hospital = new Hospital();
-            Randomizer birthAndTypeDwarf = new Randomizer();
             CalculatingDataForTheReport calculating = new CalculatingDataForTheReport();
             ViewInformation information = new ViewInformation();
             bool chanceToBorn = birthAndTypeDwarf.WillHeBeBorn();
@@ -44,6 +44,14 @@ namespace DwarfMineSimulator
             return DwarfsPopulation;
         }
 
+        public void HowManyYouWantCreate(int number, List<Dwarf> DwarfsPopulation)
+        {
+            DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+            for (int i = 0; i < number; i++)
+            {
+                hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
+            }
+        }
         public void CreateNewDwarf(List<Dwarf> DwarfsPopulation, DwarfTypes dwarfTypes)
         {
             DwarfsPopulation.Add(new Dwarf
