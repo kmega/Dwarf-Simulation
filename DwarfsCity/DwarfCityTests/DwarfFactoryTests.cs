@@ -14,16 +14,12 @@ namespace DwarfCityTests
         [TestMethod]
         public void CreateOneDwarfOfEachType_FatherSonLazySaboteur()
         {
-            //given
-            DwarfFactory factory = new DwarfFactory();
+            //given, when, then
+            var father = DwarfFactory.CreateADwarf(Type.Father);
+            var single = DwarfFactory.CreateADwarf(Type.Single);
+            var lazy = DwarfFactory.CreateADwarf(Type.Lazy);
+            var saboteur = DwarfFactory.CreateADwarf(Type.Saboteur);
 
-            //when
-            var father = factory.CreateADwarf(Type.Father);
-            var single = factory.CreateADwarf(Type.Single);
-            var lazy = factory.CreateADwarf(Type.Lazy);
-            var saboteur = factory.CreateADwarf(Type.Saboteur);
-
-            //then
             Assert.IsTrue(father.Attribute == Type.Father);
             Assert.IsTrue(single.Attribute == Type.Single);
             Assert.IsTrue(lazy.Attribute == Type.Lazy);
@@ -35,10 +31,10 @@ namespace DwarfCityTests
         public void CreateADwarfWith10MoneyAndMithrilInBackpack()
         {
             //given
-            DwarfFactory factory = new DwarfFactory();
+            
 
             //when
-            var dwarf = factory.CreateADwarf(Type.Father,money:10,items:new List<Item>() { Item.Mithril });
+            var dwarf = DwarfFactory.CreateADwarf(Type.Father,money:10,items:new List<Item>() { Item.Mithril });
             
 
             //then
@@ -51,11 +47,9 @@ namespace DwarfCityTests
         [TestMethod]
         public void Create10DwarfsOfFatherType()
         {
-            //given
-            DwarfFactory factory = new DwarfFactory();
-
+ 
             //when
-            var fathers = factory.CreateMultipleDwarfs(numberOfDwarfs: 10, attribute: Type.Father);
+            var fathers = DwarfFactory.CreateMultipleDwarfs(numberOfDwarfs: 10, attribute: Type.Father);
             
 
             //then
