@@ -11,7 +11,7 @@ namespace DwarfsCity
         public decimal TheSumOfTaxesOnOneDay { get; set; }     
         public void GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
         {
-            this.TheSumOfTaxesOnOneDay = 0;
+            TheSumOfTaxesOnOneDay = 0;
             foreach (Dwarf dwarf in dwarfs)
             {
                 decimal TaxesOfGuild = TaxesCalculator(dwarf);
