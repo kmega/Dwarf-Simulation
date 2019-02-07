@@ -14,6 +14,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         public Dictionary<E_Minerals, int> extractedOre { get; set; }
         public decimal guildBankAccount { get; set; }
         public decimal taxBankAccount { get; set; }
+        public Dictionary<E_ProductsType, decimal> marketState { get; set; }
 
         public SimulationState()
         {
