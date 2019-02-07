@@ -25,11 +25,11 @@ namespace MiningSimulatorByKPMM.Locations.Market
 		{
 			foreach (var customer in customers)
 			{
-				if (customer.DwarfType == E_DwarfType.Dwarf_Single)
+				if (customer.DwarfType == E_DwarfType.Dwarf_Single && customer.IsAlive)
 				{
 					BuyProdcutsFromMarket(customer, E_ProductsType.Alcohol, bank);
 				}
-				else if (customer.DwarfType == E_DwarfType.Dwarf_Father)
+				else if (customer.DwarfType == E_DwarfType.Dwarf_Father && customer.IsAlive)
 				{
 					BuyProdcutsFromMarket(customer, E_ProductsType.Food, bank);
 				}
@@ -49,7 +49,7 @@ namespace MiningSimulatorByKPMM.Locations.Market
 			bank.PayTax(recipe);
 			shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
 			shopMoneyAccount.CalculateOverallAccount();
-			logger.AddLog($"{customer.ToString()} has spent {recipe.ToString()} on {productType.ToString()} today.");
+			logger.AddLog($"{customer.DwarfType} has spent {recipe.ToString()} on {productType.ToString()} today.");
 		}
 	}
 }
