@@ -7,46 +7,23 @@ using Type = DwarfsCity.DwarfContener.Type;
 
 namespace DwarfsCity
 {
-    public class Hospital:IReport
+    public class Hospital
     {
 
-        public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
+        public void GiveBirthToDwarf(List<Dwarf> dwarfs)
         {
-            bool isBorn;
-
-            if (initalState)
-                isBorn = true;
-            else
-            {
-                isBorn = Randomizer.IsDwarfBorn();
-            }
-                
-
-            if (isBorn)
-            {
-                Type attribute = Randomizer.TypeOfBornDwarf();
-                Dwarf newBornDwarf = new Dwarf();
-                newBornDwarf.Attribute = attribute;
-                dwarfs.Add(newBornDwarf);
-                GiveReport($"Hospital: new {attribute} dwarf was born"); 
-            }
-            else
-                GiveReport($"Hospital: no dwarf was born"); 
-
+            dwarfs.Add(DwarfFactory.CreateARandomDwarf_RandomAttribute());      
         }
 
-        public void InitialiseBasicNumberOfDwarfs(List<Dwarf> dwarfs,int numberOfDwarfs)
+        public void InitialNumberOfDwarfs(List<Dwarf> dwarfs,int initalNumberOfDwarfs = 0)
         {
+            var listOfDwarfs = DwarfFactory.CreateMultipleRandomDwarfs_RandomAttributes(initalNumberOfDwarfs);
 
-            for (int i = 0; i < numberOfDwarfs; i++)
+            foreach (var dwarf in listOfDwarfs)
             {
-                GiveBirthToDwarf(dwarfs, true);
+                dwarfs.Add(dwarf);
             }
         }
 
-        public void GiveReport(string message)
-        {
-            Logger.GetInstance().AddLog(message);
-        }
     }
 }

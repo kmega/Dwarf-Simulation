@@ -25,7 +25,7 @@ namespace DwarfsCity
             Cementary cementary = new Cementary();
             DisplayReport ui = new DisplayReport();
             
-            hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 10);
+            hospital.InitialNumberOfDwarfs(dwarfs, 10);
 
             for (int i = 0; i < 30; i++)
             {
