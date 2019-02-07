@@ -31,5 +31,19 @@ namespace SimulationTests.Bank_Tests
 
         }
 
+        [Test]
+        public void TwoDwarvesPayTax()
+        {
+            //when
+            bank.PayTax(100);
+            bank.PayTax(50);
+
+            //then
+            Assert.IsTrue(bank.BankTresure() == 34.5m);
+
+        }
+
+
+
     }
 }

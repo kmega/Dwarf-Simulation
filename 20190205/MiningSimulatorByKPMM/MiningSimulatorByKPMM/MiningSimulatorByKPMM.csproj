@@ -28,5 +28,6 @@
     <Compile Remove="Locations\Mine\Mining outputs\Mithril.cs" />
     <Compile Remove="Locations\Mine\Interfaces\IMiningOutput.cs" />
     <Compile Remove="Interfaces\IMineAction.cs" />
+    <Compile Remove="workers\Take.cs" />
   </ItemGroup>
 </Project>

@@ -12,17 +12,35 @@ namespace SimulationTests.Guild_Tests
 {
     public class GuildTest
     {
-        GeneralBank bank;
+      
         Guild guild;
 
         [SetUp]
         public void Setup()
         {
-            bank = new GeneralBank();
+           
             guild = new Guild();
 
         }
 
+        [Test]
+        public void DwarfWithEmptyBackpack()
+        {
+            //given
+
+            BankAccount bankAccount = new BankAccount();
+            Backpack backpack = new Backpack();
+           
+
+            //when
+            guild.PaymentForDwarf(backpack, bankAccount);
+
+            //then
+            Assert.AreEqual(0, guild.Account.OverallAccount);
+            Assert.AreEqual(0, bankAccount.LastInput);
+            Assert.IsTrue(backpack.ShowBackpackContent().Count == 0);
+
+        }
         [Test]
         public void DirtGoldForOneDwarf()
         {
@@ -33,7 +51,7 @@ namespace SimulationTests.Guild_Tests
             backpack.AddSingleOre(new Ore(E_Minerals.DirtGold));
 
             //when
-            guild.PaymentForDwarf(backpack, bankAccount, bank);
+            guild.PaymentForDwarf(backpack, bankAccount);
 
             //then
             Assert.AreEqual(0.5, guild.Account.OverallAccount);
@@ -56,8 +74,8 @@ namespace SimulationTests.Guild_Tests
 
 
             //when
-            guild.PaymentForDwarf(backpackOne, bankAccountOne, bank);
-            guild.PaymentForDwarf(backpackTwo, bankAccountTwo, bank);
+            guild.PaymentForDwarf(backpackOne, bankAccountOne);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo);
 
             //then
             Assert.AreEqual(1, guild.Account.OverallAccount);
@@ -84,8 +102,8 @@ namespace SimulationTests.Guild_Tests
 
 
             //when
-            guild.PaymentForDwarf(backpackOne, bankAccountOne, bank);
-            guild.PaymentForDwarf(backpackTwo, bankAccountTwo, bank);
+            guild.PaymentForDwarf(backpackOne, bankAccountOne);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo);
 
             //then
             Assert.AreEqual(2, guild.Account.OverallAccount);

@@ -12,7 +12,6 @@ namespace MiningSimulatorByKPMM.Locations.Bank
         {
             bankAccount.ReceivedMoney(Math.Round(((receipt * 23) / 100),2));
             bankAccount.CalculateOverallAccount();
-           
         }
 
         public decimal BankTresure()

@@ -35,10 +35,8 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 
         }
 
-        public void PaymentForDwarf(Backpack backpack, BankAccount account, GeneralBank bank)
-
+        public void PaymentForDwarf(Backpack backpack, BankAccount account)
         {
-
             foreach (var mineral in backpack.ShowBackpackContent())
             {
                 decimal value = (decimal)ReturnValue(mineral.OutputType);
@@ -51,11 +49,19 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 decimal payment = value - tax;
                 account.ReceivedMoney(payment);
 
-                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral, tax);
+                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral.OutputType, tax);
 
             }
             backpack.ShowBackpackContent().Clear();
 
+        }
+
+        public void DwarvesVisitGuild (List<Dwarf> dwarves)
+        {
+            foreach (var dwarf in dwarves)
+            {
+                PaymentForDwarf(dwarf.Backpack, dwarf.BankAccount);
+            }
         }
     }
 }

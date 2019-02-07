@@ -1,4 +1,5 @@
-﻿using MiningSimulatorByKPMM.Locations.Canteen;
+﻿using MiningSimulatorByKPMM.Locations.Bank;
+using MiningSimulatorByKPMM.Locations.Canteen;
 using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             Hospital hospital = new Hospital();
             Guild guild = new Guild();
             Canteen canteen = new Canteen();
+            _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
             for (int i = 0; i < 30; i++)
             {
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
@@ -34,9 +36,9 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
                 //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
 
-                // int value;
-                // Bank.PutIn(bankAccount, value);
-                // Bank.Putin(GuildAccount, valuezarobionie25%);
+                guild.DwarvesVisitGuild(_currentSimulationState.Dwarves);
+
+              
 
                 //Canteen(numberOfWorkersToday);
                 canteen.GiveFoodRations(_currentSimulationState.Dwarves.Count);
@@ -49,6 +51,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 // Bank.Putin(shopBankAccount, result);
                 //Bank.SumDay(List<bankAccount>);
                 //Bankaccount -> overallMoney, lastInput
+                UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
                 //
             }
         }
