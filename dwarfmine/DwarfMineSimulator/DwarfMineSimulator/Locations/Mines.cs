@@ -33,13 +33,15 @@ namespace DwarfMineSimulator
                     }
                 }
 
-                if (collapsedShaftsCounter == _shaftsNumber.Count)
+                if (collapsedShaftsCounter <= _shaftsNumber.Count)
                 {
-                    return _dwarfsPopulation;
+                    StartMining();
                 }
                 else
                 {
-                    StartMining();
+                    _dwarfsThatMined.AddRange(_dwarfsPopulation);
+
+                    return _dwarfsThatMined;
                 }
             }
 
@@ -108,28 +110,25 @@ namespace DwarfMineSimulator
 
         private void MineOre(int i)
         {
+            Randomizer randomizer = new Randomizer();
+
             Random random = new Random();
-            int miningChance = 0;
+            int workToBeDone = 0;
 
             for (int j = 0; j < _shaftsNumber[i].Miners.Count; j++)
             {
                 if (_shaftsNumber[i].Miners[j].Type == DwarfTypes.Lazy)
                 {
-                    for (int m = 0; m < random.Next(0, 2); m++)
-                    {
-                        miningChance = random.Next(1, 101);
-
-                        AssignMinedOre(miningChance, i, j);
-                    }
+                    workToBeDone = random.Next(0, 2);
                 }
                 else
                 {
-                    for (int m = 0; m < random.Next(1, 4); m++)
-                    {
-                        miningChance = random.Next(1, 101);
+                    workToBeDone = random.Next(1, 4);
+                }
 
-                        AssignMinedOre(miningChance, i, j);
-                    }
+                for (int m = 0; m < workToBeDone; m++)
+                {
+                    AssignMinedOre(randomizer.Return1to100(), i, j);
                 }
             }
         }
