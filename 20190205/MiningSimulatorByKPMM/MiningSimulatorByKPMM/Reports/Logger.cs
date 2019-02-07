@@ -45,7 +45,7 @@ namespace MiningSimulatorByKPMM.Reports
         public void GenerateReport(SimulationState finalState)
         {
             DisplayDeadDwarves(finalState.NumberOfDeadDwarves);
-            //DisplayMiningSummary(finalState.extractedOre);
+            DisplayMiningSummary(finalState.extractedOre);
             DisplayShopSummary(finalState.marketState);
             DisplayHospitalBirths(finalState.NumberOfBirths);
             DisplayGuildBankState(finalState.guildBankAccount);
