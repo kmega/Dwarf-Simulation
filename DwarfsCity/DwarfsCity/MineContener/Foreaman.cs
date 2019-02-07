@@ -8,14 +8,12 @@ namespace DwarfsCity.MineContener
 {
     public class Foreaman: IForeman, IReport
     {
-        public List<string> Reports { get; set; } = new List<string>();
 
         public void SendDwarfsToShaft(List<Dwarf> dwarfs, Shaft shaft)
         {
             List<Dwarf> sendedDwarfs = new List<Dwarf>();
-            Cementary cementary = new Cementary();
 
-            shaft.ShaftExploded += cementary.OnShaftExploded;  
+            shaft.ShaftExploded += Cementary.OnShaftExploded;  
 
             foreach (var dwarf in dwarfs)
             {
@@ -53,7 +51,7 @@ namespace DwarfsCity.MineContener
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
 }

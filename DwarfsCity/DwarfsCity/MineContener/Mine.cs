@@ -18,11 +18,9 @@ namespace DwarfsCity.MineContener
             shafts.Add(new Shaft());
         }
 
-        public List<string> Reports { get; set; } = new List<string>();
-
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
 
         public List<Dwarf> StartWorking(List<Dwarf> dwarfsThatWillWork)
@@ -63,6 +61,9 @@ namespace DwarfsCity.MineContener
                     
             }
 
+            if (dwarfsThatWillWork.Count == 0 && dwarfsThatWorkedAndStillAlive.Count == 0)
+                throw new Exception("All dwarfs died, simulation is over!");
+
             GiveReport(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
             return dwarfsThatWorkedAndStillAlive;
            
@@ -78,7 +79,7 @@ namespace DwarfsCity.MineContener
         {
             foreach (var dwarf in shaft.dwarfs)
             {
-                GiveReport(dwarf + " goes to digging");
+                GiveReport(dwarf.Attribute + " goes to digging");
                 dwarf.Digging();
             }
         }

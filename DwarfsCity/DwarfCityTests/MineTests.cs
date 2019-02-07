@@ -59,8 +59,6 @@ namespace DwarfCityTests
             Hospital hospital = new Hospital();
             hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 11);
 
-            Cementary cementary = new Cementary();
-
             dwarfs.Insert(8, new Dwarf() { Attribute = DwarfsCity.DwarfContener.Type.Saboteur });
 
             int result = 0;
@@ -73,6 +71,19 @@ namespace DwarfCityTests
             //Then
 
             Assert.IsTrue(result >= 1);
+
+        }
+
+        [ExpectedException(typeof(Exception))]
+        [TestMethod]
+        public void ShouldReturnExceptionWhenAllDwarfsAreDied()
+        {
+            //Given
+            List<Dwarf> dwarfs = new List<Dwarf>();
+            Mine mine = new Mine();
+
+            //When
+            dwarfs = mine.StartWorking(dwarfs);
 
         }
     }

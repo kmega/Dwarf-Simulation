@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace DwarfsCity
 {
-    public class Cementary:IReport
+    public class Cementary
     {
         public static List<Dwarf> graves { get; private set; } = new List<Dwarf>();
 
-        private void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
+        private static void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
         {
             foreach (var dwarf in killedDwarfs)
             {
@@ -18,21 +18,17 @@ namespace DwarfsCity
             }
         }
 
-        public void OnShaftExploded(object o, ShaftExplodedEventArgs dwarfs)
+        public static void OnShaftExploded(object o, ShaftExplodedEventArgs dwarfs)
         {
             AddKilledDwarfsToGraves(dwarfs.KilledDwarfs);
 
-            GiveReport("The mine is explode! The death Dwarfs: ");
+            Logger.GetInstance().AddLog("The mine is explode! The death Dwarfs: ");
             foreach (var killedDwarf in dwarfs.KilledDwarfs)
-            {                
-                GiveReport("killedDwarf.Attribute");               
-            }
-            
-        }
+            {
+                Logger.GetInstance().AddLog(killedDwarf.Attribute.ToString());
 
-        public void GiveReport(string message)
-        {
-            Logger.GetInstance().AddLog(message);
+            }
+
         }
     }
 }
