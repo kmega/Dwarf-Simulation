@@ -2,26 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using MiningSimulatorByKPMM.DwarfsTypes;
+using static MiningSimulatorByKPMM.Locations.Mine.MineSupervisor;
 
 namespace MiningSimulatorByKPMM.Locations.Mine
 {
     public class TeamSplitter
     {
-        public (List<Dwarf>, List<Dwarf>) SplitWorkersIntoTwoTeams(List<Dwarf> EntryWorkers)
+        const int SchaftSize = 5;
+
+        public List<TemporaryWorker> SplitWorkersIntoTeam(List<TemporaryWorker> workers)
         {
-            List<Dwarf> FirstWorkingTeam = new List<Dwarf>();
-            List<Dwarf> SecondWorkingTeam = new List<Dwarf>();
-
-            int AmountOfAvilabeWorkers = EntryWorkers.Count;
-
-            if (AmountOfAvilabeWorkers >= 10)
+            if(workers.Count >= SchaftSize)
             {
-                FirstWorkingTeam.Take(5);
-                SecondWorkingTeam.Take(5);
-            }
-            else throw new NotImplementedException("Empty list of workers, cannot split");
+                List<TemporaryWorker> schaftOperatingTeam = workers.Take(SchaftSize).ToList();
 
-            return (FirstWorkingTeam, SecondWorkingTeam);
+                foreach (var schaftMember in schaftOperatingTeam)
+                    workers.Remove(schaftMember);
+
+                return schaftOperatingTeam;
+            }
+
+            List<TemporaryWorker> returnList = new List<TemporaryWorker>(workers);
+            workers.Clear();
+            return returnList;
         }
     }
 }
