@@ -27,7 +27,7 @@ namespace DwarfMineSimulator
             Simulation.TotalBorn++;
         }
 
-        public void MoneyAndTaxFromGuild()
+        public void MoneyAndTaxFromGuild(decimal earnedMoney, decimal taxMoney)
         {
             Simulation.TotalMoneyEarned += earnedMoney;
             Simulation.TaxedMoney += taxMoney;

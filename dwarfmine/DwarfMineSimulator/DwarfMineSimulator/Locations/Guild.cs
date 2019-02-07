@@ -22,7 +22,7 @@ namespace DwarfMineSimulator
                 decimal earnedMoney = HowMuchMonetDwarfsGet(priceForRawMaterials, howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver);
                 decimal taxMoney = earnedMoney * 0.25m;
                 earnedMoney -= taxMoney;
-                calculating.MoneyAndTaxFromGuild();
+                calculating.MoneyAndTaxFromGuild(earnedMoney, taxMoney);
                 sumMoney += earnedMoney;
                 sumTax += taxMoney;
                 DwarfsPopulation[i].MoneyEarndedThisDay = earnedMoney;
