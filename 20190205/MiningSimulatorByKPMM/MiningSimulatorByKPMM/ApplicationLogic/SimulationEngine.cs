@@ -2,6 +2,7 @@
 using MiningSimulatorByKPMM.Locations.Canteen;
 using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
+using MiningSimulatorByKPMM.Locations.Mine;
 using System.Linq;
 
 namespace MiningSimulatorByKPMM.ApplicationLogic
@@ -18,6 +19,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         public void Start()
         {
             Hospital hospital = new Hospital();
+            MineSupervisor mineSupervisor = new MineSupervisor();
             Guild guild = new Guild();
             Canteen canteen = new Canteen();
             canteen.FoodRations = 200;
@@ -32,11 +34,12 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 }
 
                 //Mine.Work(List<Backpack>,List<dwarfType>) -> aktualizacja Backpack;
-                var backpacks = _currentSimulationState.Dwarves.Select(p => p.Backpack).ToList();
+                var dwarfBackpacks = _currentSimulationState.Dwarves.Select(p => p.Backpack).ToList();
                 var dwarfTypes = _currentSimulationState.Dwarves.Select(p => p.DwarfType).ToList();
+                var dwarfLifeStatus = _currentSimulationState.Dwarves.Select(p => p.IsAlive).ToList();
+                mineSupervisor.Work(dwarfBackpacks, dwarfTypes, dwarfLifeStatus);
 
                 //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
-
                 guild.DwarvesVisitGuild(_currentSimulationState.Dwarves);
 
                 //Canteen(numberOfWorkersToday);
@@ -44,6 +47,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 canteen.OrderFoodRations();
 
                 //Shop.BuyStaff(List<BankAccount> bankAccounts, List<DwarfType> dwarftypes);
+
                 // int ostatniaWpłata = Bank.GetLastInput(bankaccount);
                 //int paragon = ostatniawplata /2
                 // int result = Bank.PayTax(paragon);
