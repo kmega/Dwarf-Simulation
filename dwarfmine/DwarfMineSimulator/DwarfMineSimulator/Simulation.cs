@@ -94,8 +94,6 @@ namespace DwarfMineSimulator
                 }
             }
 
-            Mine mine = new Mine(Dwarfs);
-
             while (EndConditions())
             {
                 Console.WriteLine();
@@ -110,11 +108,8 @@ namespace DwarfMineSimulator
                 }
 
                 // Mine
-                Dwarfs.ForEach(dwarf =>
-                {
-                    dwarf.StartShift();
-                });
-                Dwarfs.ForEach(x => x.GoToMine(mine));
+                Mine mine = new Mine(Dwarfs);
+                mine.DwarfOnShift(Dwarfs);
 
                 Console.WriteLine();
                 Console.WriteLine("The end of day {0}", DayCount);

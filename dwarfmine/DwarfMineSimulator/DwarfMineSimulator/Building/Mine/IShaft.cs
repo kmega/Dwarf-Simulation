@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DwarfMineSimulator.Dwarfs;
 
 namespace DwarfMineSimulator.Building.Mine
@@ -7,9 +8,8 @@ namespace DwarfMineSimulator.Building.Mine
     {
         void SetMaxNumberOfDwarfsInShaft(int maxNumber);
         bool IsFullOfDwarfes();
-        //void DwarfGoIntoShaft(Dwarf worker);
         void DwarfGoIntoShaftQueue(Dwarf worker);
-        void MineMinerals(Dwarf worker);
+        void BeginShift();
         string ShaftName();
         bool IsCollapsed();
     }

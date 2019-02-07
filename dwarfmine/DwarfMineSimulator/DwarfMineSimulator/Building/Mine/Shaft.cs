@@ -30,107 +30,69 @@ namespace DwarfMineSimulator.Building.Mine
 
         public bool IsFullOfDwarfes()
         {
-            return DwarfsInShaft.Count > MaxDwarfsInShaft ? true : false;
+            return DwarfsInShaft.Count >= MaxDwarfsInShaft ? true : false;
         }
 
         public void DwarfGoIntoShaftQueue(Dwarf worker)
         {
-            while (worker.IsWorkDone() == false)
+            ShaftQueue.Add(worker);
+        }
+
+        public void BeginShift()
+        {
+            while (ShaftQueue.Any(x => x.IsWorkDone() == false))
             {
-                if (worker.IsAlive())
+                DwarfsInShaft = ShaftQueue.Take(5).ToList();
+                DwarfsInShaft.ForEach(x =>
                 {
-                    if (ShaftQueue.Count > 0)
-                    {
-                        DwarfsInShaft.Add(ShaftQueue.First());
-                        ShaftQueue.Remove(ShaftQueue.First());
-                    }
+                    Console.WriteLine("Dwart {0} has {1} hit with a pickaxe left", x.GetId(), x.MaxHitsInShaft());
+                    Console.WriteLine("Dwart {0} will dig in the {1}", x.GetId(), Name);
+                });
 
-                    if (!IsFullOfDwarfes() && !IsCollapsed())
-                    {
-                        DwarfsInShaft.Add(worker);
-                        Console.WriteLine("Dwart no {0} goes to {1}", worker.GetId(), Name);
-                    }
-                    else
-                    {
-                        if (!ShaftQueue.Exists(x => x == worker))
-                        {
-                            ShaftQueue.Add(worker);
-                            Console.WriteLine("Dwart no {0} waiting...", worker.GetId());
-                        }
+                ShaftQueue.Skip(5).ToList().ForEach(worker =>
+                {
+                    Console.WriteLine("Dwart {0} will dig in the {1}, but now there is no space, so dwarf is waiting...", worker.GetId(), Name);
+                });
 
-                    }
-                }
-
-
-                //while (DwarfsInShaft.Any(x => x.IsWorkDone() == false))
-                //{
-                //    Mine(DwarfsInShaft);
-                //}
-
-                Mine(DwarfsInShaft);
+                DwarfsInShaft.ForEach(Mine);
+                ShaftQueue.RemoveAll(x => x.IsWorkDone() == true);
             }
-        }
-
-        private void Mine(List<Dwarf> miners)
-        {
-
-            List<Dwarf> actualMiners = miners.ToList();
-
-            actualMiners.ForEach(dwarf =>
-            {
-                if (dwarf.MaxHitsInShaft() > 0)
-                {
-                    dwarf.MineMinerals();
 
 
-                }
 
-                if (dwarf.MaxHitsInShaft() == 0)
-                {
-                    dwarf.EndOfShift();
-                }
-            });
-
-            //miners.RemoveAll(x => x.IsWorkDone() == true);
-        }
-
-        public void MineMinerals(Dwarf worker)
-        {
-
-            //DwarfsInShaft = new List<Dwarf>();
-
-            //while (ShaftQueue.Count > 0)
+            //while (ShaftQueue.Any(x => x.IsWorkDone() == false))
             //{
-            //    foreach (var miner in ShaftQueue.ToList())
+            //    if (!IsCollapsed())
             //    {
-            //        if (!IsFullOfDwarfes() && !Collapsed)
+            //        DwarfsInShaft = ShaftQueue.Take(5).ToList();
+            //        DwarfsInShaft.ForEach(worker =>
             //        {
-            //            if (miner.IsAlive())
-            //                DwarfsInShaft.Add(miner);
-
-            //            if (miner.GetDwarfType().Equals(DwarfTypes.Suicider))
-            //            {
-            //                DwarfsInShaft.ForEach(deadDwarfs =>
-            //                {
-            //                    deadDwarfs.SummonDeath();
-            //                });
-
-            //                Collapsed = true;
-            //            }
-
-            //            if (miner.MaxHitsInShaft() > 0)
-            //            {
-            //                miner.MineMinerals();
-            //            }
-
-            //            if (miner.MaxHitsInShaft() == 0)
-            //            {
-            //                miner.EndOfShift();
-            //                ShaftQueue.Remove(miner);
-            //            }
-            //        }
+            //            Console.WriteLine("Dwart no {0} goes to {1}", worker.GetId(), Name);
+            //        });
             //    }
+
+            //    ShaftQueue.Skip(5).ToList().ForEach(worker =>
+            //    {
+            //        Console.WriteLine("Dwart no {0} waiting...", worker.GetId());
+            //    });
+
+            //    DwarfsInShaft.ForEach(x => x.StartShift());
+            //    DwarfsInShaft.ForEach(Mine);
+            //    ShaftQueue.RemoveAll(x => x.IsWorkDone() == true);
             //}
+        }
+
+        private void Mine(Dwarf dwarf)
+        {
+            if (dwarf.MaxHitsInShaft() > 0)
+            {
+                dwarf.MineMinerals();
+            }
+
+            if (dwarf.MaxHitsInShaft() == 0)
+            {
+                dwarf.EndOfShift();
+            }
         }
 
         public string ShaftName()

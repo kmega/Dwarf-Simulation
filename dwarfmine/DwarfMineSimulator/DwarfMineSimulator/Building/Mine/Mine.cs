@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using DwarfMineSimulator.Dwarfs;
 
@@ -21,17 +22,25 @@ namespace DwarfMineSimulator.Building.Mine
             return new Random().Next(0, 2) == 1 ? Shafts[1] : Shafts[0];
         }
 
-        public void DwarfsGoToShaft()
+        private void DwarfsGoToShaft()
         {
             DwarfsInMine.ForEach(x =>
             {
-                x.GoToShaft(WhichShaft());
+                WhichShaft().DwarfGoIntoShaftQueue(x);
             });
+
+            Shafts.ForEach(x => x.BeginShift());
         }
 
         public void DwarfOnShift(List<Dwarf> dwarfs)
         {
             DwarfsInMine = dwarfs;
+            DwarfsInMine.ForEach(x => {
+                x.HowManyHits();
+                x.StartShift(); 
+            });
+            DwarfsGoToShaft();
+
         }
     }
 }
