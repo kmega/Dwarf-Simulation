@@ -55,6 +55,7 @@ namespace DwarfMineSimulator.Dwarfs
                 { Minerals.Silver, 0 },
                 { Minerals.TaintedGold, 0 }
             };
+            MineralsMinedToday = new Dictionary<Minerals, int>();
         }
 
         public DwarfTypes GetDwarfType()

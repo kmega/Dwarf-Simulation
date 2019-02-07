@@ -40,6 +40,8 @@ namespace DwarfMineSimulator.Building.Mine
 
         public void BeginShift()
         {
+            Collapsed = false;
+
             while (ShaftQueue.Any(x => x.IsWorkDone() == false))
             {
                 DwarfsInShaft = ShaftQueue.Take(5).ToList();
@@ -54,7 +56,28 @@ namespace DwarfMineSimulator.Building.Mine
                     Console.WriteLine("Dwart {0} will dig in the {1}, but now there is no space, so dwarf is waiting...", worker.GetId(), Name);
                 });
 
-                DwarfsInShaft.ForEach(Mine);
+                if (IsThereSuicider(DwarfsInShaft))
+                {
+                    DwarfsInShaft.ForEach(dwarf => dwarf.SummonDeath());
+                    Collapsed = true;
+                    ShaftQueue.ForEach(dwarf => dwarf.EndOfShift());
+
+                    List<Dwarf> suicider = DwarfsInShaft.Where(dwarf => dwarf.GetDwarfType().Equals(DwarfTypes.Suicider)).ToList();
+                    suicider.ForEach(suiciders =>
+                    {
+                        Console.WriteLine("Dwart {0} is suicider and has boomed {1}", suiciders.GetId(), Name);
+                    });
+
+                    DwarfsInShaft.ForEach(deadDwarfs =>
+                    {
+                        Console.WriteLine("Dwart {0} has died in {1}", deadDwarfs.GetId(), Name);
+                    });
+
+                }
+
+                if (!IsCollapsed())
+                    DwarfsInShaft.ForEach(Mine);
+
                 ShaftQueue.RemoveAll(x => x.IsWorkDone() == true);
             }
         }
@@ -62,14 +85,10 @@ namespace DwarfMineSimulator.Building.Mine
         private void Mine(Dwarf dwarf)
         {
             if (dwarf.MaxHitsInShaft() > 0)
-            {
                 dwarf.MineMinerals();
-            }
 
             if (dwarf.MaxHitsInShaft() == 0)
-            {
                 dwarf.EndOfShift();
-            }
         }
 
         public string ShaftName()
@@ -80,6 +99,14 @@ namespace DwarfMineSimulator.Building.Mine
         public bool IsCollapsed()
         {
             return Collapsed;
+        }
+
+        private bool IsThereSuicider(List<Dwarf> dwarfs)
+        {
+            if (dwarfs.Any(x => x.GetDwarfType() == DwarfTypes.Suicider))
+                return true;
+
+            return false;
         }
     }
 }

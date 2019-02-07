@@ -34,7 +34,7 @@ namespace DwarfMineSimulator.Building.Mine
 
         public void DwarfOnShift(List<Dwarf> dwarfs)
         {
-            DwarfsInMine = dwarfs;
+            DwarfsInMine = dwarfs.Where(dwarf => dwarf.IsAlive() == true).ToList();
             DwarfsInMine.ForEach(x => {
                 x.HowManyHits();
                 x.StartShift(); 
