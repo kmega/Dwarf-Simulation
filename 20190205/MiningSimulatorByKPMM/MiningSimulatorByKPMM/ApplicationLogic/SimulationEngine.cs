@@ -68,8 +68,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
                 
 
-                var a = ShouldSimulationBeContinued(canteen);
-                if (a == 1)
+                if (ShouldSimulationBeContinued(canteen) > 0)
                 {
                     break;
                 }
