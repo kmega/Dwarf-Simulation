@@ -112,7 +112,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
                 {
                     if(schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
                     {
-                        schaft.ExecuteWork(oreRandomizer, oreUnitAmountRandomizer);
+                        schaft.ExecuteWorkStrategy(oreRandomizer, oreUnitAmountRandomizer);
                         AllWorkers.AddRange(schaft.RemoveWorkersFromSchaft());
                     }
                 }
