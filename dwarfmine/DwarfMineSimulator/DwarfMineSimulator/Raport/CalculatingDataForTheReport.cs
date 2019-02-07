@@ -10,27 +10,27 @@ namespace DwarfMineSimulator
         {
             if (dwarfTypes == DwarfTypes.Father)
             {
-                Simulation.FatherBorn++;
+                Raport.FatherBorn++;
             }
             else if (dwarfTypes == DwarfTypes.Lazy)
             {
-                Simulation.LazyBorn++;
+                Raport.LazyBorn++;
             }
             else if (dwarfTypes == DwarfTypes.Single)
             {
-                Simulation.SingleBorn++;
+                Raport.SingleBorn++;
             }
             else if (dwarfTypes == DwarfTypes.Suicider)
             {
-                Simulation.SuiciderBorn++;
+                Raport.SuiciderBorn++;
             }
-            Simulation.TotalBorn++;
+            Raport.TotalBorn++;
         }
 
         public void MoneyAndTaxFromGuild(decimal earnedMoney, decimal taxMoney)
         {
-            Simulation.TotalMoneyEarned += earnedMoney;
-            Simulation.TaxedMoney += taxMoney;
+            Raport.TotalMoneyEarned += earnedMoney;
+            Raport.TaxedMoney += taxMoney;
         }
     }
 }

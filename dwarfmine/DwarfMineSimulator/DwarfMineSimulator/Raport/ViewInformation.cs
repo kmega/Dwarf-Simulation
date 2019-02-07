@@ -9,11 +9,11 @@ namespace DwarfMineSimulator
         public void ViewBirthInformation()
         {
             Console.WriteLine("## Born dwarfs ##");
-            Console.WriteLine("how many fathers born: " + Simulation.FatherBorn);
-            Console.WriteLine("how many single born: " + Simulation.SingleBorn);
-            Console.WriteLine("how many lazy born: " + Simulation.LazyBorn);
-            Console.WriteLine("how many suicider born: " + Simulation.SuiciderBorn);
-            Console.WriteLine("Total born: " + Simulation.TotalBorn);
+            Console.WriteLine("how many fathers born: " + Raport.FatherBorn);
+            Console.WriteLine("how many single born: " + Raport.SingleBorn);
+            Console.WriteLine("how many lazy born: " + Raport.LazyBorn);
+            Console.WriteLine("how many suicider born: " + Raport.SuiciderBorn);
+            Console.WriteLine("Total born: " + Raport.TotalBorn);
             Console.WriteLine("");
         }
 

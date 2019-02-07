@@ -141,22 +141,22 @@ namespace DwarfMineSimulator
             if (miningChance <= 5)
             {
                 mineral = Minerals.Mithril;
-                Simulation.MithrilMinded++;
+                Raport.MithrilMinded++;
             }
             else if (miningChance <= 20)
             {
                 mineral = Minerals.Gold;
-                Simulation.GoldMinded++;
+                Raport.GoldMinded++;
             }
             else if (miningChance <= 55)
             {
                 mineral = Minerals.Silver;
-                Simulation.SilverMinded++;
+                Raport.SilverMinded++;
             }
             else
             {
                 mineral = Minerals.TaintedGold;
-                Simulation.TaintedGoldMinded++;
+                Raport.TaintedGoldMinded++;
             }
 
             _shaftsNumber[i].Miners[j].MineralsMined[mineral]++;
