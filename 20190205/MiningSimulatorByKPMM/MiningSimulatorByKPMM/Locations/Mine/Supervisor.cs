@@ -22,6 +22,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
         private List<E_DwarfType> workingTypeList = new List<E_DwarfType>();
         private List<bool> workingBools = new List<bool>();
         private List<TemporaryWorker> AllWorkers = new List<TemporaryWorker>();
+
         public List<TemporaryWorker> GetAllWorkers() => AllWorkers;
 
         public E_MiningSchaftStatus[] GetTwoSchaftsStatus()
@@ -53,7 +54,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             }
         }
 
-        public void Work(List<Backpack> backpackList, List<E_DwarfType> typeList, List<bool> isAliveList )
+        public void Work(ref List<Backpack> backpackList, List<E_DwarfType> typeList, ref List<bool> isAliveList)
         {
             FixAllSchafts();
             CreateTemporaryObjectsFromParameters(backpackList, typeList, isAliveList);
@@ -110,7 +111,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
 
                 foreach (var schaft in Schafts)
                 {
-                    if(schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
+                    if (schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
                     {
                         schaft.ExecuteWorkStrategy(oreRandomizer, oreUnitAmountRandomizer);
                         AllWorkers.AddRange(schaft.RemoveWorkersFromSchaft());
@@ -131,8 +132,8 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             }
 
             //if (Schafts[0].GetSchaftStatus() == E_MiningSchaftStatus.Broken &&
-                        //Schafts[1].GetSchaftStatus() == E_MiningSchaftStatus.Broken) ;
-            if(Schafts.All(x => x.GetSchaftStatus() == E_MiningSchaftStatus.Broken))
+            //Schafts[1].GetSchaftStatus() == E_MiningSchaftStatus.Broken) ;
+            if (Schafts.All(x => x.GetSchaftStatus() == E_MiningSchaftStatus.Broken))
                 condition = false;
 
             return condition;
@@ -142,7 +143,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
         {
             foreach (MiningSchaft schaft in Schafts)
             {
-                if(schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
+                if (schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
                 {
                     var CurrentlyWorkingTeam = TeamSplitter.SplitWorkersIntoTeam(AllWorkers.Where(x => x.backpack.ShowBackpackContent().Count == 0 && x.isAlive == true).ToList());
                     RemoveWorkingMinersFromAllworkers(CurrentlyWorkingTeam);
