@@ -22,5 +22,9 @@ namespace DwarfsCity.Reports
         {
             return reports;
         }
+        public void ClearData()
+        {
+            reports = new List<string>();
+        }
     }
 }

@@ -14,8 +14,6 @@ namespace DwarfsCity.DwarfContener
         public Backpack Backpack = new Backpack();
         public Type Attribute { get; set; }
 
-        public List<string> Reports { get; set; }
-
         public void AddItemsToBackpack(Item item)
         {
             Backpack.Items.Add(item);
@@ -34,7 +32,6 @@ namespace DwarfsCity.DwarfContener
 
         public void Digging()
         {
-            Reports = new List<string>();
             for (int i = 0; i < Randomizer.CountsOfDigging(); i++)
             {
                 //Digging minerals by ratio  -> 5% mithril, 15% gold 35% silver, 45% dirty gold
@@ -48,7 +45,7 @@ namespace DwarfsCity.DwarfContener
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
 }

@@ -12,7 +12,6 @@ namespace DwarfsCity
     {
         public int SupplyofFood { get; set; } = 200;    //Zapas jedzenia w sklepie  
         public int GivenFoodToDwarfsDuringOneDay { get; set; } // Jedzenie wydane w danym dniu
-        public List<string> Reports { get; set; }
 
         public void GiveAFoodToDwarfs(List<Dwarf> Dwarfs) //Rozdaje porcje jedzenia wszystkim krasnoludom
         {           
@@ -29,13 +28,12 @@ namespace DwarfsCity
 
         private void ReportBar()
         {
-            Reports = new List<string>();
             GiveReport("Today "+ GivenFoodToDwarfsDuringOneDay + "get a portion of food. Actual amount of supply in Bar: " + SupplyofFood + ".");
         }
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
 }
