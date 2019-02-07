@@ -1,8 +1,4 @@
-﻿using MiningSimulatorByKPMM.DwarfsTypes;
-using MiningSimulatorByKPMM.Reports;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using MiningSimulatorByKPMM.Reports;
 
 namespace MiningSimulatorByKPMM.Locations.Canteen
 {
