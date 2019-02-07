@@ -9,7 +9,7 @@ namespace DwarfsCity.MineContener
     public class Shaft:IReport
     {
         public List<Dwarf> dwarfs { get; set; } = new List<Dwarf>();
-        public bool Exist { get; private set; } = true;
+        public bool Exist { get; set; } = true;
 
         public List<string> Reports { get; set; } = new List<string>();
 
