@@ -39,7 +39,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             for (int i = 0; i < 30; i++)
             {
 
-                
+                logger.AddLog($"\n\nDay {i+1}\n\n");
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
                 BirthDwarf(hospital);
 
@@ -65,6 +65,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 canteen.OrderFoodRations();
 
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
+                
 
                 var a = ShouldSimulationBeContinued(canteen);
                 if (a == 1)
