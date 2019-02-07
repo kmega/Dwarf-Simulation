@@ -11,8 +11,9 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 {
     public class Guild
     {
-        public BankAccount Account { get; private set; }
 
+        public BankAccount Account { get; private set; }
+        //private Logger logger;
         private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket =
             new Dictionary<E_Minerals, ICreateOreValue>()
 
@@ -24,8 +25,9 @@ namespace MiningSimulatorByKPMM.Locations.Guild
             };
 
         public Guild()
-        {
-            Account = new BankAccount();
+        //{
+        //    Account = new BankAccount();
+        //    logger = Logger.Instance;
         }
 
 
@@ -49,8 +51,8 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 decimal payment = value - tax;
                 account.ReceivedMoney(payment);
 
-                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral.OutputType, tax);
-
+                string message = "Krasnolud otrzymał " + payment + " gp za jednostkę " + mineral.OutputType + " , a Gildia zatrzymała " + tax + " gp prowizji";
+                Logger.Add(message);
             }
             backpack.ShowBackpackContent().Clear();
 
