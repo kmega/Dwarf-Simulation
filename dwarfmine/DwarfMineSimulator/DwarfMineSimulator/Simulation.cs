@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
+
 namespace DwarfMineSimulator
 {
     internal static class Simulation
@@ -25,7 +26,7 @@ namespace DwarfMineSimulator
                 DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
                 hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
             }
-            
+
             ShaftsNumber.Add(new Shaft());
             ShaftsNumber.Add(new Shaft());
         }
@@ -34,18 +35,22 @@ namespace DwarfMineSimulator
         {
             for (int daysCount = 0; daysCount < 30; daysCount++)
             {
+                Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"#### Day {daysCount + 1} ####");
-                DayOfWork();
+                Console.ResetColor();
+
+                if (DayOfWork()) break;
                 Console.WriteLine("");
+                Console.ReadKey();
+
             }
 
             Raport.EndGameStats().ToList().ForEach(a => Console.WriteLine(a));
         }
 
-        internal static void DayOfWork()
+        internal static bool DayOfWork()
         {
             Hospital hospital = new Hospital();
-            // F
             hospital.TryBirthDwarf(DwarfsPopulation);
             Mines mines = new Mines();
             DwarfsPopulation = mines.MineInShafts(DwarfsPopulation, ShaftsNumber);
@@ -53,16 +58,18 @@ namespace DwarfMineSimulator
             Graveyard graveyard = new Graveyard();
             DwarfsPopulation = graveyard.DeleteDeadDwarfFromList(DwarfsPopulation);
             Raport.DeathCount = graveyard.HowManyDead();
+            if (DwarfsPopulation.Count() == 0) return true;
+
 
             Guild guild = new Guild();
-            // F
             guild.HowMuchDwarfEarnedMoney(DwarfsPopulation);
 
+
             DiningRoom diningRoom = new DiningRoom();
-            if (diningRoom.CanEat(Raport.FoodInDiningRoom, DwarfsPopulation))
-            { Raport.FoodInDiningRoom = diningRoom.DwarfsEat(Raport.FoodInDiningRoom, DwarfsPopulation); }
+            if (!(diningRoom.CanEat(Raport.FoodInDiningRoom, DwarfsPopulation))) return true;
 
 
+            Raport.FoodInDiningRoom = diningRoom.DwarfsEat(Raport.FoodInDiningRoom, DwarfsPopulation); 
 
             Shop shop = new Shop();
             shop.BuyProducts(DwarfsPopulation);
@@ -70,7 +77,8 @@ namespace DwarfMineSimulator
             Raport.FoodBought += shop.FoodBought;
             Raport.AlcoholBought += shop.AlcoholBought;
             Raport.ShopEarned += shop.EarnedMoney;
-            // F
+
+            return false;
         }
     }
 }
