@@ -18,11 +18,11 @@ namespace SimulationTests.MineTests
         [TestCase(10)]
         [TestCase(12)]
         [TestCase(15)]
-        public void PostiveVersionWithoutSlaggers(int amount)
+        public void PostiveVersionWithoutSuicide(int amount)
         {
             //given
             var Mine = new MineSupervisor();
-            var workers = FakeDataFactory.CreateXNonSluggardWorkers(amount);
+            var workers = FakeDataFactory.CreateXNonSuicideWorkers(amount);
             (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) = FakeDataFactory.ExtractListsFromWorkers(workers);
 
             //when
@@ -39,11 +39,11 @@ namespace SimulationTests.MineTests
         [TestCase(10)]
         [TestCase(12)]
         [TestCase(15)]
-        public void NegativeVersionWithSingleSlagger(int amount)
+        public void NegativeVersionWithSingleSuicide(int amount)
         {
             //given
             var Mine = new MineSupervisor();
-            var workers = FakeDataFactory.CreateSluggardWorkers(amount);
+            var workers = FakeDataFactory.CreateSuicideWorkers(amount);
             (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 
@@ -69,11 +69,11 @@ namespace SimulationTests.MineTests
         [TestCase(10)]
         [TestCase(12)]
         [TestCase(15)]
-        public void NegativeVersionWithSingleSlaggerInSecondSchaft(int amount)
+        public void NegativeVersionWithSingleSuicideInSecondSchaft(int amount)
         {
             //given
             var Mine = new MineSupervisor();
-            var workers = FakeDataFactory.CreateSluggardWorkerOnlyInSecondSchaft(amount);
+            var workers = FakeDataFactory.CreateSuicideWorkerOnlyInSecondSchaft(amount);
             (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 
@@ -88,11 +88,11 @@ namespace SimulationTests.MineTests
 
         [TestCase(7)]
         [TestCase(10)]
-        public void NegativeVersionWithTwoSlaggers(int amount)
+        public void NegativeVersionWithTwoSuicide(int amount)
         {
             //given
             var Mine = new MineSupervisor();
-            var workers = FakeDataFactory.CreateTwoSluggardWorkersInBothTeams(amount);
+            var workers = FakeDataFactory.CreateTwoSuicideWorkersInBothTeams(amount);
             (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 
@@ -107,11 +107,11 @@ namespace SimulationTests.MineTests
 
         [TestCase(12)]
         [TestCase(15)]
-        public void NegativeVersionWithTwoSlaggersAndSomeWorkersSurvive(int amount)
+        public void NegativeVersionWithTwoSuicideAndSomeWorkersSurvive(int amount)
         {
             //given
             var Mine = new MineSupervisor();
-            var workers = FakeDataFactory.CreateTwoSluggardWorkersInBothTeams(amount);
+            var workers = FakeDataFactory.CreateTwoSuicideWorkersInBothTeams(amount);
             (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 

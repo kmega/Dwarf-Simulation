@@ -24,7 +24,7 @@ namespace MiningSimulatorByKPMM.Locations.Hospital.RandomGenerators
             }
             else
             {
-                return E_DwarfType.Dwarf_Sluggard;
+                return E_DwarfType.Dwarf_Suicide;
             }
         }
     }

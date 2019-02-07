@@ -45,7 +45,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
                 {false, new SchaftExtractor()}
             };
 
-            bool strategy = workers.Exists(x => x.type == E_DwarfType.Dwarf_Sluggard);
+            bool strategy = workers.Exists(x => x.type == E_DwarfType.Dwarf_Suicide);
             SchaftStatus =  WorkStrategy[strategy].DoWork(workers, SchaftStatus, oreRandomizer, oreUnitAmountRandomizer);
         }
 
