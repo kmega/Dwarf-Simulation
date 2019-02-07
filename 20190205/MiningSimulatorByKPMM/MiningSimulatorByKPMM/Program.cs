@@ -1,12 +1,15 @@
-﻿using System;
+﻿using MiningSimulatorByKPMM.ApplicationLogic;
+using System;
 
 namespace MiningSimulatorByKPMM
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Start App");
+            SimulationEngine se = new SimulationEngine();
+            se.Start();
 
             Console.ReadKey();
         }
