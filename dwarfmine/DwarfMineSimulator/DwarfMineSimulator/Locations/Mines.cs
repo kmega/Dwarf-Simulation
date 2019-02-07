@@ -17,6 +17,8 @@ namespace DwarfMineSimulator
 
             int collapsedShaftsCounter = 0;
 
+            Console.WriteLine("### Mines ###\n");
+
             while (_dwarfsPopulation.Count > 0)
             {
                 for (int index = 0; index < _shaftsNumber.Count; index++)
@@ -40,6 +42,8 @@ namespace DwarfMineSimulator
                     StartMining();
                 }
             }
+
+            Console.WriteLine("\n");
 
             return _dwarfsThatMined;
         }
@@ -66,11 +70,7 @@ namespace DwarfMineSimulator
             {
                 CheckForSuicider(index);
 
-                if (_shaftsNumber[index].Collapsed == true)
-                {
-                    continue;
-                }
-                else
+                if (_shaftsNumber[index].Collapsed == false)
                 {
                     MineOre(index);
                 }

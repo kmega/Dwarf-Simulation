@@ -13,20 +13,20 @@ namespace DwarfMineSimulator
 
         internal static List<Shaft> ShaftsNumber = new List<Shaft>();
 
-        internal static  int MithrilMinded { get; set; } = 0;
-        internal static  int GoldMinded { get; set; } = 0;
-        internal static  int SilverMinded { get; set; } = 0;
+        internal static int MithrilMinded { get; set; } = 0;
+        internal static int GoldMinded { get; set; } = 0;
+        internal static int SilverMinded { get; set; } = 0;
         internal static int TaintedGoldMinded { get; set; } = 0;
 
         internal static int DeathCount { get; set; } = 0;
 
-        internal static  decimal TaxedMoney { get; set; } = 0.0m;
+        internal static decimal TaxedMoney { get; set; } = 0.0m;
         internal static decimal TotalMoneyEarned { get; set; } = 0.0m;
 
-        internal static  int FoodEaten { get; set; } = 0;
+        internal static int FoodEaten { get; set; } = 0;
         internal static int FoodInDiningRoom { get; set; } = 200;
 
-        internal static  int FoodBought { get; set; } = 0;
+        internal static int FoodBought { get; set; } = 0;
         internal static int AlcoholBought { get; set; } = 0;
         internal static decimal ShopEarned { get; set; }
 
@@ -42,12 +42,13 @@ namespace DwarfMineSimulator
         internal static void PrepareSimulation()
         {
             Hospital hospital = new Hospital();
-
+            Randomizer birthAndTypeDwarf = new Randomizer();
             for (int i = 0; i < 10; i++)
             {
-                hospital.CreateNewDwarf(DwarfsPopulation, true);
+                DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+                hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
             }
-
+            
             ShaftsNumber.Add(new Shaft());
             ShaftsNumber.Add(new Shaft());
         }
@@ -56,10 +57,15 @@ namespace DwarfMineSimulator
         {
             for (int daysCount = 0; daysCount < 30; daysCount++)
             {
+                Console.WriteLine($"#### Day {daysCount + 1} ####");
                 DayOfWork();
-
+                Console.WriteLine("");
                 Console.ReadKey();
+
             }
+
+
+            Simulation.DisplayRaport();
         }
 
         internal static void DayOfWork()
@@ -81,7 +87,7 @@ namespace DwarfMineSimulator
             DiningRoom diningRoom = new DiningRoom();
             if (diningRoom.CanEat(FoodInDiningRoom, DwarfsPopulation))
             { FoodInDiningRoom = diningRoom.DwarfsEat(FoodInDiningRoom, DwarfsPopulation); }
-                
+
 
 
             Shop shop = new Shop();
@@ -91,6 +97,33 @@ namespace DwarfMineSimulator
             AlcoholBought += shop.AlcoholBought;
             ShopEarned += shop.EarnedMoney;
             // F
+        }
+
+        internal static void DisplayRaport()
+        {
+            Console.WriteLine("### Simulation Raport ### \n");
+            Console.WriteLine("### HOSPITAL ###");
+            Console.WriteLine($"Fathers born: {Simulation.FatherBorn}");
+            Console.WriteLine($"Singles born: {Simulation.SingleBorn}");
+            Console.WriteLine($"Lazy born: {Simulation.LazyBorn}");
+            Console.WriteLine($"Suiciders born: {Simulation.SuiciderBorn} \n");
+            Console.WriteLine($"### Mines ###");
+            Console.WriteLine($"Mithrill mined: {Simulation.MithrilMinded}");
+            Console.WriteLine($"Gold mined: {Simulation.GoldMinded}");
+            Console.WriteLine($"Silver mined: {Simulation.SilverMinded}");
+            Console.WriteLine($"Tainted gold mined: {Simulation.TaintedGoldMinded} \n");
+            Console.WriteLine("### GRAVEYARD ###");
+            Console.WriteLine($"Death count: {Simulation.DeathCount} \n");
+            Console.WriteLine("### GUILD ###");
+            Console.WriteLine($"Taxed money: {Simulation.TaxedMoney}");
+            Console.WriteLine($"Total money earned: {Simulation.TotalMoneyEarned} \n");
+            Console.WriteLine($"### DINING ROOM ###");
+            Console.WriteLine($"Food eaten: {Simulation.FoodEaten} \n");
+            Console.WriteLine("### SHOP ###");
+            Console.WriteLine($"Food bought: {Simulation.FoodBought}");
+            Console.WriteLine($"Alcohol bought: {Simulation.AlcoholBought}");
+            Console.WriteLine($"Shop earned: {Simulation.ShopEarned}");
+
         }
     }
 }

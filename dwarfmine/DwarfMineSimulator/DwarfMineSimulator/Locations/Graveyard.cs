@@ -11,6 +11,7 @@ namespace DwarfMineSimulator
 
         internal List<Dwarf> DeleteDeadDwarfFromList(List<Dwarf> DwarfsPopulation)
         {
+
             DeadCounter += DwarfsPopulation.Where(dwarf => dwarf.Alive == false).Count();
             return DwarfsPopulation.Where(dwarf => dwarf.Alive == true).ToList();
         }
@@ -23,6 +24,7 @@ namespace DwarfMineSimulator
 
         void Display()
         {
+            Console.WriteLine();
             Console.WriteLine("### Graveyard ###");
             Console.WriteLine("Funeral " + DeadCounter + " Dwarfs");
         }

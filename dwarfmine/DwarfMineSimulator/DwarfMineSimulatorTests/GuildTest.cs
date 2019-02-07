@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GuildTest
 {
-    public class Tests
+    public class GuildTest
     {
 
         [SetUp]
@@ -29,7 +29,7 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money >= 10 && money <= 20)
+            if (money >= (10 * 0.75m) && money <= (20 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }
@@ -51,7 +51,7 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money >= 15 && money <= 25)
+            if (money >= (15 * 0.75m) && money <= (25 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }
@@ -73,7 +73,7 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money >= 5 && money <= 15)
+            if (money >= (5 *0.75m) && money <= (15 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }
@@ -86,7 +86,7 @@ namespace GuildTest
             bool isGood = false;
             List<Dwarf> DwarfsPopulation = new List<Dwarf>()
             {
-                new Dwarf() { Alive = false, Type = DwarfTypes.Father, Money = 0, MoneyEarndedThisDay = 0 }
+                new Dwarf() {  Type = DwarfTypes.Father}
             };
 
             DwarfsPopulation[0].MineralsMined[Minerals.TaintedGold] = 1;
@@ -95,13 +95,13 @@ namespace GuildTest
 
             money = DwarfsPopulation[0].Money;
 
-            if (money == 2)
+            if (money == (2 * 0.75m))
                 isGood = true;
             Assert.IsTrue(isGood);
         }
 
         [Test]
-        public void T05DoesTheGuildSetMineralsto0()
+        public void T05DoesTheGuildSetMineralsTo0()
         {
             Guild guild = new Guild();
             bool goldIs0 = false;

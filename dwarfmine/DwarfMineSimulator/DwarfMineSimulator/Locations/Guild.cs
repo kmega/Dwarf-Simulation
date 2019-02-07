@@ -8,33 +8,40 @@ namespace DwarfMineSimulator
     {
         public List<Dwarf> HowMuchDwarfEarnedMoney(List<Dwarf> DwarfsPopulation)
         {
+            Randomizer random = new Randomizer();
+            CalculatingDataForTheReport calculating = new CalculatingDataForTheReport();
+            ViewInformation view = new ViewInformation();
+            decimal sumMoney = 0;
+            decimal sumTax = 0;
             for (int i = 0; i < DwarfsPopulation.Count; i++)
             {
                 Random priceForRawMaterials = new Random();
-                int howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver;
+                int howMuchGold= 0, howMuchMithril=0, howMuchTrainedGold=0, howMuchSilver=0;
                 CheckHowMuchDwarfGetMinerals(DwarfsPopulation, i, out howMuchGold, out howMuchMithril, out howMuchTrainedGold, out howMuchSilver);
-                
                 //mithril 15 - 25j, zoto 10 - 20j, srebro 5 - 15, brudne zoto 2
-                decimal earnedMoney = HowMuchMonetDwarfsGet(priceForRawMaterials, howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver);
-
+                var price = random.GetPriceMinerals();
+                
+                decimal earnedMoney = HowMuchMoneyDwarfsGet(price, howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver);
+                decimal taxMoney = earnedMoney * 0.25m;
+                earnedMoney -= taxMoney;
+                calculating.MoneyAndTaxFromGuild(earnedMoney, taxMoney);
+                sumMoney += earnedMoney;
+                sumTax += taxMoney;
                 DwarfsPopulation[i].MoneyEarndedThisDay = earnedMoney;
                 DwarfsPopulation[i].Money += earnedMoney;
 
                 SetMaterialstozero(DwarfsPopulation, i);
             }
+            view.ViewMoneyAndTaxFromGuild(sumMoney, sumTax);
             return DwarfsPopulation;
         }
 
-        private static decimal HowMuchMonetDwarfsGet(Random priceForRawMaterials, int howMuchGold, int howMuchMithril, int howMuchTrainedGold, int howMuchSilver)
-        {
-            int priceMithril = priceForRawMaterials.Next(15, 26);
-            int priceGold = priceForRawMaterials.Next(10, 21);
-            int priceSilver = priceForRawMaterials.Next(5, 16);
-            decimal earnedMoney = (howMuchGold * priceGold) + (howMuchMithril * priceMithril)
-                + (howMuchSilver * priceSilver) + (howMuchTrainedGold * 2);
-            Simulation.TotalMoneyEarned += earnedMoney;
-            decimal taxMoney = earnedMoney * 0.25m;
-            Simulation.TaxedMoney += taxMoney;
+        private static decimal HowMuchMoneyDwarfsGet(Dictionary<Minerals,int> price, int howMuchGold, int howMuchMithril, int howMuchTrainedGold, int howMuchSilver)
+        {       
+            decimal earnedMoney = (howMuchGold * price[Minerals.Gold]) 
+                + (howMuchMithril * price[Minerals.Mithril])
+                + (howMuchSilver * price[Minerals.Silver]) 
+                + (howMuchTrainedGold * price[Minerals.TaintedGold]);        
             return earnedMoney;
         }
 
@@ -54,5 +61,4 @@ namespace DwarfMineSimulator
             DwarfsPopulation[i].MineralsMined[Minerals.TaintedGold] = 0;
         }
     }
-    //dwarfminer-pkozlowski
 }
