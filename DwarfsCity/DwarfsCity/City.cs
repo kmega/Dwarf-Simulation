@@ -25,17 +25,20 @@ namespace DwarfsCity
             Cementary cementary = new Cementary();
             DisplayReport ui = new DisplayReport();
             Report report = new Report();
+            var listOfMainClasses = new List<IReport>() { hospital, mine, bank, bar, shop, cementary };
 
             hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 10);
 
             for (int i = 0; i < 30; i++)
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
+                hospital.GiveBirthToDwarf(dwarfs);
                 dwarfs = mine.StartWorking(dwarfs);
+                bank.ExchangeItemsToMoney(dwarfs);
                 guild.GetTaxesofAllDwarfs(dwarfs);
                 bar.GiveAFoodToDwarfs(dwarfs);
                 shop.PerformShopping(dwarfs);
-                report.AnaliseReports(new List<IReport>() { hospital,mine,bank,bar,shop,cementary} );
+                report.AnaliseReports(listOfMainClasses);
                 ui.Display(report);
             }
             

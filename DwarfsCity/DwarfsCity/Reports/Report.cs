@@ -24,5 +24,13 @@ namespace DwarfsCity.Reports
             return _reportsToDisplay;  
         }
 
+        public void ClearOldReports(List<IReport> classesReports)
+        {
+            for (int i = 0; i < classesReports.Count; i++)
+            {
+                classesReports[i].Reports.Clear();
+            }
+        }
+
     }
 }
