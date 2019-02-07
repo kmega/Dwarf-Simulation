@@ -2,6 +2,7 @@
 using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Bank;
 using MiningSimulatorByKPMM.PersonalItems;
+using MiningSimulatorByKPMM.Reports;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,8 +12,9 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 {
     public class Guild
     {
-        public BankAccount Account { get; private set; }
 
+        public BankAccount Account { get; private set; }
+        private ILogger logger;
         private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket =
             new Dictionary<E_Minerals, ICreateOreValue>()
 
@@ -26,6 +28,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
         public Guild()
         {
             Account = new BankAccount();
+            logger = Logger.Instance;
         }
 
 
@@ -35,24 +38,27 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 
         }
 
-        public void PaymentForDwarf(Backpack backpack, BankAccount account)
+        public void PaymentForDwarf(Backpack backpack, BankAccount account, bool isAlive)
         {
-            foreach (var mineral in backpack.ShowBackpackContent())
+            if (isAlive)
             {
-                decimal value = (decimal)ReturnValue(mineral.OutputType);
+                foreach (var mineral in backpack.ShowBackpackContent())
+                {
+                    decimal value = (decimal)ReturnValue(mineral.OutputType);
 
-                decimal tax = Math.Round((value / 4), 2);
-                Account.ReceivedMoney(tax);
-                Account.CalculateOverallAccount();
+                    decimal tax = Math.Round((value / 4), 2);
+                    Account.ReceivedMoney(tax);
+                    Account.CalculateOverallAccount();
 
 
-                decimal payment = value - tax;
-                account.ReceivedMoney(payment);
+                    decimal payment = value - tax;
+                    account.ReceivedMoney(payment);
 
-                Console.WriteLine("Krasnolud otrzymał {0} gp za jednostkę {1}, a Gildia zatrzymała {2} gp podatku", payment, mineral.OutputType, tax);
-
+                    string message = "Dwarf received " + payment + " gp for one " + mineral.OutputType + " and Guild take  " + tax + " gp provision.";
+                    logger.AddLog(message);
+                }
+                backpack.ShowBackpackContent().Clear();
             }
-            backpack.ShowBackpackContent().Clear();
 
         }
 
@@ -60,7 +66,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
         {
             foreach (var dwarf in dwarves)
             {
-                PaymentForDwarf(dwarf.Backpack, dwarf.BankAccount);
+                PaymentForDwarf(dwarf.Backpack, dwarf.BankAccount, dwarf.IsAlive);
             }
         }
     }

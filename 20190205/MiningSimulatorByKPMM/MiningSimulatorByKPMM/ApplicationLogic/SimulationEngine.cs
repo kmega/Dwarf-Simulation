@@ -4,6 +4,8 @@ using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
 using MiningSimulatorByKPMM.Locations.Market;
 using MiningSimulatorByKPMM.Locations.Mine;
+using MiningSimulatorByKPMM.Reports;
+using System;
 using System.Linq;
 
 namespace MiningSimulatorByKPMM.ApplicationLogic
@@ -11,20 +13,31 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
     public class SimulationEngine
     {
         private SimulationState _currentSimulationState;
+        Hospital hospital;
+        MineSupervisor mineSupervisor;
+        Guild guild;
+        Market market;
+        Canteen canteen;
+        GeneralBank generalBank;
+        Logger logger;
 
         public SimulationEngine()
         {
             _currentSimulationState = new SimulationState();
+            hospital = new Hospital();
+            mineSupervisor = new MineSupervisor();
+            guild = new Guild();
+            market = new Market();
+            canteen = new Canteen();
+            generalBank = new GeneralBank();
+            logger = Logger.Instance;
+
+
         }
 
         public void Start()
         {
-            Hospital hospital = new Hospital();
-            MineSupervisor mineSupervisor = new MineSupervisor();
-            Guild guild = new Guild();
-            Market market = new Market();
-            Canteen canteen = new Canteen();
-            GeneralBank generalBank = new GeneralBank();
+           
             canteen.FoodRations = 200;
             _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
             for (int i = 0; i < 30; i++)
@@ -56,6 +69,22 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
                 //
             }
+
+            PrepareFinalState();
+            logger.GenerateReport(_currentSimulationState);
+
+
+
+        }
+
+        private void PrepareFinalState()
+        {
+            _currentSimulationState.NumberOfBirths = hospital.totalNumberOfBirth;
+            _currentSimulationState.guildBankAccount = guild.Account.OverallAccount;
+            _currentSimulationState.taxBankAccount = generalBank.BankTresure();
+            _currentSimulationState.marketState = market.marketState;
+            
+            
         }
 
         private void BirthDwarf(Hospital hospital)
