@@ -70,11 +70,7 @@ namespace DwarfMineSimulator
             {
                 CheckForSuicider(index);
 
-                if (_shaftsNumber[index].Collapsed == true)
-                {
-                    continue;
-                }
-                else
+                if (_shaftsNumber[index].Collapsed == false)
                 {
                     MineOre(index);
                 }

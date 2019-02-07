@@ -48,7 +48,7 @@ namespace DwarfMineSimulator
                 DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
                 hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
             }
-
+            
             ShaftsNumber.Add(new Shaft());
             ShaftsNumber.Add(new Shaft());
         }
@@ -57,14 +57,15 @@ namespace DwarfMineSimulator
         {
             for (int daysCount = 0; daysCount < 30; daysCount++)
             {
+                Console.WriteLine($"#### Day {daysCount + 1} ####");
                 DayOfWork();
+                Console.WriteLine("");
+                Console.ReadKey();
 
-                if (daysCount == 29)
-                {
-                    Simulation.DisplayRaport();
-                }
-               
             }
+
+
+            Simulation.DisplayRaport();
         }
 
         internal static void DayOfWork()
