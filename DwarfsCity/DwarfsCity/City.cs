@@ -35,6 +35,7 @@ namespace DwarfsCity
                 guild.GetTaxesofAllDwarfs(dwarfs);
                 bar.GiveAFoodToDwarfs(dwarfs);
                 shop.PerformShopping(dwarfs);
+                report.AnaliseReports(new List<IReport>() { hospital,mine,bank,bar,shop,cementary} );
                 ui.Display(report);
             }
             
