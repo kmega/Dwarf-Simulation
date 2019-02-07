@@ -57,29 +57,6 @@ namespace DwarfMineSimulator.Building.Mine
                 DwarfsInShaft.ForEach(Mine);
                 ShaftQueue.RemoveAll(x => x.IsWorkDone() == true);
             }
-
-
-
-            //while (ShaftQueue.Any(x => x.IsWorkDone() == false))
-            //{
-            //    if (!IsCollapsed())
-            //    {
-            //        DwarfsInShaft = ShaftQueue.Take(5).ToList();
-            //        DwarfsInShaft.ForEach(worker =>
-            //        {
-            //            Console.WriteLine("Dwart no {0} goes to {1}", worker.GetId(), Name);
-            //        });
-            //    }
-
-            //    ShaftQueue.Skip(5).ToList().ForEach(worker =>
-            //    {
-            //        Console.WriteLine("Dwart no {0} waiting...", worker.GetId());
-            //    });
-
-            //    DwarfsInShaft.ForEach(x => x.StartShift());
-            //    DwarfsInShaft.ForEach(Mine);
-            //    ShaftQueue.RemoveAll(x => x.IsWorkDone() == true);
-            //}
         }
 
         private void Mine(Dwarf dwarf)

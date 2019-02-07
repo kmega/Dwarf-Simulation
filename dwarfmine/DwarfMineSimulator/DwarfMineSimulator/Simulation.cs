@@ -110,6 +110,10 @@ namespace DwarfMineSimulator
                 // Mine
                 Mine mine = new Mine(Dwarfs);
                 mine.DwarfOnShift(Dwarfs);
+                foreach (var dwarf in Dwarfs)
+                {
+                    MineralsDugCounter(dwarf.MinedMineralsReport());
+                }
 
                 Console.WriteLine();
                 Console.WriteLine("The end of day {0}", DayCount);
