@@ -42,11 +42,11 @@ namespace DwarfMineSimulator
         internal static void PrepareSimulation()
         {
             Hospital hospital = new Hospital();
-
+            RandomBirthAndTypeDwarf birthAndTypeDwarf = new RandomBirthAndTypeDwarf();
             for (int i = 0; i < 10; i++)
             {
-                DwarfTypes dwarfTypes = hospital.RandomTypeDwarf();
-                hospital.CreateNewDwarf(DwarfsPopulation, true, dwarfTypes);
+                DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+                hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
             }
 
             ShaftsNumber.Add(new Shaft());

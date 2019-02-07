@@ -16,17 +16,18 @@ namespace HospitalTest
         [Test]
         public void T01PopulationIsGrowing()
         {
-            bool moreDwars = false;
+            bool moreDwarfs = false;
 
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
-            DwarfTypes dwarfTypes = hospital.RandomTypeDwarf();
-            hospital.CreateNewDwarf(DwarfsPopulation, true, dwarfTypes);
+            RandomBirthAndTypeDwarf birthAndTypeDwarf = new RandomBirthAndTypeDwarf();
+            DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+            hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
 
             if (DwarfsPopulation.Count > 0)
-                moreDwars = true;
+                moreDwarfs = true;
 
-            Assert.IsTrue(moreDwars);
+            Assert.IsTrue(moreDwarfs);
         }
 
         [Test]
@@ -35,13 +36,13 @@ namespace HospitalTest
             bool lazy = false;
             bool father = false;
             bool single = false;
-
+            RandomBirthAndTypeDwarf birthAndTypeDwarf = new RandomBirthAndTypeDwarf();
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
             for (int i = 0; i < 20; i++)
             {
-                DwarfTypes dwarfTypes = hospital.RandomTypeDwarf();
-                hospital.CreateNewDwarf(DwarfsPopulation, true, dwarfTypes);
+                DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+                hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
             }
 
             for (int i = 0; i < DwarfsPopulation.Count; i++)
@@ -66,7 +67,7 @@ namespace HospitalTest
 
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
-            hospital.CreateNewDwarf(DwarfsPopulation, true, DwarfTypes.Suicider);
+            hospital.CreateNewDwarf(DwarfsPopulation, DwarfTypes.Suicider);
 
             if (DwarfsPopulation[0].Type == DwarfTypes.Suicider)
                 suicider = true;

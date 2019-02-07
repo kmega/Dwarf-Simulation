@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace GuildTest
 {
-    public class Tests
+    public class GuildTest
     {
 
         [SetUp]
@@ -101,7 +101,7 @@ namespace GuildTest
         }
 
         [Test]
-        public void T05DoesTheGuildSetMineralsto0()
+        public void T05DoesTheGuildSetMineralsTo0()
         {
             Guild guild = new Guild();
             bool goldIs0 = false;

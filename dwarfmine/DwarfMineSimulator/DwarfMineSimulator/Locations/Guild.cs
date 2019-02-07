@@ -8,6 +8,8 @@ namespace DwarfMineSimulator
     {
         public List<Dwarf> HowMuchDwarfEarnedMoney(List<Dwarf> DwarfsPopulation)
         {
+            CalculatingDataForTheReport calculating = new CalculatingDataForTheReport();
+            ViewInformation view = new ViewInformation();
             decimal sumMoney = 0;
             decimal sumTax = 0;
             for (int i = 0; i < DwarfsPopulation.Count; i++)
@@ -20,8 +22,7 @@ namespace DwarfMineSimulator
                 decimal earnedMoney = HowMuchMonetDwarfsGet(priceForRawMaterials, howMuchGold, howMuchMithril, howMuchTrainedGold, howMuchSilver);
                 decimal taxMoney = earnedMoney * 0.25m;
                 earnedMoney -= taxMoney;
-                Simulation.TotalMoneyEarned += earnedMoney;
-                Simulation.TaxedMoney += taxMoney;
+                calculating.MoneyAndTaxFromGuild();
                 sumMoney += earnedMoney;
                 sumTax += taxMoney;
                 DwarfsPopulation[i].MoneyEarndedThisDay = earnedMoney;
@@ -29,10 +30,7 @@ namespace DwarfMineSimulator
 
                 SetMaterialstozero(DwarfsPopulation, i);
             }
-            Console.WriteLine("");
-            Console.WriteLine("## Money and taxed from guild ##");
-            Console.WriteLine("Total money earned:" + sumMoney);
-            Console.WriteLine("Total money from tax guild" + sumTax);
+            view.ViewMoneyAndTaxFromGuild(sumMoney, sumTax);
             return DwarfsPopulation;
         }
 
@@ -62,5 +60,4 @@ namespace DwarfMineSimulator
             DwarfsPopulation[i].MineralsMined[Minerals.TaintedGold] = 0;
         }
     }
-    //dwarfminer-pkozlowski
 }
