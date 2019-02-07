@@ -4,6 +4,7 @@ using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
 using MiningSimulatorByKPMM.Locations.Market;
 using MiningSimulatorByKPMM.Locations.Mine;
+using System;
 using System.Linq;
 
 namespace MiningSimulatorByKPMM.ApplicationLogic
@@ -54,6 +55,17 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
                 //
             }
+
+            //PrepareFinalState();
+            //logger.GenerateRaport();
+
+
+
+        }
+
+        private void PrepareFinalState()
+        {
+            /*null*/;
         }
 
         private void BirthDwarf(Hospital hospital)
