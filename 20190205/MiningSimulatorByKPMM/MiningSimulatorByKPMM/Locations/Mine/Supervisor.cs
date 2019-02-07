@@ -23,6 +23,14 @@ namespace MiningSimulatorByKPMM.Locations.Mine
         private List<bool> workingBools = new List<bool>();
         private List<TemporaryWorker> AllWorkers = new List<TemporaryWorker>();
 
+        public Dictionary<E_Minerals, int> GetMineSupervisorStats { get; } = new Dictionary<E_Minerals, int>()
+        {
+            {E_Minerals.DirtGold, 0},
+            {E_Minerals.Gold, 0},
+            {E_Minerals.Mithril, 0},
+            {E_Minerals.Silver, 0},
+        };
+
         public List<TemporaryWorker> GetAllWorkers() => AllWorkers;
 
         public E_MiningSchaftStatus[] GetTwoSchaftsStatus()
@@ -59,7 +67,26 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             FixAllSchafts();
             CreateTemporaryObjectsFromParameters(backpackList, typeList, isAliveList);
             WorkProcessing();
+            UpdateDailyMineStats();
+
             isAliveList = UnwrapAllWorkersAndChangeStatesOfParameters(backpackList, typeList, isAliveList);
+        }
+
+        private void UpdateDailyMineStats()
+        {
+            foreach (var mineral in Enum.GetValues(typeof(E_Minerals)))
+            {
+                foreach (var worker in AllWorkers)
+                {
+                    int sum = 0;
+                    var AmountOfMineralsOfNotDeadWorkers = worker.backpack.ShowBackpackContent().Count(x => x.OutputType == (E_Minerals)mineral);
+                    if(AmountOfMineralsOfNotDeadWorkers != 0)
+                    {
+                        sum += AmountOfMineralsOfNotDeadWorkers;
+                        GetMineSupervisorStats[(E_Minerals)mineral] += sum;
+                    }
+                }
+            }
         }
 
         private List<bool> UnwrapAllWorkersAndChangeStatesOfParameters(List<Backpack> backpackList, List<E_DwarfType> typeList, List<bool> isAliveList)

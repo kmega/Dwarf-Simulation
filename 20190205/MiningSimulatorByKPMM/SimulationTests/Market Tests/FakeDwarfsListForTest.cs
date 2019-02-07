@@ -21,8 +21,8 @@ namespace SimulationTests.Market_Tests
 			Dwarf Andrzej4 = new Dwarf(E_DwarfType.Dwarf_Single);
 			Dwarf Andrzej5 = new Dwarf(E_DwarfType.Dwarf_Single);
 			Dwarf Andrzej6 = new Dwarf(E_DwarfType.Dwarf_Single);
-			Dwarf Andrzej7 = new Dwarf(E_DwarfType.Dwarf_Sluggard);
-			Dwarf Andrzej8 = new Dwarf(E_DwarfType.Dwarf_Sluggard);
+			Dwarf Andrzej7 = new Dwarf(E_DwarfType.Dwarf_Suicide);
+			Dwarf Andrzej8 = new Dwarf(E_DwarfType.Dwarf_Suicide);
 			Dwarf Andrzej9 = new Dwarf(E_DwarfType.Dwarf_Suicide);
 
 			Andrzej.BankAccount.ReceivedMoney(200);
