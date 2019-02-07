@@ -57,7 +57,7 @@ namespace DwarfMineSimulator
 
             Graveyard graveyard = new Graveyard();
             DwarfsPopulation = graveyard.DeleteDeadDwarfFromList(DwarfsPopulation);
-            Raport.DeathCount = graveyard.HowManyDead();
+            Raport.DeathCount += graveyard.HowManyDead();
             if (DwarfsPopulation.Count() == 0) return true;
 
 
