@@ -45,5 +45,10 @@ namespace DwarfMineSimulator
             int chanceToBirthDwarf = rnd.Next(1, 101);
             return chanceToBirthDwarf;
         }
+
+        public int GetPriceMinerals(int howMuchGold, int howMuchMithril, int howMuchTrainedGold, int howMuchSilver)
+        {
+            return howMuchGold;
+        }
     }
 }
