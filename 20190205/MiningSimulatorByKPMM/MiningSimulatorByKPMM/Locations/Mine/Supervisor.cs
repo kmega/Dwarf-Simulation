@@ -22,10 +22,17 @@ namespace MiningSimulatorByKPMM.Locations.Mine
         private List<E_DwarfType> workingTypeList = new List<E_DwarfType>();
         private List<bool> workingBools = new List<bool>();
         private List<TemporaryWorker> AllWorkers = new List<TemporaryWorker>();
-        //private List<List<TemporaryWorker>> SchaftOpeartingTeams = new List<List<TemporaryWorker>>();
+        public List<TemporaryWorker> GetAllWorkers() => AllWorkers;
 
-        //Mine.Work(List<Backpack>,List<dwarfType>) -> aktualizacja Backpack;
-        public List<TemporaryWorker> GetTemporaryWorkers() => AllWorkers;
+        public E_MiningSchaftStatus[] GetTwoSchaftsStatus()
+        {
+            return new E_MiningSchaftStatus[] { Schafts[0].GetSchaftStatus(), Schafts[1].GetSchaftStatus() };
+        }
+
+        public MineSupervisor()
+        {
+            Schafts = SchaftFactory.CreateTwoSchafts();
+        }
 
         public class TemporaryWorker
         {
@@ -46,17 +53,29 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             }
         }
 
-        public MineSupervisor()
-        {
-            Schafts = SchaftFactory.CreateTwoSchafts();
-        }
-
         public void Work(List<Backpack> backpackList, List<E_DwarfType> typeList, List<bool> isAliveList )
         {
             FixAllSchafts();
             CreateTemporaryObjectsFromParameters(backpackList, typeList, isAliveList);
             WorkProcessing();
+            isAliveList = UnwrapAllWorkersAndChangeStatesOfParameters(backpackList, typeList, isAliveList);
+        }
 
+        private List<bool> UnwrapAllWorkersAndChangeStatesOfParameters(List<Backpack> backpackList, List<E_DwarfType> typeList, List<bool> isAliveList)
+        {
+            List<Backpack> unwrappedBackpacks = new List<Backpack>();
+            List<E_DwarfType> unwrappedTypeLists = new List<E_DwarfType>();
+            List<bool> unwrappedIsAliveList = new List<bool>();
+
+            AllWorkers.ForEach(x => unwrappedBackpacks.Add(x.backpack));
+            AllWorkers.ForEach(x => unwrappedTypeLists.Add(x.type));
+            AllWorkers.ForEach(x => unwrappedIsAliveList.Add(x.isAlive));
+
+            backpackList = unwrappedBackpacks;
+            typeList = unwrappedTypeLists;
+            //isAliveList = unwrappedIsAliveList;
+
+            return unwrappedIsAliveList;
         }
 
         private void FixAllSchafts()
@@ -91,8 +110,11 @@ namespace MiningSimulatorByKPMM.Locations.Mine
 
                 foreach (var schaft in Schafts)
                 {
-                    schaft.ExecuteWork(oreRandomizer, oreUnitAmountRandomizer);
-                    AllWorkers.AddRange(schaft.RemoveWorkersFromSchaft());
+                    if(schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
+                    {
+                        schaft.ExecuteWork(oreRandomizer, oreUnitAmountRandomizer);
+                        AllWorkers.AddRange(schaft.RemoveWorkersFromSchaft());
+                    }
                 }
             } while (IfCanStillWork());
         }
@@ -105,10 +127,12 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             {
                 if (worker.backpack.ShowBackpackContent().Count == 0 && worker.isAlive == true)
                     condition = true;
+                //else condition = false;
             }
 
-            if (Schafts[0].GetSchaftStatus() == E_MiningSchaftStatus.Broken &&
-                        Schafts[1].GetSchaftStatus() == E_MiningSchaftStatus.Broken)
+            //if (Schafts[0].GetSchaftStatus() == E_MiningSchaftStatus.Broken &&
+                        //Schafts[1].GetSchaftStatus() == E_MiningSchaftStatus.Broken) ;
+            if(Schafts.All(x => x.GetSchaftStatus() == E_MiningSchaftStatus.Broken))
                 condition = false;
 
             return condition;
@@ -120,14 +144,14 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             {
                 if(schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
                 {
-                    var team = TeamSplitter.SplitWorkersIntoTeam(AllWorkers.Where(x => x.backpack.ShowBackpackContent().Count == 0).ToList());
-                    NewMethod(team);
-                    schaft.SetSchaftWorkers(team);
+                    var CurrentlyWorkingTeam = TeamSplitter.SplitWorkersIntoTeam(AllWorkers.Where(x => x.backpack.ShowBackpackContent().Count == 0 && x.isAlive == true).ToList());
+                    RemoveWorkingMinersFromAllworkers(CurrentlyWorkingTeam);
+                    schaft.SetSchaftWorkers(CurrentlyWorkingTeam);
                 }
             }
         }
 
-        private void NewMethod(List<TemporaryWorker> temp)
+        private void RemoveWorkingMinersFromAllworkers(List<TemporaryWorker> temp)
         {
             for (int i = 0; i < temp.Count; i++)
             {

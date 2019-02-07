@@ -19,14 +19,46 @@ namespace SimulationTests.MineTests
             return tempObjs;
         }
 
+        public static List<TemporaryWorker> CreateTwoSluggardWorkersInBothTeams(int amount)
+        {
+            List<TemporaryWorker> tempObjs = new List<TemporaryWorker>();
+            for (int i = 0; i < amount; i++)
+            {
+                if(i==0)
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                else if(i==5)
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                else
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Father, true));
+            }
+
+            return tempObjs;
+        }
+
         public static List<TemporaryWorker> CreateSluggardWorkers(int amount)
         {
             List<TemporaryWorker> tempObjs = new List<TemporaryWorker>();
-            for (int i = 0; i < amount - 1; i++)
+            for (int i = 0; i < amount; i++)
             {
-                tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Father, true));
+                if(i==0)
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                else
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Father, true));
             }
-            tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+
+            return tempObjs;
+        }
+
+        internal static List<TemporaryWorker> CreateSluggardWorkerOnlyInSecondSchaft(int amount)
+        {
+            List<TemporaryWorker> tempObjs = new List<TemporaryWorker>();
+            for (int i = 0; i < amount; i++)
+            {
+                if (i == 5)
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                else
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Father, true));
+            }
 
             return tempObjs;
         }
