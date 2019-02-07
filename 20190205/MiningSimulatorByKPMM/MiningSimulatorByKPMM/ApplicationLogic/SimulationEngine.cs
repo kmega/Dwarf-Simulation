@@ -38,6 +38,8 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
             for (int i = 0; i < 30; i++)
             {
+
+                logger.AddLog($"\n\nDay {i+1}\n\n");
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
                 BirthDwarf(hospital);
 
@@ -64,6 +66,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 canteen.OrderFoodRations();
 
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
+                
 
                 var a = ShouldSimulationBeContinued(canteen);
                 if (a == 1)
@@ -91,6 +94,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             _currentSimulationState.guildBankAccount = guild.Account.OverallAccount;
             _currentSimulationState.taxBankAccount = generalBank.BankTresure();
             _currentSimulationState.marketState = market.marketState;
+            _currentSimulationState.extractedOre = mineSupervisor.GetMineSupervisorStats;
         }
 
         private void BirthDwarf(Hospital hospital)
