@@ -41,8 +41,9 @@ namespace MiningSimulatorByKPMM.Locations.Market
 			amountOfProduct += recipe;
 			marketState[productType] = amountOfProduct;
 
+			//updating status of bank accounts of Dwarf, Bank and Market
+			customer.BankAccount.Withdraw(recipe);
 			bank.PayTax(recipe);
-
 			shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
 			shopMoneyAccount.CalculateOverallAccount();
 		}

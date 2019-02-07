@@ -116,5 +116,22 @@ namespace SimulationTests.Market_Tests
 			Assert.AreEqual(138, result2);
 		}
 
+		[Test]
+		public void AccountOfDwarfShouldBeLessByRecipeFromShop()
+		{
+			//given
+			List<Dwarf> dwarfsList = new List<Dwarf>();
+			Dwarf Andrzej = new Dwarf(E_DwarfType.Dwarf_Father);
+			Andrzej.BankAccount.ReceivedMoney(200);
+			dwarfsList.Add(Andrzej);
+
+			//when
+			market.PerformShopping(dwarfsList, bank);
+			Andrzej.BankAccount.CalculateOverallAccount();
+			decimal result = Andrzej.BankAccount.OverallAccount;
+			//then
+			Assert.AreEqual(100, result);
+		}
+
 	}
 }
