@@ -58,8 +58,9 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
                 _currentSimulationState.NumberOfDeadDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == false).Count();
 
-                //Canteen(numberOfWorkersToday); nie karm martwych!!
-                canteen.GiveFoodRations(_currentSimulationState.Dwarves.Count);
+                //Canteen(numberOfWorkersToday)
+                var aliveDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == true).Count();
+                canteen.GiveFoodRations(aliveDwarves);
                 canteen.OrderFoodRations();
 
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
