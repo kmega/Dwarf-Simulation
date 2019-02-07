@@ -21,9 +21,9 @@ namespace DwarfCityTests
             int resultsupply = bar.SupplyofFood;
             Assert.AreEqual(expectedsupply, resultsupply);
         }
-        [ExpectedException(typeof(Exception))]
+        
         [TestMethod]
-        public void ShouldReturnExceptionWhenFoodIsOver()
+        public void ShouldReturnNegativeNumberWhenFoodIsOver()
         {
             bar.SupplyofFood = 5;
             int Supply = bar.SupplyofFood;

@@ -44,7 +44,6 @@ namespace DwarfsCity
         private void AllDwarfsEatADinner()
         {
             GiveReport("Today " + GivenFoodToDwarfsDuringOneDay + "get a portion of food. Actual amount of supply in Bar: " + SupplyofFood + ".");
-
         }
 
         private void ThereIsADelivery()
@@ -53,11 +52,11 @@ namespace DwarfsCity
             GiveReport("Today " + GivenFoodToDwarfsDuringOneDay + "get a portion of food. There is a delivery food to bar. Actual amount of supply in Bar: " + SupplyofFood + ".");
 
         }
-
         private void ThereIsNoMoreFood()
         {
             GiveReport("There is no more food in bar. Only " + GivenFoodToDwarfsDuringOneDay + " get a portion of food. /nThe simulation is over.");
-            throw new Exception("Simulation is over. There is no more food.");
+            City city = new City();
+            city.TheEndOfSimulation = true;
         }
 
         public void GiveReport(string message)

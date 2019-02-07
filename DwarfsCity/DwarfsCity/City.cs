@@ -11,7 +11,8 @@ namespace DwarfsCity
 {
     public class City
     {
-        List<Dwarf> dwarfs = new List<Dwarf>();       
+        List<Dwarf> dwarfs = new List<Dwarf>();
+        public bool TheEndOfSimulation {get;set;} = false;
         //Start simulation
         public void Run()
         {
@@ -24,8 +25,6 @@ namespace DwarfsCity
             Shop shop = new Shop();
             Cementary cementary = new Cementary();
             DisplayReport ui = new DisplayReport();
-            Report report = new Report();
-            var listOfMainClasses = new List<IReport>() { hospital, mine, bank, bar, shop, cementary };
 
             hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 10);
 
@@ -33,28 +32,25 @@ namespace DwarfsCity
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
 
-                try
-                {
-                    hospital.GiveBirthToDwarf(dwarfs);
-                    dwarfs = mine.StartWorking(dwarfs);
-                    bank.ExchangeItemsToMoney(dwarfs);
-                    guild.GetTaxesofAllDwarfs(dwarfs);
-                    bar.GiveAFoodToDwarfs(dwarfs);
-                    shop.PerformShopping(dwarfs);
-                    report.AnaliseReports(listOfMainClasses);                
-                    ui.Display(report);
-                }
-                catch (Exception)
-                {
+                Logger.GetInstance().AddLog($"DAY: {i + 1}");
+                hospital.GiveBirthToDwarf(dwarfs);
+                dwarfs = mine.StartWorking(dwarfs);
+                if (TheEndOfSimulation == true)
                     break;
-                }
-
+                bank.ExchangeItemsToMoney(dwarfs);
+                guild.GetTaxesofAllDwarfs(dwarfs);
+                bar.GiveAFoodToDwarfs(dwarfs);
+                if (TheEndOfSimulation == true)
+                    break;               
+                shop.PerformShopping(dwarfs);
+                ui.Display(Logger.GetInstance().GetLogs());
+                Console.ReadKey();
             }
-           
+
         }
 
         public List<Dwarf> GetDwarfs()
-        {
+        {            
             return dwarfs;
         }
         

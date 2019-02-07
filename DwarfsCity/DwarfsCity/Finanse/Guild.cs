@@ -9,6 +9,7 @@ namespace DwarfsCity
     {
         public decimal GeneralGuildFunds { get; set; }
         public decimal TheSumOfTaxesOnOneDay { get; set; }     
+
         public void GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
         {
             TheSumOfTaxesOnOneDay = 0;
@@ -36,7 +37,9 @@ namespace DwarfsCity
 
         private void ReportGuild()
         {
+
              GiveReport("Guild: Today all dwarfs pay " + TheSumOfTaxesOnOneDay + " taxes. The current state of the guild account is " + GeneralGuildFunds + ".");    
+
         }
 
         public void GiveReport(string message)

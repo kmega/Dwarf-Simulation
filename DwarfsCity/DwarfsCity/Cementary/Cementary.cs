@@ -6,11 +6,9 @@ using System.Collections.Generic;
 
 namespace DwarfsCity
 {
-    public class Cementary: IReport
+    public class Cementary:IReport
     {
         public static List<Dwarf> graves { get; private set; } = new List<Dwarf>();
-
-        public List<string> Reports { get; set; } = new List<string>();
 
         private void AddKilledDwarfsToGraves(List<Dwarf> killedDwarfs)
         {
@@ -34,7 +32,7 @@ namespace DwarfsCity
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
 }
