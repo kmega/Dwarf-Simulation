@@ -1,6 +1,7 @@
 ﻿using MiningSimulatorByKPMM.DwarfsTypes;
 using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Hospital.RandomGenerators;
+using MiningSimulatorByKPMM.Reports;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +10,8 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
 {
     public class Hospital
     {
+        private int totalNumberOfBirth;
+        private Logger logger;
         IBirthChanceRandomizer birthChanceRandomizer;
         IDwarfTypeRandomizer dwarfTypeRandomizer;
 
@@ -16,22 +19,31 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
         public Hospital(IBirthChanceRandomizer birthChanceRandomizer,
             IDwarfTypeRandomizer dwarfTypeRandomizer)
         {
+            SetInitialState();
             this.birthChanceRandomizer = birthChanceRandomizer;
             this.dwarfTypeRandomizer = dwarfTypeRandomizer;
         }
         public Hospital()
         {
+            SetInitialState();
             birthChanceRandomizer = new IsDwarfBorn1PercentStrategy();
             dwarfTypeRandomizer = new DwarfTypeGenerator();
         }
         #endregion
+
+        private void SetInitialState()
+        {
+            logger = Logger.Instance;
+            totalNumberOfBirth = 0;
+        }
 
         public Dwarf TryToCreateDwarf()
         {
             if(birthChanceRandomizer.IsDwarfBorn())
             {
                 E_DwarfType type = dwarfTypeRandomizer.GenerateType();
-                Console.WriteLine($"{type} is born!");
+                logger.AddLog($"A {type} is born.");
+                totalNumberOfBirth++;
                 return new Dwarf(type);
             }
             return null;
@@ -43,7 +55,7 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
             {
                 dwarves.Add(new Dwarf(dwarfTypeRandomizer.GenerateType()));
             }
-            Console.WriteLine($"Initial Society Size: {dwarves.Count}");
+            logger.AddLog($"Initial Society Size: {dwarves.Count}");
             return dwarves;
         }
     }
