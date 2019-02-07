@@ -16,21 +16,35 @@ namespace DwarfsCity
 
         public void GiveAFoodToDwarfs(List<Dwarf> Dwarfs) //Rozdaje porcje jedzenia wszystkim krasnoludom
         {           
-            this.GivenFoodToDwarfsDuringOneDay = Dwarfs.Count;         
-            this.SupplyofFood = SupplyofFood - GivenFoodToDwarfsDuringOneDay; 
-            if (SupplyofFood < 0)
-            {
-                throw new Exception("There is no more food in bar. The simulation is over");
-            }
-            else if (SupplyofFood <= 10)
-                this.SupplyofFood += 30;
-            ReportBar();
+            GivenFoodToDwarfsDuringOneDay = AmountOfFoodGiven(Dwarfs.Count);
+            SupplyofFood = SupplyofFood - Dwarfs.Count;
+            ReportBar();          
+        }
+
+        private int AmountOfFoodGiven(int DwarfsCount)
+        {
+            if (DwarfsCount > SupplyofFood)
+                return (DwarfsCount - SupplyofFood);
+            else
+                return DwarfsCount;
         }
 
         private void ReportBar()
         {
             Reports = new List<string>();
             GiveReport("Today "+ GivenFoodToDwarfsDuringOneDay + "get a portion of food. Actual amount of supply in Bar: " + SupplyofFood + ".");
+            if (SupplyofFood < 0)
+            {
+                GiveReport("There is no more food in bar. Only " + GivenFoodToDwarfsDuringOneDay + " get a portion of food. /nThe simulation is over.");
+                throw new Exception("Simulation is over. There is no more food.");
+            }
+            else if (SupplyofFood <= 10)
+            {
+                this.SupplyofFood += 30;
+                GiveReport("Today " + GivenFoodToDwarfsDuringOneDay + "get a portion of food. There is a delivery food to bar. Actual amount of supply in Bar: " + SupplyofFood + ".");
+            }            
+            else
+                GiveReport("Today " + GivenFoodToDwarfsDuringOneDay + "get a portion of food. Actual amount of supply in Bar: " + SupplyofFood + ".");
         }
 
         public void GiveReport(string message)

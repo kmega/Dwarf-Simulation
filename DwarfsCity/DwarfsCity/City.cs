@@ -11,7 +11,7 @@ namespace DwarfsCity
 {
     public class City
     {
-        List<Dwarf> dwarfs = new List<Dwarf>();
+        List<Dwarf> dwarfs = new List<Dwarf>();       
         //Start simulation
         public void Run()
         {
@@ -31,15 +31,22 @@ namespace DwarfsCity
             for (int i = 0; i < 30; i++)
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
-                dwarfs = mine.StartWorking(dwarfs);
-                guild.GetTaxesofAllDwarfs(dwarfs);
-                bar.GiveAFoodToDwarfs(dwarfs);
-                shop.PerformShopping(dwarfs);
-                ui.Display(report);
+                try
+                {
+                    hospital.GiveBirthToDwarf(dwarfs);
+                    dwarfs = mine.StartWorking(dwarfs);
+                    bank.ExchangeItemsToMoney(dwarfs);
+                    guild.GetTaxesofAllDwarfs(dwarfs);
+                    bar.GiveAFoodToDwarfs(dwarfs);
+                    shop.PerformShopping(dwarfs);
+                    ui.Display(report);
+                }
+                catch (Exception)
+                {
+                    break;
+                }
             }
-            
-
-
+           
         }
 
         public List<Dwarf> GetDwarfs()
