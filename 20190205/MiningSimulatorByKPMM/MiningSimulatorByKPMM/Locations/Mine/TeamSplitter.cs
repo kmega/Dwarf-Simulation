@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MiningSimulatorByKPMM.DwarfsTypes;
+using static MiningSimulatorByKPMM.Locations.Mine.MineSupervisor;
 
 namespace MiningSimulatorByKPMM.Locations.Mine
 {
@@ -9,14 +10,21 @@ namespace MiningSimulatorByKPMM.Locations.Mine
     {
         const int SchaftSize = 5;
 
-        public int SplitWorkersIntoTeam(int workersCount)
+        public List<TemporaryWorker> SplitWorkersIntoTeam(List<TemporaryWorker> workers)
         {
-            if (workersCount > SchaftSize)
+            if(workers.Count >= SchaftSize)
             {
-                workersCount -= SchaftSize;
-                return SchaftSize;
+                List<TemporaryWorker> schaftOperatingTeam = workers.Take(SchaftSize).ToList();
+
+                foreach (var schaftMember in schaftOperatingTeam)
+                    workers.Remove(schaftMember);
+
+                return schaftOperatingTeam;
             }
-            else return workersCount;
+
+            List<TemporaryWorker> returnList = new List<TemporaryWorker>(workers);
+            workers.Clear();
+            return returnList;
         }
     }
 }
