@@ -15,6 +15,9 @@ namespace DwarfsCity.DwarfContener
             newDwarf.Backpack.Items = items;
             newDwarf.Backpack.Money = money;
 
+            if (items == null)
+                newDwarf.Backpack.Items = new List<Item>();
+
             return newDwarf;
         }
 

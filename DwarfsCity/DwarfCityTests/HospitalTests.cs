@@ -17,7 +17,7 @@ namespace DwarfCityTests
             Hospital hospital = new Hospital();
 
             //when
-            hospital.InitialiseBasicNumberOfDwarfs(city.GetDwarfs(), 10);
+            hospital.InitialNumberOfDwarfs(city.GetDwarfs(), 10);
 
             //then
             Assert.AreEqual(10, city.GetDwarfs().Count);

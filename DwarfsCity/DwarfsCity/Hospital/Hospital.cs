@@ -17,7 +17,12 @@ namespace DwarfsCity
 
         public void InitialNumberOfDwarfs(List<Dwarf> dwarfs,int initalNumberOfDwarfs = 0)
         {
-            dwarfs = DwarfFactory.CreateMultipleRandomDwarfs_RandomAttributes(initalNumberOfDwarfs);
+            var listOfDwarfs = DwarfFactory.CreateMultipleRandomDwarfs_RandomAttributes(initalNumberOfDwarfs);
+
+            foreach (var dwarf in listOfDwarfs)
+            {
+                dwarfs.Add(dwarf);
+            }
         }
 
     }
