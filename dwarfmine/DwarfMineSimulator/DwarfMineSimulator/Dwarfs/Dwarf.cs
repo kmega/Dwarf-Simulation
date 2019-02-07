@@ -21,6 +21,10 @@ namespace DwarfMineSimulator.Dwarfs
     {
         int Identifier;
 
+        int Hits;
+
+        bool WorkDone;
+
         DwarfTypes Type { get; set; }
 
         bool Alive { get; set; }
@@ -38,6 +42,8 @@ namespace DwarfMineSimulator.Dwarfs
         public Dwarf(int id, DwarfTypes type, bool alive, decimal money)
         {
             Identifier = id;
+            Hits = 0;
+            WorkDone = false;
             Type = type;
             Alive = alive;
             Money = money;
@@ -64,6 +70,40 @@ namespace DwarfMineSimulator.Dwarfs
 
         public void MineMinerals()
         {
+            int chance = new Random().Next(1, 100);
+            if (Enumerable.Range(1, 5).Contains(chance))
+            {
+                MineralsMined.TryGetValue(Minerals.Mithril, out var currentValue);
+                MineralsMined[Minerals.Mithril] = currentValue++;
+                //MineralsMinedToday[Minerals.Mithril] = currentValue;
+                Console.WriteLine("Dwarf no {0} dug {1}", Identifier, Minerals.Mithril.ToString());
+            }
+
+            if (Enumerable.Range(6, 20).Contains(chance))
+            {
+                MineralsMined.TryGetValue(Minerals.Gold, out var currentValue);
+                MineralsMined[Minerals.Gold] = currentValue++;
+                //MineralsMinedToday[Minerals.Gold] = currentValue;
+                Console.WriteLine("Dwarf no {0} dug {1}", Identifier, Minerals.Gold.ToString());
+            }
+
+            if (Enumerable.Range(21, 55).Contains(chance))
+            {
+                MineralsMined.TryGetValue(Minerals.Silver, out var currentValue);
+                MineralsMined[Minerals.Silver] = currentValue++;
+                //MineralsMinedToday[Minerals.Silver] = currentValue;
+                Console.WriteLine("Dwarf no {0} dug {1}", Identifier, Minerals.Silver.ToString());
+            }
+
+            if (Enumerable.Range(56, 100).Contains(chance))
+            {
+                MineralsMined.TryGetValue(Minerals.TaintedGold, out var currentValue);
+                MineralsMined[Minerals.TaintedGold] = currentValue++;
+                //MineralsMinedToday[Minerals.TaintedGold] = currentValue;
+                Console.WriteLine("Dwarf no {0} dug {1}", Identifier, Minerals.TaintedGold.ToString());
+            }
+
+            Hits--;
 
             //MineralsMinedToday = new Dictionary<Minerals, int>()
             //{
@@ -122,6 +162,7 @@ namespace DwarfMineSimulator.Dwarfs
 
         public void GoToShaft(IShaft shaft)
         {
+            Hits = HowManyHits();
             shaft.DwarfGoIntoShaftQueue(this);
         }
 
@@ -138,6 +179,16 @@ namespace DwarfMineSimulator.Dwarfs
         public string GetId()
         {
             return Identifier.ToString();
+        }
+
+        public int MaxHitsInShaft()
+        {
+            return Hits;
+        }
+
+        public void EndOfShift()
+        {
+            WorkDone = true;
         }
     }
 }
