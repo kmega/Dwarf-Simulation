@@ -30,39 +30,22 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             for (int i = 0; i < 30; i++)
             {
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
-                var dwarf = hospital.TryToCreateDwarf();
-                if (dwarf != null)
-                {
-                    _currentSimulationState.Dwarves.Add(dwarf);
-                }
+                BirthDwarf(hospital);
 
                 //Mine.Work(List<Backpack>,List<dwarfType>) -> aktualizacja Backpack;
                 var dwarfBackpacks = _currentSimulationState.Dwarves.Select(p => p.Backpack).ToList();
                 var dwarfTypes = _currentSimulationState.Dwarves.Select(p => p.DwarfType).ToList();
                 var dwarfLifeStatus = _currentSimulationState.Dwarves.Select(p => p.IsAlive).ToList();
+
                 mineSupervisor.Work(ref dwarfBackpacks, dwarfTypes, ref dwarfLifeStatus);
 
-                for (int j = 0; j < _currentSimulationState.Dwarves.Count; j++)
-                {
-                    _currentSimulationState.Dwarves[j].IsAlive = dwarfLifeStatus[j];
-                }
-
-                for (int k = 0; k < _currentSimulationState.Dwarves.Count; k++)
-                {
-                    _currentSimulationState.Dwarves[k].Backpack = dwarfBackpacks[k];
-                }
+                UpdateDwarfLifeStatus(dwarfLifeStatus);
+                UpdateDwarfBackpacks(dwarfBackpacks);
 
                 //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
                 guild.DwarvesVisitGuild(_currentSimulationState.Dwarves);
 
-                //Market.BuyStaff(List<BankAccount> bankAccounts, List<DwarfType> dwarftypes);
-
-                // int ostatniaWpłata = Bank.GetLastInput(bankaccount);
-                //int paragon = ostatniawplata /2
-                // int result = Bank.PayTax(paragon);
-                // Bank.Putin(shopBankAccount, result);
-                //Bank.SumDay(List<bankAccount>);
-                //Bankaccount -> overallMoney, lastInput
+                market.PerformShopping(_currentSimulationState.Dwarves, generalBank);
 
                 //Canteen(numberOfWorkersToday);
                 canteen.GiveFoodRations(_currentSimulationState.Dwarves.Count);
@@ -70,6 +53,31 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
                 //
+            }
+        }
+
+        private void BirthDwarf(Hospital hospital)
+        {
+            var dwarf = hospital.TryToCreateDwarf();
+            if (dwarf != null)
+            {
+                _currentSimulationState.Dwarves.Add(dwarf);
+            }
+        }
+
+        private void UpdateDwarfBackpacks(System.Collections.Generic.List<PersonalItems.Backpack> dwarfBackpacks)
+        {
+            for (int k = 0; k < _currentSimulationState.Dwarves.Count; k++)
+            {
+                _currentSimulationState.Dwarves[k].Backpack = dwarfBackpacks[k];
+            }
+        }
+
+        private void UpdateDwarfLifeStatus(System.Collections.Generic.List<bool> dwarfLifeStatus)
+        {
+            for (int j = 0; j < _currentSimulationState.Dwarves.Count; j++)
+            {
+                _currentSimulationState.Dwarves[j].IsAlive = dwarfLifeStatus[j];
             }
         }
     }
