@@ -6,6 +6,7 @@ namespace DwarfMineSimulatorTests
 {
     public class MinesTests
     {
+        // Scenario: Two miners are mining in one shaft.
         [Test]
         public void TwoMinerShouldMineMinerals()
         {
@@ -32,12 +33,14 @@ namespace DwarfMineSimulatorTests
 
             for (int i = 0; i < results.Count; i++)
             {
-                mineralsMined += listOfValues[i];
+                mineralsMined += listOfValues[0];
+                listOfValues.RemoveAt(0);
             }
 
             Assert.IsTrue(mineralsMined > 0);
         }
 
+        // Scenario: Ten miners are mining in one shaft.
         [Test]
         public void TenMinerShouldMineMinerals()
         {
@@ -69,7 +72,8 @@ namespace DwarfMineSimulatorTests
 
                 for (int j = 0; j < results.Count; j++)
                 {
-                    mineralsMined += listOfValues[j];
+                    mineralsMined += listOfValues[0];
+                    listOfValues.RemoveAt(0);
                 }
 
                 Assert.IsTrue(mineralsMined > 0);
@@ -77,6 +81,7 @@ namespace DwarfMineSimulatorTests
             }
         }
 
+        // Scenario: Two miners are mining in one shaft.
         [Test]
         public void TwelveMinerShouldMineMineralsInTwoShafts()
         {
@@ -109,7 +114,8 @@ namespace DwarfMineSimulatorTests
 
                 for (int j = 0; j < results.Count; j++)
                 {
-                    mineralsMined += listOfValues[j];
+                    mineralsMined += listOfValues[0];
+                    listOfValues.RemoveAt(0);
                 }
 
                 Assert.IsTrue(mineralsMined > 0);
@@ -149,7 +155,8 @@ namespace DwarfMineSimulatorTests
 
                 for (int j = 0; j < results.Count; j++)
                 {
-                    mineralsMined += listOfValues[j];
+                    mineralsMined += listOfValues[0];
+                    listOfValues.RemoveAt(0);
                 }
 
                 Assert.IsTrue(mineralsMined > 0);
@@ -258,6 +265,46 @@ namespace DwarfMineSimulatorTests
 
                     Assert.IsTrue(mineralsMined == 0);
                 }
+            }
+        }
+
+        [Test]
+        public void LazyTypesShouldMineOnceOrNotAtAll()
+        {
+            // For
+            Mines mines = new Mines();
+
+            List<Dwarf> dwarfs = new List<Dwarf>();
+            List<Shaft> shafts = new List<Shaft>();
+
+            // Given
+            for (int i = 0; i < 5; i++)
+            {
+                dwarfs.Add(new Dwarf() { Type = DwarfTypes.Lazy });
+            }
+            shafts.Add(new Shaft());
+
+            dwarfs = mines.MineInShafts(dwarfs, shafts);
+
+            // Assert
+            Dictionary<Minerals, int> results;
+            List<int> listOfValues = new List<int>();
+
+            int mineralsMined = 0;
+
+            for (int i = 0; i < dwarfs.Count; i++)
+            {
+                results = dwarfs[i].MineralsMined;
+                listOfValues.AddRange(results.Values);
+
+                for (int j = 0; j < results.Count; j++)
+                {
+                    mineralsMined += listOfValues[0];
+                    listOfValues.RemoveAt(0);
+                }
+
+                Assert.IsTrue(mineralsMined == 0 || mineralsMined == 1);
+                mineralsMined = 0;
             }
         }
     }
