@@ -41,7 +41,7 @@ namespace DwarfMineSimulator
 
                 if (DayOfWork()) break;
                 Console.WriteLine("");
-                Console.ReadKey();
+                
 
             }
 
