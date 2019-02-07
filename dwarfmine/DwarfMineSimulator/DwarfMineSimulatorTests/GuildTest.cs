@@ -129,6 +129,7 @@ namespace GuildTest
                 silverIs0 = true;
             if (DwarfsPopulation[0].MineralsMined[Minerals.TaintedGold] == 0)
                 tainedGoldIs0 = true;
+
             Assert.IsTrue(goldIs0);
             Assert.IsTrue(mithrillIs0);
             Assert.IsTrue(silverIs0);

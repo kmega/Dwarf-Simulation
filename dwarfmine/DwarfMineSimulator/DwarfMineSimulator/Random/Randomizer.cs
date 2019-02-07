@@ -8,30 +8,36 @@ namespace DwarfMineSimulator
     {
         Random rnd = new Random();
 
-        public DwarfTypes RandomTypeDwarf()
+        internal DwarfTypes RandomTypeDwarf()
         {
             int chanceToFatherOrSingle = rnd.Next(1, 101);
-            DwarfTypes dwarfTypes;
-            if (chanceToFatherOrSingle <= 33)
-            {
-                dwarfTypes = DwarfTypes.Father;
-            }
-            else if (chanceToFatherOrSingle > 33 && chanceToFatherOrSingle <= 66)
-            {
-                dwarfTypes = DwarfTypes.Single;
-            }
-            else if (chanceToFatherOrSingle > 66 && chanceToFatherOrSingle <= 99)
-            {
-                dwarfTypes = DwarfTypes.Lazy;
-            }
-            else
-            {
-                dwarfTypes = DwarfTypes.Suicider;
-            }
+
+            DwarfTypes dwarfTypes = GenerateDwarfType(chanceToFatherOrSingle);
+            
             return dwarfTypes;
         }
 
-        public bool WillHeBeBorn()
+        internal DwarfTypes GenerateDwarfType(int chanceToFatherOrSingle)
+        {
+            if (chanceToFatherOrSingle <= 33)
+            {
+                return DwarfTypes.Father;
+            }
+            else if (chanceToFatherOrSingle > 33 && chanceToFatherOrSingle <= 66)
+            {
+                return DwarfTypes.Single;
+            }
+            else if (chanceToFatherOrSingle > 66 && chanceToFatherOrSingle <= 99)
+            {
+                return DwarfTypes.Lazy;
+            }
+            else
+            {
+                return DwarfTypes.Suicider;
+            }
+        }
+
+        internal bool WillHeBeBorn()
         {
             int chanceToBirthDwarf = rnd.Next(1, 101);
             if (chanceToBirthDwarf == 1)
@@ -40,20 +46,20 @@ namespace DwarfMineSimulator
                 return false;
         }
 
-        public int Return1to100()
+        internal int Return1to100()
         {
             int chanceToBirthDwarf = rnd.Next(1, 101);
             return chanceToBirthDwarf;
         }
 
-        public Dictionary<Minerals, int> GetPriceMinerals()
+        internal Dictionary<Minerals, int> GetPriceMinerals()
         {
-            int MithrilPrice, GoldPrice, SilverPrice, TrainedGoldPrice;
+            int MithrilPrice, GoldPrice, SilverPrice, TainedGoldPrice;
             var dictionary = new Dictionary<Minerals, int>();
             dictionary.Add(Minerals.Mithril,MithrilPrice = rnd.Next(15, 26));
             dictionary.Add(Minerals.Gold, GoldPrice = rnd.Next(10, 21));
             dictionary.Add(Minerals.Silver, SilverPrice = rnd.Next(5, 16));
-            dictionary.Add(Minerals.TaintedGold, TrainedGoldPrice = 2);
+            dictionary.Add(Minerals.TaintedGold, TainedGoldPrice = 2);
             return dictionary;
         }
     }
