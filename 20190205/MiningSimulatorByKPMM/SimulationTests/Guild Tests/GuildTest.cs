@@ -33,7 +33,7 @@ namespace SimulationTests.Guild_Tests
            
 
             //when
-            guild.PaymentForDwarf(backpack, bankAccount);
+            guild.PaymentForDwarf(backpack, bankAccount,true);
 
             //then
             Assert.AreEqual(0, guild.Account.OverallAccount);
@@ -51,7 +51,7 @@ namespace SimulationTests.Guild_Tests
             backpack.AddSingleOre(new Ore(E_Minerals.DirtGold));
 
             //when
-            guild.PaymentForDwarf(backpack, bankAccount);
+            guild.PaymentForDwarf(backpack, bankAccount,true);
 
             //then
             Assert.AreEqual(0.5, guild.Account.OverallAccount);
@@ -74,8 +74,8 @@ namespace SimulationTests.Guild_Tests
 
 
             //when
-            guild.PaymentForDwarf(backpackOne, bankAccountOne);
-            guild.PaymentForDwarf(backpackTwo, bankAccountTwo);
+            guild.PaymentForDwarf(backpackOne, bankAccountOne,true);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo,true);
 
             //then
             Assert.AreEqual(1, guild.Account.OverallAccount);
@@ -102,8 +102,8 @@ namespace SimulationTests.Guild_Tests
 
 
             //when
-            guild.PaymentForDwarf(backpackOne, bankAccountOne);
-            guild.PaymentForDwarf(backpackTwo, bankAccountTwo);
+            guild.PaymentForDwarf(backpackOne, bankAccountOne,true);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo,true);
 
             //then
             Assert.AreEqual(2, guild.Account.OverallAccount);

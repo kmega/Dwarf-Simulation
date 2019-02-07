@@ -8,7 +8,7 @@ namespace SimulationTests.MineTests
 {
     public static class FakeDataFactory
     {
-        public static List<TemporaryWorker> CreateXNonSluggardWorkers(int amount)
+        public static List<TemporaryWorker> CreateXNonSuicideWorkers(int amount)
         {
             List<TemporaryWorker> tempObjs = new List<TemporaryWorker>();
             for (int i = 0; i < amount; i++)
@@ -19,15 +19,15 @@ namespace SimulationTests.MineTests
             return tempObjs;
         }
 
-        public static List<TemporaryWorker> CreateTwoSluggardWorkersInBothTeams(int amount)
+        public static List<TemporaryWorker> CreateTwoSuicideWorkersInBothTeams(int amount)
         {
             List<TemporaryWorker> tempObjs = new List<TemporaryWorker>();
             for (int i = 0; i < amount; i++)
             {
                 if(i==0)
-                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Suicide, true));
                 else if(i==5)
-                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Suicide, true));
                 else
                     tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Father, true));
             }
@@ -35,13 +35,13 @@ namespace SimulationTests.MineTests
             return tempObjs;
         }
 
-        public static List<TemporaryWorker> CreateSluggardWorkers(int amount)
+        public static List<TemporaryWorker> CreateSuicideWorkers(int amount)
         {
             List<TemporaryWorker> tempObjs = new List<TemporaryWorker>();
             for (int i = 0; i < amount; i++)
             {
                 if(i==0)
-                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Suicide, true));
                 else
                     tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Father, true));
             }
@@ -49,13 +49,13 @@ namespace SimulationTests.MineTests
             return tempObjs;
         }
 
-        internal static List<TemporaryWorker> CreateSluggardWorkerOnlyInSecondSchaft(int amount)
+        internal static List<TemporaryWorker> CreateSuicideWorkerOnlyInSecondSchaft(int amount)
         {
             List<TemporaryWorker> tempObjs = new List<TemporaryWorker>();
             for (int i = 0; i < amount; i++)
             {
                 if (i == 5)
-                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Sluggard, true));
+                    tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Suicide, true));
                 else
                     tempObjs.Add(new TemporaryWorker(new Backpack(), E_DwarfType.Dwarf_Father, true));
             }
