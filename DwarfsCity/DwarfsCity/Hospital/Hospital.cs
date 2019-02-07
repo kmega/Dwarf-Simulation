@@ -12,10 +12,6 @@ namespace DwarfsCity
 
         public List<string> Reports { get; set; }
 
-        public Hospital()
-        {
-            Reports = new List<string>();
-        }
 
         public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
         {
@@ -24,7 +20,11 @@ namespace DwarfsCity
             if (initalState)
                 isBorn = true;
             else
+            {
+                Reports = new List<string>();
                 isBorn = Randomizer.IsDwarfBorn();
+            }
+                
 
             if (isBorn)
             {
@@ -41,6 +41,8 @@ namespace DwarfsCity
 
         public void InitialiseBasicNumberOfDwarfs(List<Dwarf> dwarfs,int numberOfDwarfs)
         {
+            Reports = new List<string>();
+
             for (int i = 0; i < numberOfDwarfs; i++)
             {
                 GiveBirthToDwarf(dwarfs, true);
