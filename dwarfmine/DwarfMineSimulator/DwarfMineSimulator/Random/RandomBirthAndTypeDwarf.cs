@@ -39,5 +39,11 @@ namespace DwarfMineSimulator
             else
                 return false;
         }
+
+        public int Return1to100()
+        {
+            int chanceToBirthDwarf = rnd.Next(1, 101);
+            return chanceToBirthDwarf;
+        }
     }
 }
