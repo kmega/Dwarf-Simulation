@@ -9,6 +9,7 @@ namespace DwarfMineSimulator.Building.Mine
     {
         string name = "ShaftA";
         List<Dwarf> DwarfsInShaft;
+        List<Dwarf> ShaftQueue;
         bool Collapsed;
         int MaxDwarfsInShaft;
 

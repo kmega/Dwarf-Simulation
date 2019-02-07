@@ -9,4 +9,12 @@
     <Folder Include="Building\Mine\" />
     <Folder Include="Building\Hospital\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Building\Mine\ShaftB.cs" />
+    <Compile Remove="Building\Mine\ShaftA.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Building\Mine\ShaftB.cs~" />
+    <None Remove="Building\Mine\ShaftA.cs~" />
+  </ItemGroup>
 </Project>

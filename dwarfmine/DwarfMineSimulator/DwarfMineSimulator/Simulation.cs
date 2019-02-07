@@ -94,7 +94,7 @@ namespace DwarfMineSimulator
                 }
             }
 
-            Mine mine = new Mine();
+            Mine mine = new Mine(Dwarfs);
 
             while (EndConditions())
             {
@@ -109,15 +109,7 @@ namespace DwarfMineSimulator
                 }
 
                 // Mine
-                Dwarfs.ForEach(x => 
-                {
-                    if(x.IsAlive())
-                    {
-                        x.GoToMine(mine);
-                        MineralsDugCounter(x.MineMinerals());
-                    }
-                });
-
+                mine.DwarfsGoToShaft();
 
                 Console.WriteLine("The end of day {0}", DayCount);
                 DayPassed();
