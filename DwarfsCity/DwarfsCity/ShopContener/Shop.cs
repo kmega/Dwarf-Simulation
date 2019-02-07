@@ -5,11 +5,7 @@ namespace DwarfsCity.ShopContener
 {
     public class Shop : IReport
     {
-        public List<string> Reports { get; set; }
-        public Shop()
-        {
-            Reports = new List<string>();
-        }
+       
         public void PerformShopping(List<Dwarf> dwarfs)
         {
             foreach(Dwarf dwarf in dwarfs)
@@ -25,7 +21,7 @@ namespace DwarfsCity.ShopContener
         }
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
 }

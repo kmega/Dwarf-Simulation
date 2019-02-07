@@ -9,7 +9,6 @@ namespace DwarfsCity
     {
         public decimal GeneralGuildFunds { get; set; } // Suma podatków, które ogółem posiada Gildia.
         public decimal TheSumOfTaxes { get; set; }// Suma podatków, które w danym dniu ma Gildia
-        public List<string> Reports { get; set; }
 
         public void GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
         {
@@ -27,13 +26,12 @@ namespace DwarfsCity
 
         private void ReportGuild()
         {
-             Reports = new List<string>();
              GiveReport("Guild: Today all dwarfs pay " + TheSumOfTaxes + " taxes. The current state of the guild account is " + GeneralGuildFunds + ".");    
         }
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
     //private decimal _guildMoney = 0;
