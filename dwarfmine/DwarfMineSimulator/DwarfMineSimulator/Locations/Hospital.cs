@@ -9,7 +9,7 @@ namespace DwarfMineSimulator
         public List<Dwarf> TryBirthDwarf(List<Dwarf> DwarfsPopulation)
         {
             Hospital hospital = new Hospital();
-            RandomBirthAndTypeDwarf birthAndTypeDwarf = new RandomBirthAndTypeDwarf();
+            Randomizer birthAndTypeDwarf = new Randomizer();
             CalculatingDataForTheReport calculating = new CalculatingDataForTheReport();
             ViewInformation information = new ViewInformation();
             bool chanceToBorn = birthAndTypeDwarf.WillHeBeBorn();

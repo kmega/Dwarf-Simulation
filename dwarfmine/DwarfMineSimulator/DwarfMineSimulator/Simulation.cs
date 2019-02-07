@@ -42,7 +42,7 @@ namespace DwarfMineSimulator
         internal static void PrepareSimulation()
         {
             Hospital hospital = new Hospital();
-            RandomBirthAndTypeDwarf birthAndTypeDwarf = new RandomBirthAndTypeDwarf();
+            Randomizer birthAndTypeDwarf = new Randomizer();
             for (int i = 0; i < 10; i++)
             {
                 DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
