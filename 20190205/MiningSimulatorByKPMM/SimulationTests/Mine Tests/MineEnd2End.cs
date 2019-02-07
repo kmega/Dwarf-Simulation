@@ -26,7 +26,7 @@ namespace SimulationTests.MineTests
             (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) = FakeDataFactory.ExtractListsFromWorkers(workers);
 
             //when
-            Mine.Work(backpacks, dwarfTypes, bools);
+            Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
             Assert.IsTrue(Mine.GetAllWorkers().Exists(x => x.backpack.ShowBackpackContent().Count != 0));
@@ -44,17 +44,17 @@ namespace SimulationTests.MineTests
             //given
             var Mine = new MineSupervisor();
             var workers = FakeDataFactory.CreateSluggardWorkers(amount);
-            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) = 
+            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 
             //when
-            Mine.Work(backpacks, dwarfTypes, bools);
+            Mine.Work(ref backpacks, dwarfTypes, ref bools);
             var deadWorkersCount = Mine.GetAllWorkers().Count(x => x.isAlive == false);
-            var backpacksContentCount = Mine.GetAllWorkers().Count(x => 
+            var backpacksContentCount = Mine.GetAllWorkers().Count(x =>
                                                         x.backpack.ShowBackpackContent().Count > 0);
 
             //then
-            if(amount <= 5)
+            if (amount <= 5)
                 Assert.IsTrue(deadWorkersCount == amount);
             else
             {
@@ -74,17 +74,16 @@ namespace SimulationTests.MineTests
             //given
             var Mine = new MineSupervisor();
             var workers = FakeDataFactory.CreateSluggardWorkerOnlyInSecondSchaft(amount);
-            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) = 
+            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 
             //when
-            Mine.Work(backpacks, dwarfTypes, bools);
+            Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
             Assert.IsTrue(Mine.GetAllWorkers().Any(x => x.isAlive == true));
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[0] == E_MiningSchaftStatus.Operational);
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[1] == E_MiningSchaftStatus.Broken);
-
         }
 
         [TestCase(7)]
@@ -94,11 +93,11 @@ namespace SimulationTests.MineTests
             //given
             var Mine = new MineSupervisor();
             var workers = FakeDataFactory.CreateTwoSluggardWorkersInBothTeams(amount);
-            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) = 
+            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 
             //when
-            Mine.Work(backpacks, dwarfTypes, bools);
+            Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
             Assert.IsTrue(Mine.GetAllWorkers().Exists(x => x.isAlive == false));
@@ -113,11 +112,11 @@ namespace SimulationTests.MineTests
             //given
             var Mine = new MineSupervisor();
             var workers = FakeDataFactory.CreateTwoSluggardWorkersInBothTeams(amount);
-            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) = 
+            (List<Backpack> backpacks, List<E_DwarfType> dwarfTypes, List<bool> bools) =
                 FakeDataFactory.ExtractListsFromWorkers(workers);
 
             //when
-            Mine.Work(backpacks, dwarfTypes, bools);
+            Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
             Assert.IsTrue(Mine.GetAllWorkers().Any(x => x.isAlive == true));
@@ -126,4 +125,3 @@ namespace SimulationTests.MineTests
         }
     }
 }
-

@@ -3,36 +3,49 @@ using MiningSimulatorByKPMM.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MiningSimulatorByKPMM.Locations.Bank;
 
 namespace MiningSimulatorByKPMM.Locations.Market
 {
 	public class Market 
 	{
+		public BankAccount shopMoneyAccount = new BankAccount();
+		public Dictionary<E_ProductsType, decimal> marketState = new Dictionary<E_ProductsType, decimal>();
+
 		public Market()
 		{
 			marketState.Add(E_ProductsType.Food, 0);
 			marketState.Add(E_ProductsType.Alcohol, 0);
 		}
-
-		public Dictionary<E_ProductsType, decimal> marketState = new Dictionary<E_ProductsType, decimal>();
 		
-		public void PerformShopping(decimal customerMoney, E_DwarfType customerType)
+		public void PerformShopping(List<Dwarf> customers, GeneralBank bank)
 		{
-			if(customerType == E_DwarfType.Dwarf_Single)
+			foreach (var customer in customers)
 			{
-				BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Alcohol);
-			} else if (customerType == E_DwarfType.Dwarf_Father)
-			{
-				BuyProdcutsFromMarket(customerMoney, this, E_ProductsType.Food);
+				if (customer.DwarfType == E_DwarfType.Dwarf_Single)
+				{
+					BuyProdcutsFromMarket(customer, E_ProductsType.Alcohol, bank);
+				}
+				else if (customer.DwarfType == E_DwarfType.Dwarf_Father)
+				{
+					BuyProdcutsFromMarket(customer, E_ProductsType.Food, bank);
+				}
 			}
 		}
 
-		public void BuyProdcutsFromMarket(decimal dailySalary, Market market, E_ProductsType productType)
+		public void BuyProdcutsFromMarket(Dwarf customer, E_ProductsType productType, GeneralBank bank)
 		{
-			decimal spentMoney = dailySalary / 2;
-			decimal amountOfProduct = market.marketState[productType];
-			amountOfProduct += spentMoney;
-			market.marketState[productType] = amountOfProduct;
+			decimal recipe = customer.BankAccount.LastInput / 2;
+
+			decimal amountOfProduct = marketState[productType];
+			amountOfProduct += recipe;
+			marketState[productType] = amountOfProduct;
+
+			//updating status of bank accounts of Dwarf, Bank and Market
+			customer.BankAccount.Withdraw(recipe);
+			bank.PayTax(recipe);
+			shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
+			shopMoneyAccount.CalculateOverallAccount();
 		}
 	}
 }
