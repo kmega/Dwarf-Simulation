@@ -20,6 +20,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             Hospital hospital = new Hospital();
             Guild guild = new Guild();
             Canteen canteen = new Canteen();
+            canteen.FoodRations = 200;
             _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
             for (int i = 0; i < 30; i++)
             {
@@ -37,8 +38,6 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
 
                 guild.DwarvesVisitGuild(_currentSimulationState.Dwarves);
-
-              
 
                 //Canteen(numberOfWorkersToday);
                 canteen.GiveFoodRations(_currentSimulationState.Dwarves.Count);
