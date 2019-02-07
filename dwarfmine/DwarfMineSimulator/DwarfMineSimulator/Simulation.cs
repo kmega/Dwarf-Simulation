@@ -98,6 +98,7 @@ namespace DwarfMineSimulator
 
             while (EndConditions())
             {
+                Console.WriteLine();
                 Console.WriteLine("Day {0} begins...", DayCount);
 
                 // Hospital
@@ -109,8 +110,13 @@ namespace DwarfMineSimulator
                 }
 
                 // Mine
-                mine.DwarfsGoToShaft();
+                Dwarfs.ForEach(dwarf =>
+                {
+                    dwarf.StartShift();
+                });
+                Dwarfs.ForEach(x => x.GoToMine(mine));
 
+                Console.WriteLine();
                 Console.WriteLine("The end of day {0}", DayCount);
                 DayPassed();
             }

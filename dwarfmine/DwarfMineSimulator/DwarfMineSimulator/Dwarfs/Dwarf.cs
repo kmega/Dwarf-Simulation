@@ -155,15 +155,20 @@ namespace DwarfMineSimulator.Dwarfs
             //return MineralsMinedToday;
         }
 
-        private int HowManyHits()
+        public void HowManyHits()
         {
-            return new Random().Next(1, 3);
+            Hits = new Random().Next(1, 3);
         }
 
         public void GoToShaft(IShaft shaft)
         {
-            Hits = HowManyHits();
+            HowManyHits();
             shaft.DwarfGoIntoShaftQueue(this);
+        }
+
+        public void GoToMine(Mine mine)
+        {
+            mine.DwarfsGoToShaft();
         }
 
         public bool IsAlive()
@@ -186,9 +191,19 @@ namespace DwarfMineSimulator.Dwarfs
             return Hits;
         }
 
+        public void StartShift()
+        {
+            WorkDone = false;
+        }
+
         public void EndOfShift()
         {
             WorkDone = true;
+        }
+
+        public bool IsWorkDone()
+        {
+            return WorkDone;
         }
     }
 }

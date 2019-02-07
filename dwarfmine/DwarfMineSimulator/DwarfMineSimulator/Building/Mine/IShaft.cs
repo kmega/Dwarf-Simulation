@@ -9,6 +9,7 @@ namespace DwarfMineSimulator.Building.Mine
         bool IsFullOfDwarfes();
         //void DwarfGoIntoShaft(Dwarf worker);
         void DwarfGoIntoShaftQueue(Dwarf worker);
+        void MineMinerals(Dwarf worker);
         string ShaftName();
         bool IsCollapsed();
     }

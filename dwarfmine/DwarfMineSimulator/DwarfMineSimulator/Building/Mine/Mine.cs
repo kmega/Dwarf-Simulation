@@ -28,5 +28,10 @@ namespace DwarfMineSimulator.Building.Mine
                 x.GoToShaft(WhichShaft());
             });
         }
+
+        public void DwarfOnShift(List<Dwarf> dwarfs)
+        {
+            DwarfsInMine = dwarfs;
+        }
     }
 }
