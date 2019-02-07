@@ -32,10 +32,12 @@ namespace DwarfsCity
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
                 dwarfs = mine.StartWorking(dwarfs);
+                bank.ExchangeItemsToMoney(dwarfs);
                 guild.GetTaxesofAllDwarfs(dwarfs);
                 bar.GiveAFoodToDwarfs(dwarfs);
                 shop.PerformShopping(dwarfs);
                 ui.Display(report);
+
             }
             
 

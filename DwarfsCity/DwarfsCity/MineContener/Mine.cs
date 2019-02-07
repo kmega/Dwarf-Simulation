@@ -63,6 +63,9 @@ namespace DwarfsCity.MineContener
                     
             }
 
+            if (dwarfsThatWillWork.Count == 0 && dwarfsThatWorkedAndStillAlive.Count == 0)
+                throw new Exception("All dwarfs died, simulation is over!");
+
             GiveReport(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
             return dwarfsThatWorkedAndStillAlive;
            
