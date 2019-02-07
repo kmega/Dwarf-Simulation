@@ -11,10 +11,11 @@ using static MiningSimulatorByKPMM.Locations.Mine.MineSupervisor;
 
 namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
 {
+
     public class MiningSchaft
     {
-        E_MiningSchaftStatus SchaftStatus = E_MiningSchaftStatus.Operational;
         List<TemporaryWorker> workers;
+        E_MiningSchaftStatus SchaftStatus = E_MiningSchaftStatus.Operational;
 
         public E_MiningSchaftStatus GetSchaftStatus() => SchaftStatus;
 
@@ -36,24 +37,43 @@ namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
 
         }
 
-        public void ExecuteWork(IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer)
+        public void ExecuteWorkStrategy(IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer)
         {
-            if (workers.Exists(x => x.type == E_DwarfType.Dwarf_Sluggard))
+            Dictionary<bool, ISchaftOperator> WorkStrategy = new Dictionary<bool, ISchaftOperator>()
+            {
+                {true, new SchaftDestructor()},
+                {false, new SchaftExtractor()}
+            };
+
+            bool strategy = workers.Exists(x => x.type == E_DwarfType.Dwarf_Sluggard);
+            SchaftStatus =  WorkStrategy[strategy].DoWork(workers, SchaftStatus, oreRandomizer, oreUnitAmountRandomizer);
+        }
+
+        internal class SchaftDestructor : ISchaftOperator
+        {
+            E_MiningSchaftStatus ISchaftOperator.DoWork(List<TemporaryWorker> workers, E_MiningSchaftStatus SchaftStatus, IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer)
             {
                 workers.ForEach(x => x.isAlive = false);
-                SchaftStatus = E_MiningSchaftStatus.Broken;
-                return;
-            }
-
-            foreach (var worker in workers)
-            {
-                int amountOfOres = oreUnitAmountRandomizer.GetAmountOfOreUnintsToRandom();
-
-                for (int i = 0; i < amountOfOres; i++)
-                {
-                    worker.backpack.AddSingleOre(oreRandomizer.GetRandomMineral());
-                }
+                return E_MiningSchaftStatus.Broken;
             }
         }
+
+        internal class SchaftExtractor : ISchaftOperator
+        {
+            E_MiningSchaftStatus ISchaftOperator.DoWork(List<TemporaryWorker> workers, E_MiningSchaftStatus SchaftStatus, IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer)
+            {
+                foreach (var worker in workers)
+                {
+                    int amountOfOres = oreUnitAmountRandomizer.GetAmountOfOreUnintsToRandom();
+
+                    for (int i = 0; i < amountOfOres; i++)
+                    {
+                        worker.backpack.AddSingleOre(oreRandomizer.GetRandomMineral());
+                    }
+                }
+                return E_MiningSchaftStatus.Operational;
+            }
+        }
+
     }
 }
