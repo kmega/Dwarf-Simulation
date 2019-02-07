@@ -5,62 +5,44 @@ using System.Collections.Generic;
 
 namespace DwarfsCity
 {
-    public class Guild: IReport
+    public class Guild
     {
-        public decimal GeneralGuildFunds { get; set; } // Suma podatków, które ogółem posiada Gildia.
-        public decimal TheSumOfTaxes { get; set; }// Suma podatków, które w danym dniu ma Gildia
-        public List<string> Reports { get; set; }
-
+        public decimal GeneralGuildFunds { get; set; }
+        public decimal TheSumOfTaxesOnOneDay { get; set; }     
         public void GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
         {
-            this.TheSumOfTaxes = 0;
+            this.TheSumOfTaxesOnOneDay = 0;
             foreach (Dwarf dwarf in dwarfs)
-            {              
-                decimal TaxesOfGuild = 0.20m * dwarf.Backpack.Money;
-                decimal EarnedMoney = dwarf.Backpack.Money - TaxesOfGuild;
-                dwarf.Backpack.Money = EarnedMoney;
-                TheSumOfTaxes += TaxesOfGuild;
-            }
-            this.GeneralGuildFunds += TheSumOfTaxes;
+            {
+                decimal TaxesOfGuild = TaxesCalculator(dwarf);
+                EarningsCalculator(dwarf, TaxesOfGuild);              
+            }            
             ReportGuild();
+        }
+
+        private void EarningsCalculator(Dwarf dwarf,decimal taxes)
+        {
+                decimal EarnedMoney = dwarf.Backpack.Money - taxes;
+                dwarf.Backpack.Money = EarnedMoney;
+        }
+
+        private decimal TaxesCalculator(Dwarf dwarf)
+        {           
+            decimal taxes = 0.20m * dwarf.Backpack.Money;
+            TheSumOfTaxesOnOneDay += taxes;
+            GeneralGuildFunds += TheSumOfTaxesOnOneDay;
+            return taxes;
         }
 
         private void ReportGuild()
         {
-             Reports = new List<string>();
-             GiveReport("Guild: Today all dwarfs pay " + TheSumOfTaxes + " taxes. The current state of the guild account is " + GeneralGuildFunds + ".");    
+             GiveReport("Guild: Today all dwarfs pay " + TheSumOfTaxesOnOneDay + " taxes. The current state of the guild account is " + GeneralGuildFunds + ".");    
         }
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
-    //private decimal _guildMoney = 0;
-
-    //public void GetMoneyFromDwarfs(List<Dwarf> dwarfs)
-    //{
-    //    foreach (var dwarfMoney in dwarfs)
-    //    {
-    //        _guildMoney += 0.20m*dwarfMoney.Backpack.Money;
-    //    }
-    //}
-
-    //public decimal GetGuildMoney()
-    //{
-    //    return _guildMoney;
-    //}
-
-    //public bool SpendGiuldMoney(decimal amountOfMoneyToSpend)
-    //{
-    //    if (_guildMoney < amountOfMoneyToSpend)
-    //        return false;
-    //    else
-    //    {
-    //        _guildMoney -= amountOfMoneyToSpend;
-    //        return true;
-    //    }
-    //}
-
-
+   
 }

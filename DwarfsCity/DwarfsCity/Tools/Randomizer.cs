@@ -50,7 +50,7 @@ namespace DwarfsCity.Tools
                 case Item.Silver:
                     return 5 + valueIncrease;
                 case Item.DirtyGold:
-                    valueIncrease = GetChanceRatio(0, 9);
+                    valueIncrease = GetChanceRatio(0, 4);
                     return 1 + valueIncrease;
             }
 
