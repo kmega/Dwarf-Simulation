@@ -31,6 +31,7 @@ namespace DwarfsCity
             for (int i = 0; i < 30; i++)
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
+<<<<<<< HEAD
                 try
                 {
                     hospital.GiveBirthToDwarf(dwarfs);
@@ -45,6 +46,14 @@ namespace DwarfsCity
                 {
                     break;
                 }
+=======
+                dwarfs = mine.StartWorking(dwarfs);
+                guild.GetTaxesofAllDwarfs(dwarfs);
+                bar.GiveAFoodToDwarfs(dwarfs);
+                shop.PerformShopping(dwarfs);
+                report.AnaliseReports(new List<IReport>() { hospital,mine,bank,bar,shop,cementary} );
+                ui.Display(report);
+>>>>>>> 4a1a3e4e8edf97fbdd1ddd4708f659e4520bbef2
             }
            
         }
