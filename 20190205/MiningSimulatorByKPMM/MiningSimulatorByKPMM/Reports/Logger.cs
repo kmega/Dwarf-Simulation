@@ -1,4 +1,5 @@
 ﻿using MiningSimulatorByKPMM.ApplicationLogic;
+using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Bank;
 using MiningSimulatorByKPMM.Locations.Canteen;
 using MiningSimulatorByKPMM.Locations.Guild;
@@ -49,6 +50,24 @@ namespace MiningSimulatorByKPMM.Reports
             DisplayHospitalBirths(finalState.NumberOfBirths);
             DisplayGuildBankState(finalState.guildBankAccount);
             DisplayTaxBankState(finalState.taxBankAccount);
+        }
+
+        private void DisplayHospitalBirths(int numberOfBirths)
+        {
+            outputWriter.Display($"Total births: {numberOfBirths}");
+        }
+
+        private void DisplayMiningSummary(Dictionary<E_Minerals, int> extractedOre)
+        {
+           foreach(E_Minerals val in Enum.GetValues(typeof(E_Minerals)))
+            {
+                outputWriter.Display($"{val.ToString()} mined in {extractedOre[val]} units.");
+            }
+        }
+
+        private void DisplayDeadDwarves(int numberOfDeadDwarves)
+        {
+            outputWriter.Display($"During simulation {numberOfDeadDwarves} died in Mine. We are truly sorry.");
         }
     }
 }
