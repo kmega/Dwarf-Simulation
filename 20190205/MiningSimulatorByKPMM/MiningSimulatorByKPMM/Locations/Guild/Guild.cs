@@ -25,9 +25,9 @@ namespace MiningSimulatorByKPMM.Locations.Guild
             };
 
         public Guild()
-        //{
-        //    Account = new BankAccount();
-        //    logger = Logger.Instance;
+        {
+            Account = new BankAccount();
+            //    logger = Logger.Instance;
         }
 
 
@@ -52,7 +52,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 account.ReceivedMoney(payment);
 
                 string message = "Krasnolud otrzymał " + payment + " gp za jednostkę " + mineral.OutputType + " , a Gildia zatrzymała " + tax + " gp prowizji";
-                Logger.Add(message);
+                //Logger.Add(message);
             }
             backpack.ShowBackpackContent().Clear();
 
