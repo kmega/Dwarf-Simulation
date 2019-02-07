@@ -11,7 +11,7 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
     public class Hospital
     {
         private int totalNumberOfBirth;
-        private Logger logger;
+        private ILogger logger;
         IBirthChanceRandomizer birthChanceRandomizer;
         IDwarfTypeRandomizer dwarfTypeRandomizer;
 
