@@ -4,6 +4,7 @@ using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
 using MiningSimulatorByKPMM.Locations.Market;
 using MiningSimulatorByKPMM.Locations.Mine;
+using System;
 using System.Linq;
 
 namespace MiningSimulatorByKPMM.ApplicationLogic
@@ -47,15 +48,32 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
                 market.PerformShopping(_currentSimulationState.Dwarves, generalBank);
 
-                //Canteen(numberOfWorkersToday);
+                _currentSimulationState.NumberOfDeadDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == false).Count();
+
+                //Canteen(numberOfWorkersToday); nie karm martwych!!
                 canteen.GiveFoodRations(_currentSimulationState.Dwarves.Count);
                 canteen.OrderFoodRations();
 
-                _currentSimulationState.NumberOfDeadDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == false).Count();
+                
 
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
-                //
+
+                var a = ShouldSimulationBeContinued(canteen);
+                if (a == 1)
+                {
+                    break;
+                }
             }
+        }
+
+        private int ShouldSimulationBeContinued(Canteen canteen)
+        {
+            if (_currentSimulationState.NumberOfDeadDwarves == _currentSimulationState.Dwarves.Count ||
+                _currentSimulationState.Dwarves.Where(p => p.IsAlive).Count() > canteen.FoodRations)
+            {
+                return 1;
+            }
+            return 0;
         }
 
         private void BirthDwarf(Hospital hospital)
