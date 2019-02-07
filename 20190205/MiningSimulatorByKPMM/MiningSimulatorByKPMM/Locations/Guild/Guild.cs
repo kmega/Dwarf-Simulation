@@ -2,6 +2,7 @@
 using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Bank;
 using MiningSimulatorByKPMM.PersonalItems;
+using MiningSimulatorByKPMM.Reports;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
     {
 
         public BankAccount Account { get; private set; }
-        //private Logger logger;
+        private ILogger logger;
         private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket =
             new Dictionary<E_Minerals, ICreateOreValue>()
 
@@ -27,7 +28,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
         public Guild()
         {
             Account = new BankAccount();
-            //    logger = Logger.Instance;
+            logger = Logger.Instance;
         }
 
 
@@ -51,8 +52,8 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 decimal payment = value - tax;
                 account.ReceivedMoney(payment);
 
-                string message = "Krasnolud otrzymał " + payment + " gp za jednostkę " + mineral.OutputType + " , a Gildia zatrzymała " + tax + " gp prowizji";
-                //Logger.Add(message);
+                string message = "Dwarf received " + payment + " gp for one " + mineral.OutputType + " and Guild take  " + tax + " gp provision.";
+                logger.AddLog(message);
             }
             backpack.ShowBackpackContent().Clear();
 
