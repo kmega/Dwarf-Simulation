@@ -13,6 +13,10 @@ namespace MiningSimulatorByKPMM.Locations.Mine.Miningoutputs
             OutputType = type;
         }
 
+        public override string ToString()
+        {
+            return OutputType.ToString();
+        }
 
     }
 }
