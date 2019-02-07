@@ -8,12 +8,6 @@ namespace DwarfsCity
 {
     public class Bank : IReport
     {
-        public List<string> Reports { get; set; }
-
-        public Bank()
-        {
-            Reports = new List<string>();
-        }
 
         public void ExchangeItemsToMoney(List<Dwarf> dwarfs)
         {
@@ -36,7 +30,7 @@ namespace DwarfsCity
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
 }

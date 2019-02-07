@@ -14,6 +14,7 @@ namespace DwarfCityTests
         {
             // given
             Logger logger = Logger.GetInstance();
+            logger.ClearData();
             string log = "Dwarf Father bought Alcohol";
             List<string> expectedLogs = new List<string>() { log };
             

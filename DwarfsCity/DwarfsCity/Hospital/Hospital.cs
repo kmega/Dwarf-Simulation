@@ -10,9 +10,6 @@ namespace DwarfsCity
     public class Hospital:IReport
     {
 
-        public List<string> Reports { get; set; }
-
-
         public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
         {
             bool isBorn;
@@ -21,7 +18,6 @@ namespace DwarfsCity
                 isBorn = true;
             else
             {
-                Reports = new List<string>();
                 isBorn = Randomizer.IsDwarfBorn();
             }
                 
@@ -41,7 +37,6 @@ namespace DwarfsCity
 
         public void InitialiseBasicNumberOfDwarfs(List<Dwarf> dwarfs,int numberOfDwarfs)
         {
-            Reports = new List<string>();
 
             for (int i = 0; i < numberOfDwarfs; i++)
             {
@@ -51,7 +46,7 @@ namespace DwarfsCity
 
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
     }
 }

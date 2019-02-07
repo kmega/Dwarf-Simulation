@@ -18,11 +18,9 @@ namespace DwarfsCity.MineContener
             shafts.Add(new Shaft());
         }
 
-        public List<string> Reports { get; set; } = new List<string>();
-
         public void GiveReport(string message)
         {
-            Reports.Add(message);
+            Logger.GetInstance().AddLog(message);
         }
 
         public List<Dwarf> StartWorking(List<Dwarf> dwarfsThatWillWork)
@@ -81,7 +79,7 @@ namespace DwarfsCity.MineContener
         {
             foreach (var dwarf in shaft.dwarfs)
             {
-                GiveReport(dwarf + " goes to digging");
+                GiveReport(dwarf.Attribute + " goes to digging");
                 dwarf.Digging();
             }
         }

@@ -59,8 +59,6 @@ namespace DwarfCityTests
             Hospital hospital = new Hospital();
             hospital.InitialiseBasicNumberOfDwarfs(dwarfs, 11);
 
-            Cementary cementary = new Cementary();
-
             dwarfs.Insert(8, new Dwarf() { Attribute = DwarfsCity.DwarfContener.Type.Saboteur });
 
             int result = 0;
