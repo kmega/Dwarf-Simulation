@@ -48,7 +48,7 @@ namespace DwarfMineSimulator
             for (int i = 0; i < number; i++)
             {
                 DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
-                CreateNewDwarf(DwarfsPopulation, dwarfTypes, number);
+                CreateNewDwarf(DwarfsPopulation, dwarfTypes, i);
             }
         }
         public void CreateNewDwarf(List<Dwarf> DwarfsPopulation, DwarfTypes dwarfTypes, int index)

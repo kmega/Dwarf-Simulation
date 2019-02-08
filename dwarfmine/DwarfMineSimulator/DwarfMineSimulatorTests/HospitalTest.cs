@@ -24,7 +24,7 @@ namespace DwarfMineSimulatorTests
         }
 
         [Test]
-        public void T02Chec33percentkNewDwarfsAreFather()
+        public void T02Check33percentkNewDwarfsAreFather()
         {
             bool father = false;
             Randomizer randomizer = new Randomizer();
@@ -43,7 +43,7 @@ namespace DwarfMineSimulatorTests
         }
 
         [Test]
-        public void T03Chec33percentkNewDwarfsAreSingle()
+        public void T03Check33percentkNewDwarfsAreSingle()
         {
             bool single = false;
             Randomizer randomizer = new Randomizer();
@@ -61,7 +61,7 @@ namespace DwarfMineSimulatorTests
             }
         }
         [Test]
-        public void T04Chec33percentkNewDwarfsAreLazy()
+        public void T04Check33percentkNewDwarfsAreLazy()
         {
             bool lazy = false;
             Randomizer randomizer = new Randomizer();
