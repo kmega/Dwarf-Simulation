@@ -28,11 +28,10 @@ namespace DwarfsCity
             hospital.InitialNumberOfDwarfs(dwarfs, 10);
 
             for (int i = 0; i < 10; i++)
-            {
-                //Dwarfs go to minning -> return still alive dwarfs within resources
-
+            {              
                 Logger.GetInstance().AddLog($"DAY: {i + 1}");
                 hospital.GiveBirthToDwarf(dwarfs);
+                //Dwarfs go to minning -> return still alive dwarfs within resources
                 dwarfs = mine.StartWorking(dwarfs);
                 bank.ExchangeItemsToMoney(dwarfs);
                 guild.GetTaxesofAllDwarfs(dwarfs);
@@ -45,8 +44,8 @@ namespace DwarfsCity
 
         public static void TheEndOfSimulation()
         {
-            Environment.Exit(0);
             Console.ReadKey();
+            Environment.Exit(0);          
         }
 
         public List<Dwarf> GetDwarfs()

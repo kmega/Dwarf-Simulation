@@ -72,18 +72,5 @@ namespace DwarfCityTests
             Assert.IsTrue(result >= 1);
 
         }
-
-        [ExpectedException(typeof(Exception))]
-        [TestMethod]
-        public void ShouldReturnExceptionWhenAllDwarfsAreDied()
-        {
-            //Given
-            List<Dwarf> dwarfs = new List<Dwarf>();
-            Mine mine = new Mine();
-
-            //When
-            dwarfs = mine.StartWorking(dwarfs);
-
-        }
     }
 }
