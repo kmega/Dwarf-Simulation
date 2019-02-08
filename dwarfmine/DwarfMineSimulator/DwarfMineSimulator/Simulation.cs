@@ -6,6 +6,8 @@ using DwarfMineSimulator.Enums;
 using DwarfMineSimulator.Building.Mine;
 using DwarfMineSimulator.Building.Guild;
 using DwarfMineSimulator.Building.Restaurant;
+using DwarfMineSimulator.Building.Shop;
+using DwarfMineSimulator.Building.Cementary;
 
 namespace DwarfMineSimulator
 {
@@ -93,15 +95,14 @@ namespace DwarfMineSimulator
                 {
                     Dwarfs.Add(new DwarfFactory().BornDwarf(Dwarfs.Count + 1,3)); //without suicider
                     Console.WriteLine("A Dwarf type of {0} was born in the hospital.", Dwarfs[Dwarfs.Count - 1].GetDwarfType());
-
                     DwarfBornCounter();
-
                     tenDwarfs++;
                 }
             }
 
             Guild Guild = new Guild(Dwarfs);
             Restaurant Restaurant = new Restaurant(Dwarfs);
+            Shop Shop = new Shop(Dwarfs);
 
             while (EndConditions())
             {
@@ -140,6 +141,9 @@ namespace DwarfMineSimulator
                 DayPassed();
             }
 
+            Cementary Cementary = new Cementary(
+                Dwarfs.Where(dwarf => dwarf.IsAlive() == false).ToList());
+
             DeathCount = Dwarfs.Count(x => x.IsAlive() == false);
             TaxedMoney = Guild.TotalTaxedMoney();
             FoodEaten = Restaurant.RationsEated();
@@ -153,7 +157,11 @@ namespace DwarfMineSimulator
 
         private bool IsChance()
         {
-            return new Random().Next(0, 2) == 1;
+            // 50% chance to born dwarf
+            // return new Random().Next(0, 2) == 1;
+
+            // 1% change to born dwarf
+            return new Random().Next(0, 100) < 1;
         }
 
         private void Report()
@@ -204,25 +212,17 @@ namespace DwarfMineSimulator
         {
             foreach (var mineral in mineralsToCount)
             {
-                if(mineral.Key.Equals(Minerals.Mithril))
-                {
+                if(mineral.Key.Equals(Minerals.Mithril)) 
                     MithrilMinded += mineral.Value;
-                }
 
                 if (mineral.Key.Equals(Minerals.Gold))
-                {
                     GoldMinded += mineral.Value;
-                }
 
                 if (mineral.Key.Equals(Minerals.Silver))
-                {
                     SilverMinded += mineral.Value;
-                }
 
                 if (mineral.Key.Equals(Minerals.TaintedGold))
-                {
                     TaintedGoldMinded += mineral.Value;
-                }
             }
         }
     }

@@ -10,21 +10,13 @@ namespace DwarfMineSimulator.Dwarfs
     internal class Dwarf
     {
         int Identifier;
-
         int Hits;
-
         bool WorkDone;
-
         DwarfTypes Type { get; set; }
-
         bool Alive { get; set; }
-
         decimal Money { get; set; }
-
         decimal MoneyEarndedThisDay { get; set; }
-
         Dictionary<Minerals, int> MineralsMined { get; set; }
-
         Dictionary<Minerals, int> MineralsMinedToday { get; set; }
 
         public Dwarf(int id, DwarfTypes type, bool alive, decimal money)

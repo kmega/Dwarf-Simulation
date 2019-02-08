@@ -9,6 +9,7 @@
     <Folder Include="Building\Mine\" />
     <Folder Include="Building\Hospital\" />
     <Folder Include="Building\Guild\" />
+    <Folder Include="Building\Cementary\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Building\Mine\ShaftB.cs" />
@@ -18,5 +19,6 @@
     <None Remove="Building\Mine\ShaftB.cs~" />
     <None Remove="Building\Mine\ShaftA.cs~" />
     <None Remove="Building\DinningRoom\DinningRoom.cs~" />
+    <None Remove="Dwarfs\DwarsFactory.cs~" />
   </ItemGroup>
 </Project>
