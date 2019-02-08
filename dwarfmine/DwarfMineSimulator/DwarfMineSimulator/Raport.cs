@@ -28,7 +28,7 @@ namespace DwarfMineSimulator
 
         internal static int FoodBought {  get; set; } = 0;
         internal static int AlcoholBought { get; set; } = 0;
-        internal static decimal ShopEarned { get; set; } = 0.0m;
+        internal static decimal ShopEarned { get; set; }
 
 
         internal static string[] EndGameStats()

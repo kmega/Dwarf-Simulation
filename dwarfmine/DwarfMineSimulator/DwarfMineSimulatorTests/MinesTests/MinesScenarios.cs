@@ -4,9 +4,9 @@ using System.Collections.Generic;
 
 namespace DwarfMineSimulatorTests
 {
-    public class MinesTests
+    public class MinesScenarios
     {
-        // Scenario: Two miners are mining in one shaft.
+        // Scenario: Father and Single should mine in one shaft.
         [Test]
         public void TwoMinerShouldMineMinerals()
         {
@@ -18,7 +18,7 @@ namespace DwarfMineSimulatorTests
 
             // Given
             dwarfs.Add(new Dwarf() { Type = DwarfTypes.Father });
-            dwarfs.Add(new Dwarf() { Type = DwarfTypes.Father });
+            dwarfs.Add(new Dwarf() { Type = DwarfTypes.Single });
 
             shafts.Add(new Shaft());
 
@@ -40,7 +40,7 @@ namespace DwarfMineSimulatorTests
             Assert.IsTrue(mineralsMined > 0);
         }
 
-        // Scenario: Ten miners are mining in one shaft.
+        // Scenario: Five Fathers and five Singles should mine in one shaft.
         [Test]
         public void TenMinerShouldMineMinerals()
         {
@@ -51,9 +51,10 @@ namespace DwarfMineSimulatorTests
             List<Shaft> shafts = new List<Shaft>();
 
             // Given
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 dwarfs.Add(new Dwarf() { Type = DwarfTypes.Father });
+                dwarfs.Add(new Dwarf() { Type = DwarfTypes.Single });
             }
             shafts.Add(new Shaft());
 
@@ -81,9 +82,9 @@ namespace DwarfMineSimulatorTests
             }
         }
 
-        // Scenario: Two miners are mining in one shaft.
+        // Scenario: Eleven fathers and eleven singles should mine in two shafts.
         [Test]
-        public void TwelveMinerShouldMineMineralsInTwoShafts()
+        public void TwentyTwoMinerShouldMineMineralsInTwoShafts()
         {
             // For
             Mines mines = new Mines();
@@ -92,9 +93,10 @@ namespace DwarfMineSimulatorTests
             List<Shaft> shafts = new List<Shaft>();
 
             // Given
-            for (int i = 0; i < 12; i++)
+            for (int i = 0; i < 11; i++)
             {
                 dwarfs.Add(new Dwarf() { Type = DwarfTypes.Father });
+                dwarfs.Add(new Dwarf() { Type = DwarfTypes.Single });
             }
             shafts.Add(new Shaft());
             shafts.Add(new Shaft());
@@ -123,49 +125,9 @@ namespace DwarfMineSimulatorTests
             }
         }
 
+        // Scenario: Suicider should kill everyone in shaft and collapse this shaft.
         [Test]
-        public void TwentyMinerShouldMineMineralsInTwoShafts()
-        {
-            // For
-            Mines mines = new Mines();
-
-            List<Dwarf> dwarfs = new List<Dwarf>();
-            List<Shaft> shafts = new List<Shaft>();
-
-            // Given
-            for (int i = 0; i < 10; i++)
-            {
-                dwarfs.Add(new Dwarf() { Type = DwarfTypes.Father });
-            }
-            shafts.Add(new Shaft());
-            shafts.Add(new Shaft());
-
-            dwarfs = mines.MineInShafts(dwarfs, shafts);
-
-            // Assert
-            Dictionary<Minerals, int> results;
-            List<int> listOfValues = new List<int>();
-
-            int mineralsMined = 0;
-
-            for (int i = 0; i < dwarfs.Count; i++)
-            {
-                results = dwarfs[i].MineralsMined;
-                listOfValues.AddRange(results.Values);
-
-                for (int j = 0; j < results.Count; j++)
-                {
-                    mineralsMined += listOfValues[0];
-                    listOfValues.RemoveAt(0);
-                }
-
-                Assert.IsTrue(mineralsMined > 0);
-                mineralsMined = 0;
-            }
-        }
-
-        [Test]
-        public void SuiciderShouldKillEveryoneInShaftAndCollapseShaft()
+        public void SuiciderShouldKillEveryoneInShaftAndCollapseThisShaft()
         {
             // For
             Mines mines = new Mines();
@@ -190,6 +152,7 @@ namespace DwarfMineSimulatorTests
             }
         }
 
+        // Scenario: All miners should come back from mines when two shafts are collapsed at the same time.
         [Test]
         public void AllMinersShouldBeComeBackFromMinesWhenTwoShaftsAreCollapsedAtTheSameTime()
         {
@@ -227,24 +190,7 @@ namespace DwarfMineSimulatorTests
 
             for (int i = 0; i < dwarfs.Count; i++)
             {
-                if (i < 5)
-                {
-                    Assert.IsTrue(dwarfs[i].Alive == false);
-                }
-                else if (i >= 5 && i < 10)
-                {
-                    results = dwarfs[i].MineralsMined;
-                    listOfValues.AddRange(results.Values);
-
-                    for (int j = 0; j < results.Count; j++)
-                    {
-                        mineralsMined += listOfValues[0];
-                        listOfValues.RemoveAt(0);
-                    }
-
-                    Assert.IsTrue(mineralsMined > 0);
-                }
-                else if (i >= 10 && i < 15)
+                if (i < 5 || i >= 10 && i < 15)
                 {
                     Assert.IsTrue(dwarfs[i].Alive == false);
                 }
@@ -254,6 +200,7 @@ namespace DwarfMineSimulatorTests
                     {
                         mineralsMined = 0;
                     }
+
                     results = dwarfs[i].MineralsMined;
                     listOfValues.AddRange(results.Values);
 
@@ -263,11 +210,19 @@ namespace DwarfMineSimulatorTests
                         listOfValues.RemoveAt(0);
                     }
 
-                    Assert.IsTrue(mineralsMined == 0);
+                    if (i >= 5 && i < 10)
+                    {
+                        Assert.IsTrue(mineralsMined > 0);
+                    }
+                    else if (i >= 15)
+                    {
+                        Assert.IsTrue(mineralsMined == 0);
+                    }
                 }
             }
         }
 
+        // Scenario: Lazy types should mine once or not at all.
         [Test]
         public void LazyTypesShouldMineOnceOrNotAtAll()
         {
