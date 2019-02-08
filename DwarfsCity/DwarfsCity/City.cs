@@ -44,8 +44,10 @@ namespace DwarfsCity
                     break;               
                 shop.PerformShopping(dwarfs);
                 ui.Display(Logger.GetInstance().GetLogs());
-                Console.ReadKey();
+                
             }
+
+            Console.ReadKey();
 
         }
 
