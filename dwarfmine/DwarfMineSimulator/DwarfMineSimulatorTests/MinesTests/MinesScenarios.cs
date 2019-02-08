@@ -152,7 +152,11 @@ namespace DwarfMineSimulatorTests
             }
         }
 
-        // Scenario: All miners should come back from mines when two shafts are collapsed at the same time.
+        // Scenario:
+        // First group should die in first shaft,
+        // Second group should mine in second shaft,
+        // Third group should die in second shaft,
+        // Last group should not mine because both shafts are collapsed.
         [Test]
         public void AllMinersShouldBeComeBackFromMinesWhenTwoShaftsAreCollapsedAtTheSameTime()
         {
