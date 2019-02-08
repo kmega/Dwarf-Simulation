@@ -22,6 +22,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
         private List<E_DwarfType> workingTypeList = new List<E_DwarfType>();
         private List<bool> workingBools = new List<bool>();
         private List<TemporaryWorker> AllWorkers = new List<TemporaryWorker>();
+        private List<TemporaryWorker> PreviousShiftOfMine;
 
         public Dictionary<E_Minerals, int> GetMineSupervisorStats { get; } = new Dictionary<E_Minerals, int>()
         {
@@ -31,7 +32,10 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             {E_Minerals.Silver, 0},
         };
 
-        public List<TemporaryWorker> GetAllWorkers() => AllWorkers;
+        public List<TemporaryWorker> GetPreviousShiftOfMine()
+        {
+            return PreviousShiftOfMine;
+        }
 
         public E_MiningSchaftStatus[] GetTwoSchaftsStatus()
         {
@@ -69,6 +73,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             WorkProcessing();
             UpdateDailyMineStats();
             isAliveList = UnwrapAllWorkersAndChangeStatesOfParameters(backpackList, typeList, isAliveList);
+            PreviousShiftOfMine = new List<TemporaryWorker>(AllWorkers);
             DismissAllWorkers();
         }
 

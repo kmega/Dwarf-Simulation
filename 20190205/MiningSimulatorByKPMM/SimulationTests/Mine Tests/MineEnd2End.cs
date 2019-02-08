@@ -29,8 +29,8 @@ namespace SimulationTests.MineTests
             Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
-            Assert.IsTrue(Mine.GetAllWorkers().Exists(x => x.backpack.ShowBackpackContent().Count != 0));
-            Assert.IsTrue(Mine.GetAllWorkers().Exists(x => x.isAlive == true));
+            Assert.IsTrue(Mine.GetPreviousShiftOfMine().Exists(x => x.backpack.ShowBackpackContent().Count != 0));
+            Assert.IsTrue(Mine.GetPreviousShiftOfMine().Exists(x => x.isAlive == true));
         }
 
         [TestCase(3)]
@@ -49,8 +49,8 @@ namespace SimulationTests.MineTests
 
             //when
             Mine.Work(ref backpacks, dwarfTypes, ref bools);
-            var deadWorkersCount = Mine.GetAllWorkers().Count(x => x.isAlive == false);
-            var backpacksContentCount = Mine.GetAllWorkers().Count(x =>
+            var deadWorkersCount = Mine.GetPreviousShiftOfMine().Count(x => x.isAlive == false);
+            var backpacksContentCount = Mine.GetPreviousShiftOfMine().Count(x =>
                                                         x.backpack.ShowBackpackContent().Count > 0);
 
             //then
@@ -81,7 +81,7 @@ namespace SimulationTests.MineTests
             Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
-            Assert.IsTrue(Mine.GetAllWorkers().Any(x => x.isAlive == true));
+            Assert.IsTrue(Mine.GetPreviousShiftOfMine().Any(x => x.isAlive == true));
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[0] == E_MiningSchaftStatus.Operational);
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[1] == E_MiningSchaftStatus.Broken);
         }
@@ -100,7 +100,7 @@ namespace SimulationTests.MineTests
             Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
-            Assert.IsTrue(Mine.GetAllWorkers().Exists(x => x.isAlive == false));
+            Assert.IsTrue(Mine.GetPreviousShiftOfMine().Exists(x => x.isAlive == false));
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[0] == E_MiningSchaftStatus.Broken);
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[1] == E_MiningSchaftStatus.Broken);
         }
@@ -119,7 +119,7 @@ namespace SimulationTests.MineTests
             Mine.Work(ref backpacks, dwarfTypes, ref bools);
 
             //then
-            Assert.IsTrue(Mine.GetAllWorkers().Any(x => x.isAlive == true));
+            Assert.IsTrue(Mine.GetPreviousShiftOfMine().Any(x => x.isAlive == true));
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[0] == E_MiningSchaftStatus.Broken);
             Assert.IsTrue(Mine.GetTwoSchaftsStatus()[1] == E_MiningSchaftStatus.Broken);
         }
