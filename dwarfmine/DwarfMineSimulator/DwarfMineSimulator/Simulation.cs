@@ -147,6 +147,9 @@ namespace DwarfMineSimulator
             DeathCount = Dwarfs.Count(x => x.IsAlive() == false);
             TaxedMoney = Guild.TotalTaxedMoney();
             FoodEaten = Restaurant.RationsEated();
+            Dwarfs.ForEach(dwarf => AlcoholBought += dwarf.BoughtGoodsCount(ShopGoods.Alcohol));
+            Dwarfs.ForEach(dwarf => FoodBought += dwarf.BoughtGoodsCount(ShopGoods.Food));
+
             Report();
         }
 
@@ -185,6 +188,9 @@ namespace DwarfMineSimulator
             Console.WriteLine();
             Console.WriteLine("Food Eated Count = {0}", FoodEaten);
             Console.WriteLine("Rations Left in Restauran Count = {0}", RationsLeft);
+            Console.WriteLine();
+            Console.WriteLine("Food Bought Count = {0}", FoodBought);
+            Console.WriteLine("Alcohol Bought Count = {0}", AlcoholBought);
         }
 
         private void DwarfBornCounter()

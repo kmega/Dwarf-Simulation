@@ -8,14 +8,10 @@ namespace DwarfMineSimulator.Building.Shop
 {
     internal class Shop
     {
-        int Food;
-        int Alcohol;
         List<Dwarf> DwarfsInShop;
 
         public Shop(List<Dwarf> dwarfsInShop)
         {
-            Food = 0;
-            Alcohol = 0;
             DwarfsInShop = dwarfsInShop;
         }
 

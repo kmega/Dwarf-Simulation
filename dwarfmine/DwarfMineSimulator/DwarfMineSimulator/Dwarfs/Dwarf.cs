@@ -160,5 +160,18 @@ namespace DwarfMineSimulator.Dwarfs
             }
             Console.WriteLine("Dwarf {0} bought {1} in shop.", this.GetId(), shopGoods);
         }
+
+        public int BoughtGoodsCount(ShopGoods shopGoods)
+        {
+            switch (shopGoods)
+            {
+                case ShopGoods.Food:
+                    return ShoppedGoods[ShopGoods.Food];
+                case ShopGoods.Alcohol:
+                    return ShoppedGoods[ShopGoods.Alcohol];
+                default:
+                    return 0;
+            }
+        }
     }
 }
