@@ -38,33 +38,27 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             _simulationState.Dwarves = _hospital.BuildInitialDwarves();
             for (int i = 0; i < 30; i++)
             {
-
                 _logger.AddLog($"\n\nDay {i + 1}\n\n");
 
                 BirthDwarf(_hospital);
                 MiningTreasures();
-
                 _guild.DwarvesVisitGuild(_simulationState.Dwarves);
-
                 _market.PerformShopping(_simulationState.Dwarves, _generalBank);
-
-                _simulationState.NumberOfDeadDwarves = _simulationState.Dwarves.Where(p => p.IsAlive == false).Count();
-
-
-                var aliveDwarves = _simulationState.Dwarves.Where(p => p.IsAlive == true).Count();
-                _canteen.GiveFoodRations(aliveDwarves);
+                _canteen.GiveFoodRations(GetAliveDwarves());
                 _canteen.OrderFoodRations();
-
                 UpdateAccount.MoveDailyPaymentToAccount(_simulationState.Dwarves);
-
 
                 if (ShouldSimulationBeContinued(_canteen))
                 {
                     break;
                 }
             }
-            PrepareFinalState();
-            _logger.GenerateReport(_simulationState);
+            _logger.GenerateReport(EndState());
+        }
+
+        private int GetAliveDwarves()
+        {
+            return _simulationState.Dwarves.Where(p => p.IsAlive == true).Count();
         }
 
         private void MiningTreasures()
@@ -89,13 +83,14 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             return false;
         }
 
-        private void PrepareFinalState()
+        private SimulationState EndState()
         {
             _simulationState.NumberOfBirths = _hospital.totalNumberOfBirth;
             _simulationState.GuildBankAccount = _guild.Account.OverallAccount;
             _simulationState.TaxBankAccount = _generalBank.BankTresure();
             _simulationState.MarketState = _market.marketState;
             _simulationState.ExtractedOre = _mineSupervisor.GetMineSupervisorStats;
+            return _simulationState;
         }
 
         private void BirthDwarf(Hospital hospital)
