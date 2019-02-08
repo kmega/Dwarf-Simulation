@@ -19,8 +19,8 @@ namespace DwarfMineSimulator.Building.Restaurant
 
         public void FeedDwarfs()
         {
-            HungryDwarfs.Where(dwarf => dwarf.IsAlive());
-            HungryDwarfs.ForEach(dwarf =>
+            List<Dwarf> AliveHungryDwarfs = HungryDwarfs.Where(dwarf => dwarf.IsAlive()).ToList();
+            AliveHungryDwarfs.ForEach(dwarf =>
             {
                 dwarf.Eat();
                 Rations--;

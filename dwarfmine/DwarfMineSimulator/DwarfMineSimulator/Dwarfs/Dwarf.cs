@@ -18,6 +18,7 @@ namespace DwarfMineSimulator.Dwarfs
         decimal MoneyEarndedThisDay { get; set; }
         Dictionary<Minerals, int> MineralsMined { get; set; }
         Dictionary<Minerals, int> MineralsMinedToday { get; set; }
+        Dictionary<ShopGoods, int> ShoppedGoods { get; set; }
 
         public Dwarf(int id, DwarfTypes type, bool alive, decimal money)
         {
@@ -36,6 +37,11 @@ namespace DwarfMineSimulator.Dwarfs
                 { Minerals.TaintedGold, 0 }
             };
             MineralsMinedToday = new Dictionary<Minerals, int>();
+            ShoppedGoods = new Dictionary<ShopGoods, int>
+            {
+                { ShopGoods.Food, 0 },
+                { ShopGoods.Alcohol, 0 }
+            };
         }
 
         public DwarfTypes GetDwarfType()
@@ -139,6 +145,20 @@ namespace DwarfMineSimulator.Dwarfs
         public void Eat()
         {
             Console.WriteLine("Dwarf {0} eat foot ration.", this.GetId());
+        }
+
+        public void BoughtGoods(ShopGoods shopGoods)
+        {
+            switch (shopGoods)
+            {
+                case ShopGoods.Food:
+                    ShoppedGoods[ShopGoods.Food] += 1;
+                    break;
+                case ShopGoods.Alcohol:
+                    ShoppedGoods[ShopGoods.Alcohol] += 1;
+                    break;
+            }
+            Console.WriteLine("Dwarf {0} bought {1} in shop.", this.GetId(), shopGoods);
         }
     }
 }

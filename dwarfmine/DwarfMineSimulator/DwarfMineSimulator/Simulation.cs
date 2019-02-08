@@ -133,7 +133,7 @@ namespace DwarfMineSimulator
                 RationsLeft = Restaurant.RationsLeft();
 
                 // Shop
-
+                Shop.DoShopping();
 
 
                 Console.WriteLine();
