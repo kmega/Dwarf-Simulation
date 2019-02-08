@@ -100,8 +100,8 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
         private void BirthDwarf(Hospital hospital)
         {
-            //var dwarves = hospital.CreateDwarf();
-            //    _simulationState.Dwarves.AddRange(dwarves);
+            var dwarves = hospital.CreateDwarf();
+            _simulationState.Dwarves.AddRange(dwarves);
         }
 
         private void UpdateDwarfBackpacks(System.Collections.Generic.List<PersonalItems.Backpack> dwarfBackpacks)
