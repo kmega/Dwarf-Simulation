@@ -92,7 +92,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             _currentSimulationState.NumberOfBirths = hospital.totalNumberOfBirth;
             _currentSimulationState.guildBankAccount = guild.Account.OverallAccount;
             _currentSimulationState.taxBankAccount = generalBank.BankTresure();
-            _currentSimulationState.marketState = market.marketState;
+            _currentSimulationState.marketState = market._marketState;
             _currentSimulationState.extractedOre = mineSupervisor.GetMineSupervisorStats;
         }
 
