@@ -1,10 +1,12 @@
-﻿using MiningSimulatorByKPMM.Locations.Bank;
+﻿using MiningSimulatorByKPMM.Enums;
+using MiningSimulatorByKPMM.Locations.Bank;
 using MiningSimulatorByKPMM.Locations.Canteen;
 using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
 using MiningSimulatorByKPMM.Locations.Market;
 using MiningSimulatorByKPMM.Locations.Mine;
 using MiningSimulatorByKPMM.Reports;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace MiningSimulatorByKPMM.ApplicationLogic
@@ -25,7 +27,12 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             _currentSimulationState = new SimulationState();
             hospital = new Hospital();
             mineSupervisor = new MineSupervisor();
-            guild = new Guild();
+            guild = new Guild(new Dictionary<E_Minerals, ICreateOreValue>()
+            { { E_Minerals.Gold, new ValueOfGold() },
+                {E_Minerals.DirtGold, new ValueOfDirtGold() },
+                {E_Minerals.Mithril, new ValueOfMithril() },
+                {E_Minerals.Silver, new ValueOfSilver()
+                } });
             market = new Market();
             canteen = new Canteen();
             generalBank = new GeneralBank();
@@ -39,7 +46,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             for (int i = 0; i < 30; i++)
             {
 
-                logger.AddLog($"\n\nDay {i+1}\n\n");
+                logger.AddLog($"\n\nDay {i + 1}\n\n");
                 //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
                 BirthDwarf(hospital);
 
@@ -66,7 +73,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 canteen.OrderFoodRations();
 
                 UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
-                
+
 
                 if (ShouldSimulationBeContinued(canteen) > 0)
                 {
@@ -74,7 +81,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 }
             }
             PrepareFinalState();
-            logger.GenerateReport(_currentSimulationState);
+            logger.DisplayReport(_currentSimulationState);
         }
 
         private int ShouldSimulationBeContinued(Canteen canteen)
@@ -90,10 +97,10 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         private void PrepareFinalState()
         {
             _currentSimulationState.NumberOfBirths = hospital.totalNumberOfBirth;
-            _currentSimulationState.guildBankAccount = guild.Account.OverallAccount;
-            _currentSimulationState.taxBankAccount = generalBank.BankTresure();
-            _currentSimulationState.marketState = market.marketState;
-            _currentSimulationState.extractedOre = mineSupervisor.GetMineSupervisorStats;
+            _currentSimulationState.GuildBankAccount = guild.Account.OverallAccount;
+            _currentSimulationState.TaxBankAccount = generalBank.BankTresure();
+            _currentSimulationState.MarketState = market.marketState;
+            _currentSimulationState.ExtractedOre = mineSupervisor.GetMineSupervisorStats;
         }
 
         private void BirthDwarf(Hospital hospital)

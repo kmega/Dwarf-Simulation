@@ -11,7 +11,7 @@ namespace MiningSimulatorByKPMM.Locations.Bank
         {
             foreach (var dwarf in dwarves)
             {
-                dwarf.BankAccount.CalculateOverallAccount();
+                dwarf.BankAccount.SendLastIncomeToYourAccount();
             }
 
         }

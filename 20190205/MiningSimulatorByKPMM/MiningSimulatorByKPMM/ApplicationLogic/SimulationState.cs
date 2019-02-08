@@ -11,10 +11,10 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         public int NumberOfDeadDwarves { get; set; }
         public bool ShouldSimulationBreak { get; set; }
         public int NumberOfBirths { get; set; }
-        public Dictionary<E_Minerals, int> extractedOre { get; set; }
-        public decimal guildBankAccount { get; set; }
-        public decimal taxBankAccount { get; set; }
-        public Dictionary<E_ProductsType, decimal> marketState { get; set; }
+        public Dictionary<E_Minerals, int> ExtractedOre { get; set; }
+        public decimal GuildBankAccount { get; set; }
+        public decimal TaxBankAccount { get; set; }
+        public Dictionary<E_ProductsType, decimal> MarketState { get; set; }
 
         public SimulationState()
         {

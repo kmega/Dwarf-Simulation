@@ -6,7 +6,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 {
     public class ValueOfSilver : ICreateOreValue
     {
-        public int GenerateSingleValue()
+        public decimal GenerateSingleValue()
         {
             Random rand = new Random();
             return rand.Next(5, 15);

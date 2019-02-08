@@ -19,7 +19,7 @@ namespace MiningSimulatorByKPMM.Locations.Bank
         {
             LastInput += income;
         }
-        public void CalculateOverallAccount()
+        public void SendLastIncomeToYourAccount()
         {
             OverallAccount += LastInput;
             LastInput = 0;

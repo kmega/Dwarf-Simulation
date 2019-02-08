@@ -8,6 +8,6 @@ namespace MiningSimulatorByKPMM.Reports
     public interface ILogger
     {
         void AddLog(string message);
-        void GenerateReport(SimulationState finalState);
+        void DisplayReport(SimulationState finalState);
     }
 }

@@ -127,7 +127,7 @@ namespace SimulationTests.Market_Tests
 
 			//when
 			market.PerformShopping(dwarfsList, bank);
-			Andrzej.BankAccount.CalculateOverallAccount();
+			Andrzej.BankAccount.SendLastIncomeToYourAccount();
 			decimal result = Andrzej.BankAccount.OverallAccount;
 			//then
 			Assert.AreEqual(100, result);

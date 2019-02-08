@@ -48,7 +48,7 @@ namespace MiningSimulatorByKPMM.Locations.Market
 			customer.BankAccount.Withdraw(recipe);
 			bank.PayTax(recipe);
 			shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
-			shopMoneyAccount.CalculateOverallAccount();
+			shopMoneyAccount.SendLastIncomeToYourAccount();
 			logger.AddLog($"{customer.DwarfType} has spent {recipe.ToString()} on {productType.ToString()} today.");
 		}
 	}

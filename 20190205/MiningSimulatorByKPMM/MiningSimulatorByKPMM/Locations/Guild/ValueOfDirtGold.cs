@@ -7,7 +7,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 {
     public class ValueOfDirtGold : ICreateOreValue
     {
-        public int GenerateSingleValue()
+        public decimal GenerateSingleValue()
         {
             return 2;
         }

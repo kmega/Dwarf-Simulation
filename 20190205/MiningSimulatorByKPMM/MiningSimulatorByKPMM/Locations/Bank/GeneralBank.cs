@@ -11,7 +11,7 @@ namespace MiningSimulatorByKPMM.Locations.Bank
         public void PayTax (decimal receipt)
         {
             bankAccount.ReceivedMoney(Math.Round(((receipt * 23) / 100),2));
-            bankAccount.CalculateOverallAccount();
+            bankAccount.SendLastIncomeToYourAccount();
         }
 
         public decimal BankTresure()

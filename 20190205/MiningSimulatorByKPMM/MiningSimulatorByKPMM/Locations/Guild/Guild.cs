@@ -14,44 +14,21 @@ namespace MiningSimulatorByKPMM.Locations.Guild
     {
 
         public BankAccount Account { get; private set; }
-        private ILogger logger;
-        private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket;
+        private ILogger _logger;
+        private Dictionary<E_Minerals, ICreateOreValue> _oreOnMarket;
             
 
-        public Guild()
+        public Guild(Dictionary<E_Minerals, ICreateOreValue> oreMarketInformations)
         {
             Account = new BankAccount();
-            logger = Logger.Instance;
-            OreOnMarket = new Dictionary<E_Minerals, ICreateOreValue>()
-
-            {
-                {E_Minerals.Gold, new ValueOfGold()},
-                {E_Minerals.DirtGold, new ValueOfDirtGold() },
-                {E_Minerals.Mithril, new ValueOfMithril() },
-                {E_Minerals.Silver, new ValueOfSilver() }
-            };
+            _logger = Logger.Instance;
+            _oreOnMarket = oreMarketInformations;
         }
 
-        public Guild(ICreateOreValue value)
+       
+        private decimal ReturnValue(E_Minerals mineralsType)
         {
-            Account = new BankAccount();
-            logger = Logger.Instance;
-            OreOnMarket = new Dictionary<E_Minerals, ICreateOreValue>()
-
-            {
-                {E_Minerals.Gold, value},
-                {E_Minerals.DirtGold, value },
-                {E_Minerals.Mithril, value },
-                {E_Minerals.Silver, value }
-
-            };
-        }
-
-
-
-        private int ReturnValue(E_Minerals mineralsType)
-        {
-            return OreOnMarket[mineralsType].GenerateSingleValue();
+            return _oreOnMarket[mineralsType].GenerateSingleValue();
 
         }
 
@@ -61,18 +38,18 @@ namespace MiningSimulatorByKPMM.Locations.Guild
             {
                 foreach (var mineral in backpack.ShowBackpackContent())
                 {
-                    decimal value = (decimal)ReturnValue(mineral.OutputType);
+                    decimal value = ReturnValue(mineral.OutputType);
 
                     decimal tax = Math.Round((value / 4), 2);
                     Account.ReceivedMoney(tax);
-                    Account.CalculateOverallAccount();
+                    Account.SendLastIncomeToYourAccount();
 
 
                     decimal payment = value - tax;
                     account.ReceivedMoney(payment);
 
                     string message = "Dwarf received " + payment + " gp for one " + mineral.OutputType + " and Guild take  " + tax + " gp provision.";
-                    logger.AddLog(message);
+                    _logger.AddLog(message);
                 }
                 backpack.ShowBackpackContent().Clear();
             }

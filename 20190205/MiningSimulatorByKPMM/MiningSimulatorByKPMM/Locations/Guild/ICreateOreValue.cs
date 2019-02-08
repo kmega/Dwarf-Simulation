@@ -6,7 +6,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 {
     public interface ICreateOreValue
     {
-        int GenerateSingleValue();
+        decimal GenerateSingleValue();
 
     }
 }

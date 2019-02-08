@@ -24,7 +24,7 @@ namespace SimulationTests.Bank_Tests
             bankAccount.ReceivedMoney(100);
 
             //when
-            bankAccount.CalculateOverallAccount();
+            bankAccount.SendLastIncomeToYourAccount();
 
             //then
             Assert.AreEqual(100, bankAccount.OverallAccount);
@@ -39,7 +39,7 @@ namespace SimulationTests.Bank_Tests
 
             //when
             bankAccount.Withdraw(20);
-            bankAccount.CalculateOverallAccount();
+            bankAccount.SendLastIncomeToYourAccount();
 
             //then
             Assert.AreEqual(80, bankAccount.OverallAccount);

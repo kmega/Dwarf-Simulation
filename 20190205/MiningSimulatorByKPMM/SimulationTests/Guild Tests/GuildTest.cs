@@ -13,14 +13,20 @@ namespace SimulationTests.Guild_Tests
 {
     public class GuildTest
     {
-      
+
         Guild guild;
 
         [SetUp]
         public void Setup()
         {
-           
-            guild = new Guild();
+
+            guild = new Guild(new Dictionary<E_Minerals, ICreateOreValue>()
+            { { E_Minerals.Gold, new ValueOfGold() },
+                {E_Minerals.DirtGold, new ValueOfDirtGold() },
+                {E_Minerals.Mithril, new ValueOfMithril() },
+                {E_Minerals.Silver, new ValueOfSilver()}
+            });
+
 
         }
 
@@ -31,10 +37,10 @@ namespace SimulationTests.Guild_Tests
 
             BankAccount bankAccount = new BankAccount();
             Backpack backpack = new Backpack();
-           
+
 
             //when
-            guild.PaymentForDwarf(backpack, bankAccount,true);
+            guild.PaymentForDwarf(backpack, bankAccount, true);
 
             //then
             Assert.AreEqual(0, guild.Account.OverallAccount);
@@ -52,7 +58,7 @@ namespace SimulationTests.Guild_Tests
             backpack.AddSingleOre(new Ore(E_Minerals.DirtGold));
 
             //when
-            guild.PaymentForDwarf(backpack, bankAccount,true);
+            guild.PaymentForDwarf(backpack, bankAccount, true);
 
             //then
             Assert.AreEqual(0.5, guild.Account.OverallAccount);
@@ -75,8 +81,8 @@ namespace SimulationTests.Guild_Tests
 
 
             //when
-            guild.PaymentForDwarf(backpackOne, bankAccountOne,true);
-            guild.PaymentForDwarf(backpackTwo, bankAccountTwo,true);
+            guild.PaymentForDwarf(backpackOne, bankAccountOne, true);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo, true);
 
             //then
             Assert.AreEqual(1, guild.Account.OverallAccount);
@@ -103,8 +109,8 @@ namespace SimulationTests.Guild_Tests
             backpackTwo.AddSingleOre(new Ore(E_Minerals.DirtGold));
 
             //when
-            guild.PaymentForDwarf(backpackOne, bankAccountOne,true);
-            guild.PaymentForDwarf(backpackTwo, bankAccountTwo,true);
+            guild.PaymentForDwarf(backpackOne, bankAccountOne, true);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo, true);
 
             //then
             Assert.AreEqual(2, guild.Account.OverallAccount);
@@ -114,39 +120,6 @@ namespace SimulationTests.Guild_Tests
             Assert.IsTrue(backpackTwo.ShowBackpackContent().Count == 0);
 
         }
-
-        [Test]
-        public void TwoDwarfWithDiffrentOre()
-        {
-            //given
-            Mock<ICreateOreValue> fakeMarket = new Mock<ICreateOreValue>();
-            Guild fakeGuild = new Guild(fakeMarket.Object);
-            fakeMarket.Setup(i => i.GenerateSingleValue()).Returns(1);
-            BankAccount bankAccountOne = new BankAccount();
-            BankAccount bankAccountTwo = new BankAccount();
-            Backpack backpackOne = new Backpack();
-            Backpack backpackTwo = new Backpack();
-            backpackOne.AddSingleOre(new Ore(E_Minerals.DirtGold));
-            backpackOne.AddSingleOre(new Ore(E_Minerals.Mithril));
-            backpackTwo.AddSingleOre(new Ore(E_Minerals.Silver));
-            backpackTwo.AddSingleOre(new Ore(E_Minerals.Gold));
-
-
-            //when
-            fakeGuild.PaymentForDwarf(backpackOne, bankAccountOne, true);
-            fakeGuild.PaymentForDwarf(backpackTwo, bankAccountTwo, true);
-
-            //then
-            Assert.AreEqual(1, fakeGuild.Account.OverallAccount);
-            Assert.AreEqual(1.5, bankAccountOne.LastInput);
-            Assert.AreEqual(1.5, bankAccountTwo.LastInput);
-            Assert.IsTrue(backpackOne.ShowBackpackContent().Count == 0);
-            Assert.IsTrue(backpackTwo.ShowBackpackContent().Count == 0);
-
-        }
-
-
-
 
     }
 }
