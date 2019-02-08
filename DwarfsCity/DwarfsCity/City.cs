@@ -35,7 +35,8 @@ namespace DwarfsCity
                 bank.ExchangeItemsToMoney(dwarfs);
                 guild.GetTaxesofAllDwarfs(dwarfs);
                 bar.GiveAFoodToDwarfs(dwarfs);                    
-                shop.PerformShopping(dwarfs);                      
+                shop.PerformShopping(dwarfs);
+                Logger.GetInstance().AddLog("");
             }
             ui.Display(Logger.GetInstance().GetLogs());
             Console.ReadKey();

@@ -30,9 +30,11 @@ namespace DwarfsCity
                 dwarf.Backpack.Money += payment;
                 totalPayment += payment;      
             }
+            Logger.GetInstance().AddLog("BANK: ");
             foreach (Item item in exchangedGoods.Keys)
                 Logger.GetInstance().AddLog($"Bank exchanged {exchangedGoods[item]} {item}");
-            Logger.GetInstance().AddLog($"Total value of items: {Math.Round(totalPayment,2)}");
+            if(exchangedGoods.Keys.Count > 0)
+                Logger.GetInstance().AddLog($"Total value of exchanged items: {Math.Round(totalPayment,2)}");
         }
     }
 }

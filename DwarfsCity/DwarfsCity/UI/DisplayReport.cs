@@ -11,6 +11,10 @@ namespace DwarfsCity.UI
         {
             foreach (string log in logs)
             {
+                if (log.StartsWith("DAY:"))
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                else
+                    Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine(log);
             }
 
