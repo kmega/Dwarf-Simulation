@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MiningSimulatorByKPMM.ApplicationLogic;
 using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Guild;
 using MiningSimulatorByKPMM.Locations.Hospital;
@@ -35,11 +36,15 @@ namespace SimulationTests.E2ESimulationTests
             //given   
             SetBirthMock(false);
             SetDwarfTypeMock(E_DwarfType.Dwarf_Father);
-            var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
+            SetOreValueMock(10);
+            var hospital = FakeHospitalFactory.Create(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
+            var guild = FakeGuildFactory.Create(oreValueMock.Object);
+            var simulationEngine = new SimulationEngine();
             //when
-            var result = hospital.TryToCreateDwarf();
+            simulationEngine.Start();
             //then
-            Assert.AreEqual(result.DwarfType, E_DwarfType.Dwarf_Suicide);
+
+            Assert.Fail();
         }
 
     }
