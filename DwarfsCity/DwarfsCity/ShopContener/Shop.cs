@@ -3,29 +3,27 @@ using DwarfsCity.Reports;
 using System.Collections.Generic;
 namespace DwarfsCity.ShopContener
 {
-    public class Shop : IReport
+    public class Shop
     {
-        public List<string> Reports { get; set; }
-        public Shop()
-        {
-            Reports = new List<string>();
-        }
         public void PerformShopping(List<Dwarf> dwarfs)
         {
+            decimal totalCostOfSales = 0;
+            int fathers = 0;
+            int singles = 0;
             foreach(Dwarf dwarf in dwarfs)
             {
                 if(dwarf.Attribute == Type.Father || dwarf.Attribute == Type.Single)
                 {
                     decimal price = dwarf.Backpack.Money / 2;
                     dwarf.Backpack.Money /= 2;
-                    string product = dwarf.Attribute == Type.Father ? "Alcohol" : "Food";
-                    GiveReport("Dwarf bought " + product + " and paid " + price);
+                    totalCostOfSales += price;
+                    if (dwarf.Attribute == Type.Father) fathers++;
+                    else singles++;
                 }
             }
+            string message = $"SHOP: Dwarfs spent {System.Math.Round(totalCostOfSales,2)} Alcohol purchased {singles} Food purchased {fathers}";
+            Logger.GetInstance().AddLog(message);
         }
-        public void GiveReport(string message)
-        {
-            Reports.Add(message);
-        }
+       
     }
 }

@@ -7,12 +7,13 @@ namespace DwarfsCity.UI
 {
     public class DisplayReport
     {
-        public void Display(Report reports)
+        public void Display(List<string> logs)
         {
-            foreach (string report in reports.GetReportsToDisplay())
+            foreach (string log in logs)
             {
-                Console.WriteLine(report);
+                Console.WriteLine(log);
             }
+
         }
     }
 }

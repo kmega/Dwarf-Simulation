@@ -1,7 +1,10 @@
 ﻿using System;
-using DwarfsCity.DwarfContener.DwarfEquipment;
+
 using System.Collections.Generic;
 using DwarfsCity.DwarfContener;
+using DwarfsCity.DwarfContener.DwarfEquipment;
+using DwarfsCity.Reports;
+using DwarfsCity.Tools;
 
 namespace DwarfsCity
 {

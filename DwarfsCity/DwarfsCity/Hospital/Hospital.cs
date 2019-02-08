@@ -1,65 +1,38 @@
 ﻿using DwarfsCity.DwarfContener;
 using DwarfsCity.Reports;
+using DwarfsCity.Tools;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Type = DwarfsCity.DwarfContener.Type;
 
 namespace DwarfsCity
 {
-    public class Hospital:IReport
+    public class Hospital
     {
-        Random _probabilityOfBirth = new Random();
 
-        public List<string> Reports { get; set; }
-
-        public void GiveBirthToDwarf(List<Dwarf> dwarfs, bool initalState = false)
+        public void GiveBirthToDwarf(List<Dwarf> dwarfs)
         {
-            Reports = new List<string>();
-            int probability = 0;
-
-            if (initalState)
-                probability = 5;
-            else
-             probability = _probabilityOfBirth.Next(1, 100);
-
-            if (probability == 5)
+            if(Randomizer.IsDwarfBorn())
             {
-                Type attribute = CreateDwarfAttribute();
-                Dwarf newBornDwarf = new Dwarf();
-                newBornDwarf.Attribute = attribute;
-                dwarfs.Add(newBornDwarf);
-                GiveReport($"Hospital: new {attribute} dwarf was born"); 
+                dwarfs.Add(DwarfFactory.CreateARandomDwarf_RandomAttribute());
+                Logger.GetInstance().AddLog($"New {dwarfs.Last().Attribute} dwarf was born!");
             }
 
+            Logger.GetInstance().AddLog($"No dwarf was born");
+
+
         }
 
-        private Type CreateDwarfAttribute()
+        public void InitialNumberOfDwarfs(List<Dwarf> dwarfs,int initalNumberOfDwarfs = 0)
         {
-            Random probability = new Random();
+            var listOfDwarfs = DwarfFactory.CreateMultipleRandomDwarfs_RandomAttributes(initalNumberOfDwarfs);
 
-            int probabilityOfEachAttribute = probability.Next(1, 100);
-
-            if (probabilityOfEachAttribute <= 33)
-                return Type.Father;
-            else if (probabilityOfEachAttribute > 33 && probabilityOfEachAttribute <= 66)
-                return Type.Lazy;
-            else if (probabilityOfEachAttribute > 66 && probabilityOfEachAttribute <= 99)
-                return Type.Single;
-            else
-                return Type.Saboteur; 
-        }
-
-        public void InitialiseBasicNumberOfDwarfs(List<Dwarf> dwarfs,int numberOfDwarfs)
-        {
-            for (int i = 0; i < numberOfDwarfs; i++)
+            foreach (var dwarf in listOfDwarfs)
             {
-                GiveBirthToDwarf(dwarfs, true);
+                dwarfs.Add(dwarf);
             }
         }
 
-        public void GiveReport(string message)
-        {
-            Reports.Add(message);
-        }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using DwarfsCity.DwarfContener;
+using DwarfsCity.Reports;
+using DwarfsCity.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,6 +11,7 @@ namespace DwarfsCity.MineContener
     {
         Foreaman foreaman;
         List<Shaft> shafts = new List<Shaft>();
+        int dailyExtractionsProducts = 0;
 
         public Mine()
         {
@@ -18,13 +21,14 @@ namespace DwarfsCity.MineContener
         }
 
 
-
         public List<Dwarf> StartWorking(List<Dwarf> dwarfsThatWillWork)
         {
-            List<Dwarf> dwarfsThatWorkedAndStillAlive = new List<Dwarf>();
-            
-            //Send Dwarfs to shafts  -> assign dwarfs to excact shaft
+            Logger.GetInstance().AddLog(dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
 
+            InitializeMineEveryDay();
+            
+            List<Dwarf> dwarfsThatWorkedAndStillAlive = new List<Dwarf>();          
+            //Send Dwarfs to shafts  -> assign dwarfs to excact shaft
             while(dwarfsThatWillWork.Count > 0)
             {
                 if (shafts[0].Exist == true && dwarfsThatWillWork.Count > 0)
@@ -47,7 +51,7 @@ namespace DwarfsCity.MineContener
                     if (shafts[1].Exist == true)
                     {
                         MiningDeposits(shafts[1]);
-                        dwarfsThatWorkedAndStillAlive.AddRange(foreaman.LetTheDwarfsOutTheShaft(shafts[0])); // return dwarfs whose was working 
+                        dwarfsThatWorkedAndStillAlive.AddRange(foreaman.LetTheDwarfsOutTheShaft(shafts[1])); // return dwarfs whose was working 
                     }                   
                 }
 
@@ -55,15 +59,34 @@ namespace DwarfsCity.MineContener
                     
             }
 
+            if (dwarfsThatWillWork.Count == 0 && dwarfsThatWorkedAndStillAlive.Count == 0)
+            {
+                DisplayReport ui = new DisplayReport();
+                Logger.GetInstance().AddLog("Dwarfs digged: "+ dailyExtractionsProducts + " raw materials.");
+                Logger.GetInstance().AddLog("All dwarfs died, simulation is over!");
+                ui.Display(Logger.GetInstance().GetLogs());
+                City.TheEndOfSimulation();
+            }
+
+
+            Logger.GetInstance().AddLog("Dwarfs digged: " + dailyExtractionsProducts + " raw materials.");
+            Logger.GetInstance().AddLog(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
             return dwarfsThatWorkedAndStillAlive;
            
+        }
+
+        private void InitializeMineEveryDay()
+        {
+            shafts[0].Exist = true;
+            shafts[1].Exist = true;
         }
 
         private void MiningDeposits(Shaft shaft)
         {
             foreach (var dwarf in shaft.dwarfs)
             {
-                dwarf.Digging();
+                //GiveReport(dwarf.Attribute + " goes to digging");
+                dailyExtractionsProducts += dwarf.Digging(); // Dwarf digging and return count digged materials
             }
         }
     }

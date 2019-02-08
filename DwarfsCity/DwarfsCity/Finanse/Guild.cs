@@ -1,4 +1,5 @@
 ﻿using DwarfsCity.DwarfContener;
+using DwarfsCity.Reports;
 using System;
 using System.Collections.Generic;
 
@@ -6,45 +7,43 @@ namespace DwarfsCity
 {
     public class Guild
     {
-        //private decimal _guildMoney = 0;
+        public decimal GeneralGuildFunds { get; set; }
+        public decimal TheSumOfTaxesOnOneDay { get; set; }     
 
-        //public void GetMoneyFromDwarfs(List<Dwarf> dwarfs)
-        //{
-        //    foreach (var dwarfMoney in dwarfs)
-        //    {
-        //        _guildMoney += 0.20m*dwarfMoney.Backpack.Money;
-        //    }
-        //}
-
-        //public decimal GetGuildMoney()
-        //{
-        //    return _guildMoney;
-        //}
-
-        //public bool SpendGiuldMoney(decimal amountOfMoneyToSpend)
-        //{
-        //    if (_guildMoney < amountOfMoneyToSpend)
-        //        return false;
-        //    else
-        //    {
-        //        _guildMoney -= amountOfMoneyToSpend;
-        //        return true;
-        //    }
-        //}
-                
-
-        public decimal GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
+        public void GetTaxesofAllDwarfs(List<Dwarf> dwarfs)
         {
-            decimal TheSumOfTaxes = 0;
+            TheSumOfTaxesOnOneDay = 0;
             foreach (Dwarf dwarf in dwarfs)
             {
-                decimal EarnedMoney = dwarf.Backpack.Money;
-                decimal TaxesOfGuild = 0.25m * dwarf.Backpack.Money;
-                EarnedMoney -= TaxesOfGuild;
+                decimal TaxesOfGuild = TaxesCalculator(dwarf);
+                EarningsCalculator(dwarf, TaxesOfGuild);              
+            }            
+            ReportGuild();
+        }
+
+        private void EarningsCalculator(Dwarf dwarf,decimal taxes)
+        {
+                decimal EarnedMoney = dwarf.Backpack.Money - taxes;
                 dwarf.Backpack.Money = EarnedMoney;
-                TheSumOfTaxes += TaxesOfGuild;
-            }
-            return TheSumOfTaxes;          
+        }
+
+        private decimal TaxesCalculator(Dwarf dwarf)
+        {           
+            decimal taxes = 0.20m * dwarf.Backpack.Money;
+            TheSumOfTaxesOnOneDay += taxes;
+            GeneralGuildFunds += TheSumOfTaxesOnOneDay;
+            return taxes;
+        }
+
+        private void ReportGuild()
+        {
+             GiveReport("Guild: Today all dwarfs pay " + Math.Round(TheSumOfTaxesOnOneDay,2) + " taxes. \nThe current state of the guild account is " + Math.Round(GeneralGuildFunds,2) + ".");    
+        }
+
+        public void GiveReport(string message)
+        {
+            Logger.GetInstance().AddLog(message);
         }
     }
+   
 }

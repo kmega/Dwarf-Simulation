@@ -1,4 +1,5 @@
 ﻿using DwarfsCity.DwarfContener.DwarfEquipment;
+using DwarfsCity.Reports;
 using DwarfsCity.Tools;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace DwarfsCity.DwarfContener
         //Field
         public Backpack Backpack = new Backpack();
         public Type Attribute { get; set; }
+        int extractionsProducts = 0;
 
         public void AddItemsToBackpack(Item item)
         {
@@ -23,32 +25,23 @@ namespace DwarfsCity.DwarfContener
             return Backpack.Items;    
         }
 
+    
         public void SetAttribute(Type attribute)
         {
             Attribute = attribute;
         }
 
-        public void Digging()
+        public int Digging()
         {
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < Randomizer.CountsOfDigging(); i++)
             {
-
-                //Randomize ratio to chance for a minning mineral
-                var ratioChance = Randomizer.GetChanceRatio();
-
-            //Digging minerals by ratio  -> 5% mithril, 15% gold 35% silver, 45% dirty gold
-            
-                if (Enumerable.Range(1, 5).Contains(ratioChance))
-                    Backpack.Items.Add(Item.Mithril);
-                else if (Enumerable.Range(5, 20).Contains(ratioChance))
-                    Backpack.Items.Add(Item.Gold);
-                else if (Enumerable.Range(20, 55).Contains(ratioChance))
-                    Backpack.Items.Add(Item.Silver);
-                else if (Enumerable.Range(55, 100).Contains(ratioChance))
-                    Backpack.Items.Add(Item.DirtyGold);
+                //Digging minerals by ratio  -> 5% mithril, 15% gold 35% silver, 45% dirty gold
+                var toDigging = Randomizer.ItemDigged();
+                Backpack.Items.Add(toDigging);
+                extractionsProducts++;
             }
-            
-        }
 
+            return extractionsProducts;
+        }
     }
 }

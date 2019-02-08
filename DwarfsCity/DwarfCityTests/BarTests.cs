@@ -16,28 +16,17 @@ namespace DwarfCityTests
         public void ShouldReturnSupplyAfterDinner()
         {
             int Supply = bar.SupplyofFood;
-            bar.GiveAFoodToDwarfs(Supply, DwarfsList);
+            bar.GiveAFoodToDwarfs(DwarfsList);
             int expectedsupply = 190;
             int resultsupply = bar.SupplyofFood;
             Assert.AreEqual(expectedsupply, resultsupply);
-        }
-        [ExpectedException(typeof(Exception))]
-        [TestMethod]
-        public void ShouldReturnExceptionWhenFoodIsOver()
-        {
-            bar.SupplyofFood = 5;
-            int Supply = bar.SupplyofFood;
-            bar.GiveAFoodToDwarfs(Supply, DwarfsList);
-            int expectedsupply = -5;
-            int resultsupply = bar.SupplyofFood;
-            Assert.AreEqual(expectedsupply, resultsupply);    
         }
         [TestMethod]
         public void ShouldAdd30SupplyWhenSupplyAreLessThan10()
         {        
             bar.SupplyofFood = 11;
             int Supply = bar.SupplyofFood;           
-            bar.GiveAFoodToDwarfs(Supply, DwarfsList);
+            bar.GiveAFoodToDwarfs(DwarfsList);
             int expectedsupply = 31;
             int resultsupply = bar.SupplyofFood;  
             Assert.AreEqual(expectedsupply, resultsupply);

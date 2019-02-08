@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DwarfsCity.DwarfContener;
+using DwarfsCity.Reports;
 
 namespace DwarfsCity.MineContener
 {
@@ -22,12 +23,15 @@ namespace DwarfsCity.MineContener
                 sendedDwarfs.Add(dwarf);
             }
 
+            Logger.GetInstance().AddLog("Foreman send " + sendedDwarfs.Count + " dwarfs to shaft");
+
             //Remove from all dwarfs sended dwarfs
             dwarfs.RemoveAll(i => sendedDwarfs.Contains(i));
 
             //If on the list sended dwarfs is a sabouteur 
             if (sendedDwarfs.Select(x => x.Attribute).Contains(DwarfContener.Type.Saboteur))
             {
+                Logger.GetInstance().AddLog("Oh no! in the shaft is a saboteur, the shaft will exploding for a few times");
                 shaft.ChangeShaftExistStatusToDestroyed();                
             }
         }
