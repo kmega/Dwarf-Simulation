@@ -7,7 +7,6 @@ namespace DwarfMineSimulator
     class Mines
     {
         Shafts _shafts = new Shafts();
-
         List<Dwarf> _dwarfsThatMined = new List<Dwarf>();
 
         internal List<Dwarf> MineInShafts(List<Dwarf> dwarfsPopulation, List<Shaft> shaftsNumber)
