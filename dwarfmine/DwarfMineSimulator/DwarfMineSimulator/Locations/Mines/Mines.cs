@@ -116,7 +116,7 @@ namespace DwarfMineSimulator
 
                 for (int m = 0; m < workToBeDone; m++)
                 {
-                    shaft = WorkForOneTurn(shaft, randomizer.Return1to100());
+                    shaft = WorkForOneTurn(shaft, j, randomizer.Return1to100());
                 }
             }
 
@@ -141,7 +141,7 @@ namespace DwarfMineSimulator
             return shaft;
         }
 
-        internal Shaft WorkForOneTurn(Shaft shaft, int miningChance)
+        internal Shaft WorkForOneTurn(Shaft shaft, int index, int miningChance)
         {
             Minerals mineral;
 
@@ -166,8 +166,8 @@ namespace DwarfMineSimulator
                 Raport.TaintedGoldMinded++;
             }
 
-            _shaftsNumber[i].Miners[j].MineralsMined[mineral]++;
-            Console.WriteLine("Dwarf " + j + " mined " + mineral);
+            shaft.Miners[index].MineralsMined[mineral]++;
+            Console.WriteLine("Dwarf " + index + " mined " + mineral);
 
             return shaft;
         }
