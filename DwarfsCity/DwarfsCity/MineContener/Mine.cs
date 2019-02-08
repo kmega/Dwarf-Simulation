@@ -23,6 +23,8 @@ namespace DwarfsCity.MineContener
 
         public List<Dwarf> StartWorking(List<Dwarf> dwarfsThatWillWork)
         {
+            dailyExtractionsProducts = 0;
+
             Logger.GetInstance().AddLog("MINE: " + dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
 
             InitializeMineEveryDay();
@@ -71,6 +73,8 @@ namespace DwarfsCity.MineContener
 
             Logger.GetInstance().AddLog("Dwarfs digged: " + dailyExtractionsProducts + " raw materials.");
             Logger.GetInstance().AddLog(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
+
+            
             return dwarfsThatWorkedAndStillAlive;
            
         }
