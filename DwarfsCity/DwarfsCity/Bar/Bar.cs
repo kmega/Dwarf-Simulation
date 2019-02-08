@@ -55,8 +55,7 @@ namespace DwarfsCity
         private void ThereIsNoMoreFood()
         {
             GiveReport("There is no more food in bar. Only " + GivenFoodToDwarfsDuringOneDay + " get a portion of food. /nThe simulation is over.");
-            City city = new City();
-            city.TheEndOfSimulation = true;
+
         }
 
         public void GiveReport(string message)
