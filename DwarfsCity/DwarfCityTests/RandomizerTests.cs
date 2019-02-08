@@ -5,6 +5,7 @@ using System.Text;
 using DwarfsCity.DwarfContener.DwarfEquipment;
 using DwarfsCity.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace DwarfCityTests
 {
@@ -45,5 +46,6 @@ namespace DwarfCityTests
             result = Randomizer.ValueOfItem(dirtyGold);
             Assert.IsTrue(result >= 1 && result <= 10);
         }
+
     }
 }
