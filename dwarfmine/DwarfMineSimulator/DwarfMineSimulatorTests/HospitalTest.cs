@@ -24,37 +24,62 @@ namespace DwarfMineSimulatorTests
         }
 
         [Test]
-        public void T02CheckNewDwarfsAreLazyOrFatherOrSingle()
+        public void T02Chec33percentkNewDwarfsAreFather()
         {
-            bool lazy = false;
             bool father = false;
+            Randomizer randomizer = new Randomizer();
+            List<Dwarf> DwarfsPopulation = new List<Dwarf>();
+            Hospital hospital = new Hospital();
+            //1 - 33 Father,  34 - 66 Single, 67 - 99 Lazy, 100 Suicider
+            for (int j = 1; j <= 33; j++)
+            {
+                hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(j), Raport.TotalBorn);
+                if (DwarfsPopulation[j-1].Type == DwarfTypes.Father)
+                    father = true;
+                else
+                    father = false;
+                Assert.IsTrue(father);
+            }
+        }
+
+        [Test]
+        public void T03Chec33percentkNewDwarfsAreSingle()
+        {
             bool single = false;
             Randomizer randomizer = new Randomizer();
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
             //1 - 33 Father,  34 - 66 Single, 67 - 99 Lazy, 100 Suicider
-            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(22), Raport.TotalBorn);
-            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(68), Raport.TotalBorn);
-            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(35), Raport.TotalBorn);
-
-
-            for (int i = 0; i < DwarfsPopulation.Count; i++)
+            for (int j = 34; j <= 66; j++)
             {
-                if (DwarfsPopulation[i].Type == DwarfTypes.Lazy)
-                    lazy = true;
-                if (DwarfsPopulation[i].Type == DwarfTypes.Single)
+                hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(j), Raport.TotalBorn);
+                if (DwarfsPopulation[j - 34].Type == DwarfTypes.Single)
                     single = true;
-                if (DwarfsPopulation[i].Type == DwarfTypes.Father)
-                    father = true;
+                else
+                    single = false;
+                Assert.IsTrue(single);
             }
-
-            Assert.IsTrue(lazy);
-            Assert.IsTrue(single);
-            Assert.IsTrue(father);
         }
-
         [Test]
-        public void T03SuiciderApper()
+        public void T04Chec33percentkNewDwarfsAreLazy()
+        {
+            bool lazy = false;
+            Randomizer randomizer = new Randomizer();
+            List<Dwarf> DwarfsPopulation = new List<Dwarf>();
+            Hospital hospital = new Hospital();
+            //1 - 33 Father,  34 - 66 Single, 67 - 99 Lazy, 100 Suicider
+            for (int j = 67; j <= 99; j++)
+            {
+                hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(j), Raport.TotalBorn);
+                if (DwarfsPopulation[j - 67].Type == DwarfTypes.Lazy)
+                    lazy = true;
+                else
+                    lazy = false;
+                Assert.IsTrue(lazy);
+            }
+        }
+        [Test]
+        public void T05SuiciderApper()
         {
             Randomizer randomizer = new Randomizer();
             bool suicider = false;
@@ -69,5 +94,22 @@ namespace DwarfMineSimulatorTests
 
             Assert.IsTrue(suicider);
         }
+        [Test]
+        public void T06Create10DwarfWithOneMethodFromHospital()
+        {
+            bool moreDwarfs = false;
+
+            List<Dwarf> DwarfsPopulation = new List<Dwarf>();
+            Hospital hospital = new Hospital();
+            Randomizer birthAndTypeDwarf = new Randomizer();
+            DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+            hospital.HowManyYouWantCreate(10, DwarfsPopulation);
+
+            if (DwarfsPopulation.Count == 10)
+                moreDwarfs = true;
+
+            Assert.IsTrue(moreDwarfs);
+        }
+
     }
 }
