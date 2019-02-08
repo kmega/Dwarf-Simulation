@@ -5,6 +5,7 @@ using System.Text;
 using DwarfsCity.DwarfContener.DwarfEquipment;
 using DwarfsCity.Tools;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 
 namespace DwarfCityTests
 {
@@ -45,5 +46,46 @@ namespace DwarfCityTests
             result = Randomizer.ValueOfItem(dirtyGold);
             Assert.IsTrue(result >= 1 && result <= 10);
         }
+
+        //[TestMethod]
+        //public void Digg3TimesAndGetEachItemsWithItsSmallestValue()
+        //{
+        //    //given
+        //    var randomizer = new Mock<IRandomizer>();
+
+        //    //when
+        //    randomizer.Setup(x => x.RandomNumber).Returns(new Randomizer().RandomNumber);
+        //    randomizer.Setup(x => x.RandomNumber.GetChanceRatio).Returns(3);
+        //    //randomizer.Setup(x => x.RandomNumber.GetChanceRatio(1,100)).Returns(4);
+            
+
+        //    //then
+        //    int diggedCount = randomizer.CountsOfDigging();
+        //    Item mithril = Randomizer.ItemDigged();
+
+        //    //when
+        //    randomizer.Setup(x => x.GetChanceRatio(1, 100)).Returns(10);
+
+        //    //then
+        //    Item gold = Randomizer.ItemDigged();
+
+        //    //when
+        //    randomizer.Setup(x => x.GetChanceRatio(1, 100)).Returns(30);
+
+        //    //then
+        //    Item silver = Randomizer.ItemDigged();
+
+        //    //when
+        //    randomizer.Setup(x => x.GetChanceRatio(1, 100)).Returns(80);
+
+        //    //then
+        //    Item dirtyGold = Randomizer.ItemDigged();
+
+        //    Assert.IsTrue(diggedCount == 3);
+        //    Assert.IsTrue(mithril == Item.Mithril);
+        //    Assert.IsTrue(gold == Item.Gold);
+        //    Assert.IsTrue(silver== Item.Silver);
+        //    Assert.IsTrue(dirtyGold == Item.DirtyGold);
+        //}
     }
 }
