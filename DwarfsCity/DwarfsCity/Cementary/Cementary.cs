@@ -20,6 +20,8 @@ namespace DwarfsCity
 
         public static void OnShaftExploded(object o, ShaftExplodedEventArgs dwarfs)
         {
+            Logger.GetInstance().AddLog("CEMENTARY:");
+
             AddKilledDwarfsToGraves(dwarfs.KilledDwarfs);
 
             Logger.GetInstance().AddLog("The mine is explode! The death Dwarfs: ");

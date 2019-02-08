@@ -25,7 +25,9 @@ namespace DwarfsCity.MineContener
         {
             dailyExtractionsProducts = 0;
 
-            Logger.GetInstance().AddLog("MINE: " + dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
+            Logger.GetInstance().AddLog("MINE:");
+            Logger.GetInstance().AddLog(dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
+            
 
             InitializeMineEveryDay();
             

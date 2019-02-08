@@ -13,13 +13,15 @@ namespace DwarfsCity
 
         public void GiveBirthToDwarf(List<Dwarf> dwarfs)
         {
-            if(Randomizer.IsDwarfBorn())
+            Logger.GetInstance().AddLog("HOSPITAL:");
+
+            if (Randomizer.IsDwarfBorn())
             {
                 dwarfs.Add(DwarfFactory.CreateARandomDwarf_RandomAttribute());
-                Logger.GetInstance().AddLog($"HOSPITAL: New {dwarfs.Last().Attribute} dwarf was born!");
+                Logger.GetInstance().AddLog($"New {dwarfs.Last().Attribute} dwarf was born!");
             }
 
-            Logger.GetInstance().AddLog($"HOSPITAL: No dwarf was born");
+            Logger.GetInstance().AddLog("No dwarf was born");
 
 
         }

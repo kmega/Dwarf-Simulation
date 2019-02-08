@@ -18,6 +18,7 @@ namespace DwarfsCity
         {           
             GivenFoodToDwarfsDuringOneDay = AmountOfFoodGiven(Dwarfs.Count);
             SupplyofFood = SupplyofFood - Dwarfs.Count;
+            Logger.GetInstance().AddLog("BAR:");
             ReportBar();          
         }
 
@@ -44,18 +45,18 @@ namespace DwarfsCity
 
         private void AllDwarfsEatADinner()
         {
-            GiveReport("BAR: Today " + GivenFoodToDwarfsDuringOneDay + " dwarfs get a portion of food. Actual amount of supply in Bar: " + SupplyofFood + ".");
+            GiveReport("Today " + GivenFoodToDwarfsDuringOneDay + " dwarfs get a portion of food. Actual amount of supply in Bar: " + SupplyofFood + ".");
         }
 
         private void ThereIsADelivery()
         {
             this.SupplyofFood += 30;
-            GiveReport("BAR: Today " + GivenFoodToDwarfsDuringOneDay + " dwarfs get a portion of food. There is a delivery food to bar. Actual amount of supply in Bar: " + SupplyofFood + ".");
+            GiveReport("Today " + GivenFoodToDwarfsDuringOneDay + " dwarfs get a portion of food. There is a delivery food to bar. Actual amount of supply in Bar: " + SupplyofFood + ".");
 
         }
         private void ThereIsNoMoreFood()
         {
-            GiveReport("BAR: There is no more food in bar. Only " + GivenFoodToDwarfsDuringOneDay + " dwarfs get a portion of food. \nThe simulation is over.");
+            GiveReport("There is no more food in bar. Only " + GivenFoodToDwarfsDuringOneDay + " dwarfs get a portion of food. \nThe simulation is over.");
             ui.Display(Logger.GetInstance().GetLogs());
             City.TheEndOfSimulation();
         }
