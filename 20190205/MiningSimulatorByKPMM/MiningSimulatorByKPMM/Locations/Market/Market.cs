@@ -4,16 +4,19 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using MiningSimulatorByKPMM.Locations.Bank;
+using MiningSimulatorByKPMM.Reports;
 
 namespace MiningSimulatorByKPMM.Locations.Market
 {
 	public class Market 
 	{
+		private ILogger logger;
 		public BankAccount shopMoneyAccount = new BankAccount();
 		public Dictionary<E_ProductsType, decimal> marketState = new Dictionary<E_ProductsType, decimal>();
 
 		public Market()
 		{
+			logger = Logger.Instance;
 			marketState.Add(E_ProductsType.Food, 0);
 			marketState.Add(E_ProductsType.Alcohol, 0);
 		}
@@ -22,11 +25,11 @@ namespace MiningSimulatorByKPMM.Locations.Market
 		{
 			foreach (var customer in customers)
 			{
-				if (customer.DwarfType == E_DwarfType.Dwarf_Single)
+				if (customer.DwarfType == E_DwarfType.Dwarf_Single && customer.IsAlive)
 				{
 					BuyProdcutsFromMarket(customer, E_ProductsType.Alcohol, bank);
 				}
-				else if (customer.DwarfType == E_DwarfType.Dwarf_Father)
+				else if (customer.DwarfType == E_DwarfType.Dwarf_Father && customer.IsAlive)
 				{
 					BuyProdcutsFromMarket(customer, E_ProductsType.Food, bank);
 				}
@@ -46,6 +49,7 @@ namespace MiningSimulatorByKPMM.Locations.Market
 			bank.PayTax(recipe);
 			shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
 			shopMoneyAccount.CalculateOverallAccount();
+			logger.AddLog($"{customer.DwarfType} has spent {recipe.ToString()} on {productType.ToString()} today.");
 		}
 	}
 }

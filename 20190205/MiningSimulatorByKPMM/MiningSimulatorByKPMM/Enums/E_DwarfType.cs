@@ -5,7 +5,7 @@ namespace MiningSimulatorByKPMM.Enums
     {
         Dwarf_Father,
         Dwarf_Single,
-        Dwarf_Sluggard,
-        Dwarf_Suicide
+        Dwarf_Suicide,
+        Dwarf_Sluggard
     }
 }

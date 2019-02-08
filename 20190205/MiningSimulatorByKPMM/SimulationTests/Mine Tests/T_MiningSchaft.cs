@@ -32,7 +32,7 @@ namespace SimulationTests.MineTests
             oreUnitAmountRandomizer.Setup(x => x.GetAmountOfOreUnintsToRandom()).Returns(1);
 
             var schaft = new MiningSchaft();
-            var workers = FakeDataFactory.CreateXNonSluggardWorkers(1);
+            var workers = FakeDataFactory.CreateXNonSuicideWorkers(1);
 
             //when
             schaft.SetSchaftWorkers(workers);
@@ -53,7 +53,7 @@ namespace SimulationTests.MineTests
             oreUnitAmountRandomizer.Setup(x => x.GetAmountOfOreUnintsToRandom()).Returns(amount);
 
             var schaft = new MiningSchaft();
-            var workers = FakeDataFactory.CreateXNonSluggardWorkers(5);
+            var workers = FakeDataFactory.CreateXNonSuicideWorkers(5);
 
             //when
             schaft.SetSchaftWorkers(workers);
@@ -72,14 +72,14 @@ namespace SimulationTests.MineTests
     public class MiningSchaftNegativeProcess
     {
         [Test]
-        public void ExplodesWithSingleWorkerWhoIsSluggard()
+        public void ExplodesWithSingleWorkerWhoIsSuicide()
         {
             //given
             var oreRandomizer = new OreRandomizer();
             var oreUnitAmountRandomizer = new OreUnitAmountRandomizer();
 
             var schaft = new MiningSchaft();
-            var workers = FakeDataFactory.CreateSluggardWorkers(1);
+            var workers = FakeDataFactory.CreateSuicideWorkers(1);
             //when
             schaft.SetSchaftWorkers(workers);
             schaft.ExecuteWorkStrategy(oreRandomizer, oreUnitAmountRandomizer);
@@ -101,7 +101,7 @@ namespace SimulationTests.MineTests
             var oreUnitAmountRandomizer = new OreUnitAmountRandomizer();
 
             var schaft = new MiningSchaft();
-            var workers = FakeDataFactory.CreateSluggardWorkers(amount);
+            var workers = FakeDataFactory.CreateSuicideWorkers(amount);
 
             //when
             schaft.SetSchaftWorkers(workers);

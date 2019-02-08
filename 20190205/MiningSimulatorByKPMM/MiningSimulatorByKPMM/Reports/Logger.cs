@@ -44,6 +44,9 @@ namespace MiningSimulatorByKPMM.Reports
 
         public void GenerateReport(SimulationState finalState)
         {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
             DisplayDeadDwarves(finalState.NumberOfDeadDwarves);
             DisplayMiningSummary(finalState.extractedOre);
             DisplayShopSummary(finalState.marketState);
@@ -54,20 +57,23 @@ namespace MiningSimulatorByKPMM.Reports
 
         private void DisplayHospitalBirths(int numberOfBirths)
         {
-            outputWriter.Display($"Total births: {numberOfBirths}");
+            outputWriter.Display($"Total births: {numberOfBirths};");
+            Console.WriteLine();
         }
 
         private void DisplayMiningSummary(Dictionary<E_Minerals, int> extractedOre)
         {
            foreach(E_Minerals val in Enum.GetValues(typeof(E_Minerals)))
             {
-                outputWriter.Display($"{val.ToString()} mined in {extractedOre[val]} units.");
+                outputWriter.Display($"{val.ToString()} mined in {extractedOre[val]} units;");
             }
+            Console.WriteLine();
         }
 
         private void DisplayDeadDwarves(int numberOfDeadDwarves)
         {
             outputWriter.Display($"During simulation {numberOfDeadDwarves} died in Mine. We are truly sorry.");
+            Console.WriteLine();
         }
 
         private void DisplayShopSummary(Dictionary<E_ProductsType, decimal> marketState)
@@ -78,16 +84,19 @@ namespace MiningSimulatorByKPMM.Reports
                 outputWriter.Display($"{product.Key}: {product.Value};");
                
             }
+            Console.WriteLine();
         }
 
         private void DisplayTaxBankState(decimal taxBankAccount)
         {
-            outputWriter.Display($"Bank have {taxBankAccount} gp on account");
+            outputWriter.Display($"Bank have {taxBankAccount} gp on account;");
+            Console.WriteLine();
         }
 
         private void DisplayGuildBankState(decimal guildBankAccount)
         {
-            outputWriter.Display($"Guild have {guildBankAccount} gp on account");
+            outputWriter.Display($"Guild have {guildBankAccount} gp on account;");
+            Console.WriteLine();
         }
 
 

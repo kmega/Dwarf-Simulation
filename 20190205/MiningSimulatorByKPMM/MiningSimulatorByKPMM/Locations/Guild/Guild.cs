@@ -38,24 +38,27 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 
         }
 
-        public void PaymentForDwarf(Backpack backpack, BankAccount account)
+        public void PaymentForDwarf(Backpack backpack, BankAccount account, bool isAlive)
         {
-            foreach (var mineral in backpack.ShowBackpackContent())
+            if (isAlive)
             {
-                decimal value = (decimal)ReturnValue(mineral.OutputType);
+                foreach (var mineral in backpack.ShowBackpackContent())
+                {
+                    decimal value = (decimal)ReturnValue(mineral.OutputType);
 
-                decimal tax = Math.Round((value / 4), 2);
-                Account.ReceivedMoney(tax);
-                Account.CalculateOverallAccount();
+                    decimal tax = Math.Round((value / 4), 2);
+                    Account.ReceivedMoney(tax);
+                    Account.CalculateOverallAccount();
 
 
-                decimal payment = value - tax;
-                account.ReceivedMoney(payment);
+                    decimal payment = value - tax;
+                    account.ReceivedMoney(payment);
 
-                string message = "Dwarf received " + payment + " gp for one " + mineral.OutputType + " and Guild take  " + tax + " gp provision.";
-                logger.AddLog(message);
+                    string message = "Dwarf received " + payment + " gp for one " + mineral.OutputType + " and Guild take  " + tax + " gp provision.";
+                    logger.AddLog(message);
+                }
+                backpack.ShowBackpackContent().Clear();
             }
-            backpack.ShowBackpackContent().Clear();
 
         }
 
@@ -63,7 +66,7 @@ namespace MiningSimulatorByKPMM.Locations.Guild
         {
             foreach (var dwarf in dwarves)
             {
-                PaymentForDwarf(dwarf.Backpack, dwarf.BankAccount);
+                PaymentForDwarf(dwarf.Backpack, dwarf.BankAccount, dwarf.IsAlive);
             }
         }
     }
