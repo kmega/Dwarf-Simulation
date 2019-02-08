@@ -1,15 +1,17 @@
 ﻿using DwarfsCity.DwarfContener;
 using DwarfsCity.Reports;
+using DwarfsCity.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DwarfsCity.MineContener
 {
-    public class Mine: IReport
+    public class Mine
     {
         Foreaman foreaman;
         List<Shaft> shafts = new List<Shaft>();
+        int dailyExtractionsProducts = 0;
 
         public Mine()
         {
@@ -18,14 +20,10 @@ namespace DwarfsCity.MineContener
             shafts.Add(new Shaft());
         }
 
-        public void GiveReport(string message)
-        {
-            Logger.GetInstance().AddLog(message);
-        }
 
         public List<Dwarf> StartWorking(List<Dwarf> dwarfsThatWillWork)
         {
-            GiveReport(dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
+            Logger.GetInstance().AddLog(dwarfsThatWillWork.Count + " dwarfs come to mine and will be digging");
 
             InitializeMineEveryDay();
             
@@ -62,9 +60,17 @@ namespace DwarfsCity.MineContener
             }
 
             if (dwarfsThatWillWork.Count == 0 && dwarfsThatWorkedAndStillAlive.Count == 0)
-                throw new Exception("All dwarfs died, simulation is over!");
+            {
+                DisplayReport ui = new DisplayReport();
+                Logger.GetInstance().AddLog("Dwarfs digged: "+ dailyExtractionsProducts + " raw materials.");
+                Logger.GetInstance().AddLog("All dwarfs died, simulation is over!");
+                ui.Display(Logger.GetInstance().GetLogs());
+                City.TheEndOfSimulation();
+            }
 
-            GiveReport(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
+
+            Logger.GetInstance().AddLog("Dwarfs digged: " + dailyExtractionsProducts + " raw materials.");
+            Logger.GetInstance().AddLog(dwarfsThatWorkedAndStillAlive.Count + " dwarfs " + " come back happily on the surface!");
             return dwarfsThatWorkedAndStillAlive;
            
         }
@@ -79,8 +85,8 @@ namespace DwarfsCity.MineContener
         {
             foreach (var dwarf in shaft.dwarfs)
             {
-                GiveReport(dwarf.Attribute + " goes to digging");
-                dwarf.Digging();
+                //GiveReport(dwarf.Attribute + " goes to digging");
+                dailyExtractionsProducts += dwarf.Digging(); // Dwarf digging and return count digged materials
             }
         }
     }
