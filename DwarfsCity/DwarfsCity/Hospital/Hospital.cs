@@ -16,10 +16,10 @@ namespace DwarfsCity
             if(Randomizer.IsDwarfBorn())
             {
                 dwarfs.Add(DwarfFactory.CreateARandomDwarf_RandomAttribute());
-                Logger.GetInstance().AddLog($"New {dwarfs.Last().Attribute} dwarf was born!");
+                Logger.GetInstance().AddLog($"HOSPITAL: New {dwarfs.Last().Attribute} dwarf was born!");
             }
 
-            Logger.GetInstance().AddLog($"No dwarf was born");
+            Logger.GetInstance().AddLog($"HOSPITAL: No dwarf was born");
 
 
         }

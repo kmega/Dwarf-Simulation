@@ -6,12 +6,11 @@ using System.Text;
 
 namespace DwarfsCity.MineContener
 {
-    public class Shaft:IReport
+    public class Shaft
     {
         public List<Dwarf> dwarfs { get; set; } = new List<Dwarf>();
         public bool Exist { get; set; } = true;
 
-        public List<string> Reports { get; set; } = new List<string>();
 
         public delegate void ShaftExplodedEvendHandler(object o, ShaftExplodedEventArgs e);
         public event ShaftExplodedEvendHandler ShaftExploded;
@@ -27,13 +26,8 @@ namespace DwarfsCity.MineContener
         public void ChangeShaftExistStatusToDestroyed()
         {
             Exist = false;
-            GiveReport("Shaft exploded!");
             OnShaftExploded();
         }
 
-        public void GiveReport(string message)
-        {
-            Reports.Add(message);
-        }
     }
 }

@@ -21,7 +21,7 @@ namespace DwarfsCity.ShopContener
                     else singles++;
                 }
             }
-            string message = $"SHOP: Dwarfs spent {System.Math.Round(totalCostOfSales,2)} Alcohol purchased {singles} Food purchased {fathers}";
+            string message = $"SHOP: Dwarfs spent {System.Math.Round(totalCostOfSales,2)}. Alcohol purchased: {singles} , Food purchased: {fathers}";
             Logger.GetInstance().AddLog(message);
         }
        
