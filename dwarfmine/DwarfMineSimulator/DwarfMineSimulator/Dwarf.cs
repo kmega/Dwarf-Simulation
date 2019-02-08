@@ -5,6 +5,8 @@ namespace DwarfMineSimulator
 {
     public class Dwarf
     {
+        internal int ID { get; set; }
+
         internal DwarfTypes Type { get; set; }
 
         internal bool Alive { get; set; }

@@ -2,16 +2,10 @@ using DwarfMineSimulator;
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace GuildTest
+namespace DwarfMineSimulatorTests
 {
     public class GuildTest
     {
-
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void T01DoesTheGuildSellWellGold()
         {

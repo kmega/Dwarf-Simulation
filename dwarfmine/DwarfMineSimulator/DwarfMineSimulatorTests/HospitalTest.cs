@@ -2,15 +2,10 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace HospitalTest
+namespace DwarfMineSimulatorTests
 {
     class HospitalTest
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void T01PopulationIsGrowing()
         {
@@ -20,7 +15,7 @@ namespace HospitalTest
             Hospital hospital = new Hospital();
             Randomizer birthAndTypeDwarf = new Randomizer();
             DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
-            hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
+            hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes, Raport.TotalBorn);
 
             if (DwarfsPopulation.Count > 0)
                 moreDwarfs = true;
@@ -38,9 +33,9 @@ namespace HospitalTest
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
             //1 - 33 Father,  34 - 66 Single, 67 - 99 Lazy, 100 Suicider
-            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(22));
-            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(68));
-            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(35));
+            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(22), Raport.TotalBorn);
+            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(68), Raport.TotalBorn);
+            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(35), Raport.TotalBorn);
 
 
             for (int i = 0; i < DwarfsPopulation.Count; i++)
@@ -67,7 +62,7 @@ namespace HospitalTest
             List<Dwarf> DwarfsPopulation = new List<Dwarf>();
             Hospital hospital = new Hospital();
             //100 Suicider
-            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(100));
+            hospital.CreateNewDwarf(DwarfsPopulation, randomizer.GenerateDwarfType(100), Raport.TotalBorn);
 
             if (DwarfsPopulation[0].Type == DwarfTypes.Suicider)
                 suicider = true;
