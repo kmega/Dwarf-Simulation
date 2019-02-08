@@ -6,7 +6,7 @@ using DwarfsCity.Reports;
 
 namespace DwarfsCity.MineContener
 {
-    public class Foreaman: IForeman, IReport
+    public class Foreaman: IForeman
     {
 
         public void SendDwarfsToShaft(List<Dwarf> dwarfs, Shaft shaft)
@@ -23,7 +23,7 @@ namespace DwarfsCity.MineContener
                 sendedDwarfs.Add(dwarf);
             }
 
-            GiveReport("Foreman send " + sendedDwarfs.Count + " dwarfs to shaft");
+            Logger.GetInstance().AddLog("Foreman send " + sendedDwarfs.Count + " dwarfs to shaft");
 
             //Remove from all dwarfs sended dwarfs
             dwarfs.RemoveAll(i => sendedDwarfs.Contains(i));
@@ -31,7 +31,7 @@ namespace DwarfsCity.MineContener
             //If on the list sended dwarfs is a sabouteur 
             if (sendedDwarfs.Select(x => x.Attribute).Contains(DwarfContener.Type.Saboteur))
             {
-                GiveReport("Oh no! in the shaft is a saboteur, the shaft will exploding for a few times");
+                Logger.GetInstance().AddLog("Oh no! in the shaft is a saboteur, the shaft will exploding for a few times");
                 shaft.ChangeShaftExistStatusToDestroyed();                
             }
         }
@@ -47,11 +47,6 @@ namespace DwarfsCity.MineContener
             shaft.dwarfs.Clear();
 
             return dwarfsThatWasWorked;
-        }
-
-        public void GiveReport(string message)
-        {
-            Logger.GetInstance().AddLog(message);
         }
     }
 }

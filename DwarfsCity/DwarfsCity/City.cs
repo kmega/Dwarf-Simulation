@@ -12,7 +12,6 @@ namespace DwarfsCity
     public class City
     {
         List<Dwarf> dwarfs = new List<Dwarf>();
-        public bool TheEndOfSimulation {get;set;} = false;
         //Start simulation
         public void Run()
         {
@@ -35,18 +34,20 @@ namespace DwarfsCity
                 Logger.GetInstance().AddLog($"DAY: {i + 1}");
                 hospital.GiveBirthToDwarf(dwarfs);
                 dwarfs = mine.StartWorking(dwarfs);
-                if (TheEndOfSimulation == true)
-                    break;
                 bank.ExchangeItemsToMoney(dwarfs);
                 guild.GetTaxesofAllDwarfs(dwarfs);
-                bar.GiveAFoodToDwarfs(dwarfs);
-                if (TheEndOfSimulation == true)
-                    break;               
-                shop.PerformShopping(dwarfs);
-                ui.Display(Logger.GetInstance().GetLogs());
-                Console.ReadKey();
+                bar.GiveAFoodToDwarfs(dwarfs);           
+                shop.PerformShopping(dwarfs);                
             }
+            ui.Display(Logger.GetInstance().GetLogs());
+            Console.ReadKey();
+        }
 
+
+        public static void TheEndOfSimulation()
+        {
+            Environment.Exit(0);
+            Console.ReadKey();
         }
 
         public List<Dwarf> GetDwarfs()

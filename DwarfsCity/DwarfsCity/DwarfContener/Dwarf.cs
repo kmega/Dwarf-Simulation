@@ -8,11 +8,12 @@ using System.Text;
 
 namespace DwarfsCity.DwarfContener
 {
-    public class Dwarf: IReport
+    public class Dwarf
     {
         //Field
         public Backpack Backpack = new Backpack();
         public Type Attribute { get; set; }
+        int extractionsProducts = 0;
 
         public void AddItemsToBackpack(Item item)
         {
@@ -30,22 +31,17 @@ namespace DwarfsCity.DwarfContener
             Attribute = attribute;
         }
 
-        public void Digging()
+        public int Digging()
         {
             for (int i = 0; i < Randomizer.CountsOfDigging(); i++)
             {
                 //Digging minerals by ratio  -> 5% mithril, 15% gold 35% silver, 45% dirty gold
                 var toDigging = Randomizer.ItemDigged();
                 Backpack.Items.Add(toDigging);
-
-                GiveReport(Attribute + " digged " + toDigging);
+                extractionsProducts++;
             }
-            
-        }
 
-        public void GiveReport(string message)
-        {
-            Logger.GetInstance().AddLog(message);
+            return extractionsProducts;
         }
     }
 }
