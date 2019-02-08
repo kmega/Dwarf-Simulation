@@ -1,4 +1,5 @@
-﻿using MiningSimulatorByKPMM.DwarfsTypes;
+﻿using MiningSimulatorByKPMM.ApplicationLogic;
+using MiningSimulatorByKPMM.DwarfsTypes;
 using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Hospital.RandomGenerators;
 using MiningSimulatorByKPMM.Reports;
@@ -20,39 +21,40 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
         public Hospital(IBirthChanceRandomizer birthChanceRandomizer,
             IDwarfTypeRandomizer dwarfTypeRandomizer)
         {
-            SetInitialState();
-            this.birthChanceRandomizer = birthChanceRandomizer;
-            this.dwarfTypeRandomizer = dwarfTypeRandomizer;
+            SetInitialState(birthChanceRandomizer, dwarfTypeRandomizer);
         }
 
         public Hospital()
         {
-            SetInitialState();
-            birthChanceRandomizer = new IsDwarfBorn1PercentStrategy();
-            dwarfTypeRandomizer = new DwarfTypeGenerator();
+            SetInitialState(new IsDwarfBorn1PercentStrategy(), 
+                new DwarfTypeGenerator());
         }
 
         #endregion Constructors
 
-        private void SetInitialState()
+        private void SetInitialState(IBirthChanceRandomizer birthChanceRandomizer, 
+            IDwarfTypeRandomizer dwarfTypeRandomizer)
         {
+            this.birthChanceRandomizer = birthChanceRandomizer;
+            this.dwarfTypeRandomizer = dwarfTypeRandomizer;
             logger = Logger.Instance;
             totalNumberOfBirth = 0;
         }
 
-        public Dwarf TryToCreateDwarf()
+        public List<Dwarf> CreateDwarf()
         {
+            List<Dwarf> dwarves = new List<Dwarf>();
             if (birthChanceRandomizer.IsDwarfBorn())
             {
-                E_DwarfType type = dwarfTypeRandomizer.GenerateType();
+                E_DwarfType type = dwarfTypeRandomizer.GenerateType();                
                 logger.AddLog($"A {type} is born.");
                 totalNumberOfBirth++;
-                return new Dwarf(type);
+                dwarves.Add(new Dwarf(type));
             }
-            return null;
+            return dwarves;
         }
 
-        public List<Dwarf> BuildInitialSocietyMembers()
+        public List<Dwarf> BuildInitialDwarves()
         {
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 10; i++)
@@ -60,7 +62,6 @@ namespace MiningSimulatorByKPMM.Locations.Hospital
                 dwarves.Add(new Dwarf(dwarfTypeRandomizer.GenerateType()));
             }
             logger.AddLog($"Initial Society Size: {dwarves.Count}");
-
             return dwarves;
         }
     }

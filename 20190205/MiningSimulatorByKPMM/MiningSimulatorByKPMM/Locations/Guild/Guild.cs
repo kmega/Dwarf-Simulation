@@ -15,8 +15,14 @@ namespace MiningSimulatorByKPMM.Locations.Guild
 
         public BankAccount Account { get; private set; }
         private ILogger logger;
-        private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket =
-            new Dictionary<E_Minerals, ICreateOreValue>()
+        private Dictionary<E_Minerals, ICreateOreValue> OreOnMarket;
+            
+
+        public Guild()
+        {
+            Account = new BankAccount();
+            logger = Logger.Instance;
+            OreOnMarket = new Dictionary<E_Minerals, ICreateOreValue>()
 
             {
                 {E_Minerals.Gold, new ValueOfGold()},
@@ -24,12 +30,23 @@ namespace MiningSimulatorByKPMM.Locations.Guild
                 {E_Minerals.Mithril, new ValueOfMithril() },
                 {E_Minerals.Silver, new ValueOfSilver() }
             };
+        }
 
-        public Guild()
+        public Guild(ICreateOreValue value)
         {
             Account = new BankAccount();
             logger = Logger.Instance;
+            OreOnMarket = new Dictionary<E_Minerals, ICreateOreValue>()
+
+            {
+                {E_Minerals.Gold, value},
+                {E_Minerals.DirtGold, value },
+                {E_Minerals.Mithril, value },
+                {E_Minerals.Silver, value }
+
+            };
         }
+
 
 
         private int ReturnValue(E_Minerals mineralsType)

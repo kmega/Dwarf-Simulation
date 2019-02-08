@@ -11,113 +11,107 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 {
     public class SimulationEngine
     {
-        private SimulationState _currentSimulationState;
-        private Hospital hospital;
-        private MineSupervisor mineSupervisor;
-        private Guild guild;
-        private Market market;
-        private Canteen canteen;
-        private GeneralBank generalBank;
-        private Logger logger;
+        private SimulationState _simulationState;
+        private Hospital _hospital;
+        private MineSupervisor _mineSupervisor;
+        private Guild _guild;
+        private Market _market;
+        private Canteen _canteen;
+        private GeneralBank _generalBank;
+        private Logger _logger;
 
         public SimulationEngine()
         {
-            _currentSimulationState = new SimulationState();
-            hospital = new Hospital();
-            mineSupervisor = new MineSupervisor();
-            guild = new Guild();
-            market = new Market();
-            canteen = new Canteen();
-            generalBank = new GeneralBank();
-            logger = Logger.Instance;
+            _simulationState = new SimulationState();
+            _hospital = new Hospital();
+            _mineSupervisor = new MineSupervisor();
+            _guild = new Guild();
+            _market = new Market();
+            _canteen = new Canteen();
+            _generalBank = new GeneralBank();
+            _logger = Logger.Instance;
         }
 
         public void Start()
         {
-            canteen.FoodRations = 200;
-            _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
+            _canteen.FoodRations = 200;
+            _simulationState.Dwarves = _hospital.BuildInitialDwarves();
             for (int i = 0; i < 30; i++)
             {
+                _logger.AddLog($"\n\nDay {i + 1}\n\n");
 
-                logger.AddLog($"\n\nDay {i+1}\n\n");
-                //Hospital.TryToBorn(currentSimulationState) -> Dwarf or Null;
-                BirthDwarf(hospital);
+                BirthDwarf(_hospital);
+                MiningTreasures();
+                _guild.DwarvesVisitGuild(_simulationState.Dwarves);
+                _market.PerformShopping(_simulationState.Dwarves, _generalBank);
+                _canteen.GiveFoodRations(GetAliveDwarves());
+                _canteen.OrderFoodRations();
+                UpdateAccount.MoveDailyPaymentToAccount(_simulationState.Dwarves);
 
-                //Mine.Work(List<Backpack>,List<dwarfType>) -> aktualizacja Backpack;
-                var dwarfBackpacks = _currentSimulationState.Dwarves.Select(p => p.Backpack).ToList();
-                var dwarfTypes = _currentSimulationState.Dwarves.Select(p => p.DwarfType).ToList();
-                var dwarfLifeStatus = _currentSimulationState.Dwarves.Select(p => p.IsAlive).ToList();
-
-                mineSupervisor.Work(ref dwarfBackpacks, dwarfTypes, ref dwarfLifeStatus);
-
-                UpdateDwarfLifeStatus(dwarfLifeStatus);
-                UpdateDwarfBackpacks(dwarfBackpacks);
-
-                //Guild.PayWorkers(List<BankAccount> bankAccounts, backpacks);
-                guild.DwarvesVisitGuild(_currentSimulationState.Dwarves);
-
-                market.PerformShopping(_currentSimulationState.Dwarves, generalBank);
-
-                _currentSimulationState.NumberOfDeadDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == false).Count();
-
-                //Canteen(numberOfWorkersToday)
-                var aliveDwarves = _currentSimulationState.Dwarves.Where(p => p.IsAlive == true).Count();
-                canteen.GiveFoodRations(aliveDwarves);
-                canteen.OrderFoodRations();
-
-                UpdateAccount.MoveDailyPaymentToAccount(_currentSimulationState.Dwarves);
-                
-
-                if (ShouldSimulationBeContinued(canteen) > 0)
+                if (ShouldSimulationBeContinued(_canteen))
                 {
                     break;
                 }
             }
-            PrepareFinalState();
-            logger.GenerateReport(_currentSimulationState);
+            _logger.GenerateReport(EndState());
         }
 
-        private int ShouldSimulationBeContinued(Canteen canteen)
+        private int GetAliveDwarves()
         {
-            if (_currentSimulationState.NumberOfDeadDwarves == _currentSimulationState.Dwarves.Count ||
-                _currentSimulationState.Dwarves.Where(p => p.IsAlive).Count() > canteen.FoodRations)
+            return _simulationState.Dwarves.Where(p => p.IsAlive == true).Count();
+        }
+
+        private void MiningTreasures()
+        {
+            var dwarfBackpacks = _simulationState.Dwarves.Select(p => p.Backpack).ToList();
+            var dwarfTypes = _simulationState.Dwarves.Select(p => p.DwarfType).ToList();
+            var dwarfLifeStatus = _simulationState.Dwarves.Select(p => p.IsAlive).ToList();
+
+            _mineSupervisor.Work(ref dwarfBackpacks, dwarfTypes, ref dwarfLifeStatus);
+
+            UpdateDwarfLifeStatus(dwarfLifeStatus);
+            UpdateDwarfBackpacks(dwarfBackpacks);
+        }
+
+        private bool ShouldSimulationBeContinued(Canteen canteen)
+        {
+            if (_simulationState.NumberOfDeadDwarves == _simulationState.Dwarves.Count ||
+                _simulationState.Dwarves.Where(p => p.IsAlive).Count() > canteen.FoodRations)
             {
-                return 1;
+                return true;
             }
-            return 0;
+            return false;
         }
 
-        private void PrepareFinalState()
+        private SimulationState EndState()
         {
-            _currentSimulationState.NumberOfBirths = hospital.totalNumberOfBirth;
-            _currentSimulationState.guildBankAccount = guild.Account.OverallAccount;
-            _currentSimulationState.taxBankAccount = generalBank.BankTresure();
-            _currentSimulationState.marketState = market.marketState;
-            _currentSimulationState.extractedOre = mineSupervisor.MineSupervisorStats;
+            _simulationState.NumberOfBirths = _hospital.totalNumberOfBirth;
+            _simulationState.GuildBankAccount = _guild.Account.OverallAccount;
+            _simulationState.TaxBankAccount = _generalBank.BankTresure();
+            _simulationState.MarketState = _market.marketState;
+            _simulationState.ExtractedOre = _mineSupervisor.MineSupervisorStats;
+            return _simulationState;
         }
 
         private void BirthDwarf(Hospital hospital)
         {
-            var dwarf = hospital.TryToCreateDwarf();
-            if (dwarf != null)
-            {
-                _currentSimulationState.Dwarves.Add(dwarf);
-            }
+            var dwarves = hospital.CreateDwarf();
+            _simulationState.Dwarves.AddRange(dwarves);
         }
 
         private void UpdateDwarfBackpacks(System.Collections.Generic.List<PersonalItems.Backpack> dwarfBackpacks)
         {
-            for (int k = 0; k < _currentSimulationState.Dwarves.Count; k++)
+            for (int k = 0; k < _simulationState.Dwarves.Count; k++)
             {
-                _currentSimulationState.Dwarves[k].Backpack = dwarfBackpacks[k];
+                _simulationState.Dwarves[k].Backpack = dwarfBackpacks[k];
             }
         }
 
         private void UpdateDwarfLifeStatus(System.Collections.Generic.List<bool> dwarfLifeStatus)
         {
-            for (int j = 0; j < _currentSimulationState.Dwarves.Count; j++)
+            for (int j = 0; j < _simulationState.Dwarves.Count; j++)
             {
-                _currentSimulationState.Dwarves[j].IsAlive = dwarfLifeStatus[j];
+                _simulationState.Dwarves[j].IsAlive = dwarfLifeStatus[j];
             }
         }
     }
