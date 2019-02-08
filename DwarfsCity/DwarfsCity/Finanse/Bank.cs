@@ -1,5 +1,4 @@
 ﻿using System;
-
 using System.Collections.Generic;
 using DwarfsCity.DwarfContener;
 using DwarfsCity.DwarfContener.DwarfEquipment;

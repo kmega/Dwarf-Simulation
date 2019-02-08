@@ -11,10 +11,7 @@ namespace DwarfsCity
 {
     public class Bar
     {
-<<<<<<< HEAD
-        public int SupplyofFood { get; set; } = 200;        
-        
-=======
+
         public int SupplyofFood { get; set; } = 200;    
         public int GivenFoodToDwarfsDuringOneDay { get; set; }
         DisplayReport ui = new DisplayReport();
@@ -32,7 +29,6 @@ namespace DwarfsCity
             else
                 return DwarfsCount;
         }
->>>>>>> 5ab3a55c3295203084fb59e8a1a73cebbe5a9d06
 
         private void ReportBar()
         {
@@ -45,7 +41,8 @@ namespace DwarfsCity
                 ThereIsADelivery();
             }
             else
-                AllDwarfsEatADinner();        }
+                AllDwarfsEatADinner();
+        }
 
         private void AllDwarfsEatADinner()
         {
