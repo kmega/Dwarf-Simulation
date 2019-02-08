@@ -26,7 +26,7 @@ namespace DwarfsCity
             Cementary cementary = new Cementary();                      
             hospital.InitialNumberOfDwarfs(dwarfs, 10);
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 30; i++)
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
                 Logger.GetInstance().AddLog($"DAY: {i + 1}");
@@ -38,6 +38,7 @@ namespace DwarfsCity
                 shop.PerformShopping(dwarfs);                      
             }
             ui.Display(Logger.GetInstance().GetLogs());
+            Console.ReadKey();
         }
 
         public static void TheEndOfSimulation()
