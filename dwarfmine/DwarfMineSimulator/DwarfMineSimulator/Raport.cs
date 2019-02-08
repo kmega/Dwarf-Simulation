@@ -28,7 +28,7 @@ namespace DwarfMineSimulator
 
         internal static int FoodBought {  get; set; } = 0;
         internal static int AlcoholBought { get; set; } = 0;
-        internal static decimal ShopEarned { get; set; }
+        internal static decimal ShopEarned { get; set; } = 0.0m;
 
 
         internal static string[] EndGameStats()
@@ -56,7 +56,7 @@ namespace DwarfMineSimulator
             raport[18] = "### SHOP ### \n";
             raport[19] = "Food bought: " + Raport.FoodBought;
             raport[20] = "Alcohol bought: " + Raport.AlcoholBought;
-            raport[21] = "Shop earned: " + Raport.ShopEarned;
+            raport[21] = "Shop earned: " + Math.Round(Raport.ShopEarned, 2);
 
 
             return raport;
