@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DwarfMineSimulator
 {
@@ -11,25 +10,29 @@ namespace DwarfMineSimulator
 
         internal List<Dwarf> MineInShafts(List<Dwarf> dwarfsPopulation, List<Shaft> shaftsNumber)
         {
-            Console.WriteLine("### Mines ###\n");
-            int collapsedShaftsCounter = 0;
+            Console.WriteLine("## Mines ##\n");
+
+            Shaft _shaft;
+            int _collapsedShaftsCounter = 0;
 
             while (dwarfsPopulation.Count > 0)
             {
                 for (int index = 0; index < shaftsNumber.Count; index++)
                 {
-                    if (shaftsNumber[index].Collapsed == false)
+                    _shaft = shaftsNumber[index];
+
+                    if (_shaft.Collapsed == false)
                     {
-                        shaftsNumber[index] = _shafts.AddToShaft(shaftsNumber[index], dwarfsPopulation);
-                        dwarfsPopulation.RemoveRange(0, shaftsNumber[index].Miners.Count);
+                        _shaft = _shafts.AddToShaft(_shaft, dwarfsPopulation);
+                        dwarfsPopulation.RemoveRange(0, _shaft.Miners.Count);
                     }
                     else
                     {
-                        collapsedShaftsCounter++;
+                        _collapsedShaftsCounter++;
                     }
                 }
 
-                if (collapsedShaftsCounter <= shaftsNumber.Count)
+                if (_collapsedShaftsCounter <= shaftsNumber.Count)
                 {
                     shaftsNumber = MineForOre(shaftsNumber);
                 }
@@ -41,28 +44,30 @@ namespace DwarfMineSimulator
                 }
             }
 
-            Console.WriteLine("\n");
-
             return _dwarfsThatMined;
         }
 
         private List<Shaft> MineForOre(List<Shaft> shaftsNumber)
         {
+            Shaft _shaft;
+
             for (int index = 0; index < shaftsNumber.Count; index++)
             {
-                shaftsNumber[index] = _shafts.CheckForSuicider(shaftsNumber[index]);
+                _shaft = shaftsNumber[index];
 
-                if (shaftsNumber[index].Collapsed == false)
+                _shaft = _shafts.CheckForSuicider(_shaft);
+
+                if (_shaft.Collapsed == false)
                 {
-                    shaftsNumber[index] = _shafts.GetOre(shaftsNumber[index]);
+                    _shaft = _shafts.GetOre(_shaft);
                 }
 
-                for (int i = 0; i < shaftsNumber[index].MaxInside; i++)
+                for (int i = 0; i < _shaft.MaxInside; i++)
                 {
                     try
                     {
-                        _dwarfsThatMined.Add(shaftsNumber[index].Miners[0]);
-                        shaftsNumber[index].Miners.RemoveAt(0);
+                        _dwarfsThatMined.Add(_shaft.Miners[0]);
+                        _shaft.Miners.RemoveAt(0);
                     }
                     catch
                     {

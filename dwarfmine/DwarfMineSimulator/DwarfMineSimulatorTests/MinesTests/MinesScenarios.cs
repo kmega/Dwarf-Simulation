@@ -125,33 +125,6 @@ namespace DwarfMineSimulatorTests
             }
         }
 
-        // Scenario: Suicider should kill everyone in shaft and collapse this shaft.
-        [Test]
-        public void SuiciderShouldKillEveryoneInShaftAndCollapseThisShaft()
-        {
-            // For
-            Mines mines = new Mines();
-
-            List<Dwarf> dwarfs = new List<Dwarf>();
-            List<Shaft> shafts = new List<Shaft>();
-
-            // Given
-            for (int i = 0; i < 4; i++)
-            {
-                dwarfs.Add(new Dwarf() { Type = DwarfTypes.Father });
-            }
-            dwarfs.Add(new Dwarf() { Type = DwarfTypes.Suicider });
-            shafts.Add(new Shaft());
-
-            dwarfs = mines.MineInShafts(dwarfs, shafts);
-
-            // Assert
-            for (int i = 0; i < dwarfs.Count; i++)
-            {
-                Assert.IsTrue(dwarfs[i].Alive == false);
-            }
-        }
-
         // Scenario:
         // First group should die in first shaft,
         // Second group should mine in second shaft,

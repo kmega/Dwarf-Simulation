@@ -64,5 +64,12 @@ namespace DwarfMineSimulator
 
             return dictionary;
         }
+
+        internal int ReturnToFrom(int first, int last)
+        {
+            int random = rnd.Next(first, last + 1);
+
+            return random;
+        }
     }
 }
