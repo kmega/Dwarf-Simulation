@@ -6,16 +6,16 @@ namespace DwarfMineSimulator
 {
     class Hospital
     {
-        Randomizer birthAndTypeDwarf = new Randomizer();
+        Randomizer randomizer = new Randomizer();
         public List<Dwarf> TryBirthDwarf(List<Dwarf> DwarfsPopulation)
         {
             CalculatingDataForTheReport calculating = new CalculatingDataForTheReport();
             ViewInformation information = new ViewInformation();
-            bool chanceToBorn = birthAndTypeDwarf.WillHeBeBorn();
+            bool chanceToBorn = randomizer.WillHeBeBorn();
             int dailyRaportBornFather = 0, dailyRaportBornLazy = 0, dailyRaportBornSingle = 0, dailyRaportBornSuicider = 0;
             if (chanceToBorn)
             {
-                DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+                DwarfTypes dwarfTypes = randomizer.RandomTypeDwarf();
                 //Sent information to raport daily and from 30 days
                 calculating.NumberOfBirthsAndTypes(dwarfTypes);
                 CreateNewDwarf(DwarfsPopulation, dwarfTypes, Raport.TotalBorn);
@@ -47,7 +47,7 @@ namespace DwarfMineSimulator
         {
             for (int i = 0; i < number; i++)
             {
-                DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
+                DwarfTypes dwarfTypes = randomizer.RandomTypeDwarf();
                 CreateNewDwarf(DwarfsPopulation, dwarfTypes, i);
             }
         }
