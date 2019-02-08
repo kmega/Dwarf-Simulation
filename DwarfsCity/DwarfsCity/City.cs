@@ -12,7 +12,7 @@ namespace DwarfsCity
     public class City
     {
         List<Dwarf> dwarfs = new List<Dwarf>();
-        public bool TheEndOfSimulation {get;set;} = false;
+        DisplayReport ui = new DisplayReport();
         //Start simulation
         public void Run()
         {
@@ -23,37 +23,32 @@ namespace DwarfsCity
             Guild guild = new Guild();
             Bar bar = new Bar();
             Shop shop = new Shop();
-            Cementary cementary = new Cementary();
-            DisplayReport ui = new DisplayReport();
-            
+            Cementary cementary = new Cementary();                      
             hospital.InitialNumberOfDwarfs(dwarfs, 10);
 
             for (int i = 0; i < 30; i++)
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
-
                 Logger.GetInstance().AddLog($"DAY: {i + 1}");
                 hospital.GiveBirthToDwarf(dwarfs);
-                dwarfs = mine.StartWorking(dwarfs);
-                if (TheEndOfSimulation == true)
-                    break;
+                dwarfs = mine.StartWorking(dwarfs);                           
                 bank.ExchangeItemsToMoney(dwarfs);
                 guild.GetTaxesofAllDwarfs(dwarfs);
-                bar.GiveAFoodToDwarfs(dwarfs);
-                if (TheEndOfSimulation == true)
-                    break;               
-                shop.PerformShopping(dwarfs);
-                ui.Display(Logger.GetInstance().GetLogs());
-                Console.ReadKey();
+                bar.GiveAFoodToDwarfs(dwarfs);                    
+                shop.PerformShopping(dwarfs);                      
             }
+            ui.Display(Logger.GetInstance().GetLogs());
+        }
 
+        public static void TheEndOfSimulation()
+        {
+            Console.ReadKey();
+            Environment.Exit(0);
         }
 
         public List<Dwarf> GetDwarfs()
         {            
             return dwarfs;
-        }
-        
+        }        
     }
-    
 }

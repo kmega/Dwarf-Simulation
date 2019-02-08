@@ -37,9 +37,7 @@ namespace DwarfsCity
 
         private void ReportGuild()
         {
-
-             GiveReport("Guild: Today all dwarfs pay " + TheSumOfTaxesOnOneDay + " taxes. The current state of the guild account is " + GeneralGuildFunds + ".");    
-
+             GiveReport("Guild: Today all dwarfs pay " + Math.Round(TheSumOfTaxesOnOneDay,2) + " taxes. \nThe current state of the guild account is " + Math.Round(GeneralGuildFunds,2) + ".");    
         }
 
         public void GiveReport(string message)
