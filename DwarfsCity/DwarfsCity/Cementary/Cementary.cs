@@ -20,6 +20,7 @@ namespace DwarfsCity
 
         public static void OnShaftExploded(object o, ShaftExplodedEventArgs dwarfs)
         {
+            if (dwarfs.KilledDwarfs.Count == 0) return;
             Logger.GetInstance().AddLog("CEMENTARY:");
 
             AddKilledDwarfsToGraves(dwarfs.KilledDwarfs);
@@ -31,6 +32,7 @@ namespace DwarfsCity
 
             }
 
+            dwarfs.KilledDwarfs.Clear();
         }
     }
 }

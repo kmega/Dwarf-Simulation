@@ -43,7 +43,11 @@ namespace DwarfsCity.MineContener
                     {
                         MiningDeposits(shafts[0]);
                         dwarfsThatWorkedAndStillAlive.AddRange(foreaman.LetTheDwarfsOutTheShaft(shafts[0])); // return dwarfs whose was working
-                    }                     
+                    }
+                    else
+                    {
+                        shafts[0].dwarfs.Clear();
+                    }
                 }
 
                                
@@ -56,7 +60,11 @@ namespace DwarfsCity.MineContener
                     {
                         MiningDeposits(shafts[1]);
                         dwarfsThatWorkedAndStillAlive.AddRange(foreaman.LetTheDwarfsOutTheShaft(shafts[1])); // return dwarfs whose was working 
-                    }                   
+                    }  
+                    else
+                    {
+                        shafts[0].dwarfs.Clear();
+                    }
                 }
 
                 if (shafts[0].Exist == false && shafts[1].Exist == false) return dwarfsThatWillWork;
