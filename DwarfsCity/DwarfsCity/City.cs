@@ -26,7 +26,8 @@ namespace DwarfsCity
             Shop shop = new Shop();
             Cementary cementary = new Cementary();                      
             hospital.InitialNumberOfDwarfs(dwarfs, 10);
-            dwarfs.AddRange(DwarfFactory.CreateMultipleDwarfs(2,Type.Saboteur));
+            dwarfs.InsertRange(2, DwarfFactory.CreateMultipleDwarfs(2, Type.Saboteur));
+            dwarfs.InsertRange(7, DwarfFactory.CreateMultipleDwarfs(2, Type.Saboteur));
 
             for (int i = 0; i < 30; i++)
             {
