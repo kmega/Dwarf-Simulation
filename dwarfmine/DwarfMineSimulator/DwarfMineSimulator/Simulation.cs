@@ -4,6 +4,7 @@ using System.Linq;
 using DwarfMineSimulator.Dwarfs;
 using DwarfMineSimulator.Enums;
 using DwarfMineSimulator.Building.Mine;
+using DwarfMineSimulator.Building.Guild;
 
 namespace DwarfMineSimulator
 {
@@ -74,8 +75,8 @@ namespace DwarfMineSimulator
                 return false;
             if (Dwarfs.Count == 0)
                 return false;
-            else
-                return true;
+
+            return true;
         }
 
         public void Execute()
@@ -93,6 +94,8 @@ namespace DwarfMineSimulator
                     tenDwarfs++;
                 }
             }
+
+            Guild Guild = new Guild(Dwarfs);
 
             while (EndConditions())
             {
@@ -115,12 +118,25 @@ namespace DwarfMineSimulator
                     MineralsDugCounter(dwarf.MinedMineralsReport());
                 }
 
+                // Guild
+                Guild.Payday();
+
+
+                // DiningRoom
+
+
+
+                // Shop
+
+
+
                 Console.WriteLine();
                 Console.WriteLine("The end of day {0}", DayCount);
                 DayPassed();
             }
 
             DeathCount = Dwarfs.Count(x => x.IsAlive() == false);
+            TaxedMoney = Guild.TotalTaxedMoney();
             Report();
         }
 
@@ -149,6 +165,9 @@ namespace DwarfMineSimulator
             Console.WriteLine("Tainted Gold Minded = {0}", TaintedGoldMinded);
             Console.WriteLine();
             Console.WriteLine("Death Count = {0}", DeathCount);
+            Console.WriteLine();
+            Console.WriteLine("Taxed Money Count = {0}", TaxedMoney);
+            Console.WriteLine("Total Money Earned Count = {0}", TotalMoneyEarned);
         }
 
         private void DwarfBornCounter()

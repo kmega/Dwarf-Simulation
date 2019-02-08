@@ -8,6 +8,7 @@
   <ItemGroup>
     <Folder Include="Building\Mine\" />
     <Folder Include="Building\Hospital\" />
+    <Folder Include="Building\Guild\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Building\Mine\ShaftB.cs" />

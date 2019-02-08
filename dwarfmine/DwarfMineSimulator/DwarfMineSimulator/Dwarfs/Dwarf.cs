@@ -7,16 +7,6 @@ using DwarfMineSimulator.Building.Mine;
 
 namespace DwarfMineSimulator.Dwarfs
 {
-    internal class DwarfsEventArgs : EventArgs
-    {
-        public readonly Dictionary<Minerals, int> MineralsMined;
-
-        public DwarfsEventArgs (Dictionary<Minerals, int> mineralsMined)
-        {
-            MineralsMined = mineralsMined; 
-        }
-    }
-
     internal class Dwarf
     {
         int Identifier;
@@ -36,8 +26,6 @@ namespace DwarfMineSimulator.Dwarfs
         Dictionary<Minerals, int> MineralsMined { get; set; }
 
         Dictionary<Minerals, int> MineralsMinedToday { get; set; }
-
-        public event EventHandler<DwarfsEventArgs> MinedMinerals;
 
         public Dwarf(int id, DwarfTypes type, bool alive, decimal money)
         {
@@ -61,12 +49,6 @@ namespace DwarfMineSimulator.Dwarfs
         public DwarfTypes GetDwarfType()
         {
             return Type;
-        }
-
-        protected virtual void OnMinedMineral(DwarfsEventArgs minedMinerals)
-        {
-            if (minedMinerals != null)
-                MinedMinerals(this, minedMinerals);
         }
 
         public void MineMinerals()
@@ -154,6 +136,12 @@ namespace DwarfMineSimulator.Dwarfs
         public Dictionary<Minerals, int> MinedMineralsReport()
         {
             return MineralsMinedToday;
+        }
+
+        public void TakeMoney(decimal moneyFromGuild)
+        {
+            MoneyEarndedThisDay = moneyFromGuild;
+            Money += MoneyEarndedThisDay;
         }
     }
 }
