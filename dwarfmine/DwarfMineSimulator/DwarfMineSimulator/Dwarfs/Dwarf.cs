@@ -18,7 +18,7 @@ namespace DwarfMineSimulator.Dwarfs
         decimal MoneyEarndedThisDay { get; set; }
         Dictionary<Minerals, int> MineralsMined { get; set; }
         Dictionary<Minerals, int> MineralsMinedToday { get; set; }
-        Dictionary<ShopGoods, int> ShoppedGoods { get; set; }
+        Dictionary<ShopGoods, decimal> ShoppedGoods { get; set; }
 
         public Dwarf(int id, DwarfTypes type, bool alive, decimal money)
         {
@@ -37,7 +37,7 @@ namespace DwarfMineSimulator.Dwarfs
                 { Minerals.TaintedGold, 0 }
             };
             MineralsMinedToday = new Dictionary<Minerals, int>();
-            ShoppedGoods = new Dictionary<ShopGoods, int>
+            ShoppedGoods = new Dictionary<ShopGoods, decimal>
             {
                 { ShopGoods.Food, 0 },
                 { ShopGoods.Alcohol, 0 }
@@ -139,7 +139,12 @@ namespace DwarfMineSimulator.Dwarfs
         public void TakeMoney(decimal moneyFromGuild)
         {
             MoneyEarndedThisDay = moneyFromGuild;
-            Money += MoneyEarndedThisDay;
+            //Money += MoneyEarndedThisDay;
+        }
+
+        private void PutMoneyToSock()
+        {
+            Money += (MoneyEarndedThisDay / 2);
         }
 
         public void Eat()
@@ -152,16 +157,19 @@ namespace DwarfMineSimulator.Dwarfs
             switch (shopGoods)
             {
                 case ShopGoods.Food:
-                    ShoppedGoods[ShopGoods.Food] += 1;
+                    ShoppedGoods[ShopGoods.Food] += (MoneyEarndedThisDay / 2);
                     break;
                 case ShopGoods.Alcohol:
-                    ShoppedGoods[ShopGoods.Alcohol] += 1;
+                    ShoppedGoods[ShopGoods.Alcohol] += (MoneyEarndedThisDay / 2);
                     break;
             }
+
+            PutMoneyToSock();
+
             Console.WriteLine("Dwarf {0} bought {1} in shop.", this.GetId(), shopGoods);
         }
 
-        public int BoughtGoodsCount(ShopGoods shopGoods)
+        public decimal BoughtGoodsCount(ShopGoods shopGoods)
         {
             switch (shopGoods)
             {

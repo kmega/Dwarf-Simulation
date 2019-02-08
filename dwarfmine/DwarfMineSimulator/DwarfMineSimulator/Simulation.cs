@@ -37,8 +37,8 @@ namespace DwarfMineSimulator
         int RationsLeft { get; set; }
         int FoodEaten { get; set; }
 
-        int FoodBought { get; set; }
-        int AlcoholBought { get; set; }
+        decimal FoodBought { get; set; }
+        decimal AlcoholBought { get; set; }
 
 
         public Simulation()

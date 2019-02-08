@@ -12,7 +12,7 @@ namespace DwarfMineSimulator.Building.Shop
 
         public Shop(List<Dwarf> dwarfsInShop)
         {
-            DwarfsInShop = dwarfsInShop;
+            DwarfsInShop = dwarfsInShop.Where(dwarf => dwarf.IsAlive() == true).ToList();
         }
 
         public void DoShopping()
