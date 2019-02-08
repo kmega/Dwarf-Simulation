@@ -48,11 +48,11 @@ namespace MiningSimulatorByKPMM.Reports
             Console.WriteLine();
             Console.WriteLine();
             DisplayDeadDwarves(finalState.NumberOfDeadDwarves);
-            DisplayMiningSummary(finalState.extractedOre);
-            DisplayShopSummary(finalState.marketState);
+            DisplayMiningSummary(finalState.ExtractedOre);
+            DisplayShopSummary(finalState.MarketState);
             DisplayHospitalBirths(finalState.NumberOfBirths);
-            DisplayGuildBankState(finalState.guildBankAccount);
-            DisplayTaxBankState(finalState.taxBankAccount);
+            DisplayGuildBankState(finalState.GuildBankAccount);
+            DisplayTaxBankState(finalState.TaxBankAccount);
         }
 
         private void DisplayHospitalBirths(int numberOfBirths)
