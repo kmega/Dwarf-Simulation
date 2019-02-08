@@ -35,7 +35,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         public void Start()
         {
             canteen.FoodRations = 200;
-            _currentSimulationState.Dwarves = hospital.BuildInitialSocietyMembers();
+            _currentSimulationState.Dwarves = hospital.BuildInitialDwarves();
             for (int i = 0; i < 30; i++)
             {
 

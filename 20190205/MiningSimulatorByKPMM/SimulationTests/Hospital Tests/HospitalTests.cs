@@ -28,9 +28,9 @@ namespace SimulationTests.Hospital_Tests
             SetDwarfTypeMock(E_DwarfType.Dwarf_Suicide);
             var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
             //when
-            var result = hospital.TryToCreateDwarf();
+            var result = hospital.CreateDwarf();
             //then
-            Assert.AreEqual(result.DwarfType, E_DwarfType.Dwarf_Suicide);
+            Assert.AreEqual(result[0].DwarfType, E_DwarfType.Dwarf_Suicide);
         }
         [TestMethod]
         public void ShouldCreateFatherDwarf()
@@ -40,9 +40,9 @@ namespace SimulationTests.Hospital_Tests
             SetDwarfTypeMock(E_DwarfType.Dwarf_Father);
             var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
             //when
-            var result = hospital.TryToCreateDwarf();
+            var result = hospital.CreateDwarf();
             //then
-            Assert.AreEqual(result.DwarfType, E_DwarfType.Dwarf_Father);
+            Assert.AreEqual(result[0].DwarfType, E_DwarfType.Dwarf_Father);
         }
         [TestMethod]
         public void ShouldReturnNullWhenFirstRandomReturnDifferentThan0()
@@ -51,9 +51,9 @@ namespace SimulationTests.Hospital_Tests
             SetBirthMock(false);
             var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
             //when
-            var result = hospital.TryToCreateDwarf();
+            var result = hospital.CreateDwarf();
             //then
-            Assert.IsNull(result);
+            Assert.IsTrue(result.Count == 0);
         }
         [TestMethod]
         public void ShouldCreateListOf10DwarfFather()
@@ -62,7 +62,7 @@ namespace SimulationTests.Hospital_Tests
             SetDwarfTypeMock(E_DwarfType.Dwarf_Father);
             var hospital = new Hospital(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
             //when
-            var result = hospital.BuildInitialSocietyMembers();
+            var result = hospital.BuildInitialDwarves();
             //then
             Assert.AreEqual(10, result.Count);
             foreach(var dwarf in result)
