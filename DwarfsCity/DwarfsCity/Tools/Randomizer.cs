@@ -9,7 +9,7 @@ namespace DwarfsCity.Tools
 {
     public class Randomizer:IRandomizer
     {
-        public int GetChanceRatio(int min = 1,int max = 100)
+        private int GetChanceRatio(int min = 1,int max = 100)
         {
             Random rand = new Random();
             return rand.Next(min, max); 
@@ -17,6 +17,7 @@ namespace DwarfsCity.Tools
 
         public static bool IsDwarfBorn()
         {
+            return GetCahnceRatio(1);
             Randomizer randomizer = new Randomizer();
             if (randomizer.GetChanceRatio() == 5)
                 return true;
