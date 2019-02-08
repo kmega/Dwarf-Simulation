@@ -67,8 +67,12 @@ namespace DwarfsCity.MineContener
                     }
                 }
 
-                if (shafts[0].Exist == false && shafts[1].Exist == false) return dwarfsThatWillWork;
-                    
+                //If all shafts exploded, all dwarfs live mine
+                if (shafts[0].Exist == false && shafts[1].Exist == false)
+                {
+                    dwarfsThatWorkedAndStillAlive.AddRange(dwarfsThatWillWork);
+                    dwarfsThatWillWork.Clear();
+                }
             }
 
             if (dwarfsThatWillWork.Count == 0 && dwarfsThatWorkedAndStillAlive.Count == 0)
