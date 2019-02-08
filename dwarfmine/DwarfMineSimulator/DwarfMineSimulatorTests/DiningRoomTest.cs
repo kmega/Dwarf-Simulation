@@ -2,7 +2,7 @@
 using DwarfMineSimulator;
 using System.Collections.Generic;
 
-namespace DiningRoomTest
+namespace DwarfMineSimulatorTests
 {
     public class DiningRoomTest
     {

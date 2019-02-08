@@ -6,14 +6,13 @@ namespace DwarfMineSimulator
 {
     class Shafts
     {
-        internal Shaft AddToShaft(Shaft shaft, List<Dwarf> _dwarfsPopulation)
+        internal Shaft AddToShaft(Shaft shaft, List<Dwarf> dwarfsPopulation)
         {
             for (int i = 0; i < shaft.MaxInside; i++)
             {
                 try
                 {
-                    shaft.Miners.Add(_dwarfsPopulation[0]);
-                    _dwarfsPopulation.RemoveAt(0);
+                    shaft.Miners.Add(dwarfsPopulation[i]);
                 }
                 catch
                 {
@@ -44,14 +43,32 @@ namespace DwarfMineSimulator
 
                 for (int m = 0; m < workToBeDone; m++)
                 {
-                    shaft = WorkForOneTurn(shaft, randomizer.Return1to100());
+                    shaft = WorkForOneTurn(shaft, j, randomizer.Return1to100());
                 }
             }
 
             return shaft;
         }
 
-        internal Shaft WorkForOneTurn(Shaft shaft, int miningChance)
+        internal Shaft CheckForSuicider(Shaft shaft)
+        {
+            for (int i = 0; i < shaft.Miners.Count; i++)
+            {
+                if (shaft.Miners[i].Type == DwarfTypes.Suicider)
+                {
+                    for (int j = 0; j < shaft.Miners.Count; j++)
+                    {
+                        shaft.Miners[j].Alive = false;
+                    }
+
+                    shaft.Collapsed = true;
+                }
+            }
+
+            return shaft;
+        }
+
+        internal Shaft WorkForOneTurn(Shaft shaft, int index, int miningChance)
         {
             Minerals mineral;
 
@@ -76,8 +93,8 @@ namespace DwarfMineSimulator
                 Raport.TaintedGoldMinded++;
             }
 
-            _shaftsNumber[i].Miners[j].MineralsMined[mineral]++;
-            Console.WriteLine("Dwarf " + j + " mined " + mineral);
+            shaft.Miners[index].MineralsMined[mineral]++;
+            Console.WriteLine("Dwarf " + shaft.Miners[index].ID + " mined " + mineral);
 
             return shaft;
         }
