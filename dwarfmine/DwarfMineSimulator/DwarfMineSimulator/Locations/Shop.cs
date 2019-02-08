@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DwarfMineSimulator
 {
@@ -32,13 +31,10 @@ namespace DwarfMineSimulator
 
         internal void DisplaySaleValues()
         {
-            Console.WriteLine("\n");
-            Console.WriteLine("### SHOP ###");
+            Console.WriteLine("\n### SHOP ###\n");
             Console.WriteLine($"Dwarfs bought: {FoodBought} food.");
             Console.WriteLine($"Dwarfs bought: {AlcoholBought} alcohol.");
-            Console.WriteLine($"Shop earn: {Math.Round(EarnedMoney,2)}.");
-            Console.WriteLine("\n");
-            
+            Console.WriteLine($"Shop earn: {Math.Round(EarnedMoney,2)}.\n");
         }
     }
 }

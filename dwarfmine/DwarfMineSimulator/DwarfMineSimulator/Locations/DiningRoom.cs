@@ -13,7 +13,7 @@ namespace DwarfMineSimulator
 
             FoodInDinningRoom = FoodInDinningRoom - foodConsumed;
 
-            Console.WriteLine("\n## Dining Room ##\n");
+            Console.WriteLine("\n## DINING ROOM ##\n");
             Console.WriteLine("Dwarfs Eats " + foodConsumed + " meals");
             Console.WriteLine("Hungry dwarfs " + lazyDwarfWithoutMoney);
             Console.WriteLine("Food in dining room Food " + FoodInDinningRoom);

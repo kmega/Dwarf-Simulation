@@ -9,7 +9,7 @@ namespace DwarfMineSimulator
         public void ViewBirthInformation(int dailyRaportBornFather, int dailyRaportBornLazy,
             int dailyRaportBornSingle, int dailyRaportBornSuicider)
         {
-            Console.WriteLine("## Born dwarfs ##");
+            Console.WriteLine("## HOSPITAL ##\n");
 
             Console.WriteLine("how many fathers born: " + dailyRaportBornFather);
             Console.WriteLine("how many single born: " + dailyRaportBornSingle);
@@ -22,8 +22,7 @@ namespace DwarfMineSimulator
 
         public void ViewMoneyAndTaxFromGuild(decimal sumMoney, decimal sumTax)
         {
-            Console.WriteLine("");
-            Console.WriteLine("## Money and taxed from guild ##");
+            Console.WriteLine("\n## GUILD ##\n");
             Console.WriteLine("Total money earned:" + sumMoney);
             Console.WriteLine("Total money from tax guild" + sumTax);
         }

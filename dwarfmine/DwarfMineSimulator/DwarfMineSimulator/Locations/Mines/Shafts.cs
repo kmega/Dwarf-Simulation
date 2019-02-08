@@ -68,10 +68,12 @@ namespace DwarfMineSimulator
 
         internal Shaft WorkForOneTurn(Shaft shaft, int index, int miningChance, int workToBeDone)
         {
-            Minerals mineral = Minerals.TaintedGold;
+            Minerals mineral;
 
             for (int i = 0; i < workToBeDone; i++)
             {
+                mineral = Minerals.TaintedGold;
+
                 if (miningChance <= 55)
                 {
                     mineral = Minerals.Silver;
@@ -106,7 +108,7 @@ namespace DwarfMineSimulator
                 miningChance = randomizer.ReturnToFrom(1, 100);
 
                 shaft.Miners[index].MineralsMined[mineral]++;
-                Console.WriteLine("Dwarf " + shaft.Miners[index].ID + " mined " + mineral);
+                Console.WriteLine("Dwarf " + (shaft.Miners[index].ID + 1) + " mined " + mineral);
             }
 
             return shaft;

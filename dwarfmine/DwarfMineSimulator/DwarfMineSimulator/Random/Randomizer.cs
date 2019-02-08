@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DwarfMineSimulator
 {
     class Randomizer
     {
-        Random rnd = new Random();
-
         internal DwarfTypes RandomTypeDwarf()
         {
-            int chanceToFatherOrSingle = rnd.Next(1, 101);
-
-            DwarfTypes dwarfTypes = GenerateDwarfType(chanceToFatherOrSingle);
+            DwarfTypes dwarfTypes = GenerateDwarfType(ReturnToFrom(1, 100));
             
             return dwarfTypes;
         }
@@ -39,17 +34,12 @@ namespace DwarfMineSimulator
 
         internal bool WillHeBeBorn()
         {
-            int chanceToBirthDwarf = rnd.Next(1, 101);
+            int chanceToBirthDwarf = ReturnToFrom(1, 100);
+
             if (chanceToBirthDwarf == 1)
                 return true;
             else
                 return false;
-        }
-
-        internal int Return1to100()
-        {
-            int chanceToBirthDwarf = rnd.Next(1, 101);
-            return chanceToBirthDwarf;
         }
 
         internal Dictionary<Minerals, int> GetPriceMinerals()
@@ -57,9 +47,9 @@ namespace DwarfMineSimulator
             int MithrilPrice, GoldPrice, SilverPrice, TaintedGoldPrice;
             Dictionary<Minerals, int> dictionary = new Dictionary<Minerals, int>();
 
-            dictionary.Add(Minerals.Mithril,MithrilPrice = rnd.Next(15, 26));
-            dictionary.Add(Minerals.Gold, GoldPrice = rnd.Next(10, 21));
-            dictionary.Add(Minerals.Silver, SilverPrice = rnd.Next(5, 16));
+            dictionary.Add(Minerals.Mithril, MithrilPrice = ReturnToFrom(15, 25));
+            dictionary.Add(Minerals.Gold, GoldPrice = ReturnToFrom(10, 20));
+            dictionary.Add(Minerals.Silver, SilverPrice = ReturnToFrom(5, 15));
             dictionary.Add(Minerals.TaintedGold, TaintedGoldPrice = 2);
 
             return dictionary;
@@ -67,6 +57,8 @@ namespace DwarfMineSimulator
 
         internal int ReturnToFrom(int first, int last)
         {
+            Random rnd = new Random();
+
             int random = rnd.Next(first, last + 1);
 
             return random;

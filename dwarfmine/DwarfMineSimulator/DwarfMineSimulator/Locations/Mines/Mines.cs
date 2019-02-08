@@ -11,7 +11,7 @@ namespace DwarfMineSimulator
 
         internal List<Dwarf> MineInShafts(List<Dwarf> dwarfsPopulation, List<Shaft> shaftsNumber)
         {
-            Console.WriteLine("## Mines ##\n");
+            Console.WriteLine("## MINES ##\n");
 
             Shaft _shaft;
             int _collapsedShaftsCounter = 0;

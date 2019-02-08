@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DwarfMineSimulator
 {
@@ -18,7 +16,7 @@ namespace DwarfMineSimulator
                 DwarfTypes dwarfTypes = randomizer.RandomTypeDwarf();
                 //Sent information to raport daily and from 30 days
                 calculating.NumberOfBirthsAndTypes(dwarfTypes);
-                CreateNewDwarf(DwarfsPopulation, dwarfTypes, Raport.TotalBorn);
+                CreateNewDwarf(DwarfsPopulation, dwarfTypes, Raport.TotalBorn + 9);
                 
                 if (dwarfTypes == DwarfTypes.Father)
                 {

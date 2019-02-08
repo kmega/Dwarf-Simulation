@@ -23,7 +23,7 @@ namespace DwarfMineSimulator
 
         void Display()
         {
-            Console.WriteLine("\n## Graveyard ##\n");
+            Console.WriteLine("\n## GRAVEYARD ##\n");
             Console.WriteLine("Funeral " + DeadCounter + " Dwarfs");
         }
     }
