@@ -12,9 +12,5 @@ namespace SimulationTests.E2ESimulationTests
         {
             return new Hospital(birthChanceRandomizer, dwarfTypeRandomizer);
         }
-        internal static List<Dwarf> CreateFakeDwarves(Hospital hospital)
-        {
-            return hospital.BuildInitialSocietyMembers();
-        }
     }
 }
