@@ -45,9 +45,9 @@ namespace DwarfMineSimulator
 
         public void HowManyYouWantCreate(int number, List<Dwarf> DwarfsPopulation)
         {
-            DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
             for (int i = 0; i < number; i++)
             {
+                DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
                 CreateNewDwarf(DwarfsPopulation, dwarfTypes, number);
             }
         }
