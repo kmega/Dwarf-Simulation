@@ -18,7 +18,12 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             var simulationState = new SimulationState();
             var hospital = new Hospital();
             var mineSupervisor = new MineSupervisor();
-            var guild = new Guild();
+            var guild = new Guild(new Dictionary<E_Minerals, ICreateOreValue>()
+            { { E_Minerals.Gold, new ValueOfGold() },
+                {E_Minerals.DirtGold, new ValueOfDirtGold() },
+                {E_Minerals.Mithril, new ValueOfMithril() },
+                {E_Minerals.Silver, new ValueOfSilver()}
+            });
             var market = new Market();
             var canteen = new Canteen();
             var generalBank = new GeneralBank();
@@ -43,7 +48,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                     break;
                 }
             }
-            logger.GenerateReport(EndState(simulationState, hospital, guild, generalBank, market, mineSupervisor));
+            logger.DisplayReport(EndState(simulationState, hospital, guild, generalBank, market, mineSupervisor));
         }
 
         private int GetAliveDwarves(SimulationState simulationState)
@@ -61,11 +66,6 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
             UpdateDwarfLifeStatus(dwarfLifeStatus, simulationState);
             UpdateDwarfBackpacks(dwarfBackpacks, simulationState);
-            _currentSimulationState.NumberOfBirths = hospital.totalNumberOfBirth;
-            _currentSimulationState.GuildBankAccount = guild.Account.OverallAccount;
-            _currentSimulationState.MarketState = market.marketState;
-            _currentSimulationState.TaxBankAccount = generalBank.BankTresure();
-            _currentSimulationState.ExtractedOre = mineSupervisor.GetMineSupervisorStats;
         }
 
         private bool ShouldSimulationBeContinued(Canteen canteen, SimulationState simulationState)

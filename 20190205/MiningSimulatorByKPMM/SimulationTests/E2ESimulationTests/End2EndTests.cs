@@ -38,7 +38,8 @@ namespace SimulationTests.E2ESimulationTests
             SetDwarfTypeMock(E_DwarfType.Dwarf_Father);
             SetOreValueMock(10);
             var hospital = FakeHospitalFactory.Create(birthChanceMock.Object, dwarfTypeGeneratorMock.Object);
-            var guild = FakeGuildFactory.Create(oreValueMock.Object);
+            var guild = FakeGuildFactory.Create(new Dictionary<E_Minerals, ICreateOreValue>()
+            { { E_Minerals.Gold, oreValueMock.Object } });
             var simulationEngine = new SimulationEngine();
             //when
             simulationEngine.Start();
