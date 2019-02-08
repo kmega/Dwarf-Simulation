@@ -143,5 +143,10 @@ namespace DwarfMineSimulator.Dwarfs
             MoneyEarndedThisDay = moneyFromGuild;
             Money += MoneyEarndedThisDay;
         }
+
+        public void Eat()
+        {
+            Console.WriteLine("Dwarf {0} eat foot ration.", this.GetId());
+        }
     }
 }

@@ -5,6 +5,7 @@ using DwarfMineSimulator.Dwarfs;
 using DwarfMineSimulator.Enums;
 using DwarfMineSimulator.Building.Mine;
 using DwarfMineSimulator.Building.Guild;
+using DwarfMineSimulator.Building.Restaurant;
 
 namespace DwarfMineSimulator
 {
@@ -31,6 +32,7 @@ namespace DwarfMineSimulator
         decimal TaxedMoney { get; set; }
         decimal TotalMoneyEarned { get; set; }
 
+        int RationsLeft { get; set; }
         int FoodEaten { get; set; }
 
         int FoodBought { get; set; }
@@ -58,6 +60,7 @@ namespace DwarfMineSimulator
             TaxedMoney = 0;
             TotalMoneyEarned = 0;
 
+            RationsLeft = 200;
             FoodEaten = 0;
 
             FoodBought = 0;
@@ -74,6 +77,8 @@ namespace DwarfMineSimulator
             if (DaysToEnd < DayCount)
                 return false;
             if (Dwarfs.Count == 0)
+                return false;
+            if (RationsLeft < 1)
                 return false;
 
             return true;
@@ -96,6 +101,7 @@ namespace DwarfMineSimulator
             }
 
             Guild Guild = new Guild(Dwarfs);
+            Restaurant Restaurant = new Restaurant(Dwarfs);
 
             while (EndConditions())
             {
@@ -121,10 +127,9 @@ namespace DwarfMineSimulator
                 // Guild
                 TotalMoneyEarned += Guild.Payday();
 
-
                 // DiningRoom
-
-
+                Restaurant.FeedDwarfs();
+                RationsLeft = Restaurant.RationsLeft();
 
                 // Shop
 
@@ -137,6 +142,7 @@ namespace DwarfMineSimulator
 
             DeathCount = Dwarfs.Count(x => x.IsAlive() == false);
             TaxedMoney = Guild.TotalTaxedMoney();
+            FoodEaten = Restaurant.RationsEated();
             Report();
         }
 
@@ -168,6 +174,9 @@ namespace DwarfMineSimulator
             Console.WriteLine();
             Console.WriteLine("Taxed Money Count = {0}", TaxedMoney);
             Console.WriteLine("Total Money Earned Count = {0}", TotalMoneyEarned);
+            Console.WriteLine();
+            Console.WriteLine("Food Eated Count = {0}", FoodEaten);
+            Console.WriteLine("Rations Left in Restauran Count = {0}", RationsLeft);
         }
 
         private void DwarfBornCounter()

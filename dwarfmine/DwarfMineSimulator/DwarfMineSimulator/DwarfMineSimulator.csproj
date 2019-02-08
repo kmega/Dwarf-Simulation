@@ -17,5 +17,6 @@
   <ItemGroup>
     <None Remove="Building\Mine\ShaftB.cs~" />
     <None Remove="Building\Mine\ShaftA.cs~" />
+    <None Remove="Building\DinningRoom\DinningRoom.cs~" />
   </ItemGroup>
 </Project>
