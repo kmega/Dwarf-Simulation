@@ -68,8 +68,13 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             CreateTemporaryObjectsFromParameters(backpackList, typeList, isAliveList);
             WorkProcessing();
             UpdateDailyMineStats();
-
             isAliveList = UnwrapAllWorkersAndChangeStatesOfParameters(backpackList, typeList, isAliveList);
+            DismissAllWorkers();
+        }
+
+        private void DismissAllWorkers()
+        {
+            AllWorkers.Clear();
         }
 
         private void UpdateDailyMineStats()
