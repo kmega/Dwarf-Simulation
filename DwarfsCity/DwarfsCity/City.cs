@@ -28,7 +28,7 @@ namespace DwarfsCity
             
             hospital.InitialNumberOfDwarfs(dwarfs, 10);
 
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 10; i++)
             {
                 //Dwarfs go to minning -> return still alive dwarfs within resources
 
