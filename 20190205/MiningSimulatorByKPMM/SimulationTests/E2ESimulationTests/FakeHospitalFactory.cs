@@ -6,7 +6,7 @@ using System.Text;
 
 namespace SimulationTests.E2ESimulationTests
 {
-    internal static class FakeHospitalFactory
+    internal class FakeHospitalFactory
     {
         internal static Hospital Create(IBirthChanceRandomizer birthChanceRandomizer, IDwarfTypeRandomizer dwarfTypeRandomizer)
         {

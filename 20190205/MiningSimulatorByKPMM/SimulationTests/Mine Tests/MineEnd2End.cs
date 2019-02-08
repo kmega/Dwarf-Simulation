@@ -4,8 +4,10 @@ using System.Linq;
 using MiningSimulatorByKPMM.Enums;
 using MiningSimulatorByKPMM.Locations.Mine;
 using MiningSimulatorByKPMM.Locations.Mine.Enums;
+using MiningSimulatorByKPMM.Locations.Mine.Interfaces;
 using MiningSimulatorByKPMM.PersonalItems;
 using NUnit.Framework;
+using SimulationTests.E2ESimulationTests;
 
 namespace SimulationTests.MineTests
 {
