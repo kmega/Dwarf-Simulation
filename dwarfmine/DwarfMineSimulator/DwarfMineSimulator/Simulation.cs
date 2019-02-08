@@ -21,10 +21,12 @@ namespace DwarfMineSimulator
         {
             Hospital hospital = new Hospital();
             Randomizer birthAndTypeDwarf = new Randomizer();
-            for (int i = 0; i < 10; i++)
+            for (int index = 0; index < 10; index++)
             {
                 DwarfTypes dwarfTypes = birthAndTypeDwarf.RandomTypeDwarf();
-                hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes);
+                hospital.CreateNewDwarf(DwarfsPopulation, dwarfTypes, index + 1);
+
+                Raport.TotalBorn++;
             }
 
             ShaftsNumber.Add(new Shaft());

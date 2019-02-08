@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfMineSimulator
 {
-    class MinesEntrance
+    class Mines
     {
         List<Dwarf> _dwarfsThatMined = new List<Dwarf>();
         List<Dwarf> _dwarfsPopulation = new List<Dwarf>();
