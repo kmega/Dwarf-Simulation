@@ -93,7 +93,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             _currentSimulationState.guildBankAccount = guild.Account.OverallAccount;
             _currentSimulationState.taxBankAccount = generalBank.BankTresure();
             _currentSimulationState.marketState = market.marketState;
-            _currentSimulationState.extractedOre = mineSupervisor.GetMineSupervisorStats;
+            _currentSimulationState.extractedOre = mineSupervisor.MineSupervisorStats;
         }
 
         private void BirthDwarf(Hospital hospital)
