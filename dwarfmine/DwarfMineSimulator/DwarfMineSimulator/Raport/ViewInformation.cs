@@ -6,14 +6,17 @@ namespace DwarfMineSimulator
 {
     class ViewInformation
     {
-        public void ViewBirthInformation()
+        public void ViewBirthInformation(int dailyRaportBornFather, int dailyRaportBornLazy,
+            int dailyRaportBornSingle, int dailyRaportBornSuicider)
         {
             Console.WriteLine("## Born dwarfs ##");
-            Console.WriteLine("how many fathers born: " + Raport.FatherBorn);
-            Console.WriteLine("how many single born: " + Raport.SingleBorn);
-            Console.WriteLine("how many lazy born: " + Raport.LazyBorn);
-            Console.WriteLine("how many suicider born: " + Raport.SuiciderBorn);
-            Console.WriteLine("Total born: " + Raport.TotalBorn);
+
+            Console.WriteLine("how many fathers born: " + dailyRaportBornFather);
+            Console.WriteLine("how many single born: " + dailyRaportBornSingle);
+            Console.WriteLine("how many lazy born: " + dailyRaportBornLazy);
+            Console.WriteLine("how many suicider born: " + dailyRaportBornSuicider);
+            Console.WriteLine("Total born: " + (dailyRaportBornSuicider+ dailyRaportBornLazy
+                + dailyRaportBornSingle+ dailyRaportBornFather));
             Console.WriteLine("");
         }
 
