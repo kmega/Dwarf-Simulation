@@ -16,15 +16,20 @@ namespace DwarfMineSimulator.Building.Guild
             DwarfsInGuild = dwarfsInGuild;
         }
 
-        public void Payday()
+        public decimal Payday()
         {
+            decimal totalEarnedMoney = 0m;
+
             foreach (var dwarf in DwarfsInGuild)
             {
                 decimal earnMoney = MineralToCashConverter(dwarf.MinedMineralsReport());
+                totalEarnedMoney += earnMoney;
                 decimal dwarfMoney = earnMoney * 0.75m;
                 TaxedMoney += earnMoney * 0.25m;
                 dwarf.TakeMoney(dwarfMoney);
             }
+
+            return totalEarnedMoney;
         }
 
         private decimal MineralToCashConverter(Dictionary<Minerals, int> minedMinerals)

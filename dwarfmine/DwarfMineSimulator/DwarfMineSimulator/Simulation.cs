@@ -119,7 +119,7 @@ namespace DwarfMineSimulator
                 }
 
                 // Guild
-                Guild.Payday();
+                TotalMoneyEarned += Guild.Payday();
 
 
                 // DiningRoom
