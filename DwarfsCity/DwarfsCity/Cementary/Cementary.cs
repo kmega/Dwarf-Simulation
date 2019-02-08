@@ -24,7 +24,7 @@ namespace DwarfsCity
 
             AddKilledDwarfsToGraves(dwarfs.KilledDwarfs);
 
-            Logger.GetInstance().AddLog("The mine is explode! The death Dwarfs: ");
+            Logger.GetInstance().AddLog("The mine exploded! The death Dwarfs: ");
             foreach (var killedDwarf in dwarfs.KilledDwarfs)
             {
                 Logger.GetInstance().AddLog(killedDwarf.Attribute.ToString());

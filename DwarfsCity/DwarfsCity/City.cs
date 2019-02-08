@@ -6,6 +6,7 @@ using DwarfsCity.UI;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Type = DwarfsCity.DwarfContener.Type;
 
 namespace DwarfsCity
 {
@@ -25,6 +26,7 @@ namespace DwarfsCity
             Shop shop = new Shop();
             Cementary cementary = new Cementary();                      
             hospital.InitialNumberOfDwarfs(dwarfs, 10);
+            dwarfs.AddRange(DwarfFactory.CreateMultipleDwarfs(7,Type.Saboteur));
 
             for (int i = 0; i < 30; i++)
             {
