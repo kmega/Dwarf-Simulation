@@ -21,7 +21,7 @@ namespace MiningSimulatorByKPMM.Locations.Market
 			marketState.Add(E_ProductsType.Alcohol, 0);
 		}
 		
-		public void PerformShopping(List<Dwarf> customers, GeneralBank bank)
+		public void PerformShopping(IBuy customers, GeneralBank bank)
 		{
 			foreach (var customer in customers)
 			{
