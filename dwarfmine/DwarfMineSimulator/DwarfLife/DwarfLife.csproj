@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="LifeCycle\" />
+    <Folder Include="Dwarfs\" />
+    <Folder Include="Diary\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Buildings\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="LifeCycle\EmptyStruct.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Enums\DwarfTypes.cs~" />
+  </ItemGroup>
+</Project>

@@ -74,7 +74,7 @@ namespace DwarfMineSimulator
             DaysToEnd = days;
         }
 
-        private bool EndConditions()
+        private bool IsSimulationFinished()
         {
             if (DaysToEnd < DayCount)
                 return false;
@@ -104,13 +104,13 @@ namespace DwarfMineSimulator
             Restaurant Restaurant = new Restaurant(Dwarfs);
             Shop Shop = new Shop(Dwarfs);
 
-            while (EndConditions())
+            while (IsSimulationFinished())
             {
                 Console.WriteLine();
                 Console.WriteLine("Day {0} begins...", DayCount);
 
                 // Hospital
-                if (IsChance())
+                if (IsDwarfBorn())
                 {
                     Dwarfs.Add(new DwarfFactory().BornDwarf(Dwarfs.Count + 1,4));
                     DwarfBornCounter();
@@ -158,7 +158,7 @@ namespace DwarfMineSimulator
             DayCount++;
         }
 
-        private bool IsChance()
+        private bool IsDwarfBorn()
         {
             // 50% chance to born dwarf
             // return new Random().Next(0, 2) == 1;

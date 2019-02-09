@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfMineSimulator", "DwarfMineSimulator\DwarfMineSimulator.csproj", "{97F305C7-D1B3-48E7-B355-2C44A768F6EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfMineSimulatorTests", "DwarfMineSimulatorTests\DwarfMineSimulatorTests.csproj", "{0077E3EC-BAB6-455F-9B89-2FDF4A711CC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfLife", "DwarfLife\DwarfLife.csproj", "{442907F4-3002-4221-87D0-F21B4AA7F278}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfLifeTests", "DwarfLifeTests\DwarfLifeTests.csproj", "{9EDE633B-B01A-4702-95C3-56EDF4C0D796}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +19,14 @@ Global
 		{97F305C7-D1B3-48E7-B355-2C44A768F6EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97F305C7-D1B3-48E7-B355-2C44A768F6EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97F305C7-D1B3-48E7-B355-2C44A768F6EF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0077E3EC-BAB6-455F-9B89-2FDF4A711CC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0077E3EC-BAB6-455F-9B89-2FDF4A711CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0077E3EC-BAB6-455F-9B89-2FDF4A711CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0077E3EC-BAB6-455F-9B89-2FDF4A711CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{442907F4-3002-4221-87D0-F21B4AA7F278}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{442907F4-3002-4221-87D0-F21B4AA7F278}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{442907F4-3002-4221-87D0-F21B4AA7F278}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{442907F4-3002-4221-87D0-F21B4AA7F278}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EDE633B-B01A-4702-95C3-56EDF4C0D796}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EDE633B-B01A-4702-95C3-56EDF4C0D796}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EDE633B-B01A-4702-95C3-56EDF4C0D796}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EDE633B-B01A-4702-95C3-56EDF4C0D796}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
