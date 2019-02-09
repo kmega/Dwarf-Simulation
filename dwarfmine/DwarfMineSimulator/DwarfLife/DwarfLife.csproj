@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="LifeCycle\" />
+    <Folder Include="LifeCycles\" />
     <Folder Include="Dwarfs\" />
     <Folder Include="Diary\" />
     <Folder Include="Enums\" />
