@@ -40,5 +40,19 @@ namespace DwarfLife.Tests
             // then
             Assert.IsTrue(dwarf.Alive);
         }
+
+        [Test]
+        public void ShouldBornTwoRandomTypeDwarfs()
+        {
+            // given
+            var hospital = new Hospital();
+
+            // when
+            IDwarf dwarf1 = hospital.BornRandomTypeDwarf(1);
+            IDwarf dwarf2 = hospital.BornRandomTypeDwarf(2);
+
+            // then
+            Assert.IsTrue(dwarf1.DwarfType() != dwarf2.DwarfType());
+        }
     }
 }

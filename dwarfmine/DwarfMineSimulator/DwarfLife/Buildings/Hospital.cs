@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using DwarfLife.Enums;
 using DwarfLife.Dwarfs;
 
@@ -22,18 +23,23 @@ namespace DwarfLife.Buildings
                     return null;
             }
         }
-        //public IDwarf BornDwarf(int dwarfId, int range = 0)
-        //{
-        //    //return new IDwarf(dwarfId, RandomDwarfType(range), true, 0);
-        //}
 
-        private DwarfTypes RandomDwarfType(int range)
+        public IDwarf BornRandomTypeDwarf(int dwarfId)
         {
+            return BornDwarf(dwarfId, RandomDwarfType());
+        }
 
-            if (range <= Enum.GetNames(typeof(DwarfTypes)).Length)
-                return (DwarfTypes)new Random().Next(0, range);
-            else
-                return DwarfTypes.Sluggard;
+        public DwarfTypes RandomDwarfType()
+        {
+            var dwarfTypes = (DwarfTypes)15;
+
+            var dwarfTypesArray = Enum.GetValues(typeof(DwarfTypes))
+                   .Cast<DwarfTypes>()
+                   .Where(dwarfType => (dwarfTypes & dwarfType) == dwarfType)
+                   .ToArray();
+
+            var RadnomDwarfType = dwarfTypesArray[new Random().Next(1, dwarfTypesArray.Length)];
+            return RadnomDwarfType;
         }
     }
 }
