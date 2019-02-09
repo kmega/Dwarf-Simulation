@@ -23,7 +23,7 @@ namespace DwarfLife.LifeCycles
 
         public void Begin()
         {
-            while(LifeCycleState.DaysPassed < _maxDays)
+            while(IsEndOfLifeCycle())
                 DayPasses();
         }
 
@@ -34,7 +34,7 @@ namespace DwarfLife.LifeCycles
 
         private bool IsEndOfLifeCycle()
         {
-            if (_maxDays < LifeCycleState.DaysPassed)
+            if (LifeCycleState.DaysPassed == _maxDays)
                 return false;
             if (LifeCycleState.Dwarfs.Count == 0)
                 return false;

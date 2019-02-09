@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
+using System.Collections.Generic;
 using DwarfLife.LifeCycles;
 using DwarfLife.Dwarfs;
+using DwarfLife.Buildings;
 using System;
 
 namespace DwarfLife.Tests
@@ -36,7 +38,9 @@ namespace DwarfLife.Tests
         public void ShouldEndAfter(int expetedDaysToPass)
         {
             // given
-            var lifeCycle = new LifeCycle(expetedDaysToPass);
+            var hospital = new Hospital();
+            List<IDwarf> dwarfes = hospital.BornDwarfes(10);
+            var lifeCycle = new LifeCycle(dwarfes, expetedDaysToPass);
 
             // when
             lifeCycle.Begin();

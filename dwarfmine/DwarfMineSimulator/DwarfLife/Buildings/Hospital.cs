@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using DwarfLife.Enums;
 using DwarfLife.Dwarfs;
 using DwarfLife.Diaries;
@@ -23,6 +24,15 @@ namespace DwarfLife.Buildings
                 default:
                     return null;
             }
+        }
+
+        public List<IDwarf> BornDwarfes(int howMany)
+        {
+            List<IDwarf> dwarfes = new List<IDwarf>();
+            for(int i = 1; i <= howMany; i++)
+                dwarfes.Add(BornRandomTypeDwarf(1));
+
+            return dwarfes;
         }
 
         public IDwarf BornRandomTypeDwarf(int dwarfId)
