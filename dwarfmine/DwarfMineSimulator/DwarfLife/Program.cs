@@ -1,4 +1,8 @@
 ﻿using System;
+using DwarfLife.LifeCycles;
+using DwarfLife.Dwarfs;
+using DwarfLife.Enums;
+using DwarfLife.Buildings;
 
 namespace DwarfLife
 {
@@ -6,7 +10,8 @@ namespace DwarfLife
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
+            //var lifeCycle = new LifeCycle();
+            //lifeCycle.Begin();
         }
     }
 }

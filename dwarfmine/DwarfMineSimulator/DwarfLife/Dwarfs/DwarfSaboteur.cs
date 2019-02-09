@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DwarfLife.Enums;
+using DwarfLife.Diaries;
 
 namespace DwarfLife.Dwarfs
 {
@@ -16,6 +17,9 @@ namespace DwarfLife.Dwarfs
             _id = id;
             _dwarfType = DwarfTypes.Saboteur;
             Alive = true;
+            DiaryHelper.Log(DiaryTarget.Console, String.Format(
+                "Dwarf has born. His id = {0}, and his type is: {1}",
+                _id, _dwarfType));
         }
 
         public DwarfTypes DwarfType() { return _dwarfType; }

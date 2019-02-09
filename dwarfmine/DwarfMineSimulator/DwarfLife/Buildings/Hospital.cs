@@ -2,6 +2,7 @@
 using System.Linq;
 using DwarfLife.Enums;
 using DwarfLife.Dwarfs;
+using DwarfLife.Diaries;
 
 namespace DwarfLife.Buildings
 {
