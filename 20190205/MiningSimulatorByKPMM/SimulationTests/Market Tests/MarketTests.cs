@@ -56,7 +56,7 @@ namespace SimulationTests.Market_Tests
 			dwarfsList.Add(Andrzej);
 
 			//when
-			market.PerformShopping(dwarfsList, bank);
+		//	market.PerformShopping(dwarfsList, bank);
 			decimal result = market.marketState[E_ProductsType.Food];
 
 			//then
@@ -73,7 +73,7 @@ namespace SimulationTests.Market_Tests
 			Andrzej.BankAccount.ReceivedMoney(200);
 			dwarfsList.Add(Andrzej);
 			//when 
-			market.PerformShopping(dwarfsList, bank);
+		//	market.PerformShopping(dwarfsList, bank);
 			decimal result = bank.BankTresure();
 
 			//then
@@ -88,7 +88,7 @@ namespace SimulationTests.Market_Tests
 			List<Dwarf> dwarfsList = fakeListDwawrfs.FakeList();
 
 			//when
-			market.PerformShopping(dwarfsList, bank);
+		//	market.PerformShopping(dwarfsList, bank);
 			decimal result1 = market.marketState[E_ProductsType.Food];
 			decimal result2 = market.marketState[E_ProductsType.Alcohol];
 			
@@ -106,7 +106,7 @@ namespace SimulationTests.Market_Tests
 			List<Dwarf> dwarfsList = fakeListDwawrfs.FakeList();
 
 			//when
-			market.PerformShopping(dwarfsList, bank);
+		//	market.PerformShopping(dwarfsList, bank);
 
 			decimal result1 = market.shopMoneyAccount.OverallAccount;
 			decimal result2 = bank.BankTresure();
@@ -126,7 +126,7 @@ namespace SimulationTests.Market_Tests
 			dwarfsList.Add(Andrzej);
 
 			//when
-			market.PerformShopping(dwarfsList, bank);
+		//	market.PerformShopping(dwarfsList, bank);
 			Andrzej.BankAccount.CalculateOverallAccount();
 			decimal result = Andrzej.BankAccount.OverallAccount;
 			//then

@@ -21,22 +21,25 @@ namespace MiningSimulatorByKPMM.Locations.Market
 			marketState.Add(E_ProductsType.Alcohol, 0);
 		}
 		
-		public void PerformShopping(IBuy customers, GeneralBank bank)
+		public void PerformShopping(List<IBuy> customers, GeneralBank bank)
 		{
 			foreach (var customer in customers)
 			{
-				if (customer.DwarfType == E_DwarfType.Dwarf_Single && customer.IsAlive)
-				{
-					BuyProdcutsFromMarket(customer, E_ProductsType.Alcohol, bank);
-				}
-				else if (customer.DwarfType == E_DwarfType.Dwarf_Father && customer.IsAlive)
-				{
-					BuyProdcutsFromMarket(customer, E_ProductsType.Food, bank);
-				}
+                ServeSingleCustomer(customer, bank);
 			}
 		}
 
-		public void BuyProdcutsFromMarket(Dwarf customer, E_ProductsType productType, GeneralBank bank)
+        private void ServeSingleCustomer(IBuy customer, GeneralBank bank)
+        {
+            var productBought = customer.Buy();
+            decimal recipe = productBought.Quantity;
+            bank.PayTax(recipe);
+            shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
+            shopMoneyAccount.CalculateOverallAccount();
+            marketState[productBought.ProductType] += recipe;
+        }
+
+        public void BuyProdcutsFromMarket(Dwarf customer, E_ProductsType productType, GeneralBank bank)
 		{
 			decimal recipe = customer.BankAccount.LastInput / 2;
 

@@ -35,7 +35,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         public void Start()
         {
             _canteen.FoodRations = 200;
-            _simulationState.Dwarves = _hospital.BuildInitialDwarves();
+       //     _simulationState.Dwarves = _hospital.BuildInitialDwarves();
             for (int i = 0; i < 30; i++)
             {
 
@@ -44,18 +44,18 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
                 BirthDwarf(_hospital);
                 MiningTreasures();
 
-                _guild.DwarvesVisitGuild(_simulationState.Dwarves);
+               // _guild.DwarvesVisitGuild(_simulationState.Dwarves);
 
-                _market.PerformShopping(_simulationState.Dwarves, _generalBank);
+ //               _market.PerformShopping(_simulationState.Dwarves, _generalBank);
 
-                _simulationState.NumberOfDeadDwarves = _simulationState.Dwarves.Where(p => p.IsAlive == false).Count();
+              //  _simulationState.NumberOfDeadDwarves = _simulationState.Dwarves.Where(p => p.IsAlive == false).Count();
 
 
-                var aliveDwarves = _simulationState.Dwarves.Where(p => p.IsAlive == true).Count();
-                _canteen.GiveFoodRations(aliveDwarves);
+              //  var aliveDwarves = _simulationState.Dwarves.Where(p => p.IsAlive == true).Count();
+              //  _canteen.GiveFoodRations(aliveDwarves);
                 _canteen.OrderFoodRations();
 
-                UpdateAccount.MoveDailyPaymentToAccount(_simulationState.Dwarves);
+             //   UpdateAccount.MoveDailyPaymentToAccount(_simulationState.Dwarves);
 
 
                 if (ShouldSimulationBeContinued(_canteen))
@@ -69,23 +69,23 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
         private void MiningTreasures()
         {
-            var dwarfBackpacks = _simulationState.Dwarves.Select(p => p.Backpack).ToList();
-            var dwarfTypes = _simulationState.Dwarves.Select(p => p.DwarfType).ToList();
-            var dwarfLifeStatus = _simulationState.Dwarves.Select(p => p.IsAlive).ToList();
+            //var dwarfBackpacks = _simulationState.Dwarves.Select(p => p.Backpack).ToList();
+            //var dwarfTypes = _simulationState.Dwarves.Select(p => p.DwarfType).ToList();
+            //var dwarfLifeStatus = _simulationState.Dwarves.Select(p => p.IsAlive).ToList();
 
-            _mineSupervisor.Work(ref dwarfBackpacks, dwarfTypes, ref dwarfLifeStatus);
+            //_mineSupervisor.Work(ref dwarfBackpacks, dwarfTypes, ref dwarfLifeStatus);
 
-            UpdateDwarfLifeStatus(dwarfLifeStatus);
-            UpdateDwarfBackpacks(dwarfBackpacks);
+            //UpdateDwarfLifeStatus(dwarfLifeStatus);
+            //UpdateDwarfBackpacks(dwarfBackpacks);
         }
 
         private bool ShouldSimulationBeContinued(Canteen canteen)
         {
-            if (_simulationState.NumberOfDeadDwarves == _simulationState.Dwarves.Count ||
-                _simulationState.Dwarves.Where(p => p.IsAlive).Count() > canteen.FoodRations)
-            {
-                return true;
-            }
+            //if (_simulationState.NumberOfDeadDwarves == _simulationState.Dwarves.Count ||
+            //    _simulationState.Dwarves.Where(p => p.IsAlive).Count() > canteen.FoodRations)
+            //{
+            //    return true;
+            //}
             return false;
         }
 
@@ -108,7 +108,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         {
             for (int k = 0; k < _simulationState.Dwarves.Count; k++)
             {
-                _simulationState.Dwarves[k].Backpack = dwarfBackpacks[k];
+               // _simulationState.Dwarves[k].Backpack = dwarfBackpacks[k];
             }
         }
 
@@ -116,7 +116,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
         {
             for (int j = 0; j < _simulationState.Dwarves.Count; j++)
             {
-                _simulationState.Dwarves[j].IsAlive = dwarfLifeStatus[j];
+               // _simulationState.Dwarves[j].IsAlive = dwarfLifeStatus[j];
             }
         }
     }

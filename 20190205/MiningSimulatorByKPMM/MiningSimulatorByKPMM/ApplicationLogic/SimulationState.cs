@@ -7,7 +7,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 {
     public class SimulationState
     {
-        public List<Dwarf> Dwarves { get; set; }
+        public List<IDwarf> Dwarves { get; set; }
         public int NumberOfDeadDwarves { get; set; }
         public bool ShouldSimulationBreak { get; set; }
         public int NumberOfBirths { get; set; }
@@ -18,7 +18,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
 
         public SimulationState()
         {
-            Dwarves = new List<Dwarf>();
+            Dwarves = new List<IDwarf>();
         }
     }
 }

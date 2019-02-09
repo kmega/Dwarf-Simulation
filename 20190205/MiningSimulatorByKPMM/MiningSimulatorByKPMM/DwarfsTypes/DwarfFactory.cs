@@ -1,4 +1,5 @@
-﻿using MiningSimulatorByKPMM.Enums;
+﻿using MiningSimulatorByKPMM.DwarfsTypes.BuyStrategies;
+using MiningSimulatorByKPMM.Enums;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,7 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
             switch(dwarfType)
             {
                 case E_DwarfType.Dwarf_Father:
-                    return new DwarfFatherStrategy();
+                    return new Dwarf(dwarfType,new BuyFoodAction());
                 default:
                     return null;
             }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MiningSimulatorByKPMM.DwarfsTypes
 {
-    public interface IDwarf : IWork, IBuy, ISellResources
+    public interface IDwarf : IBuy
     {
 
     }

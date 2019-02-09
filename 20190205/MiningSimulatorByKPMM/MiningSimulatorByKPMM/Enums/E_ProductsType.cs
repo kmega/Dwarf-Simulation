@@ -6,6 +6,7 @@ namespace MiningSimulatorByKPMM.Enums
 {
 	public enum E_ProductsType
 	{
+        None,
 		Alcohol,
 		Food
 	}

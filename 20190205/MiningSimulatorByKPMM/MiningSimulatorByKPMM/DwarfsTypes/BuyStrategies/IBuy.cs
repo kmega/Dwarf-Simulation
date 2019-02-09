@@ -6,6 +6,6 @@ namespace MiningSimulatorByKPMM.DwarfsTypes
 {
     public interface IBuy
     {
-        int Buy();
+        Product Buy();
     }
 }
