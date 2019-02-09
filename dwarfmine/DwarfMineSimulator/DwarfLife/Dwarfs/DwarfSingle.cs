@@ -9,13 +9,13 @@ namespace DwarfLife.Dwarfs
         readonly DwarfTypes _dwarfType;
         readonly int _id;
 
-        public bool IsAlive { get; set; }
+        public bool Alive { get; set; }
 
         public DwarfSingle(int id)
         {
             _id = id;
             _dwarfType = DwarfTypes.Single;
-            IsAlive = true;
+            Alive = true;
         }
 
         public DwarfTypes DwarfType() { return _dwarfType; }

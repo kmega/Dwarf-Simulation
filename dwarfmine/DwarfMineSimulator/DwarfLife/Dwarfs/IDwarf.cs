@@ -6,7 +6,7 @@ namespace DwarfLife.Dwarfs
 {
     public interface IDwarf
     {
-        bool IsAlive { get; set; }
+        bool Alive { get; set; }
 
         void Eat();
         void Buy(ItemsInShop item);
