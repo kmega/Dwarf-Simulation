@@ -21,6 +21,17 @@ namespace DwarfLife.LifeCycles
             _maxDays = maxDays;
         }
 
+        public void Begin()
+        {
+            while(LifeCycleState.DaysPassed < _maxDays)
+                DayPasses();
+        }
+
+        private void DayPasses()
+        {
+            LifeCycleState.DaysPassed++;
+        }
+
         private bool IsEndOfLifeCycle()
         {
             if (_maxDays < LifeCycleState.DaysPassed)

@@ -6,7 +6,7 @@ namespace DwarfLife.LifeCycles
 {
     public class LifeCycleState
     {
-        public int DaysPassed { get; private set; }
+        public int DaysPassed { get; set; }
         public int Rations { get; private set; }
         public List<IDwarf> Dwarfs { get; private set; }
 
