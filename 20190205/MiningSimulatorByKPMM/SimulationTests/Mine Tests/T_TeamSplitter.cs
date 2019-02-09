@@ -10,7 +10,7 @@ using static MiningSimulatorByKPMM.Locations.Mine.MineSupervisor;
 namespace SimulationTests.MineTests
 {
     [TestFixture]
-    public class SplittingWorkers
+    public class T_TeamSplitter
     {
         [Test]
         public void IntoSingleTeamAndOneWaits()

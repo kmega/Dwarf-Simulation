@@ -12,7 +12,7 @@ using static MiningSimulatorByKPMM.Locations.Mine.MineSupervisor;
 namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
 {
 
-    public class MiningSchaft
+    public partial class MiningSchaft
     {
         List<TemporaryWorker> workers;
         E_MiningSchaftStatus SchaftStatus = E_MiningSchaftStatus.Operational;
@@ -22,6 +22,13 @@ namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
         public void FixSchaft()
         {
             SchaftStatus = E_MiningSchaftStatus.Operational;
+        }
+
+        public List<TemporaryWorker> GetWorkers() => workers;
+
+        public void DestroyShaftTEST()
+        {
+            SchaftStatus = E_MiningSchaftStatus.Broken;
         }
 
         public void SetSchaftWorkers(List<TemporaryWorker> workers)
@@ -39,41 +46,27 @@ namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
 
         public void ExecuteWorkStrategy(IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer)
         {
-            Dictionary<bool, ISchaftOperator> WorkStrategy = new Dictionary<bool, ISchaftOperator>()
+            Dictionary<E_DwarfType, ISchaftStrategy> WorkStrategy = new Dictionary<E_DwarfType, ISchaftStrategy>()
             {
-                {true, new SchaftDestructor()},
-                {false, new SchaftExtractor()}
+                {E_DwarfType.Dwarf_Suicide, new SchaftDestructorStrategy()},
+                {E_DwarfType.Dwarf_Father, new SchaftExtractorStrategy()},
+                {E_DwarfType.Dwarf_Single, new SchaftExtractorStrategy()},
+                {E_DwarfType.Dwarf_Sluggard, new SchaftExtractorStrategy()},
+
             };
 
-            bool strategy = workers.Exists(x => x.type == E_DwarfType.Dwarf_Suicide);
-            SchaftStatus =  WorkStrategy[strategy].DoWork(workers, SchaftStatus, oreRandomizer, oreUnitAmountRandomizer);
-        }
-
-        internal class SchaftDestructor : ISchaftOperator
-        {
-            E_MiningSchaftStatus ISchaftOperator.DoWork(List<TemporaryWorker> workers, E_MiningSchaftStatus SchaftStatus, IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer)
+            foreach (var worker in workers)
             {
-                workers.ForEach(x => x.isAlive = false);
-                return E_MiningSchaftStatus.Broken;
-            }
-        }
+                WorkStrategy[worker.type].DoWork(worker, oreRandomizer, oreUnitAmountRandomizer);
 
-        internal class SchaftExtractor : ISchaftOperator
-        {
-            E_MiningSchaftStatus ISchaftOperator.DoWork(List<TemporaryWorker> workers, E_MiningSchaftStatus SchaftStatus, IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer)
-            {
-                foreach (var worker in workers)
+                if(workers.Exists(x => x.isAlive == false))
                 {
-                    int amountOfOres = oreUnitAmountRandomizer.GetAmountOfOreUnintsToRandom();
-
-                    for (int i = 0; i < amountOfOres; i++)
-                    {
-                        worker.backpack.AddSingleOre(oreRandomizer.GetRandomMineral());
-                    }
+                    SchaftStatus = E_MiningSchaftStatus.Broken;
+                    workers.ForEach(x => x.isAlive = false);
+                    workers.ForEach(x => x.backpack.ShowBackpackContent().Clear());
+                    break;
                 }
-                return E_MiningSchaftStatus.Operational;
             }
         }
-
     }
 }

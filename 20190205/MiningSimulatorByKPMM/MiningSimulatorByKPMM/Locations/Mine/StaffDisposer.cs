@@ -32,28 +32,5 @@ namespace MiningSimulatorByKPMM.Locations.Mine
                 }
             }
         }
-
-        //private void SendWorokersToCertainSchafts()
-        //{
-        //    foreach (MiningSchaft schaft in Schafts)
-        //    {
-        //        if (schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
-        //        {
-        //            var CurrentlyWorkingTeam = new TeamSplitter().SplitWorkersIntoTeam(_allWorkers.Where(x => 
-        //                                                                                            x.backpack.ShowBackpackContent().Count == 0 && 
-        //                                                                                            x.isAlive == true).ToList());
-        //            RemoveWorkingMinersFromAllworkers(CurrentlyWorkingTeam);
-        //            schaft.SetSchaftWorkers(CurrentlyWorkingTeam);
-        //        }
-        //    }
-        //}
-
-        //private void RemoveWorkingMinersFromAllworkers(List<TemporaryWorker> CurrentlyWorkingTeam)
-        //{
-        //    for (int i = 0; i < CurrentlyWorkingTeam.Count; i++)
-        //    {
-        //        _allWorkers.Remove(CurrentlyWorkingTeam[i]);
-        //    }
-        //}
     }
 }

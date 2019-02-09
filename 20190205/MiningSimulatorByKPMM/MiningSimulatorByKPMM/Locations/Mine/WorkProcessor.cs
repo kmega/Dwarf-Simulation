@@ -31,10 +31,10 @@ namespace MiningSimulatorByKPMM.Locations.Mine
                     this.Schafts = Schafts;
                     this._allWorkers = _allWorkers;
 
-                } while (IfCanStillWork());
+                } while (IfCanStillWork(_allWorkers, Schafts));
             }
 
-            public bool IfCanStillWork()
+            public bool IfCanStillWork(List<TemporaryWorker> _allWorkers, List<MiningSchaft> Schafts)
             {
                 bool condition = false;
 
@@ -42,7 +42,6 @@ namespace MiningSimulatorByKPMM.Locations.Mine
                 {
                     if (worker.backpack.ShowBackpackContent().Count == 0 && worker.isAlive == true)
                         condition = true;
-                    //else condition = false;
                 }
 
                 if (Schafts.All(x => x.GetSchaftStatus() == E_MiningSchaftStatus.Broken))
