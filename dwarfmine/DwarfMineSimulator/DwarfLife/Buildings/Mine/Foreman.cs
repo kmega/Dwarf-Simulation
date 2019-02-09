@@ -6,15 +6,20 @@ namespace DwarfLife.Buildings.Mine
 {
     public class Foreman
     {
-        public Foreman()
-        {
-        }
-
-        public void SendDwarfsToShaft(Mine mine, List<IDwarf> dwarfs)
+        public void SendDwarfsToRandomShaft(Mine mine, List<IDwarf> dwarfs)
         {
             dwarfs.ForEach(dwarf =>
             {
                 Shaft shaft = WhichShaft(mine);
+                if (!shaft.IsShaftFull())
+                    shaft.DwarfsInShaft.Add(dwarf);
+            });
+        }
+
+        public void SendDwarfsToShaft(Shaft shaft, List<IDwarf> dwarfs)
+        {
+            dwarfs.ForEach(dwarf =>
+            {
                 if (!shaft.IsShaftFull())
                     shaft.DwarfsInShaft.Add(dwarf);
             });

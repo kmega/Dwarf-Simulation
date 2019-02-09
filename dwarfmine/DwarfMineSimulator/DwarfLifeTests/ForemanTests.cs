@@ -21,7 +21,7 @@ namespace DwarfLife.Tests
 
             // when
             var randomShaft = foreman.WhichShaft(mine);
-            foreman.SendDwarfsToShaft(mine, dwarfs);
+            foreman.SendDwarfsToRandomShaft(mine, dwarfs);
 
             // then
             Assert.IsTrue(mine.Shafts[0].DwarfsInShaft.Count > 0);

@@ -46,10 +46,12 @@ namespace DwarfLife.Tests
         {
             // given
             var hospital = new Hospital();
-
-            // when
             IDwarf dwarf1 = hospital.BornRandomTypeDwarf(1);
             IDwarf dwarf2 = hospital.BornRandomTypeDwarf(2);
+
+            // when
+            while (dwarf2.DwarfType == dwarf1.DwarfType)
+                dwarf2 = hospital.BornRandomTypeDwarf(2);
 
             // then
             Assert.IsTrue(dwarf1.DwarfType != dwarf2.DwarfType);
