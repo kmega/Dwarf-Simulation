@@ -7,26 +7,27 @@ namespace DwarfLife.Buildings.Mine
 {
     public class Shaft
     {
-        readonly string _name;
         bool _collapsed;
-        public string Name { get { return _name; } }
+        readonly int _maxDwarfsInShaft;
+        public string Name { get; private set; }
         public bool IsCollapsed 
         { 
             get { return _collapsed; } 
             private set { _collapsed = value; } 
         }
-        public List<IDwarf> Dwarfs { get; private set; }
+        public List<IDwarf> DwarfsInShaft { get; set; }
 
-        public Shaft(string name)
+        public Shaft(string name, int maxDwarfsInShaft = 5)
         {
-            _name = name;
+            Name = name;
             _collapsed = false;
-            Dwarfs = new List<IDwarf>();
+            _maxDwarfsInShaft = maxDwarfsInShaft;
+            DwarfsInShaft = new List<IDwarf>();
         }
 
-        public void SendDwarfsToShaft(List<IDwarf> dwarfs)
+        public bool IsShaftFull()
         {
-            Dwarfs = dwarfs;
+            return DwarfsInShaft.Count >= _maxDwarfsInShaft;
         }
     }
 }

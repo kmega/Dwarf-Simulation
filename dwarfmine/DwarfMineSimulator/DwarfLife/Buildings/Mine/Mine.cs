@@ -15,7 +15,7 @@ namespace DwarfLife.Buildings.Mine
             get { return _shafts.OfType<Shaft>().ToList(); }
             private set { _shafts = value.ToArray(); } 
         }
-        public List<IDwarf> DwarfsInMine { get; private set; }
+        public List<IDwarf> DwarfsInMine { get; set; }
 
         public Mine()
         {
@@ -31,16 +31,6 @@ namespace DwarfLife.Buildings.Mine
                  shafts.Add(new Shaft(name));
 
             Shafts = shafts;
-        }
-
-        public void SendDwarfsToMine(List<IDwarf> dwarfs)
-        {
-            DwarfsInMine = dwarfs;
-        }
-
-        public Shaft WhichShaft()
-        {
-            return Shafts[new Random().Next(0, Shafts.Count - 1)];
         }
     }
 }

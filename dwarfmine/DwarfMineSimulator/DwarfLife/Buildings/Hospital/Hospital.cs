@@ -30,7 +30,7 @@ namespace DwarfLife.Buildings.Hospital
         {
             List<IDwarf> dwarfes = new List<IDwarf>();
             for(int i = 1; i <= howMany; i++)
-                dwarfes.Add(BornRandomTypeDwarf(1));
+                dwarfes.Add(BornRandomTypeDwarf(i));
 
             return dwarfes;
         }
