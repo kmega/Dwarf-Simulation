@@ -10,6 +10,7 @@ namespace DwarfLife.Dwarfs
         readonly DwarfTypes _dwarfType;
         readonly int _id;
 
+        public DwarfTypes DwarfType { get { return _dwarfType; } }
         public bool Alive { get; set; }
 
         public DwarfSaboteur(int id)
@@ -21,8 +22,6 @@ namespace DwarfLife.Dwarfs
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 _id, _dwarfType));
         }
-
-        public DwarfTypes DwarfType() { return _dwarfType; }
 
         public void Eat() { }
         public void Buy(ItemsInShop item) { }

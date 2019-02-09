@@ -5,7 +5,7 @@ using DwarfLife.Enums;
 using DwarfLife.Dwarfs;
 using DwarfLife.Diaries;
 
-namespace DwarfLife.Buildings
+namespace DwarfLife.Buildings.Hospital
 {
     public class Hospital
     {

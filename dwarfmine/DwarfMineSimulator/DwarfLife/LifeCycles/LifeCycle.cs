@@ -7,18 +7,19 @@ namespace DwarfLife.LifeCycles
     public class LifeCycle
     {
         int _maxDays;
+        public int MaxDays { get { return _maxDays; } private set { _maxDays = value; } }
         public LifeCycleState LifeCycleState { get; private set; }
 
         public LifeCycle(int maxDays = 30)
         {
-            _maxDays = maxDays;
+            MaxDays = maxDays;
             LifeCycleState = new LifeCycleState();
         }
 
         public LifeCycle(List<IDwarf> dwarfs, int maxDays = 30)
         {
+            MaxDays = maxDays;
             LifeCycleState = new LifeCycleState(dwarfs);
-            _maxDays = maxDays;
         }
 
         public void Begin()
@@ -42,11 +43,6 @@ namespace DwarfLife.LifeCycles
                 return false;
 
             return true;
-        }
-
-        public int MaxDays()
-        {
-            return _maxDays;
         }
     }
 }

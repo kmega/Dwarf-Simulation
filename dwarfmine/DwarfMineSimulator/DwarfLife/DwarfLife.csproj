@@ -11,6 +11,8 @@
     <Folder Include="Diaries\" />
     <Folder Include="Enums\" />
     <Folder Include="Buildings\" />
+    <Folder Include="Buildings\Hospital\" />
+    <Folder Include="Buildings\Mine\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="LifeCycle\EmptyStruct.cs" />

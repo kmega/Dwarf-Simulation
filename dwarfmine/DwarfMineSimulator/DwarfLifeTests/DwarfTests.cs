@@ -1,5 +1,5 @@
 ﻿using NUnit.Framework;
-using DwarfLife.Buildings;
+using DwarfLife.Buildings.Hospital;
 using DwarfLife.Enums;
 using DwarfLife.Dwarfs;
 using System;
@@ -22,7 +22,7 @@ namespace DwarfLife.Tests
             IDwarf dwarf = hospital.BornDwarf(1, dwarfType);
 
             // then
-            Assert.IsTrue(dwarf.DwarfType() == dwarfType);
+            Assert.IsTrue(dwarf.DwarfType == dwarfType);
         }
 
         [TestCase(DwarfTypes.Father)]
@@ -52,7 +52,7 @@ namespace DwarfLife.Tests
             IDwarf dwarf2 = hospital.BornRandomTypeDwarf(2);
 
             // then
-            Assert.IsTrue(dwarf1.DwarfType() != dwarf2.DwarfType());
+            Assert.IsTrue(dwarf1.DwarfType != dwarf2.DwarfType);
         }
     }
 }
