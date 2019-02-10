@@ -11,35 +11,54 @@ namespace DwarfLife.Dwarfs
         public int Id { get; }
         public DwarfTypes DwarfType { get; }
         public bool Alive { get; set; }
-        public Dictionary<Minerals, int> MinedMinerals { get; private set; }
+        public Dictionary<Minerals, int> MinedMinerals { get; protected set; }
 
         public Dwarf(int id)
         {
             Id = id;
             DwarfType = DwarfTypes.None;
             Alive = true;
+            MinedMinerals = new Dictionary<Minerals, int>()
+            {
+                { Minerals.Mithril, 0 },
+                { Minerals.Gold, 0 },
+                { Minerals.Silver, 0 },
+                { Minerals.TaintedGold, 0 }
+            };
             DiaryHelper.Log(DiaryTarget.Console, String.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 Id, DwarfType));
         }
 
-        public void Dig()
+        public void Dig(int hits = 0)
         {
-            int hits = new Random().Next(1, 3);
+            int hitsCounter = new Random().Next(1, 3);
+            Minerals mineral = Minerals.None;
 
-            int chance = new Random().Next(1, 100);
-            if (Enumerable.Range(1, 5).Contains(chance))
-                MinedMinerals[Minerals.Mithril] += 1;
+            if (hits > 0)
+                hitsCounter = hits;
 
-            if (Enumerable.Range(6, 20).Contains(chance))
-                MinedMinerals[Minerals.Gold] += 1;
+            while (hits >= 1)
+            {
+                int chance = new Random().Next(1, 100);
+                if (Enumerable.Range(1, 5).Contains(chance))
+                    mineral = Minerals.Mithril;
 
-            if (Enumerable.Range(21, 55).Contains(chance))
-                MinedMinerals[Minerals.Silver] += 1;
+                if (Enumerable.Range(6, 20).Contains(chance))
+                    mineral = Minerals.Gold;
 
-            if (Enumerable.Range(56, 100).Contains(chance))
-                MinedMinerals[Minerals.TaintedGold] += 1;
+                if (Enumerable.Range(21, 55).Contains(chance))
+                    mineral = Minerals.Silver;
 
+                if (Enumerable.Range(56, 100).Contains(chance))
+                    mineral = Minerals.TaintedGold;
+
+                MinedMinerals[mineral] += 1;
+
+                DiaryHelper.Log(DiaryTarget.Console, 
+                    string.Format("Dwarf {0} dig {1}", Id, MinedMinerals[mineral].ToString()));
+                hits--;
+            }
         }
 
         public void Eat() { }
