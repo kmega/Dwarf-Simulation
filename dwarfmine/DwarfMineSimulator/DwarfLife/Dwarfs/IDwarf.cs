@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DwarfLife.Buildings.Mine;
 using DwarfLife.Enums;
 
 namespace DwarfLife.Dwarfs
@@ -12,7 +13,7 @@ namespace DwarfLife.Dwarfs
         Places WhereAmI { get; set; }
 
         void Eat();
-        void Dig(int hits = 0);
+        void Dig(Shaft shaft, int hits = 0);
         void Buy(ItemsInShop item);
     }
 }

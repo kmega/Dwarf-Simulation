@@ -24,7 +24,7 @@ namespace DwarfLife.Tests
 
             // when
             foreman.SendDwarfsToRandomShaft(mine, dwarfs);
-            dwarfs[0].Dig(100);
+            dwarfs[0].Dig(mine.Shafts[0], 100);
 
             // then
             Assert.IsTrue(dwarfs[0].MinedMinerals[minerals] > 0);

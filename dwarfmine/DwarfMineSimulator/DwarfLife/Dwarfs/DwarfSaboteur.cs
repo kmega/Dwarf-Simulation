@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DwarfLife.Enums;
+using DwarfLife.Buildings.Mine;
 using DwarfLife.Diaries;
 
 namespace DwarfLife.Dwarfs
@@ -9,7 +10,7 @@ namespace DwarfLife.Dwarfs
     {
         public new DwarfTypes DwarfType { get; }
 
-        public DwarfSaboteur(int id, Places whereAmI = Places.None) : base(1)
+        public DwarfSaboteur(int id, Places whereAmI = Places.None) : base(id)
         {
             DwarfType = DwarfTypes.Saboteur;
             Alive = true;
@@ -18,9 +19,9 @@ namespace DwarfLife.Dwarfs
                 Id, DwarfType));
         }
 
-        public void Dig()
+        new public void Dig(Shaft shaft, int hits = 0)
         {
-
+            shaft.Collapse();
         }
     }
 }

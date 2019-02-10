@@ -20,6 +20,12 @@ namespace DwarfLife.Buildings.Mine
             DwarfsInShaft = new List<IDwarf>();
         }
 
+        public void Collapse()
+        {
+            IsCollapsed = true;
+            DwarfsInShaft.ForEach(dwarf => dwarf.Alive = false);
+        }
+
         public bool IsShaftFull()
         {
             return DwarfsInShaft.Count >= _maxDwarfsInShaft;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using DwarfLife.Enums;
 using DwarfLife.Diaries;
+using DwarfLife.Buildings.Mine;
 using System.Linq;
 
 namespace DwarfLife.Dwarfs
@@ -32,7 +33,7 @@ namespace DwarfLife.Dwarfs
                 Id, DwarfType));
         }
 
-        public void Dig(int hits = 0)
+        public void Dig(Shaft shaft, int hits = 0)
         {
             int hitsCounter = new Random().Next(1, 3);
             Minerals mineral = Minerals.None;
@@ -42,7 +43,7 @@ namespace DwarfLife.Dwarfs
 
             if (WhereAmI.Equals(Places.Shaft))
             {
-                while (hits >= 1)
+                while (hitsCounter >= 1)
                 {
                     int chance = new Random().Next(1, 100);
                     if (Enumerable.Range(1, 5).Contains(chance))
@@ -61,7 +62,7 @@ namespace DwarfLife.Dwarfs
 
                     DiaryHelper.Log(DiaryTarget.Console,
                     string.Format("Dwarf {0} dig {1}", Id, MinedMinerals[mineral].ToString()));
-                    hits--;
+                    hitsCounter--;
                 }
 
                 DiaryHelper.Log(DiaryTarget.Console,
