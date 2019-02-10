@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 using DwarfLife.Buildings.Mine;
-using DwarfLife.Buildings.Hospital;
+using DwarfLife.Buildings.Canteen;
 using DwarfLife.Enums;
 using DwarfLife.Dwarfs;
 using System;
@@ -28,6 +28,20 @@ namespace DwarfLife.Tests
 
             // then
             Assert.IsTrue(dwarfs[0].MinedMinerals[minerals] > 0);
+        }
+
+        [Test]
+        public void ShouldEatWhenHeIsInTheCanteen()
+        {
+            // given
+            var canteen = new Canteen(1);
+            var dwarf = new Dwarf(1, Places.Canteen);
+
+            // when
+            dwarf.Eat(canteen);
+
+            // then
+            Assert.IsTrue(canteen.Rations == 0);
         }
     }
 }

@@ -4,6 +4,7 @@ using DwarfLife.Enums;
 using DwarfLife.Diaries;
 using DwarfLife.Buildings.Mine;
 using DwarfLife.Buildings.Guild;
+using DwarfLife.Buildings.Canteen;
 using System.Linq;
 
 namespace DwarfLife.Dwarfs
@@ -84,7 +85,12 @@ namespace DwarfLife.Dwarfs
             MinedMinerals[Minerals.TaintedGold] = 0;
         }
 
-        public void Eat() { }
+        public void Eat(Canteen canteen)
+        {
+            if (WhereAmI.Equals(Places.Canteen))
+                canteen.Rations--;
+        }
+
         public void Buy(ItemsInShop item) { }
     }
 }
