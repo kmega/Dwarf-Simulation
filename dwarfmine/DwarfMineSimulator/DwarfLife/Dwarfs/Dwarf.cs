@@ -6,6 +6,7 @@ using DwarfLife.Buildings.Mine;
 using DwarfLife.Buildings.Guild;
 using DwarfLife.Buildings.Canteen;
 using System.Linq;
+using DwarfLife.Buildings.Shop;
 
 namespace DwarfLife.Dwarfs
 {
@@ -16,7 +17,8 @@ namespace DwarfLife.Dwarfs
         public bool Alive { get; set; }
         public Places WhereAmI { get; set; }
         public Dictionary<Minerals, int> MinedMinerals { get; protected set; }
-        public decimal Money { get; private set; }
+        public decimal DailyPayment { get; private set; }
+        public Dictionary<ItemsInShop, int> PurchasedItems { get; private set; }
 
         public Dwarf(int id, Places whereAmI = Places.None)
         {
@@ -31,7 +33,8 @@ namespace DwarfLife.Dwarfs
                 { Minerals.Silver, 0 },
                 { Minerals.TaintedGold, 0 }
             };
-            Money = 0;
+            DailyPayment = 0;
+            PurchasedItems = new Dictionary<ItemsInShop, int>();
 
             DiaryHelper.Log(DiaryTarget.Console, String.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
@@ -77,7 +80,7 @@ namespace DwarfLife.Dwarfs
 
         public void SellMinerals(Guild guild)
         {
-            Money = guild.BuyMinerals(MinedMinerals);
+            DailyPayment = guild.BuyMinerals(MinedMinerals);
 
             MinedMinerals[Minerals.Mithril] = 0;
             MinedMinerals[Minerals.Gold] = 0;
@@ -91,6 +94,33 @@ namespace DwarfLife.Dwarfs
                 canteen.Rations--;
         }
 
-        public void Buy(ItemsInShop item) { }
+        public void Buy(Shop shop, ItemsInShop item = ItemsInShop.None)
+        {
+            if (WhereAmI.Equals(Places.Shop))
+            {
+                if (PurchasedItems.ContainsKey(item))
+                    PurchasedItems[item]++;
+                else
+                    PurchasedItems.Add(shop.Sell(item), 1);
+            }
+        }
+
+        public void Buy(Shop shop, int howMany, ItemsInShop item = ItemsInShop.None)
+        {
+            if (WhereAmI.Equals(Places.Shop))
+            {
+                if (PurchasedItems.ContainsKey(item))
+                    PurchasedItems[item] += howMany;
+                else
+                    PurchasedItems.Add(shop.Sell(item), howMany);
+            }
+        }
+
+        public void Buy(Shop shop, ItemsInShop[] items) 
+        {
+            if (WhereAmI.Equals(Places.Shop))
+                foreach (var item in items)
+                    Buy(shop, item);
+        }
     }
 }
