@@ -18,12 +18,20 @@ namespace DwarfLife.Buildings.Mine
             IsCollapsed = false;
             _maxDwarfsInShaft = maxDwarfsInShaft;
             DwarfsInShaft = new List<IDwarf>();
+
+            DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("New Shaft named {0} has been created. {1} can dig in the Shaft.",
+                Name, _maxDwarfsInShaft));
         }
 
         public void Collapse()
         {
             IsCollapsed = true;
             DwarfsInShaft.ForEach(dwarf => dwarf.Alive = false);
+
+            DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("{0} has been collapsed.",
+                Name));
         }
 
         public bool IsShaftFull()

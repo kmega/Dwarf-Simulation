@@ -36,7 +36,7 @@ namespace DwarfLife.Dwarfs
             DailyPayment = 0;
             PurchasedItems = new Dictionary<ItemsInShop, int>();
 
-            DiaryHelper.Log(DiaryTarget.Console, String.Format(
+            DiaryHelper.Log(Constans.diaryTarget, string.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 Id, DwarfType));
         }
@@ -68,13 +68,13 @@ namespace DwarfLife.Dwarfs
 
                     MinedMinerals[mineral] += 1;
 
-                    DiaryHelper.Log(DiaryTarget.Console,
+                    DiaryHelper.Log(Constans.diaryTarget,
                     string.Format("Dwarf {0} dig {1}", Id, MinedMinerals[mineral].ToString()));
                     hitsCounter--;
                 }
 
-                DiaryHelper.Log(DiaryTarget.Console,
-                    string.Format("Dwarf {0} has nothing to dig because he is not in the shaft.", Id));
+                DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("Dwarf {0} has nothing to dig because he is not in the shaft.", Id));
             }
         }
 
@@ -86,26 +86,23 @@ namespace DwarfLife.Dwarfs
             MinedMinerals[Minerals.Gold] = 0;
             MinedMinerals[Minerals.Silver] = 0;
             MinedMinerals[Minerals.TaintedGold] = 0;
+
+            DiaryHelper.Log(Constans.diaryTarget,
+            string.Format("Dwarf {0} sell mined minerals and got payment amound of {1}.",
+                Id, DailyPayment));
         }
 
         public void Eat(Canteen canteen)
         {
             if (WhereAmI.Equals(Places.Canteen))
-                canteen.Rations--;
-        }
-
-        public void Buy(Shop shop, ItemsInShop item = ItemsInShop.None)
-        {
-            if (WhereAmI.Equals(Places.Shop))
             {
-                if (PurchasedItems.ContainsKey(item))
-                    PurchasedItems[item]++;
-                else
-                    PurchasedItems.Add(shop.Sell(item), 1);
+                canteen.Rations--;
+                DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("Dwarf {0} came into Canteen and eat meal.", Id));
             }
         }
 
-        public void Buy(Shop shop, int howMany, ItemsInShop item = ItemsInShop.None)
+        public void Buy(Shop shop, ItemsInShop item = ItemsInShop.None, int howMany = 1)
         {
             if (WhereAmI.Equals(Places.Shop))
             {
@@ -113,6 +110,10 @@ namespace DwarfLife.Dwarfs
                     PurchasedItems[item] += howMany;
                 else
                     PurchasedItems.Add(shop.Sell(item), howMany);
+
+                DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("Dwarf {0} came to shop and bought {1} of {2}.", 
+                Id, howMany, item));
             }
         }
 

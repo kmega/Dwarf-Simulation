@@ -2,11 +2,18 @@
 using System.Collections.Generic;
 using DwarfLife.Dwarfs;
 using DwarfLife.Enums;
+using DwarfLife.Diaries;
 
 namespace DwarfLife.Buildings.Mine
 {
     public class Foreman
     {
+        public Foreman()
+        {
+            DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("New Foreman has been created."));
+        }
+
         public void SendDwarfsToRandomShaft(Mine mine, List<IDwarf> dwarfs)
         {
             dwarfs.ForEach(dwarf =>
@@ -16,6 +23,10 @@ namespace DwarfLife.Buildings.Mine
                 {
                     shaft.DwarfsInShaft.Add(dwarf);
                     dwarf.WhereAmI = Places.Shaft;
+
+                    DiaryHelper.Log(Constans.diaryTarget,
+                        string.Format("Foreman send dwarf {0} to the {1}.",
+                        dwarf.Id, shaft.Name));
                 }
             });
         }
@@ -28,6 +39,10 @@ namespace DwarfLife.Buildings.Mine
                 {
                     shaft.DwarfsInShaft.Add(dwarf);
                     dwarf.WhereAmI = Places.Shaft;
+
+                    DiaryHelper.Log(Constans.diaryTarget,
+                        string.Format("Foreman send dwarf {0} to the {1}.",
+                        dwarf.Id, shaft.Name));
                 }
             });
         }

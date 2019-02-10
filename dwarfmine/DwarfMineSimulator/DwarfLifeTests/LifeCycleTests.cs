@@ -24,7 +24,7 @@ namespace DwarfLife.Tests
             var lifeCycle = new LifeCycle(maxDays);
 
             // then
-            Assert.AreEqual(lifeCycle.MaxDays, maxDays);
+            Assert.AreEqual(lifeCycle.MaxDays(), maxDays);
         }
 
         [TestCase(1)]

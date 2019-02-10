@@ -21,7 +21,7 @@ namespace DwarfLife.Dwarfs
         void Dig(Shaft shaft, int hits = 0);
         void SellMinerals(Guild guild);
         void Eat(Canteen canteen);
-        void Buy(Shop shop, ItemsInShop item = ItemsInShop.None);
+        void Buy(Shop shop, ItemsInShop item = ItemsInShop.None, int howMany = 1);
         void Buy(Shop shop, ItemsInShop[] items);
     }
 }

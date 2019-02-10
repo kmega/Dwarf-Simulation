@@ -12,7 +12,7 @@ namespace DwarfLife.Dwarfs
         {
             DwarfType = DwarfTypes.Sluggard;
             Alive = true;
-            DiaryHelper.Log(DiaryTarget.Console, String.Format(
+            DiaryHelper.Log(Constans.diaryTarget, string.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 Id, DwarfType));
         }

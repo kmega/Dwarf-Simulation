@@ -6,6 +6,11 @@ using DwarfLife.Buildings;
 
 namespace DwarfLife
 {
+    public static class Constans
+    {
+        public const DiaryTarget diaryTarget = DiaryTarget.Console;
+    }
+
     class Program
     {
         static void Main(string[] args)

@@ -82,7 +82,7 @@ namespace DwarfLife.Tests
             var dwarf = new DwarfFather(1, Places.Shop);
 
             // when
-            dwarf.Buy(shop, 50, ItemsInShop.Food);
+            dwarf.Buy(shop, ItemsInShop.Food, 50);
 
             // then
             Assert.IsTrue(dwarf.PurchasedItems.ContainsKey(ItemsInShop.Food));

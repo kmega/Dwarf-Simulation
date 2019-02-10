@@ -18,6 +18,11 @@ namespace DwarfLife.Buildings.Guild
         {
             decimal salary = mineralsValue * 0.75m;
             CollectedTaxes += mineralsValue * 0.25m;
+
+            DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("Guild collected amound of {0} tax.",
+                mineralsValue * 0.25m));
+
             return salary;
         }
 
