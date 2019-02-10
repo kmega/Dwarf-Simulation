@@ -13,6 +13,9 @@
     <Folder Include="Buildings\" />
     <Folder Include="Buildings\Hospital\" />
     <Folder Include="Buildings\Mine\" />
+    <Folder Include="Buildings\Guild\" />
+    <Folder Include="Buildings\Bank\" />
+    <Folder Include="Buildings\Graveyard\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="LifeCycle\EmptyStruct.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DwarfLife.Enums;
 using DwarfLife.Diaries;
 using DwarfLife.Buildings.Mine;
+using DwarfLife.Buildings.Guild;
 using System.Linq;
 
 namespace DwarfLife.Dwarfs
@@ -14,6 +15,7 @@ namespace DwarfLife.Dwarfs
         public bool Alive { get; set; }
         public Places WhereAmI { get; set; }
         public Dictionary<Minerals, int> MinedMinerals { get; protected set; }
+        public decimal Money { get; private set; }
 
         public Dwarf(int id, Places whereAmI = Places.None)
         {
@@ -28,6 +30,8 @@ namespace DwarfLife.Dwarfs
                 { Minerals.Silver, 0 },
                 { Minerals.TaintedGold, 0 }
             };
+            Money = 0;
+
             DiaryHelper.Log(DiaryTarget.Console, String.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 Id, DwarfType));
@@ -68,6 +72,16 @@ namespace DwarfLife.Dwarfs
                 DiaryHelper.Log(DiaryTarget.Console,
                     string.Format("Dwarf {0} has nothing to dig because he is not in the shaft.", Id));
             }
+        }
+
+        public void SellMinerals(Guild guild)
+        {
+            Money = guild.BuyMinerals(MinedMinerals);
+
+            MinedMinerals[Minerals.Mithril] = 0;
+            MinedMinerals[Minerals.Gold] = 0;
+            MinedMinerals[Minerals.Silver] = 0;
+            MinedMinerals[Minerals.TaintedGold] = 0;
         }
 
         public void Eat() { }

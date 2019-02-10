@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DwarfLife.Buildings.Mine;
+using DwarfLife.Buildings.Guild;
 using DwarfLife.Enums;
 
 namespace DwarfLife.Dwarfs
@@ -12,6 +13,7 @@ namespace DwarfLife.Dwarfs
         Dictionary<Minerals, int> MinedMinerals { get; }
         Places WhereAmI { get; set; }
 
+        void SellMinerals(Guild guild);
         void Eat();
         void Dig(Shaft shaft, int hits = 0);
         void Buy(ItemsInShop item);
