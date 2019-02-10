@@ -17,5 +17,10 @@ namespace DwarfLife.Dwarfs
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 Id, DwarfType));
         }
+
+        public void Dig()
+        {
+
+        }
     }
 }

@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using DwarfLife.Enums;
 using DwarfLife.Diaries;
 
 namespace DwarfLife.Dwarfs
 {
-    internal class DwarfSluggard : Dwarf, IDwarf
+    public class DwarfSluggard : Dwarf, IDwarf
     {
         public new DwarfTypes DwarfType { get; }
 
