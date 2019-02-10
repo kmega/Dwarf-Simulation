@@ -10,6 +10,7 @@ namespace DwarfLife.Dwarfs
         bool Alive { get; set; }
 
         void Eat();
+        void Dig();
         void Buy(ItemsInShop item);
     }
 }

@@ -5,25 +5,17 @@ using DwarfLife.Diaries;
 
 namespace DwarfLife.Dwarfs
 {
-    public class DwarfSingle : IDwarf
+    public class DwarfSingle : Dwarf, IDwarf
     {
-        readonly DwarfTypes _dwarfType;
-        readonly int _id;
+        public new DwarfTypes DwarfType { get; }
 
-        public DwarfTypes DwarfType { get { return _dwarfType; } }
-        public bool Alive { get; set; }
-
-        public DwarfSingle(int id)
+        public DwarfSingle(int id) : base(1)
         {
-            _id = id;
-            _dwarfType = DwarfTypes.Single;
+            DwarfType = DwarfTypes.Single;
             Alive = true;
             DiaryHelper.Log(DiaryTarget.Console, String.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
-                _id, _dwarfType));
+                Id, DwarfType));
         }
-
-        public void Eat() { }
-        public void Buy(ItemsInShop item) { }
     }
 }
