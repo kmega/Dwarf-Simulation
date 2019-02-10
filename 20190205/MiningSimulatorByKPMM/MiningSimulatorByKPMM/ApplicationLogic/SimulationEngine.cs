@@ -18,12 +18,7 @@ namespace MiningSimulatorByKPMM.ApplicationLogic
             var simulationState = new SimulationState();
             var hospital = new Hospital();
             var mineSupervisor = new MineSupervisor();
-            var guild = new Guild(new Dictionary<E_Minerals, ICreateOreValue>()
-            { { E_Minerals.Gold, new ValueOfGold() },
-                {E_Minerals.DirtGold, new ValueOfDirtGold() },
-                {E_Minerals.Mithril, new ValueOfMithril() },
-                {E_Minerals.Silver, new ValueOfSilver()}
-            });
+            var guild = GuildFactory.CreateStandardGuild();
             var market = new Market();
             var canteen = new Canteen();
             var generalBank = new GeneralBank();

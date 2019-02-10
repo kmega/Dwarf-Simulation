@@ -20,12 +20,7 @@ namespace SimulationTests.Guild_Tests
         public void Setup()
         {
 
-            guild = new Guild(new Dictionary<E_Minerals, ICreateOreValue>()
-            { { E_Minerals.Gold, new ValueOfGold() },
-                {E_Minerals.DirtGold, new ValueOfDirtGold() },
-                {E_Minerals.Mithril, new ValueOfMithril() },
-                {E_Minerals.Silver, new ValueOfSilver()}
-            });
+            guild = GuildFactory.CreateStandardGuild();
 
 
         }
