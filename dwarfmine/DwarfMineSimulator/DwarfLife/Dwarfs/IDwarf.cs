@@ -8,6 +8,8 @@ namespace DwarfLife.Dwarfs
     {
         DwarfTypes DwarfType { get; }
         bool Alive { get; set; }
+        Dictionary<Minerals, int> MinedMinerals { get; }
+        Places WhereAmI { get; set; }
 
         void Eat();
         void Dig(int hits = 0);

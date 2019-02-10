@@ -18,13 +18,16 @@ namespace DwarfLife.Tests
         public void ShouldDigMineralsTypeOf(Minerals minerals)
         {
             // given
-            var dwarf = new DwarfSingle(1);
+            var foreman = new Foreman();
+            var dwarfs = new List<IDwarf>() { new DwarfSingle(1) };
+            var mine = new Mine();
 
             // when
-            dwarf.Dig(100);
+            foreman.SendDwarfsToRandomShaft(mine, dwarfs);
+            dwarfs[0].Dig(100);
 
             // then
-            Assert.IsTrue(dwarf.MinedMinerals[minerals] > 0);
+            Assert.IsTrue(dwarfs[0].MinedMinerals[minerals] > 0);
         }
     }
 }

@@ -14,13 +14,13 @@ namespace DwarfLife.Buildings.Hospital
             switch (dwarfType)
             {
                 case DwarfTypes.Father:
-                    return new DwarfFather(dwarfId);
+                    return new DwarfFather(dwarfId, Places.Hospital);
                 case DwarfTypes.Single:
-                    return new DwarfSingle(dwarfId);
+                    return new DwarfSingle(dwarfId, Places.Hospital);
                 case DwarfTypes.Sluggard:
-                    return new DwarfSluggard(dwarfId);
+                    return new DwarfSluggard(dwarfId, Places.Hospital);
                 case DwarfTypes.Saboteur:
-                    return new DwarfSaboteur(dwarfId);
+                    return new DwarfSaboteur(dwarfId, Places.Hospital);
                 default:
                     return null;
             }

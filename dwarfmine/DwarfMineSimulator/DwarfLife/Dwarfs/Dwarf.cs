@@ -11,13 +11,15 @@ namespace DwarfLife.Dwarfs
         public int Id { get; }
         public DwarfTypes DwarfType { get; }
         public bool Alive { get; set; }
+        public Places WhereAmI { get; set; }
         public Dictionary<Minerals, int> MinedMinerals { get; protected set; }
 
-        public Dwarf(int id)
+        public Dwarf(int id, Places whereAmI = Places.None)
         {
             Id = id;
             DwarfType = DwarfTypes.None;
             Alive = true;
+            WhereAmI = whereAmI;
             MinedMinerals = new Dictionary<Minerals, int>()
             {
                 { Minerals.Mithril, 0 },
@@ -38,26 +40,32 @@ namespace DwarfLife.Dwarfs
             if (hits > 0)
                 hitsCounter = hits;
 
-            while (hits >= 1)
+            if (WhereAmI.Equals(Places.Shaft))
             {
-                int chance = new Random().Next(1, 100);
-                if (Enumerable.Range(1, 5).Contains(chance))
-                    mineral = Minerals.Mithril;
+                while (hits >= 1)
+                {
+                    int chance = new Random().Next(1, 100);
+                    if (Enumerable.Range(1, 5).Contains(chance))
+                        mineral = Minerals.Mithril;
 
-                if (Enumerable.Range(6, 20).Contains(chance))
-                    mineral = Minerals.Gold;
+                    if (Enumerable.Range(6, 20).Contains(chance))
+                        mineral = Minerals.Gold;
 
-                if (Enumerable.Range(21, 55).Contains(chance))
-                    mineral = Minerals.Silver;
+                    if (Enumerable.Range(21, 55).Contains(chance))
+                        mineral = Minerals.Silver;
 
-                if (Enumerable.Range(56, 100).Contains(chance))
-                    mineral = Minerals.TaintedGold;
+                    if (Enumerable.Range(56, 100).Contains(chance))
+                        mineral = Minerals.TaintedGold;
 
-                MinedMinerals[mineral] += 1;
+                    MinedMinerals[mineral] += 1;
 
-                DiaryHelper.Log(DiaryTarget.Console, 
+                    DiaryHelper.Log(DiaryTarget.Console,
                     string.Format("Dwarf {0} dig {1}", Id, MinedMinerals[mineral].ToString()));
-                hits--;
+                    hits--;
+                }
+
+                DiaryHelper.Log(DiaryTarget.Console,
+                    string.Format("Dwarf {0} has nothing to dig because he is not in the shaft.", Id));
             }
         }
 

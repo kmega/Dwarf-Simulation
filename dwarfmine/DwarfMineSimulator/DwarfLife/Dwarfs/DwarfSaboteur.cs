@@ -9,7 +9,7 @@ namespace DwarfLife.Dwarfs
     {
         public new DwarfTypes DwarfType { get; }
 
-        public DwarfSaboteur(int id) : base(1)
+        public DwarfSaboteur(int id, Places whereAmI = Places.None) : base(1)
         {
             DwarfType = DwarfTypes.Saboteur;
             Alive = true;

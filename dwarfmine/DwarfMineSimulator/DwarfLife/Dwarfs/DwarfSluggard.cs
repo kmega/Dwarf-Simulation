@@ -9,7 +9,7 @@ namespace DwarfLife.Dwarfs
     {
         public new DwarfTypes DwarfType { get; }
 
-        public DwarfSluggard(int id) : base(1)
+        public DwarfSluggard(int id, Places whereAmI = Places.None) : base(1)
         {
             DwarfType = DwarfTypes.Sluggard;
             Alive = true;

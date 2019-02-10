@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DwarfLife.Dwarfs;
+using DwarfLife.Enums;
 
 namespace DwarfLife.Buildings.Mine
 {
@@ -12,7 +13,10 @@ namespace DwarfLife.Buildings.Mine
             {
                 Shaft shaft = WhichShaft(mine);
                 if (!shaft.IsShaftFull())
+                {
                     shaft.DwarfsInShaft.Add(dwarf);
+                    dwarf.WhereAmI = Places.Shaft;
+                }
             });
         }
 
@@ -21,7 +25,10 @@ namespace DwarfLife.Buildings.Mine
             dwarfs.ForEach(dwarf =>
             {
                 if (!shaft.IsShaftFull())
+                {
                     shaft.DwarfsInShaft.Add(dwarf);
+                    dwarf.WhereAmI = Places.Shaft;
+                }
             });
         }
 
