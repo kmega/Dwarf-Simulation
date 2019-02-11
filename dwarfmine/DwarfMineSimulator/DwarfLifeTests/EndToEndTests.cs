@@ -12,7 +12,7 @@ namespace DwarfLife.Tests
     public class EndToEndTests
     {
         [Test]
-        public void EndToEndSimulation()
+        public void InitialiseLifeCycleWith10NonSaboteurDwarf()
         {
             // given
             var lifeCycle = new LifeCycle();
@@ -28,6 +28,22 @@ namespace DwarfLife.Tests
             Assert.AreEqual(initialyBornedDwarfs, 10);
             Assert.IsFalse(bornedDwarfs.Any(dwarf => dwarf.DwarfType.Equals(DwarfTypes.Saboteur)));
             Assert.IsTrue(lifeCycle.LifeCycleState.Hospital.BornedDwarfs >= 10);
+        }
+
+        [Test]
+        public void ThereWereDeadDwarfAndGraveyardCollectedBodies()
+        {
+            // given
+            var lifeCycle = new LifeCycle();
+            lifeCycle.LifeCycleState.Hospital.BornDwarfes(10,
+            DwarfTypes.Father | DwarfTypes.Single | DwarfTypes.Sluggard);
+
+            // then
+            lifeCycle.Begin();
+
+            // then
+            Assert.IsTrue(lifeCycle.LifeCycleState.Graveyard.DeadDwarfs.Any(dwarf => dwarf.DwarfType.Equals(DwarfTypes.Saboteur)));
+            Assert.IsTrue(lifeCycle.LifeCycleState.Graveyard.DeadDwarfs.Count > 0);
 
         }
     }

@@ -29,7 +29,7 @@ namespace DwarfLife.LifeCycles
         {
             while(IsEndOfLifeCycle())
             {
-                if (DoNothing)
+                if (!DoNothing)
                 {
                     LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.RebuildAfterCollapsed());
                     LifeCycleState.Dwarfs.ForEach(dwarf =>
@@ -37,7 +37,7 @@ namespace DwarfLife.LifeCycles
                         dwarf.HasWorkedToday = false;
                     });
 
-                    if (new Random().Next(1, 2) == 1)
+                    if (new Random().Next(1, 100) == 1)
                         LifeCycleState.Hospital.BornRandomTypeDwarf(
                             LifeCycleState.Dwarfs.Count + 1);
 

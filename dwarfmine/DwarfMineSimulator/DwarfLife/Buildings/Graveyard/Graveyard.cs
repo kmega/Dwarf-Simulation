@@ -20,7 +20,12 @@ namespace DwarfLife.Buildings.Graveyard
 
         public void BurryDeadDwarfs(List<IDwarf> dwarfs)
         {
-            DeadDwarfs = dwarfs.Where(dead => dead.Alive == false).ToList();
+            foreach (var dwarf in dwarfs)
+            {
+                if (!dwarf.Alive)
+                    DeadDwarfs.Add(dwarf);
+            }
+
             DeadDwarfs.ForEach(dead =>
             {
                 dwarfs.Remove(dead);

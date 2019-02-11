@@ -44,7 +44,7 @@ namespace DwarfLife.Tests
 
             // when
             lifeCycle.LifeCycleState.Hospital.BornDwarfes(10);
-            lifeCycle.Begin(false);
+            lifeCycle.Begin(true);
 
             // then
             int givenDaysPassed = lifeCycle.LifeCycleState.DaysPassed;
