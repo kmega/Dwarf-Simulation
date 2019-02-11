@@ -56,6 +56,9 @@ namespace DwarfLife.LifeCycles
 
                     LifeCycleState.Graveyard.BurryDeadDwarfs(
                             LifeCycleState.Dwarfs);
+
+                    LifeCycleState.Dwarfs.ForEach(dwarf => 
+                        dwarf.SellMinerals(LifeCycleState.Guild));
                 }
 
                 DayPass();

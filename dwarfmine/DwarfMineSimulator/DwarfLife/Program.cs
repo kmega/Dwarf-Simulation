@@ -16,6 +16,8 @@ namespace DwarfLife
         static void Main(string[] args)
         {
             //var lifeCycle = new LifeCycle();
+            //lifeCycle.LifeCycleState.Hospital.BornDwarfes(10,
+            //DwarfTypes.Father | DwarfTypes.Single | DwarfTypes.Sluggard);
             //lifeCycle.Begin();
         }
     }

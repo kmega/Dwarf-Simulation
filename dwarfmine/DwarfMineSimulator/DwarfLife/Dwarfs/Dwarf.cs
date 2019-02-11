@@ -57,21 +57,34 @@ namespace DwarfLife.Dwarfs
                 {
                     int chance = new Random().Next(1, 100);
                     if (Enumerable.Range(1, 5).Contains(chance))
+                    {
                         mineral = Minerals.Mithril;
+                        DiaryHelper.Log(Constans.diaryTarget,
+                        string.Format("Dwarf {0} dig {1}", Id, Minerals.Mithril.ToString()));
+                    }
 
                     if (Enumerable.Range(6, 20).Contains(chance))
+                    {
                         mineral = Minerals.Gold;
+                        DiaryHelper.Log(Constans.diaryTarget,
+                        string.Format("Dwarf {0} dig {1}", Id, Minerals.Gold.ToString()));
+                    }
 
                     if (Enumerable.Range(21, 55).Contains(chance))
+                    {
                         mineral = Minerals.Silver;
+                        DiaryHelper.Log(Constans.diaryTarget,
+                        string.Format("Dwarf {0} dig {1}", Id, Minerals.Silver.ToString()));
+                    }
 
                     if (Enumerable.Range(56, 100).Contains(chance))
+                    {
                         mineral = Minerals.TaintedGold;
+                        DiaryHelper.Log(Constans.diaryTarget,
+                        string.Format("Dwarf {0} dig {1}", Id, Minerals.TaintedGold.ToString()));
+                    }
 
                     MinedMinerals[mineral] += 1;
-
-                    DiaryHelper.Log(Constans.diaryTarget,
-                    string.Format("Dwarf {0} dig {1}", Id, MinedMinerals[mineral].ToString()));
                     hitsCounter--;
                 }
 
