@@ -26,7 +26,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
 
         public List<TemporaryWorker> GetWorkers() => workers;
 
-        public void DestroyShaftTEST()
+        public void DestroyShaft()
         {
             SchaftStatus = E_MiningSchaftStatus.Broken;
         }
@@ -52,7 +52,6 @@ namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
                 {E_DwarfType.Dwarf_Father, new SchaftExtractorStrategy()},
                 {E_DwarfType.Dwarf_Single, new SchaftExtractorStrategy()},
                 {E_DwarfType.Dwarf_Sluggard, new SchaftExtractorStrategy()},
-
             };
 
             foreach (var worker in workers)
@@ -61,7 +60,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine.SubMineLocations
 
                 if(workers.Exists(x => x.isAlive == false))
                 {
-                    SchaftStatus = E_MiningSchaftStatus.Broken;
+                    DestroyShaft();
                     workers.ForEach(x => x.isAlive = false);
                     workers.ForEach(x => x.backpack.ShowBackpackContent().Clear());
                     break;

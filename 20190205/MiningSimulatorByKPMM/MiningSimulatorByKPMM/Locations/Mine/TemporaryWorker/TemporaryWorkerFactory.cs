@@ -12,7 +12,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             public List<TemporaryWorker> CreateListTemporaryWorkersFromParameters(List<Backpack> backpackList, List<E_DwarfType> typeList, List<bool> isAliveList)
             {
                 if (backpackList.Count != typeList.Count)
-                    throw new Exception("Ops... lists are not equal");
+                    throw new ArgumentException("Lists are not eqaul");
 
                 List<TemporaryWorker> _allWorkers = new List<TemporaryWorker>();
 

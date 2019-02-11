@@ -9,7 +9,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
     {
         public class MineStatsUpdater
         {
-            public (List<TemporaryWorker>, Dictionary<E_Minerals, int>) UpdateDailyStats(List<TemporaryWorker> _allWorkers, Dictionary<E_Minerals, int> GetMineSupervisorStats)
+            public void UpdateDailyStats(List<TemporaryWorker> _allWorkers, Dictionary<E_Minerals, int> MineSupervisorStats)
             {
                 foreach (var mineral in Enum.GetValues(typeof(E_Minerals)))
                 {
@@ -20,12 +20,10 @@ namespace MiningSimulatorByKPMM.Locations.Mine
                         if (AmountOfMineralsOfNotDeadWorkers != 0)
                         {
                             sum += AmountOfMineralsOfNotDeadWorkers;
-                            GetMineSupervisorStats[(E_Minerals)mineral] += sum;
+                            MineSupervisorStats[(E_Minerals)mineral] += sum;
                         }
                     }
                 }
-
-                return (_allWorkers, GetMineSupervisorStats);
             }
         }
     }

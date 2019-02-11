@@ -31,7 +31,7 @@ namespace SimulationTests.MineTests
             var WP = new WorkProcessor();
             var workers = FakeTemporaryWorkerFactory.CreateOneWorkingTemporaryWorkerNonSuicide();
             var schaft = new MiningSchaft();
-            schaft.DestroyShaftTEST();
+            schaft.DestroyShaft();
             var schafts = new List<MiningSchaft> { schaft };
 
             //when

@@ -59,8 +59,8 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             new SchaftMender().FixSchafts(Schafts);
             _allWorkers = new TemporaryWorkerFactory().CreateListTemporaryWorkersFromParameters(backpackList, typeList, isAliveList);
             new WorkProcessor().ProcessWork(Schafts, _allWorkers, _oreRandomizer, _oreUnitAmountRandomizer);
-            (_allWorkers, MineSupervisorStats) = new MineStatsUpdater().UpdateDailyStats(_allWorkers, MineSupervisorStats);
-            new TemporaryWorkerUnpacker().ChangesStatesFromUnpackedTemporaryWorkers(backpackList, typeList, isAliveList, _allWorkers);
+            new MineStatsUpdater().UpdateDailyStats(_allWorkers, MineSupervisorStats);
+            new TemporaryWorkerUnpacker().ChangesStatesFromUnpackedTemporaryWorkers(ref backpackList, ref typeList, ref isAliveList, _allWorkers);
             _previousShiftOfMine = new List<TemporaryWorker>(_allWorkers);
             _allWorkers.Clear();
         }

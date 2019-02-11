@@ -8,7 +8,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
     {
         public class TemporaryWorkerUnpacker
         {
-            public void ChangesStatesFromUnpackedTemporaryWorkers(List<Backpack> backpackList, List<E_DwarfType> typeList, List<bool> isAliveList, List<TemporaryWorker> _allWorkers)
+            public void ChangesStatesFromUnpackedTemporaryWorkers(ref List<Backpack> backpackList, ref List<E_DwarfType> typeList, ref List<bool> isAliveList, List<TemporaryWorker> _allWorkers)
             {
                 List<Backpack> unwrappedBackpacks = new List<Backpack>();
                 List<E_DwarfType> unwrappedTypeLists = new List<E_DwarfType>();
