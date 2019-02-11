@@ -28,7 +28,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             Schafts = SchaftFactory.CreateTwoSchafts();
         }
 
-        public Dictionary<E_Minerals, int> MineSupervisorStats { get; set; } = new Dictionary<E_Minerals, int>()
+        public Dictionary<E_Minerals, int> MineSupervisorStats { get; private set; } = new Dictionary<E_Minerals, int>()
         {
             {E_Minerals.DirtGold, 0},
             {E_Minerals.Gold, 0},
@@ -46,6 +46,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             return new E_MiningSchaftStatus[] { Schafts[0].GetSchaftStatus(), Schafts[1].GetSchaftStatus() };
         }
 
+        //ForTests
         public MineSupervisor(ISchaftStrategy schaftOperator, IOreUnitAmountRandomizer oreUnitAmountRandomizer, IOreRandomizer oreRandomizer)
         {
             this._schaftOperator = schaftOperator;
