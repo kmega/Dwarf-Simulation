@@ -9,18 +9,34 @@ namespace DwarfLife.Buildings.Hospital
 {
     public class Hospital
     {
+        public List<IDwarf> BornedDwarfs { get; private set; }
+
+        public Hospital()
+        {
+            BornedDwarfs = new List<IDwarf>();
+        }
+
         public IDwarf BornDwarf(int dwarfId, DwarfTypes dwarfType)
         {
+            IDwarf dwarf;
             switch (dwarfType)
             {
                 case DwarfTypes.Father:
-                    return new DwarfFather(dwarfId, Places.Hospital);
+                    dwarf = new DwarfFather(dwarfId, Places.Hospital);
+                    BornedDwarfs.Add(dwarf);
+                    return dwarf;
                 case DwarfTypes.Single:
-                    return new DwarfSingle(dwarfId, Places.Hospital);
+                    dwarf = new DwarfSingle(dwarfId, Places.Hospital);
+                    BornedDwarfs.Add(dwarf);
+                    return dwarf;
                 case DwarfTypes.Sluggard:
-                    return new DwarfSluggard(dwarfId, Places.Hospital);
+                    dwarf = new DwarfSluggard(dwarfId, Places.Hospital);
+                    BornedDwarfs.Add(dwarf);
+                    return dwarf;
                 case DwarfTypes.Saboteur:
-                    return new DwarfSaboteur(dwarfId, Places.Hospital);
+                    dwarf = new DwarfSaboteur(dwarfId, Places.Hospital);
+                    BornedDwarfs.Add(dwarf);
+                    return dwarf;
                 default:
                     return null;
             }
