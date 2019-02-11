@@ -16,9 +16,6 @@ namespace DwarfLife.Buildings.Shop
 
         public ItemsInShop Sell(ItemsInShop[] items)
         {
-            //foreach (var item in items)
-                //Sell(item);
-
             throw new NotImplementedException();
         }
     }

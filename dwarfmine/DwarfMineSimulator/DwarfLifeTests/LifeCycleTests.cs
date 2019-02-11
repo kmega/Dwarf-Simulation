@@ -24,7 +24,7 @@ namespace DwarfLife.Tests
             var lifeCycle = new LifeCycle(maxDays);
 
             // then
-            Assert.AreEqual(lifeCycle.MaxDays(), maxDays);
+            Assert.AreEqual(lifeCycle.LifeCycleState.MaxDays, maxDays);
         }
 
         [TestCase(1)]
@@ -43,11 +43,19 @@ namespace DwarfLife.Tests
             var lifeCycle = new LifeCycle(dwarfes, expetedDaysToPass);
 
             // when
+            //lifeCycle.LifeCycleState.Dwarfs = lifeCycle.LifeCycleState.Hospital.BornDwarfes(10);
             lifeCycle.Begin();
 
             // then
             int givenDaysPassed = lifeCycle.LifeCycleState.DaysPassed;
             Assert.AreEqual(givenDaysPassed, expetedDaysToPass);
+        }
+
+        [Test]
+        public void EndToEndSimulation()
+        {
+            // given
+            
         }
     }
 }
