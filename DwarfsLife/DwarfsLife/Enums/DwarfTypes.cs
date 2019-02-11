@@ -1,5 +1,5 @@
 ﻿using System;
-namespace DwarfLife.Enums
+namespace DwarfsLife.Enums
 {
     [Flags]
     public enum DwarfTypes
