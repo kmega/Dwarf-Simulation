@@ -43,6 +43,12 @@ namespace DwarfLife.Dwarfs
                 Id, DwarfType));
         }
 
+        public void GoTo(Places places)
+        {
+            if (Alive)
+                WhereAmI = places;
+        }
+
         public void Dig(int hits = 0)
         {
             int hitsCounter = new Random().Next(1, 3);
@@ -116,7 +122,7 @@ namespace DwarfLife.Dwarfs
         {
             if (WhereAmI.Equals(Places.Canteen))
             {
-                canteen.Rations--;
+                canteen.GiveFood();
                 DiaryHelper.Log(Constans.diaryTarget,
                 string.Format("Dwarf {0} came into Canteen and eat meal.", Id));
             }

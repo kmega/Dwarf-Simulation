@@ -3,6 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 using DwarfLife.Dwarfs;
 using DwarfLife.Diaries;
+using DwarfLife.Enums;
 
 namespace DwarfLife.LifeCycles
 {
@@ -31,17 +32,17 @@ namespace DwarfLife.LifeCycles
             {
                 if (!DoNothing)
                 {
-                    LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.RebuildAfterCollapsed());
-                    LifeCycleState.Dwarfs.ForEach(dwarf =>
-                    {
-                        dwarf.HasWorkedToday = false;
-                    });
+                    InitializeDay();
 
-                    if (new Random().Next(1, 100) == 1)
+                    if (new Random().Next(1, 2) == 1)
                         LifeCycleState.Hospital.BornRandomTypeDwarf(
                             LifeCycleState.Dwarfs.Count + 1);
 
-                    while (LifeCycleState.Dwarfs.Any(dwarf => dwarf.HasWorkedToday == false))
+                    LifeCycleState.Dwarfs.ForEach(dwarf => dwarf.GoTo(Places.Mine));
+
+                    while (LifeCycleState.Dwarfs.Any(dwarf => 
+                            !dwarf.HasWorkedToday && 
+                            dwarf.Alive))
                     {
                         LifeCycleState.Foreman.SendDwarfsToRandomShaft(
                             LifeCycleState.Mine,
@@ -57,13 +58,29 @@ namespace DwarfLife.LifeCycles
                     LifeCycleState.Graveyard.BurryDeadDwarfs(
                             LifeCycleState.Dwarfs);
 
-                    LifeCycleState.Dwarfs.ForEach(dwarf => 
+                    LifeCycleState.Dwarfs.ForEach(dwarf =>
                         dwarf.SellMinerals(LifeCycleState.Guild));
+
+                    LifeCycleState.Dwarfs.ForEach(dwarf =>
+                    {
+                        dwarf.GoTo(Places.Canteen);
+                        dwarf.Eat(LifeCycleState.Canteen);
+                    });
                 }
 
                 DayPass();
             }
 
+        }
+
+        private void InitializeDay()
+        {
+            LifeCycleState.Dwarfs.ForEach(dwarf =>
+            {
+                dwarf.HasWorkedToday = false;
+            });
+            LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.RebuildAfterCollapsed());
+            LifeCycleState.Canteen.CheckSupplies();
         }
 
         private void DayPass()

@@ -23,6 +23,7 @@ namespace DwarfLife.Tests
             var mine = new Mine();
 
             // when
+            dwarfs[0].GoTo(Places.Mine);
             foreman.SendDwarfsToRandomShaft(mine, dwarfs);
             dwarfs[0].Dig(100);
 

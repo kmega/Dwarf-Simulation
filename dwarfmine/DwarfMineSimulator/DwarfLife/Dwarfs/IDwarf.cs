@@ -19,6 +19,7 @@ namespace DwarfLife.Dwarfs
         decimal DailyPayment { get; }
         Dictionary<ItemsInShop, int> PurchasedItems { get; }
 
+        void GoTo(Places places);
         void Dig(int hits = 0);
         void SellMinerals(Guild guild);
         void Eat(Canteen canteen);

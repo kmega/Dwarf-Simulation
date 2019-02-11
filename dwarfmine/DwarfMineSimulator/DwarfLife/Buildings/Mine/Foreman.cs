@@ -23,15 +23,18 @@ namespace DwarfLife.Buildings.Mine
 
             dwarfs.ForEach(dwarf =>
             {
-                Shaft shaft = WhichShaft(mine);
-                if (!shaft.IsShaftFull())
+                if (dwarf.WhereAmI == Places.Mine)
                 {
-                    shaft.DwarfsInShaft.Add(dwarf);
-                    dwarf.WhereAmI = Places.Shaft;
+                    Shaft shaft = WhichShaft(mine);
+                    if (!shaft.IsShaftFull())
+                    {
+                        shaft.DwarfsInShaft.Add(dwarf);
+                        dwarf.GoTo(Places.Shaft);
 
-                    DiaryHelper.Log(Constans.diaryTarget,
-                        string.Format("Foreman send dwarf {0} to the {1}.",
-                        dwarf.Id, shaft.Name));
+                        DiaryHelper.Log(Constans.diaryTarget,
+                            string.Format("Foreman send dwarf {0} to the {1}.",
+                            dwarf.Id, shaft.Name));
+                    }
                 }
             });
         }

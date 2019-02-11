@@ -32,6 +32,7 @@ namespace DwarfLife.Buildings.Mine
             {
                 IsCollapsed = true;
                 DwarfsInShaft.ForEach(dwarf => dwarf.Alive = false);
+                DwarfsInShaft.Clear();
 
                 DiaryHelper.Log(Constans.diaryTarget,
                     string.Format("{0} has been collapsed.",
