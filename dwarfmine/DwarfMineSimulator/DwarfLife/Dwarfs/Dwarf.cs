@@ -97,16 +97,19 @@ namespace DwarfLife.Dwarfs
 
         public void SellMinerals(Guild guild)
         {
-            DailyPayment = guild.BuyMinerals(MinedMinerals);
+            if (Alive)
+            {
+                DailyPayment = guild.BuyMinerals(MinedMinerals);
 
-            MinedMinerals[Minerals.Mithril] = 0;
-            MinedMinerals[Minerals.Gold] = 0;
-            MinedMinerals[Minerals.Silver] = 0;
-            MinedMinerals[Minerals.TaintedGold] = 0;
+                MinedMinerals[Minerals.Mithril] = 0;
+                MinedMinerals[Minerals.Gold] = 0;
+                MinedMinerals[Minerals.Silver] = 0;
+                MinedMinerals[Minerals.TaintedGold] = 0;
 
-            DiaryHelper.Log(Constans.diaryTarget,
-            string.Format("Dwarf {0} sell mined minerals and got payment amound of {1}.",
-                Id, DailyPayment));
+                DiaryHelper.Log(Constans.diaryTarget,
+                string.Format("Dwarf {0} sell mined minerals and got payment amound of {1}.",
+                    Id, DailyPayment));
+            }
         }
 
         public void Eat(Canteen canteen)
