@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfLife", "DwarfLife\Dwar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfLifeTests", "DwarfLifeTests\DwarfLifeTests.csproj", "{9EDE633B-B01A-4702-95C3-56EDF4C0D796}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfsLife", "DwarfsLife\DwarfsLife.csproj", "{0190C959-4326-45AF-AB4A-3F8E2862D14E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DwarfsLife.Tests", "DwarfsLife.Tests\DwarfsLife.Tests.csproj", "{E791BE00-2B31-4672-9E96-6E3524237652}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{9EDE633B-B01A-4702-95C3-56EDF4C0D796}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EDE633B-B01A-4702-95C3-56EDF4C0D796}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EDE633B-B01A-4702-95C3-56EDF4C0D796}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0190C959-4326-45AF-AB4A-3F8E2862D14E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0190C959-4326-45AF-AB4A-3F8E2862D14E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0190C959-4326-45AF-AB4A-3F8E2862D14E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0190C959-4326-45AF-AB4A-3F8E2862D14E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E791BE00-2B31-4672-9E96-6E3524237652}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E791BE00-2B31-4672-9E96-6E3524237652}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E791BE00-2B31-4672-9E96-6E3524237652}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E791BE00-2B31-4672-9E96-6E3524237652}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
