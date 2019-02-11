@@ -16,6 +16,11 @@ namespace DwarfLife.Buildings.Mine
 
         public void SendDwarfsToRandomShaft(Mine mine, List<IDwarf> dwarfs)
         {
+            mine.Shafts.ForEach(shaft =>
+            {
+                shaft.DwarfsInShaft.RemoveAll(dwarf => dwarf.HasWorkedToday == true);
+            });
+
             dwarfs.ForEach(dwarf =>
             {
                 Shaft shaft = WhichShaft(mine);
@@ -33,6 +38,8 @@ namespace DwarfLife.Buildings.Mine
 
         public void SendDwarfsToShaft(Shaft shaft, List<IDwarf> dwarfs)
         {
+            shaft.DwarfsInShaft.RemoveAll(dwarf => dwarf.HasWorkedToday == true);
+
             dwarfs.ForEach(dwarf =>
             {
                 if (!shaft.IsShaftFull() && !shaft.IsCollapsed)

@@ -25,32 +25,38 @@ namespace DwarfLife.LifeCycles
             LifeCycleState = new LifeCycleState(dwarfs, maxDays);
         }
 
-        public void Begin()
+        public void Begin(bool DoNothing = false)
         {
             while(IsEndOfLifeCycle())
             {
-                LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.RebuildAfterCollapsed());
-                LifeCycleState.Dwarfs.ForEach(dwarf =>
+                if (DoNothing)
                 {
-                    dwarf.HasWorkedToday = false;
-                });
-
-                if (new Random().Next(1, 2) == 1)
-                    LifeCycleState.Hospital.BornRandomTypeDwarf(
-                        LifeCycleState.Dwarfs.Count + 1);
-
-                //while (LifeCycleState.Dwarfs.Any(dwarf => dwarf.HasWorkedToday == false))
-                //{
-                    LifeCycleState.Foreman.SendDwarfsToRandomShaft(
-                        LifeCycleState.Mine, 
-                        LifeCycleState.Dwarfs
-                            .Where(dwarf => dwarf.HasWorkedToday == false).ToList());
+                    LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.RebuildAfterCollapsed());
                     LifeCycleState.Dwarfs.ForEach(dwarf =>
                     {
-                        LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.CheckForSaboteur());
-                        dwarf.Dig();
+                        dwarf.HasWorkedToday = false;
                     });
-                //}
+
+                    if (new Random().Next(1, 2) == 1)
+                        LifeCycleState.Hospital.BornRandomTypeDwarf(
+                            LifeCycleState.Dwarfs.Count + 1);
+
+                    while (LifeCycleState.Dwarfs.Any(dwarf => dwarf.HasWorkedToday == false))
+                    {
+                        LifeCycleState.Foreman.SendDwarfsToRandomShaft(
+                            LifeCycleState.Mine,
+                            LifeCycleState.Dwarfs);
+
+                        LifeCycleState.Mine.Shafts.ForEach(shaft =>
+                        {
+                            shaft.CheckForSaboteur();
+                            shaft.DwarfsInShaft.ForEach(dwarf => dwarf.Dig());
+                        });
+                    }
+
+                    LifeCycleState.Graveyard.BurryDeadDwarfs(
+                            LifeCycleState.Dwarfs);
+                }
 
                 DayPass();
             }

@@ -18,7 +18,7 @@ namespace DwarfLife.Tests
             var lifeCycle = new LifeCycle();
             lifeCycle.LifeCycleState.Hospital.BornDwarfes(10, 
             DwarfTypes.Father | DwarfTypes.Single | DwarfTypes.Sluggard);
-            var bornedDwarfs = lifeCycle.LifeCycleState.Hospital.BornedDwarfs.ToArray();
+            var bornedDwarfs = lifeCycle.LifeCycleState.Hospital.Dwarfs.ToArray();
             var initialyBornedDwarfs = lifeCycle.LifeCycleState.Dwarfs.Count;
 
             // then
@@ -27,7 +27,7 @@ namespace DwarfLife.Tests
             // then
             Assert.AreEqual(initialyBornedDwarfs, 10);
             Assert.IsFalse(bornedDwarfs.Any(dwarf => dwarf.DwarfType.Equals(DwarfTypes.Saboteur)));
-            Assert.IsTrue(lifeCycle.LifeCycleState.Dwarfs.Count >= 10);
+            Assert.IsTrue(lifeCycle.LifeCycleState.Hospital.BornedDwarfs >= 10);
 
         }
     }

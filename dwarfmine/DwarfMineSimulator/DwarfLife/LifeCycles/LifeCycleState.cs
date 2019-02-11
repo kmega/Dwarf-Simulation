@@ -38,7 +38,7 @@ namespace DwarfLife.LifeCycles
             Mine = new Mine();
             Foreman = new Foreman();
             Shop = new Shop();
-            Dwarfs = Hospital.BornedDwarfs;
+            Dwarfs = Hospital.Dwarfs;
         }       
 
         public LifeCycleState(List<IDwarf> dwarfs, int maxDays = 30)
@@ -54,7 +54,7 @@ namespace DwarfLife.LifeCycles
             Mine = new Mine();
             Foreman = new Foreman();
             Shop = new Shop();
-            Dwarfs = Hospital.BornedDwarfs;
+            Dwarfs = Hospital.Dwarfs;
         }
 
 
