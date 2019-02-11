@@ -25,14 +25,11 @@ namespace DwarfLife.Tests
         public void InitialiseLifeCycleWith10NonSaboteurDwarf()
         {
             // given
-            //var lifeCycle = new LifeCycle();
-            //lifeCycle.LifeCycleState.Hospital.BornDwarfes(10, 
-            //DwarfTypes.Father | DwarfTypes.Single | DwarfTypes.Sluggard);
             var bornedDwarfs = lifeCycle.LifeCycleState.Hospital.Dwarfs.ToArray();
             var initialyBornedDwarfs = lifeCycle.LifeCycleState.Dwarfs.Count;
 
             // then
-            lifeCycle.Begin();
+            lifeCycle.Begin(false);
 
             // then
             Assert.AreEqual(initialyBornedDwarfs, 10);
@@ -44,9 +41,6 @@ namespace DwarfLife.Tests
         public void ThereWereDeadDwarfAndGraveyardCollectedBodies()
         {
             // given
-            //var lifeCycle = new LifeCycle();
-            //lifeCycle.LifeCycleState.Hospital.BornDwarfes(10,
-            //DwarfTypes.Father | DwarfTypes.Single | DwarfTypes.Sluggard);
 
             // then
             lifeCycle.Begin();
@@ -61,9 +55,6 @@ namespace DwarfLife.Tests
         public void GuildShouldCollectTaxes()
         {
             // given
-            //var lifeCycle = new LifeCycle();
-            //lifeCycle.LifeCycleState.Hospital.BornDwarfes(10,
-            //DwarfTypes.Father | DwarfTypes.Single | DwarfTypes.Sluggard);
 
             // then
             lifeCycle.Begin();
@@ -76,9 +67,6 @@ namespace DwarfLife.Tests
         public void CanteenShouldFeedDwarfs()
         {
             // given
-            //var lifeCycle = new LifeCycle();
-            //lifeCycle.LifeCycleState.Hospital.BornDwarfes(10,
-            //DwarfTypes.Father | DwarfTypes.Single | DwarfTypes.Sluggard);
 
             // then
             lifeCycle.Begin();

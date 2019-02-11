@@ -4,6 +4,7 @@ using DwarfLife.Buildings.Hospital;
 using DwarfLife.Dwarfs;
 using System;
 using System.Collections.Generic;
+using DwarfLife.Enums;
 
 namespace DwarfLife.Tests
 {
@@ -21,6 +22,7 @@ namespace DwarfLife.Tests
 
             // when
             var randomShaft = foreman.WhichShaft(mine);
+            dwarfs.ForEach(dwarf => dwarf.GoTo(Places.Mine));
             foreman.SendDwarfsToRandomShaft(mine, dwarfs);
 
             // then

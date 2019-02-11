@@ -22,8 +22,11 @@ namespace DwarfLife.Buildings.Canteen
 
         public void GiveFood()
         {
-            Rations--;
-            RationsEaten++;
+            if (Rations > 0)
+            {
+                Rations--;
+                RationsEaten++;
+            }
         }
 
         public void CheckSupplies()

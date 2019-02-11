@@ -40,20 +40,22 @@ namespace DwarfLife.LifeCycles
 
                     LifeCycleState.Dwarfs.ForEach(dwarf => dwarf.GoTo(Places.Mine));
 
-                    while (LifeCycleState.Dwarfs.Any(dwarf => 
-                            !dwarf.HasWorkedToday && 
-                            dwarf.Alive))
-                    {
-                        LifeCycleState.Foreman.SendDwarfsToRandomShaft(
-                            LifeCycleState.Mine,
-                            LifeCycleState.Dwarfs);
+                    // Endless loop still dont know why
 
-                        LifeCycleState.Mine.Shafts.ForEach(shaft =>
-                        {
-                            shaft.CheckForSaboteur();
-                            shaft.DwarfsInShaft.ForEach(dwarf => dwarf.Dig());
-                        });
-                    }
+                    //while (LifeCycleState.Dwarfs.Any(dwarf => 
+                    //        !dwarf.HasWorkedToday && 
+                    //        dwarf.Alive))
+                    //{
+                    //    LifeCycleState.Foreman.SendDwarfsToRandomShaft(
+                    //        LifeCycleState.Mine,
+                    //        LifeCycleState.Dwarfs);
+
+                    //    LifeCycleState.Mine.Shafts.ForEach(shaft =>
+                    //    {
+                    //        shaft.CheckForSaboteur();
+                    //        shaft.DwarfsInShaft.ForEach(dwarf => dwarf.Dig());
+                    //    });
+                    //}
 
                     LifeCycleState.Graveyard.BurryDeadDwarfs(
                             LifeCycleState.Dwarfs);
@@ -101,7 +103,7 @@ namespace DwarfLife.LifeCycles
                         LifeCycleState.DaysPassed, LifeCycleState.MaxDays));
                 return false;
             }
-            if (LifeCycleState.Dwarfs.Count == 0)
+            if (LifeCycleState.Dwarfs.Count <= 0)
             {
                 DiaryHelper.Log(Constans.diaryTarget,
                         string.Format("LifeCycle has been ended because there is no dwarfs anymore."));
