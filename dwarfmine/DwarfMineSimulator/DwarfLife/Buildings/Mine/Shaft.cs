@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using DwarfLife.Diaries;
 using DwarfLife.Dwarfs;
+using DwarfLife.Enums;
 
 namespace DwarfLife.Buildings.Mine
 {
@@ -24,19 +26,27 @@ namespace DwarfLife.Buildings.Mine
                 Name, _maxDwarfsInShaft));
         }
 
-        public void Collapse()
+        public void CheckForSaboteur()
         {
-            IsCollapsed = true;
-            DwarfsInShaft.ForEach(dwarf => dwarf.Alive = false);
+            if (DwarfsInShaft.Any(dwarf => dwarf.DwarfType.Equals(DwarfTypes.Saboteur)))
+            {
+                IsCollapsed = true;
+                DwarfsInShaft.ForEach(dwarf => dwarf.Alive = false);
 
-            DiaryHelper.Log(Constans.diaryTarget,
-                string.Format("{0} has been collapsed.",
-                Name));
+                DiaryHelper.Log(Constans.diaryTarget,
+                    string.Format("{0} has been collapsed.",
+                    Name));
+            }
         }
 
         public bool IsShaftFull()
         {
             return DwarfsInShaft.Count >= _maxDwarfsInShaft;
+        }
+
+        public void RebuildAfterCollapsed()
+        {
+            IsCollapsed = false;
         }
     }
 }

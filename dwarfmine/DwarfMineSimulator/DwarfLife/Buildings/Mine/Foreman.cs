@@ -35,7 +35,7 @@ namespace DwarfLife.Buildings.Mine
         {
             dwarfs.ForEach(dwarf =>
             {
-                if (!shaft.IsShaftFull())
+                if (!shaft.IsShaftFull() && !shaft.IsCollapsed)
                 {
                     shaft.DwarfsInShaft.Add(dwarf);
                     dwarf.WhereAmI = Places.Shaft;

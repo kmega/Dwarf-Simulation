@@ -14,6 +14,7 @@ namespace DwarfLife.Dwarfs
         {
             DwarfType = DwarfTypes.Father;
             Alive = true;
+            HasWorkedToday = false;
             DiaryHelper.Log(Constans.diaryTarget, String.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 Id, DwarfType));

@@ -14,14 +14,10 @@ namespace DwarfLife.Dwarfs
         {
             DwarfType = DwarfTypes.Saboteur;
             Alive = true;
+            HasWorkedToday = false;
             DiaryHelper.Log(Constans.diaryTarget, string.Format(
                 "Dwarf has born. His id = {0}, and his type is: {1}",
                 Id, DwarfType));
-        }
-
-        new public void Dig(Shaft shaft, int hits = 0)
-        {
-            shaft.Collapse();
         }
     }
 }

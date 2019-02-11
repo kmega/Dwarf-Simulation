@@ -16,6 +16,7 @@ namespace DwarfLife.Dwarfs
         public DwarfTypes DwarfType { get; }
         public bool Alive { get; set; }
         public Places WhereAmI { get; set; }
+        public bool HasWorkedToday { get; set; }
         public Dictionary<Minerals, int> MinedMinerals { get; protected set; }
         public decimal DailyPayment { get; private set; }
         public Dictionary<ItemsInShop, int> PurchasedItems { get; private set; }
@@ -25,6 +26,7 @@ namespace DwarfLife.Dwarfs
             Id = id;
             DwarfType = DwarfTypes.None;
             Alive = true;
+            HasWorkedToday = false;
             WhereAmI = whereAmI;
             MinedMinerals = new Dictionary<Minerals, int>()
             {
@@ -41,7 +43,7 @@ namespace DwarfLife.Dwarfs
                 Id, DwarfType));
         }
 
-        public void Dig(Shaft shaft, int hits = 0)
+        public void Dig(int hits = 0)
         {
             int hitsCounter = new Random().Next(1, 3);
             Minerals mineral = Minerals.None;
@@ -72,6 +74,8 @@ namespace DwarfLife.Dwarfs
                     string.Format("Dwarf {0} dig {1}", Id, MinedMinerals[mineral].ToString()));
                     hitsCounter--;
                 }
+
+                HasWorkedToday = true;
 
                 DiaryHelper.Log(Constans.diaryTarget,
                 string.Format("Dwarf {0} has nothing to dig because he is not in the shaft.", Id));

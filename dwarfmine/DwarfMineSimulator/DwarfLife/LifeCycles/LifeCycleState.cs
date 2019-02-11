@@ -23,6 +23,7 @@ namespace DwarfLife.LifeCycles
         public Guild Guild { get; private set; }
         public Hospital Hospital { get; private set; }
         public Mine Mine { get; private set; }
+        public Foreman Foreman { get; private set; }
         public Shop Shop { get; private set; }
 
         public LifeCycleState(int maxDays = 30)
@@ -35,6 +36,7 @@ namespace DwarfLife.LifeCycles
             Guild = new Guild();
             Hospital = new Hospital();
             Mine = new Mine();
+            Foreman = new Foreman();
             Shop = new Shop();
             Dwarfs = Hospital.BornedDwarfs;
         }       
@@ -50,6 +52,7 @@ namespace DwarfLife.LifeCycles
             Guild = new Guild();
             Hospital = new Hospital();
             Mine = new Mine();
+            Foreman = new Foreman();
             Shop = new Shop();
             Dwarfs = Hospital.BornedDwarfs;
         }

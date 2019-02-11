@@ -1,8 +1,8 @@
 ﻿using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using DwarfLife.LifeCycles;
-using DwarfLife.Dwarfs;
-using DwarfLife.Buildings.Hospital;
+using DwarfLife.Enums;
 using System;
 
 namespace DwarfLife.Tests
@@ -65,13 +65,6 @@ namespace DwarfLife.Tests
             // then
             int givenDaysPassed = lifeCycle.LifeCycleState.DaysPassed;
             Assert.IsTrue(lifeCycle.LifeCycleState.Dwarfs.Count.Equals(0));
-        }
-
-        [Test]
-        public void EndToEndSimulation()
-        {
-            // given
-            
         }
     }
 }

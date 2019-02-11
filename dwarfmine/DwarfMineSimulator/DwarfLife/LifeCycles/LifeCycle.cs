@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using DwarfLife.Dwarfs;
 using DwarfLife.Diaries;
@@ -27,10 +28,36 @@ namespace DwarfLife.LifeCycles
         public void Begin()
         {
             while(IsEndOfLifeCycle())
-                DayPasses();
+            {
+                LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.RebuildAfterCollapsed());
+                LifeCycleState.Dwarfs.ForEach(dwarf =>
+                {
+                    dwarf.HasWorkedToday = false;
+                });
+
+                if (new Random().Next(1, 2) == 1)
+                    LifeCycleState.Hospital.BornRandomTypeDwarf(
+                        LifeCycleState.Dwarfs.Count + 1);
+
+                //while (LifeCycleState.Dwarfs.Any(dwarf => dwarf.HasWorkedToday == false))
+                //{
+                    LifeCycleState.Foreman.SendDwarfsToRandomShaft(
+                        LifeCycleState.Mine, 
+                        LifeCycleState.Dwarfs
+                            .Where(dwarf => dwarf.HasWorkedToday == false).ToList());
+                    LifeCycleState.Dwarfs.ForEach(dwarf =>
+                    {
+                        LifeCycleState.Mine.Shafts.ForEach(shaft => shaft.CheckForSaboteur());
+                        dwarf.Dig();
+                    });
+                //}
+
+                DayPass();
+            }
+
         }
 
-        private void DayPasses()
+        private void DayPass()
         {
             LifeCycleState.DaysPassed++;
 

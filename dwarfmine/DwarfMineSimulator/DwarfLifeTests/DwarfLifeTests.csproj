@@ -15,7 +15,4 @@
   <ItemGroup>
     <None Remove="Class1.cs~" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="LifeCycleTests %28copy%29.cs" />
-  </ItemGroup>
 </Project>

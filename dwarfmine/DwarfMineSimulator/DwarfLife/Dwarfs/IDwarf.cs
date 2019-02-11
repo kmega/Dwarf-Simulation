@@ -14,11 +14,12 @@ namespace DwarfLife.Dwarfs
         DwarfTypes DwarfType { get; }
         bool Alive { get; set; }
         Places WhereAmI { get; set; }
+        bool HasWorkedToday { get; set; }
         Dictionary<Minerals, int> MinedMinerals { get; }
         decimal DailyPayment { get; }
         Dictionary<ItemsInShop, int> PurchasedItems { get; }
 
-        void Dig(Shaft shaft, int hits = 0);
+        void Dig(int hits = 0);
         void SellMinerals(Guild guild);
         void Eat(Canteen canteen);
         void Buy(Shop shop, ItemsInShop item = ItemsInShop.None, int howMany = 1);

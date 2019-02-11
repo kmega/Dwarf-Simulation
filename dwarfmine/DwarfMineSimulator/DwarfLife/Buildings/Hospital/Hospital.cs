@@ -42,24 +42,22 @@ namespace DwarfLife.Buildings.Hospital
             }
         }
 
-        public List<IDwarf> BornDwarfes(int howMany)
+        public List<IDwarf> BornDwarfes(int howMany, DwarfTypes dwarfTypes = (DwarfTypes)15)
         {
             List<IDwarf> dwarfes = new List<IDwarf>();
             for(int i = 1; i <= howMany; i++)
-                dwarfes.Add(BornRandomTypeDwarf(i));
+                dwarfes.Add(BornRandomTypeDwarf(i, dwarfTypes));
 
             return dwarfes;
         }
 
-        public IDwarf BornRandomTypeDwarf(int dwarfId)
+        public IDwarf BornRandomTypeDwarf(int dwarfId, DwarfTypes dwarfTypes = (DwarfTypes)15)
         {
-            return BornDwarf(dwarfId, RandomDwarfType());
+            return BornDwarf(dwarfId, RandomDwarfType(dwarfTypes));
         }
 
-        public DwarfTypes RandomDwarfType()
+        public DwarfTypes RandomDwarfType(DwarfTypes dwarfTypes = (DwarfTypes)15)
         {
-            var dwarfTypes = (DwarfTypes)15;
-
             var dwarfTypesArray = Enum.GetValues(typeof(DwarfTypes))
                    .Cast<DwarfTypes>()
                    .Where(dwarfType => (dwarfTypes & dwarfType) == dwarfType)
