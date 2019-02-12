@@ -121,7 +121,11 @@ namespace SimulationTests.Guild_Tests
         {
             //given
             Mock<ICreateOreValue> fakeMarket = new Mock<ICreateOreValue>();
-            Guild fakeGuild = new Guild(fakeMarket.Object);
+            Guild guild = new Guild(new Dictionary<E_Minerals, ICreateOreValue>()
+            { { E_Minerals.DirtGold, fakeMarket.Object },
+            { E_Minerals.Gold, fakeMarket.Object },
+            { E_Minerals.Silver, fakeMarket.Object },
+            { E_Minerals.Mithril, fakeMarket.Object }});
             fakeMarket.Setup(i => i.GenerateSingleValue()).Returns(1);
             BankAccount bankAccountOne = new BankAccount();
             BankAccount bankAccountTwo = new BankAccount();
@@ -134,11 +138,11 @@ namespace SimulationTests.Guild_Tests
 
 
             //when
-            fakeGuild.PaymentForDwarf(backpackOne, bankAccountOne, true);
-            fakeGuild.PaymentForDwarf(backpackTwo, bankAccountTwo, true);
+            guild.PaymentForDwarf(backpackOne, bankAccountOne, true);
+            guild.PaymentForDwarf(backpackTwo, bankAccountTwo, true);
 
             //then
-            Assert.AreEqual(1, fakeGuild.Account.OverallAccount);
+            Assert.AreEqual(1, guild.Account.OverallAccount);
             Assert.AreEqual(1.5, bankAccountOne.LastInput);
             Assert.AreEqual(1.5, bankAccountTwo.LastInput);
             Assert.IsTrue(backpackOne.ShowBackpackContent().Count == 0);
