@@ -5,8 +5,8 @@ using static MiningSimulatorByKPMM.Locations.Mine.MineSupervisor;
 
 namespace MiningSimulatorByKPMM.Locations.Mine.Interfaces
 {
-    public interface ISchaftOperator
+    public interface ISchaftStrategy
     {
-        E_MiningSchaftStatus DoWork(List<TemporaryWorker> workers, E_MiningSchaftStatus SchaftStatus, IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer);
+        void DoWork(TemporaryWorker worker, IOreRandomizer oreRandomizer, IOreUnitAmountRandomizer oreUnitAmountRandomizer);
     }
 }

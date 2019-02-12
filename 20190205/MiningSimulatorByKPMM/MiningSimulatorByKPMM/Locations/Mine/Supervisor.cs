@@ -15,14 +15,18 @@ namespace MiningSimulatorByKPMM.Locations.Mine
     {
         private readonly IOreRandomizer _oreRandomizer = new OreRandomizer();
         private readonly IOreUnitAmountRandomizer _oreUnitAmountRandomizer = new OreUnitAmountRandomizer();
-        private readonly ISchaftOperator _schaftOperator;
+        private readonly ISchaftStrategy _schaftOperator;
         private List<MiningSchaft> Schafts;
-        private TeamSplitter _teamSplitter = new TeamSplitter();
         private List<Backpack> _workingBackpackList = new List<Backpack>();
         private List<E_DwarfType> _workingTypeList = new List<E_DwarfType>();
         private List<bool> _workingBools = new List<bool>();
         private List<TemporaryWorker> _allWorkers = new List<TemporaryWorker>();
         private List<TemporaryWorker> _previousShiftOfMine;
+
+        public MineSupervisor()
+        {
+            Schafts = SchaftFactory.CreateTwoSchafts();
+        }
 
         public Dictionary<E_Minerals, int> MineSupervisorStats { get; set; } = new Dictionary<E_Minerals, int>()
         {
@@ -42,7 +46,7 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             return new E_MiningSchaftStatus[] { Schafts[0].GetSchaftStatus(), Schafts[1].GetSchaftStatus() };
         }
 
-        public MineSupervisor(ISchaftOperator schaftOperator, IOreUnitAmountRandomizer oreUnitAmountRandomizer, IOreRandomizer oreRandomizer)
+        public MineSupervisor(ISchaftStrategy schaftOperator, IOreUnitAmountRandomizer oreUnitAmountRandomizer, IOreRandomizer oreRandomizer)
         {
             this._schaftOperator = schaftOperator;
             this._oreUnitAmountRandomizer = oreUnitAmountRandomizer;
@@ -50,92 +54,15 @@ namespace MiningSimulatorByKPMM.Locations.Mine
             Schafts = SchaftFactory.CreateTwoSchafts();
         }
 
-        public MineSupervisor()
-        {
-            Schafts = SchaftFactory.CreateTwoSchafts();
-        }
-
         public void Work(ref List<Backpack> backpackList, List<E_DwarfType> typeList, ref List<bool> isAliveList)
         {
             new SchaftMender().FixSchafts(Schafts);
             _allWorkers = new TemporaryWorkerFactory().CreateListTemporaryWorkersFromParameters(backpackList, typeList, isAliveList);
-            WorkProcessing();
-            (_allWorkers, MineSupervisorStats) = new MineStatsUpdater().UpdateDailyStats(_allWorkers, MineSupervisorStats);
-            isAliveList = UnwrapAllWorkersAndChangeStatesOfParameters(backpackList, typeList, isAliveList);
+            new WorkProcessor().ProcessWork(Schafts, _allWorkers, _oreRandomizer, _oreUnitAmountRandomizer);
+            new MineStatsUpdater().UpdateDailyStats(_allWorkers, MineSupervisorStats);
+            new TemporaryWorkerUnpacker().ChangesStatesFromUnpackedTemporaryWorkers(ref backpackList, ref typeList, ref isAliveList, _allWorkers);
             _previousShiftOfMine = new List<TemporaryWorker>(_allWorkers);
             _allWorkers.Clear();
-        }
-
-        private List<bool> UnwrapAllWorkersAndChangeStatesOfParameters(List<Backpack> backpackList, List<E_DwarfType> typeList, List<bool> isAliveList)
-        {
-            List<Backpack> unwrappedBackpacks = new List<Backpack>();
-            List<E_DwarfType> unwrappedTypeLists = new List<E_DwarfType>();
-            List<bool> unwrappedIsAliveList = new List<bool>();
-
-            _allWorkers.ForEach(x => unwrappedBackpacks.Add(x.backpack));
-            _allWorkers.ForEach(x => unwrappedTypeLists.Add(x.type));
-            _allWorkers.ForEach(x => unwrappedIsAliveList.Add(x.isAlive));
-
-            backpackList = unwrappedBackpacks;
-            typeList = unwrappedTypeLists;
-            //isAliveList = unwrappedIsAliveList;
-
-            return unwrappedIsAliveList;
-        }
-
-        private void WorkProcessing()
-        {
-            do
-            {
-                SendWorokersToCertainSchafts();
-
-                foreach (var schaft in Schafts)
-                {
-                    if (schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
-                    {
-                        schaft.ExecuteWorkStrategy(_oreRandomizer, _oreUnitAmountRandomizer);
-                        _allWorkers.AddRange(schaft.RemoveWorkersFromSchaft());
-                    }
-                }
-            } while (IfCanStillWork());
-        }
-
-        private bool IfCanStillWork()
-        {
-            bool condition = false;
-
-            foreach (var worker in _allWorkers)
-            {
-                if (worker.backpack.ShowBackpackContent().Count == 0 && worker.isAlive == true)
-                    condition = true;
-                //else condition = false;
-            }
-
-            if (Schafts.All(x => x.GetSchaftStatus() == E_MiningSchaftStatus.Broken))
-                condition = false;
-
-            return condition;
-        }
-
-        private void SendWorokersToCertainSchafts()
-        {
-            foreach (MiningSchaft schaft in Schafts)
-            {
-                if (schaft.GetSchaftStatus() != E_MiningSchaftStatus.Broken)
-                {
-                    var CurrentlyWorkingTeam = _teamSplitter.SplitWorkersIntoTeam(_allWorkers.Where(x => x.backpack.ShowBackpackContent().Count == 0 && x.isAlive == true).ToList());
-                    RemoveWorkingMinersFromAllworkers(CurrentlyWorkingTeam);
-                    schaft.SetSchaftWorkers(CurrentlyWorkingTeam);
-                }
-            }
-        }
-
-        private void RemoveWorkingMinersFromAllworkers(List<TemporaryWorker> temp)
-        {
-            for (int i = 0; i < temp.Count; i++)
-            {
-                _allWorkers.Remove(temp[i]);
-            }
         }
     }
 }

@@ -18,6 +18,7 @@
     <Folder Include="Locations\Mine\Mining outputs\" />
     <Folder Include="Locations\Mine\ActionsForWorkersInSchaft\" />
     <Folder Include="PersonalItems\" />
+    <Folder Include="Locations\Mine\TemporaryWorker\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Interfaces\IMineAction %28another copy%29.cs" />

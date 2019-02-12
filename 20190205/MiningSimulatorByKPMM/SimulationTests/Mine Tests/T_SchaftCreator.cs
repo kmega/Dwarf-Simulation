@@ -8,7 +8,7 @@ using NUnit.Framework;
 namespace SimulationTests.MineTests
 {
     [TestFixture]
-    public class CreatingSchafts
+    public class T_SchaftCreator
     {
         [Test]
         public void CreatesTwoWithOperationalStatus()
