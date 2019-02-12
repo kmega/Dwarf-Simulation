@@ -25,7 +25,7 @@ namespace SimulationTests.Guild_Tests
         }
 
         [Test]
-        public void DwarfWithEmptyBackpack()
+        public void ShouldReturnPaymentForDwarfWithEmptyBackpack()
         {
             //given
 
@@ -43,7 +43,7 @@ namespace SimulationTests.Guild_Tests
 
         }
         [Test]
-        public void DirtGoldForOneDwarf()
+        public void ShouldReturnPaymentForOneDwarfWithDirtGold()
         {
             //given
 
@@ -62,7 +62,7 @@ namespace SimulationTests.Guild_Tests
         }
 
         [Test]
-        public void DirtGoldForTwoDwarf()
+        public void ShouldReturnPaymentForTwoDwarfWithDirtGold()
         {
             //given
 
@@ -88,7 +88,7 @@ namespace SimulationTests.Guild_Tests
         }
 
         [Test]
-        public void TwoDirtGoldForTwoDwarf()
+        public void ShouldReturnPaymentForTwoDwarvesWithTwoDirtGold()
         {
             //given
 
@@ -116,7 +116,7 @@ namespace SimulationTests.Guild_Tests
         }
 
         [Test]
-        public void TwoDwarfWithDiffrentOre()
+        public void ShouldReturnPaymentForTwoDwarvesWithDiffrentOres()
         {
             //given
             Mock<ICreateOreValue> fakeMarket = new Mock<ICreateOreValue>();

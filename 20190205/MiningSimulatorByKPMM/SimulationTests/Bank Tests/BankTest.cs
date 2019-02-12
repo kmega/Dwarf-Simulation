@@ -21,7 +21,7 @@ namespace SimulationTests.Bank_Tests
         }
 
         [Test]
-        public void PayingTaxFor100()
+        public void ShouldReturnTaxFor100()
         {
             //when
             bank.PayTax(100);
@@ -32,7 +32,7 @@ namespace SimulationTests.Bank_Tests
         }
 
         [Test]
-        public void TwoDwarvesPayTax()
+        public void ShouldReturnTresureAfterTwoDwarvesPaidTax()
         {
             //when
             bank.PayTax(100);

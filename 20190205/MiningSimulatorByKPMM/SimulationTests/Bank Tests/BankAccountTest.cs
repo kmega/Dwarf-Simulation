@@ -18,7 +18,7 @@ namespace SimulationTests.Bank_Tests
         }
 
         [Test]
-        public void MoveMoneyFromDailyToAccount()
+        public void ShouldMoveMoneyFromDailyToAccount()
         {
             //given
             bankAccount.ReceivedMoney(100);
@@ -32,7 +32,7 @@ namespace SimulationTests.Bank_Tests
         }
 
         [Test]
-        public void BuySomething()
+        public void ShouldDecreaseMoneyOnAccount()
         {
             //given
             bankAccount.ReceivedMoney(100);
