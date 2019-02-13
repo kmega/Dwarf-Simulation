@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Locations.Bank
+namespace DwarfLifeSimulation.Locations.Banks
 {
     public class Bank
     {

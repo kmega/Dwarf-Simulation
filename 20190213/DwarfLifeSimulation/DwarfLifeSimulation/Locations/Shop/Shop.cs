@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using DwarfLifeSimulation.Enums;
-using Banks = DwarfLifeSimulation.Locations.Bank.Bank;
+using DwarfLifeSimulation.Locations.Banks;
 using DwarfLifeSimulation.Dwarves;
 
 
@@ -18,7 +18,7 @@ namespace DwarfLifeSimulation.Locations.Shop
 		{
 			_shopState.Add(ProductType.Food, 0);
 			_shopState.Add(ProductType.Alcohol, 0);
-			_bankAccountId = Banks.Instance.CreateAccount();
+			_bankAccountId = Bank.Instance.CreateAccount();
 		}
 
 		public void ServeAllCustomers(List<IBuy> customers)
@@ -27,7 +27,7 @@ namespace DwarfLifeSimulation.Locations.Shop
 			{
 				ServeSingleCustomer(customer);
 			}
-			Banks.Instance.PayTax(_bankAccountId);
+			Bank.Instance.PayTax(_bankAccountId);
 		}
 
 		private void ServeSingleCustomer(IBuy customer)
