@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+[assembly: InternalsVisibleTo("DwarfSimulationTests")]
 
 namespace DwarfSimulation
 {
@@ -6,7 +8,7 @@ namespace DwarfSimulation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.ReadKey();
         }
     }
 }
