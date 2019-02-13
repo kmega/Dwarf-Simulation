@@ -13,13 +13,14 @@ namespace DwarfSimulation
             // PrepareSimulation.CreateRaport -> raportObject
             // Simulation(shafty, dwarfy,raportObject) => Start
 
-            // Hospital(lista krasnali, raportObject) -> //     ## 1 dzień ## zwraca 0 dwarfów    ## kolejne born kransnala 1% => RETURN list of DwarVes
-            // Mines(shafty,krasnale,raportObject) -> updated list of dwarfs, updated backpacks       => RETURN list of DwarVes
-            // Guild(backpack,wallet,raportObject) -> update backpacks - zerowanie + wallets update   => RETURN list of DwarVes
-            // Graveyard(krasnale,raportObject) -> update dwarfs                                      => RETURN list of DwarVes
-            // diningRoom(krasnale,raportObject) -> count foodEaten                                   
-            // shop(buystrategy,raportObject) -> update products + wallet update                      => RETURN list of DwarVes
-            // bank? (lista krasnali,wallet) => update konta,zerowanie wallet                         => RETURN list of DwarVes
+            //forech tura:
+             // Hospital(lista krasnali, raportObject) -> //     => RETURN list of DwarVes
+             // Mines(shafty, lista krasnali,raportObject) -> updated list of dwarfs, updated backpacks       => RETURN list of DwarVes
+             // Guild(lista krasnali ,raportObject) -> update backpacks - zerowanie + wallets update   => RETURN list of DwarVes
+             // Graveyard(lista krasnali,raportObject) -> update dwarfs                                      => RETURN list of DwarVes
+             // diningRoom(lista krasnali,raportObject) -> count foodEaten                                   
+             // shop(lista krasnali,raportObject) -> update products + wallet update                      => RETURN list of DwarVes
+             // bank? (lista krasnali) => update konta,zerowanie wallet                         => RETURN list of DwarVes
 
 
 
