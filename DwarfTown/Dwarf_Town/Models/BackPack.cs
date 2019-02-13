@@ -1,6 +1,6 @@
 ﻿namespace Dwarf_Town.Models
 {
-    public class BackPack
+    public class Backpack
     {
     }
 }

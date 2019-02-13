@@ -27,16 +27,7 @@ namespace Dwarf_Town.Locations.Guild
         {
             foreach (var dwarf in dwarvesSellStrategy)
             {
-
-                foreach (var ore in dwarf.ShowBackpack())
-                {
-                    decimal value = ReturnOreValue(ore);
-                    decimal provision = Math.Round((value * 0.23m),2);
-                    decimal payment = Math.Round((value - provision),2);
-                    _account += provision;
-                    dwarf.ReceivedMoney(payment);
-                }
-                dwarf.ShowBackpack().Clear();
+                dwarf.Sell();
             }
         }
     
