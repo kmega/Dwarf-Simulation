@@ -10,23 +10,14 @@ namespace Tests
 {
     public class DwarfCreationTests
     {
-        private Mock<IDwarfTypeRandomizer> nameRandomizerMock;
-        private Mock<IIsDwarfBornRandomizer> isBornMock;
         [SetUp]
         public void Setup()
         {
-            nameRandomizerMock = new Mock<IDwarfTypeRandomizer>();
-            isBornMock = new Mock<IIsDwarfBornRandomizer>();
         }
 
         [Test]
         public void Test1()
         {
-            nameRandomizerMock.Setup(x => x.GiveMeDwarfType(false))
-                .Returns(DwarfType.Single);
-
-            Hospital hospital = new Hospital()
-            Assert.Pass();
         }
     }
 }

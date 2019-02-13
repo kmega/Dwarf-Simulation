@@ -14,7 +14,10 @@ namespace DwarfLifeSimulation.ApplicationLogic
 
         public void Start()
         {
-            //
+            for(; currentSimulationState.Turn <= 30; currentSimulationState.Turn ++)
+            {
+                //Hospital 
+            }
         }
     }
 }
