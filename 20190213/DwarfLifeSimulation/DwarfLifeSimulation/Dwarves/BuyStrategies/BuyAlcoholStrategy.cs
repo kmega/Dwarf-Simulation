@@ -18,8 +18,8 @@ namespace DwarfLifeSimulation.Dwarves.BuyStrategies
             bank.Transfer(customerAccountId, shopAccountId, howMuchISpent);
             return new Product()
             {
-                ProductType = ProductType.Alcohol,
-                Amount = howMuchISpent
+                _productType = ProductType.Alcohol,
+                _amount = howMuchISpent
             };
         }
     }

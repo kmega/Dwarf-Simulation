@@ -9,35 +9,29 @@ namespace DwarfLifeSimulation.Dwarves
 {
     public class Dwarf : IDwarf
     {
-        public string Name { get;private set; }
-<<<<<<< HEAD
-        public IWorkStrategy workStrategy { get; private set; }
-        public IBuyStrategy buyStrategy { get; private set; }
-        private Dictionary<Material,int> backPack;
-=======
-        private IWorkStrategy workStrategy;
-        private IBuyStrategy buyStrategy;
-        private Dictionary<MaterialType,int> backPack;
->>>>>>> kozlovsky
-        private int bankAccountId;
+        public string _name { get;private set; }
+        public IWorkStrategy _workStrategy { get; private set; }
+        public IBuyStrategy _buyStrategy { get; private set; }
+        private Dictionary<MaterialType,int> _backPack;
+        private int _bankAccountId;
 
         public Dwarf(string name, IWorkStrategy howIWork, IBuyStrategy howIBuy)
         {
-            Name = name;
-            workStrategy = howIWork;
-            buyStrategy = howIBuy;
-            backPack = new Dictionary<Material, int>();
-            bankAccountId = Bank.Instance.CreateAccount();
+            _name = name;
+            _workStrategy = howIWork;
+            _buyStrategy = howIBuy;
+            _backPack = new Dictionary<MaterialType, int>();
+            _bankAccountId = Bank.Instance.CreateAccount();
         }
 
         public Product Buy(int shopAccountId)
         {            
-            return buyStrategy.Buy(bankAccountId, shopAccountId);
+            return _buyStrategy.Buy(_bankAccountId, shopAccountId);
         }
 
         public void Work(Shaft shaft)
         {
-            backPack = workStrategy.Perform(shaft);
+            _backPack = _workStrategy.Perform(shaft);
         }
 
     }

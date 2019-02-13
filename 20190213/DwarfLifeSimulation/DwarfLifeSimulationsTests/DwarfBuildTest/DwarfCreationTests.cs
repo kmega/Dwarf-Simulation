@@ -23,8 +23,8 @@ namespace DwarfCreationTests
             //when
             var dwarf = DwarfFactory.Create(dwarfType);
             //then            
-            Assert.IsTrue(dwarf.buyStrategy is BuyFoodStrategy);
-            Assert.IsTrue(dwarf.workStrategy is StandardWorkStrategy);
+            Assert.IsTrue(dwarf._buyStrategy is BuyFoodStrategy);
+            Assert.IsTrue(dwarf._workStrategy is StandardWorkStrategy);
         }
         [Test]
         public void T101_ShouldCreateDwarfSingle()
@@ -34,8 +34,8 @@ namespace DwarfCreationTests
             //when
             var dwarf = DwarfFactory.Create(dwarfType);
             //then            
-            Assert.IsTrue(dwarf.buyStrategy is BuyAlcoholStrategy);
-            Assert.IsTrue(dwarf.workStrategy is StandardWorkStrategy);
+            Assert.IsTrue(dwarf._buyStrategy is BuyAlcoholStrategy);
+            Assert.IsTrue(dwarf._workStrategy is StandardWorkStrategy);
         }
         [Test]
         public void T102_ShouldCreateDwarfSluggard()
@@ -45,8 +45,8 @@ namespace DwarfCreationTests
             //when
             var dwarf = DwarfFactory.Create(dwarfType);
             //then            
-            Assert.IsTrue(dwarf.buyStrategy is BuyNoneStrategy);
-            Assert.IsTrue(dwarf.workStrategy is StandardWorkStrategy);
+            Assert.IsTrue(dwarf._buyStrategy is BuyNoneStrategy);
+            Assert.IsTrue(dwarf._workStrategy is StandardWorkStrategy);
         }
         [Test]
         public void T103_ShouldCreateDwarfSuicide()
@@ -56,8 +56,8 @@ namespace DwarfCreationTests
             //when
             var dwarf = DwarfFactory.Create(dwarfType);
             //then            
-            Assert.IsTrue(dwarf.buyStrategy is BuyNoneStrategy);
-            Assert.IsTrue(dwarf.workStrategy is SuicideStrategy);
+            Assert.IsTrue(dwarf._buyStrategy is BuyNoneStrategy);
+            Assert.IsTrue(dwarf._workStrategy is SuicideStrategy);
         }
     }
 }

@@ -13,8 +13,8 @@ namespace DwarfLifeSimulation.Dwarves.BuyStrategies
         {
             return new Product()
             {
-                ProductType = ProductType.None,
-                Amount = 0.0m
+                _productType = ProductType.None,
+                _amount = 0.0m
             };
         }
     }

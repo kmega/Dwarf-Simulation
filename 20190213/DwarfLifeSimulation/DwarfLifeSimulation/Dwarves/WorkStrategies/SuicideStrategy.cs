@@ -8,7 +8,7 @@ namespace DwarfLifeSimulation.Dwarves.WorkStrategies
 {
     public class SuicideStrategy : IWorkStrategy
     {
-        public Dictionary<Material, int> Perform(Shaft shaft)
+        public Dictionary<MaterialType, int> Perform(Shaft shaft)
         {
             throw new NotImplementedException();
         }
