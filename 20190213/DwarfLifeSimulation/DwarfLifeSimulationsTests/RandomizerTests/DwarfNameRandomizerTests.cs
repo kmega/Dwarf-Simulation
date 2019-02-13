@@ -1,14 +1,18 @@
 using NUnit.Framework;
 using Moq;
 using DwarfLifeSimulation.Enums;
+using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
 
 namespace Tests
 {
     public class DwarfNameRandomizerTests
     {
+        private Mock<IDwarfNameRandomizer> dwarfNameRandomizer;
+        
         [SetUp]
         public void Setup()
         {
+            dwarfNameRandomizer = new Mock<IDwarfNameRandomizer>();
         }
 
         [TestCase(DwarfNames.None)]           
@@ -21,9 +25,10 @@ namespace Tests
         [TestCase(DwarfNames.Quee)]
         [TestCase(DwarfNames.Galadriela)]
         [TestCase(DwarfNames.Gimli)]
-        public void ShoudReturnNameOF()
+        public void ShoudReturnNameOF(DwarfNames dwarfName)
         {
-            Assert.Pass();
+            dwarfNameRandomizer.Setup(x => x.GiveMeDwarfName()).Returns(dwarfName.ToString());
+            Assert.AreEqual(dwarfName.ToString(), dwarfNameRandomizer.Object.GiveMeDwarfName());
         }
     }
 }
