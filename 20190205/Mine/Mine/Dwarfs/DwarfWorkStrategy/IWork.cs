@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Mine.Locations;
 
 namespace Mine
 {
-    interface IMine
+    public interface IWork
     {
+        List<Ore> DoWork();
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Mine
+namespace Mine.Locations.Interfaces
 {
-    interface Cementery
+    interface ICementery
     {
     }
 }

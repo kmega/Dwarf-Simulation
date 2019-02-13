@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using Mine.DwarfWorkStrategy;
+using Mine.Locations;
 
-namespace Mine
+namespace Mine.Dwarfs
 {
-    class Dwarf : IDwarf
+    public class Dwarf : IDwarf
     {
         public IWork Work { get;  }
         public List<Ore> Backpack { get; private set; }
