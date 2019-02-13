@@ -1,5 +1,6 @@
 ﻿using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Interfaces;
+using DwarfLifeSimulation.Locations.Bank;
 using DwarfLifeSimulation.Locations.Shop;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,15 @@ namespace DwarfLifeSimulation.Dwarves.BuyStrategies
     {
         public Product Buy(int customerAccountId, int shopAccountId)
         {
-            //GetDailyIncomeFromBank(customerAccountId) -> decimal dailyIncome
-            //Bank.Transfer(From customerAccountId To shopAccountId, decimal dailyIncome/2)
+            var bank = Bank.Instance;
+            var dailyIncome = bank.GetDailyIncome(customerAccountId);
+            var howMuchISpent = dailyIncome / 2.0m;
+            bank.Transfer(customerAccountId, shopAccountId, howMuchISpent);
             return new Product()
             {
                 ProductType = ProductType.Food,
-                Amount = 0.0m
+                Amount = howMuchISpent
             };
-            //Amount = dailyIncome/2
         }
     }
 }

@@ -6,11 +6,12 @@ namespace DwarfLifeSimulation.Locations.Bank
 {
     class Bank
     {
-        private Dictionary<int, BankAccount> Accounts;
-
+        private Dictionary<int, BankAccount> accounts;
+        private BankAccount generalAccount;
         private Bank()
         {
-            Accounts = new Dictionary<int, BankAccount>();
+            accounts = new Dictionary<int, BankAccount>();
+            generalAccount = new BankAccount();
         }
         private static Bank instance = null;
 
@@ -26,10 +27,30 @@ namespace DwarfLifeSimulation.Locations.Bank
             }
         }
 
+        public decimal GetDailyIncome(int customerAccountId)
+        {
+            return accounts[customerAccountId].DailyIncome;
+        }
+
+        public void Transfer(int customerAccountId, int shopAccountId, decimal howMuchISpent)
+        {
+            accounts[customerAccountId].DailyIncome -= howMuchISpent;
+            accounts[shopAccountId].DailyIncome += howMuchISpent;
+        }
+
+        public void PayTax(int id)
+        {
+            var income = accounts[id].DailyIncome;
+            var tax = income * 0.23m;
+            generalAccount.OverallMoney += tax;
+            accounts[id].OverallMoney += (income - tax);
+            accounts[id].DailyIncome = 0.0m;
+        }
+
         public int CreateAccount()
         {
-            int newId = Accounts.Count + 1;
-            Accounts.Add(newId, new BankAccount());
+            int newId = accounts.Count + 1;
+            accounts.Add(newId, new BankAccount());
             return newId;
         }
 
