@@ -12,6 +12,13 @@ namespace DwarfSimulation
         internal IBuy BuyAction { get; set; }
         internal IDig DigAction { get; set; }
         internal IEat EatAction { get; set; }
+
+        internal void Buy(Shop shop)
+        {
+            //OUT = Transform(IN)
+          //  BuyAction.Buy(shop);
+        }
+
         internal decimal Wallet { get; set; }
         internal decimal Account { get; set; }
 

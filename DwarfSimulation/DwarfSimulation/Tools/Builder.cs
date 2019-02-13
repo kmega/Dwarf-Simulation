@@ -20,9 +20,9 @@ namespace DwarfSimulation
             return null;
         }
 
-        internal Dwarf CreateDwarf()
+        internal Dwarf CreateDwarf(DwarfType type)
         {
-            DwarfType type = randomizer.ReturnDwarfType();
+           // DwarfType type = randomizer.ReturnDwarfType();
 
             Dwarf dwarf;
 
@@ -32,7 +32,7 @@ namespace DwarfSimulation
                     dwarf = new Dwarf() { };
                     break;
                 case DwarfType.Single:
-                    dwarf = new Dwarf() { };
+                    dwarf = new Dwarf() { BuyAction = new SingleBuyStrategy() };
                     break;
                 case DwarfType.Lazy:
                     dwarf = new Dwarf() { };

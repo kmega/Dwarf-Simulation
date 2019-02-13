@@ -6,6 +6,14 @@ namespace DwarfSimulation
 {
     internal class Shop
     {
-        public int Food { get; set; }
+        int Food { get; set; }
+        public int Alcohol { get; set; }
+
+     
+
+       internal void BuyAlcohol(int i)
+        {
+            Alcohol = i;
+        }
     }
 }
