@@ -7,10 +7,10 @@ namespace DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer
 {
     public class DwarfTypeGenerationStrategy : IDwarfTypeRandomizer
     {
-        public DwarfType Generate()
+        public DwarfType GiveMeDwarfType()
         {
             int maxValue = Enum.GetNames(typeof(DwarfType)).Length;
-            int randomNumber = Generate(1,maxValue);
+            int randomNumber = Generate(1,maxValue - 1);
             switch (randomNumber)
             {
                 case int n when (n > 0 && n <=33):

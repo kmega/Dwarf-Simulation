@@ -7,7 +7,7 @@ namespace DwarfLifeSimulation.Randomizer.MineralTypeRandomizer
 {
     public class MineralTypeGenerationStrategy : IMineralTypeRandomizer
     {
-        public MineralType Generate()
+        public MineralType WhatHaveBeenDig()
         {
             int maxValue = Enum.GetNames(typeof(DwarfType)).Length;
             int randomNumber = Generate(1,maxValue);

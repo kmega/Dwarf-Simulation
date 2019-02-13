@@ -7,6 +7,6 @@ namespace DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer
 {
     public interface IDwarfTypeRandomizer : IRandomizer
     {
-        DwarfType Generate();
+        DwarfType GiveMeDwarfType();
     }
 }

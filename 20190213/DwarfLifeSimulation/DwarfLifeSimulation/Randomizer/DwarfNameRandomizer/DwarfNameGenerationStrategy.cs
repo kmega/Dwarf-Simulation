@@ -7,7 +7,7 @@ namespace DwarfLifeSimulation.Randomizer.DwarfNameRandomizer
 {
     public class DwarfNameGenerationStrategy : IDwarfNameRandomizer
     {
-        public string Generate()
+        public string GiveMeDwarfName()
         {
             int maxValue = Enum.GetNames(typeof(DwarfNames)).Length;
             int randomNumber = Generate(1,maxValue - 1);
