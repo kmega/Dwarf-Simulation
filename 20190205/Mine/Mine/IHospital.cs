@@ -6,5 +6,6 @@ namespace Mine
 {
     interface IHospital
     {
+        List<IDwarf> CretaDwarfs();
     }
 }
