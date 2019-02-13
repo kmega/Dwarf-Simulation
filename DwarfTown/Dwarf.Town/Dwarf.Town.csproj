@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Locations\" />
+    <Folder Include="Locations\Guild\OreValue\" />
   </ItemGroup>
 
 </Project>
