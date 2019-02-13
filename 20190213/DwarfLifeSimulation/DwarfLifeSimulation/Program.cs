@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DwarfLifeSimulation.ApplicationLogic;
+using System;
 
 namespace DwarfLifeSimulation
 {
@@ -6,7 +7,8 @@ namespace DwarfLifeSimulation
     {
         static void Main(string[] args)
         {
-            
+            var simulationEngine = new SimulationEngine();
+            simulationEngine.Start();
         }
     }
 }

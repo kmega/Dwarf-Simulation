@@ -4,7 +4,17 @@ using System.Text;
 
 namespace DwarfLifeSimulation.ApplicationLogic
 {
-    class SimulationEngine
+    public class SimulationEngine
     {
+        private SimulationState currentSimulationState;
+        public SimulationEngine()
+        {
+            currentSimulationState = new SimulationState();
+        }
+
+        public void Start()
+        {
+            //
+        }
     }
 }

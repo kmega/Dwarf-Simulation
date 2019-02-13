@@ -14,27 +14,23 @@ namespace DwarfLifeSimulation.Locations.Hospital
     {
         private IIsDwarfBornRandomizer _isDwarfBornRandomizer;
         private IDwarfTypeRandomizer _dwarfTypeRandomizer;
-        private IDwarfNameRandomizer _dwarfNameRandomizer;
 
         public Hospital(IIsDwarfBornRandomizer isDwarfBornRandomizer, 
-            IDwarfTypeRandomizer dwarfTypeRandomizer, 
-            IDwarfNameRandomizer dwarfNameRandomizer)
+            IDwarfTypeRandomizer dwarfTypeRandomizer)
         {
             SetInitialGenerators(isDwarfBornRandomizer,
-                dwarfTypeRandomizer, dwarfNameRandomizer);           
+                dwarfTypeRandomizer);           
         }
         public Hospital()
         {
             SetInitialGenerators(new DwarfBornGenerationStrategy(),
-              new DwarfTypeGenerationStrategy(), new DwarfNameGenerationStrategy()); 
+              new DwarfTypeGenerationStrategy()); 
         }
         private void SetInitialGenerators(IIsDwarfBornRandomizer isDwarfBornRandomizer,
-            IDwarfTypeRandomizer dwarfTypeRandomizer,
-            IDwarfNameRandomizer dwarfNameRandomizer)
+            IDwarfTypeRandomizer dwarfTypeRandomizer)
         {
             _isDwarfBornRandomizer = isDwarfBornRandomizer;
             _dwarfTypeRandomizer = dwarfTypeRandomizer;
-            _dwarfNameRandomizer = dwarfNameRandomizer;
         }
 
         public void Create(SimulationState simulationState)
