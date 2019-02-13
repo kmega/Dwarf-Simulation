@@ -1,8 +1,6 @@
 ﻿using Dwarf.Town.Enums;
+using Dwarf.Town.Interfaces;
 using Dwarf.Town.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf.Town
 {
@@ -12,5 +10,8 @@ namespace Dwarf.Town
         public BackPack BackPack { get; set; }
         public Wallet Wallet { get; set; }
         public DwarfType DwarfType { get; set; }
+        public IBuy BuyStrategy { get; set; }
+        public ISell SellStrategy { get; set; }
+        public IWork WorkStrategy { get; set; }
     }
 }

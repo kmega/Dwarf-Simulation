@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dwarf.Town.Enums
+﻿namespace Dwarf.Town.Enums
 {
     public enum DwarfType
     {

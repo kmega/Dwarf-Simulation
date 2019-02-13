@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dwarf.Town.Interfaces
+﻿namespace Dwarf.Town.Interfaces
 {
-    interface ISell
+    public interface ISell
     {
         void Sell();
     }
