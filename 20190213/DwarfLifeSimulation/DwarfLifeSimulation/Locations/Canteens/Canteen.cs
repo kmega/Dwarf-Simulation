@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Locations.Mine
+namespace DwarfLifeSimulation.Locations.Canteens
 {
-    public class Shaft
+    class Canteen
     {
     }
 }

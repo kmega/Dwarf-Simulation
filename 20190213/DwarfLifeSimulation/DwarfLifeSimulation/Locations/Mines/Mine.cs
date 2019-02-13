@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Locations.Guild
+namespace DwarfLifeSimulation.Locations.Mines
 {
-    public class Guild
+    class Mine
     {
     }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Logger
+namespace DwarfLifeSimulation.Loggers
 {
     class Logger : ILog
     {

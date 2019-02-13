@@ -1,8 +1,8 @@
 ﻿using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Interfaces;
 using DwarfLifeSimulation.Locations.Banks;
-using DwarfLifeSimulation.Locations.Mine;
-using DwarfLifeSimulation.Locations.Shop;
+using DwarfLifeSimulation.Locations.Mines;
+using DwarfLifeSimulation.Locations.Shops;
 using System.Collections.Generic;
 
 namespace DwarfLifeSimulation.Dwarves

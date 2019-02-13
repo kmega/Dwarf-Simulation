@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Locations.Shop
+namespace DwarfLifeSimulation.Locations.Shops
 {
     public class Product
     {

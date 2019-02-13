@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Moq;
-using DwarfLifeSimulation.Locations.Shop;
+using DwarfLifeSimulation.Locations.Shops;
 using DwarfLifeSimulation.Enums;
 using System.Linq;
 

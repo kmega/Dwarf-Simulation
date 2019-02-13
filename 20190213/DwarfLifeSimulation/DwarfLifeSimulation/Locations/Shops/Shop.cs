@@ -6,7 +6,7 @@ using DwarfLifeSimulation.Locations.Banks;
 using DwarfLifeSimulation.Dwarves;
 
 
-namespace DwarfLifeSimulation.Locations.Shop
+namespace DwarfLifeSimulation.Locations.Shops
 {
     public class Shop
     {

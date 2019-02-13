@@ -1,6 +1,6 @@
 ﻿using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Interfaces;
-using DwarfLifeSimulation.Locations.Shop;
+using DwarfLifeSimulation.Locations.Shops;
 using System;
 using System.Collections.Generic;
 using System.Text;
