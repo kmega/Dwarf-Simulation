@@ -1,4 +1,5 @@
 ﻿using DwarfLifeSimulation.ApplicationLogic;
+using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Interfaces;
 using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
 using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
@@ -53,7 +54,13 @@ namespace DwarfLifeSimulation.Locations.Hospital
         }
         private List<IDwarf> CreateSingleRandomDwarf()
         {
-            return null;
+            List<IDwarf> dwarves = new List<IDwarf>();
+            if(_isDwarfBornRandomizer.IsDwarfBorn())
+            {
+                var type = _dwarfTypeRandomizer.GiveMeDwarfType();
+                dwarves.Add(DwarfFactory.Create(type));
+            }
+            return dwarves;
         }
     }
 }

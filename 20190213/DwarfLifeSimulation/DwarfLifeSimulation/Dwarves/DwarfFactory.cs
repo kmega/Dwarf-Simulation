@@ -2,6 +2,7 @@
 using DwarfLifeSimulation.Dwarves.WorkStrategies;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Interfaces;
+using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,7 +13,7 @@ namespace DwarfLifeSimulation.Dwarves
     {
         public static Dwarf Create(DwarfType dwarfType)
         {
-            string name = "Stefan"; //INameRandomizer.Generate();
+            string name = new DwarfNameGenerationStrategy().GiveMeDwarfName();
             switch(dwarfType)
             {
                 default:
