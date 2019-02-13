@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfLifeSimulation.Locations.Bank
 {
-    class Bank
+    public class Bank
     {
     }
 }

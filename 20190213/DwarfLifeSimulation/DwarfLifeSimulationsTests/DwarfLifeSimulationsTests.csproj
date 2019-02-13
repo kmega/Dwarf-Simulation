@@ -18,7 +18,10 @@
     <Folder Include="CanteenTests\" />
     <Folder Include="MineTests\" />
     <Folder Include="GuildTests\" />
-    <Folder Include="ShopTests\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DwarfLifeSimulation\DwarfLifeSimulation.csproj" />
   </ItemGroup>
 
 </Project>

@@ -7,7 +7,7 @@ namespace DwarfLifeSimulation.Locations.Shop
 {
     public class Product
     {
-        public ProductType ProductType;
-        public decimal Amount;
+        public ProductType _productType;
+        public decimal _amount;
     }
 }
