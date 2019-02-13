@@ -4,7 +4,7 @@ using System.Text;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Locations.Banks;
 using DwarfLifeSimulation.Dwarves;
-
+using DwarfLifeSimulation.Dwarves.Interfaces;
 
 namespace DwarfLifeSimulation.Locations.Shops
 {

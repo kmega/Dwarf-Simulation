@@ -1,10 +1,16 @@
-﻿using System;
+﻿using DwarfLifeSimulation.Dwarves;
+using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Interfaces;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DwarfLifeSimulation.Locations.Mines
 {
-    class Mine
+    public class Mine
     {
+        public void Work(IEnumerable<IWork> workers)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

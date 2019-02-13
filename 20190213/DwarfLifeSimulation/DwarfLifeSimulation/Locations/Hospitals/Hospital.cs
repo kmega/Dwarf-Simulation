@@ -1,5 +1,6 @@
 ﻿using DwarfLifeSimulation.ApplicationLogic;
 using DwarfLifeSimulation.Dwarves;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Interfaces;
 using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
 using DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer;
@@ -35,13 +36,13 @@ namespace DwarfLifeSimulation.Locations.Hospitals
 
         public void CreateDwarves(SimulationState simulationState)
         {
-            if(simulationState.Turn == 1)
+            if(simulationState.turn == 1)
             {
-                simulationState.Dwarves.AddRange(CreateInitialDwarves());
+                simulationState.dwarves.AddRange(CreateInitialDwarves());
             }
             else
             {
-                simulationState.Dwarves.AddRange(CreateSingleRandomDwarf());
+                simulationState.dwarves.AddRange(CreateSingleRandomDwarf());
             }
         }
         private List<IDwarf> CreateInitialDwarves()

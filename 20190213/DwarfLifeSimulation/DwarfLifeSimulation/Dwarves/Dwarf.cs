@@ -1,4 +1,5 @@
-﻿using DwarfLifeSimulation.Enums;
+﻿using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Interfaces;
 using DwarfLifeSimulation.Locations.Banks;
 using DwarfLifeSimulation.Locations.Mines;
@@ -9,10 +10,10 @@ namespace DwarfLifeSimulation.Dwarves
 {
     public class Dwarf : IDwarf
     {
-        public string _name { get;private set; }
+        public string _name { get; private set; }
         public IWorkStrategy _workStrategy { get; private set; }
         public IBuyStrategy _buyStrategy { get; private set; }
-        private Dictionary<MineralType,int> _backPack;
+        private Dictionary<MineralType, int> _backPack;
         private int _bankAccountId;
 
         public Dwarf(string name, IWorkStrategy howIWork, IBuyStrategy howIBuy)
@@ -25,7 +26,7 @@ namespace DwarfLifeSimulation.Dwarves
         }
 
         public Product Buy(int shopAccountId)
-        {            
+        {
             return _buyStrategy.Buy(_bankAccountId, shopAccountId);
         }
 
@@ -34,5 +35,17 @@ namespace DwarfLifeSimulation.Dwarves
             _backPack = _workStrategy.Perform(shaft);
         }
 
+
+        public Dictionary<MineralType, int> EmptyBackpackContent()
+        {
+            var tempBackpack = _backPack;
+            //AddEmptyingBackpack
+            return tempBackpack;
+        }
+
+        public void GetMoney(decimal dailyIncome)
+        {
+            Bank.Instance.PayIntoAccount(_bankAccountId, dailyIncome);
+        }
     }
 }

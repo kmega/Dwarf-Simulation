@@ -1,13 +1,11 @@
-﻿using DwarfLifeSimulation.Interfaces;
-using System;
+﻿using DwarfLifeSimulation.Dwarves.Interfaces;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DwarfLifeSimulation.ApplicationLogic
 {
     public class SimulationState
     {
-        public int Turn { get; set; }
-        public List<IDwarf> Dwarves { get; set; }
+        public int turn { get; set; }
+        public List<IDwarf> dwarves { get; set; }
     }
 }

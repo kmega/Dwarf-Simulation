@@ -1,11 +1,6 @@
-﻿using DwarfLifeSimulation.Dwarves;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DwarfLifeSimulation.Interfaces
+﻿namespace DwarfLifeSimulation.Dwarves.Interfaces
 {
-    public interface IDwarf : IWork, IBuy
+    public interface IDwarf : IWork, IBuy, IExchange
     {
 
     }
