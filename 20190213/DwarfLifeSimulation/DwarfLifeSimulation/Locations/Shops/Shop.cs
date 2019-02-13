@@ -21,7 +21,7 @@ namespace DwarfLifeSimulation.Locations.Shops
 			_bankAccountId = Bank.Instance.CreateAccount();
 		}
 
-		public void ServeAllCustomers(List<IBuy> customers)
+		public void ServeAllCustomers(IEnumerable<IBuy> customers)
 		{
 			foreach (IBuy customer in customers)
 			{
