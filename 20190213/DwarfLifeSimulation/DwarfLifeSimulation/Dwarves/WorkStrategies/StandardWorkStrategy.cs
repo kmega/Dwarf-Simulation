@@ -8,7 +8,7 @@ namespace DwarfLifeSimulation.Dwarves.WorkStrategies
 {
     public class StandardWorkStrategy : IWorkStrategy
     {
-        public Dictionary<MaterialType, int> Perform(Shaft shaft)
+        public Dictionary<MineralType, int> Perform(Shaft shaft)
         {
             throw new NotImplementedException();
         }

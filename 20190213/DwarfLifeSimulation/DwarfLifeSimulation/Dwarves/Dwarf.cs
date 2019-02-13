@@ -12,7 +12,7 @@ namespace DwarfLifeSimulation.Dwarves
         public string _name { get;private set; }
         public IWorkStrategy _workStrategy { get; private set; }
         public IBuyStrategy _buyStrategy { get; private set; }
-        private Dictionary<MaterialType,int> _backPack;
+        private Dictionary<MineralType,int> _backPack;
         private int _bankAccountId;
 
         public Dwarf(string name, IWorkStrategy howIWork, IBuyStrategy howIBuy)
@@ -20,7 +20,7 @@ namespace DwarfLifeSimulation.Dwarves
             _name = name;
             _workStrategy = howIWork;
             _buyStrategy = howIBuy;
-            _backPack = new Dictionary<MaterialType, int>();
+            _backPack = new Dictionary<MineralType, int>();
             _bankAccountId = Bank.Instance.CreateAccount();
         }
 

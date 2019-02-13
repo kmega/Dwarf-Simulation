@@ -7,9 +7,8 @@ namespace DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer
 {
     public class DwarfBornGenerationStrategy : IIsDwarfBornRandomizer
     {
-        public bool Generate()
+        public bool IsDwarfBorn(int maxValue = 100)
         {
-            int maxValue = 100;
             return Generate(1,maxValue) == 1;
         }
 
