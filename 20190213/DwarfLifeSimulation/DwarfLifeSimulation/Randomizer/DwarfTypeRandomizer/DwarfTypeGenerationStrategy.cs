@@ -9,12 +9,26 @@ namespace DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer
     {
         public DwarfType Generate()
         {
-            throw new NotImplementedException();
+            int maxValue = Enum.GetNames(typeof(DwarfType)).Length;
+            int randomNumber = Generate(1,maxValue);
+            switch (randomNumber)
+            {
+                case int n when (n > 0 && n <=33):
+                    return DwarfType.Father;
+                case int n when (n > 33 && n <=66):
+                    return DwarfType.Single;
+                case int n when (n > 66 && n <=99):
+                    return DwarfType.Suicide;
+                case int n when (n == 100):
+                    return DwarfType.Sluggard;
+                default:
+                    return DwarfType.None;
+            }
         }
 
         public int Generate(int minValue, int maxValue)
         {
-            throw new NotImplementedException();
+            return new Random().Next(minValue, maxValue);
         }
     }
 }

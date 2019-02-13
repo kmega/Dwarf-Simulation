@@ -10,9 +10,15 @@ namespace DwarfLifeSimulation.Dwarves
     public class Dwarf : IDwarf
     {
         public string Name { get;private set; }
+<<<<<<< HEAD
         public IWorkStrategy workStrategy { get; private set; }
         public IBuyStrategy buyStrategy { get; private set; }
         private Dictionary<Material,int> backPack;
+=======
+        private IWorkStrategy workStrategy;
+        private IBuyStrategy buyStrategy;
+        private Dictionary<MaterialType,int> backPack;
+>>>>>>> kozlovsky
         private int bankAccountId;
 
         public Dwarf(string name, IWorkStrategy howIWork, IBuyStrategy howIBuy)
