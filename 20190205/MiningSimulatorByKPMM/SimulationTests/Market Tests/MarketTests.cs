@@ -28,8 +28,8 @@ namespace SimulationTests.Market_Tests
 			//given
 
 			//when
-			decimal result1 = market.marketState[E_ProductsType.Alcohol];
-			decimal result2 = market.marketState[E_ProductsType.Food];
+			decimal result1 = market._marketState[E_ProductsType.Alcohol];
+			decimal result2 = market._marketState[E_ProductsType.Food];
 
 			//then
 			Assert.AreEqual(0, result1);
@@ -41,7 +41,7 @@ namespace SimulationTests.Market_Tests
 		{
 			//given
 			//when
-			decimal result = market.shopMoneyAccount.OverallAccount;
+			decimal result = market._shopMoneyAccount.OverallAccount;
 			//then
 			Assert.AreEqual(0, result);
 		}
@@ -57,7 +57,7 @@ namespace SimulationTests.Market_Tests
 
 			//when
 			market.PerformShopping(dwarfsList, bank);
-			decimal result = market.marketState[E_ProductsType.Food];
+			decimal result = market._marketState[E_ProductsType.Food];
 
 			//then
 			Assert.AreEqual(50, result);
@@ -89,8 +89,8 @@ namespace SimulationTests.Market_Tests
 
 			//when
 			market.PerformShopping(dwarfsList, bank);
-			decimal result1 = market.marketState[E_ProductsType.Food];
-			decimal result2 = market.marketState[E_ProductsType.Alcohol];
+			decimal result1 = market._marketState[E_ProductsType.Food];
+			decimal result2 = market._marketState[E_ProductsType.Alcohol];
 			
 
 			//then
@@ -108,7 +108,7 @@ namespace SimulationTests.Market_Tests
 			//when
 			market.PerformShopping(dwarfsList, bank);
 
-			decimal result1 = market.shopMoneyAccount.OverallAccount;
+			decimal result1 = market._shopMoneyAccount.OverallAccount;
 			decimal result2 = bank.BankTresure();
 
 			//then
