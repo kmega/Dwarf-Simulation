@@ -1,11 +1,11 @@
-﻿using Dwarf.Town.Enums;
-using Dwarf.Town.Interfaces;
-using Dwarf.Town.Locations.Guild.OreValue;
+﻿using Dwarf_Town.Enums;
+using Dwarf_Town.Interfaces;
+using Dwarf_Town.Locations.Guild.OreValue;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dwarf.Town.Locations.Guild
+namespace Dwarf_Town.Locations.Guild
 {
     public class Guild
     {

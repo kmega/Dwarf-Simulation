@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using Dwarf.Town.Enums;
-using Dwarf.Town.Models;
+using Dwarf_Town.Enums;
+using Dwarf_Town.Models;
 
-namespace Dwarf.Town.Interfaces
+namespace Dwarf_Town.Interfaces
 {
     public class StandardSellStrategy : ISell
     {
@@ -18,7 +18,7 @@ namespace Dwarf.Town.Interfaces
 
         public void ReceivedMoney(decimal payment)
         {
-           _
+           
         }
 
         public List<MineralType> ShowBackpack()
