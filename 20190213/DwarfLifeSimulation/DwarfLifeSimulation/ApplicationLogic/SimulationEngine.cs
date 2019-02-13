@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DwarfLifeSimulation.Locations.Shops;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,7 +17,9 @@ namespace DwarfLifeSimulation.ApplicationLogic
         {
             for(; currentSimulationState.Turn <= 30; currentSimulationState.Turn ++)
             {
-                //Hospital 
+				//Hospital 
+				Shop shop = new Shop();
+				shop.ServeAllCustomers(currentSimulationState.Dwarves);
             }
         }
     }
