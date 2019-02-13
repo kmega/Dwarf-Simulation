@@ -4,7 +4,11 @@ using System.Text;
 
 namespace Mine
 {
-    interface IBankAccount
+    public interface IBankAccount
     {
+        int Coins { get; }
+        void AddCoins(int coinsAmount);
+        void WithdrawCoins(int coinsAmount);
+        
     }
 }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Mine
 {
-    interface IWork
+    public interface IWork
     {
+        List<Ore> DoWork();
     }
 }

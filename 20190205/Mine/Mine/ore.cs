@@ -4,8 +4,9 @@ using System.Text;
 
 namespace Mine
 {
-    enum Ore
+    public enum Ore
     {
+        none,
         Gold,
         Silver,
         DirtGold,

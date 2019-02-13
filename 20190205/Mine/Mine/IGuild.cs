@@ -6,6 +6,6 @@ namespace Mine
 {
     interface IGuild
     {
-
+        int ChangeOreToCoins(List<Ore> ores);
     }
 }
