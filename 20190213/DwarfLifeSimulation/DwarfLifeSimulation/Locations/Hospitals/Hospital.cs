@@ -1,12 +1,9 @@
 ﻿using DwarfLifeSimulation.ApplicationLogic;
 using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Interfaces;
-using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
 using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
 using DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace DwarfLifeSimulation.Locations.Hospitals
 {
@@ -14,6 +11,8 @@ namespace DwarfLifeSimulation.Locations.Hospitals
     {
         private IIsDwarfBornRandomizer _isDwarfBornRandomizer;
         private IDwarfTypeRandomizer _dwarfTypeRandomizer;
+
+        #region Contructors
 
         public Hospital(IIsDwarfBornRandomizer isDwarfBornRandomizer, 
             IDwarfTypeRandomizer dwarfTypeRandomizer)
@@ -32,8 +31,9 @@ namespace DwarfLifeSimulation.Locations.Hospitals
             _isDwarfBornRandomizer = isDwarfBornRandomizer;
             _dwarfTypeRandomizer = dwarfTypeRandomizer;
         }
+        #endregion
 
-        public void Create(SimulationState simulationState)
+        public void CreateDwarves(SimulationState simulationState)
         {
             if(simulationState.Turn == 1)
             {
@@ -46,14 +46,20 @@ namespace DwarfLifeSimulation.Locations.Hospitals
         }
         private List<IDwarf> CreateInitialDwarves()
         {
-            return null;
+            List<IDwarf> dwarves = new List<IDwarf>();
+            for(int i = 0; i < 10; i++)
+            {
+                var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: true);
+                dwarves.Add(DwarfFactory.Create(type));
+            }
+            return dwarves;
         }
         private List<IDwarf> CreateSingleRandomDwarf()
         {
             List<IDwarf> dwarves = new List<IDwarf>();
             if(_isDwarfBornRandomizer.IsDwarfBorn())
             {
-                var type = _dwarfTypeRandomizer.GiveMeDwarfType();
+                var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: false);
                 dwarves.Add(DwarfFactory.Create(type));
             }
             return dwarves;
