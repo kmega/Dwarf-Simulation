@@ -7,5 +7,6 @@ namespace DwarfLifeSimulation.Interfaces
 {
     public interface IDwarf : IWork, IBuy
     {
+
     }
 }

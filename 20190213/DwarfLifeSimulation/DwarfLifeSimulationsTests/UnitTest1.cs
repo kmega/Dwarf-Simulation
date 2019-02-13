@@ -2,7 +2,7 @@ using NUnit.Framework;
 using Moq;
 namespace Tests
 {
-    public class Tests
+    public class DwarfCreationTests
     {
         [SetUp]
         public void Setup()

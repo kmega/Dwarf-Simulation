@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DwarfLifeSimulation.Interfaces
 {
-    interface IWorkStrategy
+    public interface IWorkStrategy
     {
         Dictionary<Material,int> Perform(Shaft shaft);
     }
