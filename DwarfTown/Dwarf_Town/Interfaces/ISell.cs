@@ -1,4 +1,4 @@
-﻿namespace Dwarf.Town.Interfaces
+﻿namespace Dwarf_Town.Interfaces
 {
     public interface ISell
     {

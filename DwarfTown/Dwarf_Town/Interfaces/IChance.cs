@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dwarf.Town.Interfaces
+namespace Dwarf_Town.Interfaces
 {
     public interface IChance
     {

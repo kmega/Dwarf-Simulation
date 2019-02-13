@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dwarf.Town
+namespace Dwarf_Town
 {
     internal class Program
     {

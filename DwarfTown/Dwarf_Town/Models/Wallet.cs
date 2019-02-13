@@ -1,4 +1,4 @@
-﻿namespace Dwarf.Town.Models
+﻿namespace Dwarf_Town.Models
 {
     public class Wallet
     {

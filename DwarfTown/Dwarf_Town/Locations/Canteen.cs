@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dwarf.Town.Locations
+namespace Dwarf_Town.Locations
 {
     public class Canteen
     {
@@ -15,6 +15,14 @@ namespace Dwarf.Town.Locations
         public void SpendFoodRations(IList<Dwarf> dwarves)
         {
             FoodRations -= dwarves.Count;
+        }
+
+        public void OrderFoodRations()
+        {
+            if (FoodRations < 10)
+            {
+                FoodRations += 30;
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Dwarf.Town
+namespace Dwarf_Town
 {
     public class SimulationState
     {

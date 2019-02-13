@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Dwarf.Town
+namespace Dwarf_Town
 {
     class SimulationReport
     {

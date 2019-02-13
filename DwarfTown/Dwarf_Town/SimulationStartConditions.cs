@@ -1,4 +1,4 @@
-﻿namespace Dwarf.Town
+﻿namespace Dwarf_Town
 {
     public class SimulationStartConditions
     {

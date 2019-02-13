@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Dwarf.TownTests
+namespace Dwarf_TownTests
 {
     [TestFixture]
     public class SampleTest

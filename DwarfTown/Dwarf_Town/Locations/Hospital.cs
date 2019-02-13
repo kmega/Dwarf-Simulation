@@ -1,8 +1,8 @@
-﻿using Dwarf.Town.Enums;
-using Dwarf.Town.Interfaces;
+﻿using Dwarf_Town.Enums;
+using Dwarf_Town.Interfaces;
 using System;
 
-namespace Dwarf.Town.Locations
+namespace Dwarf_Town.Locations
 {
     internal class Hospital : IChance, IGenerate
     {
@@ -39,5 +39,7 @@ namespace Dwarf.Town.Locations
             Random random = new Random();
             return random.Next(lowerBound, upperBound);
         }
+
+
     }
 }

@@ -1,8 +1,8 @@
-﻿using Dwarf.Town.Enums;
-using Dwarf.Town.Interfaces;
-using Dwarf.Town.Models;
+﻿using Dwarf_Town.Enums;
+using Dwarf_Town.Interfaces;
+using Dwarf_Town.Models;
 
-namespace Dwarf.Town
+namespace Dwarf_Town
 {
     public class Dwarf
     {

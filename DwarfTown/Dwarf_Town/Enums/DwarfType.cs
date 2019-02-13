@@ -1,4 +1,4 @@
-﻿namespace Dwarf.Town.Enums
+﻿namespace Dwarf_Town.Enums
 {
     public enum DwarfType
     {
