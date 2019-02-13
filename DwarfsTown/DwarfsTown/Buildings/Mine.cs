@@ -16,7 +16,7 @@ namespace DwarfsTown
         }
         public void StartWorking(List<Dwarf> dwarfs)
         {
-            List<Dwarf> dwarfsThatWentToWork = new List<Dwarf>();
+            List<Dwarf> dwarfsThatWasWorked = new List<Dwarf>();
 
             //Dwarfs who come to mine are assign to list dwarfs who should be working
             List<Dwarf> dwarfsThatShouldBeWorking = dwarfs;
@@ -24,16 +24,35 @@ namespace DwarfsTown
             //Prepare Mine on start new day -> setting shafts to not destroyed
             SetShaftsToNotDestroyed(shaft1, shaft2);
 
-            //Foreman checking does dwarfs who should be working are exist if that, then dwarfs will send to shaft
-            if(foreman.CheckDoesDwarfsExist(dwarfsThatShouldBeWorking))
+            while(dwarfsThatShouldBeWorking.Count > 0)
             {
                 //Foreaman send maximum 5 dwarfs to first shaft -> add this dwarfs to list dwarfs who went to work
-                dwarfsThatWentToWork.AddRange(foreman.SendDwarfsToShaft(dwarfsThatShouldBeWorking, shaft1));
+                foreman.SendDwarfsToShaft(dwarfsThatShouldBeWorking, shaft1);
+
+                //Dwarfs from first shaft go to digging
+                StartDigging(shaft1);
+
+                //Foreman let go dwarfs out from first shaft
+                dwarfsThatWasWorked.AddRange(foreman.LetGoDwarfs(shaft1));
 
                 //Foreaman send maximum 5 dwarfs to second shaft -> add this dwarfs to list dwarfs who went to work
-                dwarfsThatWentToWork.AddRange(foreman.SendDwarfsToShaft(dwarfsThatShouldBeWorking, shaft2));
-            }
+                foreman.SendDwarfsToShaft(dwarfsThatShouldBeWorking, shaft2);
 
+                //Dwarfs from second shaft go to digging
+                StartDigging(shaft2);
+
+                //Foreman let go dwarfs out from second shaft
+                dwarfsThatWasWorked.AddRange(foreman.LetGoDwarfs(shaft2));
+            }          
+
+        }
+
+        private void StartDigging(Shaft shaft1)
+        {
+            foreach (var dwarf in shaft1.dwarfs)
+            {
+                dwarf.Digging();
+            }
         }
 
         private void SetShaftsToNotDestroyed(Shaft shaft1, Shaft shaft2)
