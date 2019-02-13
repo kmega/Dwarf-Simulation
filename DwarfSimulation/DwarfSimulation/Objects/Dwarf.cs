@@ -26,6 +26,8 @@ namespace DwarfSimulation
                 {Mineral.TaintedGold,0 }
             };
 
+            EatAction = new EatStrategy();
+
             Wallet = 0.0m;
 
             Account = 0.0m;
