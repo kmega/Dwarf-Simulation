@@ -1,6 +1,10 @@
-﻿namespace Dwarf.Town
+﻿using System.Collections.Generic;
+
+namespace Dwarf.Town
 {
-    internal class SimulationState
+    public class SimulationState
     {
+        public IList<Dwarf> Dwarves { get; set; }
+
     }
 }
