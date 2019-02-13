@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfLifeSimulation.Enums
 {
-    public enum Material
+    public enum MaterialType
     {
         None, Mithril, Gold, Silver, TaintedGold
     }

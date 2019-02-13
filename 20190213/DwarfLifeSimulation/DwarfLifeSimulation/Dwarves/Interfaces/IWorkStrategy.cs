@@ -8,6 +8,6 @@ namespace DwarfLifeSimulation.Interfaces
 {
     interface IWorkStrategy
     {
-        Dictionary<Material,int> Perform(Shaft shaft);
+        Dictionary<MaterialType,int> Perform(Shaft shaft);
     }
 }
