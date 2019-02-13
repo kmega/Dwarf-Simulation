@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mine", "Mine\Mine.csproj", "{855B83BC-3AC3-45C4-8286-4CB72AED9D54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineTests", "MineTests\MineTests.csproj", "{C0C0F5F8-E0D4-44B1-ABE2-736D43884F16}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{855B83BC-3AC3-45C4-8286-4CB72AED9D54}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{855B83BC-3AC3-45C4-8286-4CB72AED9D54}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{855B83BC-3AC3-45C4-8286-4CB72AED9D54}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{855B83BC-3AC3-45C4-8286-4CB72AED9D54}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0C0F5F8-E0D4-44B1-ABE2-736D43884F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0C0F5F8-E0D4-44B1-ABE2-736D43884F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0C0F5F8-E0D4-44B1-ABE2-736D43884F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0C0F5F8-E0D4-44B1-ABE2-736D43884F16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
