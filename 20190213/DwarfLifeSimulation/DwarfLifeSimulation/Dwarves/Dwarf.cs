@@ -11,7 +11,7 @@ namespace DwarfLifeSimulation.Dwarves
         public string Name { get;private set; }
         private IWorkStrategy workStrategy;
         private IBuyStrategy buyStrategy;
-        private Dictionary<MaterialType,int> backPack;
+        private Dictionary<MineralType,int> backPack;
         private int bankAccountId;
 
         public Product Buy(int shopAccountId)
