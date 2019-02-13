@@ -4,9 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Interfaces
+namespace DwarfLifeSimulation.Dwarves.Interfaces
 {
-    interface IWorkStrategy
+    public interface IWorkStrategy
     {
         Dictionary<MineralType,int> Perform(Shaft shaft);
     }

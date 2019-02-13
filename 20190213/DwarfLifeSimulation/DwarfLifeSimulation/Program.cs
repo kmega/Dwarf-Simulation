@@ -6,7 +6,6 @@ namespace DwarfLifeSimulation
     {
         static void Main(string[] args)
         {
-            
         }
     }
 }

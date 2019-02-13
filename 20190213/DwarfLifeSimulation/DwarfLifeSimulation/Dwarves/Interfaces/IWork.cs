@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Dwarves
+namespace DwarfLifeSimulation.Dwarves.Interfaces
 {
     public interface IWork
     {

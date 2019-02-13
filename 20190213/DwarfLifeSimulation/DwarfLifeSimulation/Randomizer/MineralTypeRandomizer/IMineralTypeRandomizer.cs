@@ -4,6 +4,6 @@ namespace DwarfLifeSimulation.Randomizer.MineralTypeRandomizer
 {
     public interface IMineralTypeRandomizer : IRandomizer
     {
-        MineralType WhatHaveBeenDig();
+        MineralType WhatHaveBeenDig(int? randomNumber = null);
     }
 }

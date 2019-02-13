@@ -1,5 +1,5 @@
 ﻿using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Interfaces;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Locations.Mine;
 using DwarfLifeSimulation.Locations.Shop;
 using System.Collections.Generic;
