@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dwarf.Town
+﻿namespace Dwarf.Town
 {
-    class SimulationState
+    internal class SimulationState
     {
     }
 }
