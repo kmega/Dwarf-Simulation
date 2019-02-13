@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Locations\" />
+    <PackageReference Include="Autofac" Version="4.9.0" />
   </ItemGroup>
 
 </Project>

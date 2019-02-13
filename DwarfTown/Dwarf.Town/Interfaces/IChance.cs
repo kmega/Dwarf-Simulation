@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Dwarf.Town.Interfaces
 {
-    interface IChance
+    public interface IChance
     {
+        int GenerateChance(int lowerBound, int upperBound);
     }
 }
