@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Locations.Bank
+namespace DwarfLifeSimulation.Locations.Banks
 {
-    class Bank
+    public class Bank
     {
         private Dictionary<int, BankAccount> accounts;
         private BankAccount generalAccount;

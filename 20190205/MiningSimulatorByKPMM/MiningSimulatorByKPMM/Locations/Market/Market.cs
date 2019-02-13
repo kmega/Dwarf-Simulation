@@ -10,15 +10,15 @@ namespace MiningSimulatorByKPMM.Locations.Market
 {
 	public class Market 
 	{
-		private ILogger logger;
-		public BankAccount shopMoneyAccount = new BankAccount();
-		public Dictionary<E_ProductsType, decimal> marketState = new Dictionary<E_ProductsType, decimal>();
+		private ILogger _logger;
+		public BankAccount _shopMoneyAccount = new BankAccount();
+		public Dictionary<E_ProductsType, decimal> _marketState = new Dictionary<E_ProductsType, decimal>();
 
 		public Market()
 		{
-			logger = Logger.Instance;
-			marketState.Add(E_ProductsType.Food, 0);
-			marketState.Add(E_ProductsType.Alcohol, 0);
+			_logger = Logger.Instance;
+			_marketState.Add(E_ProductsType.Food, 0);
+			_marketState.Add(E_ProductsType.Alcohol, 0);
 		}
 		
 		public void PerformShopping(IBuy customers, GeneralBank bank)
@@ -40,16 +40,16 @@ namespace MiningSimulatorByKPMM.Locations.Market
 		{
 			decimal recipe = customer.BankAccount.LastInput / 2;
 
-			decimal amountOfProduct = marketState[productType];
+			decimal amountOfProduct = _marketState[productType];
 			amountOfProduct += recipe;
-			marketState[productType] = amountOfProduct;
+			_marketState[productType] = amountOfProduct;
 
 			//updating status of bank accounts of Dwarf, Bank and Market
 			customer.BankAccount.Withdraw(recipe);
 			bank.PayTax(recipe);
-			shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
-			shopMoneyAccount.CalculateOverallAccount();
-			logger.AddLog($"{customer.DwarfType} has spent {recipe.ToString()} on {productType.ToString()} today.");
+			_shopMoneyAccount.ReceivedMoney(recipe * 0.77m);
+			_shopMoneyAccount.CalculateOverallAccount();
+			_logger.AddLog($"{customer.DwarfType} has spent {recipe.ToString()} on {productType.ToString()} today.");
 		}
 	}
 }
