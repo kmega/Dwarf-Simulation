@@ -6,14 +6,23 @@ namespace ThorinsCompany
 {
     public class Bank : IBank
     {
+        private decimal _bankMoney = 0;
+
         public void ExchangeMaterialsForMoney(BankAccount bankAccount, List<Material> materials)
         {
-            throw new NotImplementedException();
+            decimal moneyEarned = 0;
+
+            foreach (var material in materials)
+            {
+                //deciaml moneyEarned = Randomizer.MaterialToGold(material);
+                bankAccount.TopUp(moneyEarned);
+            }
         }
 
-        public void MakeTransaction(BankAccount accountForAddition, BankAccount accountForSubstraction)
+        public void MakeTransaction(BankAccount accountForAddition, BankAccount accountForSubstraction, decimal moneyForTransaction)
         {
-            throw new NotImplementedException();
+            if (accountForSubstraction.CanGetMoneyFromAccount(moneyForTransaction))
+                accountForAddition.TopUp(moneyForTransaction);
         }
     }
 }
