@@ -9,8 +9,4 @@
     <PackageReference Include="Autofac" Version="4.9.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Locations\Mine\" />
-  </ItemGroup>
-
 </Project>

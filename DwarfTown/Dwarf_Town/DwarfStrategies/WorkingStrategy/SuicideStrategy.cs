@@ -34,6 +34,11 @@ namespace Dwarf_Town.DwarfStrategies.WorkingStrategy
             return -1;
         }
 
+        public int GenerateChance(int lowerBound, int upperBound)
+        {
+            return 0;
+        }
+
         public void HideToBackpack(MineralType ore)
         {
            

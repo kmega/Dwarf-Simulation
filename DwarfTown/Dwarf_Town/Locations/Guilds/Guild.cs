@@ -23,9 +23,9 @@ namespace Dwarf_Town.Locations.Guild
             return _oresOnMarket[mineraltype].GenerateOreValue();
         }
 
-        public void PaymentForDwarves (List<ISell> dwarvesSellStrategy)
+        public void PaymentForDwarves (List<ISell> dwarvesVisitGuild)
         {
-            foreach (var dwarf in dwarvesSellStrategy)
+            foreach (var dwarf in dwarvesVisitGuild)
             {
                 foreach (var ore in dwarf.ShowBackpack())
                 {

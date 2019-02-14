@@ -38,5 +38,12 @@ namespace Dwarf_Town.DwarfStrategies.WorkingStrategy
         {
             return _dwarf.IsAlive;
         }
+
+        public int GenerateChance(int lowerBound, int upperBound)
+        {
+            Random rand = new Random();
+            int value = rand.Next(lowerBound, upperBound);
+            return value;
+        }
     }
 }

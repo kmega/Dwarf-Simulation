@@ -3,7 +3,7 @@ using Dwarf_Town.Models;
 
 namespace Dwarf_Town.Interfaces
 {
-    public interface IWork
+    public interface IWork : IChance
     {
         int Dig();
         void HideToBackpack(MineralType ore);
