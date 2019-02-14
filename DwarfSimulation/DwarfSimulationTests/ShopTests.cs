@@ -102,9 +102,5 @@ namespace ShopTests
             Assert.AreEqual(1, alcoholBought);
             Assert.AreEqual(1, foodBought);
         }
-
-
-
-
     }
 }

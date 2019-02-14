@@ -6,11 +6,11 @@ namespace DwarfSimulation
 {
     internal class Shop
     {
-        int _soldFood;
+        int _soldFood = 0;
 
-        int _soldAlcohol;
+        int _soldAlcohol = 0;
 
-        decimal _moneyEarned;
+        decimal _moneyEarned = 0.0M;
 
         internal void AcquirePayment(decimal money)
         {
@@ -48,6 +48,18 @@ namespace DwarfSimulation
             {
                 dwarf.BuyAtShop(this);
             }
+        }
+
+        internal void Display()
+        {
+            List<string> shopDailyStats = new List<string>();
+            Outputer outputer = new Outputer();
+            shopDailyStats.Add("");
+            shopDailyStats.Add("### Shop ###");
+            shopDailyStats.Add($"Food sold: {_soldFood}.");
+            shopDailyStats.Add($"Alcohol sold: {_soldAlcohol}.");
+            shopDailyStats.Add($"Shop earn: {_moneyEarned} $.");
+            outputer.Display(shopDailyStats);
         }
     }
 }
