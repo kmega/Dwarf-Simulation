@@ -10,9 +10,9 @@ namespace DwarfLifeSimulation.Locations.Mines
     {
         private List<Shaft> _shafts;
 
-        public Mine()
+        public Mine(List<Shaft> shafts = null)
         {
-            _shafts = new List<Shaft>()
+            _shafts = (shafts!=null) ? shafts :  new List<Shaft>()
             {
                 new Shaft(),
                 new Shaft(),
@@ -33,12 +33,12 @@ namespace DwarfLifeSimulation.Locations.Mines
             }
         }
 
-        private Shaft FindEmptyShaft(List<Shaft> shafts)
+        public Shaft FindEmptyShaft(List<Shaft> shafts)
         {
             return shafts.Where(s => s.IsOccupied == false && s.ShaftStatus == ShaftStatus.Working).FirstOrDefault();
         }
 
-        private List<ShiftGroup> DivideIntoGroups(ICollection<IWork> workers)
+        public List<ShiftGroup> DivideIntoGroups(List<IWork> workers)
         {
             List<ShiftGroup> shiftGroups = new List<ShiftGroup>();
             do
@@ -47,12 +47,27 @@ namespace DwarfLifeSimulation.Locations.Mines
                 for (int i = 0; i < 5; i++)
                 {
                     var tempWorker = workers.Where(w => w._hasWorked == false).FirstOrDefault();
-                    shift.Members.Add(tempWorker);
-                    workers.Remove(tempWorker);
+                    if(tempWorker == null)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        shift.Members.Add(tempWorker);
+                        workers.Remove(tempWorker);
+                    }
                 }
                 shiftGroups.Add(shift);
             } while (workers.Any(w => w._hasWorked == false));
             return shiftGroups;
+        }
+
+        public void RepairShafts()
+        {
+            foreach(var shaft in _shafts)
+            {
+                shaft.ShaftStatus = ShaftStatus.Working;
+            }
         }
     }
 }

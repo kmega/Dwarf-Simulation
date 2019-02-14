@@ -27,6 +27,8 @@ namespace DwarfLifeSimulation.Dwarves
             _buyStrategy = howIBuy;
             _backPack = new Dictionary<MineralType, int>();
             _bankAccountId = Bank.Instance.CreateAccount();
+            _isAlive = true;
+            _hasWorked = false;
         }
 
         public Product Buy(int shopAccountId)
@@ -42,8 +44,12 @@ namespace DwarfLifeSimulation.Dwarves
 
         public Dictionary<MineralType, int> EmptyBackpackContent()
         {
-            var tempBackpack = _backPack;
-            //AddEmptyingBackpack
+            Dictionary<MineralType, int> tempBackpack = new Dictionary<MineralType, int>();            
+            foreach(var key in _backPack.Keys)
+            {
+                tempBackpack.Add(key, _backPack[key]);
+            }
+            _backPack.Clear();
             return tempBackpack;
         }
 
