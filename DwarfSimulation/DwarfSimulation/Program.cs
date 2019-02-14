@@ -14,13 +14,13 @@ namespace DwarfSimulation
             // Simulation(shafty, dwarfy,raportObject) => Start
 
             //forech tura:
-             // Hospital(lista krasnali, raportObject) -> //     => RETURN list of DwarVes
-             // Mines(shafty, lista krasnali,raportObject) -> updated list of dwarfs, updated backpacks       => RETURN list of DwarVes
-             // Guild(lista krasnali ,raportObject) -> update backpacks - zerowanie + wallets update   => RETURN list of DwarVes
-             // Graveyard(lista krasnali,raportObject) -> update dwarfs                                      => RETURN list of DwarVes
-             // diningRoom(lista krasnali,raportObject) -> count foodEaten                                   
-             // shop(lista krasnali,raportObject) -> update products + wallet update                      => RETURN list of DwarVes
-             // bank? (lista krasnali) => update konta,zerowanie wallet                         => RETURN list of DwarVes
+            // Hospital(lista krasnali, raportObject) -> //     => RETURN list of DwarVes, update Raport
+            // Mines(shafty, lista krasnali,raportObject) -> updated list of dwarfs, updated backpacks, update Raport       => RETURN list of DwarVes
+            // Guild(lista krasnali ,raportObject) -> update backpacks - zerowanie + wallets update, update Raport   => RETURN list of DwarVes
+            // Graveyard(lista krasnali,raportObject) -> update dwarfs, update Raport                                      => RETURN list of DwarVes
+            // diningRoom(lista krasnali,raportObject) -> count foodEaten, update Raport                                   
+            // shop(lista krasnali,raportObject) -> update products + wallet update, update Raport                      => RETURN list of DwarVes
+            // bank? (lista krasnali) => update konta,zerowanie wallet, update Raport                         => RETURN list of DwarVes
 
 
 

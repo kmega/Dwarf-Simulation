@@ -15,6 +15,11 @@ namespace DwarfSimulation
             return DwarfsPopulation.Where(dwarf => dwarf.IsAlive == true).ToList();
         }
 
+        internal bool AnybodyLives(List<Dwarf> DwarfsPopulation)
+        {
+            return DwarfsPopulation.Any();
+        }
+
         void Display(int TodayDead)
         {
             List<string> output = new List<string>();
