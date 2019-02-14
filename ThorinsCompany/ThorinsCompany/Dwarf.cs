@@ -7,6 +7,6 @@ namespace ThorinsCompany
         public DwarfType dwarfType;
         public IWorkingStrategy workingStrategy;
         public IShoppingStrategy shoppingStrategy;
-        private List<Material> _materials = new List<Material>();
+        private Dictionary<Material, int> _materials = new Dictionary<Material, int>();
     }
 }
