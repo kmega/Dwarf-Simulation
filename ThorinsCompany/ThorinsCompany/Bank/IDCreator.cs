@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ThorinsCompany.Bank
+namespace ThorinsCompany
 {
     public static class IDCreator
     {
-        private static int UniqeID = 0;
-        public static int GetUniqeID()
+        private static int UniqueID = 0;
+        public static int GetUniqueID()
         {
-            UniqeID++;
-            return UniqeID;
+            UniqueID++;
+            return UniqueID;
         }
     }
 }
+
