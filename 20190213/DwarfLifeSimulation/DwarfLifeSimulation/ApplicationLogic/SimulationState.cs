@@ -1,4 +1,5 @@
-﻿using DwarfLifeSimulation.Dwarves.Interfaces;
+﻿using DwarfLifeSimulation.Dwarves;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using System.Collections.Generic;
 
 namespace DwarfLifeSimulation.ApplicationLogic
@@ -7,5 +8,11 @@ namespace DwarfLifeSimulation.ApplicationLogic
     {
         public int turn { get; set; }
         public List<IDwarf> dwarves { get; set; }
+
+        public SimulationState()
+        {
+            turn = 1;
+            dwarves = new List<IDwarf>();
+        }
     }
 }

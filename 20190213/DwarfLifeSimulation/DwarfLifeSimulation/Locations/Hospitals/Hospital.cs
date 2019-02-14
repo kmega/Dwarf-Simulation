@@ -1,7 +1,6 @@
 ﻿using DwarfLifeSimulation.ApplicationLogic;
 using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
-using DwarfLifeSimulation.Interfaces;
 using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
 using DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
     {
         private IIsDwarfBornRandomizer _isDwarfBornRandomizer;
         private IDwarfTypeRandomizer _dwarfTypeRandomizer;
+        private DwarfFactory _dwarfFactory;
 
         #region Contructors
 
@@ -31,6 +31,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
         {
             _isDwarfBornRandomizer = isDwarfBornRandomizer;
             _dwarfTypeRandomizer = dwarfTypeRandomizer;
+            _dwarfFactory = new DwarfFactory(null);
         }
         #endregion
 
@@ -51,7 +52,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
             for(int i = 0; i < 10; i++)
             {
                 var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: true);
-                dwarves.Add(DwarfFactory.Create(type));
+                dwarves.Add(_dwarfFactory.Create(type));
             }
             return dwarves;
         }
@@ -61,7 +62,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
             if(_isDwarfBornRandomizer.IsDwarfBorn())
             {
                 var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: false);
-                dwarves.Add(DwarfFactory.Create(type));
+                dwarves.Add(_dwarfFactory.Create(type));
             }
             return dwarves;
         }

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DwarfLifeSimulation.Interfaces
+namespace DwarfLifeSimulation.Dwarves.Interfaces
 {
     public interface IWorkStrategy
     {

@@ -1,5 +1,5 @@
 ﻿using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Interfaces;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Locations.Banks;
 using DwarfLifeSimulation.Locations.Shops;
 using System;

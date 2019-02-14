@@ -2,8 +2,8 @@ using DwarfLifeSimulation.Enums;
 
 namespace DwarfLifeSimulation.Randomizer.MineralTypeRandomizer
 {
-    public interface IMineralTypeRandomizer : IRandomizer
+    public interface IMineralTypeRandomizer
     {
-        MineralType WhatHaveBeenDig();
+        MineralType WhatHaveBeenDig(int? randomNumber = null);
     }
 }

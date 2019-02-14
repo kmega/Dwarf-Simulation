@@ -7,6 +7,8 @@ namespace DwarfLifeSimulation.Dwarves.Interfaces
 {
     public interface IWork
     {
+        bool _hasWorked { get; set; }
+        bool _isAlive { get; set; }
         void Work(Shaft shaft);
     }
 }

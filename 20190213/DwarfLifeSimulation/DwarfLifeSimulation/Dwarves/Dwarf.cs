@@ -1,9 +1,9 @@
-﻿using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Interfaces;
-using DwarfLifeSimulation.Locations.Banks;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Locations.Shops;
+using DwarfLifeSimulation.Locations.Banks;
+
 using System.Collections.Generic;
 
 namespace DwarfLifeSimulation.Dwarves
@@ -13,12 +13,16 @@ namespace DwarfLifeSimulation.Dwarves
         public string _name { get; private set; }
         public IWorkStrategy _workStrategy { get; private set; }
         public IBuyStrategy _buyStrategy { get; private set; }
+        public DwarfType _dwarfType { get; }
+        public bool _isAlive { get; set; }
+        public bool _hasWorked { get; set; }
         private Dictionary<MineralType, int> _backPack;
         private int _bankAccountId;
 
-        public Dwarf(string name, IWorkStrategy howIWork, IBuyStrategy howIBuy)
+        public Dwarf(string name, DwarfType dwarfType, IWorkStrategy howIWork, IBuyStrategy howIBuy)
         {
             _name = name;
+            _dwarfType = dwarfType;
             _workStrategy = howIWork;
             _buyStrategy = howIBuy;
             _backPack = new Dictionary<MineralType, int>();
