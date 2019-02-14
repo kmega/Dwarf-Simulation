@@ -33,6 +33,7 @@ namespace GuildTests
             Assert.AreEqual(0, dwarf.BackPack[Mineral.Mithril]);
         }
 
+        [Test]
         public void ShouldClearDwarvesBackpacks()
         {
             // GIVEN
