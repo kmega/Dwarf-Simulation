@@ -18,6 +18,7 @@ namespace DwarfLifeSimulation.Locations.Shops
 		{
 			_shopState.Add(ProductType.Food, 0);
 			_shopState.Add(ProductType.Alcohol, 0);
+			_shopState.Add(ProductType.None, 0);
 			_bankAccountId = Bank.Instance.CreateAccount();
 		}
 
@@ -30,12 +31,11 @@ namespace DwarfLifeSimulation.Locations.Shops
 			Bank.Instance.PayTax(_bankAccountId);
 		}
 
-		private void ServeSingleCustomer(IBuy customer)
+		public void ServeSingleCustomer(IBuy customer)
 		{
 			var product = customer.Buy(_bankAccountId);
 			decimal recipe = product._amount;
 			ProductType productType = product._productType;
-			
 			_shopState[productType] += recipe;
 		}
 	}
