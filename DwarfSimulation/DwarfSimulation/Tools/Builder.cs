@@ -9,19 +9,18 @@ namespace DwarfSimulation
 
         internal List<Dwarf> CreateDwarves(int dwarfsNumber)
         {
+            List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < dwarfsNumber; i++)
             {
-
+                dwarves.Add(CreateDwarf(randomizer.ReturnDwarfType()));
             }
-            return null;
+            return dwarves;
         }
 
         internal Dwarf CreateDwarf(DwarfType type)
         {
-           // DwarfType type = randomizer.ReturnDwarfType();
 
             Dwarf dwarf;
-
             switch (type)
             {
                 case DwarfType.Father:
