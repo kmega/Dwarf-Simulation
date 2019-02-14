@@ -16,6 +16,7 @@ namespace DwarfsTown
         {
             Type = new TypeEnum();
             IsAlive = true;
+            Type = type;
         }
 
         //TODO: 
