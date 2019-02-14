@@ -6,7 +6,7 @@ namespace GraveyardTest
 {
     public class GraveyardTest
     {
-         List<Dwarf> Setup(int howManyDwarves)
+         List<Dwarf> CreateDwarves(int howManyDwarves)
         {
             Builder builder = new Builder();
             return builder.CreateDwarves(howManyDwarves);
@@ -16,7 +16,7 @@ namespace GraveyardTest
         public void RemoveOneDeadDwarfFromListDwarvesAndAdd1ToRaportDeadCount()
         {
             //given
-            List<Dwarf> dwarves = Setup(10);
+            List<Dwarf> dwarves = CreateDwarves(10);
             dwarves[2].IsAlive = false;
             Raport raport = new Raport();
 
@@ -37,7 +37,7 @@ namespace GraveyardTest
         public void RemoveFiveDeadDwarvesFromListDwarvesAndAdd5ToRaportDeadCount()
         {
             //given
-            List<Dwarf> dwarves = Setup(10);
+            List<Dwarf> dwarves = CreateDwarves(10);
             dwarves[2].IsAlive = false;
             dwarves[3].IsAlive = false;
             dwarves[4].IsAlive = false;
@@ -62,7 +62,7 @@ namespace GraveyardTest
         public void NobodyRemoveFromListDwarvesAndAdd0ToRaportDeadCount()
         {
             //given
-            List<Dwarf> dwarves = Setup(10);
+            List<Dwarf> dwarves = CreateDwarves(10);
             Raport raport = new Raport();
 
             //when
@@ -82,7 +82,7 @@ namespace GraveyardTest
         public void ReturnTrueWhenListIsntEmpty()
         {
             //given
-            List<Dwarf> dwarves = Setup(10);
+            List<Dwarf> dwarves = CreateDwarves(10);
 
             //when
             Graveyard graveyard = new Graveyard();
@@ -96,7 +96,7 @@ namespace GraveyardTest
         public void ReturnFalseWhenListIsEmpty()
         {
             //given
-            List<Dwarf> dwarves = Setup(0);
+            List<Dwarf> dwarves = CreateDwarves(0);
 
             //when
             Graveyard graveyard = new Graveyard();
@@ -110,7 +110,7 @@ namespace GraveyardTest
         public void DeleteAllDeadDwarvesFromListAndReturnFalseFromMethodAndybodyLive()
         {
             //given
-            List<Dwarf> dwarves = Setup(3);
+            List<Dwarf> dwarves = CreateDwarves(3);
             Graveyard graveyard = new Graveyard();
 
             Assert.AreEqual(graveyard.AnybodyLives(dwarves), true);
