@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DwarfMineSimulator;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,7 +8,9 @@ namespace ThorinsCompany
     public class Bank
     {
         private decimal _bankMoney = 0;
+        private decimal _taxesValue = 0.20m;
         private Dictionary<int, BankAccount> _bankAccounts = new Dictionary<int, BankAccount>();
+        RandomizerThorins _randomizer = new RandomizerThorins();
 
         public void ExchangeMaterialsForMoney(int ID, List<Material> materials)
         {
@@ -15,8 +18,9 @@ namespace ThorinsCompany
 
             foreach (var material in materials)
             {
-                //deciaml moneyEarned = Randomizer.MaterialToGold(material);
-                _bankAccounts[ID].TopUp(moneyEarned);
+               moneyEarned = _randomizer.ReturnPriceMaterial(material);
+
+                _bankAccounts[ID].TopUp(GetTaxesFromExchangeAndReturnLeftMoney(moneyEarned));
             }
         }
 
@@ -52,6 +56,12 @@ namespace ThorinsCompany
         public decimal CheckMoneyOnAccount(int ID)
         {
             return _bankAccounts[ID].GetMoney();
+        }
+
+        private decimal GetTaxesFromExchangeAndReturnLeftMoney(decimal amount)
+        {
+            _bankMoney += _taxesValue * amount;
+            return ((1 - _taxesValue) * amount);
         }
 
     }
