@@ -1,15 +1,8 @@
-﻿using DwarfLifeSimulation.Dwarves;
-using DwarfLifeSimulation.Dwarves.Interfaces;
-using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Interfaces;
-using DwarfLifeSimulation.Locations.Canteens;
+﻿using DwarfLifeSimulation.Locations.Canteens;
 using DwarfLifeSimulation.Locations.Guilds;
 using DwarfLifeSimulation.Locations.Hospitals;
 using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Locations.Shops;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DwarfLifeSimulation.ApplicationLogic
 {

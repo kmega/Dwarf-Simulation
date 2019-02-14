@@ -13,12 +13,14 @@ namespace DwarfLifeSimulation.Dwarves
         public string _name { get; private set; }
         public IWorkStrategy _workStrategy { get; private set; }
         public IBuyStrategy _buyStrategy { get; private set; }
+        public DwarfType _dwarfType { get; }
         private Dictionary<MineralType, int> _backPack;
         private int _bankAccountId;
 
-        public Dwarf(string name, IWorkStrategy howIWork, IBuyStrategy howIBuy)
+        public Dwarf(string name, DwarfType dwarfType, IWorkStrategy howIWork, IBuyStrategy howIBuy)
         {
             _name = name;
+            _dwarfType = dwarfType;
             _workStrategy = howIWork;
             _buyStrategy = howIBuy;
             _backPack = new Dictionary<MineralType, int>();
