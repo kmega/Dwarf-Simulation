@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using Moq;
-using DwarfLifeSimulation.Interfaces;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Dwarves.BuyStrategies;

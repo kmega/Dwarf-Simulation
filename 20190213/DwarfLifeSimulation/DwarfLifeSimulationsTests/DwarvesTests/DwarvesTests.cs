@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using Moq;
 using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Locations.Mine;
+using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
 
