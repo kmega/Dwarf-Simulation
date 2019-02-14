@@ -1,10 +1,12 @@
-﻿using DwarfLifeSimulation.Dwarves.Interfaces;
+﻿using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Locations.Canteens;
 using DwarfLifeSimulation.Locations.Guilds;
 using DwarfLifeSimulation.Locations.Hospitals;
 using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Locations.Shops;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using System.Collections.Generic;
+using System;
 
 namespace DwarfLifeSimulation.ApplicationLogic
 {
@@ -28,7 +30,9 @@ namespace DwarfLifeSimulation.ApplicationLogic
                 //Hospital.CreateDwarves(currentSimaltionState); - updates SimulationState
                 hospital.CreateDwarves(currentSimulationState);
                 //Mine.Work(IWork workers);
-                mine.Work(currentSimulationState.dwarves);
+                List<IWork> workers = new List<IWork>();
+                currentSimulationState.dwarves.ForEach(d => workers.Add(d));                
+                mine.Work(workers);
                 //Guild.ExchangeResources(??)
                 guild.ExchangeResource(currentSimulationState.dwarves);
                 //Canteen.ServeFood(int dwarvesCount)

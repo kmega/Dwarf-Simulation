@@ -27,15 +27,10 @@ namespace DwarfLifeSimulation.Locations.Mines
                 var emptyShaft = FindEmptyShaft(_shafts);
                 group.EnterShaft(emptyShaft);
             }
-            IList<IWork> tempWorkers = new List<IWork>();
-            foreach (var group in shiftGroups)
+            foreach(var group in shiftGroups)
             {
-                foreach(var member in group.Members)
-                {
-                    tempWorkers.Add(member);
-                }
+                workers.AddRange(group.Members);
             }
-            workers = tempWorkers.ToList();
         }
 
         private Shaft FindEmptyShaft(List<Shaft> shafts)
