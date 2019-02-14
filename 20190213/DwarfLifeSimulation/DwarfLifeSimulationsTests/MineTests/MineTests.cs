@@ -19,9 +19,6 @@ namespace Tests
         {
             nameRandomizerMock = new Mock<IDwarfNameRandomizer>();
             nameRandomizerMock.Setup(x => x.GiveMeDwarfName()).Returns("Gimli");
-
-            dwarfTypeRandomizer = new Mock<IDwarfTypeRandomizer>();
-            dwarfTypeRandomizer.Setup(x => x.GiveMeDwarfType(false)).Returns(DwarfType.Suicide);
         }
 
         [Test]
@@ -29,13 +26,17 @@ namespace Tests
         {
             // given
             var suicider = new DwarfFactory(nameRandomizerMock.Object).Create(DwarfType.Suicide);
-            var shaft = new Shaft();
+            var notSuicider =  new DwarfFactory(nameRandomizerMock.Object).Create(DwarfType.Father);
+            var shaftWithSuicider = new Shaft();
+            var shaftWithoutSuicider = new Shaft();
 
             // when
-            suicider.Work(shaft);
+            notSuicider.Work(shaftWithoutSuicider);
+            suicider.Work(shaftWithSuicider);
 
             // then
-            Assert.IsTrue(shaft.ShaftStatus.Equals(ShaftStatus.Destroyed));
+            Assert.IsTrue(shaftWithoutSuicider.ShaftStatus.Equals(ShaftStatus.Working));
+            Assert.IsTrue(shaftWithSuicider.ShaftStatus.Equals(ShaftStatus.Destroyed));
         }
     }
 }
