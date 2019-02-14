@@ -1,6 +1,7 @@
-﻿using DwarfLifeSimulation.Enums;
+﻿using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Enums;
 
-namespace DwarfLifeSimulation.Dwarves.Interfaces
+namespace DwarfLifeSimulation.Dwarves
 {
     public interface IDwarf : IWork, IBuy, IExchange
     {

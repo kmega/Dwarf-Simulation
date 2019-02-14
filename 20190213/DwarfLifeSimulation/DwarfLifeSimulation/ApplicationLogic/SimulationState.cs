@@ -1,4 +1,5 @@
-﻿using DwarfLifeSimulation.Dwarves.Interfaces;
+﻿using DwarfLifeSimulation.Dwarves;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using System.Collections.Generic;
 
 namespace DwarfLifeSimulation.ApplicationLogic

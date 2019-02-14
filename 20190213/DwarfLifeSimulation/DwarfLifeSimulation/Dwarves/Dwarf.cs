@@ -14,6 +14,8 @@ namespace DwarfLifeSimulation.Dwarves
         public IWorkStrategy _workStrategy { get; private set; }
         public IBuyStrategy _buyStrategy { get; private set; }
         public DwarfType _dwarfType { get; }
+        public bool _isAlive { get; set; }
+        public bool _hasWorked { get; set; }
         private Dictionary<MineralType, int> _backPack;
         private int _bankAccountId;
 
