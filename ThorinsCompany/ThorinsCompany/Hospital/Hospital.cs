@@ -13,7 +13,6 @@ namespace ThorinsCompany
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < howManyDwarfYouWantCreate; i++)
             {
-
                 DwarfType dwarfTypes = randomizer.RandomTypeDwarf();
                 dwarves.Add(new Dwarf
                 {
@@ -23,14 +22,11 @@ namespace ThorinsCompany
             return dwarves;
         }
 
-        public List<Dwarf> GiveBirthToDwarf(List<Dwarf> dwarves)
+        public void GiveBirthToDwarf(List<Dwarf> dwarves)
         {
             bool chanceToBorn = randomizer.WillHeBeBorn();
             if (chanceToBorn)
-            {
                 dwarves.AddRange(CreateDwarves(1));
-            }
-            return dwarves;
         }
     }
 }
