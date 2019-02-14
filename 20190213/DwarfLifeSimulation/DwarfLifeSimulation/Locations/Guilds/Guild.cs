@@ -8,7 +8,7 @@ namespace DwarfLifeSimulation.Locations.Guilds
 {
     public class Guild
     {
-        public void ExchangeResource(IEnumerable<IExchange> workers)
+        public void ExchangeResource(List<IExchange> workers)
         {
             throw new NotImplementedException();
         }

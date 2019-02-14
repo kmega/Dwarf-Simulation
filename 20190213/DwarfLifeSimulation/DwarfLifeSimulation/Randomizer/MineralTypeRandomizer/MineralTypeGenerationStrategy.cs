@@ -7,13 +7,20 @@ namespace DwarfLifeSimulation.Randomizer.MineralTypeRandomizer
 {
     public class MineralTypeGenerationStrategy : IMineralTypeRandomizer
     {
+        private IRandomizer randomizer;
+
+        public MineralTypeGenerationStrategy()
+        {
+            randomizer = new Randomizer();
+        }
+
         public MineralType WhatHaveBeenDig(int? randomNumber = null)
         {
             int maxValue = Enum.GetNames(typeof(DwarfType)).Length;
 
             // For test cases
             if(randomNumber.Equals(null))
-                randomNumber = Generate(1,maxValue);
+                randomNumber = randomizer.Generate(1,maxValue);
 
             switch (randomNumber)
             {
@@ -28,11 +35,6 @@ namespace DwarfLifeSimulation.Randomizer.MineralTypeRandomizer
                 default:
                     return MineralType.None;
             }
-        }
-
-        public int Generate(int minValue, int maxValue)
-        {
-            return new Random().Next(minValue, maxValue);
         }
     }
 }
