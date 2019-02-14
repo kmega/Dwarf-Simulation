@@ -1,6 +1,6 @@
 ﻿namespace ThorinsCompany
 {
-    internal class Guild : IGuild
+    public class Guild
     {
     }
 }

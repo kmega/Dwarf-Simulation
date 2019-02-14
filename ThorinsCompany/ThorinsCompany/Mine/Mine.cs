@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ThorinsCompany
 {
-   public class Mine: IMine
+   public class Mine
     {
     }
 }

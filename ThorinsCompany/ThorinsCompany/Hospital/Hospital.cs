@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ThorinsCompany
 {
-    public class Hospital : IHospital
+    public class Hospital
     {
         Randomizer randomizer = new Randomizer();
         public List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate)
