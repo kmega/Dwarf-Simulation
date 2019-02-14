@@ -24,6 +24,11 @@ namespace ThorinsCompany
             }
         }
 
+        internal void ExchangeMaterialsForMoneyFromAllDwarves(List<Dwarf> dwarves)
+        {
+            throw new NotImplementedException();
+        }
+
         public void MakeTransaction(int accountIDForAddition, int accountIDForSubtraction, decimal moneyForTransaction)
         {
             if (_bankAccounts[accountIDForSubtraction].CanGetMoneyFromAccount(moneyForTransaction))

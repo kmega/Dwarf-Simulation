@@ -10,5 +10,10 @@ namespace ThorinsCompany
         {
             shoppingStrategy.Buy();
         }
+
+        internal void PerformShoppingForAllDwarves(List<Dwarf> dwarves)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

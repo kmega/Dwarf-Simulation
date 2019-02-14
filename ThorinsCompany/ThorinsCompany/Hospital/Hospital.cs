@@ -8,6 +8,8 @@ namespace ThorinsCompany
     public class Hospital 
     {
         RandomizerThorins randomizer = new RandomizerThorins();
+        bool _day0 = true;
+
         public List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate)
         {
            // WorkingStrategy workingStrategy;
@@ -37,8 +39,15 @@ namespace ThorinsCompany
             return dwarves;
         }
 
-        public void GiveBirthToDwarf(List<Dwarf> dwarves)
+        public void TryGiveBirthToDwarf(List<Dwarf> dwarves)
         {
+            if (_day0)
+            {
+                CreateDwarves(10);
+                _day0 = false;
+            }
+                
+
             bool chanceToBorn = randomizer.WillHeBeBorn(randomizer.ReturnRandomNumber(1, 100));
             if (chanceToBorn)
                 dwarves.AddRange(CreateDwarves(1));

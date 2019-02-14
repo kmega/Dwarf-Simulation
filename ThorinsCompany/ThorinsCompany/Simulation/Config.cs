@@ -10,6 +10,7 @@ namespace ThorinsCompany
         public Shop  Shop { get; private set; }
         public Bar  Bar { get; private set; }
         public Guild Guild { get; private set; }
+        public Displayer Displayer { get; private set; }
 
 
         public void CreateBank() =>  Bank = new Bank();
@@ -18,5 +19,7 @@ namespace ThorinsCompany
         public void CreateShop() =>  Shop = new Shop();
         public void CreateGuild() =>  Guild = new Guild();
         public void CreateMine() =>  Mine = new Mine();     
+        public void CreateDisplayer() =>  Displayer = new Displayer();     
+        
     }
 }
