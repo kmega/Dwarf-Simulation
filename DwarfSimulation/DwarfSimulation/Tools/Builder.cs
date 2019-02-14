@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DwarfSimulation
 {
     internal class Builder
     {
         List<Dwarf> listOfDwarves = new List<Dwarf>();
-
         Randomizer randomizer = new Randomizer();
-
 
         internal List<Dwarf> CreateDwarves(int dwarfsNumber)
         {
@@ -29,16 +25,31 @@ namespace DwarfSimulation
             switch (type)
             {
                 case DwarfType.Father:
-                    dwarf = new Dwarf() { };
+                    dwarf = new Dwarf()
+                    {
+                        DigAction = new DefaultDigStrategy(),
+                        BuyAction = new FatherBuyStrategy()
+                    };
                     break;
                 case DwarfType.Single:
-                    dwarf = new Dwarf() { BuyAction = new SingleBuyStrategy() };
+                    dwarf = new Dwarf()
+                    {
+                        DigAction = new DefaultDigStrategy(),
+                        BuyAction = new SingleBuyStrategy()
+                    };
                     break;
                 case DwarfType.Lazy:
-                    dwarf = new Dwarf() { };
+                    dwarf = new Dwarf()
+                    {
+                        DigAction = new LazyDigStrategy(),
+                        BuyAction = new LazyBuyStrategy()
+                    };
                     break;
                 case DwarfType.Suicider:
-                    dwarf = new Dwarf() { };
+                    dwarf = new Dwarf()
+                    {
+                        DigAction = new SuiciderDigStrategy(),
+                    };
                     break;
                 default:
                     dwarf = new Dwarf();

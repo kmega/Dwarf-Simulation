@@ -4,7 +4,11 @@ using System.Text;
 
 namespace DwarfSimulation
 {
-    class FatherBuyStrategy 
+    class FatherBuyStrategy : IBuy
     {
+        public void Buy(Shop shop)
+        {
+            // No action.
+        }
     }
 }
