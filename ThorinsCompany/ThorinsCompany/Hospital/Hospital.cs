@@ -12,6 +12,8 @@ namespace ThorinsCompany
 
         public List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate)
         {
+            //Logger.GetInstance().AddLog();
+
            // WorkingStrategy workingStrategy;
             IShoppingStrategy shoppingStrategy;
             List<Dwarf> dwarves = new List<Dwarf>();
