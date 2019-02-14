@@ -8,6 +8,6 @@ namespace Dwarf_Town.Interfaces
         int Dig();
         void HideToBackpack(MineralType ore);
         void DeathSentence();
-        LifeStatus AskAboutLife();
+        bool AskAboutLife();
     }
 }

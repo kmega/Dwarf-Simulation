@@ -5,9 +5,9 @@ using Dwarf_Town.Models;
 
 namespace Dwarf_Town
 {
-    public class Dwarf { 
+    public class Dwarf {
 
-        //public LifeStatus IsAlive { get; set; }
+        public bool IsAlive { get; set; }
         public Backpack Backpack { get; set; }
         public Wallet Wallet { get; set; }
         public IBuy BuyStrategy { get; set; }
@@ -17,10 +17,9 @@ namespace Dwarf_Town
 
         public Dwarf()
         {
-            //IsAlive = LifeStatus.Live;
+            IsAlive = true;
             Backpack = new Backpack();
             Wallet = new Wallet();
-
         }
 
     }

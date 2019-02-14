@@ -9,19 +9,17 @@ namespace Dwarf_Town.DwarfStrategies.WorkingStrategy
 {
     public class DigStrategy : IWork
     {
-        private LifeStatus _isAlive;
-        private Backpack _backpack;
+        private Dwarf _dwarf;
 
 
-        public DigStrategy(Backpack backpack)
+        public DigStrategy(Dwarf dwarf)
         {
-            _isAlive = LifeStatus.Live;
-            _backpack = backpack;
+            _dwarf = dwarf;
         }
 
         public void DeathSentence()
         {
-            _isAlive = LifeStatus.Dead;
+            _dwarf.IsAlive = false;
         }
 
         public int Dig()
@@ -33,12 +31,12 @@ namespace Dwarf_Town.DwarfStrategies.WorkingStrategy
 
         public void HideToBackpack(MineralType ore)
         {
-            _backpack.AddOre(ore);
+           _dwarf.Backpack.AddOre(ore);
         }
 
-        public LifeStatus AskAboutLife()
+        public bool AskAboutLife()
         {
-            return _isAlive;
+            return _dwarf.IsAlive;
         }
     }
 }

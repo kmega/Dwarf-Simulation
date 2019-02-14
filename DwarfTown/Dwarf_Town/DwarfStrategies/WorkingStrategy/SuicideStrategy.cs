@@ -9,22 +9,22 @@ namespace Dwarf_Town.DwarfStrategies.WorkingStrategy
 {
     public class SuicideStrategy : IWork
     {
-        private LifeStatus _isAlive;
-        
+        private Dwarf _dwarf;
 
-       public SuicideStrategy()
+
+        public SuicideStrategy(Dwarf dwarf)
         {
-            _isAlive = LifeStatus.Live;
+            _dwarf = dwarf;
         }
 
-        public LifeStatus AskAboutLife()
+        public bool AskAboutLife()
         {
-            return _isAlive;
+            return _dwarf.IsAlive;
         }
 
         public void DeathSentence()
         {
-            _isAlive = LifeStatus.Dead;
+          _dwarf.IsAlive = false;
         }
     
 

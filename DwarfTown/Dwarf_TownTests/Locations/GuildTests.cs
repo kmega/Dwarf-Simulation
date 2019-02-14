@@ -1,4 +1,5 @@
-﻿using Dwarf_Town.Enums;
+﻿using Dwarf_Town;
+using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Interfaces.SellingStrategy;
 using Dwarf_Town.Locations.Guild;
@@ -16,17 +17,16 @@ namespace Dwarf_TownTests.Locations
         {
             //given
             Guild guild = GuildFactory.CreateStandardGuild();
-            Backpack backpack = new Backpack();
-            Wallet wallet = new Wallet();
-            List<ISell> miners = new List<ISell>() { new StandardSellingStrategy(backpack, wallet) };
+            Dwarf dwarf = new Dwarf();
+            List<ISell> miners = new List<ISell>() { new StandardSellingStrategy(dwarf) };
 
             //when
             guild.PaymentForDwarves(miners);
 
             //then
             Assert.AreEqual(0, guild.ShowTresure());
-            Assert.AreEqual(0, wallet.DailyCash);
-            Assert.IsTrue(backpack.ShowBackpack().Count == 0);
+            Assert.AreEqual(0, dwarf.Wallet.DailyCash);
+            Assert.IsTrue(dwarf.Backpack.ShowBackpack().Count == 0);
 
         }
 
@@ -35,18 +35,17 @@ namespace Dwarf_TownTests.Locations
         {
             //given
             Guild guild = GuildFactory.CreateStandardGuild();
-            Backpack backpack = new Backpack();
-            Wallet wallet = new Wallet();
-            backpack.AddOre(MineralType.DirtyGold);
-            List<ISell> miners = new List<ISell>() { new StandardSellingStrategy(backpack, wallet) };
+            Dwarf dwarf = new Dwarf();
+           dwarf.Backpack.AddOre(MineralType.DirtyGold);
+            List<ISell> miners = new List<ISell>() { new StandardSellingStrategy(dwarf) };
 
             //when
             guild.PaymentForDwarves(miners);
 
             //then
             Assert.AreEqual(0.5, guild.ShowTresure());
-            Assert.AreEqual(1.5, wallet.DailyCash);
-            Assert.IsTrue(backpack.ShowBackpack().Count == 0);
+            Assert.AreEqual(1.5, dwarf.Wallet.DailyCash);
+            Assert.IsTrue(dwarf.Backpack.ShowBackpack().Count == 0);
 
         }
 
@@ -55,20 +54,19 @@ namespace Dwarf_TownTests.Locations
         {
             //given
             Guild guild = GuildFactory.CreateStandardGuild();
-            Backpack backpack = new Backpack();
-            Wallet wallet = new Wallet();
-            backpack.AddOre(MineralType.DirtyGold);
-            backpack.AddOre(MineralType.DirtyGold);
+            Dwarf dwarf = new Dwarf();
+            dwarf.Backpack.AddOre(MineralType.DirtyGold);
+            dwarf.Backpack.AddOre(MineralType.DirtyGold);
 
-            List<ISell> miners = new List<ISell>() { new StandardSellingStrategy(backpack, wallet) };
+            List<ISell> miners = new List<ISell>() { new StandardSellingStrategy(dwarf) };
 
             //when
             guild.PaymentForDwarves(miners);
 
             //then
             Assert.AreEqual(1, guild.ShowTresure());
-            Assert.AreEqual(3, wallet.DailyCash);
-            Assert.IsTrue(backpack.ShowBackpack().Count == 0);
+            Assert.AreEqual(3, dwarf.Wallet.DailyCash);
+            Assert.IsTrue(dwarf.Backpack.ShowBackpack().Count == 0);
 
         }
 
@@ -77,20 +75,18 @@ namespace Dwarf_TownTests.Locations
         {
             //given
             Guild guild = GuildFactory.CreateStandardGuild();
-            Backpack backpackOne = new Backpack();
-            Wallet walletOne = new Wallet();
-            Backpack backpackTwo = new Backpack();
-            Wallet walletTwo = new Wallet();
-            backpackOne.AddOre(MineralType.DirtyGold);
-            backpackOne.AddOre(MineralType.DirtyGold);
-            backpackTwo.AddOre(MineralType.DirtyGold);
-            backpackTwo.AddOre(MineralType.DirtyGold);
+            Dwarf dwarfOne = new Dwarf();
+            Dwarf dwarfTwo = new Dwarf();
+            dwarfOne.Backpack.AddOre(MineralType.DirtyGold);
+            dwarfOne.Backpack.AddOre(MineralType.DirtyGold);
+            dwarfTwo.Backpack.AddOre(MineralType.DirtyGold);
+            dwarfTwo.Backpack.AddOre(MineralType.DirtyGold);
 
 
             List<ISell> miners = new List<ISell>()
             {
-                new StandardSellingStrategy(backpackOne, walletOne),
-                new StandardSellingStrategy(backpackTwo,walletTwo)
+                new StandardSellingStrategy(dwarfOne),
+                new StandardSellingStrategy(dwarfTwo)
             };
 
             //when
@@ -98,23 +94,15 @@ namespace Dwarf_TownTests.Locations
 
             //then
             Assert.AreEqual(2, guild.ShowTresure());
-            Assert.AreEqual(3, walletOne.DailyCash);
-            Assert.AreEqual(3, walletTwo.DailyCash);
-            Assert.IsTrue(backpackOne.ShowBackpack().Count == 0);
-            Assert.IsTrue(backpackTwo.ShowBackpack().Count == 0);
+            Assert.AreEqual(3, dwarfOne.Wallet.DailyCash);
+            Assert.AreEqual(3, dwarfTwo.Wallet.DailyCash);
+            Assert.IsTrue(dwarfOne.Backpack.ShowBackpack().Count == 0);
+            Assert.IsTrue(dwarfTwo.Backpack.ShowBackpack().Count == 0);
 
 
         }
 
-        [Test]
-        public void test()
-        {
-            var dwarf = DwarfFactory.CreateDwarf(33);
-            dwarf.WorkStrategy.DeathSentence();
-
-            Assert.IsTrue(dwarf.WorkStrategy.AskAboutLife() ==LifeStatus.Dead);
-
-        }
+        
 
     }
 }

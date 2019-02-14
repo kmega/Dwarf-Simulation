@@ -8,23 +8,21 @@ namespace Dwarf_Town.Interfaces.SellingStrategy
 {
     public class StandardSellingStrategy : ISell
     {
-        private Backpack _backpack;
-        private Wallet _wallet;
+        private Dwarf _dwarf;
 
-        public StandardSellingStrategy (Backpack backpack, Wallet wallet)
+        public StandardSellingStrategy (Dwarf dwarf)
         {
-            _backpack = backpack;
-            _wallet = wallet;
+            _dwarf = dwarf;
         }
 
-        public void ReceivedMoney(decimal payment)
+        public void ReceivedMoney(decimal payment )
         {
-            _wallet.DailyCash += payment;
+            _dwarf.Wallet.DailyCash += payment;
         }
 
         public List<MineralType> ShowBackpack()
         {
-            return _backpack.ShowBackpack();
+            return _dwarf.Backpack.ShowBackpack();
         }
     }
 }
