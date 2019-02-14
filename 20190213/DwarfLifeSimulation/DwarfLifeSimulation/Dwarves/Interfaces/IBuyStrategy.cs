@@ -1,11 +1,11 @@
-﻿using DwarfLifeSimulation.Locations.Shop;
+﻿using DwarfLifeSimulation.Locations.Shops;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DwarfLifeSimulation.Dwarves.Interfaces
 {
-    interface IBuyStrategy
+    public interface IBuyStrategy
     {
         Product Buy(int customerAccountId, int shopAccountId);
     }

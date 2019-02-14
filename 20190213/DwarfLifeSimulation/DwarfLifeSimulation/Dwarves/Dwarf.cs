@@ -1,28 +1,54 @@
-﻿using DwarfLifeSimulation.Enums;
+using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Locations.Mine;
 using DwarfLifeSimulation.Locations.Shop;
+
 using System.Collections.Generic;
 
 namespace DwarfLifeSimulation.Dwarves
 {
-    class Dwarf : IDwarf
+    public class Dwarf : IDwarf
     {
-        public string Name { get;private set; }
-        private IWorkStrategy workStrategy;
-        private IBuyStrategy buyStrategy;
-        private Dictionary<MineralType,int> backPack;
-        private int bankAccountId;
+        public string _name { get; private set; }
+        public IWorkStrategy _workStrategy { get; private set; }
+        public IBuyStrategy _buyStrategy { get; private set; }
+        public DwarfType _dwarfType { get; }
+        public bool _isAlive { get; set; }
+        public bool _hasWorked { get; set; }
+        private Dictionary<MineralType, int> _backPack;
+        private int _bankAccountId;
+
+        public Dwarf(string name, DwarfType dwarfType, IWorkStrategy howIWork, IBuyStrategy howIBuy)
+        {
+            _name = name;
+            _dwarfType = dwarfType;
+            _workStrategy = howIWork;
+            _buyStrategy = howIBuy;
+            _backPack = new Dictionary<MineralType, int>();
+            _bankAccountId = Bank.Instance.CreateAccount();
+        }
 
         public Product Buy(int shopAccountId)
         {
-            return buyStrategy.Buy(bankAccountId, shopAccountId);
+            return _buyStrategy.Buy(_bankAccountId, shopAccountId);
         }
 
         public void Work(Shaft shaft)
         {
-            backPack = workStrategy.Perform(shaft);
+            _backPack = _workStrategy.Perform(shaft);
         }
 
+
+        public Dictionary<MineralType, int> EmptyBackpackContent()
+        {
+            var tempBackpack = _backPack;
+            //AddEmptyingBackpack
+            return tempBackpack;
+        }
+
+        public void GetMoney(decimal dailyIncome)
+        {
+            Bank.Instance.PayIntoAccount(_bankAccountId, dailyIncome);
+        }
     }
 }

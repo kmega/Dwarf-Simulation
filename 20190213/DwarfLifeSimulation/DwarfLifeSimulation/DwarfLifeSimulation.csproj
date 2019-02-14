@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Randomizer\IsDwarfBornRandomizer\" />
     <Folder Include="Randomizer\MaterialTypeRandomizer\" />
     <Folder Include="Randomizer\MaterialValueRandomizer\" />
     <Folder Include="Randomizer\TimesToWorkRandomizer\" />

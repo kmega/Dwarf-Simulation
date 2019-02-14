@@ -1,5 +1,5 @@
 ﻿using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Locations.Mine;
+using DwarfLifeSimulation.Locations.Mines;
 using System;
 using System.Collections.Generic;
 using System.Text;
