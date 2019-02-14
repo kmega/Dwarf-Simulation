@@ -61,5 +61,12 @@ namespace DwarfSimulation
             shopDailyStats.Add($"Shop earn: {_moneyEarned} $.");
             outputer.Display(shopDailyStats);
         }
+
+        internal void UpdateSimulationRaport(Raport raport)
+        {
+            raport.AlcoholBought += _soldAlcohol;
+            raport.FoodBought += _soldFood;
+            raport.ShopEarned += _moneyEarned;
+        }
     }
 }

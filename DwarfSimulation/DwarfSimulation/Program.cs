@@ -23,7 +23,7 @@ namespace DwarfSimulation
             // bank? (lista krasnali) => update konta,zerowanie wallet, update Raport                         => RETURN list of DwarVes
 
 
-
+            
 
 
             Console.ReadKey();

@@ -67,7 +67,7 @@ namespace ShopTests
                 new Dwarf() {BuyAction = new SingleBuyStrategy(),Wallet = 50},
                 new Dwarf() {BuyAction = new FatherBuyStrategy(),Wallet = 50},
             };
-
+                        
             Shop shop = new Shop();
 
             // WHEN
