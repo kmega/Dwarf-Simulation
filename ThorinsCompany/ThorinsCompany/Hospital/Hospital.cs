@@ -31,10 +31,7 @@ namespace ThorinsCompany
                     case DwarfType.Bomber:
                         break;
                 }
-                dwarves.Add(new Dwarf
-                {
-                    dwarfType = dwarfTypes
-                });
+                dwarves.Add(new Dwarf(dwarfTypes, null, null));
             }           
             return dwarves;
         }

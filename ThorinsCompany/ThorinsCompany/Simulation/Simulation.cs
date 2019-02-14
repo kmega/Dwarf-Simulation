@@ -24,8 +24,11 @@ namespace ThorinsCompany
                 _config.Guild.GetTaxesFromDwarvesThatWorked(_dwarves);
                 _config.Bar.GiveFoodForWorkingDwarves(_dwarves);
                 _config.Shop.PerformShoppingForAllDwarves(_dwarves);
+                _config.Displayer.DisplayDailyReport();
                 
             }
+
+            _config.Displayer.DisplayFinalReport();
         }
     }
 }
