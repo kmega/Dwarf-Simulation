@@ -15,7 +15,7 @@ namespace DwarfsTown
         public Bar bar;
         public Shop shop;
         public Cementary cementary;
-        public List<string> newsPaper;
+        public static List<string> newsPaper;
     
         public City()
         {

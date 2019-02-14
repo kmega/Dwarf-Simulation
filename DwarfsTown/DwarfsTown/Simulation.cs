@@ -23,7 +23,7 @@ namespace DwarfsTown
                 //Dwarfs go shopping
                 city.shop.DoShopping(city.dwarfs);
                 //Display raport from one day
-                Displayer.DisplayInformationAfterOneDay(city.newsPaper);
+                Displayer.DisplayInformationAfterOneDay(City.newsPaper);
             }
         }
 
