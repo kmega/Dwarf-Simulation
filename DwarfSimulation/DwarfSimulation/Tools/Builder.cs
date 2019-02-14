@@ -60,5 +60,23 @@ namespace DwarfSimulation
             }
             return dwarf;
         }
+
+        internal List<Shaft> CreateShafts(int shaftsNumber)
+        {
+            List<Shaft> shafts = new List<Shaft>();
+
+            for (int i = 0; i < shaftsNumber; i++)
+            {
+                shafts.Add(CreateShaft());
+            }
+
+            return shafts;
+        }
+
+        internal Shaft CreateShaft()
+        {
+            Shaft shaft = new Shaft();
+            return shaft;
+        }
     }
 }

@@ -11,12 +11,19 @@
 
             for (int index = 0; index < shaft.MaxInside; index++)
             {
-                dwarf = shaft.Miners[index];
+                try
+                {
+                    dwarf = shaft.Miners[index];
 
-                amountOfWork = dwarf.DigAction.Dig();
-                miningChance = _randomizer.ReturnFromTo(1, 100);
+                    amountOfWork = dwarf.DigAction.Dig();
+                    miningChance = _randomizer.ReturnFromTo(1, 100);
 
-                dwarf = MineOre(dwarf, amountOfWork, miningChance, raport);
+                    dwarf = MineOre(dwarf, amountOfWork, miningChance, raport);
+                }
+                catch
+                {
+                    break;
+                }
             }
 
             return shaft;

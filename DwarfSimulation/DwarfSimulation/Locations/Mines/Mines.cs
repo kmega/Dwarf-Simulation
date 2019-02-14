@@ -35,15 +35,25 @@ namespace DwarfSimulation
                 shafts = RemoveFromShafts(shafts);
             }
 
-            return null;
+            return _dwarfsAfterWork;
         }
 
-        private List<Shaft> RemoveFromShafts(List<Shaft> shafts)
+        internal List<Shaft> RemoveFromShafts(List<Shaft> shafts)
         {
             foreach (var shaft in shafts)
             {
-                _dwarfsAfterWork.AddRange(shaft.Miners);
-                shaft.Miners.RemoveRange(0, shaft.MaxInside);
+                for (int index = 0; index < shaft.MaxInside; index++)
+                {
+                    try
+                    {
+                        _dwarfsAfterWork.Add(shaft.Miners[0]);
+                        shaft.Miners.RemoveAt(0);
+                    }
+                    catch
+                    {
+                        break;
+                    }
+                }
             }
 
             return shafts;
