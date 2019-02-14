@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <Folder Include="HospitalTests\" />
-    <Folder Include="CanteenTests\" />
     <Folder Include="MineTests\" />
     <Folder Include="GuildTests\" />
   </ItemGroup>

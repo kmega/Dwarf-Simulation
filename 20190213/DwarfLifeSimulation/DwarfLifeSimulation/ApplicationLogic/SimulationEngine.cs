@@ -37,7 +37,7 @@ namespace DwarfLifeSimulation.ApplicationLogic
                 //Guild.ExchangeResources(??)
                 guild.ExchangeResource(currentSimulationState.dwarves);
                 //Canteen.ServeFood(int dwarvesCount)
-                canteen.ServeFood(currentSimulationState.dwarves.Count);
+                canteen.ServeMultipleRations(currentSimulationState.dwarves.Count);
                 //Shop.ServeAllCustomers(IBuy customers);
                 shop.ServeAllCustomers(currentSimulationState.dwarves);
             }

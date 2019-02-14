@@ -35,7 +35,6 @@ namespace DwarfLifeSimulation.Locations.Shops
 			var product = customer.Buy(_bankAccountId);
 			decimal recipe = product._amount;
 			ProductType productType = product._productType;
-			
 			_shopState[productType] += recipe;
 		}
 	}

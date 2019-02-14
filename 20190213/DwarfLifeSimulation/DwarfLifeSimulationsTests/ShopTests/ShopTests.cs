@@ -6,6 +6,11 @@ using Moq;
 using DwarfLifeSimulation.Locations.Shops;
 using DwarfLifeSimulation.Enums;
 using System.Linq;
+using DwarfLifeSimulation.Locations.Banks;
+using DwarfLifeSimulation.Dwarves;
+using DwarfLifeSimulation.Dwarves.WorkStrategies;
+using DwarfLifeSimulation.Dwarves.BuyStrategies;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 
 namespace DwarfLifeSimulationsTests.ShopTests
 {
@@ -46,6 +51,19 @@ namespace DwarfLifeSimulationsTests.ShopTests
 			Assert.AreEqual(0, result1);
 			Assert.AreEqual(0, result2);
 			
+		}
+
+		[Test]
+		public void _503WhenDwarfFatherBuyShouldBeInShopStateMoreFoodBought()
+		{
+			//given
+			Dwarf testDwarf = new Dwarf("Gloin", new StandardWorkStrategy(), new BuyFoodStrategy());
+			Shop shop = new Shop();
+			
+			//when
+			
+			//then
+
 		}
 	}
 }

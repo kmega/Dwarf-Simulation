@@ -4,11 +4,40 @@ using System.Text;
 
 namespace DwarfLifeSimulation.Locations.Canteens
 {
-    class Canteen
+    public class Canteen
     {
-        internal void ServeFood(int count)
+		private int _foodRations { get; set; }
+
+		public Canteen()
+		{
+			_foodRations = 200;
+		}
+
+        public void ServeMultipleRations(int count)
         {
-            throw new NotImplementedException();
+            for(int i = count; i > 0; i--)
+			{
+				ServeSingleRation();
+			}
+			if (_foodRations <= 10)
+			{
+				OrderFoodRations();
+			}
         }
+
+		private void ServeSingleRation()
+		{
+			_foodRations--;
+		}
+
+		private void OrderFoodRations()
+		{
+			_foodRations += 30;
+		}
+
+		public int GetAmountOfRations()
+		{
+			return _foodRations;
+		}
     }
 }
