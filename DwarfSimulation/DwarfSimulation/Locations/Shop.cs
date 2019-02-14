@@ -6,41 +6,48 @@ namespace DwarfSimulation
 {
     internal class Shop
     {
-        int SoldFood { get; set; }
+        int _soldFood;
 
-        int SoldAlcohol { get; set; }
+        int _soldAlcohol;
 
-        decimal MoneyEarned { get; set; }
+        decimal _moneyEarned;
 
         internal void AcquirePayment(decimal money)
         {
-            MoneyEarned += money;
+            _moneyEarned += money;
         }
 
         internal void SellFood()
         {
-            SoldFood += 1;
+            _soldFood += 1;
         }
 
         internal void SellAlcohol()
         {
-            SoldAlcohol += 1;
+            _soldAlcohol += 1;
         }
 
         internal int SoldFoodValue()
         {
-            return SoldFood;
+            return _soldFood;
         }
-    
+
         internal int SoldAcoholValue()
         {
-            return SoldAlcohol;
+            return _soldAlcohol;
         }
 
         internal decimal SaleValue()
         {
-            return MoneyEarned;
+            return _moneyEarned;
         }
-      
+
+        internal void ServeEveryone(List<Dwarf> listOfDwarves)
+        {
+            foreach (var dwarf in listOfDwarves)
+            {
+                dwarf.BuyAtShop(this);
+            }
+        }
     }
 }
