@@ -16,7 +16,11 @@ namespace DwarfSimulation
         internal void BuyAtShop(Shop shop)
         {
             if (Wallet != 0.0m)
+            {
                 BuyAction.Buy(shop, Wallet);
+                Wallet = BuyAction.UpdateWallet(Wallet);
+            }
+
         }
 
         internal decimal Wallet { get; set; }

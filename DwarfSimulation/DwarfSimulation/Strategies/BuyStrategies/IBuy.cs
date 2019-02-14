@@ -4,6 +4,6 @@
     {
         void Buy(Shop shop, decimal wallet);
 
-        
+        decimal UpdateWallet(decimal wallet);
     }
 }

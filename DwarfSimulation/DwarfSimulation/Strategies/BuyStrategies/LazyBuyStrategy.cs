@@ -10,5 +10,10 @@ namespace DwarfSimulation
         {
             // Dont buy products
         }
+
+        public decimal UpdateWallet(decimal wallet)
+        {
+            return wallet;
+        }
     }
 }

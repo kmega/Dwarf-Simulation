@@ -13,5 +13,10 @@ namespace DwarfSimulation
             shop.SellFood();
             shop.AcquirePayment(money);
         }
+
+        public decimal UpdateWallet(decimal wallet)
+        {
+            return wallet * 0.5M;
+        }
     }
 }

@@ -102,5 +102,26 @@ namespace ShopTests
             Assert.AreEqual(1, alcoholBought);
             Assert.AreEqual(1, foodBought);
         }
+
+        [Test]
+        public void UpdateDwarfsWalletsAfterBuyInShop()
+        {
+            // GIVEN
+            Dwarf lazyDwarf = new Dwarf() { BuyAction = new LazyBuyStrategy(), Wallet = 100 };
+            Dwarf fatherDwarf = new Dwarf() { BuyAction = new FatherBuyStrategy(), Wallet = 100 };
+            Dwarf singleDwarf = new Dwarf() { BuyAction = new SingleBuyStrategy(), Wallet = 100 };
+
+            Shop shop = new Shop();
+
+            // WHEN
+            lazyDwarf.BuyAtShop(shop);
+            fatherDwarf.BuyAtShop(shop);
+            singleDwarf.BuyAtShop(shop);
+
+            // THEN
+            Assert.AreEqual(100, lazyDwarf.Wallet);
+            Assert.AreEqual(50, fatherDwarf.Wallet);
+            Assert.AreEqual(50, singleDwarf.Wallet);
+        }
     }
 }
