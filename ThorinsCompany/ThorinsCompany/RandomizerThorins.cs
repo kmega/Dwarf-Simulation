@@ -4,9 +4,9 @@ using ThorinsCompany;
 
 namespace DwarfMineSimulator
 {
-    class Randomizer
+    public class RandomizerThorins
     {
-        internal int ReturnToFrom(int first, int last)
+        public int ReturnRandomNumber(int first, int last)
         {
             Random rnd = new Random();
 
@@ -15,14 +15,7 @@ namespace DwarfMineSimulator
             return random;
         }
 
-        internal DwarfType RandomTypeDwarf()
-        {
-            DwarfType dwarfTypes = GenerateDwarfType(ReturnToFrom(1, 100));
-            
-            return dwarfTypes;
-        }
-
-        internal DwarfType GenerateDwarfType(int chanceToFatherOrSingle)
+        public DwarfType GenerateDwarfType(int chanceToFatherOrSingle)
         {
             if (chanceToFatherOrSingle <= 33)
             {
@@ -42,11 +35,9 @@ namespace DwarfMineSimulator
             }
         }
 
-        internal bool WillHeBeBorn()
+        public bool WillHeBeBorn(int chanceToFatherOrSingle)
         {
-            int chanceToBirthDwarf = ReturnToFrom(1, 100);
-
-            if (chanceToBirthDwarf == 1)
+            if (chanceToFatherOrSingle == 1)
                 return true;
             else
                 return false;
