@@ -10,7 +10,6 @@ namespace DwarfSimulation
         internal Dictionary<Mineral, int> BackPack { get; set; }
         internal IBuy BuyAction { get; set; }
         internal IDig DigAction { get; set; }
-        internal IEat EatAction { get; set; }
 
         internal void BuyAtShop(Shop shop)
         {
@@ -21,6 +20,7 @@ namespace DwarfSimulation
             }
 
         }
+
 
         internal decimal Wallet { get; set; }
         internal decimal Account { get; set; }
@@ -36,7 +36,6 @@ namespace DwarfSimulation
                 {Mineral.TaintedGold,0 }
             };
 
-            EatAction = new EatStrategy();
 
             Wallet = 0.0m;
 
