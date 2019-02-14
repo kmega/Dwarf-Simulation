@@ -22,7 +22,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		}
 
 		[Test]
-		public void _501ShopStateShouldContainsEachProduct()
+		public void T501_ShopStateShouldContainsEachProduct()
 		{
 			//given
 			Shop testShop = new Shop();
@@ -38,7 +38,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		}
 
 		[Test]
-		public void _502ShouldBe0EachProductInShopState()
+		public void T502_ShouldBe0EachProductInShopState()
 		{
 			//given
 			Shop testShop = new Shop();
@@ -54,7 +54,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		}
 
 		[Test]
-		public void _503WhenDwarfFatherBuyShouldBeInShopStateMoreFoodBought()
+		public void T503_WhenDwarfFatherBuyShouldBeInShopStateMoreFoodBought()
 		{
 			//given
 			Dwarf testDwarf = new Dwarf("Gloin", new StandardWorkStrategy(), new BuyFoodStrategy());

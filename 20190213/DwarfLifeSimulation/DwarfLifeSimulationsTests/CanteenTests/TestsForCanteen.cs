@@ -14,7 +14,7 @@ namespace DwarfLifeSimulationsTests.CanteenTests
 		}
 
 		[Test]
-		public void T201CanteenShouldHave190PortionsAfterServe()
+		public void T201_CanteenShouldHave190PortionsAfterServe()
 		{
 			//given
 			Canteen McDonald = new Canteen();
@@ -29,7 +29,7 @@ namespace DwarfLifeSimulationsTests.CanteenTests
 		}
 
 		[Test]
-		public void T202CanteenShouldOrderRationsWhenBelow10()
+		public void T202_CanteenShouldOrderRationsWhenBelow10()
 		{
 			//given
 			Canteen McDonald = new Canteen();
