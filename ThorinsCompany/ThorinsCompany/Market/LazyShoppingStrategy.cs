@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace ThorinsCompany.Shop
+namespace ThorinsCompany
 {
     public class LazyShoppingStrategy : IShoppingStrategy
     {
