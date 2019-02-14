@@ -12,6 +12,13 @@ namespace Tests
         }
 
         [Test]
+        public void ShouldGenerateUniqueID()
+        {
+            int ID_1 = IDCreator.GetUniqueID();
+            int ID_2 = IDCreator.GetUniqueID();
+            Assert.AreNotEqual(ID_1, ID_2);
+        }
+        [Test]
         public void MakeTransactionFor50_TopUpAccountToHave200FromAccountThatHas100()
         {
             //given
