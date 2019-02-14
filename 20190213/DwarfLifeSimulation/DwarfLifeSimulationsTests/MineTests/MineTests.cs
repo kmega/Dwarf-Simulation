@@ -4,26 +4,32 @@ using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
+using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
 
 namespace Tests
 {
     public class MineTests
     {
-        private Mock<DwarfFactory> dwarfFactoryMock;
+        private Mock<IDwarfNameRandomizer> nameRandomizerMock;
+        private Mock<IDwarfTypeRandomizer> dwarfTypeRandomizer;
 
         [SetUp]
         public void Setup()
         {
-            dwarfFactoryMock = new Mock<DwarfFactory>();
-            dwarfFactoryMock.Setup(x => x.Create()).Returns(new Dwarf(name, dwarfType, new SuicideStrategy(), new BuyNoneStrategy()));
+            nameRandomizerMock = new Mock<IDwarfNameRandomizer>();
+            nameRandomizerMock.Setup(x => x.GiveMeDwarfName()).Returns("Gimli");
+
+            dwarfTypeRandomizer = new Mock<IDwarfTypeRandomizer>();
+            dwarfTypeRandomizer.Setup(x => x.GiveMeDwarfType(false)).Returns(DwarfType.Suicide);
         }
 
         [Test]
         public void WhenSuiciderGoIntoShaftThenItShouldBeDestroyed()
         {
             // given
-            var suicider = dwarfFactoryMock.Object;
-            vat shaft = new Shaft();
+            var suicider = new DwarfFactory(nameRandomizerMock.Object).Create(DwarfType.Suicide);
+            var shaft = new Shaft();
 
             // when
             suicider.Work(shaft);
