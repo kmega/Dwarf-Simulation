@@ -19,9 +19,13 @@ namespace DwarfsTown
 
         }
 
-        internal IEnumerable<Dwarf> LetGoDwarfs(Shaft shaft1)
+        public List<Dwarf> LetGoDwarfs(Shaft shaft1)
         {
-            throw new NotImplementedException();
+            List<Dwarf> dwarfsThatGoToSurface = new List<Dwarf>();
+            dwarfsThatGoToSurface.AddRange(shaft1.dwarfs);
+
+            shaft1.dwarfs.Clear();
+            return dwarfsThatGoToSurface;
         }
     }
 }

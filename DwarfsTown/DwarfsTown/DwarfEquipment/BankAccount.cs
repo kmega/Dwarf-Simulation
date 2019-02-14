@@ -4,8 +4,8 @@ using System.Text;
 
 namespace DwarfsTown
 {
-    public interface IBackpack
+    public class BankAccount
     {
-        List<Materials> Materials { get; set; }
+        public decimal Moneys { get; set; }
     }
 }

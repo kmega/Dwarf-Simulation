@@ -7,23 +7,24 @@ namespace DwarfsTown
     public class Dwarf
     {
         public TypeEnum Type { get; private set; } 
-        public IBankAccount BankAccount;
-        public IBackpack Backpack;
+        public BankAccount BankAccount;
+        public Backpack Backpack;
         public bool IsAlive { get; set; }
 
         public Dwarf(TypeEnum type)
         {
             Type = new TypeEnum();
+            Backpack = new Backpack();
+            BankAccount = new BankAccount();
             IsAlive = true;
+            Type = type;
         }
 
         public void Digging()
         {
-            //Randomize chance how many times dwarf will be digging
-            Randomizer rand = new Randomizer();
-            for (int i = 0; i < rand.GetChance(); i++)
+            for (int i = 0; i < City.randomizer.GetRange(); i++)
             {
-                Backpack.Materials.Add(Materials.rand.GetMaterial());
+                Backpack.Materials.Add(City.randomizer.GetMaterial());
             }
         }
     }

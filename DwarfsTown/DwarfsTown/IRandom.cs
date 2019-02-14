@@ -4,8 +4,8 @@ using System.Text;
 
 namespace DwarfsTown
 {
-    public interface IBankAccount
+    public interface IRandom
     {
-        decimal Moneys { get; set; }
+         int GetRandomNumber();
     }
 }
