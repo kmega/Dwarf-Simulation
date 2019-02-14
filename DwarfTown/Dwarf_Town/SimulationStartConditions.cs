@@ -11,9 +11,6 @@
             _dwarvesAtStart = dwarvesAtStart;
             _rounds = rounds;
             _foodRationsAtStart = foodRationsAtStart;
-
         }
-
-        
     }
 }

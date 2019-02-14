@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace Dwarf_Town.Locations
 {
@@ -10,6 +8,7 @@ namespace Dwarf_Town.Locations
         {
             FoodRations = foodRations;
         }
+
         public int FoodRations { get; set; }
 
         public void SpendFoodRations(IList<Dwarf> dwarves)
