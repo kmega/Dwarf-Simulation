@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ThorinsCompany
 {
-    public class Hospital : IHospital
+    public class Hospital 
     {
         Randomizer randomizer = new Randomizer();
         public List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate)
@@ -14,6 +14,17 @@ namespace ThorinsCompany
             for (int i = 0; i < howManyDwarfYouWantCreate; i++)
             {
                 DwarfType dwarfTypes = randomizer.RandomTypeDwarf();
+                switch(dwarfTypes)
+                {
+                    case DwarfType.Single:
+                        break;
+                    case DwarfType.Lazy:
+                        break;
+                    case DwarfType.Father:
+                        break;
+                    case DwarfType.Bomber:
+                        break;
+                }
                 dwarves.Add(new Dwarf
                 {
                     dwarfType = dwarfTypes

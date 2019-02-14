@@ -6,11 +6,10 @@ namespace ThorinsCompany
     {
         public IBank  Bank { get; private set; }
         public IMine Mine { get; private set; }
-        public IHospital  Hospital { get; private set; }
         public IShop  Shop { get; private set; }
         public IBar  Bar { get; private set; }
         public IGuild  Guild { get; private set; }
-
+        public Hospital Hospital { get; private set; }
 
         public void CreateBank() =>  Bank = new Bank();
         public void CreateHospital() =>  Hospital = new Hospital();
