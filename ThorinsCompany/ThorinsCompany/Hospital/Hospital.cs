@@ -8,9 +8,13 @@ namespace ThorinsCompany
     public class Hospital 
     {
         RandomizerThorins randomizer = new RandomizerThorins();
+        bool _day0 = true;
+
         public List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate)
         {
-            IWorkingStrategy workingStrategy;
+            //Logger.GetInstance().AddLog();
+
+           // WorkingStrategy workingStrategy;
             IShoppingStrategy shoppingStrategy;
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < howManyDwarfYouWantCreate; i++)
@@ -29,16 +33,20 @@ namespace ThorinsCompany
                     case DwarfType.Bomber:
                         break;
                 }
-                dwarves.Add(new Dwarf
-                {
-                    dwarfType = dwarfTypes
-                });
+                dwarves.Add(new Dwarf(dwarfTypes, null, null));
             }           
             return dwarves;
         }
 
-        public void GiveBirthToDwarf(List<Dwarf> dwarves)
+        public void TryGiveBirthToDwarf(List<Dwarf> dwarves)
         {
+            if (_day0)
+            {
+                CreateDwarves(10);
+                _day0 = false;
+            }
+                
+
             bool chanceToBorn = randomizer.WillHeBeBorn(randomizer.ReturnRandomNumber(1, 100));
             if (chanceToBorn)
                 dwarves.AddRange(CreateDwarves(1));

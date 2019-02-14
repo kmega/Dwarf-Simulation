@@ -6,10 +6,10 @@ namespace DwarfMineSimulator
 {
     public class RandomizerThorins
     {
+        Random rnd = new Random();
+
         public int ReturnRandomNumber(int first, int last)
         {
-            Random rnd = new Random();
-
             int random = rnd.Next(first, last + 1);
 
             return random;
@@ -41,6 +41,27 @@ namespace DwarfMineSimulator
                 return true;
             else
                 return false;
+        }
+
+        public int ReturnPriceMaterials(Material material)
+        {
+            int random = 0;
+            switch (material)
+            {
+                case Material.Mithril:
+                    random = rnd.Next(15, 25 + 1);
+                    break;
+                case Material.Silver:
+                    random = rnd.Next(5, 15 + 1);
+                    break;
+                case Material.Gold:
+                    random = rnd.Next(10, 20 + 1);
+                    break;
+                case Material.DirtyGold:
+                    random = rnd.Next(1, 5 + 1);
+                    break;
+            }
+            return random;
         }
     }
 }
