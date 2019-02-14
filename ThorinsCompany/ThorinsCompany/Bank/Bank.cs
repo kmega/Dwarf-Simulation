@@ -18,7 +18,7 @@ namespace ThorinsCompany
 
             foreach (var material in materials)
             {
-               moneyEarned = _randomizer.ReturnPriceMaterial(material);
+               moneyEarned = _randomizer.ReturnPriceMaterials(material);
 
                 _bankAccounts[ID].TopUp(GetTaxesFromExchangeAndReturnLeftMoney(moneyEarned));
             }

@@ -10,7 +10,7 @@ namespace ThorinsCompany
         RandomizerThorins randomizer = new RandomizerThorins();
         public List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate)
         {
-            WorkingStrategy workingStrategy;
+           // WorkingStrategy workingStrategy;
             IShoppingStrategy shoppingStrategy;
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < howManyDwarfYouWantCreate; i++)
