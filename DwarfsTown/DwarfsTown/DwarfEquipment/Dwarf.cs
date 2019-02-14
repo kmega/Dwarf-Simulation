@@ -19,7 +19,12 @@ namespace DwarfsTown
 
         public void Digging()
         {
-
+            //Randomize chance how many times dwarf will be digging
+            Randomizer rand = new Randomizer();
+            for (int i = 0; i < rand.GetChance(); i++)
+            {
+                Backpack.Materials.Add(Materials.rand.GetMaterial());
+            }
         }
     }
 }

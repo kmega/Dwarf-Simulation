@@ -20,7 +20,6 @@ namespace DwarfsTown
         public City()
         {
             dwarfs = new List<Dwarf>();
-            dwarfs = new List<Dwarf>();
             hospital = new Hospital();
             mine = new Mine();
             bank = new Bank();

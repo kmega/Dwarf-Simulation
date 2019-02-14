@@ -20,6 +20,7 @@ namespace DwarfsTown
 
             //Dwarfs who come to mine are assign to list dwarfs who should be working
             List<Dwarf> dwarfsThatShouldBeWorking = dwarfs;
+            
 
             //Prepare Mine on start new day -> setting shafts to not destroyed
             SetShaftsToNotDestroyed(shaft1, shaft2);
