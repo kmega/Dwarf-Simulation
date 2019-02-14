@@ -12,24 +12,24 @@ namespace Dwarf_Town.Locations
 
             if (GenerateChance(1, 100) == 1)
             {
-                int chance = GenerateChance(1, 100);
+                //int chance = GenerateChance(1, 100);
 
-                if (chance >= 1 && chance <= 33)
-                {
-                    dwarf = new Dwarf() { DwarfType = DwarfType.FATHER };
-                }
-                if (chance > 33 && chance <= 66)
-                {
-                    dwarf = new Dwarf() { DwarfType = DwarfType.IDLER };
-                }
-                if (chance > 66 && chance <= 99)
-                {
-                    dwarf = new Dwarf() { DwarfType = DwarfType.SINGLE };
-                }
-                if (chance == 100)
-                {
-                    dwarf = new Dwarf() { DwarfType = DwarfType.SUICIDE };
-                }
+                //if (chance >= 1 && chance <= 33)
+                //{
+                //    dwarf = new Dwarf() { DwarfType = DwarfType.FATHER };
+                //}
+                //if (chance > 33 && chance <= 66)
+                //{
+                //    dwarf = new Dwarf() { DwarfType = DwarfType.IDLER };
+                //}
+                //if (chance > 66 && chance <= 99)
+                //{
+                //    dwarf = new Dwarf() { DwarfType = DwarfType.SINGLE };
+                //}
+                //if (chance == 100)
+                //{
+                //    dwarf = new Dwarf() { DwarfType = DwarfType.SUICIDE };
+                //}
             }
             return dwarf;
         }

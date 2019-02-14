@@ -106,5 +106,15 @@ namespace Dwarf_TownTests.Locations
 
         }
 
+        [Test]
+        public void test()
+        {
+            var dwarf = DwarfFactory.CreateDwarf(33);
+            dwarf.WorkStrategy.DeathSentence();
+
+            Assert.IsTrue(dwarf.WorkStrategy.AskAboutLife() ==LifeStatus.Dead);
+
+        }
+
     }
 }

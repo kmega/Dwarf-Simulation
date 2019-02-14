@@ -1,7 +1,13 @@
-﻿namespace Dwarf_Town.Interfaces
+﻿using Dwarf_Town.Enums;
+using Dwarf_Town.Models;
+
+namespace Dwarf_Town.Interfaces
 {
     public interface IWork
     {
-        void Work();
+        int Dig();
+        void HideToBackpack(MineralType ore);
+        void DeathSentence();
+        LifeStatus AskAboutLife();
     }
 }
