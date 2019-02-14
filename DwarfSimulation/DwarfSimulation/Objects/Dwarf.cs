@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DwarfSimulation
 {
     internal class Dwarf
     {
+        internal DwarfType DwarfType;
         internal bool IsAlive { get; set; }
 
         internal Dictionary<Mineral, int> BackPack { get; set; }

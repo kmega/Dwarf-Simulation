@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DwarfSimulation
+﻿namespace DwarfSimulation
 {
     internal class Raport
     {
@@ -13,7 +9,7 @@ namespace DwarfSimulation
        internal int MithrilMined { get; set; } = 0;
        internal int GoldMined { get; set; } = 0;
        internal int SilverMined { get; set; } = 0;
-       internal int TaintedGold { get; set; } = 0;
+       internal int TaintedGoldMined { get; set; } = 0;
        
        internal int DeathCount { get; set; } = 0;
        
@@ -26,7 +22,5 @@ namespace DwarfSimulation
        internal int FoodBought { get; set; } = 0;
        internal int AlcoholBought { get; set; } = 0;
        internal decimal ShopEarned { get; set; } = 0.0m;
-
-
     }
 }

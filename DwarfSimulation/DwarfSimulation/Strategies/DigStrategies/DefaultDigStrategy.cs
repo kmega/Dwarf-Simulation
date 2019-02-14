@@ -2,9 +2,11 @@
 {
     class DefaultDigStrategy : IDig
     {
-        public int Dig(Mines mines, Randomizer randomizer)
+        private Randomizer _randomizer;
+
+        public int Dig()
         {
-            int number = randomizer.ReturnFromTo(1, 3);
+            int number = _randomizer.ReturnFromTo(1, 3);
 
             return number;
         }
