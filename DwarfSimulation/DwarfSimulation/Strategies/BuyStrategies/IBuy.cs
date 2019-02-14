@@ -2,6 +2,8 @@
 {
     internal interface IBuy
     {
-       void Buy(Shop shop);
+        void Buy(Shop shop, decimal wallet);
+
+        
     }
 }
