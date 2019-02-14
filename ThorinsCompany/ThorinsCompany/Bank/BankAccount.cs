@@ -34,5 +34,10 @@ namespace ThorinsCompany
         {
             return _dailyIncome;
         }
+
+        public decimal GetMoney()
+        {
+            return _money;
+        }
     }
 }

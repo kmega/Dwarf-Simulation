@@ -16,34 +16,34 @@ namespace Tests
         {
             //given
             Bank bank = new Bank();
-            BankAccount bankAccount_1 = new BankAccount();
-            BankAccount bankAccount_2 = new BankAccount();
+            AccountCreator accountCreator = new AccountCreator(bank);
             decimal transactionMoney = 50;
 
-            Assert.IsFalse(bankAccount_2.CanGetMoneyFromAccount(transactionMoney));
-
-            //when,then
-            bankAccount_1.TopUp(150);
-            bankAccount_2.TopUp(100);
-
-            Assert.AreEqual(150, bankAccount_1.GetDailyIncome());
-            Assert.IsTrue(bankAccount_2.CanGetMoneyFromAccount(transactionMoney));
+            AccountCreator.CreateNewAccountWithUniqueID(1);
+            AccountCreator.CreateNewAccountWithUniqueID(2);
 
 
             //when,then
-            bank.MakeTransaction(accountForAddition: bankAccount_1,
-                accountForSubstraction: bankAccount_2, 
-                moneyForTransaction: transactionMoney);
+            bank.TopUpYourAccount(1,150);
+            bank.TopUpYourAccount(2,100);
 
-            Assert.AreEqual(200, bankAccount_1.GetDailyIncome());
-            Assert.AreEqual(100, bankAccount_2.GetDailyIncome());
+            Assert.AreEqual(150, bank.CheckYourDailyIncome(1));
+            Assert.AreEqual(100, bank.CheckYourDailyIncome(2));
+
+
+            //when,then
+            bank.MakeTransaction(accountIDForAddition: 1,
+               accountIDForSubtraction: 2,
+               moneyForTransaction: transactionMoney);
+
+            Assert.AreEqual(200, bank.CheckYourDailyIncome(1));
+            Assert.AreEqual(100, bank.CheckYourDailyIncome(2));
 
             //when, then
-            bankAccount_1.ResetDailyIncome();
-            bankAccount_2.ResetDailyIncome();
+            bank.ResetDailyIncomeOfAccounts();
 
-            Assert.AreEqual(0, bankAccount_1.GetDailyIncome());
-            Assert.AreEqual(0, bankAccount_2.GetDailyIncome());
+            Assert.AreEqual(0, bank.CheckYourDailyIncome(1));
+            Assert.AreEqual(0, bank.CheckYourDailyIncome(2));
 
 
         }
