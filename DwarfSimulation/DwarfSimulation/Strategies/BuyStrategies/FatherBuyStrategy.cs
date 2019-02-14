@@ -6,9 +6,12 @@ namespace DwarfSimulation
 {
     class FatherBuyStrategy : IBuy
     {
-        public void Buy(Shop shop)
+        public void Buy(Shop shop, decimal wallet)
         {
-            // No action.
+            decimal money = wallet * 0.5m;
+
+            shop.SellFood();
+            shop.AcquirePayment(money);
         }
     }
 }

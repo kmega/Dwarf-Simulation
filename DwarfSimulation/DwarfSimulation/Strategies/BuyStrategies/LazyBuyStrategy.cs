@@ -6,7 +6,7 @@ namespace DwarfSimulation
 {
     internal class LazyBuyStrategy : IBuy
     {
-        public void Buy(Shop shop)
+        public void Buy(Shop shop, decimal wallet)
         {
             // Dont buy products
         }
