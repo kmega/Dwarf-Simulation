@@ -2,5 +2,6 @@
 {
     public interface IShop
     {
+        void PerformShopping(IShoppingStrategy shoppingStrategy);
     }
 }

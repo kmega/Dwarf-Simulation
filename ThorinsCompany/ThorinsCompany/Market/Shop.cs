@@ -4,7 +4,11 @@ using System.Text;
 
 namespace ThorinsCompany
 {
-   public class Shop: IShop
+    public class Shop : IShop
     {
+        public void PerformShopping(IShoppingStrategy shoppingStrategy)
+        {
+            shoppingStrategy.Buy();
+        }
     }
 }
