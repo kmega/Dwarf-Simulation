@@ -1,5 +1,5 @@
 using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Locations.Mine;
+using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Randomizer.HitsRandomizer;
 using DwarfLifeSimulation.Randomizer.MineralTypeRandomizer;
 using System;

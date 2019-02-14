@@ -1,7 +1,6 @@
 ﻿using DwarfLifeSimulation.ApplicationLogic;
 using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
-using DwarfLifeSimulation.Interfaces;
 using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
 using DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer;
 using System.Collections.Generic;

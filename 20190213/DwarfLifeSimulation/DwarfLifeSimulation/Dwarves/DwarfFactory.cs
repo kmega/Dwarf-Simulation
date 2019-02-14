@@ -1,7 +1,7 @@
 ﻿using DwarfLifeSimulation.Dwarves.BuyStrategies;
 using DwarfLifeSimulation.Dwarves.WorkStrategies;
 using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Interfaces;
+using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
 using System;
 using System.Collections.Generic;
