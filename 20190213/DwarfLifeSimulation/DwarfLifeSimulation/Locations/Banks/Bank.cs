@@ -32,7 +32,12 @@ namespace DwarfLifeSimulation.Locations.Banks
             return accounts[customerAccountId].DailyIncome;
         }
 
-        public void Transfer(int customerAccountId, int shopAccountId, decimal howMuchISpent)
+		public decimal GetOverallAccountMoney(int customerAccountId)
+		{
+			return accounts[customerAccountId].OverallMoney;
+		}
+
+		public void Transfer(int customerAccountId, int shopAccountId, decimal howMuchISpent)
         {
             accounts[customerAccountId].DailyIncome -= howMuchISpent;
             accounts[shopAccountId].DailyIncome += howMuchISpent;
@@ -58,5 +63,10 @@ namespace DwarfLifeSimulation.Locations.Banks
         {
             accounts[id].DailyIncome = income;
         }
+
+		public int GetNumbersOfAccounts()
+		{
+			return accounts.Count;
+		}
     }
 }

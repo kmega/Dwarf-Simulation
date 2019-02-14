@@ -16,9 +16,9 @@ namespace DwarfLifeSimulation.Locations.Guilds
 			_bankAccountId = Bank.Instance.CreateAccount();
 		}
 
-        public void ExchangeResource(IEnumerable<IExchange> workers)
+        public void ExchangeResource(List<IExchange> workers)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }
