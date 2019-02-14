@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfLifeSimulation.Locations.Banks
 {
-    class BankAccount
+    public class BankAccount
     {
         public decimal OverallMoney { get; set; }
         public decimal DailyIncome { get; set; }

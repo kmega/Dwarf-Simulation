@@ -8,7 +8,20 @@ namespace DwarfLifeSimulation.Locations.Banks
     {
         private Dictionary<int, BankAccount> accounts;
         private BankAccount generalAccount;
-        private Bank()
+
+        protected Dictionary<int, BankAccount> Accounts
+        {
+            get { return accounts; }
+            set { accounts = value; }
+        }
+
+        protected BankAccount GeneralAccount
+        {
+            get { return generalAccount; }
+            set { generalAccount = value; }
+        }
+
+        protected Bank()
         {
             accounts = new Dictionary<int, BankAccount>();
             generalAccount = new BankAccount();
