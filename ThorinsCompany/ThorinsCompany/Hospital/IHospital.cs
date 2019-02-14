@@ -6,7 +6,7 @@ namespace ThorinsCompany
 {
     public interface IHospital
     {
-        Dwarf GiveBirthToDwarf();
-        List<Dwarf> CreateDwarves();
+        List<Dwarf> GiveBirthToDwarf(List<Dwarf> dwarves);
+        List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate);
     }
 }
