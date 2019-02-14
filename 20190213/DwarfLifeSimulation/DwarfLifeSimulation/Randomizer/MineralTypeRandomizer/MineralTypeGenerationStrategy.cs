@@ -14,14 +14,9 @@ namespace DwarfLifeSimulation.Randomizer.MineralTypeRandomizer
             randomizer = new Randomizer();
         }
 
-        public MineralType WhatHaveBeenDig(int? randomNumber = null)
+        public MineralType WhatHaveBeenDig()
         {
-            int maxValue = Enum.GetNames(typeof(DwarfType)).Length;
-
-            // For test cases
-            if(randomNumber.Equals(null))
-                randomNumber = randomizer.Generate(1,maxValue);
-
+            int randomNumber = randomizer.Generate(1, 100);
             switch (randomNumber)
             {
                 case int n when (n > 0 && n <= 5):

@@ -10,9 +10,9 @@ namespace DwarfLifeSimulation.Dwarves.WorkStrategies
     {
         private IHitsRandomizer _hitRandomizer;
 
-        public StandardWorkStrategy()
+        public StandardWorkStrategy(IHitsRandomizer hitsRandomizer = null)
         {
-            _hitRandomizer = new HitsGenerationStrategy();
+            _hitRandomizer = (hitsRandomizer != null) ? hitsRandomizer : new HitsGenerationStrategy();
         }
 
         public Dictionary<MineralType, int> Perform(Shaft shaft)

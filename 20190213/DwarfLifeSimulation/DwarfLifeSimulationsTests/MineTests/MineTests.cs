@@ -1,13 +1,10 @@
-﻿using DwarfLifeSimulation.ApplicationLogic;
-using DwarfLifeSimulation.Dwarves.BuyStrategies;
+﻿using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Dwarves.WorkStrategies;
 using DwarfLifeSimulation.Enums;
-using DwarfLifeSimulation.Locations.Hospitals;
 using DwarfLifeSimulation.Locations.Mines;
-using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
-using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
-using DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer;
+using DwarfLifeSimulation.Randomizer.HitsRandomizer;
+using DwarfLifeSimulation.Randomizer.MineralTypeRandomizer;
 using Moq;
 using NUnit.Framework;
 using System.Collections.Generic;
@@ -19,11 +16,15 @@ namespace DwarfLifeSimulationsTests.MineTests
     {
         Mine mine;
         List<Shaft> shafts;
+        private Mock<IHitsRandomizer> hitRandomizer;
+        private Mock<IMineralTypeRandomizer> mineralRandomizer;
         [SetUp]
         public void Setup()
         {
             mine = new Mine();
             shafts = new List<Shaft>();
+            hitRandomizer = new Mock<IHitsRandomizer>();
+            mineralRandomizer = new Mock<IMineralTypeRandomizer>();
         }
 
         [Test]
@@ -81,15 +82,28 @@ namespace DwarfLifeSimulationsTests.MineTests
             Assert.IsTrue(emptyShaft == null);
         }
         [Test]
-        public void T104_SingleWorkerShouldDigInShaft()
+        public void T104_SingleWorkerShouldDigInShaftAndGet2Gold()
         {
             //given
-            var workers = new FakeWorkersFactory().Create(1);
+            mineralRandomizer.Setup(m => m.WhatHaveBeenDig()).Returns(MineralType.Gold);
+            List<Shaft> shafts = new List<Shaft>()
+            {
+                new Shaft(mineralRandomizer.Object)
+            };
+            mine = new Mine(shafts);
+            hitRandomizer.Setup(h => h.HowManyHits()).Returns(2);
+            var dwarf = new Dwarf("", DwarfType.Father, 
+                new StandardWorkStrategy(hitRandomizer.Object), null);
+            var workers = new List<IWork>()
+            {
+                dwarf
+            };
             //when
             mine.Work(workers);
             //then   
-            Assert.IsTrue(workers[0]._hasWorked == true);
+            Assert.IsTrue(dwarf._hasWorked == true);
+            var backpack = dwarf.EmptyBackpackContent();
+            Assert.IsTrue(backpack[MineralType.Gold] == 2);
         }
-
     }
 }
