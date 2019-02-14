@@ -1,7 +1,9 @@
 ﻿using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Dwarves.WorkStrategies;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
+using DwarfLifeSimulation.Randomizer.HitsRandomizer;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -29,5 +31,25 @@ namespace DwarfLifeSimulationsTests.MineTests
             }
             return list;
         }
+
+        internal List<IDwarf> CreateDwarves(int numberOfDwarves, DwarfType dwarfType, Mock<IHitsRandomizer> randomizer)
+        {
+            IWorkStrategy workStrategy = null;
+            if(dwarfType == DwarfType.Suicide)
+            {
+                workStrategy = new SuicideStrategy();
+            }
+            else
+            {
+                workStrategy = new StandardWorkStrategy(randomizer.Object);
+            }
+            List<IDwarf> list = new List<IDwarf>();
+            for (int i = 0; i < numberOfDwarves; i++)
+            {
+                list.Add(new Dwarf("", dwarfType, workStrategy, null));
+            }
+            return list;
+        }
+
     }
 }

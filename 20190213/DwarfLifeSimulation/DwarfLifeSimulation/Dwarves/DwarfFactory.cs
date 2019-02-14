@@ -13,7 +13,7 @@ namespace DwarfLifeSimulation.Dwarves
     {
         private IDwarfNameRandomizer _dwarfNameRandomizer;
 
-        public DwarfFactory(IDwarfNameRandomizer dwarfNameRandomizer)
+        public DwarfFactory(IDwarfNameRandomizer dwarfNameRandomizer = null)
         {
             _dwarfNameRandomizer = (dwarfNameRandomizer != null) ? dwarfNameRandomizer : new DwarfNameGenerationStrategy();
         }

@@ -61,5 +61,13 @@ namespace DwarfLifeSimulation.Locations.Mines
             } while (workers.Any(w => w._hasWorked == false));
             return shiftGroups;
         }
+
+        public void RepairShafts()
+        {
+            foreach(var shaft in _shafts)
+            {
+                shaft.ShaftStatus = ShaftStatus.Working;
+            }
+        }
     }
 }

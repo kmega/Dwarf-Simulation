@@ -15,23 +15,14 @@ namespace DwarfLifeSimulation.Locations.Hospitals
 
         #region Contructors
 
-        public Hospital(IIsDwarfBornRandomizer isDwarfBornRandomizer, 
-            IDwarfTypeRandomizer dwarfTypeRandomizer)
+        public Hospital(IIsDwarfBornRandomizer isDwarfBornRandomizer = null, 
+            IDwarfTypeRandomizer dwarfTypeRandomizer = null)
         {
-            SetInitialGenerators(isDwarfBornRandomizer,
-                dwarfTypeRandomizer);           
-        }
-        public Hospital()
-        {
-            SetInitialGenerators(new DwarfBornGenerationStrategy(),
-              new DwarfTypeGenerationStrategy()); 
-        }
-        private void SetInitialGenerators(IIsDwarfBornRandomizer isDwarfBornRandomizer,
-            IDwarfTypeRandomizer dwarfTypeRandomizer)
-        {
-            _isDwarfBornRandomizer = isDwarfBornRandomizer;
-            _dwarfTypeRandomizer = dwarfTypeRandomizer;
-            _dwarfFactory = new DwarfFactory(null);
+            _isDwarfBornRandomizer = (isDwarfBornRandomizer != null) 
+                ? isDwarfBornRandomizer : new DwarfBornGenerationStrategy();
+            _dwarfTypeRandomizer = (dwarfTypeRandomizer != null) ?
+                dwarfTypeRandomizer : new DwarfTypeGenerationStrategy();
+            _dwarfFactory = new DwarfFactory();
         }
         #endregion
 
