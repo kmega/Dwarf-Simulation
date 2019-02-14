@@ -6,9 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Randomizer\MaterialTypeRandomizer\" />
-    <Folder Include="Randomizer\MaterialValueRandomizer\" />
-    <Folder Include="Randomizer\TimesToWorkRandomizer\" />
+    <PackageReference Include="Autofac" Version="4.9.0" />
   </ItemGroup>
 
 </Project>

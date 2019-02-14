@@ -1,7 +1,7 @@
 namespace DwarfLifeSimulation.Randomizer.HitsRandomizer
 {
-    public interface IHitsRandomizer : IRandomizer
+    public interface IHitsRandomizer
     {
-        int HowManyHits(int min = 1, int max = 3);
+        int HowManyHits();
     }
 }
