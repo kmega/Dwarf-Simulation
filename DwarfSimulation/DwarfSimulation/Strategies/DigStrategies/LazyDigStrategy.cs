@@ -2,9 +2,11 @@
 {
     class LazyDigStrategy : IDig
     {
-        public int Dig(Mines mines, Randomizer randomizer)
+        private Randomizer _randomizer;
+
+        public int Dig()
         {
-            int number = randomizer.ReturnFromTo(0, 1);
+            int number = _randomizer.ReturnFromTo(0, 1);
 
             return number;
         }

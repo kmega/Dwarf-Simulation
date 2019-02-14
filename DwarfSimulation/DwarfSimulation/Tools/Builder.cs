@@ -26,6 +26,7 @@ namespace DwarfSimulation
                 case DwarfType.Father:
                     dwarf = new Dwarf()
                     {
+                        DwarfType = DwarfType.Father,
                         DigAction = new DefaultDigStrategy(),
                         BuyAction = new FatherBuyStrategy()
                     };
@@ -33,6 +34,7 @@ namespace DwarfSimulation
                 case DwarfType.Single:
                     dwarf = new Dwarf()
                     {
+                        DwarfType = DwarfType.Single,
                         DigAction = new DefaultDigStrategy(),
                         BuyAction = new SingleBuyStrategy()
                     };
@@ -40,6 +42,7 @@ namespace DwarfSimulation
                 case DwarfType.Lazy:
                     dwarf = new Dwarf()
                     {
+                        DwarfType = DwarfType.Lazy,
                         DigAction = new LazyDigStrategy(),
                         BuyAction = new LazyBuyStrategy()
                     };
@@ -47,7 +50,8 @@ namespace DwarfSimulation
                 case DwarfType.Suicider:
                     dwarf = new Dwarf()
                     {
-                        DigAction = new SuiciderDigStrategy(),
+                        DwarfType = DwarfType.Suicider,
+                        DigAction = new SuiciderDigStrategy()
                     };
                     break;
                 default:

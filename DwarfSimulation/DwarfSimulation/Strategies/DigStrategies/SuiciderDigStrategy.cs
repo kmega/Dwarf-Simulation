@@ -2,9 +2,9 @@
 {
     class SuiciderDigStrategy : IDig
     {
-        public int Dig(Mines mines, Randomizer randomizer)
+        public int Dig()
         {
-            return 0;
+            return -1;
         }
     }
 }
