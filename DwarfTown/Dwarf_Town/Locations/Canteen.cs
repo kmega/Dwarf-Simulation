@@ -11,13 +11,9 @@ namespace Dwarf_Town.Locations
 
         public int FoodRations { get; set; }
 
-        public void SpendFoodRations(IList<Dwarf> dwarves)
+        public void SpendFoodRations(List<Dwarf> dwarves)
         {
             FoodRations -= dwarves.Count;
-        }
-
-        public void OrderFoodRations()
-        {
             if (FoodRations < 10)
             {
                 FoodRations += 30;

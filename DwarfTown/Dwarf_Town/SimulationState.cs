@@ -4,6 +4,11 @@ namespace Dwarf_Town
 {
     public class SimulationState
     {
-        public IList<Dwarf> Dwarves { get; set; }
+        public SimulationState()
+        {
+            Dwarves = new List<Dwarf>();
+        }
+
+        public List<Dwarf> Dwarves { get; set; }
     }
 }

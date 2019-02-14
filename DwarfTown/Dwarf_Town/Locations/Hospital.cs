@@ -5,8 +5,15 @@ using System.Collections.Generic;
 
 namespace Dwarf_Town.Locations
 {
-    public class Hospital : IChance
+    public class Hospital
     {
+        private readonly IChance _chance;
+
+        public Hospital()
+        {
+            _chance = new Chance();
+        }
+
         public List<Dwarf> GenerateDwarves(int number)
         {
             List<Dwarf> dwarves = new List<Dwarf>();
@@ -19,7 +26,7 @@ namespace Dwarf_Town.Locations
 
         public Dwarf Generate()
         {
-            var chance = GenerateChance(1, 100);
+            var chance = _chance.GenerateChance(1, 100);
             if (chance == 100)
             {
                 return new Dwarf(DwarfType.SUICIDE);
@@ -38,10 +45,6 @@ namespace Dwarf_Town.Locations
             }
         }
 
-        public int GenerateChance(int lowerBound, int upperBound)
-        {
-            Random random = new Random();
-            return random.Next(lowerBound, upperBound);
-        }
+        
     }
 }
