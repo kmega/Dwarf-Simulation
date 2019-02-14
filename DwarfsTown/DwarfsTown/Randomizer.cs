@@ -7,43 +7,57 @@ namespace DwarfsTown
     public class Randomizer
     {
 
-        public int RandomNumberForType { get; set; } = 0;
-        public Randomizer()
+        //public int RandomNumber { get; set; } 
+        //public Randomizer()
+        //{
+        //    GetRandomNumber();
+        //}
+        public bool IsDwarfBorn()
         {
-
-            GetType();
+            int RandomNumber = GetRandomNumber();
+            if (RandomNumber == 1)
+                return true;
+            else
+                return false;
 
         }
-
-        public void GetRandomNumberForType()
+        public TypeEnum GetDwarfType(int RandomNumber)
         {
-            Random random = new Random();
-            int RandomNumberForType = random.Next(0, 99);
-            this.RandomNumberForType = RandomNumberForType;
-        }
-
-
-        public TypeEnum GetDwarfType()
-        {           
-           
-            if (RandomNumberForType < 33)
+            if (RandomNumber< 33)
                 return TypeEnum.Father;
-            else if (RandomNumberForType < 66)
+            else if (RandomNumber < 66)
                 return TypeEnum.Lazy;
-            else if (RandomNumberForType < 99)
+            else if (RandomNumber < 99)
                 return TypeEnum.Single;
             else
                 return TypeEnum.Saboteur;
         }
 
-        public Materials GetMaterials()
+        public Materials GetMaterial()
         {
-            return Materials.Gold;
+            int RandomNumber = GetRandomNumber();
+            if (RandomNumber < 5)
+                return Materials.Mithril;
+            else if (RandomNumber < 20)
+                return Materials.Gold;
+            else if (RandomNumber < 55)
+                return Materials.Silver;
+            else
+                return Materials.DirtyGold;       
         }
+
+        public virtual int GetRandomNumber()
+        {
+            Random random = new Random();
+            return random.Next(0, 99);
+        }
+
         public int GetRange()
         {
-            return 1;
+            Random random = new Random();
+            return random.Next(1, 3);
         }
+
 
     }
 }

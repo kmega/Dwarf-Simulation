@@ -1,5 +1,8 @@
 ﻿using DwarfsTown;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DwarfsTownTests
 {
@@ -7,23 +10,44 @@ namespace DwarfsTownTests
     public class HospitalTests
     {
         Dwarf dwarf;
-        Hospital hospital = new Hospital();
-        Randomizer randomizer;
+        City city = new City();
+        
+
+
         [TestMethod]
         public void IsBornFatherDwarf()
-        {      
-            Dwarf dwarf = hospital.BirthDwarf();
-            //expected
-            TypeEnum expected = TypeEnum.Father;
-            //result           
-            TypeEnum result = dwarf.Type;
-            
+        {
+            var mock = new Mock<Randomizer>();
+            mock.Setup(x => x.GetRandomNumber()).Returns(1);
+
+            List<Dwarf> dwarfs = new List<Dwarf>();
+            Hospital hospital = new Hospital(dwarfs);
+            //City city = new City();
+
+            hospital.BirthDwarf(dwarfs, mock.Object);
+            //hospital.BirthDwarf(dwarfs)
+
+            //mock.Setup(x => x.GetRandomNumber()).Returns(1);
+
+            int expected = 11;
+            int result = dwarfs.Count();
+            //City.randomizer.IsDwarfBorn()
+            //randomizer.RandomNumber = 1;
+            //Dwarf dwarf = ;
+            ////expected
+            //TypeEnum expected = TypeEnum.Father;
+            ////result           
+            //TypeEnum result = dwarf.Type;           
 
             Assert.AreEqual(expected,result);
         }
-       public void IsTenDwarfsBorn()
-        {
 
-        }
+        //[TestMethod]
+        //public void IsTenDwarfsBorn()
+        //{           
+        //    int expected = 10;
+        //    int result = city.dwarfs.Count;
+        //    Assert.AreEqual(expected, result);
+        //}
     }
 }

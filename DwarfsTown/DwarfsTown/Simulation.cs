@@ -9,9 +9,9 @@ namespace DwarfsTown
         public static void Run(City city)
         {
             for (int i = 0; i < 30; i++)
-            {
+            {               
                 //Get new dwarf -> 1% saboteur, 33% Father, 33% Single, 33% Lazy
-                city.dwarfs.Add(city.hospital.BirthDwarf());
+                city.hospital.BirthDwarf(city.dwarfs, City.randomizer);
                 //Dwarfs go to digging
                 city.mine.ExtractRawMaterials(city.dwarfs);
                 //Changing materials to moneys and transfer into dwarfs account 
