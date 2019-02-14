@@ -37,6 +37,10 @@ namespace Dwarf_Town
                 _sell = new DefaultSell();
                 _buy = new DefaultBuy();
             }
+
+            IsAlive = true;
+            BackPack = new BackPack();
+            Wallet = new Wallet();
         }
 
         public bool IsAlive { get; set; }
