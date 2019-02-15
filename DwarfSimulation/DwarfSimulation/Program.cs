@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("DwarfSimulationTests")]
+[assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
 
 namespace DwarfSimulation
 {

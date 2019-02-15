@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfSimulation
 {
-    internal class Randomizer
+    internal class Randomizer : IMineralsPrices
     {
         internal int ReturnFromTo(int first, int last)
         {
@@ -32,6 +32,32 @@ namespace DwarfSimulation
             }
             else
                 return DwarfType.Suicider;
+        }
+                    
+
+        public decimal ReturnMineralPrice(Mineral mineral)
+        {
+            decimal price;
+
+            if (mineral == Mineral.Gold)
+            {
+                price = ReturnFromTo(15, 25);
+                return price;
+            }
+            else if (mineral == Mineral.Gold)
+            {
+                price = ReturnFromTo(10, 20);
+                return price;
+            }
+            else if (mineral == Mineral.Silver)
+            {
+                price = ReturnFromTo(5, 15);
+                return price;
+            }
+            else
+            {
+                return price = 2;
+            }
         }
     }
 }
