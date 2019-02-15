@@ -13,9 +13,9 @@ namespace DwarfLifeSimulation.ApplicationLogic
     public class SimulationEngine
     {
         private SimulationState currentSimulationState;
-        public SimulationEngine()
+        public SimulationEngine(SimulationState simulationState = null)
         {
-            currentSimulationState = new SimulationState();
+            currentSimulationState = (simulationState!=null) ? simulationState : new SimulationState();
         }
 
         public void Start()
@@ -32,7 +32,7 @@ namespace DwarfLifeSimulation.ApplicationLogic
             }
         }
 
-        private void SimulateDay(Hospital hospital, Mine mine, Guild guild, Canteen canteen, Shop shop, Graveyard graveyard)
+        public void SimulateDay(Hospital hospital, Mine mine, Guild guild, Canteen canteen, Shop shop, Graveyard graveyard)
         {
             currentSimulationState.dwarves.ForEach(d => d._hasWorked = false);
             //Hospital.CreateDwarves(currentSimaltionState); - updates SimulationState
