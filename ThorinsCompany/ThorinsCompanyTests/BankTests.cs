@@ -32,12 +32,6 @@ namespace Tests
             //when, then
             foreach (var dwarf in dwarves)
             {
-                Assert.IsTrue(dwarf.GetBankAccount().CanGetMoneyFromAccount(0));
-            }
-
-            //when,then
-            foreach (var dwarf in dwarves)
-            {
                 Assert.IsFalse(dwarf.GetBankAccount().CanGetMoneyFromAccount(moneyToDraw));
             }
 
@@ -65,10 +59,7 @@ namespace Tests
             }
 
             //when
-            foreach (var dwarf in dwarves)
-            {
-                dwarf.GetBankAccount().ResetDailyIncome();
-            }
+            bank.ResetDailyIncomeOfAccounts();
 
             //then
             foreach (var dwarf in dwarves)

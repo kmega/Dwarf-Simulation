@@ -31,12 +31,12 @@ namespace ThorinsCompany
         }
 
 
-        public void MakeTransactionDrawMoneyFromOtherAccount(BankAccount bankAccount, decimal moneyToTake)
+        public void MakeTransaction(BankAccount bankAccountToTpUp, decimal moneyForTransaction)
         {
-            if (bankAccount.CanGetMoneyFromAccount(moneyToTake))
+            if (_money - moneyForTransaction >= 0)
             {
-                bankAccount.TopUp(moneyToTake);
-                _money -= moneyToTake;
+                bankAccountToTpUp.TopUp(moneyForTransaction);
+                _money -= moneyForTransaction;
             }
                
         }
