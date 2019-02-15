@@ -53,8 +53,10 @@ namespace DwarfLifeSimulationsTests.BankTests
 
             //then
             Assert.AreEqual(expected: dwarfAccount.DailyIncome, actual: 10m);
-            Assert.AreEqual(expected: shopAccount.OverallMoney, actual: 15.4m);
-            Assert.AreEqual(expected: bankAccount.OverallMoney, actual: 4.6m);
+            Assert.AreEqual(expected: shopAccount.DailyIncome, actual: 15.4m);
+            Assert.AreEqual(expected: bankAccount.DailyIncome, actual: 4.6m);
+            // Assert.AreEqual(expected: shopAccount.OverallMoney, actual: 15.4m);
+            // Assert.AreEqual(expected: bankAccount.OverallMoney, actual: 4.6m);
         }
 
         [Test]
@@ -110,8 +112,8 @@ namespace DwarfLifeSimulationsTests.BankTests
             bankMock.PayTax(1);
 
             // then
-            Assert.AreEqual(bankAccount.OverallMoney, actual * 0.23m);
-            Assert.AreEqual(accounts[1].OverallMoney, expected);
+            Assert.AreEqual(bankAccount.DailyIncome, actual * 0.23m);
+            Assert.AreEqual(accounts[1].DailyIncome, expected);
         }
         
         [Test]
@@ -156,7 +158,38 @@ namespace DwarfLifeSimulationsTests.BankTests
                 bankMock.PayTax(account.Key);
 
             // then
-            Assert.AreEqual(bankAccount.OverallMoney, expected);
+            Assert.AreEqual(bankAccount.DailyIncome, expected);
+        }
+
+        [Test]
+        public void BankTransferSaving()
+        {
+            // given
+            var actual = 150m;
+            var expectedBank = 862.5m;
+            var expected = 115.5m;
+            accounts = new Dictionary<int, BankAccount>();
+            for (int i = 1; i <= 10; i++)
+            {
+                accounts.Add(i, new BankAccount());
+                accounts[i].DailyIncome = actual;
+                actual += 50m;
+            }
+            bankAccount = new BankAccount();
+            bankMock = new BankMock(accounts, bankAccount);
+
+            // when
+            foreach(var account in accounts)
+                bankMock.PayTax(account.Key);
+            bankMock.TransferSavings();
+
+            // then
+            Assert.AreEqual(bankAccount.OverallMoney, expectedBank);
+            foreach(var account in accounts)
+            {
+                Assert.AreEqual(account.Value.OverallMoney, expected);
+                expected += 38.5m;
+            }
         }
     }
 }

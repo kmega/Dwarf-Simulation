@@ -55,9 +55,11 @@ namespace DwarfLifeSimulation.Locations.Banks
         {
             var income = accounts[id].DailyIncome;
             var tax = income * 0.23m;
-            generalAccount.OverallMoney += tax;
-            accounts[id].OverallMoney += (income - tax);
-            accounts[id].DailyIncome = 0.0m;
+            generalAccount.DailyIncome += tax;
+            accounts[id].DailyIncome = (income - tax);
+            // generalAccount.OverallMoney += tax;
+            // accounts[id].OverallMoney += (income - tax);
+            // accounts[id].DailyIncome = 0.0m;
         }
 
         public int CreateAccount()
@@ -70,6 +72,18 @@ namespace DwarfLifeSimulation.Locations.Banks
         public void PayIntoAccount(int id, decimal income)
         {
             accounts[id].DailyIncome = income;
+        }
+
+        public void TransferSavings()
+        {
+            foreach(var account in accounts)
+            {
+                account.Value.OverallMoney += account.Value.DailyIncome;
+                account.Value.DailyIncome = 0m;
+            }
+
+            generalAccount.OverallMoney += generalAccount.DailyIncome;
+            generalAccount.DailyIncome = 0m;
         }
     }
 }
