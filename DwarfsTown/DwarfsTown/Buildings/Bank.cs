@@ -11,30 +11,27 @@ namespace DwarfsTown
 
         public void ChangeRawMaterialsIntoMoneys(List<Dwarf> dwarfs)
         {
-            City city = new City();
             foreach (Dwarf dwarf in dwarfs)
             {
-                ExtractRawMaterialFromBackpack(dwarfs);
-                AddSalaryToAccountOfDwarf(dwarfs);
+                ExtractRawMaterialFromBackpack(dwarf);
+                SalaryPerDay = 0;
+                
             }
             AddInformation("Bank", "Today all Dwarfs earn " + SalaryPerDayForAllDwarfs);
             SalaryPerDayForAllDwarfs = 0;
 
         }
-        private void AddSalaryToAccountOfDwarf(List <Dwarf> dwarfs)
+        private void AddSalaryToAccountOfDwarf(Dwarf dwarf)
         {
-            foreach (Dwarf dwarf in dwarfs)
-            {
+            
                 dwarf.BankAccount.Moneys = SalaryPerDay;
-                dwarf.Backpack.Materials.Clear();
-            }
+                dwarf.Backpack.Materials.Clear();        
             SalaryPerDayForAllDwarfs += SalaryPerDay;
-            SalaryPerDay = 0;
+           
         }
-        public void ExtractRawMaterialFromBackpack(List <Dwarf> dwarfs)
+        public void ExtractRawMaterialFromBackpack(Dwarf dwarf)
         {
-            foreach (Dwarf dwarf in dwarfs)
-            {
+           
                 if (dwarf.Backpack.Materials.Contains(Materials.Mithril))
                     CalculateValueOfMaterial(20);
                 if (dwarf.Backpack.Materials.Contains(Materials.Gold))
@@ -43,7 +40,8 @@ namespace DwarfsTown
                     CalculateValueOfMaterial(10);
                 if (dwarf.Backpack.Materials.Contains(Materials.DirtyGold))
                     CalculateValueOfMaterial(5);
-            }
+                AddSalaryToAccountOfDwarf(dwarf);
+
         }
         private void CalculateValueOfMaterial(int number)
         {                    

@@ -10,7 +10,6 @@ namespace DwarfsTown
             Birth10DwarfToStart(dwarfs);
            
         }
-
         public void Birth10DwarfToStart(List<Dwarf> dwarfs)
         {
             for (int i = 0; i < 10; i++)
