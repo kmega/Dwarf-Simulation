@@ -33,6 +33,9 @@ namespace DwarfSimulation
             //Mines
             //Guild
             Guild guild = new Guild(randomizer);
+            guild.ExchangeDwarvesMineralsAndGiveThemMoney(_dwarves);
+            guild.Display();
+            guild.UpdateSimulationRaport(_raport);
 
             //Graveyard
             Graveyard graveyard = new Graveyard();
@@ -47,6 +50,9 @@ namespace DwarfSimulation
 
             //Shop
             Shop shop = new Shop();
+            shop.ServeEveryone(_dwarves);
+            shop.Display();
+            shop.UpdateSimulationRaport(_raport);
 
             return true;
         }
