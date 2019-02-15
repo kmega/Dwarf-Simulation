@@ -52,9 +52,9 @@ namespace DwarfsTown
             foreman.SendDwarfsToShaft(dwarfsThatShouldBeWorking, shaft2);
 
             //If on the shaft are saboteur, shaft is destroyed and invoke event break method
-            if (shaft1.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
+            if (shaft2.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
             {
-                shaft1.isExist = false;
+                shaft2.isExist = false;
                 return;
             }
 

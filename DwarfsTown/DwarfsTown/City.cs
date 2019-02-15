@@ -16,7 +16,7 @@ namespace DwarfsTown
         public Bar bar;
         public Shop shop;
         public Cementary cementary;
-        public static List<string> newsPaper;
+        public static List<string> newsPaper = new List<string>();
     
         public City()
         {
@@ -29,7 +29,6 @@ namespace DwarfsTown
             bar = new Bar();
             shop = new Shop();
             cementary = new Cementary();
-            newsPaper = new List<string>();
         }
     }
 }
