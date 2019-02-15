@@ -156,7 +156,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 			decimal result4 = Bank.Instance.GetDailyIncome(4);
 			decimal alcoholSold = shop._shopState[ProductType.Alcohol];
 			decimal foodSold = shop._shopState[ProductType.Food];
-			decimal shopAccount = Bank.Instance.GetOverallAccountMoney(5);
+			decimal shopAccount = Bank.Instance.GetDailyIncome(5);
 
 			//then
 			Assert.AreEqual(100, result1);
