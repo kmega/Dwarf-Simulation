@@ -4,6 +4,8 @@ namespace DwarfSimulation
 {
     internal class Builder
     {
+        internal int _id = 1;
+
         Randomizer _randomizer = new Randomizer();
 
         internal List<Dwarf> CreateDwarves(int dwarfsNumber)
@@ -12,6 +14,7 @@ namespace DwarfSimulation
             for (int i = 0; i < dwarfsNumber; i++)
             {
                 dwarves.Add(CreateDwarf(_randomizer.ReturnDwarfType()));
+                _id++;
             }
             return dwarves;
         }
@@ -25,6 +28,7 @@ namespace DwarfSimulation
                 case DwarfType.Father:
                     dwarf = new Dwarf()
                     {
+                        ID = _id,
                         DwarfType = DwarfType.Father,
                         DigAction = new DefaultDigStrategy(),
                         BuyAction = new FatherBuyStrategy()
@@ -33,6 +37,7 @@ namespace DwarfSimulation
                 case DwarfType.Single:
                     dwarf = new Dwarf()
                     {
+                        ID = _id,
                         DwarfType = DwarfType.Single,
                         DigAction = new DefaultDigStrategy(),
                         BuyAction = new SingleBuyStrategy()
@@ -41,6 +46,7 @@ namespace DwarfSimulation
                 case DwarfType.Lazy:
                     dwarf = new Dwarf()
                     {
+                        ID = _id,
                         DwarfType = DwarfType.Lazy,
                         DigAction = new LazyDigStrategy(),
                         BuyAction = new LazyBuyStrategy()
@@ -49,6 +55,7 @@ namespace DwarfSimulation
                 case DwarfType.Suicider:
                     dwarf = new Dwarf()
                     {
+                        ID = _id,
                         DwarfType = DwarfType.Suicider,
                         DigAction = new SuiciderDigStrategy()
                     };

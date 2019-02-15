@@ -22,6 +22,8 @@ namespace DwarfSimulation
                 Builder builder = new Builder();
                 BornDwarf = builder.CreateDwarves(1);
 
+                BornDwarf[0].ID += 10 + raport.TotalBorn;
+
                 Display(BornDwarf);
                 UpdateRaport(raport, BornDwarf);
 

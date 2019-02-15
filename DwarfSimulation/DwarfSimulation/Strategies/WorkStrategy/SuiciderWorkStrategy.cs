@@ -6,23 +6,34 @@ namespace DwarfSimulation
     {
         public Shaft Work(Shaft shaft, Raport raport)
         {
-            Dwarf dwarf;
+            Dwarf miner;
 
             for (int index = 0; index < shaft.MaxInside; index++)
             {
-                dwarf = shaft.Miners[index];
-                dwarf.IsAlive = false;
+                try
+                {
+
+                    miner = shaft.Miners[index];
+                    miner.IsAlive = false;
+
+                    if (miner.DwarfType == DwarfType.Suicider)
+                    {
+                        Console.WriteLine("Dwarf " + miner.ID + " - " + DwarfType.Suicider + " collapsed shaft and killed:\n");
+                    }
+                }
+                catch
+                {
+                    break;
+                }
             }
 
             shaft.Collapsed = true;
 
-            Console.WriteLine("Dwarf " + DwarfType.Suicider + " collapsed shaft and killed:\n");
-
-            foreach (var miner in shaft.Miners)
+            foreach (var dwarf in shaft.Miners)
             {
-                if (miner.DwarfType != DwarfType.Suicider)
+                if (dwarf.DwarfType != DwarfType.Suicider)
                 {
-                    Console.WriteLine("Dwarf " + miner.DwarfType);
+                    Console.WriteLine("Dwarf " + dwarf.ID + " - " + dwarf.DwarfType);
                 }
             }
 
