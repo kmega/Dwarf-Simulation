@@ -64,7 +64,7 @@ namespace DwarfSimulation
         {
             Randomizer random = new Randomizer();
             int chance = random.ReturnFromTo(1, 100);
-            return (chance > 1);
+            return (chance == 1);
         }
     }
 }

@@ -37,6 +37,8 @@ namespace DwarfSimulation
                 }
             }
 
+            Console.WriteLine();
+
             return shaft;
         }
     }
