@@ -20,11 +20,6 @@ namespace DwarfSimulation
                     amountOfWork = dwarf.DigAction.Dig();
                     miningChance = _randomizer.ReturnFromTo(1, 100);
 
-                    if (amountOfWork == 0)
-                    {
-                        Console.WriteLine("Dwarf " + dwarf.ID + " - " + dwarf.DwarfType + " is lazy today and mined NOTHING!");
-                    }
-
                     dwarf = MineOre(dwarf, amountOfWork, miningChance, raport);
                 }
                 catch
@@ -38,6 +33,8 @@ namespace DwarfSimulation
 
         internal Dwarf MineOre(Dwarf dwarf, int amountOfWork, int miningChance, Raport raport)
         {
+            Console.Write("Dwarf " + dwarf.ID + " - " + dwarf.DwarfType + " mined: ");
+
             Mineral mineral;
 
             for (int index = 0; index < amountOfWork; index++)
@@ -71,8 +68,10 @@ namespace DwarfSimulation
                     raport.TaintedGoldMined++;
                 }
 
-                Console.WriteLine("Dwarf " + dwarf.ID + " - " + dwarf.DwarfType + " mined " + mineral);
+                Console.Write(mineral + " ");
             }
+
+            Console.WriteLine();
 
             return dwarf;
         }
