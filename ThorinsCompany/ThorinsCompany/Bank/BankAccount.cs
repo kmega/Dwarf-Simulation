@@ -30,14 +30,33 @@ namespace ThorinsCompany
             _dailyIncome = 0;
         }
 
-        public decimal GetDailyIncome()
+
+        public void MakeTransaction(BankAccount bankAccountToTpUp, decimal moneyForTransaction)
+        {
+            if (_money - moneyForTransaction >= 0)
+            {
+                bankAccountToTpUp.TopUp(moneyForTransaction);
+                _money -= moneyForTransaction;
+            }
+               
+        }
+
+
+        public void TopUpYourAccount(decimal moneyToTopUpAccount)
+        {
+            _money += moneyToTopUpAccount;
+        }
+
+        public decimal CheckYourDailyIncome()
         {
             return _dailyIncome;
         }
 
-        public decimal GetMoney()
+        public decimal CheckMoneyOnAccount()
         {
             return _money;
         }
+
+        
     }
 }

@@ -7,9 +7,12 @@ namespace ThorinsCompany
     public class Shop
     {
         public readonly int accountID;
+        private BankAccount _bankAccount;
         public Shop()
         {
-            accountID = AccountCreator.CreateNewAccountWithUniqueID();
+            accountID = IDCreator.GetUniqueID();
+            _bankAccount = AccountCreator.CreateNewAccount(accountID);
+
         }
         public void PerformShopping(IShoppingStrategy shoppingStrategy)
         {

@@ -17,17 +17,24 @@ namespace ThorinsCompany
         {
             allShafts = new Shaft[2] { new Shaft(), new Shaft() };
             Master = new Foreman();
+            
+
         }
 
         public void PerformMining(List<Dwarf> dwarves)
         {
+
             List<WorkingGroup> workingGroups = Master.DivideDwarvesIntoWorkingGroups(dwarves);
 
             // put groups to aviable shafts
             // do work in shafts
             // result
+
+
+            }
+
         }
         
 
     }
-}
+

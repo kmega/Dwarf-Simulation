@@ -12,13 +12,10 @@ namespace ThorinsCompany
         private Dictionary<int, BankAccount> _bankAccounts = new Dictionary<int, BankAccount>();
         RandomizerThorins _randomizer = new RandomizerThorins();
 
-
         public Bank()
         {
-            new BankAssistant(this);
-            new AccountCreator(this); 
+            new AccountCreator(this);
         }
-
         public void ExchangeMaterialsForMoney(int ID, List<Material> materials)
         {
             decimal moneyEarned = 0;
@@ -76,26 +73,13 @@ namespace ThorinsCompany
             }
         }
 
-        public void TopUpYourAccount(int ID, decimal moneyToTopUpAccount)
-        {
-            _bankAccounts[ID].TopUp(moneyToTopUpAccount);
-        }
-
-        public decimal CheckYourDailyIncome(int ID)
-        {
-            return _bankAccounts[ID].GetDailyIncome();
-        }
-
-        public decimal CheckMoneyOnAccount(int ID)
-        {
-            return _bankAccounts[ID].GetMoney();
-        }
-
         private decimal GetTaxesFromExchangeAndReturnLeftMoney(decimal amount)
         {
             _bankMoney += _taxesValue * amount;
             return ((1 - _taxesValue) * amount);
         }
+
+
 
     }
 }
