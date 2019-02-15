@@ -9,7 +9,8 @@ namespace Dwarf_Town
     {
         public IWork _work = null;
         public ISell _sell = null;
-        public IBuy _buy = null;
+        public IBuy Buy { get; set; }
+
 
         public Dwarf(DwarfType dwarfType)
         {
@@ -17,25 +18,25 @@ namespace Dwarf_Town
             {
                 _work = new DiggWork(this);
                 _sell = new NormalSell(this);
-                _buy = new FoodBuy();
+                Buy = new FoodBuy();
             }
             else if (dwarfType == DwarfType.IDLER)
             {
                 _work = new DiggWork(this);
                 _sell = new NormalSell(this);
-                _buy = new NormalBuy();
+                Buy = new NormalBuy();
             }
             else if (dwarfType == DwarfType.SINGLE)
             {
                 _work = new DiggWork(this);
                 _sell = new NormalSell(this);
-                _buy = new AlcoholBuy();
+                Buy = new AlcoholBuy();
             }
             else if (dwarfType == DwarfType.SUICIDE)
             {
                 _work = new ExplodeWork(this);
                 _sell = new DefaultSell();
-                _buy = new DefaultBuy();
+                Buy = new DefaultBuy();
             }
 
             IsAlive = true;

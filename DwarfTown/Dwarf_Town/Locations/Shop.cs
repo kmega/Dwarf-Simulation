@@ -13,7 +13,7 @@ namespace Dwarf_Town.Locations
         {
             foreach (var dwarf in dwarves)
             {
-                dwarf._buy.Buy(this, dwarf);
+                dwarf.Buy.Buy(this, dwarf);
             }
         }
     }
