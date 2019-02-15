@@ -30,7 +30,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		}
 
 		[Test]
-		public void _501ShopStateShouldContainsEachProduct()
+		public void T501_ShopStateShouldContainsEachProduct()
 		{
 			//given
 			Shop testShop = new Shop();
@@ -46,7 +46,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		}
 
 		[Test]
-		public void _502ShouldBe0EachProductInShopState()
+		public void T502_ShouldBe0EachProductInShopState()
 		{
 			//given
 			Shop testShop = new Shop();
@@ -66,7 +66,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		{
 			//given
 			BankMock.ResetInstace();
-			Dwarf testDwarf = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
+			IDwarf testDwarf = new DwarfFactory().Create(DwarfType.Father);
 			Shop shop = new Shop();
 			Bank.Instance.PayIntoAccount(1, 100m);
 
@@ -85,10 +85,10 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		{
 			//given
 			BankMock.ResetInstace();
-			Dwarf testDwarf1 = new Dwarf("Thorin", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
-			Dwarf testDwarf2 = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
-			Dwarf testDwarf3 = new Dwarf("Gimli", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
-			Dwarf testDwarf4 = new Dwarf("Balin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
+			IDwarf testDwarf1 = new DwarfFactory().Create(DwarfType.Single);
+			IDwarf testDwarf2 = new DwarfFactory().Create(DwarfType.Father);
+			IDwarf testDwarf3 = new DwarfFactory().Create(DwarfType.Single);
+			IDwarf testDwarf4 = new DwarfFactory().Create(DwarfType.Father);
 			Shop shop = new Shop();
 			BankMock.Instance.PayIntoAccount(1, 100);
 			BankMock.Instance.PayIntoAccount(2, 200);
@@ -115,8 +115,8 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		{
 			//given
 			BankMock.ResetInstace();
-			Dwarf testDwarf1 = new Dwarf("Thorin", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
-			Dwarf testDwarf2 = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
+			IDwarf testDwarf1 = new DwarfFactory().Create(DwarfType.Single);
+			IDwarf testDwarf2 = new DwarfFactory().Create(DwarfType.Father);
 			Shop shop = new Shop();
 			BankMock.Instance.PayIntoAccount(1, 246);
 			BankMock.Instance.PayIntoAccount(2, 200);
@@ -137,10 +137,10 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		{
 			//given
 			BankMock.ResetInstace();
-			Dwarf testDwarf1 = new Dwarf("Thorin", DwarfType.Sluggard, new StandardWorkStrategy(), new BuyNoneStrategy());
-			Dwarf testDwarf2 = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
-			Dwarf testDwarf3 = new Dwarf("Gimli", DwarfType.Suicide, new SuicideStrategy(), new BuyNoneStrategy());
-			Dwarf testDwarf4 = new Dwarf("Balin", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
+			IDwarf testDwarf1 = new DwarfFactory().Create(DwarfType.Sluggard);
+			IDwarf testDwarf2 = new DwarfFactory().Create(DwarfType.Father);
+			IDwarf testDwarf3 = new DwarfFactory().Create(DwarfType.Suicide);
+			IDwarf testDwarf4 = new DwarfFactory().Create(DwarfType.Single);
 			Shop shop = new Shop();
 			BankMock.Instance.PayIntoAccount(1, 100);
 			BankMock.Instance.PayIntoAccount(2, 200);
