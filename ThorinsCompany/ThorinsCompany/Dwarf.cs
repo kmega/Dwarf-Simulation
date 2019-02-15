@@ -18,5 +18,7 @@ namespace ThorinsCompany
             accountID = AccountCreator.CreateNewAccountWithUniqueID();
 
         }
+
+        public Dictionary<Material,int> ShowDiggedMaterials() => _materials;
     }
 }

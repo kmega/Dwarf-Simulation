@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using System.Collections.Generic;
 using ThorinsCompany;
 
 namespace ThorinsCompanyTests
@@ -50,6 +52,21 @@ namespace ThorinsCompanyTests
 
             Assert.AreEqual(0, bank.CheckYourDailyIncome(accountID_1));
             Assert.AreEqual(0, bank.CheckYourDailyIncome(accountID_2));
+
+
+        }
+
+        [Test]
+        public void ExchangeMaterialOfAllDwarfsToMoney_EachDwarfShouldHave25OnAccount()
+        {
+            //given
+            Mock<IRamdomizerThorins> mithrilWorth25 = new Mock<IRamdomizerThorins>();
+            mithrilWorth25.Setup(x => x.ReturnPriceMaterials(Material.Mithril)).Returns(25);
+            List<Dwarf> dwarves = new Hospital().CreateDwarves(10);
+            foreach (var dwarf in dwarves)
+            {
+                dwarf.ShowDiggedMaterials().Add(Material.Mithril, 1);
+            }
 
 
         }

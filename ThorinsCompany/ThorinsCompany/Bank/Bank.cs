@@ -31,9 +31,30 @@ namespace ThorinsCompany
             }
         }
 
-        internal void ExchangeMaterialsForMoneyFromAllDwarves(List<Dwarf> dwarves)
+        public void ExchangeMaterialsForMoney(int ID, Material material, int numberOfMaterial)
         {
-            throw new NotImplementedException();
+            decimal moneyEarned = 0;
+
+            for (int i = 0; i < numberOfMaterial; i++)
+            {
+                moneyEarned = _randomizer.ReturnPriceMaterials(material);
+
+                _bankAccounts[ID].TopUp(GetTaxesFromExchangeAndReturnLeftMoney(moneyEarned));
+            }
+        }
+
+        public void ExchangeMaterialsForMoneyFromAllDwarves(List<Dwarf> dwarves)
+        {
+            foreach (var dwarf in dwarves)
+            {
+                var dwarfDiggedMaterials = dwarf.ShowDiggedMaterials().Keys;
+
+                foreach (var material in dwarfDiggedMaterials)
+                {
+                    ExchangeMaterialsForMoney(dwarf.accountID, material, dwarf.ShowDiggedMaterials()[material]);
+                }
+               
+            }
         }
 
         public void MakeTransaction(int accountIDForAddition, int accountIDForSubtraction, decimal moneyForTransaction)
