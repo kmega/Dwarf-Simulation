@@ -3,11 +3,10 @@ using System.Collections.Generic;
 
 namespace DwarfsTown
 {
-    public class Shop : INewsPaper
+    public class Shop 
     {
         public decimal AlcoholPurchased { get; set; }
         public decimal FoodPurchased { get; set; }
-        public List<string> TheJournalist { get ; set; }
         private decimal ShopFinances { get; set; }
 
         public void DoShopping(List<Dwarf> dwarfs)
@@ -38,7 +37,7 @@ namespace DwarfsTown
         }
         public void AddInformation(string idBuilding, string message)
         {
-            TheJournalist.Add(idBuilding + ": " + message);
+            City.newsPaper.Add(idBuilding + ": " + message);
         }
     }
 }

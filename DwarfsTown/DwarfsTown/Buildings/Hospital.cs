@@ -3,17 +3,13 @@ using System.Collections.Generic;
 
 namespace DwarfsTown
 {
-    public class Hospital : INewsPaper
+    public class Hospital 
     {
         public Hospital(List<Dwarf> dwarfs)
         {
             Birth10DwarfToStart(dwarfs);
            
         }
-
-        public List<string> TheJournalist { get; set; }
-
-
 
         public void Birth10DwarfToStart(List<Dwarf> dwarfs)
         {
@@ -22,7 +18,7 @@ namespace DwarfsTown
                 dwarfs.Add(new Dwarf(City.randomizer.GetDwarfType(City.randomizer.GetRandomNumber())));
             }
             AddInformation("Hospital", "Today 10 Dwarfs are born.");
-            
+
         }
 
         public void BirthDwarf(List <Dwarf> dwarfs, Randomizer rand)
@@ -35,7 +31,7 @@ namespace DwarfsTown
         }
         public void AddInformation(string idBuilding, string message)
         {
-            TheJournalist.Add(idBuilding + ": " + message);
+            City.newsPaper.Add(idBuilding + ": " + message);
         }
     }
 }

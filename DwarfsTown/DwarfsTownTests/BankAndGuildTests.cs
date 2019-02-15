@@ -9,6 +9,7 @@ namespace DwarfsTownTests
 {   [TestClass]
     public class BankAndGuildTests
     {
+        
         Bank bank = new Bank();
         [TestMethod]
         public void IsAddToAccount20ForGold()

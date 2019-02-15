@@ -3,10 +3,9 @@ using System.Collections.Generic;
 
 namespace DwarfsTown
 {
-    public class Guild: INewsPaper
+    public class Guild
     {      
         public decimal GuildMoney {get;set;}
-        public List<string> TheJournalist { get ; set; }
 
         Bank bank = new Bank();
         public void GetTaxesFromDwarfsAccounts(List<Dwarf> dwarfs)
@@ -21,7 +20,7 @@ namespace DwarfsTown
 
         public void AddInformation(string idBuilding, string message)
         {
-            TheJournalist.Add(idBuilding + ": " + message + ".");
+            City.newsPaper.Add(idBuilding + ": " + message + ".");
         }
     }
 }

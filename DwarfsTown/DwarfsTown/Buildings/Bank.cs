@@ -4,11 +4,10 @@ using System.Text;
 
 namespace DwarfsTown
 {
-    public class Bank : INewsPaper
+    public class Bank 
     {
         public decimal SalaryPerDay {get;set;}
-        public decimal SalaryPerDayForAllDwarfs { get; set; }
-        public List<string> TheJournalist { get; set ; }
+        public decimal SalaryPerDayForAllDwarfs { get; set; }      
 
         public void ChangeRawMaterialsIntoMoneys(List<Dwarf> dwarfs)
         {
@@ -53,7 +52,7 @@ namespace DwarfsTown
 
         public void AddInformation(string idBuilding, string message)
         {
-            TheJournalist.Add(idBuilding + ": " + message + ".");
+            City.newsPaper.Add(idBuilding + ": " + message + ".");
         }
     }
 }
