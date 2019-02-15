@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ThorinsCompany.Raports;
 
 namespace ThorinsCompany
 {
@@ -12,9 +13,11 @@ namespace ThorinsCompany
             this.Workers = workers;
         }
 
-        ~WorkingGroup()
+        public void Clear()
         {
-            //place for a logger;
+            Workers = null;
+            Logger.GetInstance().AddLog("Group has died in fatal accident");
         }
+
     }
 }

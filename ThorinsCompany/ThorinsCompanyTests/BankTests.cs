@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using ThorinsCompany;
 
-namespace Tests
+namespace ThorinsCompanyTests
 {
     public class BankTests
     {
