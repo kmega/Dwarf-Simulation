@@ -37,7 +37,7 @@ namespace DwarfSimulation
 
                 shafts = work.MineForOre(shafts, raport);
 
-                _dwarfsAfterWork = work.RemoveFromShafts(shafts);
+                _dwarfsAfterWork.AddRange(work.RemoveFromShafts(shafts));
             }
 
             return _dwarfsAfterWork;
