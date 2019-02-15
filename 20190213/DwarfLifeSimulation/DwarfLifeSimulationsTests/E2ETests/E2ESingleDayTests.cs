@@ -83,6 +83,32 @@ namespace DwarfLifeSimulationsTests
             shop = new Shop();
         }
 
+        private void T101_LocationsSetup()
+        {
+            isBornMock.Setup(h => h.IsDwarfBorn(100)).Returns(false);
+            dwarfTypeMock.Setup(t => t.GiveMeDwarfType(false)).Returns(DwarfType.Father);
+            hospital = new Hospital(isBornMock.Object, dwarfTypeMock.Object);
+
+            timesToDigMock.Setup(t => t.HowManyHits()).Returns(2);
+            simulationState.turn = 2;
+            simulationState.dwarves.AddRange(
+                new FakeDwarves().CreateDwarves(9, DwarfType.Father, timesToDigMock.Object));
+            simulationState.dwarves.Add(new FakeDwarves().CreateSingle(DwarfType.Suicide));
+
+            mineralTypeMock.Setup(m => m.WhatHaveBeenDig()).Returns(MineralType.Silver);
+            List<Shaft> shafts = new List<Shaft>()
+            {
+                new Shaft(mineralTypeMock.Object),
+                new Shaft(mineralTypeMock.Object)
+            };
+            mine = new Mine(shafts);
+
+            mineralValueMock.Setup(v => v.ExchangeMineralToValue(MineralType.Silver)).Returns(10);
+            guild = new Guild(mineralValueMock.Object);
+
+            shop = new Shop();
+        }
+
         [Test]
         public void T100_SingleDaySimulationWithoutSuicideDwarvesAndNoNewBirths()
         {
@@ -107,6 +133,31 @@ namespace DwarfLifeSimulationsTests
             Assert.AreEqual(guild.GetSummary(MineralType.Silver), "We sold 20 in value of 200");
             Assert.AreEqual(graveyard.DeadDwarvesAmount, 0);
             Assert.AreEqual(canteen.GetAmountOfRations(), 190);
+        }
+        [Test]
+        public void T101_SingleDaySimulationWith1SuicideDwarfAndNoNewBirths()
+        {
+            BankMock.ResetInstance();
+            //given            
+            //9 dwarves fathers, one suicide
+            //all dig twice 
+            //all dig silver worth 10 each
+            T101_LocationsSetup();
+            SimulationEngine simulationEngine = new SimulationEngine(simulationState);
+            //when
+            simulationEngine.SimulateDay(hospital, mine, guild, canteen, shop, graveyard);
+            //then
+            foreach (var dwarf in simulationState.dwarves)
+            {
+                int i = 1;
+                Assert.IsTrue(dwarf._hasWorked == true);
+                Assert.AreEqual(Bank.Instance.GetOverallAccountMoney(i), 8.0m);
+                i++;
+            }
+            Assert.AreEqual(shop._shopState[ProductType.Food], 40);
+            Assert.AreEqual(guild.GetSummary(MineralType.Silver), "We sold 10 in value of 100");
+            Assert.AreEqual(graveyard.DeadDwarvesAmount, 5);
+            Assert.AreEqual(canteen.GetAmountOfRations(), 195);
         }
     }
 }

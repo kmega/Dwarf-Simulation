@@ -22,7 +22,7 @@ namespace DwarfLifeSimulationsTests.E2ETests
             return dwarves;
         }
 
-        internal IDwarf CreateSingle(DwarfType dwarfType, IHitsRandomizer hitsRandomizer)
+        internal IDwarf CreateSingle(DwarfType dwarfType, IHitsRandomizer hitsRandomizer=null)
         {
             IWorkStrategy workStrategy = null;
             IBuyStrategy buyStrategy = null;
@@ -30,6 +30,11 @@ namespace DwarfLifeSimulationsTests.E2ETests
             {
                 workStrategy = new StandardWorkStrategy(hitsRandomizer);
                 buyStrategy = new BuyFoodStrategy();
+            }
+            else
+            {
+                workStrategy = new SuicideStrategy();
+                buyStrategy = new BuyNoneStrategy();
             }
 
             return new Dwarf("", dwarfType, workStrategy, buyStrategy);
