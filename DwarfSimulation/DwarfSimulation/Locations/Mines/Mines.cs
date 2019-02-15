@@ -13,13 +13,15 @@ namespace DwarfSimulation
             _shafts = shafts;
             _dwarfsBeforeWork = dwarfs;
 
-             _dwarfsAfterWork = Work(_dwarfsBeforeWork, _shafts, raport);
+             _dwarfsAfterWork = WorkStart(_dwarfsBeforeWork, _shafts, raport);
 
             return _dwarfsAfterWork;
         }
 
-        internal List<Dwarf> Work(List<Dwarf> dwarfsBeforeWork, List<Shaft> shafts, Raport raport)
+        internal List<Dwarf> WorkStart(List<Dwarf> dwarfsBeforeWork, List<Shaft> shafts, Raport raport)
         {
+            Work work = new Work();
+
             while (dwarfsBeforeWork.Count > 0)
             {
                 if (CheckShaftsStatus(shafts))
@@ -28,66 +30,14 @@ namespace DwarfSimulation
                     return _dwarfsAfterWork;
                 }
 
-                shafts = AddToShafts(dwarfsBeforeWork, shafts);
+                shafts = work.AddToShafts(dwarfsBeforeWork, shafts);
 
-                shafts = MineForOre(shafts, raport);
+                shafts = work.MineForOre(shafts, raport);
 
-                shafts = RemoveFromShafts(shafts);
+                _dwarfsAfterWork = work.RemoveFromShafts(shafts);
             }
 
-            return null;
-        }
-
-        private List<Shaft> RemoveFromShafts(List<Shaft> shafts)
-        {
-            foreach (var shaft in shafts)
-            {
-                _dwarfsAfterWork.AddRange(shaft.Miners);
-                shaft.Miners.RemoveRange(0, shaft.MaxInside);
-            }
-
-            return shafts;
-        }
-
-        private List<Shaft> MineForOre(List<Shaft> shafts, Raport raport)
-        {
-            Shaft shaft;
-
-            for (int index = 0; index < shafts.Count; index++)
-            {
-                shaft = shafts[index];
-                shaft = shaft.WorkAction.Work(shaft, raport);
-            }
-
-            return shafts;
-        }
-
-        internal List<Shaft> AddToShafts(List<Dwarf> dwarfsBeforeWork, List<Shaft> shafts)
-        {
-            foreach (var shaft in shafts)
-            {
-                if (shaft.Collapsed == false)
-                {
-                    for (int index = 0; index < shaft.MaxInside; index++)
-                    {
-                        try
-                        {
-                            if (dwarfsBeforeWork[0].DwarfType == DwarfType.Suicider)
-                            {
-                                shaft.WorkAction = new SuiciderWorkStrategy();
-                            }
-                            shaft.Miners.Add(dwarfsBeforeWork[0]);
-                            dwarfsBeforeWork.RemoveAt(0);
-                        }
-                        catch
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            return shafts;
+            return _dwarfsAfterWork;
         }
 
         internal bool CheckShaftsStatus(List<Shaft> shafts)

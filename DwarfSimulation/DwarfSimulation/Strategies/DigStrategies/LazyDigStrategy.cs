@@ -2,7 +2,7 @@
 {
     class LazyDigStrategy : IDig
     {
-        private Randomizer _randomizer;
+        private Randomizer _randomizer = new Randomizer();
 
         public int Dig()
         {

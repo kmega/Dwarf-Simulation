@@ -70,5 +70,11 @@ namespace DwarfSimulation
             }
             return shafts;
         }
+
+        internal Shaft CreateShaft()
+        {
+            Shaft shaft = new Shaft();
+            return shaft;
+        }
     }
 }
