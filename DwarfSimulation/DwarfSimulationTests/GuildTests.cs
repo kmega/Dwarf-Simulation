@@ -71,8 +71,8 @@ namespace GuildTests
             Mock<IMineralsPrices> calculatePrices = new Mock<IMineralsPrices>();
             calculatePrices.Setup(g => g.ReturnMineralPrice(Mineral.Gold)).Returns(20);
             calculatePrices.Setup(s => s.ReturnMineralPrice(Mineral.Silver)).Returns(15);
-            calculatePrices.Setup(s => s.ReturnMineralPrice(Mineral.TaintedGold)).Returns(2);
-            calculatePrices.Setup(s => s.ReturnMineralPrice(Mineral.Mithril)).Returns(25);
+            calculatePrices.Setup(tg => tg.ReturnMineralPrice(Mineral.TaintedGold)).Returns(2);
+            calculatePrices.Setup(m => m.ReturnMineralPrice(Mineral.Mithril)).Returns(25);
 
 
 
@@ -99,8 +99,8 @@ namespace GuildTests
             Mock<IMineralsPrices> calculatePrices = new Mock<IMineralsPrices>();
             calculatePrices.Setup(g => g.ReturnMineralPrice(Mineral.Gold)).Returns(20);
             calculatePrices.Setup(s => s.ReturnMineralPrice(Mineral.Silver)).Returns(15);
-            calculatePrices.Setup(s => s.ReturnMineralPrice(Mineral.TaintedGold)).Returns(2);
-            calculatePrices.Setup(s => s.ReturnMineralPrice(Mineral.Mithril)).Returns(25);
+            calculatePrices.Setup(tg => tg.ReturnMineralPrice(Mineral.TaintedGold)).Returns(2);
+            calculatePrices.Setup(m => m.ReturnMineralPrice(Mineral.Mithril)).Returns(25);
 
             List<Dwarf> listOfDwarves = new List<Dwarf>()
             {
