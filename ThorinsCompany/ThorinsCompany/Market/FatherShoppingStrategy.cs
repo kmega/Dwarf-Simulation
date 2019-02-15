@@ -17,7 +17,7 @@ namespace ThorinsCompany
         {
             decimal charge = BankAssistant.CheckMoneyOnAccount(_dwarfAccountID) / 2;
             BankAssistant.MakeTransaction(shopAccountID, _dwarfAccountID, charge);
-            Logger.GetInstance().AddLog("SHOP: Dwarf bough Alcohol");
+
         }
     }
 }

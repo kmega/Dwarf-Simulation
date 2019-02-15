@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using ThorinsCompany;
 using ThorinsCompany.Raports;
 
 namespace ThorinsCompanyTests
@@ -9,44 +10,33 @@ namespace ThorinsCompanyTests
     public class LoggerTests
     {
 
-        [Test]
-        public void ShouldReturnEmptyListWhenDataIsCleared()
+        [TestCase(InformationInRaport.AlcoholBought, 10)]
+        [TestCase(InformationInRaport.DeathCount, 5)]
+        [TestCase(InformationInRaport.GoldMinded, 100)]
+        [TestCase(InformationInRaport.ShopEarned, 200)]
+        [TestCase(InformationInRaport.SuiciderBorn, 10)]
+        [TestCase(InformationInRaport.TaintedGoldMinded, 10)]
+        public void T01ReturnInfomationInLogs(InformationInRaport information, int howMany)
         {
-            // given
-            Logger logger = Logger.GetInstance();
-            int expectedListSize = 0;
-
-            // when
-            logger.AddLog("Dwarf bought Alcohol");
-            logger.AddLog("Dwarf bought Food");
-            logger.ClearData();
-
-            // then
-            int actualListSize = logger.GetLogs().Count;
-            Assert.AreEqual(expectedListSize, actualListSize);
+            Logger.GetInstance().AddLog(howMany, information);
+            var listLogs = Logger.GetInstance().GetLogs();
+            Assert.AreEqual(listLogs[information], howMany);
+            Logger.GetInstance().ClearData();
+        }
+        [TestCase(InformationInRaport.AlcoholBought, 10)]
+        [TestCase(InformationInRaport.AlcoholBought, 10)]
+        public void T02AddTwoTimesTheSameInformation(InformationInRaport information, int howMany)
+        {
+            bool moreInformation = false;
+            Logger.GetInstance().AddLog(howMany, information);
+            var listLogs = Logger.GetInstance().GetLogs();
+            if (listLogs[InformationInRaport.AlcoholBought] == howMany)
+                moreInformation = true;
+            else if (listLogs[InformationInRaport.AlcoholBought] == howMany * 2)
+                moreInformation = true;
+            Assert.IsTrue(moreInformation);
         }
 
-        [Test]
-        public void ShouldReturnLogsWhenLogsExist()
-        {
-            // given
-            Logger logger = Logger.GetInstance();
-            logger.ClearData();
-            List<string> Logs = new List<string>();
-            Logs.Add("Dwarf bought Alcohol");
-            Logs.Add("Dwarf bought Food");
-            Logs.Add("Dwarf bought Alcohol");
-
-            // when
-            foreach (string log in Logs)
-            {
-                logger.AddLog(log);
-            }
-
-            // then
-            CollectionAssert.AreEqual(Logs, logger.GetLogs());
-
-        }
 
     }
 }

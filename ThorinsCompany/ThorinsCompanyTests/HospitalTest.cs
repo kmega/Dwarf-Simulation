@@ -20,7 +20,7 @@ namespace ThorinsCompanyTests
         public void T02Hospital()
         {
             Mock<IRamdomizerThorins> dwarfType = new Mock<IRamdomizerThorins>();
-            dwarfType.Setup(m => m.GenerateDwarfType(2)).Returns(DwarfType.Father);
+            dwarfType.Setup(m => m.WillHeBeBorn(1)).Returns(true);
         }
     }
 }

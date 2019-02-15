@@ -7,15 +7,26 @@ namespace ThorinsCompany.Raports
     public sealed class Logger
     {
         static private Logger logger = new Logger();
-        private List<string> reports = new List<string>();
+        private Dictionary<InformationInRaport, int> reports = 
+            new Dictionary<InformationInRaport, int>();
 
-        private Logger() { }
+        private Logger()  {    }
         static public Logger GetInstance() => logger;
-        public void AddLog(string log)
+        public void AddLog(int information, InformationInRaport typeInformationInRaport)
         {
-            reports.Add(log);
+            if (reports.Count == 0)
+            {
+                foreach (string name in Enum.GetNames(typeof(InformationInRaport)))
+                {
+                    InformationInRaport result;
+                    Enum.TryParse(name, true, out result);
+                    reports.Add(result, 0);
+                }
+            }
+            reports[typeInformationInRaport] += information;
+            
         }
-        public List<string> GetLogs() => reports;
+        public Dictionary<InformationInRaport, int> GetLogs() => reports;
 
         public void ClearData()
         {
