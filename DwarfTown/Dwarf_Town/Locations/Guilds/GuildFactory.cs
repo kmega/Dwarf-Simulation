@@ -1,15 +1,12 @@
 ﻿using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Guild.OreValue;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf_Town.Locations.Guild
 {
     public static class GuildFactory
     {
-
         public static Guild CreateStandardGuild(IOutputWriter presenter)
         {
             Guild guild = new Guild(
@@ -19,7 +16,7 @@ namespace Dwarf_Town.Locations.Guild
                  {MineralType.Gold, new GoldValue()},
                  {MineralType.Silver, new SilverValue()},
                  {MineralType.Mithril, new MithrilValue()}
-                }, 
+                },
                 new Dictionary<MineralType, decimal>
                 {
                 {MineralType.DirtyGold,0},
@@ -30,8 +27,6 @@ namespace Dwarf_Town.Locations.Guild
                 presenter
             );
             return guild;
-
         }
-
     }
 }

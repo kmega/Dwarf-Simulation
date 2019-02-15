@@ -5,10 +5,9 @@ namespace Dwarf_Town.Models
 {
     public class BackPack
     {
-
         private List<MineralType> _backpack = new List<MineralType>();
 
-        public void AddOre (MineralType mineral)
+        public void AddOre(MineralType mineral)
         {
             _backpack.Add(mineral);
         }

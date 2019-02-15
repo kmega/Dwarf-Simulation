@@ -4,14 +4,11 @@ using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Mine;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace Dwarf_TownTests.Locations
 {
-    
     public class MineTests
     {
         [Test]
@@ -24,7 +21,6 @@ namespace Dwarf_TownTests.Locations
             {
                 dwarves.Add(new Dwarf(DwarfType.FATHER));
             }
-
 
             //when
             mine.DwarvesGoWork(dwarves.Select(i => i._work).ToList());
@@ -47,7 +43,6 @@ namespace Dwarf_TownTests.Locations
                 dwarves.Add(new Dwarf(DwarfType.FATHER));
             }
             dwarves.Add(new Dwarf(DwarfType.SUICIDE));
-
 
             //when
             mine.DwarvesGoWork(dwarves.Select(i => i._work).ToList());
@@ -118,7 +113,6 @@ namespace Dwarf_TownTests.Locations
                 dwarves.Add(new Dwarf(DwarfType.FATHER));
             }
 
-
             //when
             mine.DwarvesGoWork(dwarves.Select(i => i._work).ToList());
 
@@ -147,14 +141,12 @@ namespace Dwarf_TownTests.Locations
                 MineralType.DirtyGold,
                 MineralType.DirtyGold,
                 MineralType.DirtyGold,
-
             });
             workingDwarfTwo.Setup(i => i.ShowWhatYouBroughtOut()).Returns(new List<MineralType>()
             {
                 MineralType.Gold,
                 MineralType.Gold,
                 MineralType.Gold,
-
             });
 
             //when
@@ -169,12 +161,5 @@ namespace Dwarf_TownTests.Locations
             Assert.IsTrue(mine.ShowMineResults()[MineralType.DirtyGold] == 3);
             Assert.IsTrue(mine.ShowMineResults()[MineralType.Gold] == 3);
         }
-
-
-
-
-
-
-
     }
 }

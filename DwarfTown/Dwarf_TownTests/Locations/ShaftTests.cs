@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Dwarf_Town;
+﻿using Dwarf_Town;
 using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Mine;
-using Dwarf_Town.Strategy;
 using Moq;
 using NUnit.Framework;
-
-
+using System.Collections.Generic;
 
 namespace Dwarf_TownTests.Locations
 {
@@ -19,8 +14,6 @@ namespace Dwarf_TownTests.Locations
         [Test]
         public void DropDiffrentOres()
         {
-
-
             //when
             var mineralOne = GiveSpecificOre.GetTheOre(5);
             var mineralTwo = GiveSpecificOre.GetTheOre(20);
@@ -32,7 +25,6 @@ namespace Dwarf_TownTests.Locations
             Assert.IsTrue(mineralTwo == MineralType.Gold);
             Assert.IsTrue(mineralThree == MineralType.Silver);
             Assert.IsTrue(mineralFour == MineralType.DirtyGold);
-
         }
 
         [Test]
@@ -67,7 +59,6 @@ namespace Dwarf_TownTests.Locations
             Shaft shaft = new Shaft(new WindowsConsole());
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
 
-
             //when
             shaft.PerformWork(new List<IWork>() { dwarf._work });
 
@@ -77,4 +68,3 @@ namespace Dwarf_TownTests.Locations
         }
     }
 }
-

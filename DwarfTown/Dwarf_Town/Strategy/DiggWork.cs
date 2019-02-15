@@ -7,9 +7,7 @@ namespace Dwarf_Town.Strategy
 {
     public class DiggWork : IWork
     {
-
         private Dwarf _dwarf;
-
 
         public DiggWork(Dwarf dwarf)
         {
@@ -32,7 +30,6 @@ namespace Dwarf_Town.Strategy
         {
             _dwarf.BackPack.AddOre(ore);
         }
-
 
         public int GenerateChance(int lowerBound, int upperBound)
         {

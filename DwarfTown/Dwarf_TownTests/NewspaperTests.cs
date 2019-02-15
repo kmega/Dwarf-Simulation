@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Dwarf_Town;
+﻿using Dwarf_Town;
 using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Guild;
 using Dwarf_Town.Locations.Mine;
 using Moq;
-using NUnit.Compatibility;
 using NUnit.Framework;
+using System.Collections.Generic;
 
 namespace Dwarf_TownTests
 {
     public class NewspaperTests
     {
-
         [Test]
         public void DwarfSellDirytGold()
         {
@@ -30,7 +26,6 @@ namespace Dwarf_TownTests
 
             //then
             presenter.Verify(i => i.WriteLine("Dwarf exchange DirtyGold for 1,50 gp and guild take 0,50 gp provision"));
-
         }
 
         [Test]
@@ -41,15 +36,13 @@ namespace Dwarf_TownTests
             Shaft shaft = new Shaft(presenter.Object);
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
 
-
             //when
             shaft.PerformWork(new List<IWork>() { dwarf._work });
 
             //given
             presenter.Verify(i => i.WriteLine("Shaft destroyed."));
-
-
         }
+
         [Test]
         public void DwarfBroughtOutGold()
         {

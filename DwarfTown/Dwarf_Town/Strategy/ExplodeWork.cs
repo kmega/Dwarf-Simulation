@@ -1,27 +1,22 @@
 ﻿using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace Dwarf_Town.Strategy
 {
     public class ExplodeWork : IWork
     {
-
         private Dwarf _dwarf;
-
 
         public ExplodeWork(Dwarf dwarf)
         {
             _dwarf = dwarf;
         }
 
-
         public void DeathSentence()
         {
             _dwarf.IsAlive = false;
         }
-
 
         public int Dig()
         {
@@ -36,7 +31,6 @@ namespace Dwarf_Town.Strategy
 
         public void HideToBackpack(MineralType ore)
         {
-
         }
 
         public List<MineralType> ShowWhatYouBroughtOut()

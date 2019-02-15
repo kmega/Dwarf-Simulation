@@ -1,15 +1,12 @@
-﻿using Dwarf_Town.Enums;
-using Dwarf_Town.Interfaces;
+﻿using Dwarf_Town.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Dwarf_Town.Locations.Mine
 {
     public class Shaft
     {
         public bool EfficientShaft;
-        IOutputWriter Presenter;
-       
+        private IOutputWriter Presenter;
 
         public Shaft(IOutputWriter presenter)
         {
@@ -40,7 +37,6 @@ namespace Dwarf_Town.Locations.Mine
                         int chanceForOre = dwarf.GenerateChance(1, 101);
                         dwarf.HideToBackpack(GiveSpecificOre.GetTheOre(chanceForOre));
                         Presenter.WriteLine($"Dwarf brought out {GiveSpecificOre.GetTheOre(chanceForOre)}.");
-
                     }
                 }
             }
@@ -52,8 +48,6 @@ namespace Dwarf_Town.Locations.Mine
                     dwarf.DeathSentence();
                 }
             }
-           
-
         }
     }
 }
