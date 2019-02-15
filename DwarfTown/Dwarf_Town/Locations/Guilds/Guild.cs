@@ -11,11 +11,13 @@ namespace Dwarf_Town.Locations.Guild
     {
         private decimal _account;
         private Dictionary <MineralType, IOreValue> _oresOnMarket;
+        private Dictionary<MineralType, decimal> _oreValueRegister;
 
-        public Guild(Dictionary<MineralType, IOreValue> oresOnMarket)
+        public Guild(Dictionary<MineralType, IOreValue> oresOnMarket, Dictionary<MineralType, decimal> oreValueRegister )
         {
             _account = 0;
             _oresOnMarket = oresOnMarket;
+            _oreValueRegister = oreValueRegister;
         }
 
         public decimal ReturnOreValue(MineralType mineraltype)
@@ -30,6 +32,7 @@ namespace Dwarf_Town.Locations.Guild
                 foreach (var ore in dwarf.ShowBackpack())
                 {
                     decimal value = ReturnOreValue(ore);
+                    _oreValueRegister[ore] += value;
                     decimal provision = Math.Round((value * 0.25m),2);
                     _account += provision;
                     decimal payment = Math.Round((value - provision),2);
@@ -43,7 +46,12 @@ namespace Dwarf_Town.Locations.Guild
         {
             return _account;
         }
-    
+
+        public Dictionary<MineralType, decimal> ShowGuildRegister()
+        {
+            return _oreValueRegister;
+        }
+
 
 
 

@@ -66,6 +66,7 @@ namespace Dwarf_TownTests.Locations
             Assert.AreEqual(1, guild.ShowTresure());
             Assert.AreEqual(3, dwarf.Wallet.DailyCash);
             Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count == 0);
+            Assert.IsTrue(guild.ShowGuildRegister()[MineralType.DirtyGold] == 4);
 
         }
 
@@ -97,11 +98,13 @@ namespace Dwarf_TownTests.Locations
             Assert.AreEqual(3, dwarfTwo.Wallet.DailyCash);
             Assert.IsTrue(dwarfOne.BackPack.ShowBackpack().Count == 0);
             Assert.IsTrue(dwarfTwo.BackPack.ShowBackpack().Count == 0);
+            Assert.IsTrue(guild.ShowGuildRegister()[MineralType.DirtyGold] == 8);
+
 
 
         }
 
-        
+
 
     }
 }

@@ -24,7 +24,7 @@ namespace Dwarf_Town.Strategy
         public int Dig()
         {
             Random rand = new Random();
-            int numberOfHits = rand.Next(1, 3);
+            int numberOfHits = rand.Next(1, 4);
             return numberOfHits;
         }
 

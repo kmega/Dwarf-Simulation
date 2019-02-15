@@ -32,7 +32,7 @@ namespace Dwarf_Town.Locations.Mine
                     //Normal work
                     for (int i = 0; i < HowManyTimesDwarfHit; i++)
                     {
-                        int chanceForOre = dwarf.GenerateChance(1, 100);
+                        int chanceForOre = dwarf.GenerateChance(1, 101);
                         dwarf.HideToBackpack(GiveSpecificOre.GetTheOre(chanceForOre));
                     }
                 }

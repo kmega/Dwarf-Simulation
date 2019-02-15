@@ -5,6 +5,7 @@ using Dwarf_Town;
 using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Mine;
+using Dwarf_Town.Strategy;
 using Moq;
 using NUnit.Framework;
 
@@ -18,7 +19,7 @@ namespace Dwarf_TownTests.Locations
         [Test]
         public void DropDiffrentOres()
         {
-           
+
 
             //when
             var mineralOne = GiveSpecificOre.GetTheOre(5);
@@ -52,7 +53,7 @@ namespace Dwarf_TownTests.Locations
             shaft.PerformWork(new List<IWork>() { workingDwarf.Object });
 
             //then
-            Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count==3);
+            Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count == 3);
             foreach (var ore in dwarf.BackPack.ShowBackpack())
             {
                 Assert.IsTrue(ore == MineralType.Gold);
@@ -65,7 +66,7 @@ namespace Dwarf_TownTests.Locations
             //given
             Shaft shaft = new Shaft();
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
-           
+
 
             //when
             shaft.PerformWork(new List<IWork>() { dwarf._work });
@@ -73,9 +74,7 @@ namespace Dwarf_TownTests.Locations
             //then
             Assert.IsFalse(shaft.EfficientShaft);
             Assert.IsFalse(dwarf.IsAlive);
-
-
         }
-
     }
 }
+
