@@ -16,6 +16,7 @@ namespace DwarfSimulation
             for (int i = 0; i < 30; i++)
             {
                 if (!Day(i)) break;
+                Console.ReadKey();
             }
             _raport.Display();
         }
@@ -32,7 +33,7 @@ namespace DwarfSimulation
 
             //Mines
             Mines mines = new Mines();
-            mines.EnterMines(_dwarves, _shafts, _raport);
+            _dwarves = mines.EnterMines(_dwarves, _shafts, _raport);
             //Guild
             Guild guild = new Guild(randomizer);
             guild.ExchangeDwarvesMineralsAndGiveThemMoney(_dwarves);

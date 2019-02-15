@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DwarfSimulation
 {
@@ -10,6 +11,8 @@ namespace DwarfSimulation
 
         internal List<Dwarf> EnterMines(List<Dwarf> dwarfs, List<Shaft> shafts, Raport raport)
         {
+            Console.WriteLine("\n## MINES ##\n");
+
             _shafts = shafts;
             _dwarfsBeforeWork = dwarfs;
 

@@ -4,6 +4,8 @@ namespace DwarfSimulation
 {
     internal class Dwarf
     {
+        internal int ID;
+
         internal DwarfType DwarfType;
         internal bool IsAlive { get; set; }
 
