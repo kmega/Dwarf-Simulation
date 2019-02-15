@@ -16,7 +16,7 @@ namespace DwarfSimulation
             for (int i = 0; i < 30; i++)
             {
                 if (!Day(i)) break;
-                Console.ReadKey();
+
             }
             _raport.Display();
         }
@@ -37,6 +37,7 @@ namespace DwarfSimulation
             //Guild
             Guild guild = new Guild(randomizer);
             guild.ExchangeDwarvesMineralsAndGiveThemMoney(_dwarves);
+            guild.ClearBackpacks(_dwarves);
             guild.Display();
             guild.UpdateSimulationRaport(_raport);
 
