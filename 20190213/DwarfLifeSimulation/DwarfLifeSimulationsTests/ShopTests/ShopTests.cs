@@ -4,16 +4,24 @@ using System.Collections.Generic;
 using System.Text;
 using Moq;
 using DwarfLifeSimulation.Locations.Shops;
-using DwarfLifeSimulation.Enums;
-using System.Linq;
 using DwarfLifeSimulation.Locations.Banks;
 using DwarfLifeSimulation.Dwarves;
-using DwarfLifeSimulation.Dwarves.WorkStrategies;
-using DwarfLifeSimulation.Dwarves.BuyStrategies;
 using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Dwarves.BuyStrategies;
+using DwarfLifeSimulation.Dwarves.WorkStrategies;
+using DwarfLifeSimulation.Enums;
+using System.Linq;
 
 namespace DwarfLifeSimulationsTests.ShopTests
 {
+	public class BankMock : Bank
+	{
+		public static void ResetInstace()
+		{
+			instance = null;
+		}
+	}
+
 	public class ShopTests
 	{
 		[SetUp]
@@ -22,7 +30,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		}
 
 		[Test]
-		public void T501_ShopStateShouldContainsEachProduct()
+		public void _501ShopStateShouldContainsEachProduct()
 		{
 			//given
 			Shop testShop = new Shop();
@@ -38,7 +46,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		}
 
 		[Test]
-		public void T502_ShouldBe0EachProductInShopState()
+		public void _502ShouldBe0EachProductInShopState()
 		{
 			//given
 			Shop testShop = new Shop();
@@ -57,9 +65,10 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		public void T503_WhenDwarfBuyHeShouldPay50OfHisDailyIncomeToShopAccount()
 		{
 			//given
+			BankMock.ResetInstace();
 			Dwarf testDwarf = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
 			Shop shop = new Shop();
-			Bank.Instance.PayIntoAccount(1, 100);
+			Bank.Instance.PayIntoAccount(1, 100m);
 
 			//when
 			shop.ServeSingleCustomer(testDwarf);
@@ -67,23 +76,24 @@ namespace DwarfLifeSimulationsTests.ShopTests
 			decimal result2 = Bank.Instance.GetDailyIncome(2);
 
 			//then
-			Assert.AreEqual(50, result1);
-			Assert.AreEqual(50, result2);
+			Assert.AreEqual(50m, result1);
+			Assert.AreEqual(50m, result2);
 		}
 
 		[Test]
 		public void T504_DwarfsFatherAndSingleShouldSpendHalfOfTheyMoneyToShopAccountAnd23percentageShoulgGoToBankTaxAccount()
 		{
 			//given
+			BankMock.ResetInstace();
 			Dwarf testDwarf1 = new Dwarf("Thorin", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
 			Dwarf testDwarf2 = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
 			Dwarf testDwarf3 = new Dwarf("Gimli", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
 			Dwarf testDwarf4 = new Dwarf("Balin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
 			Shop shop = new Shop();
-			Bank.Instance.PayIntoAccount(1, 100);
-			Bank.Instance.PayIntoAccount(2, 200);
-			Bank.Instance.PayIntoAccount(3, 400);
-			Bank.Instance.PayIntoAccount(4, 600);
+			BankMock.Instance.PayIntoAccount(1, 100);
+			BankMock.Instance.PayIntoAccount(2, 200);
+			BankMock.Instance.PayIntoAccount(3, 400);
+			BankMock.Instance.PayIntoAccount(4, 600);
 			List<IBuy> testListOfDwarves = new List<IBuy>() { testDwarf1, testDwarf2, testDwarf3, testDwarf4 };
 
 			//when
@@ -104,11 +114,12 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		public void T505_Service2CustomersShopStateShouldHave50AlcoholAnd50FoodInIt()
 		{
 			//given
+			BankMock.ResetInstace();
 			Dwarf testDwarf1 = new Dwarf("Thorin", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
 			Dwarf testDwarf2 = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
 			Shop shop = new Shop();
-			Bank.Instance.PayIntoAccount(1, 246);
-			Bank.Instance.PayIntoAccount(2, 200);
+			BankMock.Instance.PayIntoAccount(1, 246);
+			BankMock.Instance.PayIntoAccount(2, 200);
 			List<IBuy> testListOfDwarves = new List<IBuy>() { testDwarf1, testDwarf2 };
 
 			//when
@@ -125,15 +136,16 @@ namespace DwarfLifeSimulationsTests.ShopTests
 		public void T506_SluggardAndSuicidersShouldNotBuyAnythingAndOneSingleShouldBuyAlcohol()
 		{
 			//given
+			BankMock.ResetInstace();
 			Dwarf testDwarf1 = new Dwarf("Thorin", DwarfType.Sluggard, new StandardWorkStrategy(), new BuyNoneStrategy());
 			Dwarf testDwarf2 = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
 			Dwarf testDwarf3 = new Dwarf("Gimli", DwarfType.Suicide, new SuicideStrategy(), new BuyNoneStrategy());
 			Dwarf testDwarf4 = new Dwarf("Balin", DwarfType.Single, new StandardWorkStrategy(), new BuyAlcoholStrategy());
 			Shop shop = new Shop();
-			Bank.Instance.PayIntoAccount(1, 100);
-			Bank.Instance.PayIntoAccount(2, 200);
-			Bank.Instance.PayIntoAccount(3, 400);
-			Bank.Instance.PayIntoAccount(4, 600);
+			BankMock.Instance.PayIntoAccount(1, 100);
+			BankMock.Instance.PayIntoAccount(2, 200);
+			BankMock.Instance.PayIntoAccount(3, 400);
+			BankMock.Instance.PayIntoAccount(4, 600);
 			List<IBuy> testListOfDwarves = new List<IBuy>() { testDwarf1, testDwarf2, testDwarf3, testDwarf4 };
 
 			//when
@@ -144,7 +156,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 			decimal result4 = Bank.Instance.GetDailyIncome(4);
 			decimal alcoholSold = shop._shopState[ProductType.Alcohol];
 			decimal foodSold = shop._shopState[ProductType.Food];
-			decimal shopAccount = Bank.Instance.GetOverallAccountMoney(5);
+			decimal shopAccount = Bank.Instance.GetDailyIncome(5);
 
 			//then
 			Assert.AreEqual(100, result1);
