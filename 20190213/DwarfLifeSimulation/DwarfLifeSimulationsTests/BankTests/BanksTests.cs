@@ -40,7 +40,7 @@ namespace DwarfLifeSimulationsTests.BankTests
         }
 
         [Test]
-        public void BankTest()
+        public void DwarfBuySomething_BankTransferMoneyFromDwarfToReceiverAndCollectTax()
         {
             // given
             var bankMock = new BankMock(accounts, bankAccount);
