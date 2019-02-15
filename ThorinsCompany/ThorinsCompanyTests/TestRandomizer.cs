@@ -46,13 +46,51 @@ namespace ThorinsCompanyTests
         }
 
         [Test]
-        public void T05RandomizerGetBomberDwarfType()
+        public void T05RandomizerGetChanceDwarfBorn()
         {
             bool chanceToBorn = randomizer.WillHeBeBorn(randomizer.ReturnRandomNumber(1, 1));
 
             Assert.IsTrue(chanceToBorn);
         }
 
+        [Test]
+        public void T06RandomizerGetPriceDirtyGoldBetween1And5()
+        {
+            bool isThePriceCorret = false;
+            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.DirtyGold);
+            if (priceofDirtyGold >= 1 && priceofDirtyGold <= 5)
+                isThePriceCorret = true;
+            Assert.IsTrue(isThePriceCorret);
+        }
 
+        [Test]
+        public void T07RandomizerGetPriceMithrillBetween15And25()
+        {
+            bool isThePriceCorret = false;
+            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Mithril);
+            if (priceofDirtyGold >= 15 && priceofDirtyGold <= 25)
+                isThePriceCorret = true;
+            Assert.IsTrue(isThePriceCorret);
+        }
+
+        [Test]
+        public void T08RandomizerGetPriceSilverBetween5And15()
+        {
+            bool isThePriceCorret = false;
+            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Silver);
+            if (priceofDirtyGold >= 5 && priceofDirtyGold <= 15)
+                isThePriceCorret = true;
+            Assert.IsTrue(isThePriceCorret);
+        }
+
+        [Test]
+        public void T09RandomizerGetPriceGoldBetween10And20()
+        {
+            bool isThePriceCorret = false;
+            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Silver);
+            if (priceofDirtyGold >= 10 && priceofDirtyGold <= 20)
+                isThePriceCorret = true;
+            Assert.IsTrue(isThePriceCorret);
+        }
     }
 }

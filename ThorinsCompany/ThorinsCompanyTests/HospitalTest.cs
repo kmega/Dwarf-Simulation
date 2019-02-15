@@ -7,12 +7,6 @@ namespace ThorinsCompanyTests
 {
     class HospitalTest
     {
-        [SetUp]
-        public void Setup()
-        {
-
-        }
-
         [TestCase(1,1)]
         [TestCase(10, 10)]
         public void T01Hospital(int HowManyYouWantCreateDwarf, int countDwarvesList)
@@ -20,6 +14,13 @@ namespace ThorinsCompanyTests
             Hospital hospital = new Hospital();
             var dwarves = hospital.CreateDwarves(HowManyYouWantCreateDwarf);
             Assert.AreEqual(dwarves.Count, countDwarvesList);
+        }
+
+        [Test]
+        public void T02Hospital()
+        {
+            Mock<IRamdomizerThorins> dwarfType = new Mock<IRamdomizerThorins>();
+            dwarfType.Setup(m => m.GenerateDwarfType(2)).Returns(DwarfType.Father);
         }
     }
 }

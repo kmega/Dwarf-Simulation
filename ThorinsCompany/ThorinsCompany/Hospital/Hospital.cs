@@ -46,7 +46,6 @@ namespace ThorinsCompany
                 _day0 = false;
             }
                 
-
             bool chanceToBorn = randomizer.WillHeBeBorn(randomizer.ReturnRandomNumber(1, 100));
             if (chanceToBorn)
                 dwarves.AddRange(CreateDwarves(1));
