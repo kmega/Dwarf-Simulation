@@ -36,21 +36,21 @@ namespace DwarfSimulation
             Console.WriteLine("Single born " + SingleBorn);
             Console.WriteLine("Suicider born " + SuiciderBorn);
             Console.WriteLine("\n MINE");
-            Console.WriteLine("Mithril mined" + MithrilMined);
-            Console.WriteLine("Gold mined" + GoldMined);
-            Console.WriteLine("Silver mined" + SilverMined);
-            Console.WriteLine("Tainted gold mined" + TaintedGoldMined);
+            Console.WriteLine("Mithril mined " + MithrilMined);
+            Console.WriteLine("Gold mined " + GoldMined);
+            Console.WriteLine("Silver mined " + SilverMined);
+            Console.WriteLine("Tainted gold mined " + TaintedGoldMined);
             Console.WriteLine("\n GRAVEYARD");
             Console.WriteLine("Dead count " + DeathCount);
             Console.WriteLine("\n GUILD");
-            Console.WriteLine("Total money earned" + TotalMoneyEarned);
+            Console.WriteLine("Total money earned " + Decimal.Round(TotalMoneyEarned,2));
             Console.WriteLine("\n DINNING ROOM");
             Console.WriteLine("Food eaten " + FoodEaten);
             Console.WriteLine("Food in dinning room "+ FoodInDiningRoom);
             Console.WriteLine("\n SHOP");
             Console.WriteLine("Food bought " + FoodBought);
             Console.WriteLine("Alcohol bought " + AlcoholBought);
-            Console.WriteLine("Shop earned " + ShopEarned);
+            Console.WriteLine("Shop earned " + Decimal.Round(ShopEarned,2));
 
         }
     }
