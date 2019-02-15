@@ -11,5 +11,10 @@ namespace ThorinsCompany
         {
             this.Workers = workers;
         }
+
+        ~WorkingGroup()
+        {
+            //place for a logger;
+        }
     }
 }
