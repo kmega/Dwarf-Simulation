@@ -1,4 +1,6 @@
-﻿namespace DwarfSimulation
+﻿using System;
+
+namespace DwarfSimulation
 {
     internal class DefaultWorkStrategy : IWork
     {
@@ -31,28 +33,40 @@
 
         internal Dwarf MineOre(Dwarf dwarf, int amountOfWork, int miningChance, Raport raport)
         {
+            Mineral mineral;
+
             for (int index = 0; index < amountOfWork; index++)
             {
                 if (miningChance <= 5)
                 {
                     dwarf.BackPack[Mineral.Mithril]++;
+
+                    mineral = Mineral.Mithril;
                     raport.MithrilMined++;
                 }
                 else if (miningChance > 5 && miningChance <= 20)
                 {
                     dwarf.BackPack[Mineral.Gold]++;
+
+                    mineral = Mineral.Gold;
                     raport.GoldMined++;
                 }
                 else if (miningChance > 20 && miningChance <= 55)
                 {
                     dwarf.BackPack[Mineral.Silver]++;
+
+                    mineral = Mineral.Silver;
                     raport.SilverMined++;
                 }
                 else
                 {
                     dwarf.BackPack[Mineral.TaintedGold]++;
+
+                    mineral = Mineral.TaintedGold;
                     raport.TaintedGoldMined++;
                 }
+
+                Console.WriteLine("Dwarf " + dwarf.DwarfType + " mined " + mineral);
             }
 
             return dwarf;

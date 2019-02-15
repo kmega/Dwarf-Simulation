@@ -4,9 +4,7 @@ namespace DwarfSimulation
 {
     internal class Work
     {
-        internal List<Dwarf> _dwarfsAfterWork = new List<Dwarf>();
-
-        internal List<Shaft> AddToShafts(List<Dwarf> dwarfsBeforeWork, List<Shaft> shafts)
+        internal List<Shaft> GoToShafts(List<Dwarf> dwarfsBeforeWork, List<Shaft> shafts)
         {
             foreach (var shaft in shafts)
             {
@@ -49,13 +47,15 @@ namespace DwarfSimulation
 
         internal List<Dwarf> RemoveFromShafts(List<Shaft> shafts)
         {
+            List<Dwarf> dwarfsAfterWork = new List<Dwarf>();
+
             foreach (var shaft in shafts)
             {
                 for (int index = 0; index < shaft.MaxInside; index++)
                 {
                     try
                     {
-                        _dwarfsAfterWork.Add(shaft.Miners[0]);
+                        dwarfsAfterWork.Add(shaft.Miners[0]);
                         shaft.Miners.RemoveAt(0);
                     }
                     catch
@@ -65,7 +65,7 @@ namespace DwarfSimulation
                 }
             }
 
-            return _dwarfsAfterWork;
+            return dwarfsAfterWork;
         }
     }
 }

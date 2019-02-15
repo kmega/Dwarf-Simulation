@@ -1,4 +1,6 @@
-﻿namespace DwarfSimulation
+﻿using System;
+
+namespace DwarfSimulation
 {
     internal class SuiciderWorkStrategy : IWork
     {
@@ -13,6 +15,16 @@
             }
 
             shaft.Collapsed = true;
+
+            Console.WriteLine("Dwarf " + DwarfType.Suicider + " collapsed shaft and killed:\n");
+
+            foreach (var miner in shaft.Miners)
+            {
+                if (miner.DwarfType != DwarfType.Suicider)
+                {
+                    Console.WriteLine("Dwarf " + miner.DwarfType);
+                }
+            }
 
             return shaft;
         }

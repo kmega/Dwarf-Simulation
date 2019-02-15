@@ -13,12 +13,12 @@ namespace DwarfSimulation
             _shafts = shafts;
             _dwarfsBeforeWork = dwarfs;
 
-             _dwarfsAfterWork = WorkStart(_dwarfsBeforeWork, _shafts, raport);
+             _dwarfsAfterWork = WorkInShafts(_dwarfsBeforeWork, _shafts, raport);
 
             return _dwarfsAfterWork;
         }
 
-        internal List<Dwarf> WorkStart(List<Dwarf> dwarfsBeforeWork, List<Shaft> shafts, Raport raport)
+        internal List<Dwarf> WorkInShafts(List<Dwarf> dwarfsBeforeWork, List<Shaft> shafts, Raport raport)
         {
             Work work = new Work();
 
@@ -30,7 +30,7 @@ namespace DwarfSimulation
                     return _dwarfsAfterWork;
                 }
 
-                shafts = work.AddToShafts(dwarfsBeforeWork, shafts);
+                shafts = work.GoToShafts(dwarfsBeforeWork, shafts);
 
                 shafts = work.MineForOre(shafts, raport);
 

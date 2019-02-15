@@ -12,6 +12,7 @@ namespace DwarfSimulation
 
         //location
         Hospital _hospital = new Hospital();
+        Mines _mines = new Mines();
         Graveyard _graveyard = new Graveyard();
         DiningRoom _diningRoom = new DiningRoom();
 
@@ -33,6 +34,7 @@ namespace DwarfSimulation
 
 
             //Mines
+            _mines.EnterMines(_dwarves, _shafts, _raport);
             //Guild
 
             //Graveyard
