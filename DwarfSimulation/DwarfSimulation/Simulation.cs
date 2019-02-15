@@ -11,7 +11,7 @@ namespace DwarfSimulation
         Raport _raport = new Raport();
 
         //location
-        Hospital _hospital = new Hospital();
+        Hospital _hospital = new Hospital(new Randomizer());
         Graveyard _graveyard = new Graveyard();
         DiningRoom _diningRoom = new DiningRoom();
 
@@ -29,7 +29,7 @@ namespace DwarfSimulation
         {
             //Hospital
             if (dayNumber != 0)
-            { _dwarves = _hospital.BornDwarf(_dwarves, _hospital.IsBorn(), _raport); }
+            { _dwarves = _hospital.BornDwarf(_dwarves, _raport); }
 
 
             //Mines

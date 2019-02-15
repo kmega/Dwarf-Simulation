@@ -1,11 +1,13 @@
 ﻿using NUnit.Framework;
 using DwarfSimulation;
 using System.Collections.Generic;
+using Moq;
 
 namespace HospitalTests
 {
     public class HospitalTests
     {
+        Randomizer randomizer = new Randomizer();
 
         List<Dwarf> CreateDwarves(int howManyDwarves)
         {
@@ -19,12 +21,14 @@ namespace HospitalTests
             //given
             List<Dwarf> dwarves = CreateDwarves(10);
             Assert.AreEqual(dwarves.Count, 10);
-            Hospital hospital = new Hospital();
+            Mock<IBornRandomizer> IsBorn = new Mock<IBornRandomizer>();
+            IsBorn.Setup(b => b.IsBorn()).Returns(true);
             Raport raport = new Raport();
             Assert.AreEqual(raport.TotalBorn, 0);
 
             //when
-            dwarves = hospital.BornDwarf(dwarves, true, raport);
+            Hospital hospital = new Hospital(IsBorn.Object);
+            dwarves = hospital.BornDwarf(dwarves, raport);
 
             //then
             Assert.AreEqual(dwarves.Count, 11);
@@ -37,16 +41,20 @@ namespace HospitalTests
             //given
             List<Dwarf> dwarves = CreateDwarves(10);
             Assert.AreEqual(dwarves.Count, 10);
-            Hospital hospital = new Hospital();
+            Mock<IBornRandomizer> IsBorn = new Mock<IBornRandomizer>();
+            IsBorn.Setup(b => b.IsBorn()).Returns(false);
             Raport raport = new Raport();
             Assert.AreEqual(raport.TotalBorn, 0);
 
             //when
-            dwarves = hospital.BornDwarf(dwarves, false, raport);
+            Hospital hospital = new Hospital(IsBorn.Object);
+            dwarves = hospital.BornDwarf(dwarves, raport);
 
             //then
             Assert.AreEqual(dwarves.Count, 10);
             Assert.AreEqual(raport.TotalBorn, 0);
         }
+
+
     }
 }
