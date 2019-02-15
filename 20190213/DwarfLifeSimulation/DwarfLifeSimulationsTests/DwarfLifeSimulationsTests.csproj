@@ -22,8 +22,4 @@
     <ProjectReference Include="..\DwarfLifeSimulation\DwarfLifeSimulation.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DwarfLifeSimulation\DwarfLifeSimulation.csproj" />
-  </ItemGroup>
-
 </Project>
