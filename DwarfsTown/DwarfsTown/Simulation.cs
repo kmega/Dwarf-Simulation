@@ -8,8 +8,9 @@ namespace DwarfsTown
     {
         public static void Run(City city)
         {
-            for (int i = 0; i < 30; i++)
-            {               
+            for (int i = 1; i <= 30; i++)
+            {
+                City.newsPaper.Add("\nDay "+ i +"\n");
                 //Get new dwarf -> 1% saboteur, 33% Father, 33% Single, 33% Lazy
                 city.hospital.BirthDwarf(city.dwarfs, City.randomizer);
                 //Dwarfs go to digging               
@@ -22,9 +23,18 @@ namespace DwarfsTown
                 city.bar.FeedDwarfs(city.dwarfs);
                 //Dwarfs go shopping
                 city.shop.DoShopping(city.dwarfs);
-                //Display raport from one day
-                Displayer.DisplayInformationAfterOneDay(City.newsPaper);
+                //Display raport from one day                
             }
+            EndOfSimulation();            
+        }
+
+        public static void EndOfSimulation()
+        {
+            City.newsPaper.Add("\nProgram: THE END OF SIMULATION");
+            Displayer.DisplayInformationAfterOneDay(City.newsPaper);
+            Console.WriteLine("\nClick any key to close the app");
+            Console.ReadKey();
+            Environment.Exit(0);
         }
 
     }

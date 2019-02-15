@@ -13,27 +13,20 @@ namespace DwarfsTown
         {
             foreach (Dwarf dwarf in dwarfs)
             {
-                ExtractRawMaterialFromBackpack(dwarfs);
-                AddSalaryToAccountOfDwarf(dwarfs);
+                ExtractRawMaterialFromBackpack(dwarf);
+                SalaryPerDay = 0;               
             }
             AddInformation("Bank", "Today all Dwarfs earn " + SalaryPerDayForAllDwarfs);
             SalaryPerDayForAllDwarfs = 0;
-
         }
-        private void AddSalaryToAccountOfDwarf(List <Dwarf> dwarfs)
-        {
-            foreach (Dwarf dwarf in dwarfs)
-            {
-                dwarf.BankAccount.Moneys = SalaryPerDay;
-                dwarf.Backpack.Materials.Clear();
-            }
-            SalaryPerDayForAllDwarfs += SalaryPerDay;
-            SalaryPerDay = 0;
+        private void AddSalaryToAccountOfDwarf(Dwarf dwarf)
+        {          
+            dwarf.BankAccount.Moneys = SalaryPerDay;
+            dwarf.Backpack.Materials.Clear();        
+            SalaryPerDayForAllDwarfs += SalaryPerDay;          
         }
-        public void ExtractRawMaterialFromBackpack(List <Dwarf> dwarfs)
-        {
-            foreach (Dwarf dwarf in dwarfs)
-            {
+        public void ExtractRawMaterialFromBackpack(Dwarf dwarf)
+        {          
                 if (dwarf.Backpack.Materials.Contains(Materials.Mithril))
                     CalculateValueOfMaterial(20);
                 if (dwarf.Backpack.Materials.Contains(Materials.Gold))
@@ -42,13 +35,13 @@ namespace DwarfsTown
                     CalculateValueOfMaterial(10);
                 if (dwarf.Backpack.Materials.Contains(Materials.DirtyGold))
                     CalculateValueOfMaterial(5);
-            }
+                AddSalaryToAccountOfDwarf(dwarf);
+
         }
         private void CalculateValueOfMaterial(int number)
         {                    
             SalaryPerDay +=number;            
         }
-
         public void AddInformation(string idBuilding, string message)
         {
             City.newsPaper.Add(idBuilding + ": " + message + ".");

@@ -24,7 +24,7 @@ namespace DwarfsTown
             List<Dwarf> dwarfsThatWasWorked = new List<Dwarf>();
 
             //Logg
-            City.newsPaper.Add("Mine - " + dwarfsThatShouldBeWorking.Count + " dwarfs come to mine");
+            City.newsPaper.Add("Mine: " + dwarfsThatShouldBeWorking.Count + " dwarfs come to mine.");
             //Prepare Mine on start new day -> setting shafts to not destroyed
             SetShaftsToNotDestroyed(shaft1, shaft2);
 
@@ -47,16 +47,26 @@ namespace DwarfsTown
                 //If both shaft are destroyed close the mine
                 if(shaft1.isExist == false && shaft2.isExist == false)
                 {
+                    City.newsPaper.Add("Mine: All shafts are destroyed, dwarfs must to leave the mine.");
                     CloseTheMine(dwarfsThatShouldBeWorking, dwarfsThatWasWorked);
                     return;
                 }
                 
             }
 
+            //End the simulation when all dwarfs died
+            if (dwarfsThatWasWorked.Count == 0)
+            {
+                City.newsPaper.Add("Mine: All dwarfs died.");               
+                Simulation.EndOfSimulation();
+            }
+
+            
+
             numbersOfDiggedMaterials = foreman.SumAllDiggedMaterials(dwarfsThatWasWorked);
 
             //Logg
-            City.newsPaper.Add("Mine - " + " All dwarfs digged: " + numbersOfDiggedMaterials + " raw materials");
+            City.newsPaper.Add("Mine: " + " All dwarfs digged: " + numbersOfDiggedMaterials + " raw materials.");
 
             //End minning, clear list dwarfs that was working and assign this dwarfs to begining list dwarfs that will be working and still alive
             CloseTheMine(dwarfsThatShouldBeWorking, dwarfsThatWasWorked);
@@ -71,6 +81,7 @@ namespace DwarfsTown
             if (shaft2.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
             {
                 shaft2.isExist = false;
+                City.newsPaper.Add("Mine: Shaft exploded!");
                 foreman.CallToGravedigger(shaft2.dwarfs);
 
                 return;
@@ -92,6 +103,7 @@ namespace DwarfsTown
             if (shaft1.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
             {
                 shaft1.isExist = false;
+                City.newsPaper.Add("Mine: Shaft exploded!");
                 foreman.CallToGravedigger(shaft1.dwarfs);
 
                 return;

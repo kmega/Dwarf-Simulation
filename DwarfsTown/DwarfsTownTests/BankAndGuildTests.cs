@@ -16,10 +16,9 @@ namespace DwarfsTownTests
         {
             List<Dwarf> dwarfs = new List<Dwarf> { new Dwarf(TypeEnum.Father)};
             dwarfs[0].Backpack.Materials.Add(Materials.Gold); 
-            //dwarf 0 have a gold in backpack
 
             decimal expected = 15;
-            bank.ExtractRawMaterialFromBackpack(dwarfs);
+            bank.ExtractRawMaterialFromBackpack(dwarfs[0]);
             decimal result = bank.SalaryPerDay;
             Assert.AreEqual(expected, result);
         }
@@ -36,6 +35,17 @@ namespace DwarfsTownTests
             decimal result = dwarfs[0].BankAccount.Moneys;
             Assert.AreEqual(expected, result);
 
+        }
+        [TestMethod]
+        public void IsGuildEarnMoney()
+        {
+            List<Dwarf> dwarfs = new List<Dwarf> { new Dwarf(TypeEnum.Father) };
+            dwarfs[0].BankAccount.Moneys = 20;
+            guild.GuildMoney += 0.25m * dwarfs[0].BankAccount.Moneys;
+            decimal expected = 5;
+
+            decimal result = guild.GuildMoney;
+            Assert.AreEqual(expected, result);
         }
     }
 }

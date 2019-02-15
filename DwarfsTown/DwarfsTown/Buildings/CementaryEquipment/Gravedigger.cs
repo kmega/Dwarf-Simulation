@@ -13,7 +13,8 @@ namespace DwarfsTown
 
         private static void FuneralDwarfs(List<Dwarf> killedDwarfs)
         {
-            City.newsPaper.Add("Cementary - " + killedDwarfs.Count + " dwarfs died");
+            if (killedDwarfs.Count == 0) return;
+            City.newsPaper.Add("Cementary: " + killedDwarfs.Count + " dwarfs died.");
 
             foreach (var dwarf in killedDwarfs)
             {
