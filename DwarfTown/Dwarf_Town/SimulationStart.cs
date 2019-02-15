@@ -1,7 +1,5 @@
 ﻿using Dwarf_Town.Locations;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf_Town
 {
@@ -17,9 +15,6 @@ namespace Dwarf_Town
 
             for (int i = 0; i < simulationStartConditions.Rounds; i++)
             {
-
-
-
                 UpdateSimulationState(simulationState);
             }
         }

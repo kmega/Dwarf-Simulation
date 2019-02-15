@@ -4,9 +4,6 @@ using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations;
 using Moq;
 using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf_TownTests.Locations
 {
@@ -25,7 +22,6 @@ namespace Dwarf_TownTests.Locations
             var result = hospital.Generate();
             //then
             Assert.AreEqual(expected.DwarfType, result.DwarfType);
-
         }
 
         [Test]
@@ -40,7 +36,6 @@ namespace Dwarf_TownTests.Locations
             var result = hospital.Generate();
             //then
             Assert.AreEqual(expected.DwarfType, result.DwarfType);
-
         }
 
         [Test]
@@ -55,7 +50,6 @@ namespace Dwarf_TownTests.Locations
             var result = hospital.Generate();
             //then
             Assert.AreEqual(expected.DwarfType, result.DwarfType);
-
         }
 
         [Test]
@@ -70,7 +64,6 @@ namespace Dwarf_TownTests.Locations
             var result = hospital.Generate();
             //then
             Assert.AreEqual(expected.DwarfType, result.DwarfType);
-
         }
     }
 }

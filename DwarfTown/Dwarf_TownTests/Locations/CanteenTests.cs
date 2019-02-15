@@ -32,7 +32,7 @@ namespace Dwarf_TownTests.Locations
             Canteen canteen = new Canteen(10);
             var dwarves = new List<Dwarf>()
             {
-                new Dwarf(DwarfType.FATHER)                
+                new Dwarf(DwarfType.FATHER)
             };
             //when
             canteen.SpendFoodRations(dwarves);
