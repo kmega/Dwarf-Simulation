@@ -4,6 +4,11 @@ using System.Collections.Generic;
 using System.Text;
 using Moq;
 using DwarfLifeSimulation.Locations.Shops;
+using DwarfLifeSimulation.Locations.Banks;
+using DwarfLifeSimulation.Dwarves;
+using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Dwarves.BuyStrategies;
+using DwarfLifeSimulation.Dwarves.WorkStrategies;
 using DwarfLifeSimulation.Enums;
 using System.Linq;
 
