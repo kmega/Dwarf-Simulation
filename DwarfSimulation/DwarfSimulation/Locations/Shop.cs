@@ -58,7 +58,7 @@ namespace DwarfSimulation
             shopDailyStats.Add("### Shop ###");
             shopDailyStats.Add($"Food sold: {_soldFood}.");
             shopDailyStats.Add($"Alcohol sold: {_soldAlcohol}.");
-            shopDailyStats.Add($"Shop earn: {_moneyEarned} $.");
+            shopDailyStats.Add($"Shop earn: {Decimal.Round(_moneyEarned,2)} $.");
             outputer.Display(shopDailyStats);
         }
 

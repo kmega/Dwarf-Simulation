@@ -62,7 +62,7 @@ namespace DwarfSimulation
             Outputer outputer = new Outputer();
             guildpDailyStats.Add("");
             guildpDailyStats.Add("### Guild ###");
-            guildpDailyStats.Add($"Taxed money: {_taxedMoney}.");
+            guildpDailyStats.Add($"Taxed money: {Decimal.Round(_taxedMoney,2)}.");
             outputer.Display(guildpDailyStats);
         }
 
