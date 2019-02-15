@@ -62,9 +62,6 @@ namespace DwarfLifeSimulation.Locations.Banks
             var tax = income * 0.23m;
             generalAccount.DailyIncome += tax;
             accounts[id].DailyIncome = (income - tax);
-            // generalAccount.OverallMoney += tax;
-            // accounts[id].OverallMoney += (income - tax);
-            // accounts[id].DailyIncome = 0.0m;
         }
 
         public int CreateAccount()
