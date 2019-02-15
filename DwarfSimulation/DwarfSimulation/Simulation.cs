@@ -43,6 +43,7 @@ namespace DwarfSimulation
             if (!_diningRoom.CanEat(_dwarves, _raport)) return false;
             _diningRoom.DwarfsEat(_dwarves, _raport);
 
+
             //Shop
 
 
