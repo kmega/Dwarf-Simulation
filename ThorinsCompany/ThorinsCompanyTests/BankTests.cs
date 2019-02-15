@@ -7,6 +7,8 @@ namespace ThorinsCompanyTests
 {
     public class BankTests
     {
+        Bank bank = new Bank();
+
         [SetUp]
         public void Setup()
         {
@@ -68,7 +70,16 @@ namespace ThorinsCompanyTests
                 dwarf.ShowDiggedMaterials().Add(Material.Mithril, 1);
             }
 
+            //when
+            bank.ExchangeMaterialsForMoneyFromAllDwarves(dwarves);
 
+            //then
+            foreach (var dwarf in dwarves)
+            {
+                Assert.IsTrue(bank.CheckMoneyOnAccount(dwarf.accountID) > 0);
+            }
         }
+
+
     }
 }
