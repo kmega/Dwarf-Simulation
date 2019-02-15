@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfSimulation
 {
-    internal class Randomizer : IMineralsPrices
+    internal class Randomizer : IMineralsPrices, IBornRandomizer
     {
         internal int ReturnFromTo(int first, int last)
         {
@@ -58,6 +58,13 @@ namespace DwarfSimulation
             {
                 return price = 2;
             }
+        }
+
+        public bool IsBorn()
+        {
+            Randomizer random = new Randomizer();
+            int chance = random.ReturnFromTo(1, 100);
+            return (chance == 1);
         }
     }
 }

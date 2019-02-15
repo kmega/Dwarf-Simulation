@@ -7,9 +7,16 @@ namespace DwarfSimulation
 {
     internal class Hospital
     {
-        internal List<Dwarf> BornDwarf(List<Dwarf> dwarves, bool IsBorn, Raport raport)
+        bool _IsBorn;
+
+        public Hospital(IBornRandomizer randomizer)
         {
-            if (IsBorn)
+            _IsBorn = randomizer.IsBorn();
+        }
+
+        internal List<Dwarf> BornDwarf(List<Dwarf> dwarves, Raport raport)
+        {
+            if (_IsBorn)
             {
                 List<Dwarf> BornDwarf = new List<Dwarf>();
                 Builder builder = new Builder();
@@ -22,13 +29,6 @@ namespace DwarfSimulation
                 return dwarves;
             }
             return dwarves;
-        }
-
-        internal bool IsBorn()
-        {
-            Randomizer random = new Randomizer();
-            int chance = random.ReturnFromTo(1, 100);
-            return (chance == 1);
         }
 
         internal void Display(List<Dwarf> BornDwarf)
