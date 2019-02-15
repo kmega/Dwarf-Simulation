@@ -16,7 +16,6 @@
   <ItemGroup>
     <Folder Include="CanteenTests\" />
     <Folder Include="DwarvesTests\" />
-    <Folder Include="GuildTests\" />
   </ItemGroup>
 
   <ItemGroup>

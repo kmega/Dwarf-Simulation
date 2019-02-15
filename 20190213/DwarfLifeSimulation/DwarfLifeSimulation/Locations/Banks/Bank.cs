@@ -76,7 +76,7 @@ namespace DwarfLifeSimulation.Locations.Banks
 
         public void PayIntoAccount(int id, decimal income)
         {
-            accounts[id].DailyIncome = income;
+            accounts[id].DailyIncome += income;
         }
 
         public void TransferSavings()
