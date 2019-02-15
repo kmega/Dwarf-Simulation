@@ -8,15 +8,20 @@ namespace ThorinsCompany
         public DwarfType DwarfType;
         public IWorkingStrategy WorkingStrategy;
         public IShoppingStrategy ShoppingStrategy;
-        private Dictionary<Material, int> _materials = new Dictionary<Material, int>();
+        private List<Material> _materials = new List<Material>();
+        private BankAccount _bankAccount;
 
         public Dwarf(DwarfType dwarfType, IShoppingStrategy shoppingStrategy, IWorkingStrategy workingStrategy)
         {
             DwarfType = dwarfType;
             ShoppingStrategy = shoppingStrategy;
             WorkingStrategy = workingStrategy;
-            accountID = AccountCreator.CreateNewAccountWithUniqueID();
+            accountID = IDCreator.GetUniqueID();
+            _bankAccount = AccountCreator.CreateNewAccount(accountID);
 
         }
+
+        public List<Material> ShowDiggedMaterials() => _materials;
+        public BankAccount GetBankAccount() => _bankAccount;
     }
 }

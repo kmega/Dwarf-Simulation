@@ -17,7 +17,7 @@ namespace ThorinsCompany
                 catch (Exception)
                 {
 
-                    throw;
+                    
                 }
             }
         }

@@ -15,24 +15,20 @@ namespace ThorinsCompany
         
         public Mine()
         {
-            var AllShafts = Enumerable.Range(0, 2).Select(x => new Shaft()).ToList();
+            for (int i = 0; i < 2; i++)
+            {
+                AllShafts.Add(new Shaft());
+            }
         }
 
         public void PerformMining(List<Dwarf> dwarves)
         {
-            var dwarvesInShaft = Foreman.SendToShafts(dwarves);
+            Foreman.ManageWorkingDwarves(dwarves, AllShafts);
 
-            foreach (var shaft in AllShafts)
-            {
-                shaft.PerformAction();
-            }
-            foreach (var dwarf in dwarves)
-            {
-                dwarf.WorkingStrategy.StartWorking();
             }
         }
 
 
 
     }
-}
+
