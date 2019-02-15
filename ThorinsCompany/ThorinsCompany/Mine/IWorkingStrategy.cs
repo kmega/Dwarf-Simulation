@@ -2,6 +2,6 @@
 {
     public interface IWorkingStrategy
     {
-        void StartWorking();
+        void StartWorking(Shaft shaft);
     }
 }

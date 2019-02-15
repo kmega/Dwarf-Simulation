@@ -5,29 +5,36 @@ namespace ThorinsCompany
 {
     public class Foreman
     {
-        private int _avaibleShafts = 0;
-        public void ManageWorkingDwarves(List<Dwarf> dwarves, List<Shaft> allShafts)
+        public const int shaftCapacity = 5;
+        public List<WorkingGroup> DivideDwarvesIntoWorkingGroups(List<Dwarf> dwarves)
         {
-            for (int i = 0; i < dwarves.Count; i+=5)
+            List<WorkingGroup> workingGroups = new List<WorkingGroup>();
+            if(dwarves.Count > 0)
             {
-                try
+                int numberOfWorkingGroups = dwarves.Count / shaftCapacity;
+                if (dwarves.Count % shaftCapacity != 0) numberOfWorkingGroups++;
+                for (int i = 0, dwarfIndex = 0; i < numberOfWorkingGroups;i++)
                 {
-
-                }
-                catch (Exception)
-                {
-
-                    throw;
+                    List<Dwarf> group = new List<Dwarf>();
+                    while (group.Count < shaftCapacity && dwarfIndex < dwarves.Count)
+                    {
+                        group.Add(dwarves[dwarfIndex]);
+                        dwarfIndex++;
+                    }
+                    workingGroups.Add(new WorkingGroup(group.ToArray()));
                 }
             }
+            return workingGroups;
         }
-
-        private void GetNumberOfAvaibleShafts(List<Shaft> allShafts)
+    
+        private int GetNumberOfAvaibleShafts(Shaft[] allShafts)
         {
+            int availableShafts = 0;
             foreach (var shaft in allShafts)
             {
-                _avaibleShafts = (shaft.IsAvaible) ? _avaibleShafts + 1 : _avaibleShafts;
+                availableShafts += (shaft.IsAvailable) ? 1 : 0;
             }
+            return availableShafts;
         }
     }
 }

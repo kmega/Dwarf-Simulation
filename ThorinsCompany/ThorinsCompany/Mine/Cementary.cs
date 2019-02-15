@@ -5,15 +5,15 @@ namespace ThorinsCompany
 {
     public class Cementary
     {
-        public static List<Dwarf> DailyDeadDwarves = new List<Dwarf>();
-        public static List<Dwarf> AllDeadDwarves = new List<Dwarf>();
-        public static void BurryDeadDwarves(List<Dwarf> dwarvesThatDiedInShaft)
+        public static List<Dwarf> DeadDwarves = new List<Dwarf>();
+        public static void ReceiveDeadWorkers(WorkingGroup deadGroup)
         {
-            foreach (var dwarf in dwarvesThatDiedInShaft)
+            foreach(Dwarf dwarf in deadGroup.Workers)
             {
-                DailyDeadDwarves.Add(dwarf);
-                AllDeadDwarves.Add(dwarf);
+                // dwarf.IsAlive = false / removeDwarf
             }
         }
+
+
     }
 }
