@@ -33,7 +33,7 @@ namespace DwarfSimulation
 
         internal Dwarf MineOre(Dwarf dwarf, int amountOfWork, int miningChance, Raport raport)
         {
-            Console.Write("Dwarf " + dwarf.ID + " - " + dwarf.DwarfType + " mined: ");
+            Console.Write("Dwarf " + dwarf.ID + " " + dwarf.DwarfType + "\tmined: ");
 
             Mineral mineral;
 
