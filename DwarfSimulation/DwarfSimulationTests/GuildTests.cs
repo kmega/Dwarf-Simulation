@@ -85,7 +85,7 @@ namespace GuildTests
             Guild guild = new Guild(calculatePrices.Object);
 
             // WHEN
-            guild.ExchangeDwarvesMineralsToMoney(listOfDwarves);
+            guild.ExchangeDwarvesMineralsAndGiveThemMoney(listOfDwarves);
 
             // THEN
             Assert.AreEqual(46.5M , listOfDwarves[0].Wallet);
@@ -111,7 +111,7 @@ namespace GuildTests
             Guild guild = new Guild(calculatePrices.Object);
 
             // WHEN
-            guild.ExchangeDwarvesMineralsToMoney(listOfDwarves);
+            guild.ExchangeDwarvesMineralsAndGiveThemMoney(listOfDwarves);
 
             // THEN
             decimal taxedMoney = guild.TotalTaxedMoneyValue();

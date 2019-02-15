@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DwarfSimulation
 {
-    class Simulation
+    internal class Simulation
     {
         List<Dwarf> _dwarves = new List<Dwarf>();
         List<Shaft> _shafts = new List<Shaft>();
@@ -14,13 +14,18 @@ namespace DwarfSimulation
         Hospital _hospital = new Hospital();
         Graveyard _graveyard = new Graveyard();
         DiningRoom _diningRoom = new DiningRoom();
+        Shop _shop = new Shop();
+        Guild guild = new Guild(new Randomizer());
+    
 
         internal void Start()
         {
             Prepare();
             for (int i = 0; i < 30; i++)
             {
-                if(!Day(i)) break;
+                if (!Day(i)) break;
+               
+
             }
             _raport.Display();
         }

@@ -12,9 +12,7 @@ namespace DwarfSimulation
         internal decimal _silverPrice;
         internal decimal _mithrilPrice;
         internal decimal _taintedGoldPrice;
-
-
-
+                
         public Guild(IMineralsPrices randomizer)
         {
             _goldPrice = randomizer.ReturnMineralPrice(Mineral.Gold);
@@ -23,7 +21,7 @@ namespace DwarfSimulation
             _taintedGoldPrice = randomizer.ReturnMineralPrice(Mineral.TaintedGold);
         }
 
-        internal void ExchangeDwarvesMineralsToMoney(List<Dwarf> listOfDwarfs)
+        internal void ExchangeDwarvesMineralsAndGiveThemMoney(List<Dwarf> listOfDwarfs)
         {
             foreach (var dwarf in listOfDwarfs)
             {
