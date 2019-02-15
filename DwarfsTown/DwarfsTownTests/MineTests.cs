@@ -52,5 +52,19 @@ namespace DwarfsTownTests
             //Then
             Assert.AreEqual(shaft.dwarfs.Count, 0);
         }
+        [TestMethod]
+        public void AfterStartMineShouldReturn6DwarfsWhenOnIndexNumber3DwarfsIsSabouteur()
+        {
+            //Given
+            City city = new City();
+
+            city.dwarfs.Insert(2, new Dwarf(TypeEnum.Saboteur));
+
+            //When
+            city.mine.StartWorking(city.dwarfs);
+
+            //Then
+            Assert.AreEqual(city.dwarfs.Count, 6);
+        }
     }
 }

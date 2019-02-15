@@ -14,6 +14,8 @@ namespace DwarfsTown
                 shaft1.dwarfs.Add(dwarf);
             }
 
+
+
             //Remove from dwarfs who should be working sended dwarfs
             dwarfsThatShouldBeWorking.RemoveAll(x => shaft1.dwarfs.Contains(x));
 
