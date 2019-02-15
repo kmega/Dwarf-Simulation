@@ -37,6 +37,7 @@ namespace DwarfSimulation
             //Guild
             Guild guild = new Guild(randomizer);
             guild.ExchangeDwarvesMineralsAndGiveThemMoney(_dwarves);
+            guild.ClearBackpacks(_dwarves);
             guild.Display();
             guild.UpdateSimulationRaport(_raport);
 
