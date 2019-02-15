@@ -7,14 +7,18 @@ namespace DwarfLifeSimulation.Randomizer.HitsRandomizer
 {
     public class HitsGenerationStrategy :IHitsRandomizer
     {
-        public int HowManyHits(int min = 1, int max = 3)
+        private IRandomizer randomizer;
+
+        public HitsGenerationStrategy()
         {
-            return Generate(min,max);
+            randomizer = new Randomizer();
         }
 
-        public int Generate(int minValue, int maxValue)
+        public int HowManyHits()
         {
-            return new Random().Next(minValue, maxValue);
+            return randomizer.Generate(1, 3);
         }
+
+        
     }
 }

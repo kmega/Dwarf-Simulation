@@ -1,6 +1,6 @@
 namespace DwarfLifeSimulation.Randomizer.DwarfNameRandomizer
 {
-    public interface IDwarfNameRandomizer : IRandomizer
+    public interface IDwarfNameRandomizer
     {
         string GiveMeDwarfName();
     }

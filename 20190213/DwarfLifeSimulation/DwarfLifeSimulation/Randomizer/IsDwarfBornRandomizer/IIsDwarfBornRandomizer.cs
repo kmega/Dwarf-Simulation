@@ -1,6 +1,6 @@
 namespace DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer
 {
-    public interface IIsDwarfBornRandomizer : IRandomizer
+    public interface IIsDwarfBornRandomizer
     {
         bool IsDwarfBorn(int maxValue = 100);
     }

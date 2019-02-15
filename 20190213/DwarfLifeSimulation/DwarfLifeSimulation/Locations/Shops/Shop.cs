@@ -12,16 +12,18 @@ namespace DwarfLifeSimulation.Locations.Shops
     {
 		private int _bankAccountId;
 
+
 		public Dictionary<ProductType, decimal> _shopState = new Dictionary<ProductType, decimal>();
 		
 		public Shop()
 		{
 			_shopState.Add(ProductType.Food, 0);
 			_shopState.Add(ProductType.Alcohol, 0);
+			_shopState.Add(ProductType.None, 0);
 			_bankAccountId = Bank.Instance.CreateAccount();
 		}
 
-		public void ServeAllCustomers(IEnumerable<IBuy> customers)
+		public void ServeAllCustomers(List<IBuy> customers)
 		{
 			foreach (IBuy customer in customers)
 			{
@@ -30,12 +32,11 @@ namespace DwarfLifeSimulation.Locations.Shops
 			Bank.Instance.PayTax(_bankAccountId);
 		}
 
-		private void ServeSingleCustomer(IBuy customer)
+		public void ServeSingleCustomer(IBuy customer)
 		{
 			var product = customer.Buy(_bankAccountId);
 			decimal recipe = product._amount;
 			ProductType productType = product._productType;
-			
 			_shopState[productType] += recipe;
 		}
 	}

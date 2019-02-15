@@ -7,6 +7,13 @@ namespace DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer
 {
     public class DwarfTypeGenerationStrategy : IDwarfTypeRandomizer
     {
+        private IRandomizer randomizer;
+
+        public DwarfTypeGenerationStrategy()
+        {
+            randomizer = new Randomizer();
+        }
+
         public DwarfType GiveMeDwarfType(bool omitSuicider = false)
         {
             int maxValue = 100;
@@ -14,7 +21,7 @@ namespace DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer
             if (omitSuicider)
                 maxValue--;
 
-            int randomNumber = Generate(1,maxValue);
+            int randomNumber = randomizer.Generate(1,maxValue);
             
             switch (randomNumber)
             {
@@ -29,11 +36,6 @@ namespace DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer
                 default:
                     return DwarfType.None;
             }
-        }
-
-        public int Generate(int minValue, int maxValue)
-        {
-            return new Random().Next(minValue, maxValue);
         }
     }
 }

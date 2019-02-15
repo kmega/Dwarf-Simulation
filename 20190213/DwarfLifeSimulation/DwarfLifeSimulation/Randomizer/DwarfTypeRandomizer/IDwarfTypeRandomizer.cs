@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer
 {
-    public interface IDwarfTypeRandomizer : IRandomizer
+    public interface IDwarfTypeRandomizer
     {
         DwarfType GiveMeDwarfType(bool omitSuicider = false);
     }

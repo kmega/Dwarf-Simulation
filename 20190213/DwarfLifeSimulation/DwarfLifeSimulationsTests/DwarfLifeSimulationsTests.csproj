@@ -15,12 +15,8 @@
 
   <ItemGroup>
     <Folder Include="CanteenTests\" />
-    <Folder Include="MineTests\" />
+    <Folder Include="DwarvesTests\" />
     <Folder Include="GuildTests\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\DwarfLifeSimulation\DwarfLifeSimulation.csproj" />
   </ItemGroup>
 
   <ItemGroup>

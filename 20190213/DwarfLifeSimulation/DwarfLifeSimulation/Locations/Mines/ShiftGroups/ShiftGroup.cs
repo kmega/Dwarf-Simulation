@@ -22,16 +22,16 @@ namespace DwarfLifeSimulation.Locations.Mines.ShiftGroups
                 member.Work(shaft);
                 member._hasWorked = true;
             }
-            
-        }
-        private void CheckIfWorkersDie(List<IWork> workers, Shaft shaft)
-        {
-            if (shaft.ShaftStatus == ShaftStatus.Destroyed)
+            if(shaft.ShaftStatus == ShaftStatus.Destroyed)
             {
-                foreach (var member in Members)
-                {
-                    member._isAlive = false;
-                }
+                KillWorkers(shaft);
+            }
+        }
+        private void KillWorkers(Shaft shaft)
+        {
+            foreach (var member in Members)
+            {
+                member._isAlive = false;
             }
         }
     }
