@@ -7,6 +7,7 @@ namespace DwarfsTown
         static void Main(string[] args)
         {
             Simulation.Run(Configurator.PrepareCityToSimulation());
+            Console.ReadKey();
         }
     }
 }

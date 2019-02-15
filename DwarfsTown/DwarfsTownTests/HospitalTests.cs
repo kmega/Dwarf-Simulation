@@ -8,8 +8,7 @@ namespace DwarfsTownTests
 {
     [TestClass]
     public class HospitalTests
-    {
-        Dwarf dwarf;
+    {        
         City city = new City();
 
         [TestMethod]
@@ -21,10 +20,22 @@ namespace DwarfsTownTests
             List<Dwarf> dwarfs = new List<Dwarf>();
             Hospital hospital = new Hospital(dwarfs);
             hospital.BirthDwarf(dwarfs, mock.Object);
+
             int expected = 11;
             int result = dwarfs.Count();
 
             Assert.AreEqual(expected,result);
+        }
+        [TestMethod]
+        public void IsBorn10Dwarfs()
+        {
+            List<Dwarf> dwarfs = new List<Dwarf>();
+            Hospital hospital = new Hospital(dwarfs);
+            
+            int expected = 10;
+            int result = dwarfs.Count();
+
+            Assert.AreEqual(expected, result);
         }
     }
 }

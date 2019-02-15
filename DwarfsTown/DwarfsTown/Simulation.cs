@@ -9,7 +9,8 @@ namespace DwarfsTown
         public static void Run(City city)
         {
             for (int i = 0; i < 30; i++)
-            {               
+            {
+                City.newsPaper.Add("\nDay "+ i +"\n");
                 //Get new dwarf -> 1% saboteur, 33% Father, 33% Single, 33% Lazy
                 city.hospital.BirthDwarf(city.dwarfs, City.randomizer);
                 //Dwarfs go to digging

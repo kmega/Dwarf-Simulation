@@ -16,7 +16,6 @@ namespace DwarfsTownTests
         {
             List<Dwarf> dwarfs = new List<Dwarf> { new Dwarf(TypeEnum.Father)};
             dwarfs[0].Backpack.Materials.Add(Materials.Gold); 
-            //dwarf 0 have a gold in backpack
 
             decimal expected = 15;
             bank.ExtractRawMaterialFromBackpack(dwarfs[0]);

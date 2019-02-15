@@ -40,7 +40,16 @@ namespace DwarfsTownTests
             bar.FeedDwarfs(dwarfs);
             int result = bar.SupplyOfFood;
             Assert.AreEqual(expected, result);
-
+        }
+        [TestMethod]
+        public void IsSupplyDeliveryComes()
+        {
+            bar.SupplyOfFood = 3;
+            List<Dwarf> dwarfs = new List<Dwarf> { new Dwarf(TypeEnum.Single) };
+            int expected = 32;
+            bar.FeedDwarfs(dwarfs);
+            int result = bar.SupplyOfFood;
+            Assert.AreEqual(expected, result);
         }
     }
 }

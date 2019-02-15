@@ -19,6 +19,7 @@ namespace DwarfsTown
             {
                 AddInformation("Bar","The Simulation is over!");
                 Console.WriteLine("THE END OF SIMULATION");
+                EndOfSimulation();
             }
             else if (SupplyOfFood < 10 && SupplyOfFood >=0)
             {
@@ -30,6 +31,13 @@ namespace DwarfsTown
                 AddInformation("Bar", "All Dwarfs eat a dinner.");
             }
         }
+
+        private void EndOfSimulation()
+        {
+            while (true)
+                Console.ReadKey();
+        }
+
         public void AddInformation(string idBuilding, string message)
         {
             City.newsPaper.Add(idBuilding + ": " + message);
