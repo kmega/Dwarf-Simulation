@@ -26,7 +26,7 @@ namespace DwarfLifeSimulation.Locations.Banks
             accounts = new Dictionary<int, BankAccount>();
             generalAccount = new BankAccount();
         }
-        private static Bank instance = null;
+        protected static Bank instance = null;
 
         public static Bank Instance
         {
