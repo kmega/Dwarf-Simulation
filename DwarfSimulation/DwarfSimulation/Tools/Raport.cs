@@ -24,5 +24,8 @@
         internal int FoodBought { get; set; } = 0;
         internal int AlcoholBought { get; set; } = 0;
         internal decimal ShopEarned { get; set; } = 0.0m;
+
+        internal void Display()
+        { }
     }
 }

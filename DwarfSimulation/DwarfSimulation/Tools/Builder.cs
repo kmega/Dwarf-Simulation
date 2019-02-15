@@ -4,15 +4,14 @@ namespace DwarfSimulation
 {
     internal class Builder
     {
-        List<Dwarf> listOfDwarves = new List<Dwarf>();
-        Randomizer randomizer = new Randomizer();
+        Randomizer _randomizer = new Randomizer();
 
         internal List<Dwarf> CreateDwarves(int dwarfsNumber)
         {
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < dwarfsNumber; i++)
             {
-                dwarves.Add(CreateDwarf(randomizer.ReturnDwarfType()));
+                dwarves.Add(CreateDwarf(_randomizer.ReturnDwarfType()));
             }
             return dwarves;
         }
@@ -59,6 +58,17 @@ namespace DwarfSimulation
                     break;
             }
             return dwarf;
+        }
+
+        internal List<Shaft> CreateShafts(int shaftsNumber)
+        {
+            List<Shaft> shafts = new List<Shaft>();
+
+            for (int i = 0; i < shaftsNumber; i++)
+            {
+                shafts.Add(new Shaft());
+            }
+            return shafts;
         }
     }
 }
