@@ -16,11 +16,9 @@ namespace DwarfLifeSimulationsTests.ShopTests
 {
 	public class BankMock : Bank
 	{
-		private static Bank instance = null;
-
 		public static void ResetInstace()
 		{
-			instance = new BankMock();
+			instance = null;
 		}
 	}
 
@@ -70,7 +68,7 @@ namespace DwarfLifeSimulationsTests.ShopTests
 			BankMock.ResetInstace();
 			Dwarf testDwarf = new Dwarf("Gloin", DwarfType.Father, new StandardWorkStrategy(), new BuyFoodStrategy());
 			Shop shop = new Shop();
-			BankMock.Instance.PayIntoAccount(1, 100m);
+			Bank.Instance.PayIntoAccount(1, 100m);
 
 			//when
 			shop.ServeSingleCustomer(testDwarf);
