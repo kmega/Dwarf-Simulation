@@ -83,24 +83,71 @@ namespace DwarfLifeSimulationsTests.BankTests
             {
                 if(account.Key % 2 == 0)
                     expected += 150m;
-                Assert.AreEqual(account.Value.DailyIncome, expected);
+                Assert.AreEqual(bankMock.GetDailyIncome(account.Key), expected);
             }
         }
 
-        [Test]
-        public void BankCollectTaxes()
+        [TestCase(150, 115.5)]
+        [TestCase(200, 154)]
+        [TestCase(250, 192.5)]
+        [TestCase(300, 231)]
+        [TestCase(350, 269.5)]
+        [TestCase(400, 308)]
+        [TestCase(450, 346.50)]
+        [TestCase(500, 385)]
+        [TestCase(550, 423.5)]
+        [TestCase(600, 462)]
+        public void BankCollectTaxes(decimal actual, decimal expected)
         {
             // given
-            var assets = 150m;
-            var expected = 115.5m;
+            accounts = new Dictionary<int, BankAccount>();
+            accounts.Add(1, new BankAccount());
+            accounts[1].DailyIncome = actual;
+            bankAccount = new BankAccount();
+            bankMock = new BankMock(accounts, bankAccount);
+
+            // when
+            bankMock.PayTax(1);
+
+            // then
+            Assert.AreEqual(bankAccount.OverallMoney, actual * 0.23m);
+            Assert.AreEqual(accounts[1].OverallMoney, expected);
+        }
+        
+        [Test]
+        public void BankCreated15AccountsAndCheckTheirIds()
+        {
+            // given
+            accounts = new Dictionary<int, BankAccount>();
+            bankAccount = new BankAccount();
+            bankMock = new BankMock(accounts, bankAccount);
+
+            // when
+            for (int i = 1; i <= 15; i++)
+            {
+                bankMock.CreateAccount();
+                accounts[i].DailyIncome = i;
+            }
+
+            // then
+            Assert.IsTrue(accounts.Count == 15);
+            for (int i = 1; i <= 15; i++)
+                Assert.AreEqual(accounts[i].DailyIncome, i);
+        }
+
+        [Test]
+        public void CheckIfSumOfCollectTaxesAre()
+        {
+            // given
+            var actual = 150m;
+            var expected = 862.5m;
             accounts = new Dictionary<int, BankAccount>();
             for (int i = 1; i <= 10; i++)
             {
                 accounts.Add(i, new BankAccount());
-                accounts[i].DailyIncome = assets;
-                assets += 50m;
+                accounts[i].DailyIncome = actual;
+                actual += 50m;
             }
-
             bankAccount = new BankAccount();
             bankMock = new BankMock(accounts, bankAccount);
 
@@ -109,23 +156,7 @@ namespace DwarfLifeSimulationsTests.BankTests
                 bankMock.PayTax(account.Key);
 
             // then
-            Assert.AreEqual(bankAccount.OverallMoney, 862.5m);
-            foreach(var account in accounts)
-            {
-                Assert.AreEqual(account.Value.OverallMoney, expected);
-                expected += 38.5m;
-            }
-            // Assert.AreEqual(accounts[1].OverallMoney, 115.5m);
-            // Assert.AreEqual(accounts[2].OverallMoney, 154m);
-            // Assert.AreEqual(accounts[3].OverallMoney, 192.5m);
-            // Assert.AreEqual(accounts[4].OverallMoney, 231m);
-            // Assert.AreEqual(accounts[5].OverallMoney, 269.5m);
-            // Assert.AreEqual(accounts[6].OverallMoney, 308m);
-            // Assert.AreEqual(accounts[7].OverallMoney, 346.5m);
-            // Assert.AreEqual(accounts[8].OverallMoney, 385m);
-            // Assert.AreEqual(accounts[9].OverallMoney, 423.5m);
-            // Assert.AreEqual(accounts[10].OverallMoney, 462m);
+            Assert.AreEqual(bankAccount.OverallMoney, expected);
         }
-        
     }
 }
