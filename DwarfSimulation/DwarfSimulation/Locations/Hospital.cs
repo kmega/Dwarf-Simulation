@@ -59,7 +59,7 @@ namespace DwarfSimulation
             switch (BornDwarf[0].DwarfType)
             {
                 case DwarfType.Father:
-                    raport.FathersBorn += 1; 
+                    raport.FatherBorn += 1; 
                     break;
                 case DwarfType.Single:
                     raport.SingleBorn += 1;

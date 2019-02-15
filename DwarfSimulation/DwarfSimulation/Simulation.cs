@@ -16,7 +16,7 @@ namespace DwarfSimulation
             for (int i = 0; i < 30; i++)
             {
                 if (!Day(i)) break;
-                Console.ReadKey();
+
             }
             _raport.Display();
         }
