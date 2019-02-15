@@ -1,4 +1,4 @@
-﻿using Dwarf_Town.Enums;
+using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +26,7 @@ namespace Dwarf_Town.Locations.Mine
             do
             {
                 foreach (var shaft in Shafts)
+
                 {
                     if (shaft.EfficientShaft == true)
                     {

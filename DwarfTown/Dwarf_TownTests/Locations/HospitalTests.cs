@@ -65,5 +65,21 @@ namespace Dwarf_TownTests.Locations
             //then
             Assert.AreEqual(expected.DwarfType, result.DwarfType);
         }
+
+        //[Test]
+        //public void ShouldReturnMessagesWhenEventIsCalled()
+        //{
+        //    //given
+        //    var mock = new Mock<IChance>();
+        //    mock.Setup(e => e.GenerateChance(1, 100)).Returns(99);
+        //    Hospital hospital = new Hospital(mock.Object);
+        //    Newspapper newspapper = new Newspapper();
+        //    newspapper.Message.Add("Dwarf Single was born");
+        //    var expected = "Dwarf Single was born";
+        //    //when
+        //    hospital.Generate();
+        //    //then
+        //    Assert.AreEqual(expected, newspapper.Message[0]);
+        //}
     }
 }

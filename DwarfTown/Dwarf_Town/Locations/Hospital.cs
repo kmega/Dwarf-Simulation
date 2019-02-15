@@ -23,6 +23,18 @@ namespace Dwarf_Town.Locations
             return dwarves;
         }
 
+        public List<Dwarf> DailyGenerate()
+        {
+            List<Dwarf> dwarves = new List<Dwarf>();
+            var chance = _chance.GenerateChance(1, 100);
+            if (chance == 1)
+            {
+                dwarves.Add(Generate());
+                return dwarves;
+            }
+            return dwarves;
+        }
+
         public Dwarf Generate()
         {
             var chance = _chance.GenerateChance(1, 100);

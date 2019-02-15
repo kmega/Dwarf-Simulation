@@ -18,6 +18,7 @@ namespace Dwarf_Town.Locations.Mine
         {
             List<string> message = new List<string>();
             foreach (var dwarf in dwarvesWorkingInShaft)
+
             {
                 int HowManyTimesDwarfHit = dwarf.Dig();
 

@@ -5,13 +5,15 @@ using System;
 namespace Dwarf_Town
 {
     public class SimulationStart
+
     {
+        public Newspapper newspapper = new Newspapper();
+
         public void Start()
         {
             SimulationStartConditions simulationStartConditions = new SimulationStartConditions(10, 30, 100);
             SimulationState simulationState = new SimulationState();
             Hospital hospital = new Hospital(new Chance());
-           
 
             simulationState.Dwarves = hospital.GenerateDwarves(simulationStartConditions.DwarvesAtStart);
 

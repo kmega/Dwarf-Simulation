@@ -8,6 +8,7 @@ namespace Dwarf_Town.Locations.Guild
     public static class GuildFactory
     {
         public static Guild CreateStandardGuild(IOutputWriter presenter)
+
         {
             Guild guild = new Guild(
                 new Dictionary<MineralType, IOreValue>
