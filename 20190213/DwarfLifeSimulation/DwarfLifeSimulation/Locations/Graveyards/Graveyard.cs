@@ -9,7 +9,6 @@ namespace DwarfLifeSimulation.Locations.Graveyards
     {
         private List<IDwarf> deadDwarves;
         
-
         public int DeadDwarvesAmount
         {
             get { return deadDwarves.Count; }
@@ -22,7 +21,8 @@ namespace DwarfLifeSimulation.Locations.Graveyards
 
         public void BuryDeadDwarves(List<IDwarf> dwarves)
         {
-            for(int i = dwarves.Count; i>0; i--)
+
+            for(int i = dwarves.Count-1; i>=0; i--)
             {
                 if(dwarves[i]._isAlive == false)
                 {
