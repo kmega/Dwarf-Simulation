@@ -18,7 +18,9 @@ namespace DwarfsTown
             foreach (var dwarf in killedDwarfs)
             {
                 Cementary.Graves.Add(dwarf);
-            }          
+            }
+
+            killedDwarfs.Clear();
         }
     }
 }

@@ -24,20 +24,20 @@ namespace DwarfsTown
             List<Dwarf> dwarfsThatWasWorked = new List<Dwarf>();
 
             //Logg
-            City.newsPaper.Add("Mine - " + dwarfsThatShouldBeWorking.Count + " come to mine");
+            City.newsPaper.Add("Mine - " + dwarfsThatShouldBeWorking.Count + " dwarfs come to mine");
             //Prepare Mine on start new day -> setting shafts to not destroyed
             SetShaftsToNotDestroyed(shaft1, shaft2);
 
             while(dwarfsThatShouldBeWorking.Count > 0)
             {
-                //Working start if shaft exist
+                //Working if shaft exist
                 if (shaft1.isExist)
                 {
                     //Sending to shaft, Digging, Dwarfs going out 
                     WorkingOnFirstShaft(dwarfsThatShouldBeWorking, dwarfsThatWasWorked);
                 }
 
-                //Working start if shaft exist
+                //Working if shaft exist
                 if (shaft2.isExist)
                 {
                     //Sending to shaft, Digging, Dwarfs going out 

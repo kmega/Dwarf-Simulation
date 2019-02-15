@@ -8,28 +8,28 @@ namespace DwarfsTown
         public delegate void ExplodedShaftEventHandler(object o, ExplodedEventArgs e);
         public event ExplodedShaftEventHandler ExplodedShaft;
 
-        public void SendDwarfsToShaft(List<Dwarf> dwarfsThatShouldBeWorking, Shaft shaft1)
+        public void SendDwarfsToShaft(List<Dwarf> dwarfsThatShouldBeWorking, Shaft shaft)
         {
 
             foreach (var dwarf in dwarfsThatShouldBeWorking)
             {
-                if (shaft1.dwarfs.Count == 5) break;
-                shaft1.dwarfs.Add(dwarf);
+                if (shaft.dwarfs.Count == 5) break;
+                shaft.dwarfs.Add(dwarf);
             }
 
 
 
             //Remove from dwarfs who should be working sended dwarfs
-            dwarfsThatShouldBeWorking.RemoveAll(x => shaft1.dwarfs.Contains(x));
+            dwarfsThatShouldBeWorking.RemoveAll(x => shaft.dwarfs.Contains(x));
 
         }
 
-        public List<Dwarf> LetGoDwarfs(Shaft shaft1)
+        public List<Dwarf> LetGoDwarfs(Shaft shaft)
         {
             List<Dwarf> dwarfsThatGoToSurface = new List<Dwarf>();
-            dwarfsThatGoToSurface.AddRange(shaft1.dwarfs);
+            dwarfsThatGoToSurface.AddRange(shaft.dwarfs);
 
-            shaft1.dwarfs.Clear();
+            shaft.dwarfs.Clear();
             return dwarfsThatGoToSurface;
         }
 
