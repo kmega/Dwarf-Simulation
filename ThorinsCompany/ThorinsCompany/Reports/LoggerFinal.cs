@@ -4,14 +4,14 @@ using System.Text;
 
 namespace ThorinsCompany.Raports
 {
-    public sealed class Logger
+    public sealed class LoggerFinal
     {
-        static private Logger logger = new Logger();
+        static private LoggerFinal logger = new LoggerFinal();
         private Dictionary<InformationInRaport, int> reports = 
             new Dictionary<InformationInRaport, int>();
 
-        private Logger()  {    }
-        static public Logger GetInstance() => logger;
+        private LoggerFinal()  {    }
+        static public LoggerFinal GetInstance() => logger;
         public void AddLog(int information, InformationInRaport typeInformationInRaport)
         {
             if (reports.Count == 0)
@@ -24,14 +24,7 @@ namespace ThorinsCompany.Raports
                 }
             }
             reports[typeInformationInRaport] += information;
-            
         }
         public Dictionary<InformationInRaport, int> GetLogs() => reports;
-
-        public void ClearData()
-        {
-            reports.Clear();
-        }
-
     }
 }

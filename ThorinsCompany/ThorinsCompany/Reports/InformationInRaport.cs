@@ -11,6 +11,5 @@ namespace ThorinsCompany
         DeathCount, TaxedMoney, TotalMoneyEarned,
         FoodEaten, FoodInDiningRoom, FoodBought, AlcoholBought,
         ShopEarned
-
     }
 }
