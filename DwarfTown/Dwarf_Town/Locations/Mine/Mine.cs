@@ -1,7 +1,5 @@
 ﻿using Dwarf_Town.Interfaces;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf_Town.Locations.Mine
 {
@@ -16,25 +14,20 @@ namespace Dwarf_Town.Locations.Mine
                 new Shaft(),
                 new Shaft()
             };
-
         }
 
-
-        public void DwarvesGoWork (List<IWork> dwarvesVisitMine)
+        public void DwarvesGoWork(List<IWork> dwarvesVisitMine)
         {
             //1.First 5 dwarves go to first avaible shaft
             //    2. Work
             //    3.They return and go to restroom
             //    4.Netx dwarves go
-            //    5. Dwarves back to list 
-
+            //    5. Dwarves back to list
 
             List<IWork> restRoom = new List<IWork>();
-           
 
             foreach (var shaft in _shafts)
             {
-
                 if (shaft.EfficientShaft == true)
                 {
                     if (dwarvesVisitMine.Count >= 5)
@@ -43,7 +36,6 @@ namespace Dwarf_Town.Locations.Mine
                         dwarvesVisitMine.RemoveRange(0, 5);
                         shaft.PerformWork();
                         restRoom.AddRange(shaft.GiveBackDwarves());
-
                     }
                     else
                     {
@@ -52,17 +44,8 @@ namespace Dwarf_Town.Locations.Mine
                         shaft.PerformWork();
                         restRoom.AddRange(shaft.GiveBackDwarves());
                     }
-
                 }
-
             }
-
-
-           
         }
-
-
-        
-        
     }
 }

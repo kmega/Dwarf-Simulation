@@ -8,9 +8,9 @@ namespace Dwarf_Town.Locations
     {
         private readonly IChance _chance;
 
-        public Hospital()
+        public Hospital(IChance chance)
         {
-            _chance = new Chance();
+            _chance = chance;
         }
 
         public List<Dwarf> GenerateDwarves(int number)
@@ -19,6 +19,18 @@ namespace Dwarf_Town.Locations
             for (int i = 0; i < number; i++)
             {
                 dwarves.Add(Generate());
+            }
+            return dwarves;
+        }
+
+        public List<Dwarf> DailyGenerate()
+        {
+            List<Dwarf> dwarves = new List<Dwarf>();
+            var chance = _chance.GenerateChance(1, 100);
+            if (chance == 1)
+            {
+                dwarves.Add(Generate());
+                return dwarves;
             }
             return dwarves;
         }

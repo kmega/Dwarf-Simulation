@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Dwarf_Town;
+﻿using Dwarf_Town;
 using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Mine;
 using Moq;
 using NUnit.Framework;
-
-
+using System.Collections.Generic;
 
 namespace Dwarf_TownTests.Locations
 {
@@ -18,8 +14,6 @@ namespace Dwarf_TownTests.Locations
         [Test]
         public void DropDiffrentOres()
         {
-           
-
             //when
             var mineralOne = GiveSpecificOre.GetTheOre(5);
             var mineralTwo = GiveSpecificOre.GetTheOre(20);
@@ -31,7 +25,6 @@ namespace Dwarf_TownTests.Locations
             Assert.IsTrue(mineralTwo == MineralType.Gold);
             Assert.IsTrue(mineralThree == MineralType.Silver);
             Assert.IsTrue(mineralFour == MineralType.DirtyGold);
-
         }
 
         [Test]
@@ -53,7 +46,7 @@ namespace Dwarf_TownTests.Locations
             shaft.PerformWork();
 
             //then
-            Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count==3);
+            Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count == 3);
             foreach (var ore in dwarf.BackPack.ShowBackpack())
             {
                 Assert.IsTrue(ore == MineralType.Gold);
@@ -66,18 +59,14 @@ namespace Dwarf_TownTests.Locations
             //given
             Shaft shaft = new Shaft();
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
-           
 
             //when
-            shaft.SendDwarvesDown(new List<IWork>() { dwarf._work});
+            shaft.SendDwarvesDown(new List<IWork>() { dwarf._work });
             shaft.PerformWork();
 
             //then
             Assert.IsFalse(shaft.EfficientShaft);
             Assert.IsFalse(dwarf.IsAlive);
-
-
         }
-
     }
 }

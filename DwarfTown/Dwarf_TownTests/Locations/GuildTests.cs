@@ -2,7 +2,6 @@
 using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Guild;
-using Dwarf_Town.Models;
 using NUnit.Framework;
 using System.Collections.Generic;
 
@@ -17,7 +16,7 @@ namespace Dwarf_TownTests.Locations
             //given
             Guild guild = GuildFactory.CreateStandardGuild();
             Dwarf dwarf = new Dwarf(DwarfType.FATHER);
-            List<ISell> miners = new List<ISell>() { dwarf._sell};
+            List<ISell> miners = new List<ISell>() { dwarf._sell };
 
             //when
             guild.PaymentForDwarves(miners);
@@ -26,7 +25,6 @@ namespace Dwarf_TownTests.Locations
             Assert.AreEqual(0, guild.ShowTresure());
             Assert.AreEqual(0, dwarf.Wallet.DailyCash);
             Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count == 0);
-
         }
 
         [Test]
@@ -35,7 +33,7 @@ namespace Dwarf_TownTests.Locations
             //given
             Guild guild = GuildFactory.CreateStandardGuild();
             Dwarf dwarf = new Dwarf(DwarfType.FATHER);
-           dwarf.BackPack.AddOre(MineralType.DirtyGold);
+            dwarf.BackPack.AddOre(MineralType.DirtyGold);
             List<ISell> miners = new List<ISell>() { dwarf._sell };
 
             //when
@@ -45,7 +43,6 @@ namespace Dwarf_TownTests.Locations
             Assert.AreEqual(0.5, guild.ShowTresure());
             Assert.AreEqual(1.5, dwarf.Wallet.DailyCash);
             Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count == 0);
-
         }
 
         [Test]
@@ -66,7 +63,6 @@ namespace Dwarf_TownTests.Locations
             Assert.AreEqual(1, guild.ShowTresure());
             Assert.AreEqual(3, dwarf.Wallet.DailyCash);
             Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count == 0);
-
         }
 
         [Test]
@@ -80,7 +76,6 @@ namespace Dwarf_TownTests.Locations
             dwarfOne.BackPack.AddOre(MineralType.DirtyGold);
             dwarfTwo.BackPack.AddOre(MineralType.DirtyGold);
             dwarfTwo.BackPack.AddOre(MineralType.DirtyGold);
-
 
             List<ISell> miners = new List<ISell>()
             {
@@ -97,11 +92,6 @@ namespace Dwarf_TownTests.Locations
             Assert.AreEqual(3, dwarfTwo.Wallet.DailyCash);
             Assert.IsTrue(dwarfOne.BackPack.ShowBackpack().Count == 0);
             Assert.IsTrue(dwarfTwo.BackPack.ShowBackpack().Count == 0);
-
-
         }
-
-        
-
     }
 }

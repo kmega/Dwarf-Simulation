@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf_Town.Locations.Guild.OreValue
 {
-    class MithrilValue : IOreValue
+    internal class MithrilValue : IOreValue
     {
         public decimal GenerateOreValue()
         {

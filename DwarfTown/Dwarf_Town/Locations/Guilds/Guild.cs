@@ -3,14 +3,13 @@ using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Guild.OreValue;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf_Town.Locations.Guild
 {
     public class Guild
     {
         private decimal _account;
-        private Dictionary <MineralType, IOreValue> _oresOnMarket;
+        private Dictionary<MineralType, IOreValue> _oresOnMarket;
 
         public Guild(Dictionary<MineralType, IOreValue> oresOnMarket)
         {
@@ -23,16 +22,16 @@ namespace Dwarf_Town.Locations.Guild
             return _oresOnMarket[mineraltype].GenerateOreValue();
         }
 
-        public void PaymentForDwarves (List<ISell> dwarvesVisitGuild)
+        public void PaymentForDwarves(List<ISell> dwarvesVisitGuild)
         {
             foreach (var dwarf in dwarvesVisitGuild)
             {
                 foreach (var ore in dwarf.ShowBackpack())
                 {
                     decimal value = ReturnOreValue(ore);
-                    decimal provision = Math.Round((value * 0.25m),2);
+                    decimal provision = Math.Round((value * 0.25m), 2);
                     _account += provision;
-                    decimal payment = Math.Round((value - provision),2);
+                    decimal payment = Math.Round((value - provision), 2);
                     dwarf.ReceivedMoney(payment);
                 }
                 dwarf.ShowBackpack().Clear();
@@ -43,9 +42,5 @@ namespace Dwarf_Town.Locations.Guild
         {
             return _account;
         }
-    
-
-
-
     }
 }

@@ -6,9 +6,7 @@ namespace Dwarf_Town.Strategy
 {
     public class DiggWork : IWork
     {
-
         private Dwarf _dwarf;
-
 
         public DiggWork(Dwarf dwarf)
         {

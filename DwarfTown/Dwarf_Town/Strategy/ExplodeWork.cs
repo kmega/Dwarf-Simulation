@@ -1,14 +1,11 @@
 ﻿using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
-using System;
 
 namespace Dwarf_Town.Strategy
 {
     public class ExplodeWork : IWork
     {
-
         private Dwarf _dwarf;
-
 
         public ExplodeWork(Dwarf dwarf)
         {
@@ -25,7 +22,6 @@ namespace Dwarf_Town.Strategy
             _dwarf.IsAlive = false;
         }
 
-
         public int Dig()
         {
             // Value -1 destroy shaft
@@ -39,7 +35,6 @@ namespace Dwarf_Town.Strategy
 
         public void HideToBackpack(MineralType ore)
         {
-
         }
     }
 }

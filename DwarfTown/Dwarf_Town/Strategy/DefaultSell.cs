@@ -1,6 +1,5 @@
 ﻿using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
-using System;
 using System.Collections.Generic;
 
 namespace Dwarf_Town.Strategy
@@ -9,12 +8,10 @@ namespace Dwarf_Town.Strategy
     {
         public void ReceivedMoney(decimal payment)
         {
-            
         }
 
         public void Sell()
         {
-            
         }
 
         public List<MineralType> ShowBackpack()
