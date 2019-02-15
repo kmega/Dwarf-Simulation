@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using System.Collections.Generic;
 
-namespace DwarfSimulationTests.MinesTests
+namespace MinesTests
 {
     class WorkLogicTests
     {
@@ -26,7 +26,7 @@ namespace DwarfSimulationTests.MinesTests
 
             // Given
             Work work = new Work();
-            work.AddToShafts(dwarfs, shafts);
+            work.GoToShafts(dwarfs, shafts);
 
             // Assert
             Assert.IsTrue(shafts[0].Miners.Count == numberOfDwarfs);
@@ -52,7 +52,7 @@ namespace DwarfSimulationTests.MinesTests
 
             // Given
             Work work = new Work();
-            work.AddToShafts(dwarfs, shafts);
+            work.GoToShafts(dwarfs, shafts);
 
             // Assert
             Assert.IsTrue(shafts[0].Miners.Count == 5);
@@ -63,6 +63,7 @@ namespace DwarfSimulationTests.MinesTests
         [TestCase(2, 1)]
         [TestCase(3, 1)]
         [TestCase(4, 1)]
+        [TestCase(5, 1)]
         public void ShouldCheckForSuicidersInOneShaft(int numberOfDwarfs, int numberOfShafts)
         {
             // For
@@ -76,11 +77,11 @@ namespace DwarfSimulationTests.MinesTests
                 dwarfs.Add(builder.CreateDwarf(DwarfType.Father));
             }
 
-            dwarfs.Add(builder.CreateDwarf(DwarfType.Suicider));
+            dwarfs[0].DwarfType = DwarfType.Suicider;
 
             // Given
             Work work = new Work();
-            work.AddToShafts(dwarfs, shafts);
+            work.GoToShafts(dwarfs, shafts);
 
             // Assert
             Assert.IsTrue(shafts[0].WorkAction is SuiciderWorkStrategy);
@@ -89,6 +90,8 @@ namespace DwarfSimulationTests.MinesTests
         [TestCase(6, 2)]
         [TestCase(7, 2)]
         [TestCase(8, 2)]
+        [TestCase(9, 2)]
+        [TestCase(10, 2)]
         public void ShouldCheckForSuicidersInTwoShafts(int numberOfDwarfs, int numberOfShafts)
         {
             // For
@@ -97,18 +100,17 @@ namespace DwarfSimulationTests.MinesTests
             List<Dwarf> dwarfs = new List<Dwarf>();
             List<Shaft> shafts = builder.CreateShafts(numberOfShafts);
 
-            dwarfs.Add(builder.CreateDwarf(DwarfType.Suicider));
-
             for (int index = 0; index < numberOfDwarfs; index++)
             {
                 dwarfs.Add(builder.CreateDwarf(DwarfType.Father));
             }
 
-            dwarfs.Add(builder.CreateDwarf(DwarfType.Suicider));
+            dwarfs[0].DwarfType = DwarfType.Suicider;
+            dwarfs[5].DwarfType = DwarfType.Suicider;
 
             // Given
             Work work = new Work();
-            work.AddToShafts(dwarfs, shafts);
+            work.GoToShafts(dwarfs, shafts);
 
             // Assert
             foreach (var shaft in shafts)
@@ -188,7 +190,7 @@ namespace DwarfSimulationTests.MinesTests
 
             // Given
             Work work = new Work();
-            shafts = work.AddToShafts(dwarfs, shafts);
+            shafts = work.GoToShafts(dwarfs, shafts);
 
             shafts = work.MineForOre(shafts, raport);
 
@@ -222,37 +224,12 @@ namespace DwarfSimulationTests.MinesTests
         [TestCase(3, 1)]
         [TestCase(4, 1)]
         [TestCase(5, 1)]
-        public void ShouldRemoveFromOneShaft(int numberOfDwarfs, int numberOfShafts)
-        {
-            // For
-            Builder builder = new Builder();
-
-            List<Dwarf> dwarfs = new List<Dwarf>();
-            List<Shaft> shafts = builder.CreateShafts(numberOfShafts);
-
-            for (int index = 0; index < numberOfDwarfs; index++)
-            {
-                dwarfs.Add(builder.CreateDwarf(DwarfType.Father));
-            }
-
-            Raport raport = new Raport();
-
-            // Given
-            Work work = new Work();
-            shafts = work.AddToShafts(dwarfs, shafts);
-
-            dwarfs = work.RemoveFromShafts(shafts);
-
-            // Assert
-            Assert.IsTrue(shafts[0].Miners.Count == 0);
-        }
-
         [TestCase(6, 2)]
         [TestCase(7, 2)]
         [TestCase(8, 2)]
         [TestCase(9, 2)]
         [TestCase(10, 2)]
-        public void ShouldRemoveFromTwoShafts(int numberOfDwarfs, int numberOfShafts)
+        public void ShouldRemoveFromShafts(int numberOfDwarfs, int numberOfShafts)
         {
             // For
             Builder builder = new Builder();
@@ -269,7 +246,7 @@ namespace DwarfSimulationTests.MinesTests
 
             // Given
             Work work = new Work();
-            shafts = work.AddToShafts(dwarfs, shafts);
+            shafts = work.GoToShafts(dwarfs, shafts);
 
             dwarfs = work.RemoveFromShafts(shafts);
 

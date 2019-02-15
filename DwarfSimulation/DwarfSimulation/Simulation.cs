@@ -31,6 +31,8 @@ namespace DwarfSimulation
 
 
             //Mines
+            Mines mines = new Mines();
+            mines.EnterMines(_dwarves, _shafts, _raport);
             //Guild
             Guild guild = new Guild(randomizer);
             guild.ExchangeDwarvesMineralsAndGiveThemMoney(_dwarves);

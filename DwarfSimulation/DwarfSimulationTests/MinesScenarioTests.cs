@@ -2,7 +2,7 @@
 using DwarfSimulation;
 using System.Collections.Generic;
 
-namespace DwarfSimulationTests.MinesTests
+namespace MinesTests
 {
     class MinesScenarioTests
     {
@@ -88,6 +88,7 @@ namespace DwarfSimulationTests.MinesTests
             {
                 Assert.IsTrue(dwarf.IsAlive == false);
             }
+            Assert.IsTrue(shafts[0].Collapsed == true);
         }
     }
 }
