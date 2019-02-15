@@ -9,6 +9,7 @@ namespace ThorinsCompany
         public static void ReceiveDeadWorkers(WorkingGroup deadGroup)
         {
             _deadDwarves += deadGroup.Workers.Length;
+            deadGroup = null;
         }
 
 
