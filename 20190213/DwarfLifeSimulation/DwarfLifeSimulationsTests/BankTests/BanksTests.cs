@@ -17,26 +17,36 @@ namespace DwarfLifeSimulationsTests.BankTests
             this.GeneralAccount = GeneralAccount;
         }    
     }
+
     [TestFixture]
     public class BanksTests
     {
-        [Test]
-        public void BankTest()
+        private BankAccount bankAccount;
+        private BankAccount dwarfAccount;
+        private BankAccount shopAccount;
+        private Dictionary<int, BankAccount> accounts;
+
+        [SetUp]
+        public void Setup()
         {
-            // given
-            var bankAccount = new BankAccount();
-            var dwarfAccount = new BankAccount();
-            var shopAccount = new BankAccount();
-            var accounts = new Dictionary<int, BankAccount>()
+            bankAccount = new BankAccount();
+            dwarfAccount = new BankAccount();
+            shopAccount = new BankAccount();
+            accounts = new Dictionary<int, BankAccount>()
             {
                 { 1, shopAccount },
                 { 2, dwarfAccount }
             };
-            //bankMock.Instance(accounts, bankAccount);
+        }
+
+        [Test]
+        public void BankTest()
+        {
+            // given
             var bankMock = new BankMock(accounts, bankAccount);
+            bankMock.PayIntoAccount(2, 30);
 
             // when
-            bankMock.PayIntoAccount(2, 30);
             bankMock.Transfer(2, 1, 20);
             bankMock.PayTax(1);
 
