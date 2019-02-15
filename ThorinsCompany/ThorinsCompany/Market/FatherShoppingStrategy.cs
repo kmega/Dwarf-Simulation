@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ThorinsCompany.Raports;
 
 namespace ThorinsCompany
 {
     public class FatherShoppingStrategy : IShoppingStrategy
     {
-        private BankAccount _bankAccount;
-        public FatherShoppingStrategy(BankAccount bankAccount)
+        private readonly int _dwarfAccountID;
+        public FatherShoppingStrategy(int dwarfAccountID)
         {
-            _bankAccount = bankAccount;
+            _dwarfAccountID = dwarfAccountID;
         }
-        public void Buy()
+
+        public void Pay(int shopAccountID)
         {
-            throw new NotImplementedException();
+            decimal charge = BankAssistant.CheckMoneyOnAccount(_dwarfAccountID) / 2;
+            BankAssistant.MakeTransaction(shopAccountID, _dwarfAccountID, charge);
+            Logger.GetInstance().AddLog("SHOP: Dwarf bough Alcohol");
         }
     }
 }

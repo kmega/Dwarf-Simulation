@@ -6,14 +6,15 @@ namespace ThorinsCompany
 {
     public class LazyShoppingStrategy : IShoppingStrategy
     {
-        private BankAccount _bankAccount;
-        public LazyShoppingStrategy(BankAccount bankAccount)
+        private readonly int _dwarfAccountID;
+        public LazyShoppingStrategy(int dwarfAccountID)
         {
-            _bankAccount = bankAccount;
+            _dwarfAccountID = dwarfAccountID;
         }
-        public void Buy()
+
+        public void Pay(int shopAccountID)
         {
-            throw new NotImplementedException();
+            // Do nothing
         }
     }
 }

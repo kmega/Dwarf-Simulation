@@ -4,16 +4,24 @@ using System.Text;
 
 namespace ThorinsCompany
 {
-    public class Shop : IShop
+    public class Shop
     {
+        public readonly int accountID;
+        public Shop()
+        {
+            accountID = AccountCreator.CreateNewAccountWithUniqueID();
+        }
         public void PerformShopping(IShoppingStrategy shoppingStrategy)
         {
-            shoppingStrategy.Buy();
+            shoppingStrategy.Pay(accountID);
         }
 
-        internal void PerformShoppingForAllDwarves(List<Dwarf> dwarves)
+        public void PerformShoppingForAllDwarves(List<Dwarf> dwarves)
         {
-            throw new NotImplementedException();
+            foreach(Dwarf dwarf in dwarves)
+            {
+                PerformShopping(dwarf.ShoppingStrategy);
+            }
         }
     }
 }

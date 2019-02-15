@@ -12,6 +12,11 @@ namespace ThorinsCompany
         private Dictionary<int, BankAccount> _bankAccounts = new Dictionary<int, BankAccount>();
         RandomizerThorins _randomizer = new RandomizerThorins();
 
+        public Bank()
+        {
+            new BankAssistant(this);
+            new AccountCreator(this);
+        }
         public void ExchangeMaterialsForMoney(int ID, List<Material> materials)
         {
             decimal moneyEarned = 0;

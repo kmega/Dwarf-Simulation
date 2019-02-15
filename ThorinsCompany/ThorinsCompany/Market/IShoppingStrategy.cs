@@ -2,6 +2,6 @@
 {
     public interface IShoppingStrategy
     {
-        void Buy();
+        void Pay(int shopAccountID);
     }
 }

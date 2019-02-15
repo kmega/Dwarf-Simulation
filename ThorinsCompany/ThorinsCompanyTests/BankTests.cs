@@ -23,14 +23,10 @@ namespace Tests
         {
             //given
             Bank bank = new Bank();
-            AccountCreator accountCreator = new AccountCreator(bank);
             decimal transactionMoney = 50;
 
-            var accountID_1 = IDCreator.GetUniqueID();
-            var accountID_2 = IDCreator.GetUniqueID();
-
-            AccountCreator.CreateNewAccountWithUniqueID(accountID_1);
-            AccountCreator.CreateNewAccountWithUniqueID(accountID_2);
+            var accountID_1 = AccountCreator.CreateNewAccountWithUniqueID();       
+            var accountID_2 = AccountCreator.CreateNewAccountWithUniqueID();
 
 
             //when,then
