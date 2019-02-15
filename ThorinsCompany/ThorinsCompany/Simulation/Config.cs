@@ -13,13 +13,14 @@ namespace ThorinsCompany
         public Displayer Displayer { get; private set; }
 
 
-        public void CreateBank() =>  Bank = new Bank();
+        public void CreateBank() => Bank = new Bank();
         public void CreateHospital() =>  Hospital = new Hospital();
         public void CreateBar() =>  Bar = new Bar();
-        public void CreateShop() =>  Shop = new Shop();
         public void CreateGuild() =>  Guild = new Guild();
         public void CreateMine() =>  Mine = new Mine();     
-        public void CreateDisplayer() =>  Displayer = new Displayer();     
+        public void CreateDisplayer() =>  Displayer = new Displayer();
+        public void CreateShop() => Shop = new Shop();
         
+
     }
 }

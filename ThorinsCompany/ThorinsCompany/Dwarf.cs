@@ -4,6 +4,7 @@ namespace ThorinsCompany
 {
     public class Dwarf
     {
+        public readonly int accountID;
         public DwarfType DwarfType;
         public IWorkingStrategy WorkingStrategy;
         public IShoppingStrategy ShoppingStrategy;
@@ -14,6 +15,8 @@ namespace ThorinsCompany
             DwarfType = dwarfType;
             ShoppingStrategy = shoppingStrategy;
             WorkingStrategy = workingStrategy;
+            accountID = AccountCreator.CreateNewAccountWithUniqueID();
+
         }
     }
 }

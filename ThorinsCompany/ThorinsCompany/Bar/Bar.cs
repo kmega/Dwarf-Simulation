@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ThorinsCompany
 {
-    public class Bar : IBar
+    public class Bar
     {
         private int _foodRations { get; set; }
         public Bar(int foodRations = 200)
