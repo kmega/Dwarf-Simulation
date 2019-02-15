@@ -25,11 +25,11 @@ namespace DwarfLifeSimulation.Locations.Mines
 
         private IMineralTypeRandomizer _mineralTypeRandomizer;        
 
-        public Shaft()
+        public Shaft(IMineralTypeRandomizer mineralTypeRandomizer = null)
         {
             _isOccupied = false;
             _shaftStatus = ShaftStatus.Working;
-            _mineralTypeRandomizer = new MineralTypeGenerationStrategy();
+            _mineralTypeRandomizer = (mineralTypeRandomizer != null) ? mineralTypeRandomizer : new MineralTypeGenerationStrategy();
         }
 
         public MineralType GenerateMineralType()

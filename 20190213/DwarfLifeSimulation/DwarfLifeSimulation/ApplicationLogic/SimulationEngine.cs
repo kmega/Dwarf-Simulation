@@ -42,7 +42,7 @@ namespace DwarfLifeSimulation.ApplicationLogic
             currentSimulationState.dwarves.ForEach(d => exchangers.Add(d));
             guild.ExchangeResource(exchangers);
             //Canteen.ServeFood(int dwarvesCount)
-            canteen.ServeFood(currentSimulationState.dwarves.Count);
+            //canteen.ServeFood(currentSimulationState.dwarves.Count);
             //Shop.ServeAllCustomers(IBuy customers);
             List<IBuy> customers = new List<IBuy>();
             currentSimulationState.dwarves.ForEach(d => customers.Add(d));
