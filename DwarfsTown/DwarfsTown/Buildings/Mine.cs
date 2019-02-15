@@ -5,10 +5,11 @@ using System.Linq;
 namespace DwarfsTown
 {
     public class Mine
-    {
+    {      
         Shaft shaft1;
         Shaft shaft2;
         Foreaman foreman = new Foreaman();
+        int numbersOfDiggedMaterials = 0;
 
         public Mine()
         {
@@ -16,10 +17,14 @@ namespace DwarfsTown
             shaft2 = new Shaft();
         }
         public void StartWorking(List<Dwarf> dwarfsThatShouldBeWorking)
-        {
-            List<Dwarf> dwarfsThatWasWorked = new List<Dwarf>();
-            
+        {           
+            //Register event
+            foreman.ExplodedShaft += Gravedigger.OnExplodedShaft;
 
+            List<Dwarf> dwarfsThatWasWorked = new List<Dwarf>();
+
+            //Logg
+            City.newsPaper.Add("Mine - " + dwarfsThatShouldBeWorking.Count + " come to mine");
             //Prepare Mine on start new day -> setting shafts to not destroyed
             SetShaftsToNotDestroyed(shaft1, shaft2);
 
@@ -39,11 +44,22 @@ namespace DwarfsTown
                     WorkingOnSecondShaft(dwarfsThatShouldBeWorking, dwarfsThatWasWorked);
                 }
 
+                //If both shaft are destroyed close the mine
+                if(shaft1.isExist == false && shaft2.isExist == false)
+                {
+                    CloseTheMine(dwarfsThatShouldBeWorking, dwarfsThatWasWorked);
+                    return;
+                }
+                
             }
+
+            numbersOfDiggedMaterials = foreman.SumAllDiggedMaterials(dwarfsThatWasWorked);
+
+            //Logg
+            City.newsPaper.Add("Mine - " + " All dwarfs digged: " + numbersOfDiggedMaterials + " raw materials");
 
             //End minning, clear list dwarfs that was working and assign this dwarfs to begining list dwarfs that will be working and still alive
             CloseTheMine(dwarfsThatShouldBeWorking, dwarfsThatWasWorked);
-
         }
 
         private void WorkingOnSecondShaft(List<Dwarf> dwarfsThatShouldBeWorking, List<Dwarf> dwarfsThatWasWorked)
@@ -55,6 +71,8 @@ namespace DwarfsTown
             if (shaft2.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
             {
                 shaft2.isExist = false;
+                foreman.CallToGravedigger(shaft2.dwarfs);
+
                 return;
             }
 
@@ -74,6 +92,8 @@ namespace DwarfsTown
             if (shaft1.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
             {
                 shaft1.isExist = false;
+                foreman.CallToGravedigger(shaft1.dwarfs);
+
                 return;
             }
                 

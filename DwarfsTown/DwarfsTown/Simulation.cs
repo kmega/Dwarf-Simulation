@@ -12,7 +12,7 @@ namespace DwarfsTown
             {               
                 //Get new dwarf -> 1% saboteur, 33% Father, 33% Single, 33% Lazy
                 city.hospital.BirthDwarf(city.dwarfs, City.randomizer);
-                //Dwarfs go to digging
+                //Dwarfs go to digging               
                 city.mine.StartWorking(city.dwarfs);
                 //Changing materials to moneys and transfer into dwarfs account 
                 city.bank.ChangeRawMaterialsIntoMoneys(city.dwarfs);

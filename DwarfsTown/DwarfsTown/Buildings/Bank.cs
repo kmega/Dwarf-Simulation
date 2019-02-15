@@ -11,7 +11,6 @@ namespace DwarfsTown
 
         public void ChangeRawMaterialsIntoMoneys(List<Dwarf> dwarfs)
         {
-            City city = new City();
             foreach (Dwarf dwarf in dwarfs)
             {
                 ExtractRawMaterialFromBackpack(dwarfs);

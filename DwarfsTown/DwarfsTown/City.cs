@@ -28,7 +28,7 @@ namespace DwarfsTown
             guild = new Guild();
             bar = new Bar();
             shop = new Shop();
-            cementary = new Cementary();
+            cementary = new Cementary();           
         }
     }
 }

@@ -5,6 +5,9 @@ namespace DwarfsTown
 {
     public class Foreaman
     {
+        public delegate void ExplodedShaftEventHandler(object o, ExplodedEventArgs e);
+        public event ExplodedShaftEventHandler ExplodedShaft;
+
         public void SendDwarfsToShaft(List<Dwarf> dwarfsThatShouldBeWorking, Shaft shaft1)
         {
 
@@ -28,6 +31,28 @@ namespace DwarfsTown
 
             shaft1.dwarfs.Clear();
             return dwarfsThatGoToSurface;
+        }
+
+        public int SumAllDiggedMaterials(List<Dwarf> dwarfsThatWasWorked)
+        {
+            int allDiggedMaterials = 0;
+            foreach (var dwarf in dwarfsThatWasWorked)
+            {
+                allDiggedMaterials += dwarf.Backpack.Materials.Count;
+            }
+
+            return allDiggedMaterials;
+        }
+
+        protected virtual void OnExplodedShaft(List<Dwarf> _killedDwarfs)
+        {
+            if (ExplodedShaft != null)
+                ExplodedShaft(this, new ExplodedEventArgs() {killedDwarfs = _killedDwarfs});
+        }
+
+        public void CallToGravedigger(List<Dwarf> _killedDwarfs)
+        {
+            OnExplodedShaft(_killedDwarfs);
         }
     }
 }

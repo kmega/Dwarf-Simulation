@@ -4,6 +4,7 @@ namespace DwarfsTown
 {
     public class Cementary
     {
-        public List<Dwarf> Graves { get; set; }
+        public static List<Dwarf> Graves { get; set; } = new List<Dwarf>();
+               
     }
 }

@@ -7,7 +7,6 @@ namespace DwarfsTown
     {      
         public decimal GuildMoney {get;set;}
 
-        Bank bank = new Bank();
         public void GetTaxesFromDwarfsAccounts(List<Dwarf> dwarfs)
         {         
             foreach (Dwarf dwarf in dwarfs)
