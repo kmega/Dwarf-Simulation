@@ -18,7 +18,7 @@ namespace Dwarf_TownTests.Locations
         public void FiveDwarvesBroughtOutOre()
         {
             //given
-            Mine mine = MineFactory.CreateStandardMine();
+            Mine mine = MineFactory.CreateStandardMine(new WindowsConsole());
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 5; i++)
             {
@@ -40,7 +40,7 @@ namespace Dwarf_TownTests.Locations
         public void SuicideDestroyShaftAndKillDwarves()
         {
             //given
-            Mine mine = MineFactory.CreateStandardMine();
+            Mine mine = MineFactory.CreateStandardMine(new WindowsConsole());
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 4; i++)
             {
@@ -65,7 +65,7 @@ namespace Dwarf_TownTests.Locations
         public void DwarvesWorkInSecondShaftWhenFirstWasDestroyed()
         {
             //given
-            Mine mine = MineFactory.CreateStandardMine();
+            Mine mine = MineFactory.CreateStandardMine(new WindowsConsole());
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 5; i++)
             {
@@ -89,7 +89,7 @@ namespace Dwarf_TownTests.Locations
         public void AllSixDwarvesBroughtOutOre()
         {
             //given
-            Mine mine = MineFactory.CreateStandardMine();
+            Mine mine = MineFactory.CreateStandardMine(new WindowsConsole());
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 6; i++)
             {
@@ -110,7 +110,7 @@ namespace Dwarf_TownTests.Locations
         public void SuicideKillDwarvesInFirstShaftSoOthersWorkInSecondShaft()
         {
             //given
-            Mine mine = MineFactory.CreateStandardMine();
+            Mine mine = MineFactory.CreateStandardMine(new WindowsConsole());
             List<Dwarf> dwarves = new List<Dwarf>();
             dwarves.Add(new Dwarf(DwarfType.SUICIDE));
             for (int i = 0; i < 15; i++)
@@ -139,7 +139,7 @@ namespace Dwarf_TownTests.Locations
         public void MineRegisterWhatDwarvesBroughtOut()
         {
             //given
-            Mine mine = MineFactory.CreateStandardMine();
+            Mine mine = MineFactory.CreateStandardMine(new WindowsConsole());
             Mock<IWork> workingDwarfOne = new Mock<IWork>();
             Mock<IWork> workingDwarfTwo = new Mock<IWork>();
             workingDwarfOne.Setup(i => i.ShowWhatYouBroughtOut()).Returns(new List<MineralType>()

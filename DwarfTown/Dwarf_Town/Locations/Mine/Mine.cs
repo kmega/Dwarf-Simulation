@@ -11,20 +11,23 @@ namespace Dwarf_Town.Locations.Mine
     {
         public List<Shaft> Shafts;
         private Dictionary<MineralType, int> _oreRegister;
+      
 
-        public Mine(int numberOfShafts, Dictionary<MineralType, int> register)
+        public Mine(int numberOfShafts, Dictionary<MineralType, int> register,IOutputWriter presenter)
         {
+            
             Shafts = new List<Shaft>();
             for (int i = 0; i< numberOfShafts; i++)
             {
-                Shafts.Add(new Shaft());
+                Shafts.Add(new Shaft(presenter));
             }
             _oreRegister = register;
-            
+           
         }
 
         public void DwarvesGoWork(List<IWork> dwarvesVisitMine)
         {
+            List<string> message = new List<string>();
             do
             {
                 foreach (var shaft in Shafts)
@@ -33,14 +36,14 @@ namespace Dwarf_Town.Locations.Mine
                     {
                         if (dwarvesVisitMine.Count >= 5)
                         {
-                           shaft.PerformWork(dwarvesVisitMine.GetRange(0, 5));
+                          shaft.PerformWork(dwarvesVisitMine.GetRange(0, 5));
                            RegistBroughtOutOre(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()).ToList());
                            dwarvesVisitMine.RemoveRange(0, 5);
 
                         }
                         else
                         {
-                            shaft.PerformWork(dwarvesVisitMine.GetRange(0, dwarvesVisitMine.Count));
+                           shaft.PerformWork(dwarvesVisitMine.GetRange(0, dwarvesVisitMine.Count));
                             RegistBroughtOutOre(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()).ToList());
                             dwarvesVisitMine.RemoveRange(0, dwarvesVisitMine.Count);
                         }

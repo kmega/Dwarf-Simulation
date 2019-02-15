@@ -39,7 +39,7 @@ namespace Dwarf_TownTests.Locations
         public void DwarfBroughtOutThreeGold()
         {
             //given
-            Shaft shaft = new Shaft();
+            Shaft shaft = new Shaft(new WindowsConsole());
             Dwarf dwarf = new Dwarf(DwarfType.FATHER);
             Mock<IWork> workingDwarf = new Mock<IWork>();
             workingDwarf.Setup(i => i.Dig()).Returns(3);
@@ -64,7 +64,7 @@ namespace Dwarf_TownTests.Locations
         public void SuicideDestroyShaft()
         {
             //given
-            Shaft shaft = new Shaft();
+            Shaft shaft = new Shaft(new WindowsConsole());
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
 
 

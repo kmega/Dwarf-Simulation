@@ -15,7 +15,7 @@ namespace Dwarf_TownTests.Locations
         public void ReturnPaymentForOneDwarWithEmptyBackpack()
         {
             //given
-            Guild guild = GuildFactory.CreateStandardGuild();
+            Guild guild = GuildFactory.CreateStandardGuild(new WindowsConsole());
             Dwarf dwarf = new Dwarf(DwarfType.FATHER);
             List<ISell> miners = new List<ISell>() { dwarf._sell};
 
@@ -33,7 +33,7 @@ namespace Dwarf_TownTests.Locations
         public void ReturnPaymentForOneDwarfWithOneDirtyGold()
         {
             //given
-            Guild guild = GuildFactory.CreateStandardGuild();
+            Guild guild = GuildFactory.CreateStandardGuild(new WindowsConsole());
             Dwarf dwarf = new Dwarf(DwarfType.FATHER);
            dwarf.BackPack.AddOre(MineralType.DirtyGold);
             List<ISell> miners = new List<ISell>() { dwarf._sell };
@@ -52,7 +52,7 @@ namespace Dwarf_TownTests.Locations
         public void ReturnPaymentForOneDwarfWithOTwoDirtyGold()
         {
             //given
-            Guild guild = GuildFactory.CreateStandardGuild();
+            Guild guild = GuildFactory.CreateStandardGuild(new WindowsConsole());
             Dwarf dwarf = new Dwarf(DwarfType.FATHER);
             dwarf.BackPack.AddOre(MineralType.DirtyGold);
             dwarf.BackPack.AddOre(MineralType.DirtyGold);
@@ -74,7 +74,7 @@ namespace Dwarf_TownTests.Locations
         public void ReturnPaymentForTwoDwarvesWithOTwoDirtyGold()
         {
             //given
-            Guild guild = GuildFactory.CreateStandardGuild();
+            Guild guild = GuildFactory.CreateStandardGuild(new WindowsConsole());
             Dwarf dwarfOne = new Dwarf(DwarfType.FATHER);
             Dwarf dwarfTwo = new Dwarf(DwarfType.FATHER);
             dwarfOne.BackPack.AddOre(MineralType.DirtyGold);

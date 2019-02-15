@@ -12,12 +12,15 @@ namespace Dwarf_Town.Locations.Guild
         private decimal _account;
         private Dictionary <MineralType, IOreValue> _oresOnMarket;
         private Dictionary<MineralType, decimal> _oreValueRegister;
+        public IOutputWriter Presenter;
 
-        public Guild(Dictionary<MineralType, IOreValue> oresOnMarket, Dictionary<MineralType, decimal> oreValueRegister )
+        public Guild(Dictionary<MineralType, IOreValue> oresOnMarket, Dictionary<MineralType, decimal> oreValueRegister, IOutputWriter presenter )
         {
             _account = 0;
             _oresOnMarket = oresOnMarket;
             _oreValueRegister = oreValueRegister;
+            Presenter = presenter;
+            
         }
 
         public decimal ReturnOreValue(MineralType mineraltype)
@@ -27,6 +30,7 @@ namespace Dwarf_Town.Locations.Guild
 
         public void PaymentForDwarves (List<ISell> dwarvesVisitGuild)
         {
+            List<string> message = new List<string>();
             foreach (var dwarf in dwarvesVisitGuild)
             {
                 foreach (var ore in dwarf.ShowBackpack())
@@ -37,9 +41,11 @@ namespace Dwarf_Town.Locations.Guild
                     _account += provision;
                     decimal payment = Math.Round((value - provision),2);
                     dwarf.ReceivedMoney(payment);
+                  Presenter.WriteLine($"Dwarf exchange {ore} for {payment} gp and guild take {provision} gp provision");
                 }
                 dwarf.ShowBackpack().Clear();
             }
+           
         }
 
         public decimal ShowTresure()
@@ -51,9 +57,6 @@ namespace Dwarf_Town.Locations.Guild
         {
             return _oreValueRegister;
         }
-
-
-
 
     }
 }
