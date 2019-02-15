@@ -16,11 +16,19 @@ using DwarfLifeSimulation.Randomizer.MineralTypeRandomizer;
 using DwarfLifeSimulation.Randomizer.MineralValueRandomizer;
 using System.Collections.Generic;
 using DwarfLifeSimulationsTests.E2ETests;
+using DwarfLifeSimulation.Locations.Banks;
 
 namespace DwarfLifeSimulationsTests
 {
     internal class E2ESingleDayTests
     {
+        public class BankMock : Bank
+        {
+            public static void ResetInstance()
+            {
+                instance = null;
+            }
+        }
         #region Mocks
         private Mock<IIsDwarfBornRandomizer> isBornMock;
         private Mock<IDwarfTypeRandomizer> dwarfTypeMock;
@@ -42,7 +50,6 @@ namespace DwarfLifeSimulationsTests
         {
             graveyard = new Graveyard();
             canteen = new Canteen();
-            shop = new Shop();
             isBornMock = new Mock<IIsDwarfBornRandomizer>();
             dwarfTypeMock = new Mock<IDwarfTypeRandomizer>();
             timesToDigMock = new Mock<IHitsRandomizer>();
@@ -72,11 +79,14 @@ namespace DwarfLifeSimulationsTests
 
             mineralValueMock.Setup(v => v.ExchangeMineralToValue(MineralType.Silver)).Returns(10);
             guild = new Guild(mineralValueMock.Object);
+
+            shop = new Shop();
         }
 
         [Test]
         public void T100_SingleDaySimulationWithoutSuicideDwarvesAndNoNewBirths()
         {
+            BankMock.ResetInstance();
             //given            
             //all dwarves are Fathers
             //all dig twice 
@@ -86,7 +96,17 @@ namespace DwarfLifeSimulationsTests
             //when
             simulationEngine.SimulateDay(hospital, mine, guild, canteen, shop, graveyard);
             //then
-
+            foreach(var dwarf in simulationState.dwarves)
+            {
+                int i = 1;
+                Assert.IsTrue(dwarf._hasWorked == true);
+                Assert.AreEqual(Bank.Instance.GetOverallAccountMoney(i),8.0m);
+                i++;
+            }
+            Assert.AreEqual(shop._shopState[ProductType.Food], 80);
+            Assert.AreEqual(guild.GetSummary(MineralType.Silver), "We sold 20 in value of 200");
+            Assert.AreEqual(graveyard.DeadDwarvesAmount, 0);
+            Assert.AreEqual(canteen.GetAmountOfRations(), 190);
         }
     }
 }

@@ -13,11 +13,19 @@ namespace DwarfLifeSimulation.Locations.Guilds
     {
         private IMineralValueRandomizer _mineralValueRandomizer;
         private int bankAccountId;
+        private Dictionary<MineralType, decimal[]> _overallResources; // 0 index stands for quantity
+                                                                      // 1 index stands for value
+
         public Guild(IMineralValueRandomizer mineralValueRandomizer = null)
         {
             _mineralValueRandomizer = (mineralValueRandomizer != null) ?
                 mineralValueRandomizer : new MineralValueGenerationStretegy();
             bankAccountId = Bank.Instance.CreateAccount();
+            _overallResources = new Dictionary<MineralType, decimal[]>();
+            _overallResources.Add(MineralType.Mithril, new decimal[2]);
+            _overallResources.Add(MineralType.Gold, new decimal[2]);
+            _overallResources.Add(MineralType.Silver, new decimal[2]);
+            _overallResources.Add(MineralType.TaintedGold, new decimal[2]);
         }
 
         public void ExchangeResource(List<IExchange> workers)
@@ -44,10 +52,16 @@ namespace DwarfLifeSimulation.Locations.Guilds
             decimal overallValue = 0.0m;
             foreach(var key in backpack.Keys)
             {
-                var money = _mineralValueRandomizer.ExchangeMineralToValue(key);
-                overallValue += money * backpack[key];
+                var money = _mineralValueRandomizer.ExchangeMineralToValue(key) * backpack[key];
+                _overallResources[key][0] += backpack[key];
+                _overallResources[key][1] += money;
+                overallValue += money;
             }
             return overallValue;
+        }
+        public string GetSummary(MineralType mineralType)
+        {
+            return $"We sold {_overallResources[mineralType][0]} in value of {_overallResources[mineralType][1]}";
         }
     }
 }
