@@ -12,21 +12,15 @@ namespace Dwarf_Town.Locations.Mine
         public List<Shaft> Shafts;
         private Dictionary<MineralType, int> _oreRegister;
 
-        public Mine()
+        public Mine(int numberOfShafts, Dictionary<MineralType, int> register)
         {
-            Shafts = new List<Shaft>()
+            Shafts = new List<Shaft>();
+            for (int i = 0; i< numberOfShafts; i++)
             {
-                new Shaft(),
-                new Shaft()
-            };
-            _oreRegister = new Dictionary<MineralType, int>()
-            {
-                {MineralType.DirtyGold,0 },
-                {MineralType.Gold,0 },
-                {MineralType.Silver,0 },
-                {MineralType.Mithril,0 }
-            };
-
+                Shafts.Add(new Shaft());
+            }
+            _oreRegister = register;
+            
         }
 
         public void DwarvesGoWork(List<IWork> dwarvesVisitMine)

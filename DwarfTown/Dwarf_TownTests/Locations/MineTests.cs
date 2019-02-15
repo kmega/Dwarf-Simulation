@@ -11,15 +11,14 @@ using System.Text;
 
 namespace Dwarf_TownTests.Locations
 {
-
-    [TestFixture]
+    
     public class MineTests
     {
         [Test]
         public void FiveDwarvesBroughtOutOre()
         {
             //given
-            Mine mine = new Mine();
+            Mine mine = MineFactory.CreateStandardMine();
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 5; i++)
             {
@@ -41,7 +40,7 @@ namespace Dwarf_TownTests.Locations
         public void SuicideDestroyShaftAndKillDwarves()
         {
             //given
-            Mine mine = new Mine();
+            Mine mine = MineFactory.CreateStandardMine();
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 4; i++)
             {
@@ -66,7 +65,7 @@ namespace Dwarf_TownTests.Locations
         public void DwarvesWorkInSecondShaftWhenFirstWasDestroyed()
         {
             //given
-            Mine mine = new Mine();
+            Mine mine = MineFactory.CreateStandardMine();
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 5; i++)
             {
@@ -90,7 +89,7 @@ namespace Dwarf_TownTests.Locations
         public void AllSixDwarvesBroughtOutOre()
         {
             //given
-            Mine mine = new Mine();
+            Mine mine = MineFactory.CreateStandardMine();
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < 6; i++)
             {
@@ -111,7 +110,7 @@ namespace Dwarf_TownTests.Locations
         public void SuicideKillDwarvesInFirstShaftSoOthersWorkInSecondShaft()
         {
             //given
-            Mine mine = new Mine();
+            Mine mine = MineFactory.CreateStandardMine();
             List<Dwarf> dwarves = new List<Dwarf>();
             dwarves.Add(new Dwarf(DwarfType.SUICIDE));
             for (int i = 0; i < 15; i++)
@@ -140,9 +139,7 @@ namespace Dwarf_TownTests.Locations
         public void MineRegisterWhatDwarvesBroughtOut()
         {
             //given
-            Mine mine = new Mine();
-
-
+            Mine mine = MineFactory.CreateStandardMine();
             Mock<IWork> workingDwarfOne = new Mock<IWork>();
             Mock<IWork> workingDwarfTwo = new Mock<IWork>();
             workingDwarfOne.Setup(i => i.ShowWhatYouBroughtOut()).Returns(new List<MineralType>()
