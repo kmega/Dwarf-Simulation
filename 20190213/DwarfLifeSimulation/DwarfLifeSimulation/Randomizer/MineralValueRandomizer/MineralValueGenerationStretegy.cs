@@ -25,7 +25,7 @@ namespace DwarfLifeSimulation.Randomizer.MineralValueRandomizer
                 case MineralType.Silver:
                     return randomizer.Generate(5,15);
                 case MineralType.TaintedGold:
-                    return randomizer.Generate(1,5);
+                    return 2;
                 default:
                     return 0;
             }

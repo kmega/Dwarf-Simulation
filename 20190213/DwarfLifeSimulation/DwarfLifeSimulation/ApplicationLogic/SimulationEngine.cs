@@ -6,6 +6,7 @@ using DwarfLifeSimulation.Locations.Guilds;
 using DwarfLifeSimulation.Locations.Hospitals;
 using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Locations.Shops;
+using DwarfLifeSimulation.Loggers;
 using System.Collections.Generic;
 
 namespace DwarfLifeSimulation.ApplicationLogic
@@ -13,18 +14,21 @@ namespace DwarfLifeSimulation.ApplicationLogic
     public class SimulationEngine
     {
         private SimulationState currentSimulationState;
+        private ILog logger;
+
         public SimulationEngine(SimulationState simulationState = null)
         {
             currentSimulationState = (simulationState!=null) ? simulationState : new SimulationState();
+            logger = new Logger();
         }
 
         public void Start()
         {
-            var hospital = new Hospital();
-            var mine = new Mine();
-            var guild = new Guild();
+            var hospital = new Hospital(logger);
+            var mine = new Mine(logger);
+            var guild = new Guild(logger);
             var canteen = new Canteen();
-            var shop = new Shop();
+            var shop = new Shop(logger);
             var graveyard = new Graveyard();
             for(; currentSimulationState.turn <= 30; currentSimulationState.turn++)
             {

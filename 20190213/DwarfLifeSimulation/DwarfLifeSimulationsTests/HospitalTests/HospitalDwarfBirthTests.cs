@@ -3,6 +3,7 @@ using DwarfLifeSimulation.Dwarves.BuyStrategies;
 using DwarfLifeSimulation.Dwarves.WorkStrategies;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Locations.Hospitals;
+using DwarfLifeSimulation.Loggers;
 using DwarfLifeSimulation.Randomizer.DwarfNameRandomizer;
 using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
 using DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer;
@@ -30,7 +31,7 @@ namespace DwarfLifeSimulationsTests.HospitalTests
         {
             //given
             SimulationState simulationState = new SimulationState();
-            hospital = new Hospital(isDwarfBornMock.Object, dwarfTypeMock.Object);
+            hospital = new Hospital(new Logger(),isDwarfBornMock.Object, dwarfTypeMock.Object);
             //when
             hospital.CreateDwarves(simulationState);
             //then            
@@ -47,7 +48,7 @@ namespace DwarfLifeSimulationsTests.HospitalTests
             SimulationState simulationState = new SimulationState();
             simulationState.turn = 2;
             dwarfTypeMock.Setup(x => x.GiveMeDwarfType(false)).Returns(DwarfType.Single);
-            hospital = new Hospital(isDwarfBornMock.Object, dwarfTypeMock.Object);
+            hospital = new Hospital(new Logger(), isDwarfBornMock.Object, dwarfTypeMock.Object);
             //when
             hospital.CreateDwarves(simulationState);
             //then            
@@ -60,7 +61,7 @@ namespace DwarfLifeSimulationsTests.HospitalTests
             SimulationState simulationState = new SimulationState();
             simulationState.turn = 2;
             dwarfTypeMock.Setup(x => x.GiveMeDwarfType(false)).Returns(DwarfType.Suicide);
-            hospital = new Hospital(isDwarfBornMock.Object, dwarfTypeMock.Object);
+            hospital = new Hospital(new Logger(),isDwarfBornMock.Object, dwarfTypeMock.Object);
             //when
             hospital.CreateDwarves(simulationState);
             //then            

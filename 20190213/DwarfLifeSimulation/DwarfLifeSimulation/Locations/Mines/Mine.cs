@@ -1,6 +1,7 @@
 ﻿using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Locations.Mines.ShiftGroups;
+using DwarfLifeSimulation.Loggers;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,14 +10,16 @@ namespace DwarfLifeSimulation.Locations.Mines
     public class Mine
     {
         private List<Shaft> _shafts;
+        private ILog _logger;
 
-        public Mine(List<Shaft> shafts = null)
+        public Mine(ILog logger = null, List<Shaft> shafts = null)
         {
             _shafts = (shafts!=null) ? shafts :  new List<Shaft>()
             {
                 new Shaft(),
                 new Shaft(),
-            };            
+            };
+            _logger = (logger != null) ? logger : new Logger();
         }
 
         public void Work(List<IWork> workers)
@@ -43,7 +46,7 @@ namespace DwarfLifeSimulation.Locations.Mines
             List<ShiftGroup> shiftGroups = new List<ShiftGroup>();
             do
             {
-                var shift = new ShiftGroup();
+                var shift = new ShiftGroup(_logger);
                 for (int i = 0; i < 5; i++)
                 {
                     var tempWorker = workers.Where(w => w._hasWorked == false).FirstOrDefault();

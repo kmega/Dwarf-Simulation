@@ -5,6 +5,7 @@ using DwarfLifeSimulation.Locations.Shops;
 using DwarfLifeSimulation.Locations.Banks;
 
 using System.Collections.Generic;
+using DwarfLifeSimulation.Loggers;
 
 namespace DwarfLifeSimulation.Dwarves
 {
@@ -36,9 +37,9 @@ namespace DwarfLifeSimulation.Dwarves
             return _buyStrategy.Buy(_bankAccountId, shopAccountId);
         }
 
-        public void Work(Shaft shaft)
+        public void Work(Shaft shaft, ILog logger)
         {
-            _backPack = _workStrategy.Perform(shaft);
+            _backPack = _workStrategy.Perform(shaft, logger);
         }
 
 

@@ -11,7 +11,7 @@ namespace DwarfLifeSimulation.Loggers
 		List<string> Logs;
 		public IComment outputWriter;
 
-		private Logger()
+		public Logger()
 		{
 			Logs = new List<string>();
 			outputWriter = new Commentator();

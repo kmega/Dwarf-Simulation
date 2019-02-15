@@ -17,6 +17,7 @@ using DwarfLifeSimulation.Randomizer.MineralValueRandomizer;
 using System.Collections.Generic;
 using DwarfLifeSimulationsTests.E2ETests;
 using DwarfLifeSimulation.Locations.Banks;
+using DwarfLifeSimulation.Loggers;
 
 namespace DwarfLifeSimulationsTests
 {
@@ -45,9 +46,11 @@ namespace DwarfLifeSimulationsTests
         private Graveyard graveyard;
         #endregion
         private SimulationState simulationState;
+        private ILog logger;
         [SetUp]
         public void Setup()
         {
+            logger = new Logger();
             graveyard = new Graveyard();
             canteen = new Canteen();
             isBornMock = new Mock<IIsDwarfBornRandomizer>();
@@ -62,7 +65,7 @@ namespace DwarfLifeSimulationsTests
         {
             isBornMock.Setup(h => h.IsDwarfBorn(100)).Returns(false);
             dwarfTypeMock.Setup(t => t.GiveMeDwarfType(false)).Returns(DwarfType.Father);
-            hospital = new Hospital(isBornMock.Object, dwarfTypeMock.Object);
+            hospital = new Hospital(logger, isBornMock.Object, dwarfTypeMock.Object);
 
             timesToDigMock.Setup(t => t.HowManyHits()).Returns(2);
             simulationState.turn = 2;
@@ -74,10 +77,10 @@ namespace DwarfLifeSimulationsTests
                 new Shaft(mineralTypeMock.Object),
                 new Shaft(mineralTypeMock.Object)
             };
-            mine = new Mine(shafts);
+            mine = new Mine(logger, shafts);
 
             mineralValueMock.Setup(v => v.ExchangeMineralToValue(MineralType.Silver)).Returns(10);
-            guild = new Guild(mineralValueMock.Object);
+            guild = new Guild(logger, mineralValueMock.Object);
 
             shop = new Shop();
         }

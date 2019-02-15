@@ -3,6 +3,7 @@ using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Locations.Mines;
 using DwarfLifeSimulation.Randomizer.HitsRandomizer;
 using System.Collections.Generic;
+using DwarfLifeSimulation.Loggers;
 
 namespace DwarfLifeSimulation.Dwarves.WorkStrategies
 {
@@ -15,7 +16,7 @@ namespace DwarfLifeSimulation.Dwarves.WorkStrategies
             _hitRandomizer = (hitsRandomizer != null) ? hitsRandomizer : new HitsGenerationStrategy();
         }
 
-        public Dictionary<MineralType, int> Perform(Shaft shaft)
+        public Dictionary<MineralType, int> Perform(Shaft shaft, ILog logger)
         {
             Dictionary<MineralType, int> backpack = new Dictionary<MineralType, int>();
             backpack.Add(MineralType.Mithril, 0);
@@ -26,6 +27,7 @@ namespace DwarfLifeSimulation.Dwarves.WorkStrategies
             for(int i = 0; i < timesIDig; i++)
             {
                 MineralType mineralType = Dig(shaft);
+                logger.AddLog($"{mineralType} has been dug.");
                 backpack[mineralType] += 1;
             }
             return backpack;

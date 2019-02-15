@@ -3,6 +3,7 @@ using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Dwarves.WorkStrategies;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Locations.Mines;
+using DwarfLifeSimulation.Loggers;
 using DwarfLifeSimulation.Randomizer.HitsRandomizer;
 using DwarfLifeSimulation.Randomizer.MineralTypeRandomizer;
 using Moq;
@@ -21,7 +22,7 @@ namespace DwarfLifeSimulationsTests.MineTests
         [SetUp]
         public void Setup()
         {
-            mine = new Mine();
+            mine = new Mine(new Logger());
             shafts = new List<Shaft>();
             hitRandomizer = new Mock<IHitsRandomizer>();
             mineralRandomizer = new Mock<IMineralTypeRandomizer>();
@@ -96,9 +97,9 @@ namespace DwarfLifeSimulationsTests.MineTests
             {
                 new Shaft(mineralRandomizer.Object)
             };
-            mine = new Mine(shafts);
+            mine = new Mine(new Logger(), shafts);
             var dwarf = new Dwarf("", DwarfType.Father, 
-                new StandardWorkStrategy(hitRandomizer.Object), null);
+                new StandardWorkStrategy(hitRandomizer.Object),null);
             var workers = new List<IWork>()
             {
                 dwarf
@@ -119,7 +120,7 @@ namespace DwarfLifeSimulationsTests.MineTests
             {
                 new Shaft(mineralRandomizer.Object)
             };
-            mine = new Mine(shafts);
+            mine = new Mine(new Logger(), shafts);
             var dwarves = new FakeWorkersFactory().CreateDwarves(5, DwarfType.Father, hitRandomizer);
             var workers = new List<IWork>();
             dwarves.ForEach(d => workers.Add(d));
@@ -142,7 +143,7 @@ namespace DwarfLifeSimulationsTests.MineTests
             {
                 new Shaft()
             };
-            mine = new Mine(shafts);
+            mine = new Mine(new Logger(), shafts);
             var dwarves = new FakeWorkersFactory().CreateDwarves(1, DwarfType.Suicide, hitRandomizer);
             var workers = new List<IWork>();
             dwarves.ForEach(d => workers.Add(d));
@@ -167,7 +168,7 @@ namespace DwarfLifeSimulationsTests.MineTests
                 new Shaft(mineralRandomizer.Object),
                 new Shaft(mineralRandomizer.Object)
             };
-            mine = new Mine(shafts);
+            mine = new Mine(new Logger(), shafts);
             var dwarves = new FakeWorkersFactory().CreateDwarves(9, DwarfType.Father, hitRandomizer);
             dwarves.AddRange(new FakeWorkersFactory().CreateDwarves(1, DwarfType.Suicide, hitRandomizer));
             var workers = new List<IWork>();

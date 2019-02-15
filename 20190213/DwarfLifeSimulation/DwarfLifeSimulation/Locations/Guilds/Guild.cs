@@ -5,18 +5,20 @@ using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
 using DwarfLifeSimulation.Enums;
 using DwarfLifeSimulation.Locations.Banks;
+using DwarfLifeSimulation.Loggers;
 using DwarfLifeSimulation.Randomizer.MineralValueRandomizer;
 
 namespace DwarfLifeSimulation.Locations.Guilds
 {
     public class Guild
     {
+        private ILog _logger;
         private IMineralValueRandomizer _mineralValueRandomizer;
         private int bankAccountId;
         private Dictionary<MineralType, decimal[]> _overallResources; // 0 index stands for quantity
                                                                       // 1 index stands for value
 
-        public Guild(IMineralValueRandomizer mineralValueRandomizer = null)
+        public Guild(ILog logger = null, IMineralValueRandomizer mineralValueRandomizer = null)
         {
             _mineralValueRandomizer = (mineralValueRandomizer != null) ?
                 mineralValueRandomizer : new MineralValueGenerationStretegy();
@@ -26,6 +28,7 @@ namespace DwarfLifeSimulation.Locations.Guilds
             _overallResources.Add(MineralType.Gold, new decimal[2]);
             _overallResources.Add(MineralType.Silver, new decimal[2]);
             _overallResources.Add(MineralType.TaintedGold, new decimal[2]);
+            _logger = (logger != null) ? logger : new Logger();
         }
 
         public void ExchangeResource(List<IExchange> workers)
@@ -50,11 +53,15 @@ namespace DwarfLifeSimulation.Locations.Guilds
         public decimal GetMineralOverallValue(Dictionary<MineralType, int> backpack)
         {
             decimal overallValue = 0.0m;
-            foreach(var key in backpack.Keys)
+            foreach (var key in backpack.Keys)
             {
                 var money = _mineralValueRandomizer.ExchangeMineralToValue(key) * backpack[key];
                 _overallResources[key][0] += backpack[key];
                 _overallResources[key][1] += money;
+                if (backpack[key] != 0)
+                {
+                    _logger.AddLog($"Guild has sold {backpack[key]} {key} for {money}");
+                }
                 overallValue += money;
             }
             return overallValue;

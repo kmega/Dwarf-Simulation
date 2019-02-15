@@ -1,6 +1,7 @@
 ﻿using DwarfLifeSimulation.ApplicationLogic;
 using DwarfLifeSimulation.Dwarves;
 using DwarfLifeSimulation.Dwarves.Interfaces;
+using DwarfLifeSimulation.Loggers;
 using DwarfLifeSimulation.Randomizer.DwarfTypeRandomizer;
 using DwarfLifeSimulation.Randomizer.IsDwarfBornRandomizer;
 using System.Collections.Generic;
@@ -12,16 +13,18 @@ namespace DwarfLifeSimulation.Locations.Hospitals
         private IIsDwarfBornRandomizer _isDwarfBornRandomizer;
         private IDwarfTypeRandomizer _dwarfTypeRandomizer;
         private DwarfFactory _dwarfFactory;
+        private ILog _logger;
 
         #region Contructors
 
-        public Hospital(IIsDwarfBornRandomizer isDwarfBornRandomizer = null, 
+        public Hospital(ILog logger = null, IIsDwarfBornRandomizer isDwarfBornRandomizer = null, 
             IDwarfTypeRandomizer dwarfTypeRandomizer = null)
         {
             _isDwarfBornRandomizer = (isDwarfBornRandomizer != null) 
                 ? isDwarfBornRandomizer : new DwarfBornGenerationStrategy();
             _dwarfTypeRandomizer = (dwarfTypeRandomizer != null) ?
                 dwarfTypeRandomizer : new DwarfTypeGenerationStrategy();
+            _logger = (logger != null) ? logger : new Logger();
             _dwarfFactory = new DwarfFactory();
         }
         #endregion
@@ -45,6 +48,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
                 var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: true);
                 dwarves.Add(_dwarfFactory.Create(type));
             }
+            _logger.AddLog("10 dwarves have been born.");
             return dwarves;
         }
         private List<IDwarf> CreateSingleRandomDwarf()
@@ -54,6 +58,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
             {
                 var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: false);
                 dwarves.Add(_dwarfFactory.Create(type));
+                _logger.AddLog($"{type} has been born.");
             }
             return dwarves;
         }

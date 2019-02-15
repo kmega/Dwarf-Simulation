@@ -26,7 +26,7 @@ namespace DwarfLifeSimulation.Randomizer.MineralTypeRandomizer
                 case int n when (n > 20 && n <= 55):
                     return MineralType.Silver;
                 case int n when (n > 55 && n <= 100):
-                    return MineralType.Mithril;
+                    return MineralType.TaintedGold;
                 default:
                     return MineralType.None;
             }

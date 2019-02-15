@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DwarfLifeSimulation.Loggers;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -11,7 +12,7 @@ namespace DwarfLifeSimulation.Locations.Canteens
 		public Canteen()
 		{
 			_foodRations = 200;
-		}
+        }
 
         public void ServeMultipleRations(int count)
         {

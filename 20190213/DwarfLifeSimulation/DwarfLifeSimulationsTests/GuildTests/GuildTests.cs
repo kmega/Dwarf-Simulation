@@ -29,7 +29,7 @@ namespace DwarfLifeSimulationsTests.GuildTests
         public void T100_ShouldReturn45When3GoldInBackpack()
         {
             //given
-            guild = new Guild(mineralValueMock.Object);
+            guild = new Guild(null, mineralValueMock.Object);
             Dictionary<MineralType, int> backpack = new Dictionary<MineralType, int>();
             backpack.Add(MineralType.Gold, 3);
             //when
