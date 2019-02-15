@@ -6,7 +6,7 @@ namespace DwarfsTown
 {
     public class Dwarf
     {
-        public TypeEnum Type { get; private set; } 
+        public TypeEnum Type { get; private set; }
         public BankAccount BankAccount;
         public Backpack Backpack;
         public bool IsAlive { get; set; }
