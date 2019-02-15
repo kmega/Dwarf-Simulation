@@ -58,7 +58,7 @@ namespace DwarfLifeSimulationsTests
             simulationState = new SimulationState();
         }
 
-        private void T100_LocationsSetup()
+        private void LocationsSetup()
         {
             isBornMock.Setup(h => h.IsDwarfBorn(100)).Returns(false);
             dwarfTypeMock.Setup(t => t.GiveMeDwarfType(false)).Returns(DwarfType.Father);
@@ -66,8 +66,7 @@ namespace DwarfLifeSimulationsTests
 
             timesToDigMock.Setup(t => t.HowManyHits()).Returns(2);
             simulationState.turn = 2;
-            simulationState.dwarves.AddRange(
-                new FakeDwarves().CreateDwarves(10, DwarfType.Father, timesToDigMock.Object));
+           
 
             mineralTypeMock.Setup(m => m.WhatHaveBeenDig()).Returns(MineralType.Silver);
             List<Shaft> shafts = new List<Shaft>()
@@ -82,31 +81,10 @@ namespace DwarfLifeSimulationsTests
 
             shop = new Shop();
         }
-
-        private void T101_LocationsSetup()
+        private void SetDwarves(int count, DwarfType dwarfType)
         {
-            isBornMock.Setup(h => h.IsDwarfBorn(100)).Returns(false);
-            dwarfTypeMock.Setup(t => t.GiveMeDwarfType(false)).Returns(DwarfType.Father);
-            hospital = new Hospital(isBornMock.Object, dwarfTypeMock.Object);
-
-            timesToDigMock.Setup(t => t.HowManyHits()).Returns(2);
-            simulationState.turn = 2;
             simulationState.dwarves.AddRange(
-                new FakeDwarves().CreateDwarves(9, DwarfType.Father, timesToDigMock.Object));
-            simulationState.dwarves.Add(new FakeDwarves().CreateSingle(DwarfType.Suicide));
-
-            mineralTypeMock.Setup(m => m.WhatHaveBeenDig()).Returns(MineralType.Silver);
-            List<Shaft> shafts = new List<Shaft>()
-            {
-                new Shaft(mineralTypeMock.Object),
-                new Shaft(mineralTypeMock.Object)
-            };
-            mine = new Mine(shafts);
-
-            mineralValueMock.Setup(v => v.ExchangeMineralToValue(MineralType.Silver)).Returns(10);
-            guild = new Guild(mineralValueMock.Object);
-
-            shop = new Shop();
+               new FakeDwarves().CreateDwarves(count,dwarfType, timesToDigMock.Object));
         }
 
         [Test]
@@ -115,9 +93,10 @@ namespace DwarfLifeSimulationsTests
             BankMock.ResetInstance();
             //given            
             //all dwarves are Fathers
+            SetDwarves(10, DwarfType.Father);
             //all dig twice 
             //all dig silver worth 10 each
-            T100_LocationsSetup();
+            LocationsSetup();
             SimulationEngine simulationEngine = new SimulationEngine(simulationState);
             //when
             simulationEngine.SimulateDay(hospital, mine, guild, canteen, shop, graveyard);
@@ -140,9 +119,11 @@ namespace DwarfLifeSimulationsTests
             BankMock.ResetInstance();
             //given            
             //9 dwarves fathers, one suicide
+            SetDwarves(9, DwarfType.Father);
+            SetDwarves(1, DwarfType.Suicide);
             //all dig twice 
             //all dig silver worth 10 each
-            T101_LocationsSetup();
+            LocationsSetup();
             SimulationEngine simulationEngine = new SimulationEngine(simulationState);
             //when
             simulationEngine.SimulateDay(hospital, mine, guild, canteen, shop, graveyard);
