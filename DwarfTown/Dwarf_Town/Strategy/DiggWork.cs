@@ -1,6 +1,7 @@
 ﻿using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace Dwarf_Town.Strategy
 {
@@ -32,16 +33,17 @@ namespace Dwarf_Town.Strategy
             _dwarf.BackPack.AddOre(ore);
         }
 
-        public bool AskAboutLife()
-        {
-            return _dwarf.IsAlive;
-        }
 
         public int GenerateChance(int lowerBound, int upperBound)
         {
             Random rand = new Random();
             int value = rand.Next(lowerBound, upperBound);
             return value;
+        }
+
+        public List<MineralType> ShowWhatYouBroughtOut()
+        {
+            return _dwarf.BackPack.ShowBackpack();
         }
     }
 }

@@ -1,68 +1,63 @@
-﻿using Dwarf_Town.Interfaces;
+﻿using Dwarf_Town.Enums;
+using Dwarf_Town.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace Dwarf_Town.Locations.Mine
 {
     public class Mine
     {
-        private List<Shaft> _shafts;
+        public List<Shaft> Shafts;
+        private List<MineralType> _oreRegister;
+                      
+
+
+
 
         public Mine()
         {
-            _shafts = new List<Shaft>()
+            Shafts = new List<Shaft>()
             {
                 new Shaft(),
                 new Shaft()
             };
+            _oreRegister = new List<MineralType>();
 
         }
 
 
         public void DwarvesGoWork (List<IWork> dwarvesVisitMine)
         {
-            //1.First 5 dwarves go to first avaible shaft
-            //    2. Work
-            //    3.They return and go to restroom
-            //    4.Netx dwarves go
-            //    5. Dwarves back to list 
-
-
-            List<IWork> restRoom = new List<IWork>();
-           
-
-            foreach (var shaft in _shafts)
+            do
             {
-
-                if (shaft.EfficientShaft == true)
+                foreach (var shaft in Shafts)
                 {
-                    if (dwarvesVisitMine.Count >= 5)
+                    if (shaft.EfficientShaft == true)
                     {
-                        shaft.SendDwarvesDown(dwarvesVisitMine.GetRange(0, 5));
-                        dwarvesVisitMine.RemoveRange(0, 5);
-                        shaft.PerformWork();
-                        restRoom.AddRange(shaft.GiveBackDwarves());
+                        if (dwarvesVisitMine.Count >= 5)
+                        {
+                            shaft.SendDwarvesDown(dwarvesVisitMine.GetRange(0, 5));
+                            shaft.PerformWork();
+                            _oreRegister.AddRange(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()));
+                            dwarvesVisitMine.RemoveRange(0, 5);
 
+                        }
+                        else
+                        {
+                            shaft.SendDwarvesDown(dwarvesVisitMine.GetRange(0, dwarvesVisitMine.Count));
+                            shaft.PerformWork();
+                            _oreRegister.AddRange(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()));
+                            dwarvesVisitMine.RemoveRange(0, dwarvesVisitMine.Count);
+                        }
                     }
-                    else
-                    {
-                        shaft.SendDwarvesDown(dwarvesVisitMine.GetRange(0, dwarvesVisitMine.Count));
-                        dwarvesVisitMine.RemoveRange(0, dwarvesVisitMine.Count);
-                        shaft.PerformWork();
-                        restRoom.AddRange(shaft.GiveBackDwarves());
-                    }
-
                 }
+            } while (dwarvesVisitMine.Count > 0);
 
-            }
 
 
-           
         }
-
-
-        
         
     }
 }

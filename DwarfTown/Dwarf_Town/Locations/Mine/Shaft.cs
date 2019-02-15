@@ -1,6 +1,7 @@
 ﻿using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Dwarf_Town.Locations.Mine
 {
@@ -8,6 +9,7 @@ namespace Dwarf_Town.Locations.Mine
     {
         public bool EfficientShaft;
         private List<IWork> _dwarvesWorkingInShaft;
+       
 
         public Shaft()
         {
@@ -22,14 +24,6 @@ namespace Dwarf_Town.Locations.Mine
             _dwarvesWorkingInShaft = dwarves;
         }
 
-        public List<IWork> GiveBackDwarves()
-        {
-            List<IWork> platform = new List<IWork>();
-            platform.AddRange(_dwarvesWorkingInShaft);
-            _dwarvesWorkingInShaft.Clear();
-            return platform;
-
-        }
 
         public void PerformWork()
         {
@@ -61,6 +55,8 @@ namespace Dwarf_Town.Locations.Mine
                     dwarf.DeathSentence();
                 }
             }
+
+            _dwarvesWorkingInShaft.Clear();
 
         }
     }
