@@ -24,8 +24,7 @@ namespace DwarfSimulation
         {
             List<string> output = new List<string>();
             Outputer outputer = new Outputer();
-            output.Add("");
-            output.Add("### Graveyard ###");
+            output.Add("\n### Graveyard ###");
             output.Add("Funeral " + TodayDead +  " Dwarfs");
             outputer.Display(output);
         }

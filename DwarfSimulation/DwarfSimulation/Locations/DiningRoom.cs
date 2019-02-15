@@ -20,8 +20,7 @@ namespace DwarfSimulation
         {
             List<string> output = new List<string>();
             Outputer outputer = new Outputer();
-            output.Add("");
-            output.Add("### Dining Room ###");
+            output.Add("\n### Dining Room ###");
             output.Add("Dwarfs Eats " + foodConsumed + " meals");
             output.Add("Hungry dwarfs " + lazyDwarfWithoutMoney);
             output.Add("Food in dining room Food " + raport.FoodInDiningRoom);

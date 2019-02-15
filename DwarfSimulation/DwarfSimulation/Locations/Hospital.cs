@@ -16,9 +16,9 @@ namespace DwarfSimulation
 
         internal List<Dwarf> BornDwarf(List<Dwarf> dwarves, Raport raport)
         {
+            List<Dwarf> BornDwarf = new List<Dwarf>();
             if (_IsBorn)
             {
-                List<Dwarf> BornDwarf = new List<Dwarf>();
                 Builder builder = new Builder();
                 BornDwarf = builder.CreateDwarves(1);
 
@@ -30,6 +30,7 @@ namespace DwarfSimulation
                 dwarves = dwarves.Concat(BornDwarf).ToList();
                 return dwarves;
             }
+            Display(BornDwarf);
             return dwarves;
         }
 
@@ -38,10 +39,18 @@ namespace DwarfSimulation
             List<string> output = new List<string>();
             Outputer outputer = new Outputer();
             output.Add("");
-            output.Add("### Hospital ###");
-            output.Add("Born dwarf " + BornDwarf[0].DwarfType);
+            output.Add("\n### Hospital ###");
+            if (BornDwarf.Count == 0)
+            {
+                output.Add("Nobody born");
+            }
+            else
+            {
+                output.Add("Born dwarf " + BornDwarf[0].DwarfType);
+            }
             outputer.Display(output);
         }
+
 
         internal void UpdateRaport(Raport raport, List<Dwarf> BornDwarf)
         {
