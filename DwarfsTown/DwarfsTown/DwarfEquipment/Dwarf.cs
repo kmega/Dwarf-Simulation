@@ -7,14 +7,16 @@ namespace DwarfsTown
     public class Dwarf
     {
         //typ,plecak,portfel,
-        public TypeEnum Type { get; private set; } 
-        public IBankAccount BankAccount;
-        public IBackpack Backpack;
+        public TypeEnum Type { get; private set; }
+        public BankAccount BankAccount;
+        public Backpack Backpack;
         public bool IsAlive { get; set; }
 
         public Dwarf(TypeEnum type)
         {
             Type = new TypeEnum();
+            Backpack = new Backpack();
+            BankAccount = new BankAccount();
             IsAlive = true;
             Type = type;
         }

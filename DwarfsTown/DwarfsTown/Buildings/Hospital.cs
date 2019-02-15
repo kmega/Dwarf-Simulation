@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DwarfsTown
 {
-    public class Hospital
+    public class Hospital : INewsPaper
     {
         public Hospital(List<Dwarf> dwarfs)
         {
@@ -11,26 +11,31 @@ namespace DwarfsTown
            
         }
 
+        public List<string> TheJournalist { get; set; }
+
+
+
         public void Birth10DwarfToStart(List<Dwarf> dwarfs)
         {
             for (int i = 0; i < 10; i++)
             {
                 dwarfs.Add(new Dwarf(City.randomizer.GetDwarfType(City.randomizer.GetRandomNumber())));
             }
+            AddInformation("Hospital", "Today 10 Dwarfs are born.");
             
         }
 
-        //return dwarf
-
-        // birtdwarf => Type metoda (randomizer), 
-        //add to dwarflist
-        //randomizer.getType() - zwraca typ nie liczbe, getMaterial, GetRange -> 1-3. 
-        // przypisuje typ zwrocony z randomizera do draft
-        //konstruktor = > 10 sie ma urodzic
         public void BirthDwarf(List <Dwarf> dwarfs, Randomizer rand)
         {
             if (rand.IsDwarfBorn())
-                dwarfs.Add(new Dwarf(City.randomizer.GetDwarfType(rand.GetRandomNumber())));           
+            {
+                dwarfs.Add(new Dwarf(City.randomizer.GetDwarfType(rand.GetRandomNumber())));
+                AddInformation("Hospital", "Today 1 Dwarfes are born.");
+            }
+        }
+        public void AddInformation(string idBuilding, string message)
+        {
+            TheJournalist.Add(idBuilding + ": " + message);
         }
     }
 }
