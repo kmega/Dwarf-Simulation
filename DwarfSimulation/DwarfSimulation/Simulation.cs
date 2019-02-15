@@ -57,6 +57,10 @@ namespace DwarfSimulation
             shop.Display();
             shop.UpdateSimulationRaport(_raport);
 
+            //Bank
+            Bank bank = new Bank();
+            bank.TransferMoneyToAcconunt(_dwarves);
+
             return true;
         }
 
