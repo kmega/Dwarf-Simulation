@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Dwarf_Town;
-using Dwarf_Town.DwarfStrategies.WorkingStrategy;
 using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Mine;
@@ -40,13 +39,13 @@ namespace Dwarf_TownTests.Locations
         {
             //given
             Shaft shaft = new Shaft();
-            Dwarf dwarf = new Dwarf();
+            Dwarf dwarf = new Dwarf(DwarfType.FATHER);
             Mock<IWork> workingDwarf = new Mock<IWork>();
             workingDwarf.Setup(i => i.Dig()).Returns(3);
             workingDwarf.Setup(i => i.GenerateChance(It.IsAny<int>(), It.IsAny<int>())).Returns(20);
             workingDwarf.Setup(i => i.HideToBackpack(It.IsAny<MineralType>())).Callback((MineralType ore) =>
             {
-                dwarf.Backpack.AddOre(ore);
+                dwarf.BackPack.AddOre(ore);
             });
 
             //when
@@ -54,8 +53,8 @@ namespace Dwarf_TownTests.Locations
             shaft.PerformWork();
 
             //then
-            Assert.IsTrue(dwarf.Backpack.ShowBackpack().Count==3);
-            foreach (var ore in dwarf.Backpack.ShowBackpack())
+            Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count==3);
+            foreach (var ore in dwarf.BackPack.ShowBackpack())
             {
                 Assert.IsTrue(ore == MineralType.Gold);
             }
@@ -66,16 +65,16 @@ namespace Dwarf_TownTests.Locations
         {
             //given
             Shaft shaft = new Shaft();
-            Dwarf dwarf = new Dwarf();
-            IWork WorkingDwarf = new SuicideStrategy(dwarf);
+            Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
+           
 
             //when
-            shaft.SendDwarvesDown(new List<IWork>() { WorkingDwarf});
+            shaft.SendDwarvesDown(new List<IWork>() { dwarf._work});
             shaft.PerformWork();
 
             //then
             Assert.IsFalse(shaft.EfficientShaft);
-            Assert.IsFalse(WorkingDwarf.AskAboutLife());
+            Assert.IsFalse(dwarf.IsAlive);
 
 
         }

@@ -7,33 +7,33 @@ namespace Dwarf_Town
 {
     public class Dwarf
     {
-        private readonly IWork _work = null;
-        private readonly ISell _sell = null;
-        private readonly IBuy _buy = null;
+        public IWork _work = null;
+        public ISell _sell = null;
+        public IBuy _buy = null;
 
         public Dwarf(DwarfType dwarfType)
         {
             if (dwarfType == DwarfType.FATHER)
             {
-                _work = new DiggWork();
-                _sell = new NormalSell();
+                _work = new DiggWork(this);
+                _sell = new NormalSell(this);
                 _buy = new FoodBuy();
             }
             else if (dwarfType == DwarfType.IDLER)
             {
-                _work = new DiggWork();
-                _sell = new NormalSell();
+                _work = new DiggWork(this);
+                _sell = new NormalSell(this);
                 _buy = new NormalBuy();
             }
             else if (dwarfType == DwarfType.SINGLE)
             {
-                _work = new DiggWork();
-                _sell = new NormalSell();
+                _work = new DiggWork(this);
+                _sell = new NormalSell(this);
                 _buy = new AlcoholBuy();
             }
             else if (dwarfType == DwarfType.SUICIDE)
             {
-                _work = new ExplodeWork();
+                _work = new ExplodeWork(this);
                 _sell = new DefaultSell();
                 _buy = new DefaultBuy();
             }
