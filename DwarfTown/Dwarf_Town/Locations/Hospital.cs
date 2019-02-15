@@ -8,9 +8,9 @@ namespace Dwarf_Town.Locations
     {
         private readonly IChance _chance;
 
-        public Hospital()
+        public Hospital(IChance chance)
         {
-            _chance = new Chance();
+            _chance = chance;
         }
 
         public List<Dwarf> GenerateDwarves(int number)

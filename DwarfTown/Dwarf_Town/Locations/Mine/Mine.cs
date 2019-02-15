@@ -10,11 +10,7 @@ namespace Dwarf_Town.Locations.Mine
     public class Mine
     {
         public List<Shaft> Shafts;
-        private List<MineralType> _oreRegister;
-                      
-
-
-
+        private Dictionary<MineralType, int> _oreRegister;
 
         public Mine()
         {
@@ -23,12 +19,17 @@ namespace Dwarf_Town.Locations.Mine
                 new Shaft(),
                 new Shaft()
             };
-            _oreRegister = new List<MineralType>();
+            _oreRegister = new Dictionary<MineralType, int>()
+            {
+                {MineralType.DirtyGold,0 },
+                {MineralType.Gold,0 },
+                {MineralType.Silver,0 },
+                {MineralType.Mithril,0 }
+            };
 
         }
 
-
-        public void DwarvesGoWork (List<IWork> dwarvesVisitMine)
+        public void DwarvesGoWork(List<IWork> dwarvesVisitMine)
         {
             do
             {
@@ -38,26 +39,34 @@ namespace Dwarf_Town.Locations.Mine
                     {
                         if (dwarvesVisitMine.Count >= 5)
                         {
-                            shaft.SendDwarvesDown(dwarvesVisitMine.GetRange(0, 5));
-                            shaft.PerformWork();
-                            _oreRegister.AddRange(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()));
-                            dwarvesVisitMine.RemoveRange(0, 5);
+                           shaft.PerformWork(dwarvesVisitMine.GetRange(0, 5));
+                           RegistBroughtOutOre(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()).ToList());
+                           dwarvesVisitMine.RemoveRange(0, 5);
 
                         }
                         else
                         {
-                            shaft.SendDwarvesDown(dwarvesVisitMine.GetRange(0, dwarvesVisitMine.Count));
-                            shaft.PerformWork();
-                            _oreRegister.AddRange(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()));
+                            shaft.PerformWork(dwarvesVisitMine.GetRange(0, dwarvesVisitMine.Count));
+                            RegistBroughtOutOre(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()).ToList());
                             dwarvesVisitMine.RemoveRange(0, dwarvesVisitMine.Count);
                         }
                     }
                 }
             } while (dwarvesVisitMine.Count > 0);
+        }
 
-
+        public Dictionary<MineralType, int> ShowMineResults()
+        {
+            return _oreRegister;
+        }
+        private void RegistBroughtOutOre(List<MineralType> ores)
+        {
+            foreach (var ore in ores)
+            {
+                _oreRegister[ore]++;
+            }
 
         }
-        
+
     }
 }

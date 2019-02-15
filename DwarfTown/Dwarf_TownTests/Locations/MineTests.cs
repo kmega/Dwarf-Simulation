@@ -1,6 +1,8 @@
 ﻿using Dwarf_Town;
 using Dwarf_Town.Enums;
+using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations.Mine;
+using Moq;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -31,7 +33,7 @@ namespace Dwarf_TownTests.Locations
             //then
             foreach (var dwarf in dwarves)
             {
-                Assert.IsFalse(dwarf.BackPack.ShowBackpack().Count==0);
+                Assert.IsFalse(dwarf.BackPack.ShowBackpack().Count == 0);
             }
         }
 
@@ -71,8 +73,6 @@ namespace Dwarf_TownTests.Locations
                 dwarves.Add(new Dwarf(DwarfType.FATHER));
             }
             mine.Shafts[0].EfficientShaft = false;
-            
-
 
             //when
             mine.DwarvesGoWork(dwarves.Select(i => i._work).ToList());
@@ -118,7 +118,7 @@ namespace Dwarf_TownTests.Locations
             {
                 dwarves.Add(new Dwarf(DwarfType.FATHER));
             }
-          
+
 
             //when
             mine.DwarvesGoWork(dwarves.Select(i => i._work).ToList());
@@ -134,6 +134,43 @@ namespace Dwarf_TownTests.Locations
             }
             Assert.IsFalse(mine.Shafts[0].EfficientShaft);
             Assert.IsTrue(mine.Shafts[1].EfficientShaft);
+        }
+
+        [Test]
+        public void MineRegisterWhatDwarvesBroughtOut()
+        {
+            //given
+            Mine mine = new Mine();
+
+
+            Mock<IWork> workingDwarfOne = new Mock<IWork>();
+            Mock<IWork> workingDwarfTwo = new Mock<IWork>();
+            workingDwarfOne.Setup(i => i.ShowWhatYouBroughtOut()).Returns(new List<MineralType>()
+            {
+                MineralType.DirtyGold,
+                MineralType.DirtyGold,
+                MineralType.DirtyGold,
+
+            });
+            workingDwarfTwo.Setup(i => i.ShowWhatYouBroughtOut()).Returns(new List<MineralType>()
+            {
+                MineralType.Gold,
+                MineralType.Gold,
+                MineralType.Gold,
+
+            });
+
+            //when
+            mine.DwarvesGoWork(new List<IWork>()
+            {
+            { workingDwarfOne.Object },
+            { workingDwarfTwo.Object }
+            }
+            );
+
+            //then
+            Assert.IsTrue(mine.ShowMineResults()[MineralType.DirtyGold] == 3);
+            Assert.IsTrue(mine.ShowMineResults()[MineralType.Gold] == 3);
         }
 
 

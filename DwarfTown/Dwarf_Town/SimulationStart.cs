@@ -1,4 +1,5 @@
-﻿using Dwarf_Town.Locations;
+﻿using Dwarf_Town.Interfaces;
+using Dwarf_Town.Locations;
 using System;
 
 namespace Dwarf_Town
@@ -9,7 +10,7 @@ namespace Dwarf_Town
         {
             SimulationStartConditions simulationStartConditions = new SimulationStartConditions(10, 30, 100);
             SimulationState simulationState = new SimulationState();
-            Hospital hospital = new Hospital();
+            Hospital hospital = new Hospital(new Chance());
 
             simulationState.Dwarves = hospital.GenerateDwarves(simulationStartConditions.DwarvesAtStart);
 

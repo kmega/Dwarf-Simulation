@@ -49,8 +49,7 @@ namespace Dwarf_TownTests.Locations
             });
 
             //when
-            shaft.SendDwarvesDown(new List<IWork>() { workingDwarf.Object });
-            shaft.PerformWork();
+            shaft.PerformWork(new List<IWork>() { workingDwarf.Object });
 
             //then
             Assert.IsTrue(dwarf.BackPack.ShowBackpack().Count==3);
@@ -69,8 +68,7 @@ namespace Dwarf_TownTests.Locations
            
 
             //when
-            shaft.SendDwarvesDown(new List<IWork>() { dwarf._work});
-            shaft.PerformWork();
+            shaft.PerformWork(new List<IWork>() { dwarf._work });
 
             //then
             Assert.IsFalse(shaft.EfficientShaft);

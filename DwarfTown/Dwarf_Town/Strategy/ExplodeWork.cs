@@ -1,6 +1,7 @@
 ﻿using Dwarf_Town.Enums;
 using Dwarf_Town.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace Dwarf_Town.Strategy
 {
@@ -15,10 +16,6 @@ namespace Dwarf_Town.Strategy
             _dwarf = dwarf;
         }
 
-        public bool AskAboutLife()
-        {
-            return _dwarf.IsAlive;
-        }
 
         public void DeathSentence()
         {
@@ -40,6 +37,11 @@ namespace Dwarf_Town.Strategy
         public void HideToBackpack(MineralType ore)
         {
 
+        }
+
+        public List<MineralType> ShowWhatYouBroughtOut()
+        {
+            return new List<MineralType>();
         }
     }
 }

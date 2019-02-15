@@ -8,26 +8,16 @@ namespace Dwarf_Town.Locations.Mine
     public class Shaft
     {
         public bool EfficientShaft;
-        private List<IWork> _dwarvesWorkingInShaft;
        
 
         public Shaft()
         {
             EfficientShaft = true;
-            _dwarvesWorkingInShaft = new List<IWork>();
         }
 
-
-
-        public void SendDwarvesDown(List<IWork> dwarves)
+        public void PerformWork(List<IWork> dwarvesWorkingInShaft)
         {
-            _dwarvesWorkingInShaft = dwarves;
-        }
-
-
-        public void PerformWork()
-        {
-            foreach (var dwarf in _dwarvesWorkingInShaft)
+            foreach (var dwarf in dwarvesWorkingInShaft)
             {
                 int HowManyTimesDwarfHit = dwarf.Dig();
 
@@ -50,13 +40,11 @@ namespace Dwarf_Town.Locations.Mine
 
             if (EfficientShaft == false)
             {
-                foreach (var dwarf in _dwarvesWorkingInShaft)
+                foreach (var dwarf in dwarvesWorkingInShaft)
                 {
                     dwarf.DeathSentence();
                 }
             }
-
-            _dwarvesWorkingInShaft.Clear();
 
         }
     }

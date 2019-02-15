@@ -41,6 +41,9 @@ namespace Dwarf_Town
             IsAlive = true;
             BackPack = new BackPack();
             Wallet = new Wallet();
+            DwarfType = dwarfType;
+            
+         
         }
 
         public bool IsAlive { get; set; }
