@@ -9,23 +9,21 @@ namespace DwarfsTown
         public TypeEnum Type { get; private set; }
         public BankAccount BankAccount;
         public Backpack Backpack;
-        public bool IsAlive { get; set; }
+        IBehaviorOnTheShaft shaftStrategy;
 
         public Dwarf(TypeEnum type)
         {
             Type = new TypeEnum();
             Backpack = new Backpack();
             BankAccount = new BankAccount();
-            IsAlive = true;
             Type = type;
+            if (type == TypeEnum.Saboteur) shaftStrategy = new SaboteurStrategy();
+            else shaftStrategy = new CommonDwarfStrategy();
         }
 
-        public void Digging()
+        public void Working(Shaft shaft)
         {
-            for (int i = 0; i < City.randomizer.GetRange(); i++)
-            {
-                Backpack.Materials.Add(City.randomizer.GetMaterial());
-            }
+            shaftStrategy.DoYourJob(shaft, this.Backpack);
         }
     }
 }

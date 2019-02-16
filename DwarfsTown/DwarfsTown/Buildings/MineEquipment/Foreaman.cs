@@ -8,7 +8,7 @@ namespace DwarfsTown
         public delegate void ExplodedShaftEventHandler(object o, ExplodedEventArgs e);
         public event ExplodedShaftEventHandler ExplodedShaft;
 
-        public void SendDwarfsToShaft(List<Dwarf> dwarfsThatShouldBeWorking, Shaft shaft)
+        public void SendDwarfsToTheShaft(List<Dwarf> dwarfsThatShouldBeWorking, Shaft shaft)
         {
 
             foreach (var dwarf in dwarfsThatShouldBeWorking)

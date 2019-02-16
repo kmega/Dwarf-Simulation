@@ -47,7 +47,11 @@ namespace DwarfsTown
                 //If both shaft are destroyed close the mine
                 if(shaft1.isExist == false && shaft2.isExist == false)
                 {
+                    numbersOfDiggedMaterials = foreman.SumAllDiggedMaterials(dwarfsThatWasWorked);
+                    //Logg
                     City.newsPaper.Add("Mine: All shafts are destroyed, dwarfs must to leave the mine.");
+                    City.newsPaper.Add("Mine: " + " All dwarfs digged: " + numbersOfDiggedMaterials + " raw materials.");
+
                     CloseTheMine(dwarfsThatShouldBeWorking, dwarfsThatWasWorked);
                     return;
                 }
@@ -75,47 +79,41 @@ namespace DwarfsTown
         private void WorkingOnSecondShaft(List<Dwarf> dwarfsThatShouldBeWorking, List<Dwarf> dwarfsThatWasWorked)
         {
             //Foreaman send maximum 5 dwarfs to second shaft
-            foreman.SendDwarfsToShaft(dwarfsThatShouldBeWorking, shaft2);
+            foreman.SendDwarfsToTheShaft(dwarfsThatShouldBeWorking, shaft2);
 
-            //If on the shaft are saboteur, shaft is destroyed and invoke event break method
-            if (shaft2.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
-            {
-                shaft2.isExist = false;
-                City.newsPaper.Add("Mine: Shaft exploded!");
-                foreman.CallToGravedigger(shaft2.dwarfs);
+            //Dwarfs from second shaft go to your own tasks
+            DwarfsDoJob(shaft2);
 
-                return;
-            }
-
-            //Dwarfs from second shaft go to digging
-            StartDigging(shaft2);
-
-            //Foreman let go dwarfs out from second shaft
-            dwarfsThatWasWorked.AddRange(foreman.LetGoDwarfs(shaft2));
+            //Foreman try let go dwarfs out if the shaft is not destroyed
+            EndWorkOnTheShaft(shaft2, dwarfsThatWasWorked);
         }
 
         private void WorkingOnFirstShaft(List<Dwarf> dwarfsThatShouldBeWorking, List<Dwarf> dwarfsThatWasWorked)
         {
             //Foreman send maximum 5 dwarfs to first shaft
-            foreman.SendDwarfsToShaft(dwarfsThatShouldBeWorking, shaft1);
+            foreman.SendDwarfsToTheShaft(dwarfsThatShouldBeWorking, shaft1);
 
-            //If on the shaft are saboteur, shaft is destroyed and break method
-            if (shaft1.dwarfs.Any(x => x.Type == TypeEnum.Saboteur))
+            //Dwarfs from first shaft go to your own tasks
+            DwarfsDoJob(shaft1);
+
+            //Foreman try let go dwarfs out if the shaft is not destroyed
+            EndWorkOnTheShaft(shaft1, dwarfsThatWasWorked);
+       
+        }
+
+        private void EndWorkOnTheShaft(Shaft shaft, List<Dwarf> dwarfsThatWasWorked)
+        {
+            if (shaft.isExist == false)
             {
-                shaft1.isExist = false;
                 City.newsPaper.Add("Mine: Shaft exploded!");
-                foreman.CallToGravedigger(shaft1.dwarfs);
-
-                return;
+                foreman.CallToGravedigger(shaft.dwarfs);
             }
-                
-            
-
-            //Dwarfs from first shaft go to digging
-            StartDigging(shaft1);
-
-            //Foreman let go dwarfs out from first shaft
-            dwarfsThatWasWorked.AddRange(foreman.LetGoDwarfs(shaft1));
+            else
+            {
+                City.newsPaper.Add("Mine: dwarfs digged some raw materials.");
+                //Foreman let go dwarfs out from first shaft
+                dwarfsThatWasWorked.AddRange(foreman.LetGoDwarfs(shaft));
+            }         
         }
 
         private void CloseTheMine(List<Dwarf> dwarfsThatShouldBeWorking, List<Dwarf> dwarfsThatWasWorked)
@@ -124,12 +122,13 @@ namespace DwarfsTown
             dwarfsThatWasWorked.Clear();
         }
 
-        private void StartDigging(Shaft shaft)
+        private void DwarfsDoJob(Shaft shaft)
         {
+            City.newsPaper.Add("Mine: " + shaft.dwarfs.Count + " dwarfs go to the shaft.");
             foreach (var dwarf in shaft.dwarfs)
             {
-                dwarf.Digging();
-            }
+                dwarf.Working(shaft);
+            }         
         }
 
         private void SetShaftsToNotDestroyed(Shaft shaft1, Shaft shaft2)

@@ -18,7 +18,7 @@ namespace DwarfsTownTests
             Shaft s = new Shaft();
 
             //When
-            fm.SendDwarfsToShaft(dwarves, s);
+            fm.SendDwarfsToTheShaft(dwarves, s);
 
             //Then
             Assert.AreEqual(s.dwarfs.Count, 5);
@@ -28,9 +28,10 @@ namespace DwarfsTownTests
         {
             //Given
             Dwarf dwarf = new Dwarf(TypeEnum.Father);
+            Shaft shaft = new Shaft();
 
             //When
-            dwarf.Digging();
+            dwarf.Working(shaft);
 
             //Then
             Assert.IsTrue(dwarf.Backpack.Materials.Count >= 1);
@@ -65,6 +66,32 @@ namespace DwarfsTownTests
 
             //Then
             Assert.AreEqual(city.dwarfs.Count, 6);
+        }
+        [TestMethod]
+        public void ShaftShouldBeDestroyedWhenOnTheShaftIsSaboteur()
+        {
+            //Given
+            Dwarf saboteur = new Dwarf(TypeEnum.Saboteur);
+            Shaft shaft = new Shaft();
+
+            //When
+            saboteur.Working(shaft);
+
+            //Then
+            Assert.AreEqual(shaft.isExist, false);
+        }
+        [TestMethod]
+        public void WhenCommonDwarfWorkingShaftShouldntBeDestroyed()
+        {
+            //Given
+            Dwarf common = new Dwarf(TypeEnum.Father);
+            Shaft shaft = new Shaft();
+
+            //When
+            common.Working(shaft);
+
+            //Then
+            Assert.AreEqual(shaft.isExist, true);
         }
     }
 }
