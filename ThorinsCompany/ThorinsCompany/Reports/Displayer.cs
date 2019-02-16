@@ -10,15 +10,16 @@ namespace ThorinsCompany
         internal void DisplayDailyReport()
         {
             Dictionary<InformationInRaport, int> report = new Dictionary<InformationInRaport, int>();
-            foreach (var item in LoggerFinal.GetInstance().GetLogs().OrderBy(i => i.Value))
+            foreach (var item in Logger.GetInstance().GetLogs().OrderBy(i => i.Value))
                 report.Add(item.Key, item.Value);
             InformationToDisplay(report);
+            Logger.GetInstance().ClearData();
         }
 
         internal void DisplayFinalReport()
         {
             Dictionary<InformationInRaport, int> report = new Dictionary<InformationInRaport, int>();
-            foreach (var item in Logger.GetInstance().GetLogs().OrderBy(i => i.Value))
+            foreach (var item in LoggerFinal.GetInstance().GetLogs().OrderBy(i => i.Value))
                 report.Add(item.Key, item.Value);
             InformationToDisplay(report);
         }
