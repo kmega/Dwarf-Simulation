@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ThorinsCompany
 {
@@ -9,31 +10,28 @@ namespace ThorinsCompany
         {
             IsAvailable = true;
         }
-        public void PerformAction(List<WorkingGroup> workingGroups)
+        public void PerformAction(WorkingGroup workingGroup)
         {
-            for(int i=0;IsAvailable && i<workingGroups.Count;i++)
+            foreach (Dwarf dwarf in workingGroup.Workers)
             {
-                foreach(Dwarf dwarf in workingGroups[i].Workers)
+                dwarf.Work(this);
+                if (IsAvailable == false)
                 {
-                    dwarf.WorkingStrategy.StartWorking(this);
-                    if(IsAvailable == false)
-                    {
-                        Cementary.ReceiveDeadWorkers(workingGroups[i]);
-                        break;
-                    }
+                    Cementary.ReceiveDeadWorkers(workingGroup);
+                    break;
                 }
             }
         }
+
+        public List<Material> PerformDigging()
+        {
+            return new List<Material>() { Material.Gold, Material.DirtyGold };
+        }
+
         public void Explode()
         {
             IsAvailable = false;
         }
         public void RepairShaft() => IsAvailable = true;
-        public bool IsAvaible = true;
-
-        public void PerformMiningByDwarvesInShaft(List<Dwarf> workingDwarves)
-        {
-
-        }
     }
 }
