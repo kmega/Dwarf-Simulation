@@ -2,6 +2,6 @@
 {
     public interface IShoppingStrategy
     {
-        void Pay(int shopAccountID);
+        void Buy(BankAccount dwarfBankAccount,BankAccount bankAccountToTopUp);
     }
 }

@@ -7,21 +7,26 @@ namespace ThorinsCompany
     public class Shop
     {
         public readonly int accountID;
+        private BankAccount _bankAccount;
         public Shop()
         {
-            accountID = AccountCreator.CreateNewAccountWithUniqueID();
+            accountID = IDCreator.GetUniqueID();
+            _bankAccount = AccountCreator.CreateNewAccount(accountID);
+
         }
-        public void PerformShopping(IShoppingStrategy shoppingStrategy)
+        public void PerformShopping(Dwarf dwarf)
         {
-            shoppingStrategy.Pay(accountID);
+            dwarf.Buy(_bankAccount);
         }
 
         public void PerformShoppingForAllDwarves(List<Dwarf> dwarves)
         {
             foreach(Dwarf dwarf in dwarves)
             {
-                PerformShopping(dwarf.ShoppingStrategy);
+                PerformShopping(dwarf);
             }
         }
+        public BankAccount GetBankAccount() => _bankAccount;
+
     }
 }

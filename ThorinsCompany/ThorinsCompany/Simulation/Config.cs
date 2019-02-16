@@ -13,6 +13,7 @@ namespace ThorinsCompany
         public Displayer Displayer { get; private set; }
 
 
+
         public void CreateBank() => Bank = new Bank();
         public void CreateHospital() =>  Hospital = new Hospital();
         public void CreateBar() =>  Bar = new Bar();

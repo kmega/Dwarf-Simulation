@@ -7,17 +7,10 @@ namespace ThorinsCompany
 {
     public class SingleShoppingStrategy : IShoppingStrategy
     {
-        private readonly int _dwarfAccountID;
-        public SingleShoppingStrategy(int dwarfAccountID)
+        public void Buy(BankAccount dwarfBankAccount, BankAccount bankAccountToTopUp)
         {
-            _dwarfAccountID = dwarfAccountID;
-        }
-
-        public void Pay(int shopAccountID)
-        {
-            decimal charge = BankAssistant.CheckMoneyOnAccount(_dwarfAccountID) / 2;
-            BankAssistant.MakeTransaction(shopAccountID, _dwarfAccountID, charge);
-
+            decimal moneyForTransaction = dwarfBankAccount.CheckMoneyOnAccount() / 2;
+            dwarfBankAccount.MakeTransaction(bankAccountToTopUp, moneyForTransaction);
         }
     }
 }

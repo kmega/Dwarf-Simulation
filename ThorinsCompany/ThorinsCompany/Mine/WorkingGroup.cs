@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ThorinsCompany.Raports;
 
 namespace ThorinsCompany
 {
@@ -11,5 +12,8 @@ namespace ThorinsCompany
         {
             this.Workers = workers;
         }
+
+       
+
     }
 }
