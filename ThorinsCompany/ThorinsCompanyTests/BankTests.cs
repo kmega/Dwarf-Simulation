@@ -39,7 +39,7 @@ namespace ThorinsCompanyTests
         }
 
         [Test]
-        public void DwarvesTopUpAccountsWithValueOf100_CheckDailyIncomeAndTotalMoney()
+        public void DwarvesTopUpAccountsWithValueOf100_CheckDailyIncomeAndTotalMoneyAndResetDailyIncome()
         {
             //given
             List<Dwarf> dwarves = new Hospital().CreateDwarves(10);
@@ -72,30 +72,10 @@ namespace ThorinsCompanyTests
 
         }
 
-        [Test]
-        public void ExchangeMaterialsOfEachDwarf_CheckIfTheirAccountsHaveMoneyFromMaterials()
-        {
-            //given
-            List<Dwarf> dwarves = new Hospital().CreateDwarves(10);
-            foreach (var dwarf in dwarves)
-            {
-                dwarf.ShowDiggedMaterials().Add(Material.Mithril);
-            }
-
-            //when
-            bank.ExchangeMaterialsForMoneyFromAllDwarves(dwarves);
-
-            //then
-            foreach (var dwarf in dwarves)
-            {
-                Assert.IsTrue(dwarf.GetBankAccount().CheckYourDailyIncome() > 0);
-            }
-
-
-        }
+     
 
         [Test]
-        public void ExchangeMaterialOfAllDwarfsToMoney_EachDwarfShouldHave25OnAccount()
+        public void ExchangeMaterialOfAllDwarfsToMoney_EachDwarfShouldHaveMoneyOnAccount()
         {
             //given
             Mock<IRamdomizerThorins> mithrilWorth25 = new Mock<IRamdomizerThorins>();
@@ -112,7 +92,7 @@ namespace ThorinsCompanyTests
             //then
             foreach (var dwarf in dwarves)
             {
-                Assert.IsTrue(bank.CheckMoneyOnAccount(dwarf.accountID) > 0);
+                Assert.IsTrue(dwarf.GetBankAccount().CheckMoneyOnAccount() > 0);
             }
         }
 

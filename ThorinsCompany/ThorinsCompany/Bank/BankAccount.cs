@@ -31,11 +31,11 @@ namespace ThorinsCompany
         }
 
 
-        public void MakeTransaction(BankAccount bankAccountToTpUp, decimal moneyForTransaction)
+        public void MakeTransaction(BankAccount bankAccountToTopUp, decimal moneyForTransaction)
         {
             if (_money - moneyForTransaction >= 0)
             {
-                bankAccountToTpUp.TopUp(moneyForTransaction);
+                bankAccountToTopUp.TopUp(moneyForTransaction);
                 _money -= moneyForTransaction;
             }
                
