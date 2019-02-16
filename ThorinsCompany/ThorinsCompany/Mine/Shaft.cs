@@ -29,5 +29,11 @@ namespace ThorinsCompany
             IsAvailable = false;
         }
         public void RepairShaft() => IsAvailable = true;
+        public bool IsAvaible = true;
+
+        public void PerformMiningByDwarvesInShaft(List<Dwarf> workingDwarves)
+        {
+
+        }
     }
 }

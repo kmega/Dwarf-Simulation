@@ -87,8 +87,9 @@ namespace ThorinsCompanyTests
         public void T09RandomizerGetPriceGoldBetween10And20()
         {
             bool isThePriceCorret = false;
-            int priceofGold = randomizer.ReturnPriceMaterials(Material.Gold);
-            if (priceofGold >= 10 && priceofGold <= 20)
+
+            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Silver);
+            if (priceofDirtyGold >= 5 && priceofDirtyGold <= 15)
                 isThePriceCorret = true;
             Assert.IsTrue(isThePriceCorret);
         }
