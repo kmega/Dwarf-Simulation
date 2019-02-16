@@ -1,19 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using ThorinsCompany.Raports;
 
 namespace ThorinsCompany
 {
-    public sealed class LoggerDaily
+    public sealed class Logger
     {
-        static private LoggerDaily logger = new LoggerDaily();
+        static private Logger logger = new Logger();
         private Dictionary<InformationInRaport, int> reports =
             new Dictionary<InformationInRaport, int>();
         
-        private LoggerDaily() { }
-        static public LoggerDaily GetInstance() => logger;
-        public void AddLog(int information, InformationInRaport typeInformationInRaport)
+        private Logger() { }
+        static public Logger GetInstance() => logger;
+        public void AddLogToFinalAndDailyReport(int information, InformationInRaport typeInformationInRaport)
         {
+            LoggerFinal.GetInstance().AddLog(information, typeInformationInRaport);
             if (reports.Count == 0)
             {
                 foreach (string name in Enum.GetNames(typeof(InformationInRaport)))

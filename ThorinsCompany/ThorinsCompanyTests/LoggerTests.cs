@@ -18,10 +18,10 @@ namespace ThorinsCompanyTests
         [TestCase(InformationInRaport.TaintedGoldMinded, 10)]
         public void T01ReturnInfomationInLogs(InformationInRaport information, int howMany)
         {
-            LoggerDaily.GetInstance().AddLog(howMany, information);
-            var listLogs = LoggerDaily.GetInstance().GetLogs();
+            Logger.GetInstance().AddLogToFinalAndDailyReport(howMany, information);
+            var listLogs = Logger.GetInstance().GetLogs();
             Assert.AreEqual(listLogs[information], howMany);
-            LoggerDaily.GetInstance().ClearData();
+            Logger.GetInstance().ClearData();
             counter++;
 
         }
@@ -30,17 +30,26 @@ namespace ThorinsCompanyTests
         public void T02AddTwoTimesTheSameInformation(InformationInRaport information, int howMany)
         {
             bool moreInformation = false;
-            LoggerDaily.GetInstance().AddLog(howMany, information);
-            var listLogs = LoggerDaily.GetInstance().GetLogs();
+            Logger.GetInstance().AddLogToFinalAndDailyReport(howMany, information);
+            var listLogs = Logger.GetInstance().GetLogs();
             if (listLogs[InformationInRaport.AlcoholBought] == howMany)
                 moreInformation = true;
             else if (listLogs[InformationInRaport.AlcoholBought] == howMany * 2)
                 moreInformation = true;
             Assert.IsTrue(moreInformation);
-            ViewDailyOrFinalReport view = new ViewDailyOrFinalReport();
-            view.ViewDailyReport();
         }
 
-
+        [Test]
+        public void T03AfterTest01And02CheckIfSomethingInListFinalLogger()
+        {
+            bool moreInformation = false;
+            var listLogs = LoggerFinal.GetInstance().GetLogs();
+            foreach (var item in listLogs)
+            {
+                if (item.Value != 0)
+                    moreInformation = true;
+            }
+            Assert.IsTrue(moreInformation);
+        }
     }
 }
