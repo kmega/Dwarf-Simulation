@@ -67,8 +67,8 @@ namespace ThorinsCompanyTests
         public void T07RandomizerGetPriceMithrillBetween15And25()
         {
             bool isThePriceCorret = false;
-            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Mithril);
-            if (priceofDirtyGold >= 15 && priceofDirtyGold <= 25)
+            int priceofMithril = randomizer.ReturnPriceMaterials(Material.Mithril);
+            if (priceofMithril >= 15 && priceofMithril <= 25)
                 isThePriceCorret = true;
             Assert.IsTrue(isThePriceCorret);
         }
@@ -77,8 +77,8 @@ namespace ThorinsCompanyTests
         public void T08RandomizerGetPriceSilverBetween5And15()
         {
             bool isThePriceCorret = false;
-            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Silver);
-            if (priceofDirtyGold >= 5 && priceofDirtyGold <= 15)
+            int priceofSilver = randomizer.ReturnPriceMaterials(Material.Silver);
+            if (priceofSilver >= 5 && priceofSilver <= 15)
                 isThePriceCorret = true;
             Assert.IsTrue(isThePriceCorret);
         }
@@ -87,8 +87,8 @@ namespace ThorinsCompanyTests
         public void T09RandomizerGetPriceGoldBetween10And20()
         {
             bool isThePriceCorret = false;
-            int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Silver);
-            if (priceofDirtyGold >= 10 && priceofDirtyGold <= 20)
+            int priceofGold = randomizer.ReturnPriceMaterials(Material.Gold);
+            if (priceofGold >= 10 && priceofGold <= 20)
                 isThePriceCorret = true;
             Assert.IsTrue(isThePriceCorret);
         }

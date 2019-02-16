@@ -9,7 +9,7 @@ namespace ThorinsCompany
         static private LoggerDaily logger = new LoggerDaily();
         private Dictionary<InformationInRaport, int> reports =
             new Dictionary<InformationInRaport, int>();
-
+        
         private LoggerDaily() { }
         static public LoggerDaily GetInstance() => logger;
         public void AddLog(int information, InformationInRaport typeInformationInRaport)
