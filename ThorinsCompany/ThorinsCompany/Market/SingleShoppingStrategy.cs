@@ -5,19 +5,12 @@ using ThorinsCompany.Raports;
 
 namespace ThorinsCompany
 {
-    //public class SingleShoppingStrategy : IShoppingStrategy
-    //{
-    //    private readonly int _dwarfAccountID;
-    //    public SingleShoppingStrategy(int dwarfAccountID)
-    //    {
-    //        _dwarfAccountID = dwarfAccountID;
-    //    }
-
-    //    public void Pay(int shopAccountID)
-    //    {
-    //        decimal charge = BankAssistant.CheckMoneyOnAccount(_dwarfAccountID) / 2;
-    //        BankAssistant.MakeTransaction(shopAccountID, _dwarfAccountID, charge);
-    //        Logger.GetInstance().AddLog("SHOP: Dwarf bough Food");
-    //    }
-    //}
+    public class SingleShoppingStrategy : IShoppingStrategy
+    {
+        public void Buy(BankAccount dwarfBankAccount, BankAccount bankAccountToTopUp)
+        {
+            decimal moneyForTransaction = dwarfBankAccount.CheckMoneyOnAccount() / 2;
+            dwarfBankAccount.MakeTransaction(bankAccountToTopUp, moneyForTransaction);
+        }
+    }
 }

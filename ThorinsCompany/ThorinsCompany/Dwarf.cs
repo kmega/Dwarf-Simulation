@@ -21,6 +21,10 @@ namespace ThorinsCompany
             _bankAccount = AccountCreator.CreateNewAccount(accountID);
 
         }
+        public void Buy(BankAccount bankAccountToTopUp)
+        {
+            ShoppingStrategy.Buy(_bankAccount, bankAccountToTopUp);
+        }
 
 
         public Dictionary<Material, int> ShowDiggedMaterials() => _materials;
