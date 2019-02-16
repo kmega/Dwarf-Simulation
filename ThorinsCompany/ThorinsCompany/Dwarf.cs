@@ -10,6 +10,7 @@ namespace ThorinsCompany
         public IShoppingStrategy ShoppingStrategy;
         private Dictionary<Material, int> _materials = new Dictionary<Material, int>();
         private BankAccount _bankAccount;
+        private bool _isAlive = true;
 
         public Dwarf(DwarfType dwarfType, IShoppingStrategy shoppingStrategy, IWorkingStrategy workingStrategy)
         {
@@ -24,5 +25,8 @@ namespace ThorinsCompany
 
         public Dictionary<Material, int> ShowDiggedMaterials() => _materials;
         public BankAccount GetBankAccount() => _bankAccount;
+        public void Dead() => _isAlive = false;
+        public bool GetLifeStatus() => _isAlive;
+
     }
 }

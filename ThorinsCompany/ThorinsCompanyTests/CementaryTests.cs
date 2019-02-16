@@ -9,20 +9,48 @@ namespace ThorinsCompanyTests
 {
     class CementaryTests
     {
+        Bank _bank = new Bank();
+
         [Test]
-        public void CementaryReceivesDeadWorkers_ShouldDeleteWorkingGroupClass()
+        public void CementaryReceivesDeadWorkers_ChangesStatusIsAliveToFalseAndLoggsMessageAndAddsThemToDeadList()
         {
             // Given
-            Dwarf[] workingDwarves = new Dwarf[5];
+            Dwarf[] workingDwarves = new Hospital().CreateDwarves(5).ToArray();
             WorkingGroup workingGroups = new WorkingGroup(workingDwarves);
 
             //when
             Cementary.ReceiveDeadWorkers(workingGroups);
-           // Logger.GetInstance().AddLog("Group is dead");
 
             //then
+            foreach (var dwarf in workingDwarves)
+            {
+                Assert.IsFalse(dwarf.GetLifeStatus());
+            }
+
             Assert.AreEqual(5,Cementary._deadDwarves);
             Assert.AreEqual("Group has died in fatal accident", Logger.GetInstance().GetLogs()[0]);
+
+        }
+
+        [Test]
+        public void FuneralOnCementary_DeadWarvesAreRemovedFromListOfAllDwarves()
+        {
+            // Given
+            List<Dwarf> dwarves = new Hospital().CreateDwarves(5);
+            Dwarf[] workingDwarves = dwarves.ToArray();
+            WorkingGroup workingGroups = new WorkingGroup(workingDwarves);
+
+            //when
+            Cementary.ReceiveDeadWorkers(workingGroups);
+            Cementary.Funeral(dwarves);
+
+            //then
+            foreach (var dwarf in dwarves)
+            {
+                Assert.IsTrue(dwarf.GetLifeStatus());
+            }
+
+            Assert.AreEqual(0, dwarves.Count);
 
         }
     }

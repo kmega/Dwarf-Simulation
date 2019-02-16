@@ -13,11 +13,7 @@ namespace ThorinsCompany
             this.Workers = workers;
         }
 
-        public void Clear()
-        {
-            Workers = null;
-            Logger.GetInstance().AddLog("Group has died in fatal accident");
-        }
+       
 
     }
 }
