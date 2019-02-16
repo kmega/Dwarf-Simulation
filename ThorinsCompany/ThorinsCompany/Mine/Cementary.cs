@@ -10,7 +10,7 @@ namespace ThorinsCompany
         public static void ReceiveDeadWorkers(WorkingGroup deadGroup)
         {
             _deadDwarves += deadGroup.Workers.Length;
-             Logger.GetInstance().AddLog("Group has died in fatal accident");
+            // Logger.GetInstance().AddLog("Group has died in fatal accident");
 
             foreach (var dwarf in deadGroup.Workers)
             {

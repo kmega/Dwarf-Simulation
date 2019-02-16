@@ -28,7 +28,6 @@ namespace ThorinsCompanyTests
             }
 
             Assert.AreEqual(5,Cementary._deadDwarves);
-            Assert.AreEqual("Group has died in fatal accident", Logger.GetInstance().GetLogs()[0]);
 
         }
 
