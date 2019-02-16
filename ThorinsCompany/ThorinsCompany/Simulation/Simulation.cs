@@ -19,7 +19,7 @@ namespace ThorinsCompany
             {
                 _config.Hospital.TryGiveBirthToDwarf(_dwarves);
                 //_config.Mine;
-               // _config.Cementary;
+                Cementary.Funeral(_dwarves);
                 _config.Bank.ExchangeMaterialsForMoneyFromAllDwarves(_dwarves);
                 _config.Guild.GetTaxesFromDwarvesThatWorked(_dwarves);
                 _config.Bar.GiveFoodForWorkingDwarves(_dwarves);
