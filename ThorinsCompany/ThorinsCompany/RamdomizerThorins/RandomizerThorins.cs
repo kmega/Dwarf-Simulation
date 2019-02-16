@@ -54,5 +54,23 @@ namespace DwarfMineSimulator
             }
             return random;
         }
+
+        public Material WhatDidYouDigOut(int chanceMaterialUseReturnRandomNumberHere)
+        {
+            Material material = Material.Gold;
+            if (chanceMaterialUseReturnRandomNumberHere >= 0
+                && chanceMaterialUseReturnRandomNumberHere <= 5)
+                material = Material.Mithril;
+            else if (chanceMaterialUseReturnRandomNumberHere >= 6
+                && chanceMaterialUseReturnRandomNumberHere <= 20)
+                material = Material.Gold;
+            else if (chanceMaterialUseReturnRandomNumberHere >= 21
+                && chanceMaterialUseReturnRandomNumberHere <= 55)
+                material = Material.Silver;
+            else if (chanceMaterialUseReturnRandomNumberHere >= 56
+                && chanceMaterialUseReturnRandomNumberHere <= 100)
+                material = Material.DirtyGold;
+            return material;
+        }
     }
 }

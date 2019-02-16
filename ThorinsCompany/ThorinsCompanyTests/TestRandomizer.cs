@@ -92,5 +92,45 @@ namespace ThorinsCompanyTests
                 isThePriceCorret = true;
             Assert.IsTrue(isThePriceCorret);
         }
+
+        [Test]
+        public void T10RandomizerGetMithrillWhenYouDig()
+        {
+            bool isMithrill = false;
+            Material material = randomizer.WhatDidYouDigOut(5);
+            if (material == Material.Mithril)
+                isMithrill = true;
+            Assert.IsTrue(isMithrill);
+        }
+
+        [Test]
+        public void T11RandomizerGetSilverWhenYouDig()
+        {
+            bool isSilver = false;
+            Material material = randomizer.WhatDidYouDigOut(33);
+            if (material == Material.Silver)
+                isSilver = true;
+            Assert.IsTrue(isSilver);
+        }
+
+        [Test]
+        public void T12RandomizerGetGoldWhenYouDig()
+        {
+            bool isGold = false;
+            Material material = randomizer.WhatDidYouDigOut(13);
+            if (material == Material.Gold)
+                isGold = true;
+            Assert.IsTrue(isGold);
+        }
+
+        [Test]
+        public void T13RandomizerGetDirtyGoldWhenYouDig()
+        {
+            bool isDirtyGold = false;
+            Material material = randomizer.WhatDidYouDigOut(80);
+            if (material == Material.DirtyGold)
+                isDirtyGold = true;
+            Assert.IsTrue(isDirtyGold);
+        }
     }
 }
