@@ -1,10 +1,14 @@
-﻿using NUnit.Framework;
+﻿using Moq;
+using NUnit.Framework;
+using System.Collections.Generic;
 using ThorinsCompany;
 
-namespace Tests
+namespace ThorinsCompanyTests
 {
     public class BankTests
     {
+        Bank bank = new Bank();
+
         [SetUp]
         public void Setup()
         {
@@ -18,40 +22,80 @@ namespace Tests
             int ID_2 = IDCreator.GetUniqueID();
             Assert.AreNotEqual(ID_1, ID_2);
         }
+
         [Test]
-        public void MakeTransactionFor50_TopUpAccountToHave200FromAccountThatHas100()
+        public void DwarvesHasEmptyAccountsWhenCreated()
         {
             //given
-            Bank bank = new Bank();
-            decimal transactionMoney = 50;
-
-            var accountID_1 = AccountCreator.CreateNewAccountWithUniqueID();       
-            var accountID_2 = AccountCreator.CreateNewAccountWithUniqueID();
-
-
-            //when,then
-            bank.TopUpYourAccount(accountID_1,150);
-            bank.TopUpYourAccount(accountID_2,100);
-
-            Assert.AreEqual(150, bank.CheckYourDailyIncome(accountID_1));
-            Assert.AreEqual(100, bank.CheckYourDailyIncome(accountID_2));
-
-
-            //when,then
-            bank.MakeTransaction(accountIDForAddition: accountID_1,
-               accountIDForSubtraction: accountID_2,
-               moneyForTransaction: transactionMoney);
-
-            Assert.AreEqual(200, bank.CheckYourDailyIncome(accountID_1));
-            Assert.AreEqual(100, bank.CheckYourDailyIncome(accountID_2));
+            List<Dwarf> dwarves = new Hospital().CreateDwarves(10);
+            decimal moneyToDraw = 0.01m;
 
             //when, then
-            bank.ResetDailyIncomeOfAccounts();
-
-            Assert.AreEqual(0, bank.CheckYourDailyIncome(accountID_1));
-            Assert.AreEqual(0, bank.CheckYourDailyIncome(accountID_2));
-
+            foreach (var dwarf in dwarves)
+            {
+                Assert.IsFalse(dwarf.GetBankAccount().CanGetMoneyFromAccount(moneyToDraw));
+            }
 
         }
+
+        [Test]
+        public void DwarvesTopUpAccountsWithValueOf100_CheckDailyIncomeAndTotalMoneyAndResetDailyIncome()
+        {
+            //given
+            List<Dwarf> dwarves = new Hospital().CreateDwarves(10);
+            decimal moneyToTopUp = 100;
+
+            //when
+            foreach (var dwarf in dwarves)
+            {
+                dwarf.GetBankAccount().TopUp(moneyToTopUp);
+            }
+
+            //then
+            foreach (var dwarf in dwarves)
+            {
+               Assert.AreEqual(moneyToTopUp, dwarf.GetBankAccount().CheckYourDailyIncome());
+               Assert.AreEqual(moneyToTopUp, dwarf.GetBankAccount().CheckMoneyOnAccount());
+  
+            }
+
+            //when
+            bank.ResetDailyIncomeOfAccounts();
+
+            //then
+            foreach (var dwarf in dwarves)
+            {
+                Assert.AreEqual(0, dwarf.GetBankAccount().CheckYourDailyIncome());
+                Assert.AreEqual(moneyToTopUp, dwarf.GetBankAccount().CheckMoneyOnAccount());
+
+            }
+
+        }
+
+     
+
+        [Test]
+        public void ExchangeMaterialOfAllDwarfsToMoney_EachDwarfShouldHaveMoneyOnAccount()
+        {
+            //given
+            Mock<IRamdomizerThorins> mithrilWorth25 = new Mock<IRamdomizerThorins>();
+            mithrilWorth25.Setup(x => x.ReturnPriceMaterials(Material.Mithril)).Returns(25);
+            List<Dwarf> dwarves = new Hospital().CreateDwarves(10);
+            foreach (var dwarf in dwarves)
+            {
+                dwarf.ShowDiggedMaterials().Add(Material.Mithril, 1);
+            }
+
+            //when
+            bank.ExchangeMaterialsForMoneyFromAllDwarves(dwarves);
+
+            //then
+            foreach (var dwarf in dwarves)
+            {
+                Assert.IsTrue(dwarf.GetBankAccount().CheckMoneyOnAccount() > 0);
+            }
+        }
+
+
     }
 }

@@ -14,11 +14,11 @@ namespace ThorinsCompany
             _bank = bank;
         }
 
-        public static int CreateNewAccountWithUniqueID()
+        public static BankAccount CreateNewAccount(int ID)
         {
-            int ID = IDCreator.GetUniqueID();
-            _bank.CreateAccount(new BankAccount(), ID);
-            return ID;
+            var newAccount = new BankAccount();
+            _bank.CreateAccount(newAccount, ID);
+            return newAccount;
         }
 
     }

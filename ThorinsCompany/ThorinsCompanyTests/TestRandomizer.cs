@@ -88,7 +88,7 @@ namespace ThorinsCompanyTests
         {
             bool isThePriceCorret = false;
             int priceofDirtyGold = randomizer.ReturnPriceMaterials(Material.Silver);
-            if (priceofDirtyGold >= 10 && priceofDirtyGold <= 20)
+            if (priceofDirtyGold >= 5 && priceofDirtyGold <= 15)
                 isThePriceCorret = true;
             Assert.IsTrue(isThePriceCorret);
         }
