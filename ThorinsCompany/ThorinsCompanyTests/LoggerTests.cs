@@ -9,7 +9,7 @@ namespace ThorinsCompanyTests
 {
     public class LoggerTests
     {
-
+        int counter = 0;
         [TestCase(InformationInRaport.AlcoholBought, 10)]
         [TestCase(InformationInRaport.DeathCount, 5)]
         [TestCase(InformationInRaport.GoldMinded, 100)]
@@ -17,11 +17,13 @@ namespace ThorinsCompanyTests
         [TestCase(InformationInRaport.SuiciderBorn, 10)]
         [TestCase(InformationInRaport.TaintedGoldMinded, 10)]
         public void T01ReturnInfomationInLogs(InformationInRaport information, int howMany)
-        {           
+        {
             LoggerDaily.GetInstance().AddLog(howMany, information);
             var listLogs = LoggerDaily.GetInstance().GetLogs();
             Assert.AreEqual(listLogs[information], howMany);
             LoggerDaily.GetInstance().ClearData();
+            counter++;
+
         }
         [TestCase(InformationInRaport.AlcoholBought, 10)]
         [TestCase(InformationInRaport.AlcoholBought, 10)]
@@ -35,6 +37,8 @@ namespace ThorinsCompanyTests
             else if (listLogs[InformationInRaport.AlcoholBought] == howMany * 2)
                 moreInformation = true;
             Assert.IsTrue(moreInformation);
+            ViewDailyOrFinalReport view = new ViewDailyOrFinalReport();
+            view.ViewDailyReport();
         }
 
 
