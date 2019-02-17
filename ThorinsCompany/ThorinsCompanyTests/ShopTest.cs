@@ -16,7 +16,7 @@ namespace ThorinsCompanyTests
             // Given
             Shop shop = new Shop();
             shop.GetBankAccount().TopUp(100);
-            Dwarf dwarf = new Dwarf(DwarfType.Father, new FatherShoppingStrategy(), null);
+            Dwarf dwarf = DwarfFactory.CreateDwarf(DwarfType.Father);
             dwarf.GetBankAccount().TopUp(200);
             decimal expectedDwarfMoney = 100;
             decimal expectedShopMoney = 200;
@@ -37,7 +37,7 @@ namespace ThorinsCompanyTests
             // Given
             Shop shop = new Shop();
             shop.GetBankAccount().TopUp(100);
-            Dwarf dwarf = new Dwarf(DwarfType.Single, new SingleShoppingStrategy(), null);
+            Dwarf dwarf = DwarfFactory.CreateDwarf(DwarfType.Single);
             dwarf.GetBankAccount().TopUp(200);
             decimal expectedDwarfMoney = 100;
             decimal expectedShopMoney = 200;
@@ -57,7 +57,7 @@ namespace ThorinsCompanyTests
             // Given
             Shop shop = new Shop();
             shop.GetBankAccount().TopUp(100);
-            Dwarf dwarf = new Dwarf(DwarfType.Lazy, new LazyShoppingStrategy(), null);
+            Dwarf dwarf = DwarfFactory.CreateDwarf(DwarfType.Lazy);
             dwarf.GetBankAccount().TopUp(200);
             decimal expectedDwarfMoney = 200;
             decimal expectedShopMoney = 100;
