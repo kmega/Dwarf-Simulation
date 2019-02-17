@@ -12,28 +12,13 @@ namespace ThorinsCompany
 
         public List<Dwarf> CreateDwarves(int howManyDwarfYouWantCreate)
         {
-            //Logger.GetInstance().AddLog();
-
-           // WorkingStrategy workingStrategy;
-            IShoppingStrategy shoppingStrategy;
             List<Dwarf> dwarves = new List<Dwarf>();
             for (int i = 0; i < howManyDwarfYouWantCreate; i++)
             {
-                DwarfType dwarfTypes = randomizer.GenerateDwarfType(
+                DwarfType dwarfType = randomizer.GenerateDwarfType(
                     randomizer.ReturnRandomNumber(1,100));
-                switch(dwarfTypes)
-                {
-                    case DwarfType.Single:
-                        //shoppingStrategy = new SingleShoppingStrategy();
-                        break;
-                    case DwarfType.Lazy:
-                        break;
-                    case DwarfType.Father:
-                        break;
-                    case DwarfType.Bomber:
-                        break;
-                }
-                dwarves.Add(new Dwarf(dwarfTypes, null, null));
+                Dwarf dwarf = DwarfFactory.CreateDwarf(dwarfType);
+                dwarves.Add(dwarf);
             }           
             return dwarves;
         }
