@@ -11,6 +11,7 @@ namespace Dwarf_Town.Locations.Guild
         private decimal _account;
         private Dictionary<MineralType, IOreValue> _oresOnMarket;
         private Dictionary<MineralType, decimal> _oreValueRegister;
+        private Dictionary<MineralType, decimal> _dailyOreValueRegister;
         public IOutputWriter Presenter;
 
         public Guild(Dictionary<MineralType, IOreValue> oresOnMarket, Dictionary<MineralType, decimal> oreValueRegister, IOutputWriter presenter)
@@ -18,6 +19,7 @@ namespace Dwarf_Town.Locations.Guild
             _account = 0;
             _oresOnMarket = oresOnMarket;
             _oreValueRegister = oreValueRegister;
+            _dailyOreValueRegister = new Dictionary<MineralType, decimal>(_oreValueRegister);
             Presenter = presenter;
         }
 
@@ -34,15 +36,16 @@ namespace Dwarf_Town.Locations.Guild
                 foreach (var ore in dwarf.ShowBackpack())
                 {
                     decimal value = ReturnOreValue(ore);
-                    _oreValueRegister[ore] += value;
+                    _dailyOreValueRegister[ore] += value;
                     decimal provision = Math.Round((value * 0.25m), 2);
                     _account += provision;
                     decimal payment = Math.Round((value - provision), 2);
                     dwarf.ReceivedMoney(payment);
-                    Presenter.WriteLine($"Dwarf exchange {ore} for {payment} gp and guild take {provision} gp provision");
+                   
                 }
                 dwarf.ShowBackpack().Clear();
             }
+            UpdateMineRegister();
         }
 
         public decimal ShowTresure()
@@ -53,6 +56,23 @@ namespace Dwarf_Town.Locations.Guild
         public Dictionary<MineralType, decimal> ShowGuildRegister()
         {
             return _oreValueRegister;
+        }
+
+        private void UpdateMineRegister()
+        {
+            Presenter.WriteLine("\nGuild received ore worth:");
+            foreach (var ore in _dailyOreValueRegister)
+            {
+                Presenter.WriteLine($"{ore.Key}: {ore.Value} gp");
+                _oreValueRegister[ore.Key] += ore.Value;
+            }
+            foreach (var key in _oreValueRegister.Keys)
+            {
+                _dailyOreValueRegister[key] = 0;
+            }
+
+
+
         }
     }
 }

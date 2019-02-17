@@ -12,7 +12,7 @@ namespace Dwarf_TownTests
     public class NewspaperTests
     {
         [Test]
-        public void DwarfSellDirytGold()
+        public void ShouldShowThatDwarfSellDirytGold()
         {
             //given
             Mock<IOutputWriter> presenter = new Mock<IOutputWriter>();
@@ -25,39 +25,47 @@ namespace Dwarf_TownTests
             guild.PaymentForDwarves(miners);
 
             //then
-            presenter.Verify(i => i.WriteLine("Dwarf exchange DirtyGold for 1,50 gp and guild take 0,50 gp provision"));
+            presenter.Verify(i => i.WriteLine("\nGuild received ore worth:"));
+            presenter.Verify(i => i.WriteLine("DirtyGold: 2 gp"));
+            presenter.Verify(i => i.WriteLine("Gold: 0 gp"));
+            presenter.Verify(i => i.WriteLine("Mithril: 0 gp"));
+            presenter.Verify(i => i.WriteLine("Silver: 0 gp"));
         }
 
         [Test]
-        public void SuicideDestroyShaft()
+        public void ShouldShowThatSuicideDestroyShaft()
         {
             //given
             Mock<IOutputWriter> presenter = new Mock<IOutputWriter>();
-            Shaft shaft = new Shaft(presenter.Object);
+            Mine mine = MineFactory.CreateStandardMine(presenter.Object);
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
 
             //when
-            shaft.PerformWork(new List<IWork>() { dwarf._work });
+          mine.DwarvesGoWork(new List<IWork>() { dwarf._work });
 
             //given
             presenter.Verify(i => i.WriteLine("Shaft destroyed."));
         }
 
         [Test]
-        public void DwarfBroughtOutGold()
+        public void ShouldShowThatDwarfBroughtOutGold()
         {
             //given
             Mock<IOutputWriter> presenter = new Mock<IOutputWriter>();
-            Shaft shaft = new Shaft(presenter.Object);
+            Mine mine = MineFactory.CreateStandardMine(presenter.Object);
             Mock<IWork> workingDwarf = new Mock<IWork>();
-            workingDwarf.Setup(i => i.Dig()).Returns(1);
-            workingDwarf.Setup(i => i.GenerateChance(It.IsAny<int>(), It.IsAny<int>())).Returns(20);
+            workingDwarf.Setup(i => i.ShowWhatYouBroughtOut()).Returns(new List<MineralType>() { MineralType.Gold });
+
 
             //when
-            shaft.PerformWork(new List<IWork>() { workingDwarf.Object });
+           mine.DwarvesGoWork(new List<IWork>() { workingDwarf.Object });
 
             //then
-            presenter.Verify(i => i.WriteLine("Dwarf brought out Gold."));
+            presenter.Verify(i => i.WriteLine("\nMine brought out:"));
+            presenter.Verify(i => i.WriteLine("DirtyGold: 0"));
+            presenter.Verify(i => i.WriteLine("Gold: 1"));
+            presenter.Verify(i => i.WriteLine("Mithril: 0"));
+            presenter.Verify(i => i.WriteLine("Silver: 0"));
         }
     }
 }

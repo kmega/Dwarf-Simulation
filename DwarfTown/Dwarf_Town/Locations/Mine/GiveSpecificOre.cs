@@ -2,9 +2,9 @@
 
 namespace Dwarf_Town.Locations.Mine
 {
-    public static class GiveSpecificOre
+    public class GiveSpecificOre : IBroughtOutOreChance
     {
-        public static MineralType GetTheOre(int chanceForMineral)
+        public MineralType GetTheOre(int chanceForMineral)
         {
             if (chanceForMineral <= 5)
             {

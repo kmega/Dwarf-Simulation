@@ -6,17 +6,20 @@ namespace Dwarf_Town.Locations.Mine
     public class Shaft
     {
         public bool EfficientShaft;
-        private IOutputWriter Presenter;
+        private IBroughtOutOreChance ChanceForSpecificOre;
+      
 
-        public Shaft(IOutputWriter presenter)
+        public Shaft(IBroughtOutOreChance randomizer)
         {
             EfficientShaft = true;
-            Presenter = presenter;
+            ChanceForSpecificOre = randomizer;
+
+            
         }
 
         public void PerformWork(List<IWork> dwarvesWorkingInShaft)
         {
-            List<string> message = new List<string>();
+            
             foreach (var dwarf in dwarvesWorkingInShaft)
 
             {
@@ -24,7 +27,7 @@ namespace Dwarf_Town.Locations.Mine
 
                 if (HowManyTimesDwarfHit == -1)
                 {
-                    Presenter.WriteLine("Shaft destroyed.");
+                    
                     //Suicide attack
                     EfficientShaft = false;
 
@@ -36,8 +39,8 @@ namespace Dwarf_Town.Locations.Mine
                     for (int i = 0; i < HowManyTimesDwarfHit; i++)
                     {
                         int chanceForOre = dwarf.GenerateChance(1, 101);
-                        dwarf.HideToBackpack(GiveSpecificOre.GetTheOre(chanceForOre));
-                        Presenter.WriteLine($"Dwarf brought out {GiveSpecificOre.GetTheOre(chanceForOre)}.");
+                        dwarf.HideToBackpack(ChanceForSpecificOre.GetTheOre(chanceForOre));
+                      
                     }
                 }
             }

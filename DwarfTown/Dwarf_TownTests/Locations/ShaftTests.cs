@@ -15,10 +15,10 @@ namespace Dwarf_TownTests.Locations
         public void DropDiffrentOres()
         {
             //when
-            var mineralOne = GiveSpecificOre.GetTheOre(5);
-            var mineralTwo = GiveSpecificOre.GetTheOre(20);
-            var mineralThree = GiveSpecificOre.GetTheOre(55);
-            var mineralFour = GiveSpecificOre.GetTheOre(100);
+            var mineralOne = new GiveSpecificOre().GetTheOre(5);
+            var mineralTwo = new GiveSpecificOre().GetTheOre(20);
+            var mineralThree = new GiveSpecificOre().GetTheOre(55);
+            var mineralFour = new GiveSpecificOre().GetTheOre(100);
 
             //then
             Assert.IsTrue(mineralOne == MineralType.Mithril);
@@ -31,7 +31,7 @@ namespace Dwarf_TownTests.Locations
         public void DwarfBroughtOutThreeGold()
         {
             //given
-            Shaft shaft = new Shaft(new WindowsConsole());
+            Shaft shaft = new Shaft(new GiveSpecificOre());
             Dwarf dwarf = new Dwarf(DwarfType.FATHER);
             Mock<IWork> workingDwarf = new Mock<IWork>();
             workingDwarf.Setup(i => i.Dig()).Returns(3);
@@ -56,7 +56,7 @@ namespace Dwarf_TownTests.Locations
         public void SuicideDestroyShaft()
         {
             //given
-            Shaft shaft = new Shaft(new WindowsConsole());
+            Shaft shaft = new Shaft(new GiveSpecificOre());
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
 
             //when

@@ -1,31 +1,84 @@
 ﻿using Dwarf_Town.Interfaces;
 using Dwarf_Town.Locations;
+using Dwarf_Town.Locations.Guild;
+using Dwarf_Town.Locations.Mine;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Dwarf_Town
 {
     public class SimulationStart
-
     {
-        public Newspapper newspapper = new Newspapper();
+        public Guild Guild;
+        public Mine Mine;
+        public Canteen Canteen;
+        public Shop Shop;
+        public Hospital Hospital;
+        public IOutputWriter Presenter;
+        public List<Dwarf> Dwarves;
+        public int MaxDay;
+        public int DwarvesBornFirstDay;
+        public int ActualDay;
+
+
+
+        public SimulationStart(SimulationStartConditions startConditions)
+        {
+            Presenter = startConditions.Presenter;
+            Guild = startConditions.Guild;
+            Mine = startConditions.Mine;
+            Canteen = startConditions.Canteen;
+            Shop = startConditions.Shop;
+            Hospital = startConditions.Hospital;
+            Dwarves = startConditions.Dwarves;
+            MaxDay = startConditions.MaxDay;
+            DwarvesBornFirstDay = startConditions.DwarvesBornFirstDay;
+            ActualDay = 1;
+
+        }
 
         public void Start()
         {
-            SimulationStartConditions simulationStartConditions = new SimulationStartConditions(10, 30, 100);
-            SimulationState simulationState = new SimulationState();
-            Hospital hospital = new Hospital(new Chance());
+           
+            while (ActualDay <= MaxDay)
+              {
+              
+                Presenter.WriteLine($"\n\n######\nToday is day number {ActualDay}\n");
+                if (ActualDay == 1)
+                {
+                    Dwarves.AddRange(Hospital.GenerateDwarves(DwarvesBornFirstDay));
+                }
+                else
+                {
+                    Dwarves.AddRange(Hospital.DailyGenerate());
+                }
+                Mine.DwarvesGoWork(Dwarves.Select(i => i._work).ToList());
+                Cementary.BuryTheDwarves(Dwarves, Presenter);
+                if (Dwarves.Count == 0)
+                {
+                    break;
+                }
 
-            simulationState.Dwarves = hospital.GenerateDwarves(simulationStartConditions.DwarvesAtStart);
+                Guild.PaymentForDwarves(Dwarves.Select(i => i._sell).ToList());
+                Canteen.SpendFoodRations(Dwarves);
+                Shop.BuyGoods(Dwarves);
+                UpdateSimulationState();
+                ActualDay++;
 
-            for (int i = 0; i < simulationStartConditions.Rounds; i++)
-            {
-                UpdateSimulationState(simulationState);
             }
+
+            SimulationReport.GenerateRaport(this);
         }
 
-        private void UpdateSimulationState(SimulationState simulationState)
+        private void UpdateSimulationState()
         {
-            throw new NotImplementedException();
+            foreach (var dwarf in Dwarves)
+            {
+                dwarf.Wallet.OverallCash += Math.Round(dwarf.Wallet.DailyCash,2);
+                dwarf.Wallet.DailyCash = 0;
+
+            }
         }
     }
 }
