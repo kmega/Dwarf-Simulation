@@ -14,11 +14,10 @@ namespace ThorinsCompanyTests
         public void ShouldWorkingGroupDieWhenGroupContainsBomberDwarf()
         {
             // given
-            List<Dwarf> dwarves = new List<Dwarf>();
-            dwarves.Add(new Dwarf(DwarfType.Bomber, null, new BomberWorkingStrategy()));
-            dwarves.Add(new Dwarf(DwarfType.Father, null, new StandardWorkingStrategy()));
-            dwarves.Add(new Dwarf(DwarfType.Lazy, null, new StandardWorkingStrategy()));
-            dwarves.Add(new Dwarf(DwarfType.Single, null, new StandardWorkingStrategy()));
+            List<Dwarf> dwarves = new Hospital().CreateDwarves(4);
+            Dwarf dwarfBomber = DwarfFactory.CreateDwarf(DwarfType.Bomber);
+            dwarves.Add(dwarfBomber);
+            
             WorkingGroup workingGroup = new WorkingGroup(dwarves.ToArray());
             Shaft shaft = new Shaft();
 
@@ -39,9 +38,10 @@ namespace ThorinsCompanyTests
         {
             // given
             List<Dwarf> dwarves = new List<Dwarf>();
-            dwarves.Add(new Dwarf(DwarfType.Father, null, new StandardWorkingStrategy()));
-            dwarves.Add(new Dwarf(DwarfType.Lazy, null, new StandardWorkingStrategy()));
-            dwarves.Add(new Dwarf(DwarfType.Single, null, new StandardWorkingStrategy()));
+            dwarves.Add(DwarfFactory.CreateDwarf(DwarfType.Father));
+            dwarves.Add(DwarfFactory.CreateDwarf(DwarfType.Lazy));
+            dwarves.Add(DwarfFactory.CreateDwarf(DwarfType.Single));
+            dwarves.Add(DwarfFactory.CreateDwarf(DwarfType.Father));
             WorkingGroup workingGroup = new WorkingGroup(dwarves.ToArray());
             Shaft shaft = new Shaft();
 
