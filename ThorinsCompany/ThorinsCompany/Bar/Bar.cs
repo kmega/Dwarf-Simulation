@@ -23,9 +23,12 @@ namespace ThorinsCompany
             _foodRations += 30;
         }
 
-        internal void GiveFoodForWorkingDwarves(List<Dwarf> dwarves)
+        public void GiveFoodForWorkingDwarves(List<Dwarf> dwarves)
         {
-            throw new NotImplementedException();
+            foreach(Dwarf dwarf in dwarves)
+            {
+                GiveFood();
+            }
         }
     }
 }
