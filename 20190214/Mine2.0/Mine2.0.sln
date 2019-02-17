@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mine2.0", "Mine2.0\Mine2.0.csproj", "{588420D2-3E61-4C31-985B-94CA999CA646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MIne2.0Tests", "MIne2.0Tests\MIne2.0Tests.csproj", "{8757D6F1-A276-487F-B37C-50B552082336}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{588420D2-3E61-4C31-985B-94CA999CA646}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{588420D2-3E61-4C31-985B-94CA999CA646}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{588420D2-3E61-4C31-985B-94CA999CA646}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{588420D2-3E61-4C31-985B-94CA999CA646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8757D6F1-A276-487F-B37C-50B552082336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8757D6F1-A276-487F-B37C-50B552082336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8757D6F1-A276-487F-B37C-50B552082336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8757D6F1-A276-487F-B37C-50B552082336}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
