@@ -27,7 +27,7 @@ namespace ThorinsCompany
         {
             if (_day0)
             {
-                CreateDwarves(10);
+                dwarves.AddRange(CreateDwarves(10));
                 _day0 = false;
             }
                 
