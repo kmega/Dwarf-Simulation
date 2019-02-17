@@ -77,28 +77,6 @@ namespace MIne2._0Tests
             Assert.IsTrue(se.simulationState._allExtractedMinerals.All(x => x == E_Minerals.Mithril));
         }
 
-        //[Test]
-        //public void T04_CreatesNewIntitalStateWithBase10FathersWhoPerfromWorkAndExchangeMaterialsInGuildCommisionAndTaxIsTaken()
-        //{
-        //    //given
-        //    typeMock.Setup(x => x.GetRandomDwarfType()).Returns(E_DwarfType.Father);
-        //    mineMock.Setup(x => x.RandomWorkIteration()).Returns(1);
-        //    mineMock.Setup(x => x.GenerateRadnomFromRange()).Returns(1);
-        //    guildMock.Setup(x => x.SetMithrilValue()).Returns(20);
-
-        //    //when
-        //    var se = new SimulationEngine(1, typeMock.Object, birthMock.Object, mineMock.Object, guildMock.Object, mockPresenter.Object);
-
-        //    se.Start();
-
-        //    //then
-        //    Assert.IsTrue(se.simulationState._allDwarves.Count() == 10);
-        //    Assert.IsTrue(se.simulationState._allExtractedMinerals.Count == 10);
-        //    Assert.IsTrue(se.simulationState._allExtractedMinerals.All(x => x == E_Minerals.Mithril));
-        //    Assert.IsTrue(se.simulationState._guildBankAccount == 50m);
-        //    Assert.IsTrue(se.simulationState._allDwarves.All(x => x._backpack.Count == 0));
-        //}
-
         [Test]
         public void T04_CreatesIntitalStateWith10FathersWhoPerfromWorkAndExchangeMaterialsInGuildCommisionAndTaxIsCollectedAndContainedInTaxAccount()
         {

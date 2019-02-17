@@ -38,11 +38,6 @@ namespace Mine2._0
             return _isAlive;
         }
 
-        //public List<E_Minerals> GetBackpack()
-        //{
-        //    return _backpack;
-        //}
-
         public override string ToString()
         {
             return _dwarfType.ToString();

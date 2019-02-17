@@ -8,7 +8,6 @@ namespace Mine2._0
         bool _isAlive { get; set; }
         IWorkStrategy _workStrategy { get; set; }
         IBuyStrategy _buyStrategy { get; set; }
-
         new List<E_Minerals> ShowBackpack();
     }
 }
