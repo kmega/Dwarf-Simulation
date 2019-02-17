@@ -9,32 +9,49 @@ namespace ThorinsCompany
     {
 
         public Shaft[] allShafts;
-        public Foreman Master; //it's supposed to be a kind of a parser.
-        //It divides main list to smaller with that is of maximum count = 5;
-        //it manages divided list of dwarves and sends them to each shaft;
+        public Foreman Master;
         
         public Mine()
         {
             allShafts = new Shaft[2] { new Shaft(), new Shaft() };
             Master = new Foreman();
-            
-
         }
 
         public void PerformMining(List<Dwarf> dwarves)
         {
-
+            RepairShafts();
             List<WorkingGroup> workingGroups = Master.DivideDwarvesIntoWorkingGroups(dwarves);
-
-            // put groups to aviable shafts
-            // do work in shafts
-            // result
-
-
-            }
-
+            PerformActionsInShafts(workingGroups);
         }
-        
+
+        private void RepairShafts()
+        {
+            foreach (Shaft shaft in allShafts)
+                shaft.RepairShaft();
+        }
+        private List<Shaft> GetAvailableShafts()
+        {
+            List<Shaft> availableShafts = new List<Shaft>();
+            foreach (Shaft shaft in allShafts)
+                availableShafts.Add(shaft);
+
+            return availableShafts;
+        }
+        private void PerformActionsInShafts(List<WorkingGroup> workingGroups)
+        {
+            Stack<WorkingGroup> workingGroupStack = new Stack<WorkingGroup>(workingGroups);
+            while(workingGroupStack.Any())
+            {
+                var availableShafts = GetAvailableShafts();
+                if (availableShafts.Count == 0)
+                    break;
+                for(int i=0; workingGroupStack.Any() && i < availableShafts.Count;i++)
+                    availableShafts[i].PerformAction(workingGroupStack.Pop());
+            }
+        }
 
     }
+        
+
+}
 

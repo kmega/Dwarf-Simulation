@@ -1,7 +1,9 @@
-﻿namespace ThorinsCompany
+﻿using System.Collections.Generic;
+
+namespace ThorinsCompany
 {
     public interface IWorkingStrategy
     {
-        void StartWorking(Shaft shaft);
+        void StartWorking(Dictionary<Material,int> dwarfMaterials,Shaft shaft);
     }
 }

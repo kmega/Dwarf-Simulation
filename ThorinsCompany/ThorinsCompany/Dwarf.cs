@@ -25,6 +25,10 @@ namespace ThorinsCompany
         {
             ShoppingStrategy.Buy(_bankAccount, bankAccountToTopUp);
         }
+        public void Work(Shaft shaft)
+        {
+            WorkingStrategy.StartWorking(_materials,shaft);
+        }
 
 
         public Dictionary<Material, int> ShowDiggedMaterials() => _materials;
