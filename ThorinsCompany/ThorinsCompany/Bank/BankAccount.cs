@@ -7,11 +7,7 @@ namespace ThorinsCompany
         private decimal _money = 0;
         private decimal _dailyIncome = 0;
 
-        public void TopUp(decimal moneyToTopUpAccount)
-        {
-            _money += moneyToTopUpAccount;
-            _dailyIncome += moneyToTopUpAccount;
-        }
+
 
         public bool CanGetMoneyFromAccount(decimal moneyToDraw)
         {
@@ -42,9 +38,10 @@ namespace ThorinsCompany
         }
 
 
-        public void TopUpYourAccount(decimal moneyToTopUpAccount)
+        public void TopUp(decimal moneyToTopUpAccount)
         {
             _money += moneyToTopUpAccount;
+            _dailyIncome += moneyToTopUpAccount;
         }
 
         public decimal CheckYourDailyIncome()
