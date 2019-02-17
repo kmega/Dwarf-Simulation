@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DwarfMineSimulator;
+using System;
 using System.Collections.Generic;
 
 namespace ThorinsCompany
@@ -25,7 +26,15 @@ namespace ThorinsCompany
 
         public List<Material> PerformDigging()
         {
-            return new List<Material>() { Material.Gold, Material.DirtyGold };
+            List<Material> diggedMaterials = new List<Material>();
+            RandomizerThorins randomizer = new RandomizerThorins();
+            int numberOfHits = randomizer.ReturnRandomNumber(1, 3);
+            for(int i =0;i<numberOfHits;i++)
+            {
+                int numberInDiggingRange = randomizer.ReturnRandomNumber(1, 100);
+                diggedMaterials.Add(randomizer.WhatDidYouDigOut(numberInDiggingRange));
+            }
+            return diggedMaterials;
         }
 
         public void Explode()
