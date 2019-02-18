@@ -2,7 +2,7 @@
 
 namespace Dwarf_Town.Locations.Mine
 {
-    public class GiveSpecificOre : IBroughtOutOreChance
+    public class GiveSpecificOre : IChanceForBroughtOutOre
     {
         public MineralType GetTheOre(int chanceForMineral)
         {

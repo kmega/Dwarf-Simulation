@@ -12,8 +12,7 @@ namespace Dwarf_Town.Locations.Mine
         private Dictionary<MineralType, int> _dailyOreRegister;
         public IOutputWriter Presenter;
 
-
-        public Mine(int numberOfShafts, Dictionary<MineralType, int> register, IBroughtOutOreChance randomizer, IOutputWriter presenter)
+        public Mine(int numberOfShafts, Dictionary<MineralType, int> register, IChanceForBroughtOutOre randomizer, IOutputWriter presenter)
         {
             Shafts = new List<Shaft>();
             for (int i = 0; i < numberOfShafts; i++)
@@ -27,7 +26,6 @@ namespace Dwarf_Town.Locations.Mine
 
         public void DwarvesGoWork(List<IWork> dwarvesVisitMine)
         {
-         
             do
             {
                 foreach (var shaft in Shafts)
@@ -39,14 +37,12 @@ namespace Dwarf_Town.Locations.Mine
                             shaft.PerformWork(dwarvesVisitMine.GetRange(0, 5));
                             RegistBroughtOutOre(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()).ToList());
                             dwarvesVisitMine.RemoveRange(0, 5);
-                            
                         }
                         else
                         {
                             shaft.PerformWork(dwarvesVisitMine.GetRange(0, dwarvesVisitMine.Count));
                             RegistBroughtOutOre(dwarvesVisitMine.SelectMany(i => i.ShowWhatYouBroughtOut()).ToList());
                             dwarvesVisitMine.RemoveRange(0, dwarvesVisitMine.Count);
-                          
                         }
 
                         if (shaft.EfficientShaft == false)
@@ -71,21 +67,19 @@ namespace Dwarf_Town.Locations.Mine
                 _dailyOreRegister[ore]++;
             }
         }
+
         private void UpdateMineRegister()
         {
             Presenter.WriteLine("\nMine brought out:");
-               foreach (var ore in _dailyOreRegister)
+            foreach (var ore in _dailyOreRegister)
             {
                 Presenter.WriteLine($"{ore.Key}: {ore.Value}");
                 _oreRegister[ore.Key] += ore.Value;
             }
-               foreach (var key in _dailyOreRegister.Keys.ToList())
+            foreach (var key in _dailyOreRegister.Keys.ToList())
             {
                 _dailyOreRegister[key] = 0;
             }
-
-
-
         }
     }
 }

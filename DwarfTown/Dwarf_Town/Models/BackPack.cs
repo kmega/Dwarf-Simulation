@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Dwarf_Town.Models
 {
-    public class BackPack
+    public class Backpack
     {
         private List<MineralType> _backpack = new List<MineralType>();
 

@@ -7,23 +7,19 @@ using Dwarf_Town.Locations.Guild.OreValue;
 using Dwarf_Town.Locations.Mine;
 using Moq;
 using NUnit.Framework;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Dwarf_TownTests
 {
     public class EndToEndTests
     {
-
-
         [Test]
-        public void OneDwarSingleWorkFor10DaysAndBroughtOutGoldWorth10 ()
+        public void OneDwarSingleWorkFor10DaysAndBroughtOutGoldWorth10()
         {
             //given
             Mock<IChance> chanceForDwarfBorn = new Mock<IChance>();
             chanceForDwarfBorn.Setup(i => i.GenerateChance(It.IsAny<int>(), It.IsAny<int>())).Returns(2);
-            Mock<IBroughtOutOreChance> chanceForOre = new Mock<IBroughtOutOreChance>();
+            Mock<IChanceForBroughtOutOre> chanceForOre = new Mock<IChanceForBroughtOutOre>();
             chanceForOre.Setup(i => i.GetTheOre(It.IsAny<int>())).Returns(MineralType.Gold);
             Mock<IOreValue> oreValue = new Mock<IOreValue>();
             oreValue.Setup(i => i.GenerateOreValue()).Returns(10);
@@ -78,10 +74,8 @@ namespace Dwarf_TownTests
             presenter.Verify(i => i.WriteLine($"Shop gathered 37,50 gp"));
             presenter.Verify(i => i.WriteLine($"Dwarf gathered 37,50 gp"));
             presenter.Verify(i => i.WriteLine("*************"));
-
-
-
         }
+
         [Test]
         public void SimulationEndAfterSuicideKillAllDwarvesAtFirstDay()
         {
@@ -94,7 +88,7 @@ namespace Dwarf_TownTests
             startConditions.Presenter = presenter.Object;
             startConditions.Dwarves = new List<Dwarf>();
             startConditions.Dwarves.Add(new Dwarf(DwarfType.SUICIDE));
-                for(int i=0;i<4; i++)
+            for (int i = 0; i < 4; i++)
             {
                 startConditions.Dwarves.Add(new Dwarf(DwarfType.FATHER));
             }
@@ -118,12 +112,6 @@ namespace Dwarf_TownTests
             presenter.Verify(i => i.WriteLine("Shaft destroyed."));
             presenter.Verify(i => i.WriteLine("\nCasualties in mine: 5"));
             simulation.Presenter.WriteLine("\nSimulation end because all dwarves died");
-
         }
-
-
-
-
-
     }
 }

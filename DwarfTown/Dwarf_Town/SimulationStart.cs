@@ -21,8 +21,6 @@ namespace Dwarf_Town
         public int DwarvesBornFirstDay;
         public int ActualDay;
 
-
-
         public SimulationStart(SimulationStartConditions startConditions)
         {
             Presenter = startConditions.Presenter;
@@ -35,15 +33,12 @@ namespace Dwarf_Town
             MaxDay = startConditions.MaxDay;
             DwarvesBornFirstDay = startConditions.DwarvesBornFirstDay;
             ActualDay = 1;
-
         }
 
         public void Start()
         {
-           
             while (ActualDay <= MaxDay)
-              {
-              
+            {
                 Presenter.WriteLine($"\n\n######\nToday is day number {ActualDay}\n");
                 if (ActualDay == 1)
                 {
@@ -65,7 +60,6 @@ namespace Dwarf_Town
                 Shop.BuyGoods(Dwarves);
                 UpdateSimulationState();
                 ActualDay++;
-
             }
 
             SimulationReport.GenerateRaport(this);
@@ -75,9 +69,8 @@ namespace Dwarf_Town
         {
             foreach (var dwarf in Dwarves)
             {
-                dwarf.Wallet.OverallCash += Math.Round(dwarf.Wallet.DailyCash,2);
+                dwarf.Wallet.OverallCash += Math.Round(dwarf.Wallet.DailyCash, 2);
                 dwarf.Wallet.DailyCash = 0;
-
             }
         }
     }

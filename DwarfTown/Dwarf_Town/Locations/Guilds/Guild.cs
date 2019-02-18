@@ -30,7 +30,6 @@ namespace Dwarf_Town.Locations.Guild
 
         public void PaymentForDwarves(List<ISell> dwarvesVisitGuild)
         {
-            List<string> message = new List<string>();
             foreach (var dwarf in dwarvesVisitGuild)
             {
                 foreach (var ore in dwarf.ShowBackpack())
@@ -41,7 +40,6 @@ namespace Dwarf_Town.Locations.Guild
                     _account += provision;
                     decimal payment = Math.Round((value - provision), 2);
                     dwarf.ReceivedMoney(payment);
-                   
                 }
                 dwarf.ShowBackpack().Clear();
             }
@@ -70,9 +68,6 @@ namespace Dwarf_Town.Locations.Guild
             {
                 _dailyOreValueRegister[key] = 0;
             }
-
-
-
         }
     }
 }

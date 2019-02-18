@@ -14,7 +14,7 @@ namespace Dwarf_Town.Locations.Mine
                 {MineralType.Gold,0 },
                 {MineralType.Silver,0 },
                 {MineralType.Mithril,0 } },
-                new GiveSpecificOre(),presenter);
+                new GiveSpecificOre(), presenter);
             return mine;
         }
     }

@@ -11,7 +11,6 @@ namespace Dwarf_Town
         public ISell _sell = null;
         public IBuy Buy { get; set; }
 
-
         public Dwarf(DwarfType dwarfType)
         {
             if (dwarfType == DwarfType.FATHER)
@@ -40,13 +39,13 @@ namespace Dwarf_Town
             }
 
             IsAlive = true;
-            BackPack = new BackPack();
+            BackPack = new Backpack();
             Wallet = new Wallet();
             DwarfType = dwarfType;
         }
 
         public bool IsAlive { get; set; }
-        public BackPack BackPack { get; set; }
+        public Backpack BackPack { get; set; }
         public Wallet Wallet { get; set; }
         public DwarfType DwarfType { get; set; }
     }

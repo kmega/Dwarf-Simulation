@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace Dwarf_TownTests
 {
-    public class NewspaperTests
+    public class WindowsConsoleTests
     {
         [Test]
         public void ShouldShowThatDwarfSellDirytGold()
@@ -41,7 +41,7 @@ namespace Dwarf_TownTests
             Dwarf dwarf = new Dwarf(DwarfType.SUICIDE);
 
             //when
-          mine.DwarvesGoWork(new List<IWork>() { dwarf._work });
+            mine.DwarvesGoWork(new List<IWork>() { dwarf._work });
 
             //given
             presenter.Verify(i => i.WriteLine("Shaft destroyed."));
@@ -56,9 +56,8 @@ namespace Dwarf_TownTests
             Mock<IWork> workingDwarf = new Mock<IWork>();
             workingDwarf.Setup(i => i.ShowWhatYouBroughtOut()).Returns(new List<MineralType>() { MineralType.Gold });
 
-
             //when
-           mine.DwarvesGoWork(new List<IWork>() { workingDwarf.Object });
+            mine.DwarvesGoWork(new List<IWork>() { workingDwarf.Object });
 
             //then
             presenter.Verify(i => i.WriteLine("\nMine brought out:"));

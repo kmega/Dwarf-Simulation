@@ -1,5 +1,4 @@
-﻿using Dwarf_Town.Interfaces;
-using System;
+﻿using System;
 
 namespace Dwarf_Town
 {
@@ -10,8 +9,6 @@ namespace Dwarf_Town
             SimulationStart simulation = new SimulationStart(SimulationConditionFactory.GenerateStandardStartConditions());
             simulation.Start();
             Console.ReadKey();
-            
-
         }
     }
 }
