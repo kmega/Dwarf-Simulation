@@ -1,5 +1,6 @@
-﻿using DwarfsTown;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DwarfsTown;
 
 namespace DwarfsTownTests
 {
