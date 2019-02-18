@@ -33,7 +33,7 @@ namespace DwarfsCity.Tools
                 return Type.Father;
             else if (Enumerable.Range(33, 66).Contains(probability))
                 return Type.Single;
-            else if (Enumerable.Range(66, 99).Contains(probability))
+            else if (Enumerable.Range(66, 98).Contains(probability))
                 return Type.Lazy;
             else
                 return Type.Saboteur;
