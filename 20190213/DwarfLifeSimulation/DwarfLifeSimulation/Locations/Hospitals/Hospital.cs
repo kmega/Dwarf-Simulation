@@ -14,6 +14,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
         private IDwarfTypeRandomizer _dwarfTypeRandomizer;
         private DwarfFactory _dwarfFactory;
         private ILog _logger;
+        public int NumberOfBirths { get; private set; }
 
         #region Contructors
 
@@ -26,6 +27,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
                 dwarfTypeRandomizer : new DwarfTypeGenerationStrategy();
             _logger = (logger != null) ? logger : new Logger();
             _dwarfFactory = new DwarfFactory();
+            NumberOfBirths = 0;
         }
         #endregion
 
@@ -58,6 +60,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
             {
                 var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: false);
                 dwarves.Add(_dwarfFactory.Create(type));
+                NumberOfBirths++;
                 _logger.AddLog($"{type} has been born.");
             }
             return dwarves;
