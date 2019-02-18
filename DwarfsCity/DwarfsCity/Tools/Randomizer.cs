@@ -9,6 +9,8 @@ namespace DwarfsCity.Tools
 {
     public class Randomizer:IRandomizer
     {
+        private static IRandomizer _randomizer = new Randomizer();
+
         public int GetChanceRatio(int min = 1,int max = 100)
         {
             Random rand = new Random();
@@ -17,8 +19,7 @@ namespace DwarfsCity.Tools
 
         public static bool IsDwarfBorn()
         {
-            Randomizer randomizer = new Randomizer();
-            if (randomizer.GetChanceRatio() == 5)
+            if (_randomizer.GetChanceRatio() == 5)
                 return true;
             else
                 return false;
@@ -26,8 +27,7 @@ namespace DwarfsCity.Tools
 
         public static Type TypeOfBornDwarf()
         {
-            IRandomizer randomizer = new Randomizer();
-            int probability = randomizer.GetChanceRatio();
+            int probability = _randomizer.GetChanceRatio();
 
             if (Enumerable.Range(1, 33).Contains(probability))
                 return Type.Father;
@@ -41,8 +41,7 @@ namespace DwarfsCity.Tools
 
         public static decimal ValueOfItem(Item item)
         {
-            Randomizer randomizer = new Randomizer();
-            int valueIncrease = randomizer.GetChanceRatio(0,10);
+            int valueIncrease = _randomizer.GetChanceRatio(0,10);
 
             switch(item)
             {
@@ -53,7 +52,7 @@ namespace DwarfsCity.Tools
                 case Item.Silver:
                     return 5 + valueIncrease;
                 case Item.DirtyGold:
-                    valueIncrease = randomizer.GetChanceRatio(0, 4);
+                    valueIncrease = _randomizer.GetChanceRatio(0, 4);
                     return 1 + valueIncrease;
             }
 
@@ -62,8 +61,7 @@ namespace DwarfsCity.Tools
 
         public static Item ItemDigged()
         {
-            Randomizer randomizer = new Randomizer();
-            int probability = randomizer.GetChanceRatio();
+            int probability = _randomizer.GetChanceRatio();
 
             if (Enumerable.Range(1, 5).Contains(probability))
                 return Item.Mithril;
@@ -78,10 +76,8 @@ namespace DwarfsCity.Tools
 
         public static int CountsOfDigging()
         {
-            Randomizer randomizer = new Randomizer();
-            return randomizer.GetChanceRatio(1, 3);
+            return _randomizer.GetChanceRatio(1, 3);
         }
-
 
     }
 }
