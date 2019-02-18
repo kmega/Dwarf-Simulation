@@ -1,0 +1,8 @@
+Projekt DwarfTown:
+Część projektu towrzącego miasto krasnali, w którym znajdują się obiekty: kopalnia, szpital, bank, sklep oraz gildia. Klasa Dwarf tworzy obiekt, gdzie zastosowano strategię dla tworzenia obiektów. Użyte interfejsy pozwoliły przypisać odpowiednie instancje metod dla poszczególnych typów dwarf. Klasa Hospital tworzy obiekty typu Dwarf wykorzystując interfejs do generowania liczb pseudolosowych, aby utworzyć obiekt typu Dwarf z zadanym prawdopodobieństwem. Istotne było wykorzystanie interfejsu do losowania liczb, co pozwoliło na wykorzystanie biblioteki Moq w testach jednostkowych.
+Projekt BattleShip
+Symulacja klasycznej gry w statki. Klasa GameBoard generuje tablice z obiektami które są zapisane w postaci list stringów użytkownika (konwersja char to int) w odpowiedniej pozycji w tablicy. Klasa Game zawiera metody, które są następnie wykorzystywane do sterownia ruchami gracza w rozgrywce.
+Projekt FlighSimulator
+Symulacja lotniska z dwoma pasami startowymi i zadaną iloscią samolotów w powietrzu. Klasa ControlTower zarządza obiektami Airplane i Airstrip. W projekcie wykorzystane są operacje na listach z zastosowaniem biblioteki Linq. Projekt posiada również testy jednostkowe, nie pokrywają one jednak większości kodu.
+
+Powyższe projekty ułożone są chronologicznie (od najnowszego) i stanowią tylko część całości projektów jakie tworzone były w zespołach wieloosobowych z wykorzystanie zdalnych repozytoriów GIT.
