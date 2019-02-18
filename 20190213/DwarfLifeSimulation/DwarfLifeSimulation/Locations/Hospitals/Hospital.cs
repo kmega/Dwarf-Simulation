@@ -60,6 +60,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
                 var type = _dwarfTypeRandomizer.GiveMeDwarfType(omitSuicider: false);
                 dwarves.Add(_dwarfFactory.Create(type));
                 _logger.AddLog($"{type} has been born.");
+				_numberOfBirths++;
             }
             return dwarves;
         }
