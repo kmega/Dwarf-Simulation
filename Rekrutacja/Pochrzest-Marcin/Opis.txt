@@ -1,0 +1,11 @@
+Zamieszczony fragment kodu jest bytem osadzonym w symulacji górniczego miasta zamieszkiwanego 
+przez krasnoludy. Jego zadaniem jest konstrukcja pocz¹tkowego zbioru postaci oraz losowe narodziny
+nowych krasnoludów. Reprezentuje on ró¿ne zachowania w zale¿noœci od tury symulacji. 
+Implementuje tak¿e strategiê losowania rodzaju krasnoluda, który nastêpnie przekazywany 
+jest do fabryki krasnoludów, poniewa¿ zachowanie tych postaci zale¿ne jest od ich charakteru. 
+
+The part of code attached is a class embedded in simulation of mining town inhabited by dwarves. 
+It's job is to construct initial society and perform random births of new dwarves along the simulation. 
+The Hospital class represents different behaviours depending on turn number. It also implements 
+dwarf type drawing strategy, which is passed to dwarf factory further, as behaviour of these
+creatures is different for each dwarf character. Each action is saved as log. 
