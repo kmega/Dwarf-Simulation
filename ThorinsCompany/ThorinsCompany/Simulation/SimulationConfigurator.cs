@@ -17,6 +17,7 @@ namespace ThorinsCompany
             _config.CreateBar();
             _config.CreateMine();
             _config.CreateGuild();
+            _config.CreateDisplayer();
 
             return _config;
         }

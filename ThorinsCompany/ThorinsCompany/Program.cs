@@ -9,6 +9,7 @@ namespace ThorinsCompany
             Console.WriteLine("Hello Dwarfs!");
             Config config = new SimulationConfigurator().getConfig();
             new Simulation(config).PerformSimulation();
+            Console.ReadKey();
         }
     }
 }

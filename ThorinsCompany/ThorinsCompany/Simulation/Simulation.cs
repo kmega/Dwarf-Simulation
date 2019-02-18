@@ -18,7 +18,7 @@ namespace ThorinsCompany
             for (int i = 0; i < 30; i++)
             {
                 _config.Hospital.TryGiveBirthToDwarf(_dwarves);
-                //_config.Mine;
+                _config.Mine.PerformMining(_dwarves);
                 Cementary.Funeral(_dwarves);
                 _config.Bank.ExchangeMaterialsForMoneyFromAllDwarves(_dwarves);
                 _config.Guild.GetTaxesFromDwarvesThatWorked(_dwarves);
