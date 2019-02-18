@@ -24,32 +24,46 @@ namespace Mine2._0
             {
                 var workers = allWorkers.Where(x => x.GetIsAliveStatus() == true && x.GetBackpackQunatity() == 0).ToList();
 
-                if(_schafts[0].SchaftStatus == E_SchaftStatus.Operational)
-                {
-                    _schafts[0].SchaftWorkers = _teamSplitter.SplitWorkersIntoTeam(workers);
-                    _schafts[0].SchaftWorkers.ForEach(x => x.Work(_schafts[0], _mineRandomizer));
-                }
 
-                if (_schafts[1].SchaftStatus == E_SchaftStatus.Operational)
+                foreach (var schaft in _schafts)
                 {
-                    _schafts[1].SchaftWorkers = _teamSplitter.SplitWorkersIntoTeam(workers);
-                    _schafts[1].SchaftWorkers.ForEach(x => x.Work(_schafts[1], _mineRandomizer));
+                    if (schaft.SchaftStatus == E_SchaftStatus.Operational)
+                    {
+                        schaft.SchaftWorkers = _teamSplitter.SplitWorkersIntoTeam(workers);
+                        schaft.SchaftWorkers.ForEach(x => x.Work(schaft, _mineRandomizer));
+                    }
                 }
+                //if (_schafts[0].SchaftStatus == E_SchaftStatus.Operational)
+                //{
+                //    _schafts[0].SchaftWorkers = _teamSplitter.SplitWorkersIntoTeam(workers);
+                //    _schafts[0].SchaftWorkers.ForEach(x => x.Work(_schafts[0], _mineRandomizer));
+                //}
 
-                workers.AddRange(_schafts[0].SchaftWorkers);
-                workers.AddRange(_schafts[1].SchaftWorkers);
+                //if (_schafts[1].SchaftStatus == E_SchaftStatus.Operational)
+                //{
+                //    _schafts[1].SchaftWorkers = _teamSplitter.SplitWorkersIntoTeam(workers);
+                //    _schafts[1].SchaftWorkers.ForEach(x => x.Work(_schafts[1], _mineRandomizer));
+                //}
+
+                _schafts.ForEach(x => workers.AddRange(x.SchaftWorkers));
+
+                //workers.AddRange(_schafts[0].SchaftWorkers);
+                //workers.AddRange(_schafts[1].SchaftWorkers);
 
                 foreach (var schaft in _schafts)
                 {
                     if (schaft.SchaftStatus == E_SchaftStatus.Broken)
                         _presenter.WriteLine($"Schaft was destroyed, all dwarves died :(");
-                }
 
-                foreach (var schaft in _schafts)
-                {
-                    if(schaft.SchaftWorkers.All(x => x.GetIsAliveStatus()))
+                    if (schaft.SchaftWorkers.All(x => x.GetIsAliveStatus()))
                         Stats.AddRange(schaft.SchaftStats);
                 }
+
+                //foreach (var schaft in _schafts)
+                //{
+                //    if(schaft.SchaftWorkers.All(x => x.GetIsAliveStatus()))
+                //        Stats.AddRange(schaft.SchaftStats);
+                //}
                 _schafts.ForEach(x => x.SchaftStats.Clear());
                 _schafts.ForEach(x => x.SchaftWorkers.Clear());
             }
