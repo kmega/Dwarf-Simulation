@@ -33,7 +33,6 @@ namespace DwarfLifeSimulation.Dwarves
                 case DwarfType.Suicide:
                     return new Dwarf(name, dwarfType, new SuicideStrategy(), new BuyNoneStrategy());              
             }
-
         }
     }
 }

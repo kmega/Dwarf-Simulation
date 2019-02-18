@@ -11,7 +11,7 @@ namespace DwarfLifeSimulation.Locations.Shops
 {
     public class Shop
     {
-		public int _bankAccountId;
+		private int _bankAccountId;
         private ILog _logger;
 
 		public Dictionary<ProductType, decimal> _shopState = new Dictionary<ProductType, decimal>();
