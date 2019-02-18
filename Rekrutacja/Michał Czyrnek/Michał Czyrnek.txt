@@ -1,0 +1,119 @@
+using Dwarf_Town.Enums;
+using Dwarf_Town.Interfaces;
+using Dwarf_Town.Locations.Guild.OreValue;
+using System;
+using System.Collections.Generic;
+
+namespace Dwarf_Town.Locations.Guild
+{
+    public class Guild
+    {
+        private decimal _account;
+        private Dictionary<MineralType, IOreValue> _oresOnMarket;
+        private Dictionary<MineralType, decimal> _oreValueRegister;
+        private Dictionary<MineralType, decimal> _dailyOreValueRegister;
+        public IOutputWriter Presenter;
+
+        public Guild(Dictionary<MineralType, IOreValue> oresOnMarket, Dictionary<MineralType, decimal> oreValueRegister, IOutputWriter presenter)
+        {
+            _account = 0;
+            _oresOnMarket = oresOnMarket;
+            _oreValueRegister = oreValueRegister;
+            _dailyOreValueRegister = new Dictionary<MineralType, decimal>(_oreValueRegister);
+            Presenter = presenter;
+        }
+
+        private decimal ReturnOreValue(MineralType mineraltype)
+        {
+            return _oresOnMarket[mineraltype].GenerateOreValue();
+        }
+
+        public void PaymentForDwarves(List<ISell> dwarvesVisitGuild)
+        {
+            foreach (var dwarf in dwarvesVisitGuild)
+            {
+                foreach (var ore in dwarf.ShowBackpack())
+                {
+                    decimal value = ReturnOreValue(ore);
+                    _dailyOreValueRegister[ore] += value;
+                    decimal provision = Math.Round((value * 0.25m), 2);
+                    _account += provision;
+                    decimal payment = Math.Round((value - provision), 2);
+                    dwarf.ReceivedMoney(payment);
+                }
+                dwarf.ShowBackpack().Clear();
+            }
+            UpdateMineRegister();
+        }
+
+        public decimal ShowTresure()
+        {
+            return _account;
+        }
+
+        public Dictionary<MineralType, decimal> ShowGuildRegister()
+        {
+            return _oreValueRegister;
+        }
+
+        private void UpdateMineRegister()
+        {
+            Presenter.WriteLine("\nGuild received ore worth:");
+            foreach (var ore in _dailyOreValueRegister)
+            {
+                Presenter.WriteLine($"{ore.Key}: {ore.Value} gp");
+                _oreValueRegister[ore.Key] += ore.Value;
+            }
+            foreach (var key in _oreValueRegister.Keys)
+            {
+                _dailyOreValueRegister[key] = 0;
+            }
+        }
+    }
+}
+
+Wyjaœnienie:
+1.Klasa ta ma zadanie wyp³atê nale¿noœci za wydobyte minera³y wraz z potr¹ceniem 25% prowizji.
+2.Klasa ta wymaga³a znalezienia sposóbu na to, ¿eby ró¿ne obiekty wykonywa³y jeden typ czynnoœci, ale w ró¿norodny sposób.
+Tworzy³o to wyzwanie na poziomie przysz³ej testowalnoœci i rozszerzalnoœci klasy oraz odpornoœci klasy na modyfikacje.
+Zastosowanie wzorca projektowego strategii pozwoli³o rozwi¹zaæ te problemy. Stworzy³o tak¿e warunki dla zastosowania biblioteki Moq oraz kontroli testów.
+3.Metoda PaymentForDwarf przyjmuje jako parametr listê obiektów implementuj¹cych ISell, co pozwala na przekazanie do niej obiektów, 
+które posiadaj¹ ró¿ne strategie wykonania czynnoœci wymiany. 
+4.Zastosowanies dictionary (Dictionary<MineralType, IOreValue>), gdzie jako wartoœæ jest klasa implementuj¹ca interfejs, 
+pozwala ³atwo modyfikowaæ i rozszerzaæ ten fragmentu kodu. Wycena zebranych minera³ów zostaje wydzielona do osobnych klas,
+przez co ³atwo dodaæ kolejne minera³y i sposoby na ich wycenê.
+Mo¿liwe jest tak¿e ³atwe przetestowanie tej klasy i kontrolê rezultatu przy testach End To End.
+(w taki sposób:)
+
+...
+  Mock<IOreValue> oreValue = new Mock<IOreValue>();
+            oreValue.Setup(i => i.GenerateOreValue()).Returns(10);
+            Mock<IOutputWriter> presenter = new Mock<IOutputWriter>();
+            Guild guild = new Guild(
+                new Dictionary<MineralType, IOreValue>() { { MineralType.Gold, oreValue.Object } },
+                new Dictionary<MineralType, decimal>() { { MineralType.Gold, 0 } },
+                presenter.Object
+                );
+...
+5.U¿ycie Dictionary<MineralType, decimal> pozwoli³o na wygodne prowadzenie statystyk wymiany minera³ów.
+6.Zastosowanie interfejsu IOutputWriter do prezentacji wyników na konsoli pozwala na przeprowadzenie testów.
+(w taki sposób:)
+
+...
+            //given
+            Mock<IOutputWriter> presenter = new Mock<IOutputWriter>();
+            Guild guild = GuildFactory.CreateStandardGuild(presenter.Object);
+            Dwarf dwarf = new Dwarf(DwarfType.FATHER);
+            dwarf.BackPack.AddOre(MineralType.DirtyGold);
+            List<ISell> miners = new List<ISell>() { dwarf._sell };
+
+            //when
+            guild.PaymentForDwarves(miners);
+
+            //then
+            presenter.Verify(i => i.WriteLine("\nGuild received ore worth:"));
+            presenter.Verify(i => i.WriteLine("DirtyGold: 2 gp"));
+            presenter.Verify(i => i.WriteLine("Gold: 0 gp"));
+            presenter.Verify(i => i.WriteLine("Mithril: 0 gp"));
+            presenter.Verify(i => i.WriteLine("Silver: 0 gp"));
+...
