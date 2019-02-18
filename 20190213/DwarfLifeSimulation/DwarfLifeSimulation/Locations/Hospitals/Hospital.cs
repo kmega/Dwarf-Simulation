@@ -14,6 +14,7 @@ namespace DwarfLifeSimulation.Locations.Hospitals
         private IDwarfTypeRandomizer _dwarfTypeRandomizer;
         private DwarfFactory _dwarfFactory;
         private ILog _logger;
+		private int _numberOfBirths;
 
         #region Contructors
 
@@ -62,5 +63,10 @@ namespace DwarfLifeSimulation.Locations.Hospitals
             }
             return dwarves;
         }
+
+		public int GetNumberOfBirths()
+		{
+			return _numberOfBirths;
+		}
     }
 }

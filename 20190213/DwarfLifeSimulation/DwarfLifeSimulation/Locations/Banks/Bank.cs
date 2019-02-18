@@ -7,7 +7,7 @@ namespace DwarfLifeSimulation.Locations.Banks
     public class Bank
     {
         private Dictionary<int, BankAccount> accounts;
-        private BankAccount generalAccount;
+        public BankAccount generalAccount;
 
         protected Dictionary<int, BankAccount> Accounts
         {

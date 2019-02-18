@@ -27,6 +27,7 @@ namespace DwarfLifeSimulation.Loggers
 
 		public void DisplayReport(SimulationState state)
 		{
+			Console.WriteLine();
 			Console.WriteLine("**********************************************");
 			Console.WriteLine("**************** DWARVES NEWS ****************");
 			Console.WriteLine();

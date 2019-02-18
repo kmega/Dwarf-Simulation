@@ -34,6 +34,15 @@ namespace DwarfLifeSimulation.ApplicationLogic
             {
                 SimulateDay(hospital, mine, guild, canteen, shop, graveyard);
             }
+			currentSimulationState._deadDwarves = graveyard.DeadDwarvesAmount;
+			currentSimulationState._shopState = shop._shopState;
+			currentSimulationState._extractedOre = guild.GetOveralResources();
+			currentSimulationState._shopBankAccount = Bank.Instance.GetOverallAccountMoney(shop._bankAccountId);
+			currentSimulationState._guildBankAccount = Bank.Instance.GetOverallAccountMoney(guild.bankAccountId);
+			currentSimulationState._taxBankAccount = Bank.Instance.generalAccount.OverallMoney;
+			currentSimulationState._numberOfBirths = hospital.GetNumberOfBirths();
+			logger.DisplayReport(currentSimulationState);
+			System.Console.ReadLine();
         }
 
         public void SimulateDay(Hospital hospital, Mine mine, Guild guild, Canteen canteen, Shop shop, Graveyard graveyard)
