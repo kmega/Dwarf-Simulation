@@ -20,10 +20,7 @@ namespace ContainerTraining
 
             container.Resolve<A>().Eat();
 
-
-
             Console.ReadKey();
-
         }
     }
 
