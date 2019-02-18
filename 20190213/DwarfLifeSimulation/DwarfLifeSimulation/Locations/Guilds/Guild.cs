@@ -14,7 +14,7 @@ namespace DwarfLifeSimulation.Locations.Guilds
     {
         private ILog _logger;
         private IMineralValueRandomizer _mineralValueRandomizer;
-        private int bankAccountId;
+        public int bankAccountId;
         private Dictionary<MineralType, decimal[]> _overallResources; // 0 index stands for quantity
                                                                       // 1 index stands for value
 
@@ -70,5 +70,10 @@ namespace DwarfLifeSimulation.Locations.Guilds
         {
             return $"We sold {_overallResources[mineralType][0]} in value of {_overallResources[mineralType][1]}";
         }
+
+		public Dictionary<MineralType, decimal[]> GetOveralResources()
+		{
+			return _overallResources;
+		}
     }
 }

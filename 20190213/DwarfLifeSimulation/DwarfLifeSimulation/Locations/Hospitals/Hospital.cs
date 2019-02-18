@@ -14,7 +14,11 @@ namespace DwarfLifeSimulation.Locations.Hospitals
         private IDwarfTypeRandomizer _dwarfTypeRandomizer;
         private DwarfFactory _dwarfFactory;
         private ILog _logger;
+<<<<<<< HEAD
         public int NumberOfBirths { get; private set; }
+=======
+		private int _numberOfBirths;
+>>>>>>> Howaniec
 
         #region Contructors
 
@@ -62,8 +66,14 @@ namespace DwarfLifeSimulation.Locations.Hospitals
                 dwarves.Add(_dwarfFactory.Create(type));
                 NumberOfBirths++;
                 _logger.AddLog($"{type} has been born.");
+				_numberOfBirths++;
             }
             return dwarves;
         }
+
+		public int GetNumberOfBirths()
+		{
+			return _numberOfBirths;
+		}
     }
 }
