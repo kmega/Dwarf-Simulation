@@ -31,6 +31,7 @@ namespace ThorinsCompany
                 Console.ReadKey();
             }
             displayer.DisplayFinalReport(0);
+            Console.ReadKey();
             //_config.Displayer.DisplayFinalReport();
         }
     }
