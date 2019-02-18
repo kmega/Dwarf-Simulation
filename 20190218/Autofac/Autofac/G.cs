@@ -8,7 +8,8 @@ namespace HowToAutofac
     {
         public void It()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Something G");
+
         }
     }
 }

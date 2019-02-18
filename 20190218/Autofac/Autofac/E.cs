@@ -17,7 +17,10 @@ namespace HowToAutofac
 
         public void It()
         {
-            throw new NotImplementedException();
+            F.It();
+            G.It();
+               
+
         }
     }
 }

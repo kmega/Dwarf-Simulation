@@ -11,5 +11,10 @@ namespace HowToAutofac
         {
             B = b;
         }
+
+        public void ShowMustGoOn()
+        {
+            B.It();
+        }
     }
 }
