@@ -1,0 +1,22 @@
+	I am proud of the Hospital class, because this class responsibility is to create Dwarfs,
+which most of the classes contains in their structures. This is significant for me of the
+reason that my team trusted me and they believed that I can do that - without created Dwarfs 
+- all aplication can't work properly. I also like this element of the project, because I've 
+learned there a lot - one person from my team teached me how to use the Mock Library and test 
+"Randomizer", which I have used in Hospital class to take into account randomness of 
+born new Dwarfs. I used that Mock in "HospitalTests" and now I know how to use it.
+Hospital tests are also the proofs that my classes work properly and that the rest of the 
+team can use them without worrying about the bugs. 
+	I am also proud of my progress in programming. There is a lot of object, which I need 
+to connect and a lot of significant decision to make- how to create the structure of 
+application to don't get lost in our code later.
+I had also a lot of fun with cooperating with other people and talking about how to connect
+our classes and what I can do to make their work easier and quicker. 
+	And also, I think, the most important thing is the fact, that I've solved the problem 
+I was asked, my code is working and I can prove that. My code isn't perfect, but I can find
+there some positive elements, which I like. The code is mostly readable and understandable 
+and my team understood it without problems. I had excellent cooperation with my team and 
+we've solved all problems together - problems with merging files happened rarely than with 
+previous projects, because  we had planned our aplication carefully to make our work easier. 
+I've learned new things and I've found that my programming skills are definitely better than 
+two months ago. Moreover, thanks to this application, I have more experience in programming now. 
