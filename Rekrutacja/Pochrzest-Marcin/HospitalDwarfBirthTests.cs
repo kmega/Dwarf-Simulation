@@ -32,9 +32,11 @@ namespace DwarfLifeSimulationsTests.HospitalTests
             //given
             SimulationState simulationState = new SimulationState();
             hospital = new Hospital(new Logger(),isDwarfBornMock.Object, dwarfTypeMock.Object);
+            Assert.IsTrue(simulationState.dwarves.Count == 0);
             //when
             hospital.CreateDwarves(simulationState);
             //then            
+            Assert.IsTrue(simulationState.dwarves == 10);
             foreach (var dwarf in simulationState.dwarves)
             {
                 Assert.IsTrue(dwarf._dwarfType == DwarfType.Father);
@@ -49,9 +51,11 @@ namespace DwarfLifeSimulationsTests.HospitalTests
             simulationState.turn = 2;
             dwarfTypeMock.Setup(x => x.GiveMeDwarfType(false)).Returns(DwarfType.Single);
             hospital = new Hospital(new Logger(), isDwarfBornMock.Object, dwarfTypeMock.Object);
+            Assert.IsTrue(simulationState.dwarves.Count == 0);
             //when
             hospital.CreateDwarves(simulationState);
             //then            
+            Assert.IsTrue(simulationState.dwarves.Count == 1);
             Assert.IsTrue(simulationState.dwarves[0]._dwarfType == DwarfType.Single);
         }
     }
