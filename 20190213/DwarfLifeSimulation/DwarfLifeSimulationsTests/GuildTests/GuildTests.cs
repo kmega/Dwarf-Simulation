@@ -37,5 +37,19 @@ namespace DwarfLifeSimulationsTests.GuildTests
             //then
             Assert.IsTrue(actual == 45.0m);
         }
+
+        [Test]
+        public void T100_OverallresourcesShouldHave3GoldAnd45Value()
+        {
+            //given
+            guild = new Guild(mineralValueMock.Object);
+            Dictionary<MineralType, int> backpack = new Dictionary<MineralType, int>();
+            backpack.Add(MineralType.Gold, 3);
+            //when
+            var actual = guild.GetMineralOverallValue(backpack);
+            //then
+            Assert.AreEqual(_overallresources[MineralType.Gold][0], 3);
+            Assert.AreEqual(_overallresources[MineralType.Gold][1], 45m);
+        }
     }
 }

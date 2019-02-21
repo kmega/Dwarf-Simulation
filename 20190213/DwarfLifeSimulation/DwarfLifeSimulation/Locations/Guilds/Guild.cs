@@ -24,17 +24,11 @@ namespace DwarfLifeSimulation.Locations.Guilds
         {
             foreach (var worker in workers)
             {
-                //  var backpack = worker.EmptyBackpackContent();
                 var backpack = worker.EmptyBackpackContent();
-                //  var money = GetMineralValue(backpack);
                 var money = GetMineralOverallValue(backpack);
-                //  var moneyForDwarf = money * 0.8;
                 var moneyForDwarf = money * 0.8m;
-                //  worker.GetMoney(moneyForDwarf);
                 worker.GetMoney(moneyForDwarf);
-                //  var moneyForGuild = money * 0.2;
                 var moneyForGuild = money * 0.2m;
-                //  Bank.Instance.PutInto
                 Bank.Instance.PayIntoAccount(bankAccountId, moneyForGuild);
             }
         }
