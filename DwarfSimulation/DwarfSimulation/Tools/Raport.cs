@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace DwarfSimulation
 {
     internal class Raport
@@ -51,7 +52,6 @@ namespace DwarfSimulation
             Console.WriteLine("Food bought " + FoodBought);
             Console.WriteLine("Alcohol bought " + AlcoholBought);
             Console.WriteLine("Shop earned " + Decimal.Round(ShopEarned,2));
-
         }
     }
 }

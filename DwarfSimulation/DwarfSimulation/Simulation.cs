@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace DwarfSimulation
 {
@@ -13,11 +11,13 @@ namespace DwarfSimulation
         internal void Start()
         {
             Prepare();
+
             for (int i = 0; i < 30; i++)
             {
                 if (!Day(i)) break;
 
             }
+
             _raport.Display();
         }
 
@@ -25,42 +25,42 @@ namespace DwarfSimulation
         {
             Randomizer randomizer = new Randomizer();
 
-            //Hospital
+
             Hospital hospital = new Hospital(randomizer);
             if (dayNumber != 0)
             { _dwarves = hospital.BornDwarf(_dwarves, _raport); }
 
 
-            //Mines
             Mines mines = new Mines();
             _dwarves = mines.EnterMines(_dwarves, _shafts, _raport);
-            //Guild
+
+
             Guild guild = new Guild(randomizer);
             guild.ExchangeDwarvesMineralsAndGiveThemMoney(_dwarves);
             guild.ClearBackpacks(_dwarves);
             guild.Display();
             guild.UpdateSimulationRaport(_raport);
 
-            //Graveyard
+
             Graveyard graveyard = new Graveyard();
             _dwarves = graveyard.DeleteDeadDwarfFromList(_dwarves, _raport);
             if (!graveyard.AnybodyLives(_dwarves)) return false;
 
-            //DinningRoom
+
             DiningRoom diningRoom = new DiningRoom();
             if (!diningRoom.CanEat(_dwarves, _raport)) return false;
             diningRoom.DwarfsEat(_dwarves, _raport);
 
 
-            //Shop
             Shop shop = new Shop();
             shop.ServeEveryone(_dwarves);
             shop.Display();
             shop.UpdateSimulationRaport(_raport);
 
-            //Bank
+
             Bank bank = new Bank();
             bank.TransferMoneyToAcconunt(_dwarves);
+
 
             return true;
         }

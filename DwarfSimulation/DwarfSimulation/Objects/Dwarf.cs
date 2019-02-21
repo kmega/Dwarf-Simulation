@@ -23,7 +23,6 @@ namespace DwarfSimulation
 
         }
 
-
         internal decimal Wallet { get; set; }
         internal decimal Account { get; set; }
 
